@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "vintagetech:block/axle",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "vintagetech:block/axle"
+    },
+    "axis=z": {
+      "model": "vintagetech:block/axle",
+      "x": 90
+    }
+  }
+}

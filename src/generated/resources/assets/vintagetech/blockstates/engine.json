@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "vintagetech:block/engine",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "vintagetech:block/engine",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "vintagetech:block/engine"
+    },
+    "facing=west": {
+      "model": "vintagetech:block/engine",
+      "y": 90
+    }
+  }
+}
