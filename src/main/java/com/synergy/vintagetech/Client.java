@@ -1,5 +1,8 @@
 package com.synergy.vintagetech;
 
+import com.synergy.vintagetech.init.builder.axle.KineticRenderer;
+import com.synergy.vintagetech.init.types.zBlockEntities;
+
 import net.minecraft.world.item.crafting.RecipeMap;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -23,6 +26,14 @@ public class Client {
 
     @SubscribeEvent
     public static void render(EntityRenderersEvent.RegisterRenderers event) {
+
+        event.registerBlockEntityRenderer(
+                zBlockEntities.TRANSMISSION.get(),
+                KineticRenderer::new);
+
+        event.registerBlockEntityRenderer(
+                zBlockEntities.ENGINE.get(),
+                KineticRenderer::new);
 
     }
 
