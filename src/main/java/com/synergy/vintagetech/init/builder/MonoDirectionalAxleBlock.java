@@ -2,26 +2,24 @@ package com.synergy.vintagetech.init.builder;
 
 import java.util.List;
 
-import com.mojang.serialization.MapCodec;
-import com.synergy.vintagetech.api.AxleHandler;
+import com.synergy.vintagetech.api.BaseAxleBlock;
 
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.AnvilBlock;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.DirectionalBlock;
-import net.minecraft.world.level.block.HopperBlock;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.material.PushReaction;
 
-public abstract class MonoDirectionalAxleBlock extends Block implements AxleHandler {
+public abstract class MonoDirectionalAxleBlock extends BaseAxleBlock {
 
     public MonoDirectionalAxleBlock(Properties p) {
-        super(p.pushReaction(PushReaction.BLOCK));
+        super(p);
+    }
+
+    @Override
+    protected RenderShape getRenderShape(BlockState state) {
+        return RenderShape.MODEL;
     }
 
     @Override

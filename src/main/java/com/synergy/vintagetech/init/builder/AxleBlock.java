@@ -1,33 +1,31 @@
 package com.synergy.vintagetech.init.builder;
 
 import java.util.List;
-import java.util.Map;
-
-import org.jspecify.annotations.Nullable;
-
-import com.devdyna.cakesticklib.api.aspect.logic.Connectable;
-import com.synergy.vintagetech.api.AxleHandler;
-
+import com.synergy.vintagetech.api.BaseAxleBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Direction.Axis;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.material.PushReaction;
-import net.minecraft.world.level.redstone.Orientation;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class AxleBlock extends RotatedPillarBlock implements AxleHandler {
+public class AxleBlock extends BaseAxleBlock {
+
+    public static final EnumProperty<Axis> AXIS = RotatedPillarBlock.AXIS;
 
     public AxleBlock(Properties p) {
-        super(p.pushReaction(PushReaction.BLOCK));
+        super(p);
+    }
+
+    protected BlockState rotate(BlockState state, Rotation rotation) {
+        return RotatedPillarBlock.rotatePillar(state, rotation);
     }
 
     @Override
@@ -64,9 +62,9 @@ public class AxleBlock extends RotatedPillarBlock implements AxleHandler {
         return dir.getAxis() == state.getValue(AXIS);
     }
 
-    
-
-   
-
+    @Override
+    public List<Direction.Axis> getRotationAxis(BlockState state) {
+        return List.of(state.getValue(AXIS));
+    }
 
 }

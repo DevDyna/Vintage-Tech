@@ -5,48 +5,38 @@ import java.util.HashSet;
 import java.util.Queue;
 import java.util.Set;
 
-import javax.annotation.Nullable;
-
-import com.devdyna.cakesticklib.api.aspect.logic.MachineFluidAutomation;
 import com.devdyna.cakesticklib.api.aspect.logic.SimpleFluidStorage;
-import com.devdyna.cakesticklib.api.aspect.templates.TickingBE;
-import com.devdyna.cakesticklib.api.aspect.templates.storage.fluid.TickingTankBE;
-import com.devdyna.cakesticklib.api.aspect.templates.storage.fluid.TickingTankBlock;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
-import com.mojang.logging.LogUtils;
 import com.synergy.vintagetech.api.AxleHandler;
+import com.synergy.vintagetech.init.builder.axle.KineticBE;
 import com.synergy.vintagetech.init.types.zBlockEntities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
-import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CampfireBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
-import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import net.neoforged.neoforge.transfer.fluid.FluidStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
-import net.neoforged.neoforge.transfer.transaction.TransactionContext;
 
-public class EngineBE extends TickingBE //implements SimpleFluidStorage
- {
+public class EngineBE extends KineticBE implements SimpleFluidStorage {
 
     public EngineBE(BlockPos p, BlockState s) {
         super(zBlockEntities.ENGINE.get(), p, s);
     }
 
-    private Set<BlockPos> lastNetwork = new HashSet<>();
+    private Set<BlockPos> cache = new HashSet<>();
 
     private static final int FLUID_COST = 10;
 
-    @Override
+    public void tickBoth() {
+    }
+
+    public void tickClient() {
+    }
+
     public void tickServer() {
 
         update();
@@ -54,15 +44,10 @@ public class EngineBE extends TickingBE //implements SimpleFluidStorage
         if (!getBlockState().getValue(EngineBlock.ENABLED))
             return;
 
-        
-
-        Direction startDir = getBlockState().getValue(EngineBlock.FACING);
-        BlockPos startPos = getBlockPos().relative(startDir);
-
         Set<BlockPos> visited = new HashSet<>();
         Queue<BlockPos> queue = new ArrayDeque<>();
 
-        queue.add(startPos);
+        queue.add(getBlockPos().relative(getBlockState().getValue(EngineBlock.FACING)));
 
         while (!queue.isEmpty()) {
 
@@ -93,107 +78,81 @@ public class EngineBE extends TickingBE //implements SimpleFluidStorage
             }
         }
 
-        for (BlockPos oldPos : lastNetwork) {
-            if (!visited.contains(oldPos)) {
-                BlockState oldState = level.getBlockState(oldPos);
+        for (BlockPos oldPos : cache)
+            if (!visited.contains(oldPos))
+                if (level.getBlockState(oldPos).getBlock() instanceof AxleHandler)
+                    level.setBlockAndUpdate(oldPos, level.getBlockState(oldPos).setValue(AxleHandler.ENABLED, false));
 
-                if (oldState.getBlock() instanceof AxleHandler) {
-                    level.setBlock(oldPos,
-                            oldState.setValue(AxleHandler.ENABLED, false),
-                            3);
-                }
+        cache = visited;
+
+        try (var tx = Transaction.openRoot()) {
+            if (getFluidStorage().getResource(0).isEmpty()) {
+                tx.close();
+                return;
             }
+
+            getFluidStorage().extract(0, getFluidStorage().getResource(0), FLUID_COST, tx);
+            tx.commit();
         }
-
-        lastNetwork = visited;
-
-        // try (var tx = Transaction.openRoot()) {
-        //     if (getFluidStorage().getResource(0).isEmpty()) {
-        //         tx.close();
-        //         return;
-        //     }
-
-        //     getFluidStorage().extract(0, getFluidStorage().getResource(0), FLUID_COST, tx);
-        //     tx.commit();
-        // }
     }
 
     public void update() {
-    boolean state = getBlockState().getValue(EngineBlock.ENABLED);
+        boolean state = getBlockState().getValue(EngineBlock.ENABLED);
 
-    boolean active =
-            CampfireBlock.isLitCampfire(level.getBlockState(getBlockPos().below()))
-            // && getFluidStorage().getAmountAsInt(0) > FLUID_COST
-            // && !getFluidStorage().getResource(0).isEmpty()
-            ;
+        boolean active = CampfireBlock.isLitCampfire(level.getBlockState(getBlockPos().below()))
+                && getFluidStorage().getAmountAsInt(0) > FLUID_COST
+                && !getFluidStorage().getResource(0).isEmpty();
 
-    if (state != active) {
-        level.setBlockAndUpdate(
-                getBlockPos(),
-                getBlockState().setValue(EngineBlock.ENABLED, active)
-        );
-        level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), Block.UPDATE_ALL);
-    }
-}
-
-    // @Override
-    // public FluidStacksResourceHandler getFluidStorage() {
-    //     return getData(LibHandlers.FLUID_STORAGE);
-    // }
-
-    // @Override
-    // public int getTankCapacity() {
-    //     return 10_000;
-    // }
-
-    // @Override
-    // public int getTanks() {
-    //     return 1;
-    // }
-
-    // protected void saveAdditional(ValueOutput output) {
-    //     this.getFluidStorage().serialize(output);
-    //     super.saveAdditional(output);
-    // }
-
-    // protected void loadAdditional(ValueInput input) {
-    //     this.getFluidStorage().deserialize(input);
-    //     super.loadAdditional(input);
-    // }
-
-    // @Nullable
-    // public Packet<ClientGamePacketListener> getUpdatePacket() {
-    //     return ClientboundBlockEntityDataPacket.create(this);
-    // }
-
-    // public CompoundTag getUpdateTag(HolderLookup.Provider pRegistries) {
-    //     return this.saveWithoutMetadata(pRegistries);
-    // }
-
-
-@Override
-public void setRemoved() {
-    super.setRemoved();
-
-    if (level == null || level.isClientSide())
-        return;
-
-    for (BlockPos pos : lastNetwork) {
-        BlockState state = level.getBlockState(pos);
-
-        if (state.getBlock() instanceof AxleHandler
-                && state.hasProperty(AxleHandler.ENABLED)
-                && state.getValue(AxleHandler.ENABLED)) {
-
-            level.setBlock(
-                    pos,
-                    state.setValue(AxleHandler.ENABLED, false),
-                    3
-            );
+        if (state != active) {
+            level.setBlockAndUpdate(
+                    getBlockPos(),
+                    getBlockState().setValue(EngineBlock.ENABLED, active));
+            level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), Block.UPDATE_ALL);
         }
     }
 
-    lastNetwork.clear();
-}
+    @Override
+    public FluidStacksResourceHandler getFluidStorage() {
+        return getData(LibHandlers.FLUID_STORAGE);
+    }
+
+    @Override
+    public int getTankCapacity() {
+        return 10_000;
+    }
+
+    @Override
+    public int getTanks() {
+        return 1;
+    }
+
+    public void saveAdditional(ValueOutput output) {
+        this.getFluidStorage().serialize(output);
+        super.saveAdditional(output);
+    }
+
+    public void loadAdditional(ValueInput input) {
+        this.getFluidStorage().deserialize(input);
+        super.loadAdditional(input);
+    }
+
+    @Override
+    public void setRemoved() {
+        super.setRemoved();
+
+        if (level == null || level.isClientSide())
+            return;
+
+        for (BlockPos pos : cache) {
+            BlockState state = level.getBlockState(pos);
+
+            if (state.getBlock() instanceof AxleHandler &&
+                    state.getValueOrElse(AxleHandler.ENABLED, false))
+                level.setBlockAndUpdate(pos, state.setValue(AxleHandler.ENABLED, false));
+
+        }
+
+        cache.clear();
+    }
 
 }
