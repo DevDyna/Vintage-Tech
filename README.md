@@ -1,3 +1,3 @@
-# CakeStickLib Addon Template
+# Vintage Tech
 
-This template include a functional CakeStickLib Plugin , a configured DataGen and a pre-set Jei Plugin
+A low tech expansion entirely based to improve agriculture and logistic made on wood materials
