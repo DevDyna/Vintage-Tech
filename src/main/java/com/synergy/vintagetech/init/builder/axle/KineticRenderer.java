@@ -57,17 +57,20 @@ public class KineticRenderer implements BlockEntityRenderer<KineticBE, KineticRe
             stack.pushPose();
             stack.translate(0.5, 0.5, 0.5);
 
-            if (axis == Direction.Axis.X) {
-                stack.mulPose(Axis.XP.rotationDegrees(state.rotation));
-                stack.mulPose(Axis.ZN.rotationDegrees(90));
-            }
+            switch (axis) {
+                case Direction.Axis.X:
+                    stack.mulPose(Axis.XP.rotationDegrees(state.rotation));
+                    // stack.mulPose(Axis.ZP.rotationDegrees(90));
+                    break;
+                case Direction.Axis.Y:
+                    stack.mulPose(Axis.YP.rotationDegrees(state.rotation));
+                    stack.mulPose(Axis.ZP.rotationDegrees(90));
+                    break;
+                case Direction.Axis.Z:
+                    stack.mulPose(Axis.ZP.rotationDegrees(state.rotation));
+                    stack.mulPose(Axis.YP.rotationDegrees(90));
+                    break;
 
-            if (axis == Direction.Axis.Y)
-                stack.mulPose(Axis.YP.rotationDegrees(state.rotation));
-
-            if (axis == Direction.Axis.Z) {
-                stack.mulPose(Axis.ZP.rotationDegrees(state.rotation));
-                stack.mulPose(Axis.XN.rotationDegrees(90));
             }
 
             stack.translate(-0.5, -0.5, -0.5);
