@@ -25,7 +25,7 @@ public class zBlockEntities {
             .createBlockEntity("engine", zTiles, EngineBE::new, zBlocks.ENGINE);
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<KineticBE>> TRANSMISSION = RegistryUtils
-            .createBlockEntity("axle", zTiles, KineticBE::new, zBlocks.AXLE,zBlocks.GEARBOX);
+            .createBlockEntity("transmission", zTiles, KineticBE::new, zBlocks.AXLE,zBlocks.GEARBOX,zBlocks.QUERN);
 
 
 }
