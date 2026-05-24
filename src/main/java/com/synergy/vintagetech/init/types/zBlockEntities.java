@@ -3,6 +3,7 @@ package com.synergy.vintagetech.init.types;
 import static com.synergy.vintagetech.Main.MODULE_ID;
 
 import com.devdyna.cakesticklib.api.RegistryUtils;
+import com.synergy.vintagetech.init.builder.axle.KineticBE;
 import com.synergy.vintagetech.init.builder.engine.EngineBE;
 
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -22,5 +23,9 @@ public class zBlockEntities {
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<EngineBE>> ENGINE = RegistryUtils
             .createBlockEntity("engine", zTiles, EngineBE::new, zBlocks.ENGINE);
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<KineticBE>> TRANSMISSION = RegistryUtils
+            .createBlockEntity("axle", zTiles, KineticBE::new, zBlocks.AXLE,zBlocks.GEARBOX);
+
 
 }
