@@ -10,6 +10,6 @@ public class Capability {
 
     @SubscribeEvent
     public static void register(RegisterCapabilitiesEvent event) {
-        // CapabilityUtils.registerFluidBlocks(event, zBlocks.ENGINE.get());
+        CapabilityUtils.registerFluidBlocks(event, zBlocks.ENGINE.get());
     }
 }
