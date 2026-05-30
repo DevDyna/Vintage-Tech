@@ -41,3 +41,4 @@ repo/
 /generated
 *.ini
 *.png
+*.mcmeta
