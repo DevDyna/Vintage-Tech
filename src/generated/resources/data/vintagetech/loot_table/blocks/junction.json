@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "vintagetech:gearbox"
+          "name": "vintagetech:junction"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "vintagetech:blocks/gearbox"
+  "random_sequence": "vintagetech:blocks/junction"
 }

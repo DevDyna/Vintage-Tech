@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "vintagetech:block/gearbox"
+    "model": "vintagetech:block/saw"
   }
 }

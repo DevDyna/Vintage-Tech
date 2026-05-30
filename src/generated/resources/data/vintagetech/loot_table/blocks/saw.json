@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "vintagetech:quern"
+          "name": "vintagetech:saw"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "vintagetech:blocks/quern"
+  "random_sequence": "vintagetech:blocks/saw"
 }
