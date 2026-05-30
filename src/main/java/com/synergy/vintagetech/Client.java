@@ -1,6 +1,6 @@
 package com.synergy.vintagetech;
 
-import com.synergy.vintagetech.init.builder.axle.KineticRenderer;
+import com.synergy.vintagetech.api.blockfactory.transmission.TransmissionRenderer;
 import com.synergy.vintagetech.init.types.zBlockEntities;
 
 import net.minecraft.world.item.crafting.RecipeMap;
@@ -29,11 +29,11 @@ public class Client {
 
         event.registerBlockEntityRenderer(
                 zBlockEntities.TRANSMISSION.get(),
-                KineticRenderer::new);
+                TransmissionRenderer::new);
 
         event.registerBlockEntityRenderer(
                 zBlockEntities.ENGINE.get(),
-                KineticRenderer::new);
+                TransmissionRenderer::new);
 
     }
 

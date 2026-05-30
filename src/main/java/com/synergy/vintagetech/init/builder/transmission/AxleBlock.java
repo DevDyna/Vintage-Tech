@@ -1,7 +1,9 @@
-package com.synergy.vintagetech.init.builder;
+package com.synergy.vintagetech.init.builder.transmission;
 
 import java.util.List;
-import com.synergy.vintagetech.api.BaseAxleBlock;
+
+import com.synergy.vintagetech.api.blockfactory.BaseKineticBlock;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
@@ -16,7 +18,7 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class AxleBlock extends BaseAxleBlock {
+public class AxleBlock extends BaseKineticBlock {
 
     public static final EnumProperty<Axis> AXIS = RotatedPillarBlock.AXIS;
 
@@ -24,19 +26,16 @@ public class AxleBlock extends BaseAxleBlock {
         super(p);
     }
 
-    protected BlockState rotate(BlockState state, Rotation rotation) {
+    public BlockState rotate(BlockState state, Rotation rotation) {
         return RotatedPillarBlock.rotatePillar(state, rotation);
     }
 
     @Override
     protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return switch (state.getValue(AXIS)) {
-            case Direction.Axis.X ->
-                axleX;
-            case Direction.Axis.Y ->
-                axleY;
-            case Direction.Axis.Z ->
-                axleZ;
+            case Direction.Axis.X -> axle_X;
+            case Direction.Axis.Y -> axle_Y;
+            case Direction.Axis.Z -> axle_Z;
         };
     }
 
@@ -63,8 +62,8 @@ public class AxleBlock extends BaseAxleBlock {
     }
 
     @Override
-    public List<Direction.Axis> getRotationAxis(BlockState state) {
-        return List.of(state.getValue(AXIS));
+    public List<Direction> getRotationAxis(BlockState state) {
+        return List.of(state.getValue(AXIS).getDirections());
     }
 
 }

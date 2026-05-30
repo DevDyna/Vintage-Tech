@@ -1,8 +1,6 @@
-package com.synergy.vintagetech.init.builder;
+package com.synergy.vintagetech.api.blockfactory;
 
 import java.util.List;
-
-import com.synergy.vintagetech.api.BaseAxleBlock;
 
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -11,7 +9,7 @@ import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 
-public abstract class MonoDirectionalAxleBlock extends BaseAxleBlock {
+public abstract class MonoDirectionalAxleBlock extends BaseKineticBlock {
 
     public MonoDirectionalAxleBlock(Properties p) {
         super(p);

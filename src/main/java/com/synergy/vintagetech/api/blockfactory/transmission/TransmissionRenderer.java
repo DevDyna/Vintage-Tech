@@ -1,4 +1,4 @@
-package com.synergy.vintagetech.init.builder.axle;
+package com.synergy.vintagetech.api.blockfactory.transmission;
 
 import java.util.List;
 
@@ -18,59 +18,76 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.Direction;
 import net.minecraft.world.phys.Vec3;
 
-public class KineticRenderer implements BlockEntityRenderer<KineticBE, KineticRenderState> {
+public class TransmissionRenderer implements BlockEntityRenderer<TransmissionBE, TransmissionRenderState> {
 
     private final BlockModelResolver resolver;
 
-    public KineticRenderer(BlockEntityRendererProvider.Context ctx) {
+    public TransmissionRenderer(BlockEntityRendererProvider.Context ctx) {
         this.resolver = ctx.blockModelResolver();
     }
 
     @Override
-    public KineticRenderState createRenderState() {
-        return new KineticRenderState();
+    public TransmissionRenderState createRenderState() {
+        return new TransmissionRenderState();
     }
 
     @Override
-    public void extractRenderState(KineticBE be, KineticRenderState state, float partialTicks, Vec3 cameraPosition,
+    public void extractRenderState(TransmissionBE be, TransmissionRenderState state, float partialTicks, Vec3 cameraPosition,
             ModelFeatureRenderer.CrumblingOverlay overlay) {
 
         BlockEntityRenderer.super.extractRenderState(be, state, partialTicks, cameraPosition, overlay);
 
-        resolver.update(state.block, zBlocks.AXLE.get().defaultBlockState(), BlockDisplayContext.create());
+        resolver.update(state.block, zBlocks.HALF_RENDER.get().defaultBlockState(), BlockDisplayContext.create());
 
         state.rotation = be.getRotation(partialTicks);
-        state.axis = be.getBlockState().getBlock() instanceof AxleHandler axle
+        state.dirs = be.getBlockState().getBlock() instanceof AxleHandler axle
                 ? axle.getRotationAxis(be.getBlockState())
                 : List.of();
     }
 
     @Override
-    public void submit(KineticRenderState state, PoseStack stack, SubmitNodeCollector collector,
+    public void submit(TransmissionRenderState state, PoseStack stack, SubmitNodeCollector collector,
             CameraRenderState camera) {
 
-        if (state.axis.isEmpty())
+        if (state.dirs.isEmpty())
             return;
 
-        for (Direction.Axis axis : state.axis) {
+        for (Direction dir : state.dirs) {
 
             stack.pushPose();
             stack.translate(0.5, 0.5, 0.5);
 
-            switch (axis) {
-                case Direction.Axis.X:
+            switch (dir) {
+                case EAST:
                     stack.mulPose(Axis.XP.rotationDegrees(state.rotation));
-                    // stack.mulPose(Axis.ZP.rotationDegrees(90));
-                    break;
-                case Direction.Axis.Y:
-                    stack.mulPose(Axis.YP.rotationDegrees(state.rotation));
                     stack.mulPose(Axis.ZP.rotationDegrees(90));
                     break;
-                case Direction.Axis.Z:
-                    stack.mulPose(Axis.ZP.rotationDegrees(state.rotation));
-                    stack.mulPose(Axis.YP.rotationDegrees(90));
+                    
+                case WEST:
+                    stack.mulPose(Axis.XP.rotationDegrees(state.rotation));
+                    stack.mulPose(Axis.ZP.rotationDegrees(180));
+                    stack.mulPose(Axis.ZP.rotationDegrees(90));
                     break;
 
+                case UP:
+                    stack.mulPose(Axis.YP.rotationDegrees(state.rotation));
+                    break;
+
+                case DOWN:
+                    stack.mulPose(Axis.YP.rotationDegrees(state.rotation));
+                    stack.mulPose(Axis.ZP.rotationDegrees(180));
+                    break;
+
+                case NORTH:
+                    stack.mulPose(Axis.ZP.rotationDegrees(state.rotation));
+                    stack.mulPose(Axis.XP.rotationDegrees(90));
+                    break;
+
+                case SOUTH:
+                    stack.mulPose(Axis.ZP.rotationDegrees(state.rotation));
+                    stack.mulPose(Axis.XP.rotationDegrees(90));
+                    stack.mulPose(Axis.ZP.rotationDegrees(180));
+                    break;
             }
 
             stack.translate(-0.5, -0.5, -0.5);

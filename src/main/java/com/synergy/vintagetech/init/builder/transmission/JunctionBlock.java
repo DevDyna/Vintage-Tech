@@ -1,12 +1,12 @@
-package com.synergy.vintagetech.init.builder;
+package com.synergy.vintagetech.init.builder.transmission;
 
 import java.util.Arrays;
 import java.util.List;
 
-import com.synergy.vintagetech.api.BaseAxleBlock;
+import com.synergy.vintagetech.api.blockfactory.BaseKineticBlock;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Direction.Axis;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
@@ -18,9 +18,9 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class GearBoxBlock extends BaseAxleBlock {
+public class JunctionBlock extends BaseKineticBlock {
 
-    public GearBoxBlock(Properties p) {
+    public JunctionBlock(Properties p) {
         super(p);
     }
 
@@ -51,13 +51,14 @@ public class GearBoxBlock extends BaseAxleBlock {
     }
 
     @Override
-    public List<Axis> getRotationAxis(BlockState state) {
-        return Arrays.asList(Axis.values());
+    public List<Direction> getRotationAxis(BlockState state) {
+        return Arrays.asList(Direction.values());
     }
 
     @Override
     protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-        return Shapes.join(axleX, Shapes.join(axleZ, axleY, BooleanOp.OR), BooleanOp.OR).optimize();
+        return Shapes
+                .join(axle_X, Shapes.join(axle_Y, axle_Z, BooleanOp.OR), BooleanOp.OR).optimize();
     }
 
 }

@@ -4,10 +4,10 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 
 import java.util.function.Function;
 
-import com.synergy.vintagetech.init.builder.AxleBlock;
-import com.synergy.vintagetech.init.builder.GearBoxBlock;
-import com.synergy.vintagetech.init.builder.QuernBlock;
 import com.synergy.vintagetech.init.builder.engine.EngineBlock;
+import com.synergy.vintagetech.init.builder.saw.SawBlock;
+import com.synergy.vintagetech.init.builder.transmission.AxleBlock;
+import com.synergy.vintagetech.init.builder.transmission.JunctionBlock;
 
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -28,8 +28,10 @@ public class zBlocks {
     public static final DeferredHolder<Block, Block> ENGINE = registerItemBlock("engine", p -> new EngineBlock(p));
 
     public static final DeferredHolder<Block, Block> AXLE = registerItemBlock("axle", p -> new AxleBlock(p));
-    public static final DeferredHolder<Block, Block> GEARBOX = registerItemBlock("gearbox", p -> new GearBoxBlock(p));
-    public static final DeferredHolder<Block, Block> QUERN = registerItemBlock("quern", p -> new QuernBlock(p));
+    public static final DeferredHolder<Block, Block> JUNCTION = registerItemBlock("junction", p -> new JunctionBlock(p));
+    public static final DeferredHolder<Block, Block> SAW = registerItemBlock("saw", p -> new SawBlock(p));
+
+    public static final DeferredHolder<Block, Block> HALF_RENDER = zBlock.registerSimpleBlock("half_axle",p->p.noLootTable());
 
     public static DeferredHolder<Block, Block> registerItemBlock(String blockname,
             Function<BlockBehaviour.Properties, ? extends Block> sup) {

@@ -9,17 +9,22 @@ import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.HopperBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public interface AxleHandler extends EntityBlock {
 
-  //TODO on half cut to make it more flexible
-  public static final VoxelShape axleX = Shapes.box(0, 0.3125, 0.3125, 1, 0.6875, 0.6875);
+  public static final VoxelShape axle_north = Shapes.box(0.3125, 0.3125, 0, 0.6875, 0.6875, 0.5);
+  public static final VoxelShape axle_south = Shapes.box(0.3125, 0.3125, 0.5, 0.6875, 0.6875, 1);
+  public static final VoxelShape axle_east = Shapes.box(0.5, 0.3125, 0.3125, 1, 0.6875, 0.6875);
+  public static final VoxelShape axle_west = Shapes.box(0, 0.3125, 0.3125, 0.5, 0.6875, 0.6875);
+  public static final VoxelShape axle_up = Shapes.box(0.3125, 0.5, 0.3125, 0.6875, 1, 0.6875);
+  public static final VoxelShape axle_down = Shapes.box(0.3125, 0, 0.3125, 0.6875, 0.5, 0.6875);
 
-  public static final VoxelShape axleY = Shapes.box(0.3125, 0, 0.3125, 0.6875, 1, 0.6875);
-
-  public static final VoxelShape axleZ = Shapes.box(0.3125, 0.3125, 0, 0.6875, 0.6875, 1);
+  public static final VoxelShape axle_X = Shapes.join(axle_north, axle_south, BooleanOp.OR);
+  public static final VoxelShape axle_Y = Shapes.join(axle_up, axle_down, BooleanOp.OR);
+  public static final VoxelShape axle_Z = Shapes.join(axle_east, axle_west, BooleanOp.OR);
 
   public static final BooleanProperty ENABLED = HopperBlock.ENABLED;
 
@@ -41,6 +46,6 @@ public interface AxleHandler extends EntityBlock {
   /**
    * Used to define animation rotation
    */
-  List<Direction.Axis> getRotationAxis(BlockState state);
+  List<Direction> getRotationAxis(BlockState state);
 
 }

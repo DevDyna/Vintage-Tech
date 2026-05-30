@@ -3,11 +3,14 @@ package com.synergy.vintagetech.datagen.client;
 import static com.synergy.vintagetech.Main.MODULE_ID;
 
 import com.devdyna.cakesticklib.api.utils.x;
+import com.synergy.vintagetech.init.builder.saw.SawBlock;
 import com.synergy.vintagetech.init.types.zBlocks;
 
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
+import net.minecraft.client.data.models.MultiVariant;
+import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
@@ -22,15 +25,17 @@ public class DataModel extends ModelProvider {
         @Override
         protected void registerModels(BlockModelGenerators blockModels, ItemModelGenerators itemModels) {
 
-                blockModels.blockStateOutput
-                                .accept(BlockModelGenerators.createSimpleBlock(zBlocks.GEARBOX.get(),
-                                                BlockModelGenerators.plainVariant(
-                                                                x.rl(MODULE_ID, "block/gearbox"))));
+                // TODO change item model!
 
                 blockModels.blockStateOutput
-                                .accept(BlockModelGenerators.createSimpleBlock(zBlocks.QUERN.get(),
+                                .accept(BlockModelGenerators.createSimpleBlock(zBlocks.JUNCTION.get(),
                                                 BlockModelGenerators.plainVariant(
-                                                                x.rl(MODULE_ID, "block/quern"))));
+                                                                x.rl(MODULE_ID, "block/junction"))));
+
+                blockModels.blockStateOutput
+                                .accept(BlockModelGenerators.createSimpleBlock(zBlocks.HALF_RENDER.get(),
+                                                BlockModelGenerators.plainVariant(
+                                                                x.rl(MODULE_ID, "block/half_axle"))));
 
                 blockModels.blockStateOutput
                                 .accept(BlockModelGenerators.createAxisAlignedPillarBlock(zBlocks.AXLE.get(),
@@ -45,6 +50,53 @@ public class DataModel extends ModelProvider {
                                                 .select(Direction.WEST, BlockModelGenerators.Y_ROT_90)
                                                 .select(Direction.NORTH, BlockModelGenerators.Y_ROT_180)
                                                 .select(Direction.EAST, BlockModelGenerators.Y_ROT_270)));
+
+                MultiVariant sawOff = BlockModelGenerators.plainVariant(
+                                x.rl(MODULE_ID, "block/saw/off"));
+
+                MultiVariant sawOn = BlockModelGenerators.plainVariant(
+                                x.rl(MODULE_ID, "block/saw/on"));
+
+                blockModels.blockStateOutput.accept(
+                                MultiVariantGenerator.dispatch(zBlocks.SAW.get())
+                                                .with(
+                                                                PropertyDispatch.initial(
+                                                                                BlockStateProperties.FACING,
+                                                                                SawBlock.ENABLED)
+
+                                                                                .select(Direction.UP, false, sawOff)
+                                                                                .select(Direction.UP, true, sawOn)
+
+                                                                                .select(Direction.DOWN, false,
+                                                                                                sawOff.with(BlockModelGenerators.X_ROT_180))
+                                                                                .select(Direction.DOWN, true,
+                                                                                                sawOn.with(BlockModelGenerators.X_ROT_180))
+
+                                                                                .select(Direction.NORTH, false,
+                                                                                                sawOff.with(BlockModelGenerators.X_ROT_90))
+                                                                                .select(Direction.NORTH, true,
+                                                                                                sawOn.with(BlockModelGenerators.X_ROT_90))
+
+                                                                                .select(Direction.EAST, false,
+                                                                                                sawOff.with(BlockModelGenerators.X_ROT_90)
+                                                                                                                .with(BlockModelGenerators.Y_ROT_90))
+                                                                                .select(Direction.EAST, true,
+                                                                                                sawOn.with(BlockModelGenerators.X_ROT_90)
+                                                                                                                .with(BlockModelGenerators.Y_ROT_90))
+
+                                                                                .select(Direction.SOUTH, false,
+                                                                                                sawOff.with(BlockModelGenerators.X_ROT_90)
+                                                                                                                .with(BlockModelGenerators.Y_ROT_180))
+                                                                                .select(Direction.SOUTH, true,
+                                                                                                sawOn.with(BlockModelGenerators.X_ROT_90)
+                                                                                                                .with(BlockModelGenerators.Y_ROT_180))
+
+                                                                                .select(Direction.WEST, false,
+                                                                                                sawOff.with(BlockModelGenerators.X_ROT_90)
+                                                                                                                .with(BlockModelGenerators.Y_ROT_270))
+                                                                                .select(Direction.WEST, true,
+                                                                                                sawOn.with(BlockModelGenerators.X_ROT_90)
+                                                                                                                .with(BlockModelGenerators.Y_ROT_270))));
 
         }
 

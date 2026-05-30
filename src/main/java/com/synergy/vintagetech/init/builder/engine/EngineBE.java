@@ -8,7 +8,7 @@ import java.util.Set;
 import com.devdyna.cakesticklib.api.aspect.logic.SimpleFluidStorage;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
 import com.synergy.vintagetech.api.AxleHandler;
-import com.synergy.vintagetech.init.builder.axle.KineticBE;
+import com.synergy.vintagetech.api.blockfactory.transmission.TransmissionBE;
 import com.synergy.vintagetech.init.types.zBlockEntities;
 
 import net.minecraft.core.BlockPos;
@@ -21,7 +21,7 @@ import net.minecraft.world.level.storage.ValueOutput;
 import net.neoforged.neoforge.transfer.fluid.FluidStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 
-public class EngineBE extends KineticBE implements SimpleFluidStorage {
+public class EngineBE extends TransmissionBE implements SimpleFluidStorage {
 
     public EngineBE(BlockPos p, BlockState s) {
         super(zBlockEntities.ENGINE.get(), p, s);
@@ -29,13 +29,7 @@ public class EngineBE extends KineticBE implements SimpleFluidStorage {
 
     private Set<BlockPos> cache = new HashSet<>();
 
-    private static final int FLUID_COST = 10;
-
-    public void tickBoth() {
-    }
-
-    public void tickClient() {
-    }
+    private static final int FLUID_COST = 10;//TODO rework
 
     public void tickServer() {
 
@@ -47,7 +41,7 @@ public class EngineBE extends KineticBE implements SimpleFluidStorage {
         Set<BlockPos> visited = new HashSet<>();
         Queue<BlockPos> queue = new ArrayDeque<>();
 
-        queue.add(getBlockPos().relative(getBlockState().getValue(EngineBlock.FACING)));
+        queue.add(getBlockPos().relative(getBlockState().getValue(EngineBlock.HORIZONTAL_FACING)));
 
         while (!queue.isEmpty()) {
 

@@ -3,8 +3,9 @@ package com.synergy.vintagetech.init.types;
 import static com.synergy.vintagetech.Main.MODULE_ID;
 
 import com.devdyna.cakesticklib.api.RegistryUtils;
-import com.synergy.vintagetech.init.builder.axle.KineticBE;
+import com.synergy.vintagetech.api.blockfactory.transmission.TransmissionBE;
 import com.synergy.vintagetech.init.builder.engine.EngineBE;
+import com.synergy.vintagetech.init.builder.saw.SawBE;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -14,18 +15,20 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class zBlockEntities {
 
-    public static void register(IEventBus bus) {
-        zTiles.register(bus);
-    }
+        public static void register(IEventBus bus) {
+                zTiles.register(bus);
+        }
 
-    public static final DeferredRegister<BlockEntityType<?>> zTiles = DeferredRegister
-            .create(BuiltInRegistries.BLOCK_ENTITY_TYPE, MODULE_ID);
+        public static final DeferredRegister<BlockEntityType<?>> zTiles = DeferredRegister
+                        .create(BuiltInRegistries.BLOCK_ENTITY_TYPE, MODULE_ID);
 
-    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<EngineBE>> ENGINE = RegistryUtils
-            .createBlockEntity("engine", zTiles, EngineBE::new, zBlocks.ENGINE);
+        public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<EngineBE>> ENGINE = RegistryUtils
+                        .createBlockEntity("engine", zTiles, EngineBE::new, zBlocks.ENGINE);
 
-    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<KineticBE>> TRANSMISSION = RegistryUtils
-            .createBlockEntity("transmission", zTiles, KineticBE::new, zBlocks.AXLE,zBlocks.GEARBOX,zBlocks.QUERN);
+        public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<SawBE>> SAW = RegistryUtils
+                        .createBlockEntity("saw", zTiles, SawBE::new, zBlocks.SAW);
 
+        public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TransmissionBE>> TRANSMISSION = RegistryUtils
+                        .createBlockEntity("transmission", zTiles, TransmissionBE::new, zBlocks.AXLE, zBlocks.JUNCTION);
 
 }
