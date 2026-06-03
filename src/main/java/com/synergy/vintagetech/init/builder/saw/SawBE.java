@@ -60,9 +60,7 @@ public class SawBE extends TickingBE {
             return;
         }
 
-        float efficiency = isFast(relative) ? 0.75F : 0.25F;
-
-        progress += efficiency / speed;
+        progress += (isFast(relative) ? 0.75F : 0.25F) / speed;
 
         level.playSound(null, getOffset(), relative
                 .getSoundType(level, getOffset(), null)
@@ -104,6 +102,7 @@ public class SawBE extends TickingBE {
 
     }
 
+    // TODO tag
     public boolean isFast(BlockState s) {
         return s.is(BlockTags.MINEABLE_WITH_AXE);
     }
