@@ -33,9 +33,10 @@ public class DataModel extends ModelProvider {
                                                                 x.rl(MODULE_ID, "block/junction"))));
 
                 blockModels.blockStateOutput
-                                .accept(BlockModelGenerators.createSimpleBlock(zBlocks.HALF_RENDER.get(),
+                                .accept(BlockModelGenerators.createSimpleBlock(zBlocks.RENDER_HALF_AXLE.get(),
                                                 BlockModelGenerators.plainVariant(
                                                                 x.rl(MODULE_ID, "block/half_axle"))));
+                                                                x.rl(MODULE_ID, "block/render/half_axle"))));
 
                 blockModels.blockStateOutput
                                 .accept(BlockModelGenerators.createAxisAlignedPillarBlock(zBlocks.AXLE.get(),

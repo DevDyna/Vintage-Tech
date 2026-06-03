@@ -32,6 +32,7 @@ public class zBlocks {
     public static final DeferredHolder<Block, Block> SAW = registerItemBlock("saw", p -> new SawBlock(p));
 
     public static final DeferredHolder<Block, Block> HALF_RENDER = zBlock.registerSimpleBlock("half_axle",p->p.noLootTable());
+    public static final DeferredHolder<Block, Block> RENDER_HALF_AXLE = zRender.registerSimpleBlock("render_half_axle",p->p.noLootTable());
 
     public static DeferredHolder<Block, Block> registerItemBlock(String blockname,
             Function<BlockBehaviour.Properties, ? extends Block> sup) {
