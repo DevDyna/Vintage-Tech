@@ -1,6 +1,6 @@
 package com.synergy.vintagetech.init.builder.saw;
 
-import java.util.List;
+import java.util.Map;
 
 import org.jspecify.annotations.Nullable;
 
@@ -53,8 +53,8 @@ public class SawBlock extends MonoDirectionalAxleBlock implements RotableAxleBlo
     }
 
     @Override
-    public List<Direction> getRotationAxis(BlockState state) {
-        return List.of();
+    public Map<Direction, Boolean> getAxis(BlockState state) {
+        return Map.of();
     }
 
     @Override

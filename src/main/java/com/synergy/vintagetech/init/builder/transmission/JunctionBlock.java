@@ -1,7 +1,9 @@
 package com.synergy.vintagetech.init.builder.transmission;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.synergy.vintagetech.api.blockfactory.BaseKineticBlock;
 
@@ -32,12 +34,13 @@ public class JunctionBlock extends BaseKineticBlock {
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext c) {
         return this.defaultBlockState()
+                .setValue(INVERTED, false)
                 .setValue(ENABLED, false);
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> b) {
-        b.add(ENABLED);
+        b.add(ENABLED, INVERTED);
     }
 
     @Override
@@ -51,8 +54,13 @@ public class JunctionBlock extends BaseKineticBlock {
     }
 
     @Override
-    public List<Direction> getRotationAxis(BlockState state) {
-        return Arrays.asList(Direction.values());
+    public Map<Direction, Boolean> getAxis(BlockState state) {
+        Map<Direction, Boolean> map = new HashMap<>();
+
+        for (Direction d : Direction.values())
+            map.put(d, state.getValue(INVERTED));
+
+        return map;
     }
 
     @Override
