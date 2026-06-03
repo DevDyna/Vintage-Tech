@@ -38,6 +38,11 @@ public class DataModel extends ModelProvider {
                                                                 x.rl(MODULE_ID, "block/render/half_axle"))));
 
                 blockModels.blockStateOutput
+                                .accept(BlockModelGenerators.createSimpleBlock(zBlocks.RENDER_FAN_BLADE.get(),
+                                                BlockModelGenerators.plainVariant(
+                                                                x.rl(MODULE_ID, "block/render/fan_blade"))));
+
+                blockModels.blockStateOutput
                                 .accept(BlockModelGenerators.createAxisAlignedPillarBlock(zBlocks.AXLE.get(),
                                                 BlockModelGenerators.plainVariant(
                                                                 x.rl(MODULE_ID, "block/axle"))));
@@ -104,6 +109,23 @@ public class DataModel extends ModelProvider {
                                                                                 .select(Direction.WEST, true,
                                                                                                 sawOn.with(BlockModelGenerators.X_ROT_90)
                                                                                                                 .with(BlockModelGenerators.Y_ROT_270))));
+
+
+
+
+
+                                                              blockModels.blockStateOutput.accept(BlockModelGenerators
+                                .createSimpleBlock(zBlocks.FAN.get(),
+                                                BlockModelGenerators.plainVariant(x.rl(MODULE_ID, "block/fan")))
+                                .with(PropertyDispatch.modify(BlockStateProperties.FACING)
+                                                .select(Direction.SOUTH, BlockModelGenerators.NOP)
+                                                .select(Direction.WEST, BlockModelGenerators.Y_ROT_90)
+                                                .select(Direction.NORTH, BlockModelGenerators.Y_ROT_180)
+                                                .select(Direction.EAST, BlockModelGenerators.Y_ROT_270)                                                
+                                                .select(Direction.UP, BlockModelGenerators.X_ROT_90)                                                 
+                                                .select(Direction.DOWN, BlockModelGenerators.X_ROT_270)));                                                  
+
+
 
         }
 
