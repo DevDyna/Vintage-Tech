@@ -1,6 +1,8 @@
 {
   "block.vintagetech.axle": "Axle",
   "block.vintagetech.engine": "Engine",
+  "block.vintagetech.fan": "Fan",
+  "block.vintagetech.gearshift": "Gearshift",
   "block.vintagetech.junction": "Junction",
   "block.vintagetech.saw": "Saw"
 }

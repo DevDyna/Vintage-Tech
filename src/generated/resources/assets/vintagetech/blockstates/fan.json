@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "vintagetech:block/fan",
+      "x": 270
+    },
+    "facing=east": {
+      "model": "vintagetech:block/fan",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "vintagetech:block/fan",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "vintagetech:block/fan"
+    },
+    "facing=up": {
+      "model": "vintagetech:block/fan",
+      "x": 90
+    },
+    "facing=west": {
+      "model": "vintagetech:block/fan",
+      "y": 90
+    }
+  }
+}
