@@ -35,13 +35,19 @@ public class DataModel extends ModelProvider {
                 blockModels.blockStateOutput
                                 .accept(BlockModelGenerators.createSimpleBlock(zBlocks.RENDER_HALF_AXLE.get(),
                                                 BlockModelGenerators.plainVariant(
-                                                                x.rl(MODULE_ID, "block/half_axle"))));
                                                                 x.rl(MODULE_ID, "block/render/half_axle"))));
 
                 blockModels.blockStateOutput
                                 .accept(BlockModelGenerators.createAxisAlignedPillarBlock(zBlocks.AXLE.get(),
                                                 BlockModelGenerators.plainVariant(
                                                                 x.rl(MODULE_ID, "block/axle"))));
+
+                blockModels.blockStateOutput
+                                .accept(BlockModelGenerators.createAxisAlignedPillarBlock(zBlocks.GEARSHIFT.get(),
+                                                BlockModelGenerators.plainVariant(
+                                                                x.rl(MODULE_ID, "block/gearshift"))));
+
+                
 
                 blockModels.blockStateOutput.accept(BlockModelGenerators
                                 .createSimpleBlock(zBlocks.ENGINE.get(),

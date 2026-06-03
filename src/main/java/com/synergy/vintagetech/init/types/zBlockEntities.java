@@ -5,6 +5,7 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 import com.devdyna.cakesticklib.api.RegistryUtils;
 import com.synergy.vintagetech.api.blockfactory.transmission.TransmissionBE;
 import com.synergy.vintagetech.init.builder.engine.EngineBE;
+import com.synergy.vintagetech.init.builder.fan.FanBE;
 import com.synergy.vintagetech.init.builder.saw.SawBE;
 
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -28,7 +29,10 @@ public class zBlockEntities {
         public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<SawBE>> SAW = RegistryUtils
                         .createBlockEntity("saw", zTiles, SawBE::new, zBlocks.SAW);
 
+        public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<FanBE>> FAN = RegistryUtils
+                        .createBlockEntity("fan", zTiles, FanBE::new, zBlocks.FAN);
+
         public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TransmissionBE>> TRANSMISSION = RegistryUtils
-                        .createBlockEntity("transmission", zTiles, TransmissionBE::new, zBlocks.AXLE, zBlocks.JUNCTION);
+                        .createBlockEntity("transmission", zTiles, TransmissionBE::new, zBlocks.AXLE, zBlocks.JUNCTION,zBlocks.GEARSHIFT);
 
 }

@@ -1,6 +1,6 @@
 package com.synergy.vintagetech.api.blockfactory.transmission;
 
-import java.util.List;
+import java.util.Map;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
@@ -16,11 +16,13 @@ import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
 import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.Direction;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.Vec3;
 
-public class TransmissionRenderer implements BlockEntityRenderer<TransmissionBE, TransmissionRenderState> {
+public class TransmissionRenderer<BE extends TransmissionBE>
+        implements BlockEntityRenderer<BE, TransmissionRenderState> {
 
-    private final BlockModelResolver resolver;
+    protected final BlockModelResolver resolver;
 
     public TransmissionRenderer(BlockEntityRendererProvider.Context ctx) {
         this.resolver = ctx.blockModelResolver();
@@ -31,18 +33,76 @@ public class TransmissionRenderer implements BlockEntityRenderer<TransmissionBE,
         return new TransmissionRenderState();
     }
 
+    public Block getBlockRendered() {
+        return zBlocks.RENDER_HALF_AXLE.get();
+    }
+
     @Override
-    public void extractRenderState(TransmissionBE be, TransmissionRenderState state, float partialTicks, Vec3 cameraPosition,
+    public void extractRenderState(BE be, TransmissionRenderState state, float partialTicks,
+            Vec3 cameraPosition,
             ModelFeatureRenderer.CrumblingOverlay overlay) {
 
         BlockEntityRenderer.super.extractRenderState(be, state, partialTicks, cameraPosition, overlay);
 
-        resolver.update(state.block, zBlocks.HALF_RENDER.get().defaultBlockState(), BlockDisplayContext.create());
+        resolver.update(state.block, getBlockRendered().defaultBlockState(), BlockDisplayContext.create());
 
         state.rotation = be.getRotation(partialTicks);
         state.dirs = be.getBlockState().getBlock() instanceof AxleHandler axle
-                ? axle.getRotationAxis(be.getBlockState())
-                : List.of();
+                ? axle.getAxis(be.getBlockState())
+                : Map.of();
+    }
+
+    public void rotate(Direction dir, boolean inverted, float rotation, PoseStack stack) {
+        switch (dir) {
+            case EAST:
+                if (inverted)
+                    stack.mulPose(Axis.XP.rotationDegrees(rotation));
+                else
+                    stack.mulPose(Axis.XN.rotationDegrees(rotation));
+                stack.mulPose(Axis.ZP.rotationDegrees(90));
+                break;
+
+            case WEST:
+                if (inverted)
+                    stack.mulPose(Axis.XP.rotationDegrees(rotation));
+                else
+                    stack.mulPose(Axis.XN.rotationDegrees(rotation));
+                stack.mulPose(Axis.ZP.rotationDegrees(180));
+                stack.mulPose(Axis.ZP.rotationDegrees(90));
+                break;
+
+            case UP:
+                if (inverted)
+                    stack.mulPose(Axis.YP.rotationDegrees(rotation));
+                else
+                    stack.mulPose(Axis.YN.rotationDegrees(rotation));
+                break;
+
+            case DOWN:
+                if (inverted)
+                    stack.mulPose(Axis.YP.rotationDegrees(rotation));
+                else
+                    stack.mulPose(Axis.YN.rotationDegrees(rotation));
+                stack.mulPose(Axis.ZP.rotationDegrees(180));
+                break;
+
+            case NORTH:
+                if (inverted)
+                    stack.mulPose(Axis.ZP.rotationDegrees(rotation));
+                else
+                    stack.mulPose(Axis.ZN.rotationDegrees(rotation));
+                stack.mulPose(Axis.XP.rotationDegrees(90));
+                break;
+
+            case SOUTH:
+                if (inverted)
+                    stack.mulPose(Axis.ZP.rotationDegrees(rotation));
+                else
+                    stack.mulPose(Axis.ZN.rotationDegrees(rotation));
+                stack.mulPose(Axis.XP.rotationDegrees(90));
+                stack.mulPose(Axis.ZP.rotationDegrees(180));
+                break;
+        }
     }
 
     @Override
@@ -52,43 +112,12 @@ public class TransmissionRenderer implements BlockEntityRenderer<TransmissionBE,
         if (state.dirs.isEmpty())
             return;
 
-        for (Direction dir : state.dirs) {
+        for (Direction dir : state.dirs.keySet()) {
 
             stack.pushPose();
             stack.translate(0.5, 0.5, 0.5);
 
-            switch (dir) {
-                case EAST:
-                    stack.mulPose(Axis.XP.rotationDegrees(state.rotation));
-                    stack.mulPose(Axis.ZP.rotationDegrees(90));
-                    break;
-                    
-                case WEST:
-                    stack.mulPose(Axis.XP.rotationDegrees(state.rotation));
-                    stack.mulPose(Axis.ZP.rotationDegrees(180));
-                    stack.mulPose(Axis.ZP.rotationDegrees(90));
-                    break;
-
-                case UP:
-                    stack.mulPose(Axis.YP.rotationDegrees(state.rotation));
-                    break;
-
-                case DOWN:
-                    stack.mulPose(Axis.YP.rotationDegrees(state.rotation));
-                    stack.mulPose(Axis.ZP.rotationDegrees(180));
-                    break;
-
-                case NORTH:
-                    stack.mulPose(Axis.ZP.rotationDegrees(state.rotation));
-                    stack.mulPose(Axis.XP.rotationDegrees(90));
-                    break;
-
-                case SOUTH:
-                    stack.mulPose(Axis.ZP.rotationDegrees(state.rotation));
-                    stack.mulPose(Axis.XP.rotationDegrees(90));
-                    stack.mulPose(Axis.ZP.rotationDegrees(180));
-                    break;
-            }
+            rotate(dir, state.dirs.get(dir), state.rotation, stack);
 
             stack.translate(-0.5, -0.5, -0.5);
 
