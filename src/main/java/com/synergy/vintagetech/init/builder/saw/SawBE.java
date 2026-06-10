@@ -41,6 +41,7 @@ public class SawBE extends TickingBE {
 
     private float progress = -1f;
 
+    //TODO damage entity
     @Override
     public void tickServer() {
 
