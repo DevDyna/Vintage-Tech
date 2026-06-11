@@ -6,6 +6,7 @@ import com.devdyna.cakesticklib.api.RegistryUtils;
 import com.synergy.vintagetech.api.blockfactory.transmission.TransmissionBE;
 import com.synergy.vintagetech.init.builder.engine.EngineBE;
 import com.synergy.vintagetech.init.builder.fan.FanBE;
+import com.synergy.vintagetech.init.builder.hopper.BasketBE;
 import com.synergy.vintagetech.init.builder.saw.SawBE;
 
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -33,6 +34,10 @@ public class zBlockEntities {
                         .createBlockEntity("fan", zTiles, FanBE::new, zBlocks.FAN);
 
         public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TransmissionBE>> TRANSMISSION = RegistryUtils
-                        .createBlockEntity("transmission", zTiles, TransmissionBE::new, zBlocks.AXLE, zBlocks.JUNCTION,zBlocks.GEARSHIFT);
+                        .createBlockEntity("transmission", zTiles, TransmissionBE::new, zBlocks.AXLE, zBlocks.JUNCTION,
+                                        zBlocks.GEARSHIFT);
+
+        public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BasketBE>> BASKET = RegistryUtils
+                        .createBlockEntity("basket", zTiles, BasketBE::new, zBlocks.BASKET);
 
 }

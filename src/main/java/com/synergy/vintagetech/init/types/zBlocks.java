@@ -7,6 +7,7 @@ import java.util.function.Function;
 import com.synergy.vintagetech.init.builder.GearShiftBlock;
 import com.synergy.vintagetech.init.builder.engine.EngineBlock;
 import com.synergy.vintagetech.init.builder.fan.FanBlock;
+import com.synergy.vintagetech.init.builder.hopper.BasketBlock;
 import com.synergy.vintagetech.init.builder.saw.SawBlock;
 import com.synergy.vintagetech.init.builder.transmission.AxleBlock;
 import com.synergy.vintagetech.init.builder.transmission.JunctionBlock;
@@ -37,6 +38,8 @@ public class zBlocks {
     public static final DeferredHolder<Block, Block> FAN = registerItemBlock("fan", p -> new FanBlock(p));
    
     public static final DeferredHolder<Block, Block> GEARSHIFT = registerItemBlock("gearshift", p -> new GearShiftBlock(p));
+    
+    public static final DeferredHolder<Block, Block> BASKET = registerItemBlock("basket", p -> new BasketBlock(p));
 
     public static final DeferredHolder<Block, Block> RENDER_HALF_AXLE = zRender.registerSimpleBlock("render_half_axle",p->p.noLootTable());
     public static final DeferredHolder<Block, Block> RENDER_FAN_BLADE = zRender.registerSimpleBlock("render_fan_blade",p->p.noLootTable());
