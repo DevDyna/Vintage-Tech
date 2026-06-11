@@ -36,18 +36,15 @@ public class BasketBE extends TickingBE implements ItemStorageBlock {
 
                 var copy = item.getItem().copy();
 
-                if (copy.isEmpty())
-                    tx.close();
-
                 var insered = getItemStorage().insert(ItemResource.of(copy), copy.count(), tx);
 
                 if (insered > 0) {
                     if (insered >= item.getItem().count()) {
                         item.setItem(ItemStack.EMPTY);
                         item.discard();
-                    } else {
+                    } else
                         item.setItem(x.item(item.getItem().getItem(), item.getItem().count() - insered));
-                    }
+
                     tx.commit();
                 }
 
