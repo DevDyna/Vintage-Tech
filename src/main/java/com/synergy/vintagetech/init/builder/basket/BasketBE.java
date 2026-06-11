@@ -1,4 +1,4 @@
-package com.synergy.vintagetech.init.builder.hopper;
+package com.synergy.vintagetech.init.builder.basket;
 
 import com.devdyna.cakesticklib.api.aspect.logic.ItemStorageBlock;
 import com.devdyna.cakesticklib.api.aspect.templates.TickingBE;

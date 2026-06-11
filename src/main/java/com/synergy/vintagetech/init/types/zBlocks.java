@@ -5,9 +5,9 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 import java.util.function.Function;
 
 import com.synergy.vintagetech.init.builder.GearShiftBlock;
+import com.synergy.vintagetech.init.builder.basket.BasketBlock;
 import com.synergy.vintagetech.init.builder.engine.EngineBlock;
 import com.synergy.vintagetech.init.builder.fan.FanBlock;
-import com.synergy.vintagetech.init.builder.hopper.BasketBlock;
 import com.synergy.vintagetech.init.builder.saw.SawBlock;
 import com.synergy.vintagetech.init.builder.transmission.AxleBlock;
 import com.synergy.vintagetech.init.builder.transmission.JunctionBlock;

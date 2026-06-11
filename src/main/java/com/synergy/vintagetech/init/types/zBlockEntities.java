@@ -4,9 +4,9 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 
 import com.devdyna.cakesticklib.api.RegistryUtils;
 import com.synergy.vintagetech.api.blockfactory.transmission.TransmissionBE;
+import com.synergy.vintagetech.init.builder.basket.BasketBE;
 import com.synergy.vintagetech.init.builder.engine.EngineBE;
 import com.synergy.vintagetech.init.builder.fan.FanBE;
-import com.synergy.vintagetech.init.builder.hopper.BasketBE;
 import com.synergy.vintagetech.init.builder.saw.SawBE;
 
 import net.minecraft.core.registries.BuiltInRegistries;
