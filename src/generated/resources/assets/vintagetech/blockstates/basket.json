@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "vintagetech:block/basket",
+      "x": 90
+    },
+    "facing=east": {
+      "model": "vintagetech:block/basket",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "vintagetech:block/basket"
+    },
+    "facing=south": {
+      "model": "vintagetech:block/basket",
+      "y": 180
+    },
+    "facing=up": {
+      "model": "vintagetech:block/basket",
+      "x": 270
+    },
+    "facing=west": {
+      "model": "vintagetech:block/basket",
+      "y": 270
+    }
+  }
+}
