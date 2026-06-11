@@ -25,13 +25,8 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class FanBlock extends MonoDirectionalAxleBlock implements RotableAxleBlock {
 
     public FanBlock(Properties p) {
-        super(p);
+        super(p.noOcclusion());
     }
-
-    // @Override
-    // protected RenderShape getRenderShape(BlockState state) {
-    // return RenderShape.INVISIBLE;
-    // }
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext c) {

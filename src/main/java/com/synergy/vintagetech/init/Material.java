@@ -11,6 +11,7 @@ public class Material {
                 zBlockEntities.register(bus);
                 zRecipeTypes.register(bus);
                 zTags.register(bus);
+                zParticles.register(bus);
         }
 
 
