@@ -29,8 +29,7 @@ public class BasketBE extends TickingBE implements ItemStorageBlock {
 
         var related = getBlockPos().relative(getBlockState().getValue(BasketBlock.FACING));
 
-        var area = new AABB(getBlockPos().getX(),
-                getBlockPos().getY(), getBlockPos().getZ(), related.getX(), related.getY(), related.getZ());
+        var area = AABB.encapsulatingFullBlocks(getBlockPos(), related);
 
         for (ItemEntity item : level.getEntitiesOfClass(ItemEntity.class, area)) {
             try (var tx = Transaction.openRoot()) {
