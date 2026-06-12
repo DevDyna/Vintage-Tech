@@ -6,7 +6,9 @@ import java.util.function.Function;
 
 import com.synergy.vintagetech.init.builder.GearShiftBlock;
 import com.synergy.vintagetech.init.builder.basket.BasketBlock;
+import com.synergy.vintagetech.init.builder.crushing_tub.CrushingTubBlock;
 import com.synergy.vintagetech.init.builder.engine.EngineBlock;
+import com.synergy.vintagetech.init.builder.evaporation_basin.EvaporationBasinBlock;
 import com.synergy.vintagetech.init.builder.fan.FanBlock;
 import com.synergy.vintagetech.init.builder.saw.SawBlock;
 import com.synergy.vintagetech.init.builder.transmission.AxleBlock;
@@ -40,6 +42,9 @@ public class zBlocks {
     public static final DeferredHolder<Block, Block> GEARSHIFT = registerItemBlock("gearshift", p -> new GearShiftBlock(p));
     
     public static final DeferredHolder<Block, Block> BASKET = registerItemBlock("basket", p -> new BasketBlock(p));
+  
+    public static final DeferredHolder<Block, Block> CRUSHING_TUB = registerItemBlock("crushing_tub", p -> new CrushingTubBlock(p));
+    public static final DeferredHolder<Block, Block> EVAPORATION_BASIN = registerItemBlock("evaporation_basin", p -> new EvaporationBasinBlock(p));
 
     public static final DeferredHolder<Block, Block> RENDER_HALF_AXLE = zRender.registerSimpleBlock("render_half_axle",p->p.noLootTable());
     public static final DeferredHolder<Block, Block> RENDER_FAN_BLADE = zRender.registerSimpleBlock("render_fan_blade",p->p.noLootTable());

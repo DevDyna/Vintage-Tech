@@ -1,13 +1,15 @@
 package com.synergy.vintagetech.datagen.server;
 
-
 import static com.synergy.vintagetech.Main.MODULE_ID;
 
 import java.util.concurrent.CompletableFuture;
 
+import com.synergy.vintagetech.init.types.zTags;
+
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.EntityTypeTagsProvider;
+import net.minecraft.world.entity.EntityType;
 
 @SuppressWarnings("null")
 public class DataEntityTag extends EntityTypeTagsProvider {
@@ -18,7 +20,10 @@ public class DataEntityTag extends EntityTypeTagsProvider {
 
         @Override
         protected void addTags(Provider provider) {
-               
+
+                tag(zTags.Entities.CRUSHING_TUB_ALLOW)
+                                .add(EntityType.PLAYER, EntityType.ARMOR_STAND);
+
         }
 
 }

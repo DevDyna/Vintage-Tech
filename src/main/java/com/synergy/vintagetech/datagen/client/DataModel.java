@@ -130,6 +130,14 @@ public class DataModel extends ModelProvider {
                                                 .select(Direction.DOWN, BlockModelGenerators.X_ROT_90)
                                                 .select(Direction.UP, BlockModelGenerators.X_ROT_270)));
 
+                blockModels.blockStateOutput
+                                .accept(BlockModelGenerators.createSimpleBlock(zBlocks.CRUSHING_TUB.get(),
+                                                BlockModelGenerators.plainVariant(
+                                                                x.rl(MODULE_ID, "block/crushing_tub"))));
+                blockModels.blockStateOutput
+                                .accept(BlockModelGenerators.createSimpleBlock(zBlocks.EVAPORATION_BASIN.get(),
+                                                BlockModelGenerators.plainVariant(
+                                                                x.rl(MODULE_ID, "block/evaporation_basin"))));
         }
 
 }

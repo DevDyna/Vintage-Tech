@@ -12,6 +12,14 @@ public class Capability {
     public static void register(RegisterCapabilitiesEvent event) {
         // CapabilityUtils.registerFluidBlocks(event, zBlocks.ENGINE.get());
 
-        CapabilityUtils.registerItemBlock(event, zBlocks.BASKET.get());
+        CapabilityUtils.registerItemBlock(event,
+                zBlocks.BASKET.get(),
+                zBlocks.CRUSHING_TUB.get(),
+                zBlocks.EVAPORATION_BASIN.get());
+                
+        CapabilityUtils.registerFluidBlocks(event,
+                zBlocks.CRUSHING_TUB.get(),
+                zBlocks.EVAPORATION_BASIN.get());
+
     }
 }
