@@ -1,0 +1,11 @@
+{
+  "type": "vintagetech:evaporation_basin",
+  "fluid": {
+    "amount": 125,
+    "ingredient": "minecraft:water"
+  },
+  "output": {
+    "id": "minecraft:sugar"
+  },
+  "ticks": 20
+}

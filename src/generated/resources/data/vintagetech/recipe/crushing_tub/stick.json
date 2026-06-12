@@ -1,0 +1,14 @@
+{
+  "type": "vintagetech:crushing_tub",
+  "fluid": {
+    "amount": 1000,
+    "id": "minecraft:water"
+  },
+  "input": "#minecraft:leaves",
+  "output": {
+    "chance": 0.5,
+    "item": {
+      "id": "minecraft:stick"
+    }
+  }
+}
