@@ -1,0 +1,8 @@
+{
+  "type": "vintagetech:drying_rack",
+  "input": "#minecraft:saplings",
+  "output": {
+    "id": "minecraft:dead_bush"
+  },
+  "ticks": 200
+}
