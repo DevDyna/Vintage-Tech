@@ -28,7 +28,6 @@ import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 
-@SuppressWarnings("null")
 public class CrushingTubBE extends TickingBE implements NoGuiStorage, ItemStorageBlock, SimpleFluidStorage {
 
     // private BlockCapabilityCache<IItemHandler, Direction> cache;

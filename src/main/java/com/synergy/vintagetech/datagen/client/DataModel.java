@@ -25,7 +25,7 @@ public class DataModel extends ModelProvider {
         @Override
         protected void registerModels(BlockModelGenerators blockModels, ItemModelGenerators itemModels) {
 
-                // TODO change item model!
+                // TODO IMP : change item model!
 
                 blockModels.blockStateOutput
                                 .accept(BlockModelGenerators.createSimpleBlock(zBlocks.JUNCTION.get(),

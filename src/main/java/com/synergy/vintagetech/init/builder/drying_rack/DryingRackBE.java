@@ -29,7 +29,6 @@ import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 
-@SuppressWarnings("null")
 public class DryingRackBE extends TickingBE
         implements NoGuiStorage, ItemStorageBlock, TimeredRecipe, EnvironmentModifier {
 
@@ -54,7 +53,7 @@ public class DryingRackBE extends TickingBE
         return 1;
     }
 
-    // TODO move to NoGuiStorage
+    // TODO API : move to NoGuiStorage
     public ItemStack insertItem(ItemStack stack) {
         update();
         var inserted = 0;
@@ -67,7 +66,7 @@ public class DryingRackBE extends TickingBE
         return x.item(stack.getItem(), stack.getCount() - inserted);
     }
 
-    // TODO move to NoGuiStorage
+    // TODO API : move to NoGuiStorage
     public ItemStack extractItem() {
         update();
         var resource = getItemStorage().getResource(0);
@@ -84,18 +83,7 @@ public class DryingRackBE extends TickingBE
             return resource.toStack(extracted);
         }
     }
-    // TODO
-    // @Override
-    // public void onLoad() {
-    // super.onLoad();
-    // if (this.level instanceof ServerLevel serverLevel) {
-    // this.cache = BlockCapabilityCache.create(
-    // Capabilities.ItemHandler.BLOCK,
-    // serverLevel,
-    // getBlockPos(),
-    // null);
-    // }
-    // }
+    
 
     private Ticker ticker = null;
 

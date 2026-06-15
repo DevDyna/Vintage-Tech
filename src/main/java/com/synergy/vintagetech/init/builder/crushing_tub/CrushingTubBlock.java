@@ -28,7 +28,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.transfer.fluid.FluidStacksResourceHandler;
 
-@SuppressWarnings("null")
+
 public class CrushingTubBlock extends TickingBlock
         implements BucketInteraction, FluidClearableTank, FluidTooltipWhenEmpty {
 

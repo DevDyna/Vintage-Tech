@@ -29,7 +29,6 @@ import net.neoforged.neoforge.fluids.FluidStackTemplate;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 
-@SuppressWarnings("null")
 public class CrushingTubRecipe extends BaseRecipeType<ItemInput.simple> {
 
     private final Ingredient input;

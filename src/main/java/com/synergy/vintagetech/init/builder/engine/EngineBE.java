@@ -68,11 +68,11 @@ public class EngineBE extends TransmissionBE implements KineticGenerator {
                 if (nextState.getBlock() instanceof GearShiftBlock shift && shift.isActive(level, nextPos))
                     newInverted = !newInverted;
 
-                // TODO dont work atm
+                // TODO BUG : dont work atm
                 if (nextState.getBlock() instanceof EngineBlock)
                     explode(nextPos);
 
-                // TODO when collide explode
+                // TODO IMP : when collide explode
 
                 queue.add(NetworkElement.create(nextPos, newInverted));
             }

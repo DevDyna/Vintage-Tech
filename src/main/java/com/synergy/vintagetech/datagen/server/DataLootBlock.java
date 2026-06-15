@@ -27,7 +27,7 @@ public class DataLootBlock extends BlockLootSubProvider {
                 getBlocks(zBlocks.zBlockItem).forEach(this::dropSelf);
         }
 
-        // TODO move to api
+        // TODO API : move to api
         public List<Block> getBlocks(Blocks... blocks) {
                 List<Block> result = new ArrayList<>();
                 List.of(blocks).forEach(t -> result.addAll(t.getEntries()

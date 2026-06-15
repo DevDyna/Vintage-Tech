@@ -26,7 +26,6 @@ import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 
-@SuppressWarnings("null")
 public class EvaporationBasinRecipe extends BaseRecipeType<FluidInput.withNumber> {
 
     private final SizedFluidIngredient fluid;

@@ -64,12 +64,12 @@ public class FanBE extends TransmissionBE {
 
     }
 
-    // TODO move to RandomUtils
+    // TODO API : move to RandomUtils
 
     public static double between(Level l, double min, double max) {
         return min + l.getRandom().nextDouble() * (max - min);
     }
 
-    // TODO COLORS create defaul colors variables
+    // TODO API : COLORS create defaul colors variables
 
 }

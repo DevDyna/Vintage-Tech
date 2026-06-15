@@ -22,6 +22,7 @@ public class DataLang extends LanguageProvider {
 
                 zBlocks.zBlockItem.getEntries().forEach(b -> addBlock(b, LangUtils.named(b, MODULE_ID)));
 
+                // TODO API : move to api
                 add(MODULE_ID + ".jei.alias.block.break", "Block Breaker");
                 add(MODULE_ID + ".jei.alias.drill", "Drill");
                 add(MODULE_ID + ".jei.alias.miner", "Miner");

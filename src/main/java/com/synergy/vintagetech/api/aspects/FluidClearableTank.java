@@ -8,7 +8,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
-//TODO move to api
+//TODO API : move to api
 public interface FluidClearableTank {
 
     default InteractionResult useItemToClear(BlockState blockState, Level level,

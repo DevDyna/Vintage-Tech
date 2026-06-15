@@ -7,8 +7,7 @@ import net.neoforged.neoforge.fluids.FluidStackTemplate;
 import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
 import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 
-//TODO move to api
-@SuppressWarnings("null")
+//TODO API : move to api
 public class RecipeUtils {
 
     public static FluidStackTemplate optionalCodec(FluidStackTemplate f) {

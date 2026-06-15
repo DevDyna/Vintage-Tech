@@ -10,7 +10,7 @@ import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
-//TODO move to ChanceOutputItem / recipe builder
+//TODO API : move to ChanceOutputItem / recipe builder
 public interface BuilderChanceOutputItemAttach<BUILDER extends BaseRecipeBuilder> extends BuilderAttach<BUILDER> {
 
     abstract BUILDER output(ChanceOutputItem output);

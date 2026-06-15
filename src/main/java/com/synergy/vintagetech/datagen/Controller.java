@@ -31,7 +31,7 @@ public class Controller {
         // providerGen(e, g, new DataBlockModelState(po, f));
         e.addProvider(new DataModel(output));
         e.addProvider(new DataLang(output));
-        e.addProvider(new DataParticle(output));// TODO add to others
+        e.addProvider(new DataParticle(output));// TODO TEMPLATES : add to others
 
         // server
 

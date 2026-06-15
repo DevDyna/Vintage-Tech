@@ -24,7 +24,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 
-@SuppressWarnings("null")
 public class DryingRackRecipe extends BaseRecipeType<ItemInput.simple> {
 
     private final Ingredient input;
