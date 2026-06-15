@@ -9,6 +9,9 @@ import com.synergy.vintagetech.api.blockfactory.RotableAxleBlock;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -18,6 +21,7 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -60,6 +64,16 @@ public class SawBlock extends MonoDirectionalAxleBlock implements RotableAxleBlo
     @Override
     public Direction getInputRotation(BlockState state) {
         return state.getValue(FACING).getOpposite();
+    }
+
+    @Override
+    protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity,
+            InsideBlockEffectApplier effectApplier, boolean isPrecise) {
+        if (state.getValue(ENABLED))
+            if (level instanceof ServerLevel server) {
+                entity.hurtServer(server, level.damageSources().genericKill(), 1.5f);
+                entity.makeStuckInBlock(state, new Vec3(0.9F, 0.9, 0.9F));
+            }
     }
 
     @Override
