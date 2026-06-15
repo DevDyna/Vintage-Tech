@@ -27,6 +27,8 @@ public class zTags {
 
         public static final TagKey<Block> EVAPORATION_BASIC_HEATER = RegistryUtils
                 .tagBlock(MODULE_ID, "evaporation_basin/heater");
+        public static final TagKey<Block> DRYING_RACK_HEATER = RegistryUtils
+                .tagBlock(MODULE_ID, "drying_rack/heater");
 
     }
 

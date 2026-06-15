@@ -15,6 +15,7 @@ public class Capability {
         CapabilityUtils.registerItemBlock(event,
                 zBlocks.BASKET.get(),
                 zBlocks.CRUSHING_TUB.get(),
+                zBlocks.DRYING_RACK.get(),
                 zBlocks.EVAPORATION_BASIN.get());
                 
         CapabilityUtils.registerFluidBlocks(event,

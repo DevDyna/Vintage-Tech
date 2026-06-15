@@ -6,6 +6,7 @@ import com.devdyna.cakesticklib.api.RegistryUtils;
 import com.synergy.vintagetech.api.blockfactory.transmission.TransmissionBE;
 import com.synergy.vintagetech.init.builder.basket.BasketBE;
 import com.synergy.vintagetech.init.builder.crushing_tub.CrushingTubBE;
+import com.synergy.vintagetech.init.builder.drying_rack.DryingRackBE;
 import com.synergy.vintagetech.init.builder.engine.EngineBE;
 import com.synergy.vintagetech.init.builder.evaporation_basin.EvaporationBasinBE;
 import com.synergy.vintagetech.init.builder.fan.FanBE;
@@ -44,6 +45,8 @@ public class zBlockEntities {
     
                         public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CrushingTubBE>> CRUSHING_TUB = RegistryUtils
                         .createBlockEntity("crushing_tub", zTiles, CrushingTubBE::new, zBlocks.CRUSHING_TUB);
+        public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<DryingRackBE>> DRYING_RACK = RegistryUtils
+                        .createBlockEntity("drying_rack", zTiles, DryingRackBE::new, zBlocks.DRYING_RACK);
         public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<EvaporationBasinBE>> EVAPORATION_BASIN = RegistryUtils
                         .createBlockEntity("evaporation_basin", zTiles, EvaporationBasinBE::new, zBlocks.EVAPORATION_BASIN);
 

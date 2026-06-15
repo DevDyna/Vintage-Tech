@@ -4,6 +4,7 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 
 import com.synergy.vintagetech.api.RecipeRegister;
 import com.synergy.vintagetech.init.builder.crushing_tub.recipe.CrushingTubRecipe;
+import com.synergy.vintagetech.init.builder.drying_rack.recipe.DryingRackRecipe;
 import com.synergy.vintagetech.init.builder.evaporation_basin.recipe.EvaporationBasinRecipe;
 
 import net.minecraft.core.registries.Registries;
@@ -21,12 +22,17 @@ public class zRecipeTypes {
 
     public static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS = DeferredRegister
             .create(Registries.RECIPE_SERIALIZER, MODULE_ID);
-    public static final DeferredRegister<RecipeType<?>> TYPES = DeferredRegister.create(Registries.RECIPE_TYPE, MODULE_ID);
+    public static final DeferredRegister<RecipeType<?>> TYPES = DeferredRegister.create(Registries.RECIPE_TYPE,
+            MODULE_ID);
 
-  
-public static final RecipeRegister<CrushingTubRecipe> CRUSHING_TUB = RecipeRegister.of("crushing_tub",
+    public static final RecipeRegister<CrushingTubRecipe> CRUSHING_TUB = RecipeRegister.of("crushing_tub",
             () -> CrushingTubRecipe.serializer());
 
-public static final RecipeRegister<EvaporationBasinRecipe> EVAPORATION_BASIN = RecipeRegister.of("evaporation_basin",
+    public static final RecipeRegister<EvaporationBasinRecipe> EVAPORATION_BASIN = RecipeRegister.of(
+            "evaporation_basin",
             () -> EvaporationBasinRecipe.serializer());
+
+    public static final RecipeRegister<DryingRackRecipe> DRYING_RACK = RecipeRegister.of("drying_rack",
+            () -> DryingRackRecipe.serializer());
+
 }

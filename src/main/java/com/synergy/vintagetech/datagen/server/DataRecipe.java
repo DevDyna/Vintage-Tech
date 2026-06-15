@@ -6,6 +6,7 @@ import java.util.concurrent.CompletableFuture;
 
 import com.devdyna.cakesticklib.api.datagen.RecipeGenerators;
 import com.synergy.vintagetech.init.builder.crushing_tub.recipe.CrushingTubBuilder;
+import com.synergy.vintagetech.init.builder.drying_rack.recipe.DryingRackBuilder;
 import com.synergy.vintagetech.init.builder.evaporation_basin.recipe.EvaporationBasinBuilder;
 
 import net.minecraft.core.HolderGetter;
@@ -39,6 +40,12 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .output(Items.SUGAR)
                                 .unlockedBy(getHasName(Items.WATER_BUCKET), has(Items.WATER_BUCKET))
                                 .save(output);
+
+                DryingRackBuilder.of(registries)
+                .input(ItemTags.SAPLINGS)
+                .output(Items.DEAD_BUSH)
+                .unlockedBy(getHasName(ItemTags.SAPLINGS), has(ItemTags.SAPLINGS))
+                .save(output);
 
         }
 

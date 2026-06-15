@@ -8,6 +8,7 @@ import com.synergy.vintagetech.init.types.zTags;
 
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
@@ -23,6 +24,7 @@ public class DataBlockTag extends BlockTagsProvider {
 
                 tag(zTags.Blocks.SAW_DENY_BREAK).addTag(Tags.Blocks.RELOCATION_NOT_SUPPORTED);
                 tag(zTags.Blocks.EVAPORATION_BASIC_HEATER).add(Blocks.MAGMA_BLOCK);
+                tag(zTags.Blocks.DRYING_RACK_HEATER).addTag(BlockTags.CAMPFIRES);
 
         }
 

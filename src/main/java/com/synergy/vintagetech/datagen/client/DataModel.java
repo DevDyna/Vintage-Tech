@@ -138,6 +138,11 @@ public class DataModel extends ModelProvider {
                                 .accept(BlockModelGenerators.createSimpleBlock(zBlocks.EVAPORATION_BASIN.get(),
                                                 BlockModelGenerators.plainVariant(
                                                                 x.rl(MODULE_ID, "block/evaporation_basin"))));
+                blockModels.blockStateOutput
+                                .accept(BlockModelGenerators.createSimpleBlock(zBlocks.DRYING_RACK.get(),
+                                                BlockModelGenerators.plainVariant(
+                                                                x.rl(MODULE_ID, "block/drying_rack"))));
+
         }
 
 }
