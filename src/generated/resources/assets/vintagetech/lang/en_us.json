@@ -8,5 +8,20 @@
   "block.vintagetech.fan": "Fan",
   "block.vintagetech.gearshift": "Gearshift",
   "block.vintagetech.junction": "Junction",
-  "block.vintagetech.saw": "Saw"
+  "block.vintagetech.saw": "Saw",
+  "vintagetech.jei.alias.block.break": "Block Breaker",
+  "vintagetech.jei.alias.drill": "Drill",
+  "vintagetech.jei.alias.entity.killer": "Entity killer",
+  "vintagetech.jei.alias.entity.mover": "Entity Mover",
+  "vintagetech.jei.alias.fakeplayer": "FakePlayer",
+  "vintagetech.jei.alias.hopper": "Hopper",
+  "vintagetech.jei.alias.item.collector": "Item Collector",
+  "vintagetech.jei.alias.miner": "Miner",
+  "vintagetech.jei.alias.redstone.sensible": "Redstone Sensible",
+  "vintagetech.jei.alias.rpm.base": "Mechanical Rotation block",
+  "vintagetech.jei.alias.rpm.generator": "Generator",
+  "vintagetech.jei.alias.rpm.rotation.change": "Change Rotation",
+  "vintagetech.jei.alias.rpm.transmission": "Transmission",
+  "vintagetech.jei.alias.tree.cutter": "Tree cutter",
+  "vintagetech.jei.alias.tree.feller": "Tree feller"
 }
