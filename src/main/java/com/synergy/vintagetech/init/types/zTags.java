@@ -25,6 +25,9 @@ public class zTags {
         public static final TagKey<Block> SAW_DENY_BREAK = RegistryUtils
                 .tagBlock(MODULE_ID, "saw/destroy_blacklist");
 
+        public static final TagKey<Block> MINEABLE_WITH_SAW = RegistryUtils
+                .tagBlock("minecraft", "mineable/saw");
+
         public static final TagKey<Block> EVAPORATION_BASIC_HEATER = RegistryUtils
                 .tagBlock(MODULE_ID, "evaporation_basin/heater");
         public static final TagKey<Block> DRYING_RACK_HEATER = RegistryUtils

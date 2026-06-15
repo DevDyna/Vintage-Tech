@@ -103,9 +103,8 @@ public class SawBE extends TickingBE {
 
     }
 
-    // TODO tag
     public boolean isFast(BlockState s) {
-        return s.is(BlockTags.MINEABLE_WITH_AXE);
+        return s.is(zTags.Blocks.MINEABLE_WITH_SAW);
     }
 
     // TODO move to api
