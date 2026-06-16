@@ -6,12 +6,14 @@ import org.jspecify.annotations.Nullable;
 
 import com.synergy.vintagetech.api.blockfactory.MonoDirectionalAxleBlock;
 import com.synergy.vintagetech.api.blockfactory.RotableAxleBlock;
+import com.synergy.vintagetech.init.types.zTags;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.InsideBlockEffectApplier;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -71,8 +73,15 @@ public class SawBlock extends MonoDirectionalAxleBlock implements RotableAxleBlo
             InsideBlockEffectApplier effectApplier, boolean isPrecise) {
         if (state.getValue(ENABLED))
             if (level instanceof ServerLevel server) {
+                if (entity instanceof Player player)
+                    if (player.isCreative() || player.isSpectator())
+                        return;
+
+                if (entity.is(zTags.Entities.SAW_DENY_DAMAGING))
+                    return;
+
                 entity.hurtServer(server, level.damageSources().genericKill(), 1.5f);
-                entity.makeStuckInBlock(state, new Vec3(0.9F, 0.9, 0.9F));
+                entity.makeStuckInBlock(state, new Vec3(0.7f, 0.7f, 0.7f));
             }
     }
 

@@ -51,5 +51,7 @@ public class zTags {
         public static final TagKey<EntityType<?>> CRUSHING_TUB_ALLOW_CRUSHING = RegistryUtils.tagEntity(MODULE_ID,
                 "crushing_tub/allow_crushing");
 
+        public static final TagKey<EntityType<?>> SAW_DENY_DAMAGING = RegistryUtils.tagEntity(MODULE_ID,
+                "saw/deny_damaging");
     }
 }
