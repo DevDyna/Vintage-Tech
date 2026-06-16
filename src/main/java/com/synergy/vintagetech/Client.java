@@ -40,6 +40,10 @@ public class Client {
                 TransmissionRenderer::new);
 
         event.registerBlockEntityRenderer(
+                zBlockEntities.STEAM_ENGINE.get(),
+                TransmissionRenderer::new);
+
+        event.registerBlockEntityRenderer(
                 zBlockEntities.FAN.get(),
                 FanRenderer::new);
 

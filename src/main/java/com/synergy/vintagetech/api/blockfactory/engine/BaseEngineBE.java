@@ -1,4 +1,4 @@
-package com.synergy.vintagetech.init.builder.engine;
+package com.synergy.vintagetech.api.blockfactory.engine;
 
 import java.util.*;
 
@@ -11,30 +11,37 @@ import com.synergy.vintagetech.init.types.zBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.Level.ExplosionInteraction;
-import net.minecraft.world.level.block.CampfireBlock;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class EngineBE extends TransmissionBE implements KineticGenerator {
+public class BaseEngineBE extends TransmissionBE implements KineticGenerator {
+
+    public BaseEngineBE(BlockEntityType<? extends BaseEngineBE> type, BlockPos pos, BlockState state) {
+        super(type, pos, state);
+    }
+
+    public BaseEngineBE(BlockPos pos, BlockState state) {
+        super(zBlockEntities.ENGINE.get(), pos, state);
+    }
 
     private Set<BlockPos> cache = new HashSet<>();
 
-    public EngineBE(BlockPos p, BlockState s) {
-        super(zBlockEntities.ENGINE.get(), p, s);
+    public BaseEngineBlock getBlock() {
+        return (BaseEngineBlock) getBlockState().getBlock();
     }
 
     public void tickServer() {
 
         update();
 
-        if (!getBlockState().getValue(EngineBlock.ENABLED))
+        if (!getBlockState().getValue(BaseEngineBlock.ENABLED))
             return;
 
         Set<BlockPos> visited = new HashSet<>();
         Queue<NetworkElement> queue = new ArrayDeque<>();
 
-        queue.add(NetworkElement.create(
-                getBlockPos().relative(getBlockState().getValue(EngineBlock.HORIZONTAL_FACING)),
-                false));
+        for (Direction dir : getBlock().getGenDirections(level, getBlockPos(), getBlockState()))
+            queue.add(NetworkElement.create(getBlockPos().relative(dir), getBlock().getDefaultRotationState()));
 
         while (!queue.isEmpty()) {
 
@@ -69,7 +76,7 @@ public class EngineBE extends TransmissionBE implements KineticGenerator {
                     newInverted = !newInverted;
 
                 // TODO BUG : dont work atm
-                if (nextState.getBlock() instanceof EngineBlock)
+                if (nextState.getBlock() instanceof BaseEngineBlock)
                     explode(nextPos);
 
                 // TODO IMP : when collide explode
@@ -78,7 +85,7 @@ public class EngineBE extends TransmissionBE implements KineticGenerator {
             }
         }
 
-        for (BlockPos oldPos : cache) {
+        for (BlockPos oldPos : cache)
             if (!visited.contains(oldPos)) {
                 BlockState oldState = level.getBlockState(oldPos);
 
@@ -86,7 +93,6 @@ public class EngineBE extends TransmissionBE implements KineticGenerator {
                     axle.setDeactive(level, oldPos, oldState, false);
 
             }
-        }
 
         cache = visited;
     }
@@ -98,15 +104,14 @@ public class EngineBE extends TransmissionBE implements KineticGenerator {
     }
 
     public void update() {
-        boolean state = getBlockState().getValue(EngineBlock.ENABLED);
+        boolean state = getBlockState().getValue(BaseEngineBlock.ENABLED);
 
-        boolean active = CampfireBlock.isLitCampfire(
-                level.getBlockState(getBlockPos().below()));
+        boolean active = getBlock().getWhenActive(level, getBlockPos(), getBlockState());
 
         if (state != active) {
             level.setBlockAndUpdate(
                     getBlockPos(),
-                    getBlockState().setValue(EngineBlock.ENABLED, active));
+                    getBlockState().setValue(BaseEngineBlock.ENABLED, active));
             level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
         }
 

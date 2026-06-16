@@ -6,9 +6,10 @@ import java.util.function.Function;
 
 import com.synergy.vintagetech.init.builder.GearShiftBlock;
 import com.synergy.vintagetech.init.builder.basket.BasketBlock;
+import com.synergy.vintagetech.init.builder.creative_engine.CreativeEngineBlock;
 import com.synergy.vintagetech.init.builder.crushing_tub.CrushingTubBlock;
 import com.synergy.vintagetech.init.builder.drying_rack.DryingRackBlock;
-import com.synergy.vintagetech.init.builder.engine.EngineBlock;
+import com.synergy.vintagetech.init.builder.engine.SteamEngineBlock;
 import com.synergy.vintagetech.init.builder.evaporation_basin.EvaporationBasinBlock;
 import com.synergy.vintagetech.init.builder.fan.FanBlock;
 import com.synergy.vintagetech.init.builder.saw.SawBlock;
@@ -34,7 +35,9 @@ public class zBlocks {
     public static final DeferredRegister.Blocks zBlock = DeferredRegister.createBlocks(MODULE_ID);
     public static final DeferredRegister.Blocks zBlockItem = DeferredRegister.createBlocks(MODULE_ID);
 
-    public static final DeferredHolder<Block, Block> ENGINE = registerItemBlock("engine", p -> new EngineBlock(p));
+    public static final DeferredHolder<Block, Block> STEAM_ENGINE = registerItemBlock("steam_engine", p -> new SteamEngineBlock(p));
+   
+    public static final DeferredHolder<Block, Block> CREATIVE_ENGINE = registerItemBlock("creative_engine", p -> new CreativeEngineBlock(p));
 
     public static final DeferredHolder<Block, Block> AXLE = registerItemBlock("axle", p -> new AxleBlock(p));
     public static final DeferredHolder<Block, Block> JUNCTION = registerItemBlock("junction", p -> new JunctionBlock(p));

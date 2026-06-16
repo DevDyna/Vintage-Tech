@@ -12,6 +12,8 @@ import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.data.models.MultiVariant;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
+import net.minecraft.client.data.models.model.ItemModelUtils;
+import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -55,7 +57,7 @@ public class DataModel extends ModelProvider {
                                                                 x.rl(MODULE_ID, "block/gearshift"))));
 
                 blockModels.blockStateOutput.accept(BlockModelGenerators
-                                .createSimpleBlock(zBlocks.ENGINE.get(),
+                                .createSimpleBlock(zBlocks.STEAM_ENGINE.get(),
                                                 BlockModelGenerators.plainVariant(x.rl(MODULE_ID, "block/engine")))
                                 .with(PropertyDispatch.modify(BlockStateProperties.HORIZONTAL_FACING)
                                                 .select(Direction.SOUTH, BlockModelGenerators.NOP)
@@ -145,6 +147,30 @@ public class DataModel extends ModelProvider {
                                                 BlockModelGenerators.plainVariant(
                                                                 x.rl(MODULE_ID, "block/drying_rack"))));
 
+                blockModels.blockStateOutput
+                                .accept(BlockModelGenerators.createSimpleBlock(zBlocks.CREATIVE_ENGINE.get(),
+                                                BlockModelGenerators.plainVariant(
+                                                                x.rl(MODULE_ID, "block/creative_engine"))));
+
         }
+
+        // private static void createAxleVariant(BlockModelGenerators m,
+        // Block block, Identifier side, Identifier top) {
+
+        // ModelTemplate template = new ModelTemplate(
+        // Optional.of(x.rl(MODULE_ID, "block/template/axle")),
+        // Optional.empty(),
+        // TextureSlot.SIDE,
+        // TextureSlot.TOP);
+        // Identifier modelId = ModelLocationUtils.getModelLocation(block);
+        // TextureMapping mapping = new TextureMapping()
+        // .put(TextureSlot.SIDE, new Material(side))
+        // .put(TextureSlot.TOP, new Material(top));
+        // template.create(modelId, mapping, m.modelOutput);
+        // MultiVariant variant = BlockModelGenerators.plainVariant(modelId);
+        // m.blockStateOutput.accept(
+        // MultiVariantGenerator.dispatch(block, variant)
+        // .with(BlockModelGenerators.createRotatedPillar()));
+        // }
 
 }

@@ -5,8 +5,8 @@ import java.util.Map;
 
 import org.jspecify.annotations.Nullable;
 
-import com.synergy.vintagetech.api.blockfactory.BaseKineticBlock;
 import com.synergy.vintagetech.api.blockfactory.HorizontalAxleBlock;
+import com.synergy.vintagetech.api.blockfactory.engine.BaseEngineBlock;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -15,20 +15,19 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CampfireBlock;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityTicker;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class EngineBlock extends BaseKineticBlock
+public class SteamEngineBlock extends BaseEngineBlock
         implements // BucketInteraction, FluidTooltipWhenEmpty,
         HorizontalAxleBlock {
 
-    public EngineBlock(Properties p) {
+    public SteamEngineBlock(Properties p) {
         super(p);
     }
 
@@ -60,27 +59,10 @@ public class EngineBlock extends BaseKineticBlock
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos p, BlockState s) {
-        return new EngineBE(p, s);
+        return new SteamEngineBE(p, s);
     }
 
-    @Nullable
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level l, BlockState s, BlockEntityType<T> ty) {
-        return (lvl, pos, b, t) -> {
-            if (t instanceof EngineBE be) {
-
-                if (l == null)
-                    return;
-
-                be.tickBoth();
-                if (l.isClientSide())
-                    be.tickClient();
-                else
-                    be.tickServer();
-
-            }
-
-        };
-    }
+   
 
     @Override
     public boolean canInputFrom(Direction dir, BlockState state) {
@@ -112,7 +94,7 @@ public class EngineBlock extends BaseKineticBlock
 
     @Override
     public void destroy(LevelAccessor level, BlockPos pos, BlockState state) {
-        if (level.getBlockEntity(pos) instanceof EngineBE engine)
+        if (level.getBlockEntity(pos) instanceof SteamEngineBE engine)
             engine.setRemoved();
         super.destroy(level, pos, state);
     }
@@ -120,6 +102,17 @@ public class EngineBlock extends BaseKineticBlock
     @Override
     public Map<Direction, Boolean> getAxis(BlockState state) {
         return Map.of(state.getValue(HORIZONTAL_FACING), false);
+    }
+
+    @Override
+    public List<Direction> getGenDirections(Level level, BlockPos pos, BlockState state) {
+        return List.of(state.getValue(SteamEngineBlock.HORIZONTAL_FACING));
+    }
+
+    @Override
+    public boolean getWhenActive(Level level, BlockPos pos, BlockState state) {
+        return  CampfireBlock.isLitCampfire(
+                level.getBlockState(pos.below()));
     }
 
 }
