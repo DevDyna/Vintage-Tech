@@ -1,6 +1,7 @@
 package com.synergy.vintagetech.init.builder.creative_engine;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -39,7 +40,12 @@ public class CreativeEngineBlock extends BaseEngineBlock {
 
     @Override
     public Map<Direction, Boolean> getAxis(BlockState state) {
-        return Map.of();
+        Map<Direction, Boolean> map = new HashMap<>();
+
+        for (Direction d : Direction.values())
+            map.put(d, getDefaultRotationState());
+
+        return map;
     }
 
     @Override
