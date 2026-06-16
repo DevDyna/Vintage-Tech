@@ -62,9 +62,9 @@ public class FanBE extends TransmissionBE {
             if (level.getRandom().nextFloat() < ((inverted ? (i / 5f) : (1f - i / 5f)) * 0.4f)) {
                 level.addParticle(
                         zParticles.FAN_AIR_FLOW.get(),
-                        particlePos.getX() + between(level, 0, 1),
-                        particlePos.getY() + between(level, 0, 1),
-                        particlePos.getZ() + between(level, 0, 1),
+                        particlePos.getX() + between(level, 0.1, 0.9),
+                        particlePos.getY() + between(level, 0.1, 0.9),
+                        particlePos.getZ() + between(level, 0.1, 0.9),
                         baseDir.x,
                         baseDir.y,
                         baseDir.z);
