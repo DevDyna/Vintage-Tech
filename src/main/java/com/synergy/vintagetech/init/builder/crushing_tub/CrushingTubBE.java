@@ -32,16 +32,20 @@ public class CrushingTubBE extends TickingBE implements NoGuiStorage, ItemStorag
 
     // private BlockCapabilityCache<IItemHandler, Direction> cache;
 
+    public static final int MANUAL_SLOT = 0;
+    public static final int FLUID_TANK = 0;
+    public static final int AUTOMATION_OUTPUT_SLOT = 1;
+
     public CrushingTubBE(BlockPos pos, BlockState blockState) {
         super(zBlockEntities.CRUSHING_TUB.get(), pos, blockState);
     }
 
     public ItemStack insertItem(ItemStack stack) {
         update();
-        var inserted = 0;
+        var inserted = MANUAL_SLOT;
 
         try (Transaction tx = Transaction.openRoot()) {
-            inserted = getItemStorage().insert(0, ItemResource.of(stack), stack.getCount(), tx);
+            inserted = getItemStorage().insert(MANUAL_SLOT, ItemResource.of(stack), stack.getCount(), tx);
             tx.commit();
         }
 
@@ -50,7 +54,15 @@ public class CrushingTubBE extends TickingBE implements NoGuiStorage, ItemStorag
 
     public ItemStack extractItem() {
         update();
-        var resource = getItemStorage().getResource(0);
+
+        var index = MANUAL_SLOT;
+
+        var resource = getItemStorage().getResource(index);
+
+        if (resource.isEmpty()) {
+            index = AUTOMATION_OUTPUT_SLOT;
+            resource = getItemStorage().getResource(index);
+        }
 
         if (resource.isEmpty())
             return ItemStack.EMPTY;
@@ -58,14 +70,14 @@ public class CrushingTubBE extends TickingBE implements NoGuiStorage, ItemStorag
         try (Transaction tx = Transaction.openRoot()) {
 
             var extracted = getItemStorage()
-                    .extract(0, resource, getItemStorage().getAmountAsInt(0), tx);
+                    .extract(index, resource, getItemStorage().getAmountAsInt(index), tx);
             tx.commit();
 
             return resource.toStack(extracted);
         }
     }
 
-    public void craft(boolean dropWhenCrafted) {
+    public void craft(boolean isAutomation) {
 
         if (level == null)
             return;
@@ -75,12 +87,14 @@ public class CrushingTubBE extends TickingBE implements NoGuiStorage, ItemStorag
 
         update();
 
-        if (getStackInSlot(0).isEmpty())
+        var item = getStackInSlot(MANUAL_SLOT);
+
+        if (item.isEmpty())
             return;
 
         Optional<RecipeHolder<CrushingTubRecipe>> r = level.getServer().getRecipeManager()
                 .getRecipeFor(zRecipeTypes.CRUSHING_TUB.getType(),
-                        new ItemInput.simple(getStackInSlot(0)), level);
+                        new ItemInput.simple(item), level);
 
         if (r.isEmpty())
             return;
@@ -88,23 +102,37 @@ public class CrushingTubBE extends TickingBE implements NoGuiStorage, ItemStorag
         var recipe = r.get().value();
 
         if (recipe.getFluid() != null)
-            if (!getFluidStorage().getResource(0).isEmpty())
-                if (!recipe.getFluid().is(getFluidStorage().getResource(0).getFluid())
-                        || getFluidStorage().getAmountAsInt(0) + recipe.getFluid().amount() > getTankCapacity())
+            if (!getFluidStorage().getResource(FLUID_TANK).isEmpty())
+                if (!recipe.getFluid().is(getFluidStorage().getResource(FLUID_TANK).getFluid())
+                        || getFluidStorage().getAmountAsInt(FLUID_TANK)
+                                + recipe.getFluid().amount() > getTankCapacity())
                     return;
+
+        var output = recipe.getOutput().item();
 
         try (var tx = Transaction.openRoot()) {
             if (recipe.getFluid() != null)
-                getFluidStorage().insert(0, FluidResource.of(recipe.getFluid()), recipe.getFluid().amount(), tx);
-            getItemStorage().extract(0, ItemResource.of(getStackInSlot(0)), 1, tx);
+                getFluidStorage().insert(FLUID_TANK, FluidResource.of(recipe.getFluid()), recipe.getFluid().amount(),
+                        tx);
+            getItemStorage().extract(MANUAL_SLOT, ItemResource.of(item), 1, tx);
+
+            if (recipe.getOutput() != null)
+                if (level.getRandom().nextFloat() < recipe.getOutput().chance()) {// TODO API : move to api
+
+                    var insered = isAutomation
+                            ? getItemStorage().insert(AUTOMATION_OUTPUT_SLOT,
+                                    ItemResource.of(output.create().copy()),
+                                    output.count(), tx)
+                            : 0;
+
+                    if (insered <= 0)
+                        Block.popResource(level, getBlockPos().above(),
+                                x.item(output.create().copy().getItem(),
+                                        output.count() - insered));
+                }
+
             tx.commit();
         }
-
-        if (recipe.getOutput() != null)
-            if (level.getRandom().nextFloat() < recipe.getOutput().chance())
-                if (dropWhenCrafted)
-                    Block.popResource(level, getBlockPos().above(),
-                            recipe.getOutput().item().create().copy());
 
         level.playSound(null, getBlockPos(),
                 RandomUtil.chance(level, 50) ? SoundEvents.SLIME_BLOCK_FALL : SoundEvents.SNIFFER_EGG_CRACK,
@@ -144,7 +172,7 @@ public class CrushingTubBE extends TickingBE implements NoGuiStorage, ItemStorag
 
     @Override
     public int getSlots() {
-        return 1;
+        return 2;
     }
 
     @Override
