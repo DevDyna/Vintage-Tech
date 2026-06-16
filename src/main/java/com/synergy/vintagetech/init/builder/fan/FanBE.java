@@ -3,9 +3,11 @@ package com.synergy.vintagetech.init.builder.fan;
 import com.synergy.vintagetech.api.blockfactory.transmission.TransmissionBE;
 import com.synergy.vintagetech.init.types.zBlockEntities;
 import com.synergy.vintagetech.init.types.zParticles;
+import com.synergy.vintagetech.init.types.zTags;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
@@ -43,11 +45,19 @@ public class FanBE extends TransmissionBE {
             if (level.getBlockState(offset).isSolidRender())
                 break;
 
-            for (LivingEntity entity : level.getEntitiesOfClass(LivingEntity.class, new AABB(offset)))
+            for (Entity entity : level.getEntitiesOfClass(Entity.class, new AABB(offset))) {
+                if (entity instanceof Player player
+                        && ((player.isCreative() && !player.onGround()) || player.isSpectator()))
+                    return;
+
+                if (entity.is(zTags.Entities.FAN_DENY_MOTION))
+                    return;
+
                 entity.setDeltaMovement(entity.getDeltaMovement().add(new Vec3(
                         facing.getStepX() * 0.05D * dirMul,
                         facing.getStepY() * 0.05D * dirMul,
                         facing.getStepZ() * 0.05D * dirMul)));
+            }
 
             if (level.getRandom().nextFloat() < ((inverted ? (i / 5f) : (1f - i / 5f)) * 0.4f)) {
                 level.addParticle(
