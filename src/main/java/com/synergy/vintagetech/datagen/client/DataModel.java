@@ -152,25 +152,12 @@ public class DataModel extends ModelProvider {
                                                 BlockModelGenerators.plainVariant(
                                                                 x.rl(MODULE_ID, "block/creative_engine"))));
 
+                itemModels.generateFlatItem(zBlocks.FAN.get().asItem(), ModelTemplates.FLAT_ITEM);
+                itemModels.itemModelOutput.accept(zBlocks.JUNCTION.get().asItem(),
+                                ItemModelUtils.plainModel(x.rl(MODULE_ID, "item/junction")));
+                itemModels.itemModelOutput.accept(zBlocks.SAW.get().asItem(),
+                                ItemModelUtils.plainModel(x.rl(MODULE_ID, "item/saw")));// TODO IMP : unify saw models
+
         }
-
-        // private static void createAxleVariant(BlockModelGenerators m,
-        // Block block, Identifier side, Identifier top) {
-
-        // ModelTemplate template = new ModelTemplate(
-        // Optional.of(x.rl(MODULE_ID, "block/template/axle")),
-        // Optional.empty(),
-        // TextureSlot.SIDE,
-        // TextureSlot.TOP);
-        // Identifier modelId = ModelLocationUtils.getModelLocation(block);
-        // TextureMapping mapping = new TextureMapping()
-        // .put(TextureSlot.SIDE, new Material(side))
-        // .put(TextureSlot.TOP, new Material(top));
-        // template.create(modelId, mapping, m.modelOutput);
-        // MultiVariant variant = BlockModelGenerators.plainVariant(modelId);
-        // m.blockStateOutput.accept(
-        // MultiVariantGenerator.dispatch(block, variant)
-        // .with(BlockModelGenerators.createRotatedPillar()));
-        // }
 
 }
