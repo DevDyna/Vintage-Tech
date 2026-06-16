@@ -1,4 +1,4 @@
-package com.synergy.vintagetech.init.builder.engine;
+package com.synergy.vintagetech.init.builder.steam_engine;
 
 import com.synergy.vintagetech.api.blockfactory.engine.BaseEngineBE;
 import com.synergy.vintagetech.init.types.zBlockEntities;

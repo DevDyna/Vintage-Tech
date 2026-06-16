@@ -8,10 +8,10 @@ import com.synergy.vintagetech.api.blockfactory.transmission.TransmissionBE;
 import com.synergy.vintagetech.init.builder.basket.BasketBE;
 import com.synergy.vintagetech.init.builder.crushing_tub.CrushingTubBE;
 import com.synergy.vintagetech.init.builder.drying_rack.DryingRackBE;
-import com.synergy.vintagetech.init.builder.engine.SteamEngineBE;
 import com.synergy.vintagetech.init.builder.evaporation_basin.EvaporationBasinBE;
 import com.synergy.vintagetech.init.builder.fan.FanBE;
 import com.synergy.vintagetech.init.builder.saw.SawBE;
+import com.synergy.vintagetech.init.builder.steam_engine.SteamEngineBE;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.entity.BlockEntityType;

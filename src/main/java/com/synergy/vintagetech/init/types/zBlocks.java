@@ -9,11 +9,11 @@ import com.synergy.vintagetech.init.builder.basket.BasketBlock;
 import com.synergy.vintagetech.init.builder.creative_engine.CreativeEngineBlock;
 import com.synergy.vintagetech.init.builder.crushing_tub.CrushingTubBlock;
 import com.synergy.vintagetech.init.builder.drying_rack.DryingRackBlock;
-import com.synergy.vintagetech.init.builder.engine.SteamEngineBlock;
 import com.synergy.vintagetech.init.builder.evaporation_basin.EvaporationBasinBlock;
 import com.synergy.vintagetech.init.builder.fan.FanBlock;
 import com.synergy.vintagetech.init.builder.saw.SawBlock;
 import com.synergy.vintagetech.init.builder.soil.SoilBlock;
+import com.synergy.vintagetech.init.builder.steam_engine.SteamEngineBlock;
 import com.synergy.vintagetech.init.builder.transmission.AxleBlock;
 import com.synergy.vintagetech.init.builder.transmission.JunctionBlock;
 
