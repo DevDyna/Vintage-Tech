@@ -58,7 +58,7 @@ public class DataModel extends ModelProvider {
 
                 blockModels.blockStateOutput.accept(BlockModelGenerators
                                 .createSimpleBlock(zBlocks.STEAM_ENGINE.get(),
-                                                BlockModelGenerators.plainVariant(x.rl(MODULE_ID, "block/engine")))
+                                                BlockModelGenerators.plainVariant(x.rl(MODULE_ID, "block/steam_engine")))
                                 .with(PropertyDispatch.modify(BlockStateProperties.HORIZONTAL_FACING)
                                                 .select(Direction.SOUTH, BlockModelGenerators.NOP)
                                                 .select(Direction.WEST, BlockModelGenerators.Y_ROT_90)
