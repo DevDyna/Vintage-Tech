@@ -103,8 +103,8 @@ public class CrushingTubBlock extends TickingBlock
     @Override
     public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, double fallDistance) {
         if (level.getBlockEntity(pos) instanceof CrushingTubBE be &&
-                entity.is(zTags.Entities.CRUSHING_TUB_ALLOW))
             be.craft(true);
+                entity.is(zTags.Entities.CRUSHING_TUB_ALLOW_CRUSHING))
         super.fallOn(level, state, pos, entity, fallDistance);
     }
 

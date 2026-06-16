@@ -48,8 +48,8 @@ public class zTags {
 
         }
 
-        public static final TagKey<EntityType<?>> CRUSHING_TUB_ALLOW = RegistryUtils.tagEntity(MODULE_ID,
-                "crushing_tub_allow");
+        public static final TagKey<EntityType<?>> CRUSHING_TUB_ALLOW_CRUSHING = RegistryUtils.tagEntity(MODULE_ID,
+                "crushing_tub/allow_crushing");
 
     }
 }

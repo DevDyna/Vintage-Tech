@@ -20,7 +20,7 @@ public class DataEntityTag extends EntityTypeTagsProvider {
         @Override
         protected void addTags(Provider provider) {
 
-                tag(zTags.Entities.CRUSHING_TUB_ALLOW)
+                tag(zTags.Entities.CRUSHING_TUB_ALLOW_CRUSHING)
                                 .add(EntityType.PLAYER, EntityType.ARMOR_STAND);
 
         }
