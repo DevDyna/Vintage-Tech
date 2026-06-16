@@ -27,6 +27,8 @@ public class DataModel extends ModelProvider {
 
                 // TODO IMP : change item model!
 
+                blockModels.createRotatedVariantBlock(zBlocks.SOIL.get());
+
                 blockModels.blockStateOutput
                                 .accept(BlockModelGenerators.createSimpleBlock(zBlocks.JUNCTION.get(),
                                                 BlockModelGenerators.plainVariant(

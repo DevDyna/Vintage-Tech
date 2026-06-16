@@ -12,6 +12,7 @@ import com.synergy.vintagetech.init.builder.engine.EngineBlock;
 import com.synergy.vintagetech.init.builder.evaporation_basin.EvaporationBasinBlock;
 import com.synergy.vintagetech.init.builder.fan.FanBlock;
 import com.synergy.vintagetech.init.builder.saw.SawBlock;
+import com.synergy.vintagetech.init.builder.soil.SoilBlock;
 import com.synergy.vintagetech.init.builder.transmission.AxleBlock;
 import com.synergy.vintagetech.init.builder.transmission.JunctionBlock;
 
@@ -47,6 +48,8 @@ public class zBlocks {
     public static final DeferredHolder<Block, Block> CRUSHING_TUB = registerItemBlock("crushing_tub", p -> new CrushingTubBlock(p));
     public static final DeferredHolder<Block, Block> DRYING_RACK = registerItemBlock("drying_rack", p -> new DryingRackBlock(p));
     public static final DeferredHolder<Block, Block> EVAPORATION_BASIN = registerItemBlock("evaporation_basin", p -> new EvaporationBasinBlock(p));
+   
+    public static final DeferredHolder<Block, Block> SOIL = registerItemBlock("soil", p -> new SoilBlock(p));
 
     public static final DeferredHolder<Block, Block> RENDER_HALF_AXLE = zRender.registerSimpleBlock("render_half_axle",p->p.noLootTable());
     public static final DeferredHolder<Block, Block> RENDER_FAN_BLADE = zRender.registerSimpleBlock("render_fan_blade",p->p.noLootTable());

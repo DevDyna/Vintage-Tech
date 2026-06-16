@@ -4,6 +4,7 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 
 import java.util.concurrent.CompletableFuture;
 
+import com.synergy.vintagetech.init.types.zBlocks;
 import com.synergy.vintagetech.init.types.zTags;
 
 import net.minecraft.core.HolderLookup.Provider;
@@ -26,6 +27,9 @@ public class DataBlockTag extends BlockTagsProvider {
                 tag(zTags.Blocks.EVAPORATION_BASIC_HEATER).add(Blocks.MAGMA_BLOCK);
                 tag(zTags.Blocks.DRYING_RACK_HEATER).addTag(BlockTags.CAMPFIRES);
                 tag(zTags.Blocks.MINEABLE_WITH_SAW).addTag(BlockTags.MINEABLE_WITH_AXE);
+
+                tag(BlockTags.GROWS_CROPS).add(zBlocks.SOIL.get());
+                tag(BlockTags.SUPPORTS_CROPS).add(zBlocks.SOIL.get());
 
         }
 
