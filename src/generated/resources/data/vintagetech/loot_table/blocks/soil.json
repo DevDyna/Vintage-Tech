@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "vintagetech:engine"
+          "name": "vintagetech:soil"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "vintagetech:blocks/engine"
+  "random_sequence": "vintagetech:blocks/soil"
 }
