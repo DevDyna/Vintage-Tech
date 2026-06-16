@@ -17,7 +17,7 @@ import net.minecraft.world.level.material.PushReaction;
 public abstract class BaseKineticBlock extends Block implements AxleHandler {
 
     public BaseKineticBlock(Properties p) {
-        super(p.pushReaction(PushReaction.BLOCK));
+        super(p.pushReaction(PushReaction.BLOCK).noOcclusion());
     }
 
     @Override
