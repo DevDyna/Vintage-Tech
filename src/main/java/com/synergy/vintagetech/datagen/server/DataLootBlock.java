@@ -19,7 +19,7 @@ public class DataLootBlock extends BlockLootSubProvider {
 
         @Override
         protected Iterable<Block> getKnownBlocks() {
-                return getBlocks(zBlocks.zBlock, zBlocks.zBlockItem);
+                return getBlocks(zBlocks.zBlock, zBlocks.zBlockItem);//TODO MAKE STATIC METHOD 
         }
 
         @Override
@@ -27,7 +27,8 @@ public class DataLootBlock extends BlockLootSubProvider {
                 getBlocks(zBlocks.zBlockItem).forEach(this::dropSelf);
         }
 
-        // TODO API : move to api
+        
+        @Deprecated
         public List<Block> getBlocks(Blocks... blocks) {
                 List<Block> result = new ArrayList<>();
                 List.of(blocks).forEach(t -> result.addAll(t.getEntries()

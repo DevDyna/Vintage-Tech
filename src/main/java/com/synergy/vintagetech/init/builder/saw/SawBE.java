@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import com.devdyna.cakesticklib.api.ItemLogisticUtils;
 import com.devdyna.cakesticklib.api.aspect.templates.TickingBE;
 import com.devdyna.cakesticklib.api.factories.plants.VanillaPlants;
 import com.devdyna.cakesticklib.setup.Config;
@@ -26,7 +28,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.level.block.LiquidBlock;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class SawBE extends TickingBE {
@@ -71,7 +72,7 @@ public class SawBE extends TickingBE {
             var tree = checkTree(level, getOffset());
 
             if (tree != null) {
-                unifyDrops(tree).forEach(i -> {
+                ItemLogisticUtils.unifyDrops(tree).forEach(i -> {
                     var item = new ItemEntity(level,
                             getOffset().getX() + 0.5f,
                             getOffset().getY() + 0.5f,
@@ -88,7 +89,9 @@ public class SawBE extends TickingBE {
                         SoundSource.BLOCKS);
                 level.levelEvent(LevelEvent.PARTICLES_DESTROY_BLOCK, getOffset(), Block.getId(relative));
 
-                dropAllDrops(relative, (ServerLevel) level, getOffset(), null, 2400, true);
+
+                Block.getDrops(relative, (ServerLevel) level, getOffset(), null)
+                        .forEach(i -> ItemLogisticUtils.createLazyItemEntity(i, level, getOffset(), 2400, true));
 
                 level.setBlockAndUpdate(getOffset(), Blocks.AIR.defaultBlockState());
 
@@ -106,23 +109,6 @@ public class SawBE extends TickingBE {
         return s.is(zTags.Blocks.MINEABLE_WITH_SAW);
     }
 
-    // TODO API : move to api
-    public void dropAllDrops(BlockState state, ServerLevel level, BlockPos pos, BlockEntity be, int lifespan,
-            boolean noMotion) {
-        Block.getDrops(state, level, pos, be).forEach(i -> {
-            var item = new ItemEntity(level,
-                    getOffset().getX() + 0.5f,
-                    getOffset().getY() + 0.5f,
-                    getOffset().getZ() + 0.5f,
-                    i);
-
-            item.lifespan = lifespan;
-            if (noMotion)
-                item.setDeltaMovement(0, 0, 0);
-
-            level.addFreshEntity(item);
-        });
-    }
 
     public void resetBreak() {
         level.destroyBlockProgress(UUID, getOffset(), -1);
@@ -133,41 +119,8 @@ public class SawBE extends TickingBE {
         return getBlockPos().relative(getBlockState().getValue(SawBlock.FACING));
     }
 
-    // TODO API : move to api
-    public static ArrayList<ItemStack> unifyDrops(List<ItemStack> items) {
-        ArrayList<ItemStack> newItems = new ArrayList<>();
-
-        for (int i = 0; i < items.size(); i++) {
-
-            var check = false;
-            int index = -1;
-            for (ItemStack itemStack : newItems) {
-                if (itemStack.getItem() == items.get(i).getItem()) {
-                    if (itemStack.getCount() >= 64)
-                        continue;
-                    index = newItems.indexOf(itemStack);
-                    check = true;
-                    break;
-                }
-            }
-
-            if (check) {
-
-                newItems.set(index,
-                        new ItemStack(newItems.get(index).getItem(),
-                                newItems.get(index).getCount() + 1));
-
-            } else {
-
-                newItems.add(items.get(i));
-
-            }
-
-        }
-        return newItems;
-    }
-
-    // TODO API : rework api to support method injection on result blocks
+    // TODO API : rework api to support method injection on result block
+    @Deprecated
     public static List<ItemStack> checkTree(Level level, BlockPos pos) {
 
         var state = level.getBlockState(pos);

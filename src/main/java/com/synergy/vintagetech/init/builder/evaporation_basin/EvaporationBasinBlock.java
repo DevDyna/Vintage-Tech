@@ -3,9 +3,9 @@ package com.synergy.vintagetech.init.builder.evaporation_basin;
 import javax.annotation.Nullable;
 
 import com.devdyna.cakesticklib.api.aspect.logic.BucketInteraction;
+import com.devdyna.cakesticklib.api.aspect.logic.FluidClearableTank;
 import com.devdyna.cakesticklib.api.aspect.logic.FluidTooltipWhenEmpty;
 import com.devdyna.cakesticklib.api.aspect.templates.TickingBlock;
-import com.synergy.vintagetech.api.aspects.FluidClearableTank;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;

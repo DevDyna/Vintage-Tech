@@ -1,5 +1,6 @@
 package com.synergy.vintagetech.init.builder.fan;
 
+import com.devdyna.cakesticklib.api.RandomUtil;
 import com.synergy.vintagetech.api.blockfactory.transmission.TransmissionBE;
 import com.synergy.vintagetech.init.types.zBlockEntities;
 import com.synergy.vintagetech.init.types.zParticles;
@@ -8,7 +9,6 @@ import com.synergy.vintagetech.init.types.zTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -62,9 +62,9 @@ public class FanBE extends TransmissionBE {
             if (level.getRandom().nextFloat() < ((inverted ? (i / 5f) : (1f - i / 5f)) * 0.4f)) {
                 level.addParticle(
                         zParticles.FAN_AIR_FLOW.get(),
-                        particlePos.getX() + between(level, 0.1, 0.9),
-                        particlePos.getY() + between(level, 0.1, 0.9),
-                        particlePos.getZ() + between(level, 0.1, 0.9),
+                        particlePos.getX() + RandomUtil.between(level, 0.1, 0.9),
+                        particlePos.getY() + RandomUtil.between(level, 0.1, 0.9),
+                        particlePos.getZ() + RandomUtil.between(level, 0.1, 0.9),
                         baseDir.x,
                         baseDir.y,
                         baseDir.z);
@@ -74,12 +74,8 @@ public class FanBE extends TransmissionBE {
 
     }
 
-    // TODO API : move to RandomUtils
+   
 
-    public static double between(Level l, double min, double max) {
-        return min + l.getRandom().nextDouble() * (max - min);
-    }
-
-    // TODO API : COLORS create defaul colors variables
+    
 
 }

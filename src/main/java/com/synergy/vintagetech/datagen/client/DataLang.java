@@ -22,19 +22,6 @@ public class DataLang extends LanguageProvider {
 
                 zBlocks.zBlockItem.getEntries().forEach(b -> addBlock(b, LangUtils.named(b, MODULE_ID)));
 
-                // TODO API : move to api
-                add(MODULE_ID + ".jei.alias.block.break", "Block Breaker");
-                add(MODULE_ID + ".jei.alias.drill", "Drill");
-                add(MODULE_ID + ".jei.alias.miner", "Miner");
-                add(MODULE_ID + ".jei.alias.tree.cutter", "Tree cutter");
-                add(MODULE_ID + ".jei.alias.tree.feller", "Tree feller");
-                add(MODULE_ID + ".jei.alias.entity.killer", "Entity killer");
-                add(MODULE_ID + ".jei.alias.fakeplayer", "FakePlayer");
-                add(MODULE_ID + ".jei.alias.hopper", "Hopper");
-                add(MODULE_ID + ".jei.alias.item.collector", "Item Collector");
-                add(MODULE_ID + ".jei.alias.entity.mover", "Entity Mover");
-                add(MODULE_ID + ".jei.alias.redstone.sensible", "Redstone Sensible");
-
                 add(MODULE_ID + ".jei.alias.rpm.base", "Mechanical Rotation block");
                 add(MODULE_ID + ".jei.alias.rpm.transmission", "Transmission");
                 add(MODULE_ID + ".jei.alias.rpm.rotation.change", "Change Rotation");

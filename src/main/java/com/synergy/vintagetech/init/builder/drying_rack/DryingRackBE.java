@@ -5,14 +5,12 @@ import java.util.Optional;
 
 import com.devdyna.cakesticklib.api.RandomUtil;
 import com.devdyna.cakesticklib.api.aspect.logic.ItemStorageBlock;
-import com.devdyna.cakesticklib.api.aspect.logic.NoGuiStorage;
+import com.devdyna.cakesticklib.api.aspect.logic.*;
 import com.devdyna.cakesticklib.api.aspect.templates.TickingBE;
 import com.devdyna.cakesticklib.api.primitive.Ticker;
 import com.devdyna.cakesticklib.api.recipe.recipeInput.ItemInput;
-import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
-import com.synergy.vintagetech.api.aspects.EnvironmentModifier;
-import com.synergy.vintagetech.api.aspects.TimeredRecipe;
+
 import com.synergy.vintagetech.init.builder.drying_rack.recipe.DryingRackRecipe;
 import com.synergy.vintagetech.init.types.zBlockEntities;
 import com.synergy.vintagetech.init.types.zRecipeTypes;
@@ -53,35 +51,17 @@ public class DryingRackBE extends TickingBE
         return 1;
     }
 
-    // TODO API : move to NoGuiStorage
+
     public ItemStack insertItem(ItemStack stack) {
         update();
-        var inserted = 0;
-
-        try (Transaction tx = Transaction.openRoot()) {
-            inserted = getItemStorage().insert(0, ItemResource.of(stack), stack.getCount(), tx);
-            tx.commit();
-        }
-
-        return x.item(stack.getItem(), stack.getCount() - inserted);
+        return simpleInsertItem(stack);
     }
 
-    // TODO API : move to NoGuiStorage
+    
+  
     public ItemStack extractItem() {
         update();
-        var resource = getItemStorage().getResource(0);
-
-        if (resource.isEmpty())
-            return ItemStack.EMPTY;
-
-        try (Transaction tx = Transaction.openRoot()) {
-
-            var extracted = getItemStorage()
-                    .extract(0, resource, getItemStorage().getAmountAsInt(0), tx);
-            tx.commit();
-
-            return resource.toStack(extracted);
-        }
+        return simpleExtractItem();
     }
     
 

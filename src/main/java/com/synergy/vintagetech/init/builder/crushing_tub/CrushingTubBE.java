@@ -117,7 +117,7 @@ public class CrushingTubBE extends TickingBE implements NoGuiStorage, ItemStorag
             getItemStorage().extract(MANUAL_SLOT, ItemResource.of(item), 1, tx);
 
             if (recipe.getOutput() != null)
-                if (level.getRandom().nextFloat() < recipe.getOutput().chance()) {// TODO API : move to api
+                if (RandomUtil.chance(level, recipe.getOutput().chance())) {
 
                     var insered = isAutomation
                             ? getItemStorage().insert(AUTOMATION_OUTPUT_SLOT,

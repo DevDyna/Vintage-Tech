@@ -5,9 +5,8 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 import java.util.LinkedHashMap;
 
 import com.devdyna.cakesticklib.api.recipe.recipeBuilder.*;
-import com.devdyna.cakesticklib.api.recipe.recipeOutput.ChanceOutputItem;
+import com.devdyna.cakesticklib.api.recipe.recipeOutput.ChanceOutput;
 import com.devdyna.cakesticklib.api.utils.x;
-import com.synergy.vintagetech.api.BuilderChanceOutputItemAttach;
 
 import net.minecraft.advancements.Criterion;
 import net.minecraft.core.HolderLookup;
@@ -18,11 +17,12 @@ import net.neoforged.neoforge.fluids.FluidStackTemplate;
 
 public class CrushingTubBuilder extends BaseRecipeBuilder
         implements ItemAttach.Input.NoItemCount<CrushingTubBuilder>,
-        BuilderChanceOutputItemAttach<CrushingTubBuilder>, FluidAttach.Output.OutputFluid<CrushingTubBuilder> {
+        ItemAttach.Output.ItemOutputChance<CrushingTubBuilder>,
+         FluidAttach.Output.OutputFluid<CrushingTubBuilder> {
 
     private Ingredient input;
     private FluidStackTemplate fluid;
-    private ChanceOutputItem output;
+    private ChanceOutput.Item output;
 
     private CrushingTubBuilder(HolderLookup.Provider p) {
         super(p);
@@ -39,7 +39,7 @@ public class CrushingTubBuilder extends BaseRecipeBuilder
     }
 
     @Override
-    public CrushingTubBuilder output(ChanceOutputItem output) {
+    public CrushingTubBuilder output(ChanceOutput.Item output) {
         this.output = output;
         return this;
     }
@@ -76,5 +76,7 @@ public class CrushingTubBuilder extends BaseRecipeBuilder
         return x.rl(MODULE_ID, "crushing_tub/" + x.name(output.item())
                 + extra);
     }
+
+    
 
 }

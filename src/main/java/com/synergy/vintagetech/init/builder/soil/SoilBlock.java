@@ -1,15 +1,12 @@
 package com.synergy.vintagetech.init.builder.soil;
 
-import java.util.List;
-
+import com.devdyna.cakesticklib.api.ItemLogisticUtils;
 import com.devdyna.cakesticklib.api.factories.plants.VanillaPlants;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -31,29 +28,17 @@ public class SoilBlock extends FarmlandBlock {
     @Override
     protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rnd) {
 
-        if (state.getValue(MOISTURE) < 7) 
-            level.setBlock(pos, state.setValue(MOISTURE, state.getValue(MOISTURE)+1), 2);
-        
+        if (state.getValue(MOISTURE) < 7)
+            level.setBlock(pos, state.setValue(MOISTURE, state.getValue(MOISTURE) + 1), 2);
 
-        if (level.getBlockState(pos.above()) instanceof BonemealableBlock meal)
-            for (int i = 0; i < Math.max(state.getValue(MOISTURE),1)/2; i++)
+        if (level.getBlockState(pos.above()).getBlock() instanceof BonemealableBlock meal)
+            for (int i = 0; i < Math.max(state.getValue(MOISTURE), 1) / 2; i++)
                 if (meal.isValidBonemealTarget(level, pos.above(), level.getBlockState(pos.above())))
                     meal.performBonemeal(level, rnd, pos.above(), level.getBlockState(pos.above()));
 
-        List<ItemStack> items = VanillaPlants.checkReplant(level, pos.above(), null, null);
+        VanillaPlants.checkReplant(level, pos.above(), null, null)
+                .forEach(i -> ItemLogisticUtils.createLazyItemEntity(i, level, pos.above(), 1200, true));
 
-        if (items != null)
-            items.forEach(i -> {
-                var item = new ItemEntity(level,
-                        pos.above().getX() + 0.5f,
-                        pos.above().getY() + 0.5f,
-                        pos.above().getZ() + 0.5f,
-                        i);
-
-                item.lifespan = 1200;
-                item.setDeltaMovement(0, 0, 0);
-                level.addFreshEntity(item);
-            });
     }
 
     @Override
@@ -64,22 +49,9 @@ public class SoilBlock extends FarmlandBlock {
     protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess ticks, BlockPos pos,
             Direction directionToNeighbour, BlockPos neighbourPos, BlockState neighbourState, RandomSource random) {
 
-        if (directionToNeighbour == Direction.UP && level instanceof ServerLevel server) {
-            List<ItemStack> items = VanillaPlants.checkReplant(server, neighbourPos, null, null);
-
-            if (items != null)
-                items.forEach(i -> {
-                    var item = new ItemEntity(server,
-                            neighbourPos.getX() + 0.5f,
-                            neighbourPos.getY() + 0.5f,
-                            neighbourPos.getZ() + 0.5f,
-                            i);
-
-                    item.lifespan = 1200;
-                    item.setDeltaMovement(0, 0, 0);
-                    server.addFreshEntity(item);
-                });
-        }
+        if (directionToNeighbour == Direction.UP && level instanceof ServerLevel server)
+            VanillaPlants.checkReplant(server, neighbourPos, null, null)
+                    .forEach(i -> ItemLogisticUtils.createLazyItemEntity(i, server, neighbourPos, 1200, true));
 
         return super.updateShape(state, level, ticks, pos, directionToNeighbour, neighbourPos, neighbourState, random);
     }

@@ -5,8 +5,9 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 import java.util.List;
 import java.util.Optional;
 
+import com.devdyna.cakesticklib.api.recipe.RecipeCodecUtils;
 import com.devdyna.cakesticklib.api.recipe.recipeInput.ItemInput;
-import com.devdyna.cakesticklib.api.recipe.recipeOutput.ChanceOutputItem;
+import com.devdyna.cakesticklib.api.recipe.recipeOutput.ChanceOutput;
 import com.devdyna.cakesticklib.api.recipe.recipeType.BaseRecipeType;
 
 import com.mojang.serialization.MapCodec;
@@ -14,7 +15,6 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.synergy.vintagetech.init.types.zBlocks;
 import com.synergy.vintagetech.init.types.zRecipeTypes;
 
-import com.synergy.vintagetech.api.RecipeUtils;
 
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.RegistryFriendlyByteBuf;
@@ -33,16 +33,16 @@ public class CrushingTubRecipe extends BaseRecipeType<ItemInput.simple> {
 
     private final Ingredient input;
     private final FluidStackTemplate fluid;
-    private final ChanceOutputItem output;
+    private final ChanceOutput.Item output;
 
     public CrushingTubRecipe(Ingredient input,
-            ChanceOutputItem output, FluidStackTemplate fluid) {
+            ChanceOutput.Item output, FluidStackTemplate fluid) {
         this.input = input;
         this.fluid = fluid;
         this.output = output;
     }
 
-    public static CrushingTubRecipe of(Ingredient input, ChanceOutputItem output, FluidStackTemplate fluid) {
+    public static CrushingTubRecipe of(Ingredient input, ChanceOutput.Item output, FluidStackTemplate fluid) {
         return new CrushingTubRecipe(input, output, fluid);
     }
 
@@ -63,7 +63,7 @@ public class CrushingTubRecipe extends BaseRecipeType<ItemInput.simple> {
         return input;
     }
 
-    public ChanceOutputItem getOutput() {
+    public ChanceOutput.Item getOutput() {
         return output;
     }
 
@@ -97,19 +97,19 @@ public class CrushingTubRecipe extends BaseRecipeType<ItemInput.simple> {
 
     public static final MapCodec<CrushingTubRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
             Ingredient.CODEC.fieldOf("input").forGetter(CrushingTubRecipe::getInput),
-            ChanceOutputItem.CODEC.optionalFieldOf("output")
-                    .forGetter(r -> ChanceOutputItem.optional(r.getOutput())),
+            ChanceOutput.Item.CODEC.optionalFieldOf("output")
+                    .forGetter(r -> ChanceOutput.Item.optional(r.getOutput())),
             FluidStackTemplate.CODEC.optionalFieldOf("fluid", null)
-                    .forGetter(r -> RecipeUtils.optionalCodec(r.getFluid())))
+                    .forGetter(r -> RecipeCodecUtils.optionalCodec(r.getFluid())))
             .apply(inst, (i, o, f) -> new CrushingTubRecipe(i, o.orElse(null), f)));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, CrushingTubRecipe> STREAM_CODEC = StreamCodec
             .composite(
                     Ingredient.CONTENTS_STREAM_CODEC, CrushingTubRecipe::getInput,
-                    ByteBufCodecs.optional(ChanceOutputItem.STREAM_CODEC),
-                    r -> ChanceOutputItem.optional(r.getOutput()),
+                    ByteBufCodecs.optional(ChanceOutput.Item.STREAM_CODEC),
+                    r -> ChanceOutput.Item.optional(r.getOutput()),
                     ByteBufCodecs.optional(FluidStackTemplate.STREAM_CODEC),
-                    r -> Optional.of(RecipeUtils.optionalCodec(r.getFluid())),
+                    r -> Optional.of(RecipeCodecUtils.optionalCodec(r.getFluid())),
                     (i, o, f) -> new CrushingTubRecipe(i, o.orElse(null), f.orElse(null)));
 
 }
