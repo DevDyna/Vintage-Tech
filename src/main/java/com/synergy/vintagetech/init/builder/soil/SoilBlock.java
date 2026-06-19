@@ -36,8 +36,9 @@ public class SoilBlock extends FarmlandBlock {
                 if (meal.isValidBonemealTarget(level, pos.above(), level.getBlockState(pos.above())))
                     meal.performBonemeal(level, rnd, pos.above(), level.getBlockState(pos.above()));
 
-        VanillaPlants.checkReplant(level, pos.above(), null, null)
-                .forEach(i -> ItemLogisticUtils.createLazyItemEntity(i, level, pos.above(), 1200, true));
+        var items = VanillaPlants.checkReplant(level, pos.above(), null, null);
+        if(items!= null)
+                items.forEach(i -> ItemLogisticUtils.createLazyItemEntity(i, level, pos.above(), 1200, true));
 
     }
 
@@ -49,10 +50,11 @@ public class SoilBlock extends FarmlandBlock {
     protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess ticks, BlockPos pos,
             Direction directionToNeighbour, BlockPos neighbourPos, BlockState neighbourState, RandomSource random) {
 
-        if (directionToNeighbour == Direction.UP && level instanceof ServerLevel server)
-            VanillaPlants.checkReplant(server, neighbourPos, null, null)
-                    .forEach(i -> ItemLogisticUtils.createLazyItemEntity(i, server, neighbourPos, 1200, true));
-
+        if (directionToNeighbour == Direction.UP && level instanceof ServerLevel server) {
+            var items = VanillaPlants.checkReplant(server, neighbourPos, null, null);
+            if (items != null)
+                items.forEach(i -> ItemLogisticUtils.createLazyItemEntity(i, server, neighbourPos, 1200, true));
+        }
         return super.updateShape(state, level, ticks, pos, directionToNeighbour, neighbourPos, neighbourState, random);
     }
 
