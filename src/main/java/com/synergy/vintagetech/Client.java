@@ -1,12 +1,19 @@
 package com.synergy.vintagetech;
 
+import com.devdyna.cakesticklib.api.FluidRenderUtils;
+import com.devdyna.cakesticklib.api.utils.ColorUtils;
+import com.devdyna.cakesticklib.api.utils.x;
 import com.synergy.vintagetech.api.blockfactory.transmission.TransmissionRenderer;
 import com.synergy.vintagetech.client.particles.fan.AirFlowParticleProvider;
 import com.synergy.vintagetech.init.builder.fan.FanRenderer;
 import com.synergy.vintagetech.init.types.zBlockEntities;
+import com.synergy.vintagetech.init.types.zFluids;
 import com.synergy.vintagetech.init.types.zParticles;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.crafting.RecipeMap;
+import net.minecraft.world.level.material.FluidState;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -16,7 +23,11 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RecipesReceivedEvent;
+import net.neoforged.neoforge.client.event.RegisterFluidModelsEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
+import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
+import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
+import net.neoforged.neoforge.client.fluid.FluidTintSource;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 
@@ -54,6 +65,47 @@ public class Client {
         event.registerSpriteSet(
                 zParticles.FAN_AIR_FLOW.get(),
                 AirFlowParticleProvider::new);
+    }
+
+    @SubscribeEvent
+    public static void onRegisterClientExtensions(RegisterClientExtensionsEvent event) {
+
+        event.registerFluidType(new IClientFluidTypeExtensions() {
+            @Override
+            public Identifier getRenderOverlayTexture(Minecraft mc) {
+                return x.parse("textures/misc/underwater.png");
+            }
+        }, zFluids.SALT_SOLUTION.getType(), zFluids.SOY_WHEY.getType());
+
+    }
+
+    @SubscribeEvent
+    public static void onRegisterFluidModels(RegisterFluidModelsEvent event) {
+
+        event.register(
+                FluidRenderUtils.createWaterModel(new FluidTintSource() {
+
+                    @Override
+                    public int color(FluidState state) {
+                        return ColorUtils.argb(255, 236, 202, 202);
+                    }
+
+                }),
+                zFluids.SALT_SOLUTION.getSource(),
+                zFluids.SALT_SOLUTION.getFlowing());
+
+        event.register(
+                FluidRenderUtils.createWaterModel(new FluidTintSource() {
+
+                    @Override
+                    public int color(FluidState state) {
+                        return ColorUtils.argb(255, 255, 236, 236);
+                    }
+
+                }),
+                zFluids.SOY_WHEY.getSource(),
+                zFluids.SOY_WHEY.getFlowing());
+
     }
 
     // Recipe collector client-side

@@ -2,9 +2,13 @@ package com.synergy.vintagetech.datagen.client;
 
 import static com.synergy.vintagetech.Main.MODULE_ID;
 
+import com.devdyna.cakesticklib.api.factories.plants.builder.BaseShortCropBlock;
 import com.devdyna.cakesticklib.api.utils.x;
+import com.synergy.vintagetech.api.BlockModelUtils;
+import com.synergy.vintagetech.init.builder.plants.Hemp;
 import com.synergy.vintagetech.init.builder.saw.SawBlock;
 import com.synergy.vintagetech.init.types.zBlocks;
+import com.synergy.vintagetech.init.types.zItems;
 
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
@@ -27,9 +31,17 @@ public class DataModel extends ModelProvider {
         @Override
         protected void registerModels(BlockModelGenerators blockModels, ItemModelGenerators itemModels) {
 
-                // TODO IMP : change item model!
+                zItems.zItem.getEntries().forEach(i -> itemModels.generateFlatItem(i.get(), ModelTemplates.FLAT_ITEM));
+                zItems.zBucketItems.getEntries().forEach(i -> itemModels.generateFlatItem(i.get(), ModelTemplates.FLAT_ITEM));
+
+                zBlocks.zBlockFluids.getEntries().forEach(b->BlockModelUtils.fluid(blockModels, b.get()));
 
                 blockModels.createRotatedVariantBlock(zBlocks.SOIL.get());
+
+                blockModels.blockStateOutput
+                                .accept(BlockModelGenerators.createSimpleBlock(zBlocks.CHEESE.get(),
+                                                BlockModelGenerators.plainVariant(
+                                                                x.rl(MODULE_ID, "block/cheese"))));
 
                 blockModels.blockStateOutput
                                 .accept(BlockModelGenerators.createSimpleBlock(zBlocks.JUNCTION.get(),
@@ -58,7 +70,8 @@ public class DataModel extends ModelProvider {
 
                 blockModels.blockStateOutput.accept(BlockModelGenerators
                                 .createSimpleBlock(zBlocks.STEAM_ENGINE.get(),
-                                                BlockModelGenerators.plainVariant(x.rl(MODULE_ID, "block/steam_engine")))
+                                                BlockModelGenerators
+                                                                .plainVariant(x.rl(MODULE_ID, "block/steam_engine")))
                                 .with(PropertyDispatch.modify(BlockStateProperties.HORIZONTAL_FACING)
                                                 .select(Direction.SOUTH, BlockModelGenerators.NOP)
                                                 .select(Direction.WEST, BlockModelGenerators.Y_ROT_90)
@@ -153,10 +166,41 @@ public class DataModel extends ModelProvider {
                                                                 x.rl(MODULE_ID, "block/creative_engine"))));
 
                 itemModels.generateFlatItem(zBlocks.FAN.get().asItem(), ModelTemplates.FLAT_ITEM);
+                itemModels.generateFlatItem(zBlocks.CHEESE.get().asItem(), ModelTemplates.FLAT_ITEM);
+
                 itemModels.itemModelOutput.accept(zBlocks.JUNCTION.get().asItem(),
                                 ItemModelUtils.plainModel(x.rl(MODULE_ID, "item/junction")));
+
                 itemModels.itemModelOutput.accept(zBlocks.SAW.get().asItem(),
-                                ItemModelUtils.plainModel(x.rl(MODULE_ID, "item/saw")));// TODO IMP : unify saw models
+                                ItemModelUtils.plainModel(x.rl(MODULE_ID, "block/saw/off")));// TODO IMP : unify saw models
+
+                BlockModelUtils.cropWithoutSeed(blockModels, zBlocks.CAVE_WHEAT.get(), BaseShortCropBlock.AGE, 0, 1,
+                                2, 3, 4, 5);
+                BlockModelUtils.cropWithoutSeed(blockModels, zBlocks.SOYBEANS.get(), BaseShortCropBlock.AGE, 0, 1,
+                                2, 3, 4, 5);
+
+                
+
+                blockModels.blockStateOutput.accept(
+                                MultiVariantGenerator.dispatch(zBlocks.HEMP.get())
+                                                .with(
+                                                                PropertyDispatch.initial(
+                                                                                Hemp.AGE)
+
+                                                                                .select(0, BlockModelGenerators
+                                                                                                .plainVariant(
+                                                                                                                x.rl(MODULE_ID, "block/hemp/0")))
+                                                                                .select(1, BlockModelGenerators
+                                                                                                .plainVariant(
+                                                                                                                x.rl(MODULE_ID, "block/hemp/1")))
+                                                                                .select(2, BlockModelGenerators
+                                                                                                .plainVariant(
+                                                                                                                x.rl(MODULE_ID, "block/hemp/2")))
+                                                                                .select(3, BlockModelGenerators
+                                                                                                .plainVariant(
+                                                                                                                x.rl(MODULE_ID, "block/hemp/3")))
+
+                                                ));
 
         }
 

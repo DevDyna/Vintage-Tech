@@ -34,6 +34,25 @@ public class zTags {
         public static final TagKey<Block> DRYING_RACK_HEATER = RegistryUtils
                 .tagBlock(MODULE_ID, "drying_rack/heater");
 
+        public static final TagKey<Block> SUPPORT_SOYBEANS_PLANT = RegistryUtils
+                .tagBlock(MODULE_ID, "support/soybeans");
+
+        public static final TagKey<Block> SUPPORT_CAVE_WHEAT_PLANT = RegistryUtils
+                .tagBlock(MODULE_ID, "support/cave_wheat");
+
+        public static final TagKey<Block> SUPPORT_HEMP_PLANT = RegistryUtils
+                .tagBlock(MODULE_ID, "support/hemp");
+
+
+        public static final TagKey<Block> TRANSMISSION = RegistryUtils
+                .tagBlock(MODULE_ID, "rpm/transmission");
+
+        public static final TagKey<Block> GENERATOR = RegistryUtils
+                .tagBlock(MODULE_ID, "rpm/generator");
+
+        public static final TagKey<Block> CONSUMER = RegistryUtils
+                .tagBlock(MODULE_ID, "rpm/consumer");
+
     }
 
     public class Items {

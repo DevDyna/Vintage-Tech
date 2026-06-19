@@ -12,6 +12,7 @@ public class Material {
                 zRecipeTypes.register(bus);
                 zTags.register(bus);
                 zParticles.register(bus);
+                zFluids.register(bus);
         }
 
 

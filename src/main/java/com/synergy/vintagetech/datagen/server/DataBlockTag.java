@@ -31,6 +31,57 @@ public class DataBlockTag extends BlockTagsProvider {
                 tag(BlockTags.GROWS_CROPS).add(zBlocks.SOIL.get());
                 tag(BlockTags.SUPPORTS_CROPS).add(zBlocks.SOIL.get());
 
+                tag(zTags.Blocks.SUPPORT_CAVE_WHEAT_PLANT)
+                                .addTags(BlockTags.SUPPORTS_CROPS,
+                                                BlockTags.BASE_STONE_OVERWORLD);
+
+                tag(zTags.Blocks.SUPPORT_HEMP_PLANT)
+                                .addTags(BlockTags.SUPPORTS_CROPS)
+                                .add(zBlocks.HEMP.get());
+
+                tag(zTags.Blocks.SUPPORT_SOYBEANS_PLANT).addTags(BlockTags.SUPPORTS_CROPS);
+
+                tag(zTags.Blocks.TRANSMISSION)
+                                .add(
+                                                zBlocks.AXLE.get(),
+                                                zBlocks.JUNCTION.get(),
+                                                zBlocks.GEARSHIFT.get());
+
+                tag(zTags.Blocks.GENERATOR)
+                                .add(
+                                                zBlocks.STEAM_ENGINE.get(),
+                                                zBlocks.CREATIVE_ENGINE.get());
+
+                tag(zTags.Blocks.CONSUMER)
+                                .add(
+                                                zBlocks.SAW.get(),
+                                                zBlocks.FAN.get());
+
+                tag(BlockTags.MINEABLE_WITH_AXE)
+                                .add(
+
+                                                zBlocks.AXLE.get(),
+                                                zBlocks.BASKET.get(),
+                                                zBlocks.CRUSHING_TUB.get(),
+                                                zBlocks.DRYING_RACK.get(),
+                                                zBlocks.JUNCTION.get(),
+                                                zBlocks.SAW.get()
+
+                                );
+
+                tag(BlockTags.MINEABLE_WITH_SHOVEL)
+                                .add(
+                                                zBlocks.SOIL.get());
+
+                tag(BlockTags.MINEABLE_WITH_PICKAXE)
+                                .add(
+                                                zBlocks.CREATIVE_ENGINE.get(),
+                                                zBlocks.EVAPORATION_BASIN.get(),
+                                                zBlocks.FAN.get(),
+                                                zBlocks.GEARSHIFT.get(),
+                                                zBlocks.SAW.get(),
+                                                zBlocks.STEAM_ENGINE.get());
+
         }
 
 }
