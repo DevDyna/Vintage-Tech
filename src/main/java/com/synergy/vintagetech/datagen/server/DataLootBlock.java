@@ -2,14 +2,13 @@ package com.synergy.vintagetech.datagen.server;
 
 import java.util.*;
 
+import com.devdyna.cakesticklib.api.utils.LootTableHelper;
 import com.synergy.vintagetech.init.types.zBlocks;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.level.block.Block;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredRegister.Blocks;
 
 public class DataLootBlock extends BlockLootSubProvider {
 
@@ -19,13 +18,11 @@ public class DataLootBlock extends BlockLootSubProvider {
 
         @Override
         protected Iterable<Block> getKnownBlocks() {
-                return getBlocks(zBlocks.zBlock, zBlocks.zBlockItem);//TODO MAKE STATIC METHOD 
+                return LootTableHelper.getValidBlocks(zBlocks.zBlock, zBlocks.zBlockItem);
         }
 
         @Override
         protected void generate() {
-                getBlocks(zBlocks.zBlockItem).forEach(this::dropSelf);
-        }
 
         
         @Deprecated
