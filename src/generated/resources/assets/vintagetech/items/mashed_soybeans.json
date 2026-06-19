@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "vintagetech:block/saw/off"
+    "model": "vintagetech:item/mashed_soybeans"
   }
 }
