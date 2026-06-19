@@ -36,10 +36,6 @@ public class SoilBlock extends FarmlandBlock {
                 if (meal.isValidBonemealTarget(level, pos.above(), level.getBlockState(pos.above())))
                     meal.performBonemeal(level, rnd, pos.above(), level.getBlockState(pos.above()));
 
-        var items = VanillaPlants.checkReplant(level, pos.above(), null, null);
-        if(items!= null)
-                items.forEach(i -> ItemLogisticUtils.createLazyItemEntity(i, level, pos.above(), 1200, true));
-
         level.scheduleTick(pos, this, 50);
     }
 
@@ -55,9 +51,8 @@ public class SoilBlock extends FarmlandBlock {
     protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess ticks, BlockPos pos,
             Direction directionToNeighbour, BlockPos neighbourPos, BlockState neighbourState, RandomSource random) {
 
-        if (directionToNeighbour == Direction.UP && level instanceof ServerLevel server) 
+        if (directionToNeighbour == Direction.UP && level instanceof ServerLevel server)
             server.scheduleTick(pos, this, 50);
-        
 
         return super.updateShape(state, level, ticks, pos, directionToNeighbour, neighbourPos, neighbourState, random);
     }
