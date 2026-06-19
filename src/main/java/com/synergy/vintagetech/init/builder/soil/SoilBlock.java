@@ -40,21 +40,25 @@ public class SoilBlock extends FarmlandBlock {
         if(items!= null)
                 items.forEach(i -> ItemLogisticUtils.createLazyItemEntity(i, level, pos.above(), 1200, true));
 
+        level.scheduleTick(pos, this, 50);
     }
 
     @Override
     protected void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rnd) {
+        var items = VanillaPlants.checkReplant(level, pos.above(), null, null);
+        if (items != null)
+            items.forEach(i -> ItemLogisticUtils.createLazyItemEntity(i, level, pos.above(), 1200, true));
+
     }
 
     @Override
     protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess ticks, BlockPos pos,
             Direction directionToNeighbour, BlockPos neighbourPos, BlockState neighbourState, RandomSource random) {
 
-        if (directionToNeighbour == Direction.UP && level instanceof ServerLevel server) {
-            var items = VanillaPlants.checkReplant(server, neighbourPos, null, null);
-            if (items != null)
-                items.forEach(i -> ItemLogisticUtils.createLazyItemEntity(i, server, neighbourPos, 1200, true));
-        }
+        if (directionToNeighbour == Direction.UP && level instanceof ServerLevel server) 
+            server.scheduleTick(pos, this, 50);
+        
+
         return super.updateShape(state, level, ticks, pos, directionToNeighbour, neighbourPos, neighbourState, random);
     }
 
