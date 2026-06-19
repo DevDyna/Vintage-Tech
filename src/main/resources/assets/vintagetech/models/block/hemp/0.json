@@ -1,0 +1,36 @@
+{
+	"credit": "Made by Vulpie from the beautiful DruidCraft mod",
+	"textures": {
+		"stem": "vintagetech:block/hemp/stem/0",
+		"particle": "vintagetech:block/hemp/leaf/large/0"
+	},
+	"elements": [
+		{
+
+			"from": [0, 0, 8],
+			"to": [16, 16, 8],
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 16, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#stem"},
+				"east": {"uv": [0, 0, 0, 16], "texture": "#stem"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#stem"},
+				"west": {"uv": [0, 0, 0, 16], "texture": "#stem"},
+				"up": {"uv": [0, 0, 16, 0], "texture": "#stem"},
+				"down": {"uv": [0, 0, 16, 0], "texture": "#stem"}
+			}
+		},
+		{
+			"from": [0, 0, 8],
+			"to": [16, 16, 8],
+			"rotation": {"angle": -45, "axis": "y", "origin": [8, 16, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#stem"},
+				"east": {"uv": [0, 0, 0, 16], "texture": "#stem"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#stem"},
+				"west": {"uv": [0, 0, 0, 16], "texture": "#stem"},
+				"up": {"uv": [0, 0, 16, 0], "texture": "#stem"},
+				"down": {"uv": [0, 0, 16, 0], "texture": "#stem"}
+			}
+		}
+	]
+}
