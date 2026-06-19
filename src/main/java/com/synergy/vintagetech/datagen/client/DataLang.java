@@ -5,6 +5,7 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 
 import com.devdyna.cakesticklib.api.datagen.LangUtils;
 import com.synergy.vintagetech.init.types.zBlocks;
+import com.synergy.vintagetech.init.types.zItems;
 
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
@@ -21,6 +22,7 @@ public class DataLang extends LanguageProvider {
         protected void addTranslations() {
 
                 zBlocks.zBlockItem.getEntries().forEach(b -> addBlock(b, LangUtils.named(b, MODULE_ID)));
+                zItems.zItem.getEntries().forEach(b -> addItem(b, LangUtils.named(b, MODULE_ID)));
 
                 add(MODULE_ID + ".jei.alias.rpm.base", "Mechanical Rotation block");
                 add(MODULE_ID + ".jei.alias.rpm.transmission", "Transmission");
