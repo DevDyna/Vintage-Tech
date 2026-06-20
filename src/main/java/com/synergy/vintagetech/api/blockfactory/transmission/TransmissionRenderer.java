@@ -12,6 +12,7 @@ import net.minecraft.client.renderer.block.BlockModelResolver;
 import net.minecraft.client.renderer.block.model.BlockDisplayContext;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.client.renderer.blockentity.state.BlockEntityRenderState;
 import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
 import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
@@ -42,7 +43,7 @@ public class TransmissionRenderer<BE extends TransmissionBE>
             Vec3 cameraPosition,
             ModelFeatureRenderer.CrumblingOverlay overlay) {
 
-        BlockEntityRenderer.super.extractRenderState(be, state, partialTicks, cameraPosition, overlay);
+        BlockEntityRenderState.extractBase(be, state, overlay);
 
         resolver.update(state.block, getBlockRendered().defaultBlockState(), BlockDisplayContext.create());
 
@@ -53,6 +54,12 @@ public class TransmissionRenderer<BE extends TransmissionBE>
     }
 
     public void rotate(Direction dir, boolean inverted, float rotation, PoseStack stack) {
+
+        if (dir == null) {
+            getRotationWhenNull(inverted, rotation, stack);
+            return;
+        }
+
         switch (dir) {
             case EAST:
                 if (inverted)
@@ -103,6 +110,17 @@ public class TransmissionRenderer<BE extends TransmissionBE>
                 stack.mulPose(Axis.ZP.rotationDegrees(180));
                 break;
         }
+    }
+
+    /**
+     * It will triggered when {@code rotate(Direction dir...)} has
+     * {@code dir == null}
+     */
+    public void getRotationWhenNull(boolean inverted, float rotation, PoseStack stack) {
+        if (inverted)
+            stack.mulPose(Axis.YP.rotationDegrees(rotation));
+        else
+            stack.mulPose(Axis.YN.rotationDegrees(rotation));
     }
 
     @Override
