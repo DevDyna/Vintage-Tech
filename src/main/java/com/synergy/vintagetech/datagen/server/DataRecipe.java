@@ -10,6 +10,7 @@ import com.synergy.vintagetech.init.builder.crushing_tub.recipe.CrushingTubBuild
 import com.synergy.vintagetech.init.builder.drying_rack.recipe.DryingRackBuilder;
 import com.synergy.vintagetech.init.builder.evaporation_basin.recipe.EvaporationBasinBuilder;
 import com.synergy.vintagetech.init.builder.millstone.recipe.MillstoneBuilder;
+import com.synergy.vintagetech.init.types.zItems;
 
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
@@ -44,17 +45,22 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .save(output);
 
                 DryingRackBuilder.of(registries)
-                .input(ItemTags.SAPLINGS)
-                .output(Items.DEAD_BUSH)
-                .unlockedBy(getHasName(ItemTags.SAPLINGS), has(ItemTags.SAPLINGS))
-                .save(output);
+                                .input(ItemTags.SAPLINGS)
+                                .output(Items.DEAD_BUSH)
+                                .unlockedBy(getHasName(ItemTags.SAPLINGS), has(ItemTags.SAPLINGS))
+                                .save(output);
 
-        
                 MillstoneBuilder.of(registries)
-                .input(Items.WHEAT)
-                .output(LibItems.FLOUR,2)
-                .unlockedBy(getHasName(Items.WHEAT), has(Items.WHEAT))
-                .save(output);
+                                .input(Items.WHEAT)
+                                .output(LibItems.FLOUR, 2)
+                                .unlockedBy(getHasName(Items.WHEAT), has(Items.WHEAT))
+                                .save(output);
+
+                MillstoneBuilder.of(registries)
+                                .input(zItems.SOYBEANS)
+                                .output(zItems.MASHED_SOYBEANS, 2)
+                                .unlockedBy(getHasName(zItems.SOYBEANS.get()), has(zItems.SOYBEANS.get()))
+                                .save(output);
 
         }
 
