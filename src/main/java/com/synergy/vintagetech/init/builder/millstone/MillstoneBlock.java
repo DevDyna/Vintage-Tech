@@ -6,10 +6,14 @@ import org.jspecify.annotations.Nullable;
 
 import com.devdyna.cakesticklib.api.utils.x;
 import com.synergy.vintagetech.api.blockfactory.MonoDirectionalAxleBlock;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -20,6 +24,7 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -36,12 +41,13 @@ public class MillstoneBlock extends MonoDirectionalAxleBlock {
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext c) {
         return this.defaultBlockState()
-                .setValue(ENABLED, false);
+                .setValue(ENABLED, false)
+                .setValue(INVERTED, false);
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> b) {
-        b.add(ENABLED);
+        b.add(ENABLED,INVERTED);
     }
 
     @Override
@@ -56,7 +62,7 @@ public class MillstoneBlock extends MonoDirectionalAxleBlock {
 
     @Override
     public Map<Direction, Boolean> getAxis(BlockState state) {
-        return Map.of();
+        return Map.of(Direction.UP, state.getValue(INVERTED));
     }
 
     @Override
@@ -99,7 +105,8 @@ public class MillstoneBlock extends MonoDirectionalAxleBlock {
 
                 var copy = item.getItem().copy();
 
-                var insered = millstone.getItemStorage().insert(0, ItemResource.of(copy), copy.count(), tx);
+                var insered = millstone.getItemStorage().insert(MillstoneBE.INPUT, ItemResource.of(copy), copy.count(),
+                        tx);
 
                 if (insered > 0) {
                     if (insered >= item.getItem().count()) {
@@ -117,6 +124,14 @@ public class MillstoneBlock extends MonoDirectionalAxleBlock {
         }
 
         super.fallOn(level, state, pos, entity, fallDistance);
+    }
+
+    @Override
+    protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos,
+            Player player, InteractionHand hand, BlockHitResult hitResult) {
+        if (level.getBlockEntity(pos) instanceof MillstoneBE be)
+            return be.itemUseOn(player, level, pos, hand);
+        return InteractionResult.FAIL;
     }
 
 }
