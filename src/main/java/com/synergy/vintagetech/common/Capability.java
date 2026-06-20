@@ -16,7 +16,8 @@ public class Capability {
                 zBlocks.BASKET.get(),
                 zBlocks.CRUSHING_TUB.get(),
                 zBlocks.DRYING_RACK.get(),
-                zBlocks.EVAPORATION_BASIN.get());
+                zBlocks.EVAPORATION_BASIN.get(),
+                zBlocks.MILLSTONE.get());
                 
         CapabilityUtils.registerFluidBlocks(event,
                 zBlocks.CRUSHING_TUB.get(),
