@@ -6,6 +6,7 @@ import com.devdyna.cakesticklib.api.utils.x;
 import com.synergy.vintagetech.api.blockfactory.transmission.TransmissionRenderer;
 import com.synergy.vintagetech.client.particles.fan.AirFlowParticleProvider;
 import com.synergy.vintagetech.init.builder.fan.FanRenderer;
+import com.synergy.vintagetech.init.builder.millstone.MillstoneRenderer;
 import com.synergy.vintagetech.init.types.zBlockEntities;
 import com.synergy.vintagetech.init.types.zFluids;
 import com.synergy.vintagetech.init.types.zParticles;
@@ -57,6 +58,10 @@ public class Client {
         event.registerBlockEntityRenderer(
                 zBlockEntities.FAN.get(),
                 FanRenderer::new);
+
+        event.registerBlockEntityRenderer(
+                zBlockEntities.MILLSTONE.get(),
+                MillstoneRenderer::new);
 
     }
 
