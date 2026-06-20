@@ -10,6 +10,7 @@ import com.synergy.vintagetech.init.builder.crushing_tub.CrushingTubBE;
 import com.synergy.vintagetech.init.builder.drying_rack.DryingRackBE;
 import com.synergy.vintagetech.init.builder.evaporation_basin.EvaporationBasinBE;
 import com.synergy.vintagetech.init.builder.fan.FanBE;
+import com.synergy.vintagetech.init.builder.millstone.MillstoneBE;
 import com.synergy.vintagetech.init.builder.saw.SawBE;
 import com.synergy.vintagetech.init.builder.steam_engine.SteamEngineBE;
 
@@ -56,5 +57,9 @@ public class zBlockEntities {
         public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<EvaporationBasinBE>> EVAPORATION_BASIN = RegistryUtils
                         .createBlockEntity("evaporation_basin", zTiles, EvaporationBasinBE::new,
                                         zBlocks.EVAPORATION_BASIN);
+
+        public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<MillstoneBE>> MILLSTONE = RegistryUtils
+                        .createBlockEntity("millstone", zTiles, MillstoneBE::new,
+                                        zBlocks.MILLSTONE);
 
 }

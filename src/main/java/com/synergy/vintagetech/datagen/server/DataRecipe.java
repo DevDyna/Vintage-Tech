@@ -5,9 +5,11 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 import java.util.concurrent.CompletableFuture;
 
 import com.devdyna.cakesticklib.api.datagen.RecipeGenerators;
+import com.devdyna.cakesticklib.setup.registry.LibItems;
 import com.synergy.vintagetech.init.builder.crushing_tub.recipe.CrushingTubBuilder;
 import com.synergy.vintagetech.init.builder.drying_rack.recipe.DryingRackBuilder;
 import com.synergy.vintagetech.init.builder.evaporation_basin.recipe.EvaporationBasinBuilder;
+import com.synergy.vintagetech.init.builder.millstone.recipe.MillstoneBuilder;
 
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
@@ -45,6 +47,13 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                 .input(ItemTags.SAPLINGS)
                 .output(Items.DEAD_BUSH)
                 .unlockedBy(getHasName(ItemTags.SAPLINGS), has(ItemTags.SAPLINGS))
+                .save(output);
+
+        
+                MillstoneBuilder.of(registries)
+                .input(Items.WHEAT)
+                .output(LibItems.FLOUR,2)
+                .unlockedBy(getHasName(Items.WHEAT), has(Items.WHEAT))
                 .save(output);
 
         }

@@ -6,6 +6,7 @@ import com.synergy.vintagetech.api.RecipeRegister;
 import com.synergy.vintagetech.init.builder.crushing_tub.recipe.CrushingTubRecipe;
 import com.synergy.vintagetech.init.builder.drying_rack.recipe.DryingRackRecipe;
 import com.synergy.vintagetech.init.builder.evaporation_basin.recipe.EvaporationBasinRecipe;
+import com.synergy.vintagetech.init.builder.millstone.recipe.MillstoneRecipe;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -34,5 +35,8 @@ public class zRecipeTypes {
 
     public static final RecipeRegister<DryingRackRecipe> DRYING_RACK = RecipeRegister.of("drying_rack",
             () -> DryingRackRecipe.serializer());
+
+    public static final RecipeRegister<MillstoneRecipe> MILLSTONE = RecipeRegister.of("millstone",
+            () -> MillstoneRecipe.serializer());
 
 }

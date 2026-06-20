@@ -11,6 +11,7 @@ import com.synergy.vintagetech.init.builder.crushing_tub.CrushingTubBlock;
 import com.synergy.vintagetech.init.builder.drying_rack.DryingRackBlock;
 import com.synergy.vintagetech.init.builder.evaporation_basin.EvaporationBasinBlock;
 import com.synergy.vintagetech.init.builder.fan.FanBlock;
+import com.synergy.vintagetech.init.builder.millstone.MillstoneBlock;
 import com.synergy.vintagetech.init.builder.plants.CaveWheat;
 import com.synergy.vintagetech.init.builder.plants.Hemp;
 import com.synergy.vintagetech.init.builder.plants.SoyBeans;
@@ -40,21 +41,27 @@ public class zBlocks {
     public static final DeferredRegister.Blocks zBlockFluids = DeferredRegister.createBlocks(MODULE_ID);
     public static final DeferredRegister.Blocks zBlockItem = DeferredRegister.createBlocks(MODULE_ID);
 
+    //generators
     public static final DeferredHolder<Block, Block> STEAM_ENGINE = registerItemBlock("steam_engine",
             p -> new SteamEngineBlock(p));
 
     public static final DeferredHolder<Block, Block> CREATIVE_ENGINE = registerItemBlock("creative_engine",
             p -> new CreativeEngineBlock(p));
 
+            //transmissions
     public static final DeferredHolder<Block, Block> AXLE = registerItemBlock("axle", p -> new AxleBlock(p));
     public static final DeferredHolder<Block, Block> JUNCTION = registerItemBlock("junction",
             p -> new JunctionBlock(p));
-    public static final DeferredHolder<Block, Block> SAW = registerItemBlock("saw", p -> new SawBlock(p));
-    public static final DeferredHolder<Block, Block> FAN = registerItemBlock("fan", p -> new FanBlock(p));
-
-    public static final DeferredHolder<Block, Block> GEARSHIFT = registerItemBlock("gearshift",
+            public static final DeferredHolder<Block, Block> GEARSHIFT = registerItemBlock("gearshift",
             p -> new GearShiftBlock(p));
 
+            //machines
+    public static final DeferredHolder<Block, Block> SAW = registerItemBlock("saw", p -> new SawBlock(p));
+    public static final DeferredHolder<Block, Block> FAN = registerItemBlock("fan", p -> new FanBlock(p));
+    public static final DeferredHolder<Block, Block> MILLSTONE = registerItemBlock("millstone", p -> new MillstoneBlock(p));
+
+    
+    //utility
     public static final DeferredHolder<Block, Block> BASKET = registerItemBlock("basket", p -> new BasketBlock(p));
 
     public static final DeferredHolder<Block, Block> CRUSHING_TUB = registerItemBlock("crushing_tub",
@@ -68,11 +75,17 @@ public class zBlocks {
 
     public static final DeferredHolder<Block, Block> CHEESE = registerItemBlock("cheese", p -> new SoilBlock(p));
 
+    //renderer
     public static final DeferredHolder<Block, Block> RENDER_HALF_AXLE = zRender.registerSimpleBlock("render_half_axle",
             p -> p.noLootTable());
     public static final DeferredHolder<Block, Block> RENDER_FAN_BLADE = zRender.registerSimpleBlock("render_fan_blade",
             p -> p.noLootTable());
 
+    public static final DeferredHolder<Block, Block> RENDER_MILLSTONE = zRender.registerSimpleBlock("render_millstone",
+            p -> p.noLootTable());
+
+
+            //crops
     public static final DeferredHolder<Block, Block> CAVE_WHEAT = zBlock.registerBlock("cave_wheat",
             p -> new CaveWheat(p));
 

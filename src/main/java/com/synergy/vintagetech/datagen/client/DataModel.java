@@ -32,9 +32,10 @@ public class DataModel extends ModelProvider {
         protected void registerModels(BlockModelGenerators blockModels, ItemModelGenerators itemModels) {
 
                 zItems.zItem.getEntries().forEach(i -> itemModels.generateFlatItem(i.get(), ModelTemplates.FLAT_ITEM));
-                zItems.zBucketItems.getEntries().forEach(i -> itemModels.generateFlatItem(i.get(), ModelTemplates.FLAT_ITEM));
+                zItems.zBucketItems.getEntries()
+                                .forEach(i -> itemModels.generateFlatItem(i.get(), ModelTemplates.FLAT_ITEM));
 
-                zBlocks.zBlockFluids.getEntries().forEach(b->BlockModelUtils.fluid(blockModels, b.get()));
+                zBlocks.zBlockFluids.getEntries().forEach(b -> BlockModelUtils.fluid(blockModels, b.get()));
 
                 blockModels.createRotatedVariantBlock(zBlocks.SOIL.get());
 
@@ -59,6 +60,11 @@ public class DataModel extends ModelProvider {
                                                                 x.rl(MODULE_ID, "block/render/fan_blade"))));
 
                 blockModels.blockStateOutput
+                                .accept(BlockModelGenerators.createSimpleBlock(zBlocks.RENDER_MILLSTONE.get(),
+                                                BlockModelGenerators.plainVariant(
+                                                                x.rl(MODULE_ID, "block/render/millstone"))));
+
+                blockModels.blockStateOutput
                                 .accept(BlockModelGenerators.createAxisAlignedPillarBlock(zBlocks.AXLE.get(),
                                                 BlockModelGenerators.plainVariant(
                                                                 x.rl(MODULE_ID, "block/axle"))));
@@ -67,6 +73,11 @@ public class DataModel extends ModelProvider {
                                 .accept(BlockModelGenerators.createAxisAlignedPillarBlock(zBlocks.GEARSHIFT.get(),
                                                 BlockModelGenerators.plainVariant(
                                                                 x.rl(MODULE_ID, "block/gearshift"))));
+
+                blockModels.blockStateOutput
+                                .accept(BlockModelGenerators.createSimpleBlock(zBlocks.MILLSTONE.get(),
+                                                BlockModelGenerators.plainVariant(
+                                                                x.rl(MODULE_ID, "block/millstone"))));
 
                 blockModels.blockStateOutput.accept(BlockModelGenerators
                                 .createSimpleBlock(zBlocks.STEAM_ENGINE.get(),
@@ -171,15 +182,17 @@ public class DataModel extends ModelProvider {
                 itemModels.itemModelOutput.accept(zBlocks.JUNCTION.get().asItem(),
                                 ItemModelUtils.plainModel(x.rl(MODULE_ID, "item/junction")));
 
+                itemModels.itemModelOutput.accept(zBlocks.MILLSTONE.get().asItem(),
+                                ItemModelUtils.plainModel(x.rl(MODULE_ID, "item/millstone")));
+
                 itemModels.itemModelOutput.accept(zBlocks.SAW.get().asItem(),
-                                ItemModelUtils.plainModel(x.rl(MODULE_ID, "block/saw/off")));// TODO IMP : unify saw models
+                                ItemModelUtils.plainModel(x.rl(MODULE_ID, "block/saw/off")));// TODO IMP : unify saw
+                                                                                             // models
 
                 BlockModelUtils.cropWithoutSeed(blockModels, zBlocks.CAVE_WHEAT.get(), BaseShortCropBlock.AGE, 0, 1,
                                 2, 3, 4, 5);
                 BlockModelUtils.cropWithoutSeed(blockModels, zBlocks.SOYBEANS.get(), BaseShortCropBlock.AGE, 0, 1,
                                 2, 3, 4, 5);
-
-                
 
                 blockModels.blockStateOutput.accept(
                                 MultiVariantGenerator.dispatch(zBlocks.HEMP.get())
