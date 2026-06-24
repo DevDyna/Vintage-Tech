@@ -68,7 +68,7 @@ public class DryingRackBE extends TickingBE
     private Ticker ticker = null;
 
     @Override
-    public void tickBoth() {
+    public void tickServer() {
 
         if (getItemStorage() == null) {
             fail();
