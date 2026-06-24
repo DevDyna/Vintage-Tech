@@ -31,38 +31,35 @@ public class DataModel extends ModelProvider {
         @Override
         protected void registerModels(BlockModelGenerators blockModels, ItemModelGenerators itemModels) {
 
+                // GENERATED
+
                 zItems.zItem.getEntries().forEach(i -> itemModels.generateFlatItem(i.get(), ModelTemplates.FLAT_ITEM));
                 zItems.zBucketItems.getEntries()
                                 .forEach(i -> itemModels.generateFlatItem(i.get(), ModelTemplates.FLAT_ITEM));
 
                 zBlocks.zBlockFluids.getEntries().forEach(b -> BlockModelUtils.fluid(blockModels, b.get()));
 
+                zBlocks.zRender.getEntries().forEach(
+                                b -> BlockModelUtils.simplePlain(blockModels, b, "block/render/", "render_", ""));
+
+                // BLOCK MODELS
+
+                BlockModelUtils.simplePlain(blockModels, zBlocks.JUNCTION);
+                BlockModelUtils.simplePlain(blockModels, zBlocks.MILLSTONE);
+                BlockModelUtils.simplePlain(blockModels, zBlocks.CRUSHING_TUB);
+                BlockModelUtils.simplePlain(blockModels, zBlocks.EVAPORATION_BASIN);
+                BlockModelUtils.simplePlain(blockModels, zBlocks.DRYING_RACK);
+
+                // TODO IMP : Models by logic
+                BlockModelUtils.simplePlain(blockModels, zBlocks.CHEESE);
+                BlockModelUtils.simplePlain(blockModels, zBlocks.CREATIVE_ENGINE);
+                BlockModelUtils.simplePlain(blockModels, zBlocks.HYDRAULIC_PRESS);
+                BlockModelUtils.simplePlain(blockModels, zBlocks.CENTRIFUGE);
+                BlockModelUtils.simplePlain(blockModels, zBlocks.MIXING_BARREL);
+                BlockModelUtils.simplePlain(blockModels, zBlocks.CRUCIBLE);
+                BlockModelUtils.simplePlain(blockModels, zBlocks.TURNTABLE);
+
                 blockModels.createRotatedVariantBlock(zBlocks.SOIL.get());
-
-                blockModels.blockStateOutput
-                                .accept(BlockModelGenerators.createSimpleBlock(zBlocks.CHEESE.get(),
-                                                BlockModelGenerators.plainVariant(
-                                                                x.rl(MODULE_ID, "block/cheese"))));
-
-                blockModels.blockStateOutput
-                                .accept(BlockModelGenerators.createSimpleBlock(zBlocks.JUNCTION.get(),
-                                                BlockModelGenerators.plainVariant(
-                                                                x.rl(MODULE_ID, "block/junction"))));
-
-                blockModels.blockStateOutput
-                                .accept(BlockModelGenerators.createSimpleBlock(zBlocks.RENDER_HALF_AXLE.get(),
-                                                BlockModelGenerators.plainVariant(
-                                                                x.rl(MODULE_ID, "block/render/half_axle"))));
-
-                blockModels.blockStateOutput
-                                .accept(BlockModelGenerators.createSimpleBlock(zBlocks.RENDER_FAN_BLADE.get(),
-                                                BlockModelGenerators.plainVariant(
-                                                                x.rl(MODULE_ID, "block/render/fan_blade"))));
-
-                blockModels.blockStateOutput
-                                .accept(BlockModelGenerators.createSimpleBlock(zBlocks.RENDER_MILLSTONE.get(),
-                                                BlockModelGenerators.plainVariant(
-                                                                x.rl(MODULE_ID, "block/render/millstone"))));
 
                 blockModels.blockStateOutput
                                 .accept(BlockModelGenerators.createAxisAlignedPillarBlock(zBlocks.AXLE.get(),
@@ -73,11 +70,6 @@ public class DataModel extends ModelProvider {
                                 .accept(BlockModelGenerators.createAxisAlignedPillarBlock(zBlocks.GEARSHIFT.get(),
                                                 BlockModelGenerators.plainVariant(
                                                                 x.rl(MODULE_ID, "block/gearshift"))));
-
-                blockModels.blockStateOutput
-                                .accept(BlockModelGenerators.createSimpleBlock(zBlocks.MILLSTONE.get(),
-                                                BlockModelGenerators.plainVariant(
-                                                                x.rl(MODULE_ID, "block/millstone"))));
 
                 blockModels.blockStateOutput.accept(BlockModelGenerators
                                 .createSimpleBlock(zBlocks.STEAM_ENGINE.get(),
@@ -158,37 +150,6 @@ public class DataModel extends ModelProvider {
                                                 .select(Direction.DOWN, BlockModelGenerators.X_ROT_90)
                                                 .select(Direction.UP, BlockModelGenerators.X_ROT_270)));
 
-                blockModels.blockStateOutput
-                                .accept(BlockModelGenerators.createSimpleBlock(zBlocks.CRUSHING_TUB.get(),
-                                                BlockModelGenerators.plainVariant(
-                                                                x.rl(MODULE_ID, "block/crushing_tub"))));
-                blockModels.blockStateOutput
-                                .accept(BlockModelGenerators.createSimpleBlock(zBlocks.EVAPORATION_BASIN.get(),
-                                                BlockModelGenerators.plainVariant(
-                                                                x.rl(MODULE_ID, "block/evaporation_basin"))));
-                blockModels.blockStateOutput
-                                .accept(BlockModelGenerators.createSimpleBlock(zBlocks.DRYING_RACK.get(),
-                                                BlockModelGenerators.plainVariant(
-                                                                x.rl(MODULE_ID, "block/drying_rack"))));
-
-                blockModels.blockStateOutput
-                                .accept(BlockModelGenerators.createSimpleBlock(zBlocks.CREATIVE_ENGINE.get(),
-                                                BlockModelGenerators.plainVariant(
-                                                                x.rl(MODULE_ID, "block/creative_engine"))));
-
-                itemModels.generateFlatItem(zBlocks.FAN.get().asItem(), ModelTemplates.FLAT_ITEM);
-                itemModels.generateFlatItem(zBlocks.CHEESE.get().asItem(), ModelTemplates.FLAT_ITEM);
-
-                itemModels.itemModelOutput.accept(zBlocks.JUNCTION.get().asItem(),
-                                ItemModelUtils.plainModel(x.rl(MODULE_ID, "item/junction")));
-
-                itemModels.itemModelOutput.accept(zBlocks.MILLSTONE.get().asItem(),
-                                ItemModelUtils.plainModel(x.rl(MODULE_ID, "item/millstone")));
-
-                itemModels.itemModelOutput.accept(zBlocks.SAW.get().asItem(),
-                                ItemModelUtils.plainModel(x.rl(MODULE_ID, "block/saw/off")));// TODO IMP : unify saw
-                                                                                             // models
-
                 BlockModelUtils.cropWithoutSeed(blockModels, zBlocks.CAVE_WHEAT.get(), BaseShortCropBlock.AGE, 0, 1,
                                 2, 3, 4, 5);
                 BlockModelUtils.cropWithoutSeed(blockModels, zBlocks.SOYBEANS.get(), BaseShortCropBlock.AGE, 0, 1,
@@ -214,6 +175,21 @@ public class DataModel extends ModelProvider {
                                                                                                                 x.rl(MODULE_ID, "block/hemp/3")))
 
                                                 ));
+
+                // ITEM MODELS
+
+                itemModels.generateFlatItem(zBlocks.FAN.get().asItem(), ModelTemplates.FLAT_ITEM);
+                itemModels.generateFlatItem(zBlocks.CHEESE.get().asItem(), ModelTemplates.FLAT_ITEM);
+
+                itemModels.itemModelOutput.accept(zBlocks.JUNCTION.get().asItem(),
+                                ItemModelUtils.plainModel(x.rl(MODULE_ID, "item/junction")));
+
+                itemModels.itemModelOutput.accept(zBlocks.MILLSTONE.get().asItem(),
+                                ItemModelUtils.plainModel(x.rl(MODULE_ID, "item/millstone")));
+
+                itemModels.itemModelOutput.accept(zBlocks.SAW.get().asItem(),
+                                ItemModelUtils.plainModel(x.rl(MODULE_ID, "block/saw/off")));// TODO IMP : unify saw
+                                                                                             // models
 
         }
 
