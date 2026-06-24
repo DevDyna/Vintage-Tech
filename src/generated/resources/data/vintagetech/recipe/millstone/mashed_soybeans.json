@@ -1,0 +1,9 @@
+{
+  "type": "vintagetech:millstone",
+  "input": "vintagetech:soybeans",
+  "output": {
+    "count": 2,
+    "id": "vintagetech:mashed_soybeans"
+  },
+  "ticks": 40
+}

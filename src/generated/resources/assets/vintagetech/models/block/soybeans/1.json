@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/crop",
   "textures": {
-    "crop": "vintagetech:block/soybeans_stage0"
+    "crop": "vintagetech:block/soybeans/1"
   }
 }

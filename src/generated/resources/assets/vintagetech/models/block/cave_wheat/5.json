@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/crop",
   "textures": {
-    "crop": "vintagetech:block/cave_wheat_stage1"
+    "crop": "vintagetech:block/cave_wheat/5"
   }
 }
