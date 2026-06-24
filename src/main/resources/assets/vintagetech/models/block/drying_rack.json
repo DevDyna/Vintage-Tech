@@ -5,7 +5,7 @@
   "textures": {
     "particle": "vintagetech:block/elder_fancy_fence",
     "side": "vintagetech:block/elder_fancy_fence",
-    "chain": "block/chain"
+    "chain": "block/iron_chain"
   },
   "elements": [
     {
