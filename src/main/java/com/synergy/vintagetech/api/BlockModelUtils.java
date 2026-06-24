@@ -20,6 +20,7 @@ import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.Property;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 public class BlockModelUtils {
         public static void cropWithoutSeed(BlockModelGenerators b, Block block, Property<Integer> property,
@@ -74,6 +75,22 @@ public class BlockModelUtils {
 
         public static Material getGenericTexture(String b) {
                 return new Material(x.rl(MODULE_ID, b));
+        }
+
+        public static void simplePlain(BlockModelGenerators b, DeferredHolder<Block, ?> block, String prefix,
+                        String filter, String replace) {
+                simplePlain(b, block, prefix + block.getId().getPath().replace(filter, replace));
+        }
+
+        public static void simplePlain(BlockModelGenerators b, DeferredHolder<Block, ?> block) {
+                simplePlain(b, block, "block/" + block.getId().getPath());
+        }
+
+        public static void simplePlain(BlockModelGenerators b, DeferredHolder<Block, ?> block, String prefix) {
+                b.blockStateOutput
+                                .accept(BlockModelGenerators.createSimpleBlock(block.get(),
+                                                BlockModelGenerators.plainVariant(
+                                                                x.rl(MODULE_ID, prefix))));
         }
 
 }
