@@ -44,13 +44,14 @@ public class BlockModelUtils {
                                                                                                                                                                                 stage,
                                                                                                                                                                                 s -> b.createSuffixedVariant(
                                                                                                                                                                                                 block,
-                                                                                                                                                                                                "_stage" + s,
+                                                                                                                                                                                                "/" + s,
                                                                                                                                                                                                 ModelTemplates.CROP,
                                                                                                                                                                                                 TextureMapping::crop)));
                                                                                                                         })));
                 }
         }
-        //TODO API : move to api
+
+        // TODO API : move to api
         public static void fluid(BlockModelGenerators b, Block block) {
 
                 ModelTemplate particleModel = new ModelTemplate(Optional.empty(), Optional.empty(),
