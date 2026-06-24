@@ -29,6 +29,7 @@ public class DataLang extends LanguageProvider {
                 add(MODULE_ID + ".jei.alias.rpm.rotation.change", "Change Rotation");
                 add(MODULE_ID + ".jei.alias.rpm.generator", "Generator");
 
+                add(MODULE_ID + ".creative_tab." + MODULE_ID, "Vintage Tech");
         }
 
 }

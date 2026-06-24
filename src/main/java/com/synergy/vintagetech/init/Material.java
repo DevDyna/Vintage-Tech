@@ -13,6 +13,7 @@ public class Material {
                 zTags.register(bus);
                 zParticles.register(bus);
                 zFluids.register(bus);
+                zCreativeTab.register(bus);
         }
 
 
