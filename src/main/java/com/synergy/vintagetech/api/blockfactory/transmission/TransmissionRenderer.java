@@ -2,6 +2,8 @@ package com.synergy.vintagetech.api.blockfactory.transmission;
 
 import java.util.Map;
 
+import javax.annotation.Nullable;
+
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import com.synergy.vintagetech.api.AxleHandler;
@@ -53,7 +55,7 @@ public class TransmissionRenderer<BE extends TransmissionBE>
                 : Map.of();
     }
 
-    public void rotate(Direction dir, boolean inverted, float rotation, PoseStack stack) {
+    public void rotate(@Nullable Direction dir, boolean inverted, float rotation, PoseStack stack) {
 
         if (dir == null) {
             getRotationWhenNull(inverted, rotation, stack);
