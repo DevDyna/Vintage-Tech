@@ -32,9 +32,10 @@ public class SoilBlock extends FarmlandBlock {
             level.setBlock(pos, state.setValue(MOISTURE, state.getValue(MOISTURE) + 1), 2);
 
         if (level.getBlockState(pos.above()).getBlock() instanceof BonemealableBlock meal)
-            for (int i = 0; i < Math.max(state.getValue(MOISTURE), 1) / 2; i++)
-                if (meal.isValidBonemealTarget(level, pos.above(), level.getBlockState(pos.above())))
-                    meal.performBonemeal(level, rnd, pos.above(), level.getBlockState(pos.above()));
+            if (level.getBlockState(pos.above()).isRandomlyTicking())
+                for (int i = 0; i < Math.max(state.getValue(MOISTURE), 1) / 2; i++)
+                    if (meal.isValidBonemealTarget(level, pos.above(), level.getBlockState(pos.above())))
+                        meal.performBonemeal(level, rnd, pos.above(), level.getBlockState(pos.above()));
 
         level.scheduleTick(pos, this, 50);
     }
