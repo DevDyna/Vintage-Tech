@@ -10,7 +10,6 @@ public class Capability {
 
     @SubscribeEvent
     public static void register(RegisterCapabilitiesEvent event) {
-        // CapabilityUtils.registerFluidBlocks(event, zBlocks.ENGINE.get());
 
         CapabilityUtils.registerItemBlock(event,
                 zBlocks.BASKET.get(),
@@ -18,10 +17,11 @@ public class Capability {
                 zBlocks.DRYING_RACK.get(),
                 zBlocks.EVAPORATION_BASIN.get(),
                 zBlocks.MILLSTONE.get());
-                
+
         CapabilityUtils.registerFluidBlocks(event,
                 zBlocks.CRUSHING_TUB.get(),
-                zBlocks.EVAPORATION_BASIN.get());
+                zBlocks.EVAPORATION_BASIN.get(),
+                zBlocks.MECHANICAL_FARMLAND.get());
 
     }
 }

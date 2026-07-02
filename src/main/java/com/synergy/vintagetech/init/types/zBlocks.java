@@ -11,6 +11,7 @@ import com.synergy.vintagetech.init.builder.crushing_tub.CrushingTubBlock;
 import com.synergy.vintagetech.init.builder.drying_rack.DryingRackBlock;
 import com.synergy.vintagetech.init.builder.evaporation_basin.EvaporationBasinBlock;
 import com.synergy.vintagetech.init.builder.fan.FanBlock;
+import com.synergy.vintagetech.init.builder.mechanical_farmland.MechanicalFarmlandBlock;
 import com.synergy.vintagetech.init.builder.millstone.MillstoneBlock;
 import com.synergy.vintagetech.init.builder.plants.Aloe;
 import com.synergy.vintagetech.init.builder.plants.BlueBerry;
@@ -19,7 +20,6 @@ import com.synergy.vintagetech.init.builder.plants.Hemp;
 import com.synergy.vintagetech.init.builder.plants.Lavender;
 import com.synergy.vintagetech.init.builder.plants.SoyBeans;
 import com.synergy.vintagetech.init.builder.saw.SawBlock;
-import com.synergy.vintagetech.init.builder.soil.SoilBlock;
 import com.synergy.vintagetech.init.builder.steam_engine.SteamEngineBlock;
 import com.synergy.vintagetech.init.builder.transmission.AxleBlock;
 import com.synergy.vintagetech.init.builder.transmission.JunctionBlock;
@@ -76,18 +76,21 @@ public class zBlocks {
                         p -> new EvaporationBasinBlock(p));
 
         // TODO IMP : BLOCKS
-        public static final DeferredHolder<Block, Block> SOIL = registerItemBlock("soil", p -> new SoilBlock(p));
-        public static final DeferredHolder<Block, Block> CHEESE = registerItemBlock("cheese", p -> new SoilBlock(p));
+        public static final DeferredHolder<Block, Block> MECHANICAL_FARMLAND = registerItemBlock("mechanical_farmland", p -> new MechanicalFarmlandBlock(p));
+       
+        public static final DeferredHolder<Block, Block> CHEESE = registerItemBlock("cheese",
+         p -> new Block(p));
+       
         public static final DeferredHolder<Block, Block> CENTRIFUGE = registerItemBlock("centrifuge",
-                        p -> new SoilBlock(p));
+                        p -> new Block(p));
         public static final DeferredHolder<Block, Block> CRUCIBLE = registerItemBlock("crucible",
-                        p -> new SoilBlock(p));
+                        p -> new Block(p));
         public static final DeferredHolder<Block, Block> MIXING_BARREL = registerItemBlock("mixing_barrel",
-                        p -> new SoilBlock(p));
+                        p -> new Block(p));
         public static final DeferredHolder<Block, Block> HYDRAULIC_PRESS = registerItemBlock("hydraulic_press",
-                        p -> new SoilBlock(p));
+                        p -> new Block(p));
         public static final DeferredHolder<Block, Block> TURNTABLE = registerItemBlock("turntable",
-                        p -> new SoilBlock(p));
+                        p -> new Block(p));
 
         // renderer
         public static final DeferredHolder<Block, Block> RENDER_HALF_AXLE = renderBlock("render_half_axle");

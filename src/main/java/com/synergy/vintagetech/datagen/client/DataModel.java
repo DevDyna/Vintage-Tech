@@ -26,6 +26,7 @@ import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.data.models.model.TextureSlot;
 import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Direction.Axis;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
@@ -100,8 +101,6 @@ public class DataModel extends ModelProvider {
                                                                                                                                 MODULE_ID,
                                                                                                                                 "block/lavender/2"))),
                                                                                                 blockModels.modelOutput)))));
-
-                blockModels.createRotatedVariantBlock(zBlocks.SOIL.get());
 
                 blockModels.blockStateOutput
                                 .accept(BlockModelGenerators.createAxisAlignedPillarBlock(zBlocks.AXLE.get(),
@@ -197,14 +196,13 @@ public class DataModel extends ModelProvider {
                 BlockModelUtils.cropWithoutSeed(blockModels, zBlocks.SOYBEANS.get(), BaseShortCropBlock.AGE, 0, 1,
                                 2, 3, 4, 5);
 
-                // BlockModelUtils.cropWithoutSeed(blockModels, zBlocks.ALOE_PLANT.get(), Aloe.AGE, 0, 1, 2);
-                // BlockModelUtils.cropWithoutSeed(blockModels, zBlocks.BLUEBERRY_BUSH.get(), BlueBerry.AGE, 0, 1, 2, 3);
+                // BlockModelUtils.cropWithoutSeed(blockModels, zBlocks.ALOE_PLANT.get(),
+                // Aloe.AGE, 0, 1, 2);
+                // BlockModelUtils.cropWithoutSeed(blockModels, zBlocks.BLUEBERRY_BUSH.get(),
+                // BlueBerry.AGE, 0, 1, 2, 3);
 
-
-BlockModelUtils.createBushBlock(blockModels, zBlocks.ALOE_PLANT.get(), Aloe.AGE);
-BlockModelUtils.createBushBlock(blockModels, zBlocks.BLUEBERRY_BUSH.get(), BlueBerry.AGE);
-
-
+                BlockModelUtils.createBushBlock(blockModels, zBlocks.ALOE_PLANT.get(), Aloe.AGE);
+                BlockModelUtils.createBushBlock(blockModels, zBlocks.BLUEBERRY_BUSH.get(), BlueBerry.AGE);
 
                 blockModels.blockStateOutput.accept(
                                 MultiVariantGenerator.dispatch(zBlocks.HEMP.get())
@@ -227,6 +225,14 @@ BlockModelUtils.createBushBlock(blockModels, zBlocks.BLUEBERRY_BUSH.get(), BlueB
 
                                                 ));
 
+                blockModels.blockStateOutput.accept(BlockModelGenerators
+                                .createSimpleBlock(zBlocks.MECHANICAL_FARMLAND.get(),
+                                                BlockModelGenerators.plainVariant(
+                                                                x.rl(MODULE_ID, "block/mechanical_farmland")))
+                                .with(PropertyDispatch.modify(BlockStateProperties.HORIZONTAL_AXIS)
+                                                .select(Axis.X, BlockModelGenerators.NOP)
+                                                .select(Axis.Z, BlockModelGenerators.Y_ROT_90)));
+
                 // ITEM MODELS
 
                 // blockitems
@@ -242,6 +248,9 @@ BlockModelUtils.createBushBlock(blockModels, zBlocks.BLUEBERRY_BUSH.get(), BlueB
 
                 itemModels.itemModelOutput.accept(zBlocks.SAW.get().asItem(),
                                 ItemModelUtils.plainModel(x.rl(MODULE_ID, "block/saw/off")));
+
+                itemModels.itemModelOutput.accept(zBlocks.MECHANICAL_FARMLAND.get().asItem(),
+                                ItemModelUtils.plainModel(x.rl(MODULE_ID, "item/mechanical_farmland")));
 
         }
 

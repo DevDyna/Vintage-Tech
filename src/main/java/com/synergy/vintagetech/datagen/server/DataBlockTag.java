@@ -28,8 +28,8 @@ public class DataBlockTag extends BlockTagsProvider {
                 tag(zTags.Blocks.DRYING_RACK_HEATER).addTag(BlockTags.CAMPFIRES);
                 tag(zTags.Blocks.MINEABLE_WITH_SAW).addTag(BlockTags.MINEABLE_WITH_AXE);
 
-                tag(BlockTags.GROWS_CROPS).add(zBlocks.SOIL.get());
-                tag(BlockTags.SUPPORTS_CROPS).add(zBlocks.SOIL.get());
+                tag(BlockTags.GROWS_CROPS).add(zBlocks.MECHANICAL_FARMLAND.get());
+                tag(BlockTags.SUPPORTS_CROPS).add(zBlocks.MECHANICAL_FARMLAND.get());
 
                 tag(zTags.Blocks.SUPPORT_CAVE_WHEAT_PLANT)
                                 .addTags(BlockTags.SUPPORTS_CROPS,
@@ -86,7 +86,7 @@ public class DataBlockTag extends BlockTagsProvider {
 
                 tag(BlockTags.MINEABLE_WITH_SHOVEL)
                                 .add(
-                                                zBlocks.SOIL.get());
+                                                zBlocks.MECHANICAL_FARMLAND.get());
 
                 tag(BlockTags.MINEABLE_WITH_PICKAXE)
                                 .add(
@@ -98,10 +98,10 @@ public class DataBlockTag extends BlockTagsProvider {
                                                 zBlocks.STEAM_ENGINE.get());
 
                 tag(BlockTags.SUPPORTS_VEGETATION)
-                                .add(zBlocks.SOIL.get());
+                                .add(zBlocks.MECHANICAL_FARMLAND.get());
 
                 tag(BlockTags.SUPPORTS_BIG_DRIPLEAF)
-                                .add(zBlocks.SOIL.get());
+                                .add(zBlocks.MECHANICAL_FARMLAND.get());
 
                 tag(Tags.Blocks.FLOWERS)
                                 .add(zBlocks.LAVENDER.get());

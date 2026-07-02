@@ -63,6 +63,10 @@ public class Client {
                 zBlockEntities.MILLSTONE.get(),
                 MillstoneRenderer::new);
 
+        event.registerBlockEntityRenderer(
+                zBlockEntities.MECHANICAL_FARMLAND.get(),
+                TransmissionRenderer::new);
+
     }
 
     @SubscribeEvent
