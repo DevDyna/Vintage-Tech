@@ -1,6 +1,11 @@
 {
   "model": {
-    "type": "minecraft:model",
-    "model": "vintagetech:item/soy_whey_bucket"
+    "type": "neoforge:fluid_container",
+    "cover_is_mask": false,
+    "fluid": "vintagetech:soy_whey_source",
+    "textures": {
+      "base": "minecraft:item/bucket",
+      "fluid": "neoforge:item/mask/bucket_fluid_drip"
+    }
   }
 }

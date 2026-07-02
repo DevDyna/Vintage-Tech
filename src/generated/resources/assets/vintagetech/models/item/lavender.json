@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "vintagetech:item/soy_whey_bucket"
+    "layer0": "vintagetech:item/lavender"
   }
 }

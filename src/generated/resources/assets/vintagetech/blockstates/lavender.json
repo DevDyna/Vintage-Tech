@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "vintagetech:block/lavender/0"
+      },
+      {
+        "model": "vintagetech:block/lavender/1"
+      },
+      {
+        "model": "vintagetech:block/lavender/2"
+      }
+    ]
+  }
+}
