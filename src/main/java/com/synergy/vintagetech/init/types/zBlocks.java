@@ -14,6 +14,7 @@ import com.synergy.vintagetech.init.builder.fan.FanBlock;
 import com.synergy.vintagetech.init.builder.millstone.MillstoneBlock;
 import com.synergy.vintagetech.init.builder.plants.CaveWheat;
 import com.synergy.vintagetech.init.builder.plants.Hemp;
+import com.synergy.vintagetech.init.builder.plants.Lavender;
 import com.synergy.vintagetech.init.builder.plants.SoyBeans;
 import com.synergy.vintagetech.init.builder.saw.SawBlock;
 import com.synergy.vintagetech.init.builder.soil.SoilBlock;
@@ -21,6 +22,7 @@ import com.synergy.vintagetech.init.builder.steam_engine.SteamEngineBlock;
 import com.synergy.vintagetech.init.builder.transmission.AxleBlock;
 import com.synergy.vintagetech.init.builder.transmission.JunctionBlock;
 
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.bus.api.IEventBus;
@@ -101,6 +103,9 @@ public class zBlocks {
 
         public static final DeferredHolder<Block, Block> HEMP = zBlock.registerBlock("hemp",
                         p -> new Hemp(p));
+
+        public static final DeferredHolder<Block, Block> LAVENDER = registerItemBlock("lavender",
+                        p -> new Lavender(MobEffects.INSTANT_HEALTH, 1.0F, p));
 
         public static DeferredHolder<Block, Block> registerItemBlock(String blockname,
                         Function<BlockBehaviour.Properties, ? extends Block> sup) {

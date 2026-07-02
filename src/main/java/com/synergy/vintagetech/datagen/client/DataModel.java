@@ -17,7 +17,11 @@ import net.minecraft.client.data.models.MultiVariant;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
 import net.minecraft.client.data.models.model.ItemModelUtils;
+import net.minecraft.client.data.models.model.ModelLocationUtils;
 import net.minecraft.client.data.models.model.ModelTemplates;
+import net.minecraft.client.data.models.model.TextureMapping;
+import net.minecraft.client.data.models.model.TextureSlot;
+import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -58,6 +62,35 @@ public class DataModel extends ModelProvider {
                 BlockModelUtils.simplePlain(blockModels, zBlocks.MIXING_BARREL);
                 BlockModelUtils.simplePlain(blockModels, zBlocks.CRUCIBLE);
                 BlockModelUtils.simplePlain(blockModels, zBlocks.TURNTABLE);
+
+                blockModels.blockStateOutput.accept(
+                                BlockModelGenerators.createSimpleBlock(zBlocks.LAVENDER.get(),
+                                                BlockModelGenerators.variants(
+
+                                                                BlockModelGenerators.plainModel(ModelTemplates.CROSS
+                                                                                .create(ModelLocationUtils.getModelLocation(zBlocks.LAVENDER.get(),"/0"),
+                                                                                                TextureMapping.singleSlot(
+                                                                                                                TextureSlot.CROSS,
+                                                                                                                new Material(x.rl(
+                                                                                                                                MODULE_ID,
+                                                                                                                                "block/lavender/0"))),
+                                                                                                blockModels.modelOutput)),
+                                                                BlockModelGenerators.plainModel(ModelTemplates.CROSS
+                                                                                .create(ModelLocationUtils.getModelLocation(zBlocks.LAVENDER.get(),"/1"),
+                                                                                                TextureMapping.singleSlot(
+                                                                                                                TextureSlot.CROSS,
+                                                                                                                new Material(x.rl(
+                                                                                                                                MODULE_ID,
+                                                                                                                                "block/lavender/1"))),
+                                                                                                blockModels.modelOutput)),
+                                                                BlockModelGenerators.plainModel(ModelTemplates.CROSS
+                                                                                .create(ModelLocationUtils.getModelLocation(zBlocks.LAVENDER.get(),"/2"),
+                                                                                                TextureMapping.singleSlot(
+                                                                                                                TextureSlot.CROSS,
+                                                                                                                new Material(x.rl(
+                                                                                                                                MODULE_ID,
+                                                                                                                                "block/lavender/2"))),
+                                                                                                blockModels.modelOutput)))));
 
                 blockModels.createRotatedVariantBlock(zBlocks.SOIL.get());
 
@@ -180,6 +213,7 @@ public class DataModel extends ModelProvider {
 
                 itemModels.generateFlatItem(zBlocks.FAN.get().asItem(), ModelTemplates.FLAT_ITEM);
                 itemModels.generateFlatItem(zBlocks.CHEESE.get().asItem(), ModelTemplates.FLAT_ITEM);
+                itemModels.generateFlatItem(zBlocks.LAVENDER.get().asItem(), ModelTemplates.FLAT_ITEM);
 
                 itemModels.itemModelOutput.accept(zBlocks.JUNCTION.get().asItem(),
                                 ItemModelUtils.plainModel(x.rl(MODULE_ID, "item/junction")));
@@ -188,8 +222,7 @@ public class DataModel extends ModelProvider {
                                 ItemModelUtils.plainModel(x.rl(MODULE_ID, "item/millstone")));
 
                 itemModels.itemModelOutput.accept(zBlocks.SAW.get().asItem(),
-                                ItemModelUtils.plainModel(x.rl(MODULE_ID, "block/saw/off")));// TODO IMP : unify saw
-                                                                                             // models
+                                ItemModelUtils.plainModel(x.rl(MODULE_ID, "block/saw/off")));
 
         }
 

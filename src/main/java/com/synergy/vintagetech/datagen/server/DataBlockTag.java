@@ -39,7 +39,14 @@ public class DataBlockTag extends BlockTagsProvider {
                                 .addTags(BlockTags.SUPPORTS_CROPS)
                                 .add(zBlocks.HEMP.get());
 
-                tag(zTags.Blocks.SUPPORT_SOYBEANS_PLANT).addTags(BlockTags.SUPPORTS_CROPS);
+                tag(zTags.Blocks.SUPPORT_SOYBEANS_PLANT)
+                                .addTags(BlockTags.SUPPORTS_CROPS);
+
+                tag(zTags.Blocks.SUPPORT_LAVENDER)
+                                .addTags(
+                                                BlockTags.SUPPORTS_DRY_VEGETATION,
+                                                Tags.Blocks.SANDSTONE_BLOCKS,
+                                                BlockTags.SUPPORTS_VEGETATION);
 
                 tag(zTags.Blocks.TRANSMISSION)
                                 .add(

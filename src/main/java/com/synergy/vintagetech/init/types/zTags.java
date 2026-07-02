@@ -43,6 +43,9 @@ public class zTags {
         public static final TagKey<Block> SUPPORT_HEMP_PLANT = RegistryUtils
                 .tagBlock(MODULE_ID, "support/hemp");
 
+        public static final TagKey<Block> SUPPORT_LAVENDER = RegistryUtils
+                .tagBlock(MODULE_ID, "support/lavender");
+
 
         public static final TagKey<Block> TRANSMISSION = RegistryUtils
                 .tagBlock(MODULE_ID, "rpm/transmission");
