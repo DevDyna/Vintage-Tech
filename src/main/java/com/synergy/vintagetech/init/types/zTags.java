@@ -46,6 +46,12 @@ public class zTags {
         public static final TagKey<Block> SUPPORT_LAVENDER = RegistryUtils
                 .tagBlock(MODULE_ID, "support/lavender");
 
+        public static final TagKey<Block> SUPPORT_ALOE = RegistryUtils
+                .tagBlock(MODULE_ID, "support/aloe");
+
+        public static final TagKey<Block> SUPPORT_BLUEBERRY = RegistryUtils
+                .tagBlock(MODULE_ID, "support/blueberry");
+
 
         public static final TagKey<Block> TRANSMISSION = RegistryUtils
                 .tagBlock(MODULE_ID, "rpm/transmission");

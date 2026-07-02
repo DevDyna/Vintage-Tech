@@ -12,6 +12,8 @@ import com.synergy.vintagetech.init.builder.drying_rack.DryingRackBlock;
 import com.synergy.vintagetech.init.builder.evaporation_basin.EvaporationBasinBlock;
 import com.synergy.vintagetech.init.builder.fan.FanBlock;
 import com.synergy.vintagetech.init.builder.millstone.MillstoneBlock;
+import com.synergy.vintagetech.init.builder.plants.Aloe;
+import com.synergy.vintagetech.init.builder.plants.BlueBerry;
 import com.synergy.vintagetech.init.builder.plants.CaveWheat;
 import com.synergy.vintagetech.init.builder.plants.Hemp;
 import com.synergy.vintagetech.init.builder.plants.Lavender;
@@ -106,6 +108,12 @@ public class zBlocks {
 
         public static final DeferredHolder<Block, Block> LAVENDER = registerItemBlock("lavender",
                         p -> new Lavender(MobEffects.INSTANT_HEALTH, 1.0F, p));
+
+        public static final DeferredHolder<Block, Block> ALOE_PLANT = zBlock.registerBlock("aloe_plant",
+                        p -> new Aloe(p));
+
+        public static final DeferredHolder<Block, Block> BLUEBERRY_BUSH = zBlock.registerBlock("blueberry_bush",
+                        p -> new BlueBerry(p));
 
         public static DeferredHolder<Block, Block> registerItemBlock(String blockname,
                         Function<BlockBehaviour.Properties, ? extends Block> sup) {

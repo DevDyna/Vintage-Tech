@@ -48,6 +48,14 @@ public class DataBlockTag extends BlockTagsProvider {
                                                 Tags.Blocks.SANDSTONE_BLOCKS,
                                                 BlockTags.SUPPORTS_VEGETATION);
 
+                tag(zTags.Blocks.SUPPORT_ALOE)
+                                .addTags(
+                                                BlockTags.SUPPORTS_DRY_VEGETATION,
+                                                BlockTags.SUPPORTS_VEGETATION);
+
+                tag(zTags.Blocks.SUPPORT_BLUEBERRY)
+                                .addTags(BlockTags.SUPPORTS_VEGETATION);
+
                 tag(zTags.Blocks.TRANSMISSION)
                                 .add(
                                                 zBlocks.AXLE.get(),
@@ -89,13 +97,33 @@ public class DataBlockTag extends BlockTagsProvider {
                                                 zBlocks.SAW.get(),
                                                 zBlocks.STEAM_ENGINE.get());
 
+                tag(BlockTags.SUPPORTS_VEGETATION)
+                                .add(zBlocks.SOIL.get());
 
-                        tag(BlockTags.SUPPORTS_VEGETATION)
+                tag(BlockTags.SUPPORTS_BIG_DRIPLEAF)
+                                .add(zBlocks.SOIL.get());
+
+                tag(Tags.Blocks.FLOWERS)
+                                .add(zBlocks.LAVENDER.get());
+
+                tag(BlockTags.FLOWERS)
+                                .add(zBlocks.LAVENDER.get());
+
+                tag(BlockTags.BEE_ATTRACTIVE)
+                                .add(zBlocks.LAVENDER.get(),zBlocks.BLUEBERRY_BUSH.get());
+
+                tag(BlockTags.MAINTAINS_FARMLAND)
                                 .add(
-                                                zBlocks.SOIL.get());
-                        tag(BlockTags.SUPPORTS_BIG_DRIPLEAF)
+                                                zBlocks.SOYBEANS.get(),
+                                                zBlocks.HEMP.get());
+
+                tag(BlockTags.CROPS)
                                 .add(
-                                                zBlocks.SOIL.get());
+                                                zBlocks.SOYBEANS.get(),
+                                                zBlocks.ALOE_PLANT.get(),
+                                                zBlocks.BLUEBERRY_BUSH.get(),
+                                                zBlocks.HEMP.get(),
+                                                zBlocks.CAVE_WHEAT.get());
 
         }
 

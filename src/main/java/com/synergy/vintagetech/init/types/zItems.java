@@ -33,6 +33,12 @@ public class zItems {
         public static final DeferredHolder<Item, Item> HEMP_SEEDS = zItem.registerItem("hemp_seeds",
                         p -> new BlockItem(zBlocks.HEMP.get(), p.useItemDescriptionPrefix()));
 
+        public static final DeferredHolder<Item, Item> ALOE = zItem.registerItem("aloe",
+                        p -> new BlockItem(zBlocks.ALOE_PLANT.get(), p.useItemDescriptionPrefix()));
+
+        public static final DeferredHolder<Item, Item> BLUEBERRIES = zItem.registerItem("blueberries",
+                        p -> new BlockItem(zBlocks.BLUEBERRY_BUSH.get(), p.useItemDescriptionPrefix()));
+
         // plant products
 
         public static final DeferredHolder<Item, Item> HEMP = zItem.registerSimpleItem("hemp");

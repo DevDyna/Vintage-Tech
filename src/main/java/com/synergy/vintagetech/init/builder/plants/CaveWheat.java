@@ -35,7 +35,7 @@ public class CaveWheat extends BaseShortCropBlock {
 
     @Override
     public int getChanceToGrow(BlockState state, ServerLevel level, BlockPos pos) {
-        return super.getChanceToGrow(state, level, pos) / (level.getRawBrightness(pos, 0) < 10 ? 3 : 1);
+        return super.getChanceToGrow(state, level, pos) / (level.getRawBrightness(pos, 0) < 10 ? 5 : 2);
     }
 
 }

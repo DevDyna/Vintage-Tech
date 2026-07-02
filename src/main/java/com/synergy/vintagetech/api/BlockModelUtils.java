@@ -19,10 +19,12 @@ import net.minecraft.client.data.models.model.TextureSlot;
 import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 public class BlockModelUtils {
+
         public static void cropWithoutSeed(BlockModelGenerators b, Block block, Property<Integer> property,
                         int... stages) {
 
@@ -91,6 +93,21 @@ public class BlockModelUtils {
                                 .accept(BlockModelGenerators.createSimpleBlock(block.get(),
                                                 BlockModelGenerators.plainVariant(
                                                                 x.rl(MODULE_ID, prefix))));
+        }
+
+        public static void createBushBlock(BlockModelGenerators b,Block block,IntegerProperty prop){
+        b.blockStateOutput
+            .accept(
+                MultiVariantGenerator.dispatch(block)
+                    .with(
+                        PropertyDispatch.initial(prop)
+                            .generate(
+                                age -> BlockModelGenerators.plainVariant(
+                                    b.createSuffixedVariant(block, "/" + age, ModelTemplates.CROSS, TextureMapping::cross)
+                                )
+                            )
+                    )
+            );
         }
 
 }

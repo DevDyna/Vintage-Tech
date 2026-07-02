@@ -3,6 +3,7 @@ package com.synergy.vintagetech.datagen.server;
 import java.util.*;
 
 import com.devdyna.cakesticklib.api.utils.LootTableHelper;
+import com.synergy.vintagetech.init.builder.plants.Aloe;
 import com.synergy.vintagetech.init.builder.plants.CaveWheat;
 import com.synergy.vintagetech.init.builder.plants.Hemp;
 import com.synergy.vintagetech.init.builder.plants.SoyBeans;
@@ -31,7 +32,7 @@ public class DataLootBlock extends BlockLootSubProvider {
         @Override
         protected void generate() {
 
-                 LootTableHelper.getValidBlocks(zBlocks.zBlockItem).forEach(this::dropSelf);
+                LootTableHelper.getValidBlocks(zBlocks.zBlockItem).forEach(this::dropSelf);
 
                 add(zBlocks.CAVE_WHEAT.get(), createCropDrops(zBlocks.CAVE_WHEAT.get(),
                                 Items.WHEAT, zItems.CAVE_WHEAT_SEEDS.get(),
@@ -50,6 +51,25 @@ public class DataLootBlock extends BlockLootSubProvider {
                                 LootItemBlockStatePropertyCondition.hasBlockStateProperties(zBlocks.HEMP.get())
                                                 .setProperties(StatePropertiesPredicate.Builder.properties()
                                                                 .hasProperty(Hemp.AGE, Hemp.MAX_AGE))));
+
+                add(zBlocks.ALOE_PLANT.get(), createCropDrops(zBlocks.ALOE_PLANT.get(),
+                                zItems.ALOE.get(), zItems.ALOE.get(),
+                                LootItemBlockStatePropertyCondition.hasBlockStateProperties(zBlocks.ALOE_PLANT.get())
+                                                .setProperties(StatePropertiesPredicate.Builder.properties()
+                                                                .hasProperty(Aloe.AGE, Aloe.MAX_AGE))));
+
+                add(zBlocks.BLUEBERRY_BUSH.get(), createCropDrops(zBlocks.BLUEBERRY_BUSH.get(),
+                                zItems.BLUEBERRIES.get(), zItems.BLUEBERRIES.get(),
+                                LootItemBlockStatePropertyCondition
+                                                .hasBlockStateProperties(zBlocks.BLUEBERRY_BUSH.get())
+                                                .setProperties(StatePropertiesPredicate.Builder.properties()
+                                                                .hasProperty(Hemp.AGE, Hemp.MAX_AGE))
+                                                .or(LootItemBlockStatePropertyCondition
+                                                                .hasBlockStateProperties(zBlocks.BLUEBERRY_BUSH.get())
+                                                                .setProperties(StatePropertiesPredicate.Builder
+                                                                                .properties()
+                                                                                .hasProperty(Hemp.AGE,
+                                                                                                Hemp.MAX_AGE - 1)))));
 
         }
 

@@ -6,6 +6,8 @@ import com.synergy.vintagetech.api.ItemModelUtil;
 import com.devdyna.cakesticklib.api.factories.plants.builder.BaseShortCropBlock;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.synergy.vintagetech.api.BlockModelUtils;
+import com.synergy.vintagetech.init.builder.plants.Aloe;
+import com.synergy.vintagetech.init.builder.plants.BlueBerry;
 import com.synergy.vintagetech.init.builder.plants.Hemp;
 import com.synergy.vintagetech.init.builder.saw.SawBlock;
 import com.synergy.vintagetech.init.types.zBlocks;
@@ -195,6 +197,15 @@ public class DataModel extends ModelProvider {
                 BlockModelUtils.cropWithoutSeed(blockModels, zBlocks.SOYBEANS.get(), BaseShortCropBlock.AGE, 0, 1,
                                 2, 3, 4, 5);
 
+                // BlockModelUtils.cropWithoutSeed(blockModels, zBlocks.ALOE_PLANT.get(), Aloe.AGE, 0, 1, 2);
+                // BlockModelUtils.cropWithoutSeed(blockModels, zBlocks.BLUEBERRY_BUSH.get(), BlueBerry.AGE, 0, 1, 2, 3);
+
+
+BlockModelUtils.createBushBlock(blockModels, zBlocks.ALOE_PLANT.get(), Aloe.AGE);
+BlockModelUtils.createBushBlock(blockModels, zBlocks.BLUEBERRY_BUSH.get(), BlueBerry.AGE);
+
+
+
                 blockModels.blockStateOutput.accept(
                                 MultiVariantGenerator.dispatch(zBlocks.HEMP.get())
                                                 .with(
@@ -218,6 +229,7 @@ public class DataModel extends ModelProvider {
 
                 // ITEM MODELS
 
+                // blockitems
                 itemModels.generateFlatItem(zBlocks.FAN.get().asItem(), ModelTemplates.FLAT_ITEM);
                 itemModels.generateFlatItem(zBlocks.CHEESE.get().asItem(), ModelTemplates.FLAT_ITEM);
                 itemModels.generateFlatItem(zBlocks.LAVENDER.get().asItem(), ModelTemplates.FLAT_ITEM);
