@@ -1,5 +1,7 @@
 package com.synergy.vintagetech.init.builder.fan;
 
+import javax.annotation.Nullable;
+
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import com.synergy.vintagetech.api.blockfactory.transmission.TransmissionRenderer;
@@ -20,7 +22,9 @@ public class FanRenderer extends TransmissionRenderer<FanBE> {
         return zBlocks.RENDER_FAN_BLADE.get();
     }
 
-    public void rotate(Direction dir, boolean inverted, float rotation, PoseStack stack) {
+    public void rotate(@Nullable Direction dir, boolean inverted, float rotation, PoseStack stack) {
+        if(dir == null) return;
+        
         switch (dir) {
             case EAST:
                 if (inverted)
