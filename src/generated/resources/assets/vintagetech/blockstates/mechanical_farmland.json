@@ -1,0 +1,11 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "vintagetech:block/mechanical_farmland"
+    },
+    "axis=z": {
+      "model": "vintagetech:block/mechanical_farmland",
+      "y": 90
+    }
+  }
+}

@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "vintagetech:soil"
+          "name": "vintagetech:mechanical_farmland"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "vintagetech:blocks/soil"
+  "random_sequence": "vintagetech:blocks/mechanical_farmland"
 }
