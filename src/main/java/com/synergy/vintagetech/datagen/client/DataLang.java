@@ -20,6 +20,8 @@ public class DataLang extends LanguageProvider {
 
         @Override
         protected void addTranslations() {
+                // TODO API : lang colors
+                zBlocks.zRender.getEntries().forEach(b -> addBlock(b, "§4DEV ONLY"));
 
                 zBlocks.zBlockItem.getEntries().forEach(b -> addBlock(b, LangUtils.named(b, MODULE_ID)));
                 zItems.zItem.getEntries().forEach(b -> addItem(b, LangUtils.named(b, MODULE_ID)));
