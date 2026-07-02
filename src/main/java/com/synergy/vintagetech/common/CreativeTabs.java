@@ -13,7 +13,7 @@ public class CreativeTabs {
     public static void register(BuildCreativeModeTabContentsEvent event) {
 
         if (event.getTabKey() == zCreativeTab.VINTAGE_TECH_TAB.getKey())
-            CreativeTabUtils.accept(event, zItems.zBlockItem, zItems.zItem);
+            CreativeTabUtils.accept(event, zItems.zBlockItem, zItems.zItem,zItems.zBucketItems);
 
     }
 }
