@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "vintagetech:block/aloe_plant/0"
+    },
+    "age=1": {
+      "model": "vintagetech:block/aloe_plant/1"
+    },
+    "age=2": {
+      "model": "vintagetech:block/aloe_plant/2"
+    }
+  }
+}

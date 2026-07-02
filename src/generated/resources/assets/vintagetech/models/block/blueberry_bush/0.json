@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "vintagetech:block/blueberry_bush/0"
+  }
+}
