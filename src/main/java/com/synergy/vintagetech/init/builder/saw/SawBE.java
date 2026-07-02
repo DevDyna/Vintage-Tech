@@ -119,7 +119,7 @@ public class SawBE extends TickingBE {
         return getBlockPos().relative(getBlockState().getValue(SawBlock.FACING));
     }
 
-    // TODO API : rework api to support method injection on result block
+    // TODO API : rework to unify
     @Deprecated
     public static List<ItemStack> checkTree(Level level, BlockPos pos) {
 
