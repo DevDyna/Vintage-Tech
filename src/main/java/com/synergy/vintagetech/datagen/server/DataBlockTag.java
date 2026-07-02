@@ -93,6 +93,9 @@ public class DataBlockTag extends BlockTagsProvider {
                         tag(BlockTags.SUPPORTS_VEGETATION)
                                 .add(
                                                 zBlocks.SOIL.get());
+                        tag(BlockTags.SUPPORTS_BIG_DRIPLEAF)
+                                .add(
+                                                zBlocks.SOIL.get());
 
         }
 
