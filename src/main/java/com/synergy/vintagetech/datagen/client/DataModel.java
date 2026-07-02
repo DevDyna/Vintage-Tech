@@ -2,6 +2,7 @@ package com.synergy.vintagetech.datagen.client;
 
 import static com.synergy.vintagetech.Main.MODULE_ID;
 
+import com.synergy.vintagetech.api.ItemModelUtil;
 import com.devdyna.cakesticklib.api.factories.plants.builder.BaseShortCropBlock;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.synergy.vintagetech.api.BlockModelUtils;
@@ -38,11 +39,8 @@ public class DataModel extends ModelProvider {
                 // GENERATED
 
                 zItems.zItem.getEntries().forEach(i -> itemModels.generateFlatItem(i.get(), ModelTemplates.FLAT_ITEM));
-                zItems.zBucketItems.getEntries()
-                                .forEach(i -> itemModels.generateFlatItem(i.get(), ModelTemplates.FLAT_ITEM));
-
+                zItems.zBucketItems.getEntries().forEach(b -> ItemModelUtil.createBucketItem(itemModels, b.get()));
                 zBlocks.zBlockFluids.getEntries().forEach(b -> BlockModelUtils.fluid(blockModels, b.get()));
-
                 zBlocks.zRender.getEntries().forEach(
                                 b -> BlockModelUtils.simplePlain(blockModels, b, "block/render/", "render_", ""));
 
@@ -68,7 +66,10 @@ public class DataModel extends ModelProvider {
                                                 BlockModelGenerators.variants(
 
                                                                 BlockModelGenerators.plainModel(ModelTemplates.CROSS
-                                                                                .create(ModelLocationUtils.getModelLocation(zBlocks.LAVENDER.get(),"/0"),
+                                                                                .create(ModelLocationUtils
+                                                                                                .getModelLocation(
+                                                                                                                zBlocks.LAVENDER.get(),
+                                                                                                                "/0"),
                                                                                                 TextureMapping.singleSlot(
                                                                                                                 TextureSlot.CROSS,
                                                                                                                 new Material(x.rl(
@@ -76,7 +77,10 @@ public class DataModel extends ModelProvider {
                                                                                                                                 "block/lavender/0"))),
                                                                                                 blockModels.modelOutput)),
                                                                 BlockModelGenerators.plainModel(ModelTemplates.CROSS
-                                                                                .create(ModelLocationUtils.getModelLocation(zBlocks.LAVENDER.get(),"/1"),
+                                                                                .create(ModelLocationUtils
+                                                                                                .getModelLocation(
+                                                                                                                zBlocks.LAVENDER.get(),
+                                                                                                                "/1"),
                                                                                                 TextureMapping.singleSlot(
                                                                                                                 TextureSlot.CROSS,
                                                                                                                 new Material(x.rl(
@@ -84,7 +88,10 @@ public class DataModel extends ModelProvider {
                                                                                                                                 "block/lavender/1"))),
                                                                                                 blockModels.modelOutput)),
                                                                 BlockModelGenerators.plainModel(ModelTemplates.CROSS
-                                                                                .create(ModelLocationUtils.getModelLocation(zBlocks.LAVENDER.get(),"/2"),
+                                                                                .create(ModelLocationUtils
+                                                                                                .getModelLocation(
+                                                                                                                zBlocks.LAVENDER.get(),
+                                                                                                                "/2"),
                                                                                                 TextureMapping.singleSlot(
                                                                                                                 TextureSlot.CROSS,
                                                                                                                 new Material(x.rl(
