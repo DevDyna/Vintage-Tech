@@ -89,6 +89,11 @@ public class DataBlockTag extends BlockTagsProvider {
                                                 zBlocks.SAW.get(),
                                                 zBlocks.STEAM_ENGINE.get());
 
+
+                        tag(BlockTags.SUPPORTS_VEGETATION)
+                                .add(
+                                                zBlocks.SOIL.get());
+
         }
 
 }
