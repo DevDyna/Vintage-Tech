@@ -9,6 +9,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.InsideBlockEffectApplier;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
@@ -83,6 +84,8 @@ public class BlueBerry extends BaseShortCropBlock implements CropEntityInteracti
         return true;
     }
 
+    // TODO API : hurt can affect with ItemEntities
+
     @Override
     public boolean hurtWhenStep() {
         return true;
@@ -95,13 +98,17 @@ public class BlueBerry extends BaseShortCropBlock implements CropEntityInteracti
 
     @Override
     public void stepOn(Level level, BlockPos pos, BlockState onState, Entity entity) {
-        getStepEntityOn((ServerLevel) level, pos, onState, entity);
+        if (level instanceof ServerLevel server)
+            if (!(entity instanceof ItemEntity))
+                getStepEntityOn(server, pos, onState, entity);
     }
 
     @Override
     protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity,
             InsideBlockEffectApplier effectApplier, boolean isPrecise) {
-        getEntityInside(state, (ServerLevel) level, pos, entity);
+        if (level instanceof ServerLevel server)
+            if (!(entity instanceof ItemEntity))
+                getEntityInside(state, server, pos, entity);
     }
 
 }
