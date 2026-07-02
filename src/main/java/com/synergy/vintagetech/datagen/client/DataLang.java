@@ -23,7 +23,7 @@ public class DataLang extends LanguageProvider implements LangAddition {
         @Override
         protected void addTranslations() {
 
-                zBlocks.zRender.getEntries().forEach(b -> addBlock(b, LangUtils.TipColors.RED + "DEV ONLY"));
+                zBlocks.zRender.getEntries().forEach(b -> addBlock(b, LangUtils.TipColors.RED + "DEV BLOCK ONLY, DON'T USE!"));
                 zFluids.zFluidTypes.getEntries().forEach(f -> addFluid(f.get(), named(f, MODULE_ID)));
                 zItems.zBucketItems.getEntries().forEach(i -> addItem(i, named(i, MODULE_ID)));
                 zBlocks.zBlockItem.getEntries().forEach(b -> addBlock(b, LangUtils.named(b, MODULE_ID)));
