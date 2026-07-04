@@ -12,11 +12,11 @@ public class AirFlowParticle extends SimpleAnimatedParticle {
 
     public AirFlowParticle(ClientLevel l,
             double x, double y, double z,
-            SpriteSet sprites, boolean inverted, Vec3 vec3, RandomSource r) {
+            SpriteSet sprites, Vec3 vec3, RandomSource r) {
 
         super(l, x, y, z, sprites, 0.0F);
 
-        this.dir = vec3.normalize().scale(inverted ? -1 : 1);
+        this.dir = vec3.normalize();
 
         this.friction = 0.92F;
         this.lifetime = 25 + r.nextInt(15);

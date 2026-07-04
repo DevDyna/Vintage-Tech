@@ -25,7 +25,7 @@ public class AirFlowParticleProvider implements ParticleProvider<SimpleParticleT
         return new AirFlowParticle(
                 level,
                 x, y, z,
-                sprites, false,
+                sprites,
                 new Vec3(xd, yd, zd), r);
     }
 
