@@ -122,6 +122,27 @@ public class DataModel extends ModelProvider {
                                                 .select(Direction.NORTH, BlockModelGenerators.Y_ROT_180)
                                                 .select(Direction.EAST, BlockModelGenerators.Y_ROT_270)));
 
+                // TODO MODELS : create models for dynamo and electric motor
+                blockModels.blockStateOutput.accept(BlockModelGenerators
+                                .createSimpleBlock(zBlocks.DYNAMO.get(),
+                                                BlockModelGenerators
+                                                                .plainVariant(x.rl(MODULE_ID, "block/steam_engine")))
+                                .with(PropertyDispatch.modify(BlockStateProperties.HORIZONTAL_FACING)
+                                                .select(Direction.SOUTH, BlockModelGenerators.NOP)
+                                                .select(Direction.WEST, BlockModelGenerators.Y_ROT_90)
+                                                .select(Direction.NORTH, BlockModelGenerators.Y_ROT_180)
+                                                .select(Direction.EAST, BlockModelGenerators.Y_ROT_270)));
+
+                blockModels.blockStateOutput.accept(BlockModelGenerators
+                                .createSimpleBlock(zBlocks.ELECTRIC_MOTOR.get(),
+                                                BlockModelGenerators
+                                                                .plainVariant(x.rl(MODULE_ID, "block/steam_engine")))
+                                .with(PropertyDispatch.modify(BlockStateProperties.HORIZONTAL_FACING)
+                                                .select(Direction.SOUTH, BlockModelGenerators.NOP)
+                                                .select(Direction.WEST, BlockModelGenerators.Y_ROT_90)
+                                                .select(Direction.NORTH, BlockModelGenerators.Y_ROT_180)
+                                                .select(Direction.EAST, BlockModelGenerators.Y_ROT_270)));
+
                 MultiVariant sawOff = BlockModelGenerators.plainVariant(
                                 x.rl(MODULE_ID, "block/saw/off"));
 
@@ -251,6 +272,13 @@ public class DataModel extends ModelProvider {
 
                 itemModels.itemModelOutput.accept(zBlocks.MECHANICAL_FARMLAND.get().asItem(),
                                 ItemModelUtils.plainModel(x.rl(MODULE_ID, "item/mechanical_farmland")));
+
+                // TODO MODELS : create models for dynamo and electric motor
+                itemModels.itemModelOutput.accept(zBlocks.ELECTRIC_MOTOR.get().asItem(),
+                                ItemModelUtils.plainModel(x.rl(MODULE_ID, "block/steam_engine")));
+
+                itemModels.itemModelOutput.accept(zBlocks.DYNAMO.get().asItem(),
+                                ItemModelUtils.plainModel(x.rl(MODULE_ID, "block/steam_engine")));
 
         }
 

@@ -8,6 +8,8 @@ import com.synergy.vintagetech.api.blockfactory.transmission.TransmissionBE;
 import com.synergy.vintagetech.init.builder.basket.BasketBE;
 import com.synergy.vintagetech.init.builder.crushing_tub.CrushingTubBE;
 import com.synergy.vintagetech.init.builder.drying_rack.DryingRackBE;
+import com.synergy.vintagetech.init.builder.dynamo.DynamoBE;
+import com.synergy.vintagetech.init.builder.electric_motor.ElectricMotorBE;
 import com.synergy.vintagetech.init.builder.evaporation_basin.EvaporationBasinBE;
 import com.synergy.vintagetech.init.builder.fan.FanBE;
 import com.synergy.vintagetech.init.builder.mechanical_farmland.MechanicalFarmlandBE;
@@ -66,5 +68,13 @@ public class zBlockEntities {
         public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<MechanicalFarmlandBE>> MECHANICAL_FARMLAND = RegistryUtils
                         .createBlockEntity("mechanical_farmland", zTiles, MechanicalFarmlandBE::new,
                                         zBlocks.MECHANICAL_FARMLAND);
+    
+                                        public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ElectricMotorBE>> ELECTRIC_MOTOR = RegistryUtils
+                        .createBlockEntity("electric_motor", zTiles, ElectricMotorBE::new,
+                                        zBlocks.ELECTRIC_MOTOR);
+
+                                        public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<DynamoBE>> DYNAMO = RegistryUtils
+                        .createBlockEntity("dynamo", zTiles, DynamoBE::new,
+                                        zBlocks.DYNAMO);
 
 }

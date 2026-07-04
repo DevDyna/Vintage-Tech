@@ -23,5 +23,9 @@ public class Capability {
                 zBlocks.EVAPORATION_BASIN.get(),
                 zBlocks.MECHANICAL_FARMLAND.get());
 
+        CapabilityUtils.registerEnergyBlock(event,
+                zBlocks.DYNAMO.get(),
+                zBlocks.ELECTRIC_MOTOR.get());
+
     }
 }

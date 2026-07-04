@@ -9,6 +9,8 @@ import com.synergy.vintagetech.init.builder.basket.BasketBlock;
 import com.synergy.vintagetech.init.builder.creative_engine.CreativeEngineBlock;
 import com.synergy.vintagetech.init.builder.crushing_tub.CrushingTubBlock;
 import com.synergy.vintagetech.init.builder.drying_rack.DryingRackBlock;
+import com.synergy.vintagetech.init.builder.dynamo.DynamoBlock;
+import com.synergy.vintagetech.init.builder.electric_motor.ElectricMotorBlock;
 import com.synergy.vintagetech.init.builder.evaporation_basin.EvaporationBasinBlock;
 import com.synergy.vintagetech.init.builder.fan.FanBlock;
 import com.synergy.vintagetech.init.builder.mechanical_farmland.MechanicalFarmlandBlock;
@@ -52,10 +54,14 @@ public class zBlocks {
         public static final DeferredHolder<Block, Block> CREATIVE_ENGINE = registerItemBlock("creative_engine",
                         p -> new CreativeEngineBlock(p));
 
+        
+
         // transmissions
         public static final DeferredHolder<Block, Block> AXLE = registerItemBlock("axle", p -> new AxleBlock(p));
+
         public static final DeferredHolder<Block, Block> JUNCTION = registerItemBlock("junction",
                         p -> new JunctionBlock(p));
+
         public static final DeferredHolder<Block, Block> GEARSHIFT = registerItemBlock("gearshift",
                         p -> new GearShiftBlock(p));
 
@@ -64,6 +70,14 @@ public class zBlocks {
         public static final DeferredHolder<Block, Block> FAN = registerItemBlock("fan", p -> new FanBlock(p));
         public static final DeferredHolder<Block, Block> MILLSTONE = registerItemBlock("millstone",
                         p -> new MillstoneBlock(p));
+
+        // converters
+
+        public static final DeferredHolder<Block, Block> ELECTRIC_MOTOR = registerItemBlock("electric_motor",
+                        p -> new ElectricMotorBlock(p));
+
+        public static final DeferredHolder<Block, Block> DYNAMO = registerItemBlock("dynamo",
+                        p -> new DynamoBlock(p));
 
         // utility
         public static final DeferredHolder<Block, Block> BASKET = registerItemBlock("basket", p -> new BasketBlock(p));
@@ -75,23 +89,24 @@ public class zBlocks {
         public static final DeferredHolder<Block, Block> EVAPORATION_BASIN = registerItemBlock("evaporation_basin",
                         p -> new EvaporationBasinBlock(p));
 
+        public static final DeferredHolder<Block, Block> MECHANICAL_FARMLAND = registerItemBlock("mechanical_farmland",
+                        p -> new MechanicalFarmlandBlock(p));
+
         // TODO IMP : BLOCKS
-        public static final DeferredHolder<Block, Block> MECHANICAL_FARMLAND = registerItemBlock("mechanical_farmland", p -> new MechanicalFarmlandBlock(p));
-       
         public static final DeferredHolder<Block, Block> CHEESE = registerItemBlock("cheese",
-         p -> new Block(p));
-       
-         //             //fluid + item(?) -> fluid
+                        p -> new Block(p));
+
+        // //fluid + item(?) -> fluid
         public static final DeferredHolder<Block, Block> CENTRIFUGE = registerItemBlock("centrifuge",
                         p -> new Block(p));
-                        //heat + fluid + item -> fluid + item
+        // heat + fluid + item -> fluid + item
         public static final DeferredHolder<Block, Block> CRUCIBLE = registerItemBlock("crucible",
                         p -> new Block(p));
-                        
-                        //fluid + item -> item
+
+        // fluid + item -> item
         public static final DeferredHolder<Block, Block> MIXING_BARREL = registerItemBlock("mixing_barrel",
                         p -> new Block(p));
-                        //item -> item
+        // item -> item
         public static final DeferredHolder<Block, Block> HYDRAULIC_PRESS = registerItemBlock("hydraulic_press",
                         p -> new Block(p));
         public static final DeferredHolder<Block, Block> TURNTABLE = registerItemBlock("turntable",
