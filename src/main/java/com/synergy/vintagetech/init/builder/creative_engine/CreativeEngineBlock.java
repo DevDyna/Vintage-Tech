@@ -48,8 +48,6 @@ public class CreativeEngineBlock extends BaseEngineBlock {
         return map;
     }
 
-    //TODO BUG : can power not connected blocks
-
     @Override
     public List<Direction> getGenDirections(Level level, BlockPos blockPos, BlockState blockState) {
         return Arrays.asList(Direction.values());
