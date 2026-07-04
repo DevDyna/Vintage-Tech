@@ -34,7 +34,8 @@ public class FanBE extends TransmissionBE {
         Vec3 baseDir = new Vec3(
                 facing.getStepX(),
                 facing.getStepY(),
-                facing.getStepZ()).scale(dirMul);
+                facing.getStepZ())
+                .scale(dirMul);
 
         for (int i = 0; i <= 5; i++) {
 
