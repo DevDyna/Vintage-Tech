@@ -30,6 +30,10 @@ public class BaseEngineBE extends TransmissionBE implements KineticGenerator {
         return (BaseEngineBlock) getBlockState().getBlock();
     }
 
+    /**
+     * If you want to add activation conditions use
+     * {@code getWhenActive(Level, BlockPos, BlockState)} intend of this!
+     */
     public void tickServer() {
 
         update();
