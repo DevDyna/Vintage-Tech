@@ -81,12 +81,17 @@ public class zBlocks {
         public static final DeferredHolder<Block, Block> CHEESE = registerItemBlock("cheese",
          p -> new Block(p));
        
+         //             //fluid + item(?) -> fluid
         public static final DeferredHolder<Block, Block> CENTRIFUGE = registerItemBlock("centrifuge",
                         p -> new Block(p));
+                        //heat + fluid + item -> fluid + item
         public static final DeferredHolder<Block, Block> CRUCIBLE = registerItemBlock("crucible",
                         p -> new Block(p));
+                        
+                        //fluid + item -> item
         public static final DeferredHolder<Block, Block> MIXING_BARREL = registerItemBlock("mixing_barrel",
                         p -> new Block(p));
+                        //item -> item
         public static final DeferredHolder<Block, Block> HYDRAULIC_PRESS = registerItemBlock("hydraulic_press",
                         p -> new Block(p));
         public static final DeferredHolder<Block, Block> TURNTABLE = registerItemBlock("turntable",
