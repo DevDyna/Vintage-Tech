@@ -39,8 +39,11 @@ public class DynamoBE extends TransmissionBE implements EnergyProvider {
                 tx.commit();
             }
 
-            providePowerAdjacent(level, getBlockPos(), cache, getMaxTransferEnergy());
         }
+
+        if(canExtract())
+                providePowerAdjacent(level, getBlockPos(), cache, getFERate());
+
 
        
 
