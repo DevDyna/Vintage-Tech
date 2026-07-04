@@ -82,6 +82,7 @@ public class MechanicalFarmlandBE extends TransmissionBE implements SimpleFluidS
                             state.getValue(MechanicalFarmlandBlock.MOISTURE) + 1),
                     2);
 
+                    //TODO BUG : cause issues with hemp on harvesting
         if (state.getValue(MechanicalFarmlandBlock.MOISTURE) >= 3) {
             var items = VanillaPlants.checkReplant(level, above, null, null);
             if (items != null)
