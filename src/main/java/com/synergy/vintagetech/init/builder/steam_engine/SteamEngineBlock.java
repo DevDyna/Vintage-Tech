@@ -61,43 +61,6 @@ public class SteamEngineBlock extends BaseEngineBlock
         return new SteamEngineBE(p, s);
     }
 
-   
-
-    @Override
-    public boolean canInputFrom(Direction dir, BlockState state) {
-        return false;
-    }
-
-    @Override
-    public List<Direction> getOutputDirections(BlockState state) {
-        return List.of();
-    }
-
-    // protected InteractionResult useItemOn(ItemStack stack, BlockState state,
-    // Level level, BlockPos pos, Player player,
-    // InteractionHand hand, BlockHitResult hitResult) {
-    // return bucketAction(stack, state, level, pos, player, hand, hitResult);
-    // }
-
-    // public InteractionResult executeWhenEmpty(ItemStack stack, BlockState state,
-    // Level level, BlockPos pos,
-    // Player player, InteractionHand hand, BlockHitResult hitResult) {
-    // return sendFluidTooltip(stack, state, level, pos, player, hand, hitResult);
-    // }
-
-    // public FluidStacksResourceHandler getFluidTank(BlockEntity be, BlockState
-    // state, Level level, BlockPos pos,
-    // Player player, InteractionHand hand, BlockHitResult hitResult) {
-    // return be instanceof EngineBE tank ? tank.getFluidStorage() : null;
-    // }
-
-    // @Override
-    // public void destroy(LevelAccessor level, BlockPos pos, BlockState state) {
-    //     if (level.getBlockEntity(pos) instanceof SteamEngineBE engine)
-    //         engine.setRemoved();
-    //     super.destroy(level, pos, state);
-    // }
-
     @Override
     public Map<Direction, Boolean> getAxis(BlockState state) {
         return Map.of(state.getValue(HORIZONTAL_FACING), false);
@@ -105,12 +68,13 @@ public class SteamEngineBlock extends BaseEngineBlock
 
     @Override
     public List<Direction> getGenDirections(Level level, BlockPos pos, BlockState state) {
+
         return List.of(state.getValue(SteamEngineBlock.HORIZONTAL_FACING));
     }
 
     @Override
     public boolean getWhenActive(Level level, BlockPos pos, BlockState state) {
-        return  CampfireBlock.isLitCampfire(
+        return CampfireBlock.isLitCampfire(
                 level.getBlockState(pos.below()));
     }
 
