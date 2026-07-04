@@ -33,8 +33,8 @@ public class zBlockEntities {
         public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<SteamEngineBE>> STEAM_ENGINE = RegistryUtils
                         .createBlockEntity("steam_engine", zTiles, SteamEngineBE::new, zBlocks.STEAM_ENGINE);
 
-        public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BaseEngineBE>> ENGINE = RegistryUtils
-                        .createBlockEntity("engine", zTiles, BaseEngineBE::new, zBlocks.CREATIVE_ENGINE);
+        public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BaseEngineBE>> CREATIVE_ENGINE = RegistryUtils
+                        .createBlockEntity("creative_engine", zTiles, BaseEngineBE::new, zBlocks.CREATIVE_ENGINE);
 
         public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<SawBE>> SAW = RegistryUtils
                         .createBlockEntity("saw", zTiles, SawBE::new, zBlocks.SAW);

@@ -48,11 +48,19 @@ public class Client {
                 TransmissionRenderer::new);
 
         event.registerBlockEntityRenderer(
-                zBlockEntities.ENGINE.get(),
+                zBlockEntities.CREATIVE_ENGINE.get(),
                 TransmissionRenderer::new);
 
         event.registerBlockEntityRenderer(
                 zBlockEntities.STEAM_ENGINE.get(),
+                TransmissionRenderer::new);
+
+        event.registerBlockEntityRenderer(
+                zBlockEntities.ELECTRIC_MOTOR.get(),
+                TransmissionRenderer::new);
+
+        event.registerBlockEntityRenderer(
+                zBlockEntities.DYNAMO.get(),
                 TransmissionRenderer::new);
 
         event.registerBlockEntityRenderer(

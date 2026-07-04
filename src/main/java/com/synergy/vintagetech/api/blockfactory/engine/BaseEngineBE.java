@@ -21,7 +21,7 @@ public class BaseEngineBE extends TransmissionBE implements KineticGenerator {
     }
 
     public BaseEngineBE(BlockPos pos, BlockState state) {
-        super(zBlockEntities.ENGINE.get(), pos, state);
+        super(zBlockEntities.CREATIVE_ENGINE.get(), pos, state);
     }
 
     private Set<BlockPos> cache = new HashSet<>();
