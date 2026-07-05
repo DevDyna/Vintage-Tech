@@ -3,6 +3,7 @@ package com.synergy.vintagetech.api.blockfactory.engine;
 import java.util.*;
 
 import com.synergy.vintagetech.api.AxleHandler;
+import com.synergy.vintagetech.api.blockfactory.BaseKineticBlock;
 import com.synergy.vintagetech.api.blockfactory.KineticGenerator;
 import com.synergy.vintagetech.api.blockfactory.transmission.TransmissionBE;
 import com.synergy.vintagetech.init.builder.GearShiftBlock;
@@ -36,16 +37,23 @@ public class BaseEngineBE extends TransmissionBE implements KineticGenerator {
      */
     public void tickServer() {
 
+        var pos = getBlockPos();
+        var state = getBlockState();
+
         update();
 
-        if (!getBlockState().getValue(BaseEngineBlock.ENABLED))
+        if (!state.getValue(BaseEngineBlock.ENABLED))
             return;
 
         Set<BlockPos> visited = new HashSet<>();
         Queue<NetworkElement> queue = new ArrayDeque<>();
 
-        for (Direction dir : getBlock().getGenDirections(level, getBlockPos(), getBlockState()))
-            queue.add(NetworkElement.create(getBlockPos().relative(dir), getBlock().getDefaultRotationState()));
+        for (Direction dir : getBlock().getGenDirections(level, pos, state)) 
+            if (level.getBlockState(pos.relative(dir)).getBlock() instanceof BaseKineticBlock axle)
+                if (axle.canInputFrom(dir, level.getBlockState(pos.relative(dir))))
+                    queue.add(NetworkElement.create(pos.relative(dir), getBlock().getDefaultRotationState()));
+
+        
 
         while (!queue.isEmpty()) {
 
@@ -56,17 +64,17 @@ public class BaseEngineBE extends TransmissionBE implements KineticGenerator {
             if (!visited.add(currentPos))
                 continue;
 
-            BlockState state = level.getBlockState(currentPos);
+            var offsetstate = level.getBlockState(currentPos);
 
-            if (!(state.getBlock() instanceof AxleHandler axle))
+            if (!(offsetstate.getBlock() instanceof AxleHandler axle))
                 continue;
 
-            axle.setActive(level, currentPos, state, inverted);
+            axle.setActive(level, currentPos, offsetstate, inverted);
 
-            for (Direction out : axle.getOutputDirections(state)) {
+            for (Direction out : axle.getOutputDirections(offsetstate)) {
 
-                BlockPos nextPos = currentPos.relative(out);
-                BlockState nextState = level.getBlockState(nextPos);
+                var nextPos = currentPos.relative(out);
+                var nextState = level.getBlockState(nextPos);
 
                 if (!(nextState.getBlock() instanceof AxleHandler nextAxle))
                     continue;
@@ -74,7 +82,7 @@ public class BaseEngineBE extends TransmissionBE implements KineticGenerator {
                 if (!nextAxle.canInputFrom(out.getOpposite(), nextState))
                     continue;
 
-                boolean newInverted = inverted;
+                var newInverted = inverted;
 
                 if (nextState.getBlock() instanceof GearShiftBlock shift && shift.isActive(level, nextPos))
                     newInverted = !newInverted;
@@ -91,7 +99,7 @@ public class BaseEngineBE extends TransmissionBE implements KineticGenerator {
 
         for (BlockPos oldPos : cache)
             if (!visited.contains(oldPos)) {
-                BlockState oldState = level.getBlockState(oldPos);
+                var oldState = level.getBlockState(oldPos);
 
                 if (oldState.getBlock() instanceof AxleHandler axle)
                     axle.setDeactive(level, oldPos, oldState, false);
@@ -108,9 +116,9 @@ public class BaseEngineBE extends TransmissionBE implements KineticGenerator {
     }
 
     public void update() {
-        boolean state = getBlockState().getValue(BaseEngineBlock.ENABLED);
+        var state = getBlockState().getValue(BaseEngineBlock.ENABLED);
 
-        boolean active = getBlock().getWhenActive(level, getBlockPos(), getBlockState());
+        var active = getBlock().getWhenActive(level, getBlockPos(), getBlockState());
 
         if (state != active) {
             level.setBlockAndUpdate(
@@ -125,7 +133,7 @@ public class BaseEngineBE extends TransmissionBE implements KineticGenerator {
 
     protected void updateOnBreakNetwork() {
         for (BlockPos pos : cache) {
-            BlockState state = level.getBlockState(pos);
+            var state = level.getBlockState(pos);
 
             if (state.getBlock() instanceof AxleHandler axle &&
                     state.getValueOrElse(AxleHandler.ENABLED, false)) {
