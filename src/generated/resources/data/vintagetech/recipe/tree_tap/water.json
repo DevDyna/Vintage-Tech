@@ -1,0 +1,9 @@
+{
+  "type": "vintagetech:tree_tap",
+  "fluid": {
+    "amount": 125,
+    "id": "minecraft:water"
+  },
+  "leaves": "minecraft:oak_leaves",
+  "logs": "minecraft:oak_log"
+}

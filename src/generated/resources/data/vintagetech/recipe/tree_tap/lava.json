@@ -1,0 +1,9 @@
+{
+  "type": "vintagetech:tree_tap",
+  "fluid": {
+    "amount": 25,
+    "id": "minecraft:lava"
+  },
+  "leaves": "#minecraft:wart_blocks",
+  "logs": "#c:natural_logs/nether"
+}
