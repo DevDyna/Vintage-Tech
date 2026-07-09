@@ -3,6 +3,7 @@ package com.synergy.vintagetech.init.types;
 import static com.synergy.vintagetech.Main.MODULE_ID;
 
 import com.synergy.vintagetech.api.RecipeRegister;
+import com.synergy.vintagetech.init.builder.centrifuge.recipe.CentrifugeRecipe;
 import com.synergy.vintagetech.init.builder.crushing_tub.recipe.CrushingTubRecipe;
 import com.synergy.vintagetech.init.builder.drying_rack.recipe.DryingRackRecipe;
 import com.synergy.vintagetech.init.builder.evaporation_basin.recipe.EvaporationBasinRecipe;
@@ -38,5 +39,8 @@ public class zRecipeTypes {
 
     public static final RecipeRegister<MillstoneRecipe> MILLSTONE = RecipeRegister.of("millstone",
             () -> MillstoneRecipe.serializer());
+
+    public static final RecipeRegister<CentrifugeRecipe> CENTRIFUGE = RecipeRegister.of("centrifuge",
+            () -> CentrifugeRecipe.serializer());
 
 }

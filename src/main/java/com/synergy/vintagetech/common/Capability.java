@@ -16,12 +16,14 @@ public class Capability {
                 zBlocks.CRUSHING_TUB.get(),
                 zBlocks.DRYING_RACK.get(),
                 zBlocks.EVAPORATION_BASIN.get(),
-                zBlocks.MILLSTONE.get());
+                zBlocks.MILLSTONE.get(),
+                zBlocks.CENTRIFUGE.get());
 
         CapabilityUtils.registerFluidBlocks(event,
                 zBlocks.CRUSHING_TUB.get(),
                 zBlocks.EVAPORATION_BASIN.get(),
-                zBlocks.MECHANICAL_FARMLAND.get());
+                zBlocks.MECHANICAL_FARMLAND.get(),
+                zBlocks.CENTRIFUGE.get());
 
         CapabilityUtils.registerEnergyBlock(event,
                 zBlocks.DYNAMO.get(),

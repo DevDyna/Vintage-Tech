@@ -6,6 +6,7 @@ import java.util.function.Function;
 
 import com.synergy.vintagetech.init.builder.GearShiftBlock;
 import com.synergy.vintagetech.init.builder.basket.BasketBlock;
+import com.synergy.vintagetech.init.builder.centrifuge.CentrifugeBlock;
 import com.synergy.vintagetech.init.builder.creative_engine.CreativeEngineBlock;
 import com.synergy.vintagetech.init.builder.crushing_tub.CrushingTubBlock;
 import com.synergy.vintagetech.init.builder.drying_rack.DryingRackBlock;
@@ -71,6 +72,9 @@ public class zBlocks {
         public static final DeferredHolder<Block, Block> MILLSTONE = registerItemBlock("millstone",
                         p -> new MillstoneBlock(p));
 
+        public static final DeferredHolder<Block, Block> CENTRIFUGE = registerItemBlock("centrifuge",
+                        p -> new CentrifugeBlock(p));
+
         // converters
 
         public static final DeferredHolder<Block, Block> ELECTRIC_MOTOR = registerItemBlock("electric_motor",
@@ -96,9 +100,7 @@ public class zBlocks {
         public static final DeferredHolder<Block, Block> CHEESE = registerItemBlock("cheese",
                         p -> new Block(p));
 
-        // //fluid + item(?) -> fluid
-        public static final DeferredHolder<Block, Block> CENTRIFUGE = registerItemBlock("centrifuge",
-                        p -> new Block(p));
+        
         // heat + fluid + item -> fluid + item
         public static final DeferredHolder<Block, Block> CRUCIBLE = registerItemBlock("crucible",
                         p -> new Block(p));
@@ -116,7 +118,7 @@ public class zBlocks {
         public static final DeferredHolder<Block, Block> RENDER_HALF_AXLE = renderBlock("render_half_axle");
         public static final DeferredHolder<Block, Block> RENDER_FAN_BLADE = renderBlock("render_fan_blade");
         public static final DeferredHolder<Block, Block> RENDER_MILLSTONE = renderBlock("render_millstone");
-        public static final DeferredHolder<Block, Block> RENDER_CENTRIFUGE = renderBlock("render_centrifuge");
+        public static final DeferredHolder<Block, Block> RENDER_CENTRIFUGE = renderBlock("render_centrifuge_blades");
         public static final DeferredHolder<Block, Block> RENDER_PRESS_HEAD = renderBlock("render_press_head");
 
         // crops
