@@ -1,0 +1,16 @@
+{
+  "type": "vintagetech:centrifuge",
+  "catalyst": {
+    "count": 1,
+    "ingredient": "minecraft:sugar"
+  },
+  "input_fluid": {
+    "amount": 125,
+    "ingredient": "minecraft:water"
+  },
+  "output_fluid": {
+    "amount": 125,
+    "id": "vintagetech:salt_solution_source"
+  },
+  "ticks": 40
+}
