@@ -2,7 +2,6 @@ package com.synergy.vintagetech.init.builder.crushing_tub;
 
 import javax.annotation.Nullable;
 
-import com.devdyna.cakesticklib.api.aspect.logic.BucketInteraction;
 import com.devdyna.cakesticklib.api.aspect.logic.*;
 import com.devdyna.cakesticklib.api.aspect.templates.TickingBlock;
 import com.synergy.vintagetech.init.types.zTags;
@@ -26,7 +25,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.transfer.fluid.FluidStacksResourceHandler;
-
 
 public class CrushingTubBlock extends TickingBlock
         implements BucketInteraction, FluidClearableTank, FluidTooltipWhenEmpty {
@@ -101,9 +99,14 @@ public class CrushingTubBlock extends TickingBlock
 
     @Override
     public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, double fallDistance) {
+
+        if (level.getBlockEntity(pos) instanceof CrushingTubBE be)
+            be.whenItemFallOnIt(level,pos, entity);
+
         if (level.getBlockEntity(pos) instanceof CrushingTubBE be &&
                 entity.is(zTags.Entities.CRUSHING_TUB_ALLOW_CRUSHING))
             be.craft(false);
+
         super.fallOn(level, state, pos, entity, fallDistance);
     }
 

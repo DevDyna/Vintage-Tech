@@ -1,6 +1,8 @@
 package com.synergy.vintagetech.init.builder.millstone;
 
 import java.util.Optional;
+
+import com.devdyna.cakesticklib.api.aspect.logic.DropCollector;
 import com.devdyna.cakesticklib.api.aspect.logic.ItemStorageBlock;
 import com.devdyna.cakesticklib.api.aspect.logic.NoGuiStorage;
 import com.devdyna.cakesticklib.api.primitive.Ticker;
@@ -18,7 +20,7 @@ import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 
-public class MillstoneBE extends TransmissionBE implements ItemStorageBlock, NoGuiStorage {
+public class MillstoneBE extends TransmissionBE implements ItemStorageBlock, NoGuiStorage, DropCollector {
 
     public static final int INPUT = 0;
     public static final int OUTPUT = 1;
@@ -103,10 +105,4 @@ public class MillstoneBE extends TransmissionBE implements ItemStorageBlock, NoG
         return 2;
     }
 
-    // TODO API : move to api
-    public boolean isFull() {
-        return !getItemStorage().getResource(0).isEmpty()
-                && getItemStorage().getCapacityAsInt(0, getItemStorage().getResource(0)) <= getItemStorage()
-                        .getAmountAsInt(0);
-    }
 }

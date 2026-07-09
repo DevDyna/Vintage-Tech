@@ -4,15 +4,12 @@ import java.util.Map;
 
 import org.jspecify.annotations.Nullable;
 
-import com.devdyna.cakesticklib.api.utils.x;
 import com.synergy.vintagetech.api.blockfactory.MonoDirectionalAxleBlock;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -29,8 +26,6 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.neoforged.neoforge.transfer.item.ItemResource;
-import net.neoforged.neoforge.transfer.transaction.Transaction;
 
 public class MillstoneBlock extends MonoDirectionalAxleBlock {
 
@@ -47,7 +42,7 @@ public class MillstoneBlock extends MonoDirectionalAxleBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> b) {
-        b.add(ENABLED,INVERTED);
+        b.add(ENABLED, INVERTED);
     }
 
     @Override
@@ -96,32 +91,8 @@ public class MillstoneBlock extends MonoDirectionalAxleBlock {
 
     @Override
     public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, double fallDistance) {
-
-        if (entity instanceof ItemEntity item
-                && level.getBlockEntity(pos) instanceof MillstoneBE millstone
-                && !millstone.isFull()) {
-
-            try (var tx = Transaction.openRoot()) {
-
-                var copy = item.getItem().copy();
-
-                var insered = millstone.getItemStorage().insert(MillstoneBE.INPUT, ItemResource.of(copy), copy.count(),
-                        tx);
-
-                if (insered > 0) {
-                    if (insered >= item.getItem().count()) {
-                        item.setItem(ItemStack.EMPTY);
-                        item.discard();
-                    } else
-                        item.setItem(x.item(item.getItem().getItem(), item.getItem().count() - insered));
-
-                    tx.commit();
-                }
-
-                tx.close();
-            }
-
-        }
+        if (level.getBlockEntity(pos) instanceof MillstoneBE be)
+            be.whenItemFallOnIt(level, pos, entity);
 
         super.fallOn(level, state, pos, entity, fallDistance);
     }

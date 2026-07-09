@@ -1,8 +1,10 @@
 package com.synergy.vintagetech.init.builder.crushing_tub;
 
 import java.util.Optional;
+
 import com.synergy.vintagetech.init.builder.crushing_tub.recipe.CrushingTubRecipe;
 import com.devdyna.cakesticklib.api.RandomUtil;
+import com.devdyna.cakesticklib.api.aspect.logic.DropCollector;
 import com.devdyna.cakesticklib.api.aspect.logic.ItemStorageBlock;
 import com.devdyna.cakesticklib.api.aspect.logic.NoGuiStorage;
 import com.devdyna.cakesticklib.api.aspect.logic.SimpleFluidStorage;
@@ -28,12 +30,12 @@ import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 
-public class CrushingTubBE extends TickingBE implements NoGuiStorage, ItemStorageBlock, SimpleFluidStorage {
-
-    // private BlockCapabilityCache<IItemHandler, Direction> cache;
+public class CrushingTubBE extends TickingBE
+        implements NoGuiStorage, ItemStorageBlock, SimpleFluidStorage, DropCollector {
 
     public static final int MANUAL_SLOT = 0;
     public static final int FLUID_TANK = 0;
+    @Deprecated
     public static final int AUTOMATION_OUTPUT_SLOT = 1;
 
     public CrushingTubBE(BlockPos pos, BlockState blockState) {

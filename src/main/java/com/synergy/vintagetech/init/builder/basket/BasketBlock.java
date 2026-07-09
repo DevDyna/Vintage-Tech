@@ -1,11 +1,14 @@
 package com.synergy.vintagetech.init.builder.basket;
 
 import com.devdyna.cakesticklib.api.aspect.templates.TickingBlock;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.InsideBlockEffectApplier;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DirectionalBlock;
 import net.minecraft.world.level.block.Mirror;
@@ -103,6 +106,14 @@ public class BasketBlock extends TickingBlock {
     @SuppressWarnings("deprecation")
     public BlockState mirror(BlockState state, Mirror mirror) {
         return state.rotate(mirror.getRotation(state.getValue(FACING)));
+    }
+
+    @Override
+    protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity,
+            InsideBlockEffectApplier effectApplier, boolean isPrecise) {
+        if (entity instanceof ItemEntity item && level.getBlockEntity(pos) instanceof BasketBE be)
+            be.whenItemFallOnIt(level, pos, item);// TODO HOT:update cakesticklib to replace
+
     }
 
 }

@@ -1,58 +1,31 @@
 package com.synergy.vintagetech.init.builder.basket;
 
+import com.devdyna.cakesticklib.api.aspect.logic.DropCollector;
 import com.devdyna.cakesticklib.api.aspect.logic.ItemStorageBlock;
-import com.devdyna.cakesticklib.api.aspect.templates.TickingBE;
-import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
 import com.synergy.vintagetech.init.types.zBlockEntities;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.AABB;
-import net.neoforged.neoforge.transfer.item.ItemResource;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
-import net.neoforged.neoforge.transfer.transaction.Transaction;
 
-public class BasketBE extends TickingBE implements ItemStorageBlock {
+public class BasketBE extends BlockEntity implements ItemStorageBlock, DropCollector {
 
     public BasketBE(BlockPos pos, BlockState state) {
         super(zBlockEntities.BASKET.get(), pos, state);
     }
 
-    @Override
-    public void tickServer() {
+    protected void saveAdditional(ValueOutput output) {
+        this.getItemStorage().serialize(output);
+        super.saveAdditional(output);
+    }
 
-        if (level.getGameTime() % 20 != 0)
-            return;
-
-        var related = getBlockPos().relative(getBlockState().getValue(BasketBlock.FACING));
-
-        var area = AABB.encapsulatingFullBlocks(getBlockPos(), related);
-
-        for (ItemEntity item : level.getEntitiesOfClass(ItemEntity.class, area)) {
-            try (var tx = Transaction.openRoot()) {
-
-                var copy = item.getItem().copy();
-
-                var insered = getItemStorage().insert(ItemResource.of(copy), copy.count(), tx);
-
-                if (insered > 0) {
-                    if (insered >= item.getItem().count()) {
-                        item.setItem(ItemStack.EMPTY);
-                        item.discard();
-                    } else
-                        item.setItem(x.item(item.getItem().getItem(), item.getItem().count() - insered));
-
-                    tx.commit();
-                }
-
-                tx.close();
-            }
-
-        }
-
+    protected void loadAdditional(ValueInput input) {
+        this.getItemStorage().deserialize(input);
+        super.loadAdditional(input);
     }
 
     @Override
@@ -63,6 +36,11 @@ public class BasketBE extends TickingBE implements ItemStorageBlock {
     @Override
     public int getSlots() {
         return 27;
+    }
+
+    @Override
+    public boolean ignoreIndex() {
+        return true;
     }
 
 }
