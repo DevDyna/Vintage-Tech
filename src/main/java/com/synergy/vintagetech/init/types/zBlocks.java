@@ -26,6 +26,7 @@ import com.synergy.vintagetech.init.builder.saw.SawBlock;
 import com.synergy.vintagetech.init.builder.steam_engine.SteamEngineBlock;
 import com.synergy.vintagetech.init.builder.transmission.AxleBlock;
 import com.synergy.vintagetech.init.builder.transmission.JunctionBlock;
+import com.synergy.vintagetech.init.builder.treetap.TreeTapBlock;
 
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.level.block.Block;
@@ -71,6 +72,9 @@ public class zBlocks {
         public static final DeferredHolder<Block, Block> FAN = registerItemBlock("fan", p -> new FanBlock(p));
         public static final DeferredHolder<Block, Block> MILLSTONE = registerItemBlock("millstone",
                         p -> new MillstoneBlock(p));
+      
+                        public static final DeferredHolder<Block, Block> TREE_TAP = registerItemBlock("tree_tap",
+                        p -> new TreeTapBlock(p));
 
         public static final DeferredHolder<Block, Block> CENTRIFUGE = registerItemBlock("centrifuge",
                         p -> new CentrifugeBlock(p));

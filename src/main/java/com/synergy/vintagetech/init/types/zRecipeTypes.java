@@ -8,6 +8,7 @@ import com.synergy.vintagetech.init.builder.crushing_tub.recipe.CrushingTubRecip
 import com.synergy.vintagetech.init.builder.drying_rack.recipe.DryingRackRecipe;
 import com.synergy.vintagetech.init.builder.evaporation_basin.recipe.EvaporationBasinRecipe;
 import com.synergy.vintagetech.init.builder.millstone.recipe.MillstoneRecipe;
+import com.synergy.vintagetech.init.builder.treetap.recipe.TreeTapRecipe;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -42,5 +43,8 @@ public class zRecipeTypes {
 
     public static final RecipeRegister<CentrifugeRecipe> CENTRIFUGE = RecipeRegister.of("centrifuge",
             () -> CentrifugeRecipe.serializer());
+
+    public static final RecipeRegister<TreeTapRecipe> TREE_TAP = RecipeRegister.of("tree_tap",
+            () -> TreeTapRecipe.serializer());
 
 }

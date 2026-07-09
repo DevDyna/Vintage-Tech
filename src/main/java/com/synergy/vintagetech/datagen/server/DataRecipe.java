@@ -11,6 +11,8 @@ import com.synergy.vintagetech.init.builder.crushing_tub.recipe.CrushingTubBuild
 import com.synergy.vintagetech.init.builder.drying_rack.recipe.DryingRackBuilder;
 import com.synergy.vintagetech.init.builder.evaporation_basin.recipe.EvaporationBasinBuilder;
 import com.synergy.vintagetech.init.builder.millstone.recipe.MillstoneBuilder;
+import com.synergy.vintagetech.init.builder.treetap.recipe.TreeTapBuilder;
+import com.synergy.vintagetech.init.types.zBlocks;
 import com.synergy.vintagetech.init.types.zFluids;
 import com.synergy.vintagetech.init.types.zItems;
 
@@ -19,10 +21,13 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Fluids;
+import net.neoforged.neoforge.common.Tags;
 
 public class DataRecipe extends RecipeProvider implements RecipeGenerators {
 
@@ -64,13 +69,26 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .unlockedBy(getHasName(zItems.SOYBEANS.get()), has(zItems.SOYBEANS.get()))
                                 .save(output);
 
-        CentrifugeBuilder.of(registries)
-        .input(Items.SUGAR)//TODO IMP : item salt
-        .fluid(Fluids.WATER,125)
-        .output(zFluids.SALT_SOLUTION.getFluid(),125)
-        .unlockedBy(getHasName(Items.SUGAR), has(Items.SUGAR))
-        .save(output);
+                CentrifugeBuilder.of(registries)
+                                .input(Items.SUGAR)// TODO IMP : item salt
+                                .fluid(Fluids.WATER, 125)
+                                .output(zFluids.SALT_SOLUTION.getFluid(), 125)
+                                .unlockedBy(getHasName(Items.SUGAR), has(Items.SUGAR))
+                                .save(output);
 
+                TreeTapBuilder.of(registries)
+                                .log(Blocks.OAK_LOG)
+                                .leaves(Blocks.OAK_LEAVES)
+                                .output(Fluids.WATER, 125)// TODO IMP : tree tap fluids
+                                .unlockedBy(getHasName(zBlocks.TREE_TAP.get()), has(zBlocks.TREE_TAP.get()))
+                                .save(output);
+
+                TreeTapBuilder.of(registries)
+                                .log(Tags.Blocks.NETHER_NATURAL_LOGS)
+                                .leaves(BlockTags.WART_BLOCKS)
+                                .output(Fluids.LAVA, 25)// TODO IMP : tree tap fluids
+                                .unlockedBy(getHasName(zBlocks.TREE_TAP.get()), has(zBlocks.TREE_TAP.get()))
+                                .save(output);
         }
 
         public static final class RecipeRunner extends RecipeProvider.Runner {

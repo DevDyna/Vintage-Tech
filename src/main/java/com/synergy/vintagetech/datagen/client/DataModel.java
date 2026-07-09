@@ -54,15 +54,16 @@ public class DataModel extends ModelProvider {
                 BlockModelUtils.simplePlain(blockModels, zBlocks.CRUSHING_TUB);
                 BlockModelUtils.simplePlain(blockModels, zBlocks.EVAPORATION_BASIN);
                 BlockModelUtils.simplePlain(blockModels, zBlocks.DRYING_RACK);
+                BlockModelUtils.simplePlain(blockModels, zBlocks.CENTRIFUGE);
 
                 // TODO IMP : Models by logic
                 BlockModelUtils.simplePlain(blockModels, zBlocks.CHEESE);
                 BlockModelUtils.simplePlain(blockModels, zBlocks.CREATIVE_ENGINE);
                 BlockModelUtils.simplePlain(blockModels, zBlocks.HYDRAULIC_PRESS);
-                BlockModelUtils.simplePlain(blockModels, zBlocks.CENTRIFUGE);
                 BlockModelUtils.simplePlain(blockModels, zBlocks.MIXING_BARREL);
                 BlockModelUtils.simplePlain(blockModels, zBlocks.CRUCIBLE);
                 BlockModelUtils.simplePlain(blockModels, zBlocks.TURNTABLE);
+                BlockModelUtils.simplePlain(blockModels, zBlocks.TREE_TAP);
 
                 blockModels.blockStateOutput.accept(
                                 BlockModelGenerators.createSimpleBlock(zBlocks.LAVENDER.get(),
