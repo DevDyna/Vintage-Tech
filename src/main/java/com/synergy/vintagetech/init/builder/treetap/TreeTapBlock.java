@@ -3,11 +3,9 @@ package com.synergy.vintagetech.init.builder.treetap;
 import javax.annotation.Nullable;
 
 import com.devdyna.cakesticklib.api.aspect.templates.TickingBlock;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
@@ -17,7 +15,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.Mirror;
-import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -32,9 +29,7 @@ public class TreeTapBlock extends TickingBlock {
         super(p);
     }
 
-    //TODO IMP : tree tap model and properties
-
-   
+    // TODO IMP : tree tap model and properties
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> b) {
@@ -52,9 +47,8 @@ public class TreeTapBlock extends TickingBlock {
 
     @Override
     protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
-        var related = level.getBlockState(pos.relative(state.getValue(FACING).getOpposite()));
-        return related.is(BlockTags.LOGS) && related.getBlock() instanceof RotatedPillarBlock
-                && related.getValue(RotatedPillarBlock.AXIS).isVertical();
+        var facing = state.getValue(FACING);
+        return level.getBlockState(pos.relative(facing.getOpposite())).isFaceSturdy(level, pos, facing);
     }
 
     @Override
@@ -64,7 +58,7 @@ public class TreeTapBlock extends TickingBlock {
         for (Direction dir : ctx.getNearestLookingDirections()) {
             if (dir.getAxis().isHorizontal()) {
                 state = state.setValue(FACING, dir.getOpposite());
-                if (state.canSurvive(ctx.getLevel(), ctx.getClickedPos()))
+                if (canSurvive(state, ctx.getLevel(), ctx.getClickedPos()))
                     return state;
             }
         }
@@ -76,7 +70,7 @@ public class TreeTapBlock extends TickingBlock {
     protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess ticks, BlockPos pos,
             Direction directionToNeighbour, BlockPos neighbourPos, BlockState neighbourState, RandomSource random) {
         return directionToNeighbour.getOpposite() == state.getValue(FACING)
-                && !state.canSurvive(level, pos)
+                && !canSurvive(state, level, pos)
                         ? Blocks.AIR.defaultBlockState()
                         : state;
     }
