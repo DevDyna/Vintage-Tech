@@ -29,6 +29,19 @@ public class TreeTapBlock extends TickingBlock {
         super(p);
     }
 
+    @Override
+    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        VoxelShape shape = Shapes.empty();
+        return switch (state.getValue(FACING)) {
+            case SOUTH -> Shapes.join(shape, Shapes.box(0.1875, 0, 0, 0.8125, 0.625, 0.4375), BooleanOp.OR);
+            case NORTH -> Shapes.join(shape, Shapes.box(0.1875, 0, 0.5625, 0.8125, 0.625, 1), BooleanOp.OR);
+            case WEST -> Shapes.join(shape, Shapes.box(0.5625, 0, 0.1875, 1, 0.625, 0.8125), BooleanOp.OR);
+            case EAST -> Shapes.join(shape, Shapes.box(0, 0, 0.1875, 0.4375, 0.625, 0.8125), BooleanOp.OR);
+            default -> shape;
+        };
+
+    }
+
     // TODO IMP : tree tap model and properties
 
     @Override

@@ -1,7 +1,7 @@
 {
   "type": "vintagetech:tree_tap",
-  "chance": 0.5,
-  "delay": 200,
+  "chance": 0.9,
+  "delay": 20,
   "fluid": {
     "amount": 125,
     "id": "minecraft:water"
