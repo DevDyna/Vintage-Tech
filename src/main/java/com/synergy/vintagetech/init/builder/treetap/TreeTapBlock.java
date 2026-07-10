@@ -77,18 +77,15 @@ public class TreeTapBlock extends TickingBlock {
 
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
-        var dir = state.getValue(FACING);
-        double x = pos.getX() + 0.5;
-        double y = pos.getY() + 0.5;
-        double z = pos.getZ() + 0.5;
+        var opposite = state.getValue(FACING).getOpposite();
 
-        var opposite = dir.getOpposite();
-
-        level.addParticle(ParticleTypes.END_ROD,
-                x + 0.27 * opposite.getStepX(),
-                y + 0.22,
-                z + 0.27 * opposite.getStepZ(),
-                0.0, 0.0, 0.0);
+        if (RandomUtil.chance(level, 0.05))
+            if (level.getBlockState(pos.below()).getBlock() instanceof EvaporationBasinBlock)
+                level.addParticle(ParticleTypes.DRIPPING_DRIPSTONE_WATER,
+                        pos.getX() + 0.5 + 0.09 * opposite.getStepX(),
+                        pos.getY(),
+                        pos.getZ() + 0.5 + 0.09 * opposite.getStepZ(),
+                        0.0, 0.0, 0.0);
     }
 
     @Override
