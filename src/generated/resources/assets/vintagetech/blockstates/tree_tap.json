@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
+    "facing=east": {
+      "model": "vintagetech:block/tree_tap",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "vintagetech:block/tree_tap",
+      "y": 180
+    },
+    "facing=south": {
       "model": "vintagetech:block/tree_tap"
+    },
+    "facing=west": {
+      "model": "vintagetech:block/tree_tap",
+      "y": 90
     }
   }
 }

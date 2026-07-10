@@ -1,5 +1,7 @@
 {
   "type": "vintagetech:tree_tap",
+  "chance": 0.5,
+  "delay": 200,
   "fluid": {
     "amount": 25,
     "id": "minecraft:lava"
