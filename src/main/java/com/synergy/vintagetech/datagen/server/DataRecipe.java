@@ -77,6 +77,8 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .save(output);
 
                 TreeTapBuilder.of(registries)
+                                .chance(0.9f)
+                                .delay(20)
                                 .log(Blocks.OAK_LOG)
                                 .leaves(Blocks.OAK_LEAVES)
                                 .output(Fluids.WATER, 125)// TODO IMP : tree tap fluids
