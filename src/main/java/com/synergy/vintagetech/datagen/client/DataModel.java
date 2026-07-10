@@ -63,7 +63,6 @@ public class DataModel extends ModelProvider {
                 BlockModelUtils.simplePlain(blockModels, zBlocks.MIXING_BARREL);
                 BlockModelUtils.simplePlain(blockModels, zBlocks.CRUCIBLE);
                 BlockModelUtils.simplePlain(blockModels, zBlocks.TURNTABLE);
-                BlockModelUtils.simplePlain(blockModels, zBlocks.TREE_TAP);
 
                 blockModels.blockStateOutput.accept(
                                 BlockModelGenerators.createSimpleBlock(zBlocks.LAVENDER.get(),
@@ -113,36 +112,7 @@ public class DataModel extends ModelProvider {
                                                 BlockModelGenerators.plainVariant(
                                                                 x.rl(MODULE_ID, "block/gearshift"))));
 
-                blockModels.blockStateOutput.accept(BlockModelGenerators
-                                .createSimpleBlock(zBlocks.STEAM_ENGINE.get(),
-                                                BlockModelGenerators
-                                                                .plainVariant(x.rl(MODULE_ID, "block/steam_engine")))
-                                .with(PropertyDispatch.modify(BlockStateProperties.HORIZONTAL_FACING)
-                                                .select(Direction.SOUTH, BlockModelGenerators.NOP)
-                                                .select(Direction.WEST, BlockModelGenerators.Y_ROT_90)
-                                                .select(Direction.NORTH, BlockModelGenerators.Y_ROT_180)
-                                                .select(Direction.EAST, BlockModelGenerators.Y_ROT_270)));
-
-                // TODO MODELS : create models for dynamo and electric motor
-                blockModels.blockStateOutput.accept(BlockModelGenerators
-                                .createSimpleBlock(zBlocks.DYNAMO.get(),
-                                                BlockModelGenerators
-                                                                .plainVariant(x.rl(MODULE_ID, "block/steam_engine")))
-                                .with(PropertyDispatch.modify(BlockStateProperties.HORIZONTAL_FACING)
-                                                .select(Direction.SOUTH, BlockModelGenerators.NOP)
-                                                .select(Direction.WEST, BlockModelGenerators.Y_ROT_90)
-                                                .select(Direction.NORTH, BlockModelGenerators.Y_ROT_180)
-                                                .select(Direction.EAST, BlockModelGenerators.Y_ROT_270)));
-
-                blockModels.blockStateOutput.accept(BlockModelGenerators
-                                .createSimpleBlock(zBlocks.ELECTRIC_MOTOR.get(),
-                                                BlockModelGenerators
-                                                                .plainVariant(x.rl(MODULE_ID, "block/steam_engine")))
-                                .with(PropertyDispatch.modify(BlockStateProperties.HORIZONTAL_FACING)
-                                                .select(Direction.SOUTH, BlockModelGenerators.NOP)
-                                                .select(Direction.WEST, BlockModelGenerators.Y_ROT_90)
-                                                .select(Direction.NORTH, BlockModelGenerators.Y_ROT_180)
-                                                .select(Direction.EAST, BlockModelGenerators.Y_ROT_270)));
+                
 
                 MultiVariant sawOff = BlockModelGenerators.plainVariant(
                                 x.rl(MODULE_ID, "block/saw/off"));
@@ -191,27 +161,73 @@ public class DataModel extends ModelProvider {
                                                                                                 sawOn.with(BlockModelGenerators.X_ROT_90)
                                                                                                                 .with(BlockModelGenerators.Y_ROT_270))));
 
-                blockModels.blockStateOutput.accept(BlockModelGenerators
-                                .createSimpleBlock(zBlocks.FAN.get(),
-                                                BlockModelGenerators.plainVariant(x.rl(MODULE_ID, "block/fan")))
-                                .with(PropertyDispatch.modify(BlockStateProperties.FACING)
-                                                .select(Direction.SOUTH, BlockModelGenerators.NOP)
-                                                .select(Direction.WEST, BlockModelGenerators.Y_ROT_90)
-                                                .select(Direction.NORTH, BlockModelGenerators.Y_ROT_180)
-                                                .select(Direction.EAST, BlockModelGenerators.Y_ROT_270)
-                                                .select(Direction.UP, BlockModelGenerators.X_ROT_90)
-                                                .select(Direction.DOWN, BlockModelGenerators.X_ROT_270)));
+                // blockModels.blockStateOutput.accept(BlockModelGenerators
+                //                 .createSimpleBlock(zBlocks.FAN.get(),
+                //                                 BlockModelGenerators.plainVariant(x.rl(MODULE_ID, "block/fan")))
+                //                 .with(PropertyDispatch.modify(BlockStateProperties.FACING)
+                //                                 .select(Direction.SOUTH, BlockModelGenerators.NOP)
+                //                                 .select(Direction.WEST, BlockModelGenerators.Y_ROT_90)
+                //                                 .select(Direction.NORTH, BlockModelGenerators.Y_ROT_180)
+                //                                 .select(Direction.EAST, BlockModelGenerators.Y_ROT_270)
+                //                                 .select(Direction.UP, BlockModelGenerators.X_ROT_90)
+                //                                 .select(Direction.DOWN, BlockModelGenerators.X_ROT_270)));
 
-                blockModels.blockStateOutput.accept(BlockModelGenerators
-                                .createSimpleBlock(zBlocks.BASKET.get(),
-                                                BlockModelGenerators.plainVariant(x.rl(MODULE_ID, "block/basket")))
-                                .with(PropertyDispatch.modify(BlockStateProperties.FACING)
-                                                .select(Direction.NORTH, BlockModelGenerators.NOP)
-                                                .select(Direction.EAST, BlockModelGenerators.Y_ROT_90)
-                                                .select(Direction.SOUTH, BlockModelGenerators.Y_ROT_180)
-                                                .select(Direction.WEST, BlockModelGenerators.Y_ROT_270)
-                                                .select(Direction.DOWN, BlockModelGenerators.X_ROT_90)
-                                                .select(Direction.UP, BlockModelGenerators.X_ROT_270)));
+                BlockModelUtils.createFacingBlock(blockModels, zBlocks.BASKET.get(), x.rl(MODULE_ID, "block/basket"),false);
+                BlockModelUtils.createFacingBlock(blockModels, zBlocks.FAN.get(), x.rl(MODULE_ID, "block/fan"),true);
+                                BlockModelUtils.createHorizontalFacingBlock(blockModels, zBlocks.TREE_TAP.get(), x.rl(MODULE_ID, "block/tree_tap"),false);
+
+
+
+                // TODO MODELS : create models for dynamo and electric motor
+                BlockModelUtils.createHorizontalFacingBlock(blockModels, zBlocks.STEAM_ENGINE.get(), x.rl(MODULE_ID, "block/steam_engine"),false);
+                BlockModelUtils.createHorizontalFacingBlock(blockModels, zBlocks.DYNAMO.get(), x.rl(MODULE_ID, "block/steam_engine"),false);
+                BlockModelUtils.createHorizontalFacingBlock(blockModels, zBlocks.ELECTRIC_MOTOR.get(), x.rl(MODULE_ID, "block/steam_engine"),false);
+
+
+
+// blockModels.blockStateOutput.accept(BlockModelGenerators
+//                                 .createSimpleBlock(zBlocks.STEAM_ENGINE.get(),
+//                                                 BlockModelGenerators
+//                                                                 .plainVariant(x.rl(MODULE_ID, "block/steam_engine")))
+//                                 .with(PropertyDispatch.modify(BlockStateProperties.HORIZONTAL_FACING)
+//                                                 .select(Direction.SOUTH, BlockModelGenerators.NOP)
+//                                                 .select(Direction.WEST, BlockModelGenerators.Y_ROT_90)
+//                                                 .select(Direction.NORTH, BlockModelGenerators.Y_ROT_180)
+//                                                 .select(Direction.EAST, BlockModelGenerators.Y_ROT_270)));
+
+//                 
+//                 blockModels.blockStateOutput.accept(BlockModelGenerators
+//                                 .createSimpleBlock(zBlocks.DYNAMO.get(),
+//                                                 BlockModelGenerators
+//                                                                 .plainVariant(x.rl(MODULE_ID, "block/steam_engine")))
+//                                 .with(PropertyDispatch.modify(BlockStateProperties.HORIZONTAL_FACING)
+//                                                 .select(Direction.SOUTH, BlockModelGenerators.NOP)
+//                                                 .select(Direction.WEST, BlockModelGenerators.Y_ROT_90)
+//                                                 .select(Direction.NORTH, BlockModelGenerators.Y_ROT_180)
+//                                                 .select(Direction.EAST, BlockModelGenerators.Y_ROT_270)));
+
+//                 blockModels.blockStateOutput.accept(BlockModelGenerators
+//                                 .createSimpleBlock(zBlocks.ELECTRIC_MOTOR.get(),
+//                                                 BlockModelGenerators
+//                                                                 .plainVariant(x.rl(MODULE_ID, "block/steam_engine")))
+//                                 .with(PropertyDispatch.modify(BlockStateProperties.HORIZONTAL_FACING)
+//                                                 .select(Direction.SOUTH, BlockModelGenerators.NOP)
+//                                                 .select(Direction.WEST, BlockModelGenerators.Y_ROT_90)
+//                                                 .select(Direction.NORTH, BlockModelGenerators.Y_ROT_180)
+//                                                 .select(Direction.EAST, BlockModelGenerators.Y_ROT_270)));
+
+
+
+                // blockModels.blockStateOutput.accept(BlockModelGenerators
+                //                 .createSimpleBlock(zBlocks.BASKET.get(),
+                //                                 BlockModelGenerators.plainVariant(x.rl(MODULE_ID, "block/basket")))
+                //                 .with(PropertyDispatch.modify(BlockStateProperties.FACING)
+                //                                 .select(Direction.NORTH, BlockModelGenerators.NOP)
+                //                                 .select(Direction.EAST, BlockModelGenerators.Y_ROT_90)
+                //                                 .select(Direction.SOUTH, BlockModelGenerators.Y_ROT_180)
+                //                                 .select(Direction.WEST, BlockModelGenerators.Y_ROT_270)
+                //                                 .select(Direction.DOWN, BlockModelGenerators.X_ROT_90)
+                //                                 .select(Direction.UP, BlockModelGenerators.X_ROT_270)));
 
                 BlockModelUtils.cropWithoutSeed(blockModels, zBlocks.CAVE_WHEAT.get(), BaseShortCropBlock.AGE, 0, 1,
                                 2, 3, 4, 5);

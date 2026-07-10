@@ -17,8 +17,10 @@ import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.data.models.model.TextureSlot;
 import net.minecraft.client.resources.model.sprite.Material;
+import net.minecraft.core.Direction;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -95,19 +97,47 @@ public class BlockModelUtils {
                                                                 x.rl(MODULE_ID, prefix))));
         }
 
-        public static void createBushBlock(BlockModelGenerators b,Block block,IntegerProperty prop){
-        b.blockStateOutput
-            .accept(
-                MultiVariantGenerator.dispatch(block)
-                    .with(
-                        PropertyDispatch.initial(prop)
-                            .generate(
-                                age -> BlockModelGenerators.plainVariant(
-                                    b.createSuffixedVariant(block, "/" + age, ModelTemplates.CROSS, TextureMapping::cross)
-                                )
-                            )
-                    )
-            );
+        public static void createBushBlock(BlockModelGenerators b, Block block, IntegerProperty prop) {
+                b.blockStateOutput
+                                .accept(
+                                                MultiVariantGenerator.dispatch(block)
+                                                                .with(
+                                                                                PropertyDispatch.initial(prop)
+                                                                                                .generate(
+                                                                                                                age -> BlockModelGenerators
+                                                                                                                                .plainVariant(
+                                                                                                                                                b.createSuffixedVariant(
+                                                                                                                                                                block,
+                                                                                                                                                                "/" + age,
+                                                                                                                                                                ModelTemplates.CROSS,
+                                                                                                                                                                TextureMapping::cross)))));
+        }
+
+        public static void createHorizontalFacingBlock(BlockModelGenerators b, Block block, Identifier model,boolean invertDirections) {
+                b.blockStateOutput.accept(BlockModelGenerators
+                                .createSimpleBlock(block,
+                                                BlockModelGenerators
+                                                                .plainVariant(model))
+                                .with(PropertyDispatch.modify(BlockStateProperties.HORIZONTAL_FACING)
+                                                .select((invertDirections ? Direction.NORTH : Direction.SOUTH), BlockModelGenerators.NOP)
+                                                .select((invertDirections ? Direction.EAST :Direction.WEST), BlockModelGenerators.Y_ROT_90)
+                                                .select((invertDirections ? Direction.SOUTH :Direction.NORTH), BlockModelGenerators.Y_ROT_180)
+                                                .select((invertDirections ? Direction.WEST :Direction.EAST), BlockModelGenerators.Y_ROT_270)));
+        }
+
+        public static void createFacingBlock(BlockModelGenerators b, Block block, Identifier model,boolean invertDirections) {
+
+                b.blockStateOutput.accept(BlockModelGenerators
+                                .createSimpleBlock(block,
+                                                BlockModelGenerators.plainVariant(model))
+                                .with(PropertyDispatch.modify(BlockStateProperties.FACING)
+                                                .select((invertDirections ? Direction.SOUTH :Direction.NORTH), BlockModelGenerators.NOP)
+                                                .select((invertDirections ? Direction.WEST :Direction.EAST), BlockModelGenerators.Y_ROT_90)
+                                                .select((invertDirections ? Direction.NORTH :Direction.SOUTH), BlockModelGenerators.Y_ROT_180)
+                                                .select((invertDirections ? Direction.EAST :Direction.WEST), BlockModelGenerators.Y_ROT_270)
+                                                .select((invertDirections ? Direction.UP :Direction.DOWN), BlockModelGenerators.X_ROT_90)
+                                                .select((invertDirections ? Direction.DOWN :Direction.UP), BlockModelGenerators.X_ROT_270)));
+
         }
 
 }
