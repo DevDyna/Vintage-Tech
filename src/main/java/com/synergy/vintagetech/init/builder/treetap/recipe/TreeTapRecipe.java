@@ -5,6 +5,7 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 import java.util.List;
 import com.devdyna.cakesticklib.api.recipe.recipeType.BaseRecipeType;
 import com.devdyna.cakesticklib.api.utils.x;
+import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.synergy.vintagetech.api.BlockOrTag;
@@ -14,6 +15,7 @@ import com.synergy.vintagetech.init.types.zRecipeTypes;
 
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -28,16 +30,20 @@ public class TreeTapRecipe extends BaseRecipeType<TreeTapInput> {
 
     private final BlockOrTag log;
     private final BlockOrTag leaves;
+    private final int delay;
+    private final float chance;
     private final FluidStackTemplate fluid;
 
-    public TreeTapRecipe(BlockOrTag log, BlockOrTag leaves, FluidStackTemplate fluid) {
+    public TreeTapRecipe(BlockOrTag log, BlockOrTag leaves,int delay,float chance, FluidStackTemplate fluid) {
         this.log = log;
         this.leaves = leaves;
+        this.delay = delay;
+        this.chance = chance;
         this.fluid = fluid;
     }
 
-    public static TreeTapRecipe of(BlockOrTag log, BlockOrTag leaves, FluidStackTemplate fluid) {
-        return new TreeTapRecipe(log, leaves, fluid);
+    public static TreeTapRecipe of(BlockOrTag log, BlockOrTag leaves,int delay,float chance, FluidStackTemplate fluid) {
+        return new TreeTapRecipe(log, leaves,delay,chance, fluid);
     }
 
     public boolean matches(TreeTapInput r, Level l) {
@@ -59,6 +65,14 @@ public class TreeTapRecipe extends BaseRecipeType<TreeTapInput> {
 
     public BlockOrTag getLeaves() {
         return leaves;
+    }
+
+    public int getDelay() {
+        return delay;
+    }
+
+    public float getChance() {
+        return chance;
     }
 
     public FluidStackTemplate getFluid() {
@@ -92,12 +106,16 @@ public class TreeTapRecipe extends BaseRecipeType<TreeTapInput> {
     public static final MapCodec<TreeTapRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
             BlockOrTag.CODEC.fieldOf("logs").forGetter(TreeTapRecipe::getLog),
             BlockOrTag.CODEC.fieldOf("leaves").forGetter(TreeTapRecipe::getLeaves),
+            Codec.intRange(1, Integer.MAX_VALUE).fieldOf("delay").forGetter(TreeTapRecipe::getDelay),
+            Codec.floatRange(0, 1).fieldOf("chance").forGetter(TreeTapRecipe::getChance),
             FluidStackTemplate.CODEC.fieldOf("fluid").forGetter(TreeTapRecipe::getFluid))
             .apply(inst, TreeTapRecipe::new));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, TreeTapRecipe> STREAM_CODEC = StreamCodec.composite(
             BlockOrTag.STREAM_CODEC, TreeTapRecipe::getLog,
             BlockOrTag.STREAM_CODEC, TreeTapRecipe::getLeaves,
+            ByteBufCodecs.INT,TreeTapRecipe::getDelay,
+            ByteBufCodecs.FLOAT,TreeTapRecipe::getChance,
             FluidStackTemplate.STREAM_CODEC, TreeTapRecipe::getFluid,
             TreeTapRecipe::new);
 }

@@ -20,11 +20,15 @@ public class TreeTapBuilder extends BaseRecipeBuilder implements FluidAttach.Out
 
     private BlockOrTag log;
     private BlockOrTag leaves;
+    private int delay;
+    private float chance;
     private FluidStackTemplate fluid;
 
     private TreeTapBuilder(HolderLookup.Provider p) {
         super(p);
         this.criteria = new LinkedHashMap<String, Criterion<?>>();
+        this.delay = 200;
+        this.chance = 0.5f;
     }
 
     public static TreeTapBuilder of(HolderLookup.Provider p) {
@@ -51,9 +55,24 @@ public class TreeTapBuilder extends BaseRecipeBuilder implements FluidAttach.Out
         return this;
     }
 
+    public TreeTapBuilder delay(int delay) {
+        this.delay = delay;
+        return this;
+    }
+
+    public TreeTapBuilder chance(float chance) {
+        this.chance = chance;
+        return this;
+    }
+
     @Override
     public TreeTapBuilder output(FluidStackTemplate fluid) {
         this.fluid = fluid;
+        return this;
+    }
+
+    @Override
+    public TreeTapBuilder getBuilder() {
         return this;
     }
 
@@ -64,18 +83,13 @@ public class TreeTapBuilder extends BaseRecipeBuilder implements FluidAttach.Out
 
     @Override
     public Recipe<?> createRecipe() {
-        return new TreeTapRecipe(log, leaves, fluid);
+        return new TreeTapRecipe(log, leaves, delay, chance, fluid);
     }
 
     @Override
     public Identifier getSuffix(String extra) {// TODO API : move to api x.name(<Resource>StackTemplate)
         return x.rl(MODULE_ID, "tree_tap/" + x.name(fluid.fluid().value())
                 + extra);
-    }
-
-    @Override
-    public TreeTapBuilder getBuilder() {
-        return this;
     }
 
 }

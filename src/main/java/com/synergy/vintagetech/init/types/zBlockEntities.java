@@ -17,6 +17,7 @@ import com.synergy.vintagetech.init.builder.mechanical_farmland.MechanicalFarmla
 import com.synergy.vintagetech.init.builder.millstone.MillstoneBE;
 import com.synergy.vintagetech.init.builder.saw.SawBE;
 import com.synergy.vintagetech.init.builder.steam_engine.SteamEngineBE;
+import com.synergy.vintagetech.init.builder.treetap.TreeTapBE;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -80,5 +81,8 @@ public class zBlockEntities {
 
         public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CentrifugeBE>> CENTRIFUGE = RegistryUtils
                         .createBlockEntity("centrifuge", zTiles, CentrifugeBE::new, zBlocks.CENTRIFUGE);
+     
+                        public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TreeTapBE>> TREE_TAP = RegistryUtils
+                        .createBlockEntity("tree_tap", zTiles, TreeTapBE::new, zBlocks.TREE_TAP);
 
 }
