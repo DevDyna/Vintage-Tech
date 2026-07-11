@@ -4,7 +4,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.level.block.state.BlockState;
 
-public record TreeTapInput(BlockState log,BlockState leaves) implements RecipeInput{
+public record TreeTapInput(BlockState log, BlockState leaves) implements RecipeInput {
 
     @Override
     public ItemStack getItem(int index) {
@@ -13,7 +13,7 @@ public record TreeTapInput(BlockState log,BlockState leaves) implements RecipeIn
 
     @Override
     public int size() {
-        return 0;
+        return 1;
     }
-    
+
 }
