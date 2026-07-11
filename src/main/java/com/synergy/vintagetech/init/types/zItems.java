@@ -49,6 +49,8 @@ public class zItems {
         public static final DeferredHolder<Item, Item> OKARA = zItem.registerSimpleItem("okara");
         public static final DeferredHolder<Item, Item> SOY_RENNET = zItem.registerSimpleItem("soy_rennet");
         public static final DeferredHolder<Item, Item> SOY_DOUGH = zItem.registerSimpleItem("soy_dough");
+      
+        //TODO IMP : itemtags
         public static final DeferredHolder<Item, Item> TOFU = zItem.registerSimpleItem("tofu",
                         p -> p.food(new FoodProperties(6, 0.75f, true)));
 
