@@ -54,4 +54,12 @@ public class zItems {
         public static final DeferredHolder<Item, Item> TOFU = zItem.registerSimpleItem("tofu",
                         p -> p.food(new FoodProperties(6, 0.75f, true)));
 
+        public static final DeferredHolder<Item, Item> SALT = zItem.registerSimpleItem("salt");
+        public static final DeferredHolder<Item, Item> AMBER = zItem.registerSimpleItem("amber");
+        public static final DeferredHolder<Item, Item> SAP = zItem.registerSimpleItem("sap");
+        public static final DeferredHolder<Item, Item> GLUE = zItem.registerSimpleItem("glue");
+        public static final DeferredHolder<Item, Item> OIL = zItem.registerSimpleItem("oil");
+
+
+
 }
