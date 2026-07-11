@@ -2,6 +2,7 @@ package com.synergy.vintagetech.init.types;
 
 import static com.synergy.vintagetech.Main.MODULE_ID;
 
+import com.devdyna.cakesticklib.api.utils.ColorUtils;
 import com.synergy.vintagetech.api.FluidRegister;
 
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -23,7 +24,7 @@ public class zFluids {
         public static final DeferredRegister<FluidType> zFluidTypes = DeferredRegister.create(Keys.FLUID_TYPES,
                         MODULE_ID);
 
-        public static final FluidRegister SALT_SOLUTION = FluidRegister.create("salt_solution");
-        public static final FluidRegister SOY_WHEY = FluidRegister.create("soy_whey");
+        public static final FluidRegister SALT_SOLUTION = FluidRegister.create("salt_solution",ColorUtils.argb(255, 236, 202, 202));
+        public static final FluidRegister SOY_WHEY = FluidRegister.create("soy_whey",ColorUtils.argb(255, 255, 236, 236));
 
 }

@@ -1,7 +1,8 @@
 package com.synergy.vintagetech;
 
+import java.util.List;
+
 import com.devdyna.cakesticklib.api.FluidRenderUtils;
-import com.devdyna.cakesticklib.api.utils.ColorUtils;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.synergy.vintagetech.api.blockfactory.transmission.TransmissionRenderer;
 import com.synergy.vintagetech.client.particles.fan.AirFlowParticleProvider;
@@ -104,29 +105,20 @@ public class Client {
     @SubscribeEvent
     public static void onRegisterFluidModels(RegisterFluidModelsEvent event) {
 
-        event.register(
-                FluidRenderUtils.createWaterModel(new FluidTintSource() {
+        List.of(
+                zFluids.SALT_SOLUTION,
+                zFluids.SOY_WHEY).forEach(
+                        f -> event.register(
+                                FluidRenderUtils.createWaterModel(new FluidTintSource() {
 
-                    @Override
-                    public int color(FluidState state) {
-                        return ColorUtils.argb(255, 236, 202, 202);
-                    }
+                                    @Override
+                                    public int color(FluidState state) {
+                                        return f.getColor();
+                                    }
 
-                }),
-                zFluids.SALT_SOLUTION.getSource(),
-                zFluids.SALT_SOLUTION.getFlowing());
-
-        event.register(
-                FluidRenderUtils.createWaterModel(new FluidTintSource() {
-
-                    @Override
-                    public int color(FluidState state) {
-                        return ColorUtils.argb(255, 255, 236, 236);
-                    }
-
-                }),
-                zFluids.SOY_WHEY.getSource(),
-                zFluids.SOY_WHEY.getFlowing());
+                                }),
+                                f.getSource(),
+                                f.getFlowing()));
 
     }
 

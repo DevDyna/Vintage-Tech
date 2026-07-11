@@ -46,11 +46,12 @@ public class FluidRegister {
     private boolean canSwim;
     private boolean canPushEntity;
     private boolean canConvertToSource;
+    private int color ;
 
-    public FluidRegister(String id) {
+    public FluidRegister(String id,int color) {
 
         this.id = id;
-
+        this.color = color;
         this.viscosity = 1000;// approx water
         this.lightLevel = 0;
         this.dynLightLevel = a -> lightLevel;
@@ -182,8 +183,12 @@ public class FluidRegister {
         return id;
     }
 
-    public static FluidRegister create(String id) {
-        return new FluidRegister(id);
+    public int getColor() {
+        return color;
+    }
+
+    public static FluidRegister create(String id,int color) {
+        return new FluidRegister(id,color);
     }
 
     public Fluid getFluid() {
