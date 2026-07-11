@@ -7,7 +7,11 @@ import java.util.List;
 import com.devdyna.cakesticklib.api.compat.jei.JEIAliasesHelper;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.synergy.vintagetech.Client;
+import com.synergy.vintagetech.compat.jei.categories.CrushingTubCategory;
+import com.synergy.vintagetech.compat.jei.categories.EvaporationBasinCategory;
 import com.synergy.vintagetech.init.types.zBlocks;
+import com.synergy.vintagetech.init.types.zRecipeTypes;
+
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.registration.IIngredientAliasRegistration;
@@ -30,16 +34,32 @@ public class PluginJEI implements IModPlugin {
 
         @Override
         public void registerRecipeCatalysts(IRecipeCatalystRegistration r) {
+                r.addCraftingStation(CrushingTubCategory.TYPE, x.item(zBlocks.CRUSHING_TUB.get()));
+                r.addCraftingStation(EvaporationBasinCategory.TYPE, x.item(zBlocks.EVAPORATION_BASIN.get()));
 
         }
 
         @Override
         public void registerCategories(IRecipeCategoryRegistration r) {
+                var helper = r.getJeiHelpers().getGuiHelper();
+
+                r.addRecipeCategories(
+
+                                new CrushingTubCategory(helper),
+                                new EvaporationBasinCategory(helper)
+
+                );
 
         }
 
         @Override
         public void registerRecipes(IRecipeRegistration r) {
+
+                r.addRecipes(CrushingTubCategory.TYPE,
+                                getRecipes(zRecipeTypes.CRUSHING_TUB.getType()));
+
+                r.addRecipes(EvaporationBasinCategory.TYPE,
+                                getRecipes(zRecipeTypes.EVAPORATION_BASIN.getType()));
 
         }
 
@@ -97,6 +117,5 @@ public class PluginJEI implements IModPlugin {
         private <C extends RecipeInput, T extends Recipe<C>> List<RecipeHolder<T>> getRecipes(RecipeType<T> type) {
                 return List.copyOf(Client.getRecipeCollector().byType(type));
         }
-        
 
 }
