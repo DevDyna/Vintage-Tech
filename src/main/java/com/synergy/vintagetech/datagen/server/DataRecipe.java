@@ -48,31 +48,36 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                 EvaporationBasinBuilder.of(registries)
                                 .fluid(Fluids.WATER, 125)
                                 .output(zItems.SALT)
-                                .unlockedBy(getHasName(zBlocks.EVAPORATION_BASIN.get()), has(zBlocks.EVAPORATION_BASIN.get()))
+                                .unlockedBy(getHasName(zBlocks.EVAPORATION_BASIN.get()),
+                                                has(zBlocks.EVAPORATION_BASIN.get()))
                                 .save(output);
 
                 EvaporationBasinBuilder.of(registries)
                                 .fluid(zFluids.LATEX.getFluid(), 125)
                                 .output(zItems.GLUE)
-                                .unlockedBy(getHasName(zBlocks.EVAPORATION_BASIN.get()), has(zBlocks.EVAPORATION_BASIN.get()))
+                                .unlockedBy(getHasName(zBlocks.EVAPORATION_BASIN.get()),
+                                                has(zBlocks.EVAPORATION_BASIN.get()))
                                 .save(output);
 
                 EvaporationBasinBuilder.of(registries)
                                 .fluid(zFluids.RESIN.getFluid(), 125)
                                 .output(zItems.AMBER)
-                                .unlockedBy(getHasName(zBlocks.EVAPORATION_BASIN.get()), has(zBlocks.EVAPORATION_BASIN.get()))
+                                .unlockedBy(getHasName(zBlocks.EVAPORATION_BASIN.get()),
+                                                has(zBlocks.EVAPORATION_BASIN.get()))
                                 .save(output);
 
                 EvaporationBasinBuilder.of(registries)
                                 .fluid(zFluids.OIL.getFluid(), 125)
                                 .output(zItems.OIL)
-                                .unlockedBy(getHasName(zBlocks.EVAPORATION_BASIN.get()), has(zBlocks.EVAPORATION_BASIN.get()))
+                                .unlockedBy(getHasName(zBlocks.EVAPORATION_BASIN.get()),
+                                                has(zBlocks.EVAPORATION_BASIN.get()))
                                 .save(output);
 
                 EvaporationBasinBuilder.of(registries)
                                 .fluid(zFluids.SAP.getFluid(), 125)
                                 .output(zItems.SAP)
-                                .unlockedBy(getHasName(zBlocks.EVAPORATION_BASIN.get()), has(zBlocks.EVAPORATION_BASIN.get()))
+                                .unlockedBy(getHasName(zBlocks.EVAPORATION_BASIN.get()),
+                                                has(zBlocks.EVAPORATION_BASIN.get()))
                                 .save(output);
 
                 DryingRackBuilder.of(registries)
@@ -105,70 +110,74 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .leaves(Blocks.OAK_LEAVES)
                                 .output(zFluids.SAP.getFluid(), 25)
                                 .unlockedBy(getHasName(zBlocks.TREE_TAP.get()), has(zBlocks.TREE_TAP.get()))
-                                .save(output,"_from_oak");
+                                .save(output, "_from_oak");
 
                 TreeTapBuilder.of(registries)
                                 .log(Blocks.DARK_OAK_LOG)
                                 .leaves(Blocks.DARK_OAK_LEAVES)
                                 .output(zFluids.SAP.getFluid(), 50)
                                 .unlockedBy(getHasName(zBlocks.TREE_TAP.get()), has(zBlocks.TREE_TAP.get()))
-                                .save(output,"_from_dark_oak");
+                                .save(output, "_from_dark_oak");
 
                 TreeTapBuilder.of(registries)
                                 .log(Blocks.PALE_OAK_LOG)
                                 .leaves(Blocks.PALE_OAK_LEAVES)
                                 .output(zFluids.SAP.getFluid(), 75)
                                 .unlockedBy(getHasName(zBlocks.TREE_TAP.get()), has(zBlocks.TREE_TAP.get()))
-                                .save(output,"_from_pale_oak");
+                                .save(output, "_from_pale_oak");
 
                 TreeTapBuilder.of(registries)
                                 .log(Blocks.BIRCH_LOG)
                                 .leaves(Blocks.BIRCH_LEAVES)
                                 .output(zFluids.SAP.getFluid(), 15)
                                 .unlockedBy(getHasName(zBlocks.TREE_TAP.get()), has(zBlocks.TREE_TAP.get()))
-                                .save(output,"_from_birch");
+                                .save(output, "_from_birch");
 
                 TreeTapBuilder.of(registries)
                                 .log(Blocks.SPRUCE_LOG)
                                 .leaves(Blocks.SPRUCE_LEAVES)
                                 .output(zFluids.RESIN.getFluid(), 25)
                                 .unlockedBy(getHasName(zBlocks.TREE_TAP.get()), has(zBlocks.TREE_TAP.get()))
-                                .save(output,"_from_spruce");
+                                .save(output, "_from_spruce");
 
                 TreeTapBuilder.of(registries)
                                 .log(Blocks.JUNGLE_LOG)
                                 .leaves(Blocks.JUNGLE_LEAVES)
                                 .output(zFluids.LATEX.getFluid(), 50)
                                 .unlockedBy(getHasName(zBlocks.TREE_TAP.get()), has(zBlocks.TREE_TAP.get()))
-                                .save(output,"_from_jungle");
+                                .save(output, "_from_jungle");
 
                 TreeTapBuilder.of(registries)
                                 .log(Blocks.MANGROVE_LOG)
                                 .leaves(Blocks.MANGROVE_LEAVES)
                                 .output(zFluids.LATEX.getFluid(), 75)
                                 .unlockedBy(getHasName(zBlocks.TREE_TAP.get()), has(zBlocks.TREE_TAP.get()))
-                                .save(output,"_from_mangrove");
+                                .save(output, "_from_mangrove");
 
                 TreeTapBuilder.of(registries)
                                 .log(Blocks.CHERRY_LOG)
                                 .leaves(Blocks.CHERRY_LEAVES)
                                 .output(zFluids.LATEX.getFluid(), 15)
                                 .unlockedBy(getHasName(zBlocks.TREE_TAP.get()), has(zBlocks.TREE_TAP.get()))
-                                .save(output,"_from_cherry");
+                                .save(output, "_from_cherry");
 
                 TreeTapBuilder.of(registries)
                                 .log(Blocks.ACACIA_LOG)
                                 .leaves(Blocks.ACACIA_LEAVES)
                                 .output(zFluids.LATEX.getFluid(), 25)
                                 .unlockedBy(getHasName(zBlocks.TREE_TAP.get()), has(zBlocks.TREE_TAP.get()))
-                                .save(output,"_from_acacia");
-
+                                .save(output, "_from_acacia");
 
                 TreeTapBuilder.of(registries)
                                 .log(Tags.Blocks.NETHER_NATURAL_LOGS)
                                 .leaves(BlockTags.WART_BLOCKS)
                                 .output(zFluids.OIL.getFluid(), 25)
                                 .unlockedBy(getHasName(zBlocks.TREE_TAP.get()), has(zBlocks.TREE_TAP.get()))
+                                .save(output);
+
+                shapeless(RecipeCategory.MISC, zItems.FIBER.get())
+                                .requires(zItems.HEMP.get())
+                                .unlockedBy(getHasName(zItems.HEMP.get()), has(zItems.HEMP.get()))
                                 .save(output);
         }
 
