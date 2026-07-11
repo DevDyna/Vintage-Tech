@@ -30,7 +30,7 @@ public class DataLang extends LanguageProvider implements LangAddition {
                 zItems.zItem.getEntries().forEach(b -> addItem(b, LangUtils.named(b, MODULE_ID)));
                 zBlocks.zBlockFluids.getEntries().forEach(b -> addBlock(b, LangUtils.named(b, MODULE_ID)));
 
-                add(MODULE_ID + ".jei.alias.rpm.base", "Mechanical Rotation block");
+                add(MODULE_ID + ".jei.alias.rpm.base", "Mechanical Rotation Block");
                 add(MODULE_ID + ".jei.alias.rpm.transmission", "Transmission");
                 add(MODULE_ID + ".jei.alias.rpm.rotation.change", "Change Rotation");
                 add(MODULE_ID + ".jei.alias.rpm.generator", "Generator");
