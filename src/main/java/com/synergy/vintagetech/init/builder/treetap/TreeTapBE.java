@@ -29,63 +29,68 @@ public class TreeTapBE extends TickingBE {
         var pos = getBlockPos();
         var state = getBlockState();
 
-        if (level.getBlockEntity(pos.below()) instanceof EvaporationBasinBE basin) {
+        EvaporationBasinBE basin = null;
 
-            BlockState leaves = null;
+        for (int y = 0; y < 8; y++)
+            if (level.getBlockEntity(pos.below(y)) instanceof EvaporationBasinBE t)
+                basin = t;
 
-            var facing = state.getValue(TreeTapBlock.FACING);
+        if (basin == null)
+            return;
 
-            var trunk = pos.relative(facing.getOpposite());
+        BlockState leaves = null;
 
-            if (!level.getBlockState(trunk).is(zTags.Blocks.TREE_TAP_LOGS))
-                return;
+        var facing = state.getValue(TreeTapBlock.FACING);
 
-            var log = level.getBlockState(trunk);
+        var trunk = pos.relative(facing.getOpposite());
 
-            for (int y = 0; y < 32 && leaves == null; y++) {
+        if (!level.getBlockState(trunk).is(zTags.Blocks.TREE_TAP_LOGS))
+            return;
 
-                var current = trunk.above(y);
+        var log = level.getBlockState(trunk);
 
-                if (!level.getBlockState(current).is(log.getBlock()))
-                    break;
+        for (int y = 0; y < 32 && leaves == null; y++) {
 
-                for (BlockPos offset : BlockPos.betweenClosed(
-                        current.offset(-2, 0, -2),
-                        current.offset(2, 0, 2))) {
+            var current = trunk.above(y);
 
-                    var related = level.getBlockState(offset);
+            if (!level.getBlockState(current).is(log.getBlock()))
+                break;
 
-                    if (!related.is(zTags.Blocks.TREE_TAP_LEAVES))
-                        continue;
+            for (BlockPos offset : BlockPos.betweenClosed(
+                    current.offset(-2, 0, -2),
+                    current.offset(2, 0, 2))) {
 
-                    leaves = related;
-                    break;
+                var related = level.getBlockState(offset);
 
-                }
+                if (!related.is(zTags.Blocks.TREE_TAP_LEAVES))
+                    continue;
+
+                leaves = related;
+                break;
+
             }
-
-            if (leaves == null)
-                return;
-
-            Optional<RecipeHolder<TreeTapRecipe>> r = level.getServer().getRecipeManager()
-                    .getRecipeFor(zRecipeTypes.TREE_TAP.getType(),
-                            new TreeTapInput(log, leaves), level);
-
-            if (r.isEmpty())
-                return;
-
-            var recipe = r.get().value();
-
-            if ((level.getGameTime() + getBlockPos().asLong()) % recipe.getDelay() != 0)
-                return;
-
-            if (!RandomUtil.chance(level, recipe.getChance()))
-                return;
-
-            ResourceHandlerUtil.insertStacking(basin.getFluidStorage(), FluidResource.of(recipe.getFluid()),
-                    recipe.getFluid().amount(), null);
-
         }
+
+        if (leaves == null)
+            return;
+
+        Optional<RecipeHolder<TreeTapRecipe>> r = level.getServer().getRecipeManager()
+                .getRecipeFor(zRecipeTypes.TREE_TAP.getType(),
+                        new TreeTapInput(log, leaves), level);
+
+        if (r.isEmpty())
+            return;
+
+        var recipe = r.get().value();
+
+        if ((level.getGameTime() + getBlockPos().asLong()) % recipe.getDelay() != 0)
+            return;
+
+        if (!RandomUtil.chance(level, recipe.getChance()))
+            return;
+
+        ResourceHandlerUtil.insertStacking(basin.getFluidStorage(), FluidResource.of(recipe.getFluid()),
+                recipe.getFluid().amount(), null);
 
     }
 

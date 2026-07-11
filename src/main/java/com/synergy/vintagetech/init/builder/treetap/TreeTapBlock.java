@@ -4,7 +4,7 @@ import javax.annotation.Nullable;
 
 import com.devdyna.cakesticklib.api.RandomUtil;
 import com.devdyna.cakesticklib.api.aspect.templates.TickingBlock;
-import com.synergy.vintagetech.init.builder.evaporation_basin.EvaporationBasinBlock;
+import com.synergy.vintagetech.init.builder.evaporation_basin.EvaporationBasinBE;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -98,10 +98,20 @@ public class TreeTapBlock extends TickingBlock {
 
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+        
+        if (!RandomUtil.chance(level, 0.05))
+        return;
+        
         var opposite = state.getValue(FACING).getOpposite();
 
-        if (RandomUtil.chance(level, 0.05))
-            if (level.getBlockState(pos.below()).getBlock() instanceof EvaporationBasinBlock)
+        var found = false;
+        for (int y = 0; y < 8; y++)
+            if (level.getBlockEntity(pos.below(y)) instanceof EvaporationBasinBE)
+                found = true;
+
+        if (!found)
+            return;
+
                 level.addParticle(ParticleTypes.DRIPPING_DRIPSTONE_WATER,
                         pos.getX() + 0.5 + 0.09 * opposite.getStepX(),
                         pos.getY(),
