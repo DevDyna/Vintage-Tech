@@ -53,9 +53,6 @@ public class TreeTapBE extends TickingBE {
                         current.offset(-2, 0, -2),
                         current.offset(2, 0, 2))) {
 
-                    if (offset.equals(pos))
-                        continue;
-
                     var related = level.getBlockState(offset);
 
                     if (!related.is(zTags.Blocks.TREE_TAP_LEAVES))
@@ -87,7 +84,6 @@ public class TreeTapBE extends TickingBE {
 
             ResourceHandlerUtil.insertStacking(basin.getFluidStorage(), FluidResource.of(recipe.getFluid()),
                     recipe.getFluid().amount(), null);
-
 
         }
 
