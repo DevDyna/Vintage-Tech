@@ -175,7 +175,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .unlockedBy(getHasName(zBlocks.TREE_TAP.get()), has(zBlocks.TREE_TAP.get()))
                                 .save(output);
 
-                shapeless(RecipeCategory.MISC, zItems.FIBER.get(),3)
+                shapeless(RecipeCategory.MISC, zItems.HEMP_FIBER.get(),3)
                                 .requires(zItems.HEMP.get())
                                 .unlockedBy(getHasName(zItems.HEMP.get()), has(zItems.HEMP.get()))
                                 .save(output);

@@ -60,7 +60,7 @@ public class zItems {
         public static final DeferredHolder<Item, Item> GLUE = zItem.registerSimpleItem("glue");
         public static final DeferredHolder<Item, Item> OIL = zItem.registerSimpleItem("oil");
        
-        public static final DeferredHolder<Item, Item> FIBER = zItem.registerSimpleItem("fiber");
+        public static final DeferredHolder<Item, Item> HEMP_FIBER = zItem.registerSimpleItem("hemp_fiber");
 
 
 
