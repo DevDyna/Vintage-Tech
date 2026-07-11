@@ -14,7 +14,10 @@ public class RecipeSender {
                     zRecipeTypes.CRUSHING_TUB.getType(),
                     zRecipeTypes.DRYING_RACK.getType(),
                     zRecipeTypes.EVAPORATION_BASIN.getType(),
-                    zRecipeTypes.MILLSTONE.getType());
+                    zRecipeTypes.MILLSTONE.getType(),
+                    zRecipeTypes.CENTRIFUGE.getType(),
+                    zRecipeTypes.TREE_TAP.getType()
+                    );
         }
 
     }
