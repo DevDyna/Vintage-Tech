@@ -5,7 +5,7 @@
     "ingredient": "minecraft:water"
   },
   "output": {
-    "id": "minecraft:sugar"
+    "id": "vintagetech:salt"
   },
   "ticks": 20
 }

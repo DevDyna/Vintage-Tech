@@ -1,0 +1,11 @@
+{
+  "type": "vintagetech:tree_tap",
+  "chance": 0.5,
+  "delay": 200,
+  "fluid": {
+    "amount": 25,
+    "id": "vintagetech:latex_source"
+  },
+  "leaves": "minecraft:acacia_leaves",
+  "logs": "minecraft:acacia_log"
+}

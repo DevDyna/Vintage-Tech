@@ -1,0 +1,11 @@
+{
+  "type": "vintagetech:evaporation_basin",
+  "fluid": {
+    "amount": 125,
+    "ingredient": "vintagetech:sap_source"
+  },
+  "output": {
+    "id": "vintagetech:sap"
+  },
+  "ticks": 20
+}

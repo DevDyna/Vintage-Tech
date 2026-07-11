@@ -1,0 +1,11 @@
+{
+  "type": "vintagetech:evaporation_basin",
+  "fluid": {
+    "amount": 125,
+    "ingredient": "vintagetech:latex_source"
+  },
+  "output": {
+    "id": "vintagetech:glue"
+  },
+  "ticks": 20
+}

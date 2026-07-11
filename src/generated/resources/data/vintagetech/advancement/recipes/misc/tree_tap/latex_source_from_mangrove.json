@@ -3,15 +3,15 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "vintagetech:evaporation_basin/sugar"
+        "recipe": "vintagetech:tree_tap/latex_source_from_mangrove"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
-    "has_water_bucket": {
+    "has_tree_tap": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:water_bucket"
+            "items": "vintagetech:tree_tap"
           }
         ]
       },
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_water_bucket"
+      "has_tree_tap"
     ]
   ],
   "rewards": {
     "recipes": [
-      "vintagetech:evaporation_basin/sugar"
+      "vintagetech:tree_tap/latex_source_from_mangrove"
     ]
   }
 }

@@ -1,0 +1,11 @@
+{
+  "type": "vintagetech:evaporation_basin",
+  "fluid": {
+    "amount": 125,
+    "ingredient": "vintagetech:resin_source"
+  },
+  "output": {
+    "id": "vintagetech:amber"
+  },
+  "ticks": 20
+}

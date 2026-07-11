@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "vintagetech:tree_tap/lava"
+        "recipe": "vintagetech:tree_tap/sap_source_from_birch"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "vintagetech:tree_tap/lava"
+      "vintagetech:tree_tap/sap_source_from_birch"
     ]
   }
 }

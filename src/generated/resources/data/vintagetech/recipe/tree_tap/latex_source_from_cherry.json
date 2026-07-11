@@ -1,0 +1,11 @@
+{
+  "type": "vintagetech:tree_tap",
+  "chance": 0.5,
+  "delay": 200,
+  "fluid": {
+    "amount": 15,
+    "id": "vintagetech:latex_source"
+  },
+  "leaves": "minecraft:cherry_leaves",
+  "logs": "minecraft:cherry_log"
+}

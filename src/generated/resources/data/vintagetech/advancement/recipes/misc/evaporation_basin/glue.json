@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_evaporation_basin": {
+      "conditions": {
+        "items": [
+          {
+            "items": "vintagetech:evaporation_basin"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "vintagetech:evaporation_basin/glue"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_evaporation_basin"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "vintagetech:evaporation_basin/glue"
+    ]
+  }
+}

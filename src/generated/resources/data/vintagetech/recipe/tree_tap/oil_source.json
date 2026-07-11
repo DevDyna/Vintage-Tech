@@ -4,7 +4,7 @@
   "delay": 200,
   "fluid": {
     "amount": 25,
-    "id": "minecraft:lava"
+    "id": "vintagetech:oil_source"
   },
   "leaves": "#minecraft:wart_blocks",
   "logs": "#c:natural_logs/nether"

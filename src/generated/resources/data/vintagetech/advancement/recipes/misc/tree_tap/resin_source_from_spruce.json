@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "vintagetech:tree_tap/water"
+        "recipe": "vintagetech:tree_tap/resin_source_from_spruce"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "vintagetech:tree_tap/water"
+      "vintagetech:tree_tap/resin_source_from_spruce"
     ]
   }
 }

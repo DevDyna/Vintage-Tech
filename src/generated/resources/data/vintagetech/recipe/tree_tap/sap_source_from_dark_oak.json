@@ -1,0 +1,11 @@
+{
+  "type": "vintagetech:tree_tap",
+  "chance": 0.5,
+  "delay": 200,
+  "fluid": {
+    "amount": 50,
+    "id": "vintagetech:sap_source"
+  },
+  "leaves": "minecraft:dark_oak_leaves",
+  "logs": "minecraft:dark_oak_log"
+}

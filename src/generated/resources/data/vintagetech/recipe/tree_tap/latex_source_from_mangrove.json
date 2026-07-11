@@ -1,0 +1,11 @@
+{
+  "type": "vintagetech:tree_tap",
+  "chance": 0.5,
+  "delay": 200,
+  "fluid": {
+    "amount": 75,
+    "id": "vintagetech:latex_source"
+  },
+  "leaves": "minecraft:mangrove_leaves",
+  "logs": "minecraft:mangrove_log"
+}

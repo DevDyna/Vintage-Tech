@@ -1,0 +1,11 @@
+{
+  "type": "vintagetech:evaporation_basin",
+  "fluid": {
+    "amount": 125,
+    "ingredient": "vintagetech:oil_source"
+  },
+  "output": {
+    "id": "vintagetech:oil"
+  },
+  "ticks": 20
+}

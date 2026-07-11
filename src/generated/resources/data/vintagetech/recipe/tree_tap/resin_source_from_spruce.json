@@ -1,0 +1,11 @@
+{
+  "type": "vintagetech:tree_tap",
+  "chance": 0.5,
+  "delay": 200,
+  "fluid": {
+    "amount": 25,
+    "id": "vintagetech:resin_source"
+  },
+  "leaves": "minecraft:spruce_leaves",
+  "logs": "minecraft:spruce_log"
+}
