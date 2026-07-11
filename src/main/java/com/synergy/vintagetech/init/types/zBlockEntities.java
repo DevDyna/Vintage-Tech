@@ -81,8 +81,8 @@ public class zBlockEntities {
 
         public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CentrifugeBE>> CENTRIFUGE = RegistryUtils
                         .createBlockEntity("centrifuge", zTiles, CentrifugeBE::new, zBlocks.CENTRIFUGE);
-     
-                        public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TreeTapBE>> TREE_TAP = RegistryUtils
+
+        public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TreeTapBE>> TREE_TAP = RegistryUtils
                         .createBlockEntity("tree_tap", zTiles, TreeTapBE::new, zBlocks.TREE_TAP);
 
 }
