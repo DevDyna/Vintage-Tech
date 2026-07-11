@@ -106,7 +106,11 @@ public class Client {
     public static void onRegisterFluidModels(RegisterFluidModelsEvent event) {
 
         List.of(
+                zFluids.AMBER,
+                zFluids.LATEX,
+                zFluids.RESIN,
                 zFluids.SALT_SOLUTION,
+                zFluids.SAP,
                 zFluids.SOY_WHEY).forEach(
                         f -> event.register(
                                 FluidRenderUtils.createWaterModel(new FluidTintSource() {
