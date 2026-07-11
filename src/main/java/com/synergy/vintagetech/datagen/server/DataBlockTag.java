@@ -110,7 +110,7 @@ public class DataBlockTag extends BlockTagsProvider {
                                 .add(zBlocks.LAVENDER.get());
 
                 tag(BlockTags.BEE_ATTRACTIVE)
-                                .add(zBlocks.LAVENDER.get(),zBlocks.BLUEBERRY_BUSH.get());
+                                .add(zBlocks.LAVENDER.get(), zBlocks.BLUEBERRY_BUSH.get());
 
                 tag(BlockTags.MAINTAINS_FARMLAND)
                                 .add(
@@ -125,13 +125,11 @@ public class DataBlockTag extends BlockTagsProvider {
                                                 zBlocks.HEMP.get(),
                                                 zBlocks.CAVE_WHEAT.get());
 
-
                 tag(zTags.Blocks.TREE_TAP_LEAVES)
-                .addTags(BlockTags.LEAVES,BlockTags.WART_BLOCKS);
+                                .addTags(BlockTags.LEAVES, BlockTags.WART_BLOCKS);
 
                 tag(zTags.Blocks.TREE_TAP_LOGS)
-                .addTags(BlockTags.LOGS,Tags.Blocks.NATURAL_LOGS);
-
+                                .addTags(BlockTags.LOGS, Tags.Blocks.NATURAL_LOGS);
 
         }
 
