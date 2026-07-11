@@ -103,8 +103,8 @@ public class Hemp extends BaseCropBlock {
             return;
         }
 
-        if (hasAbove(level, pos) && isMaxAge(state))
-            super.randomTick(above, level, pos.above(), random);
+        // if (hasAbove(level, pos) && isMaxAge(state))
+        //     super.randomTick(above, level, pos.above(), random);
 
         if (above.canBeReplaced() && !below.is(this))
             level.setBlockAndUpdate(pos.above(), this.defaultBlockState());
