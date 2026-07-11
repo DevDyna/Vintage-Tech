@@ -62,6 +62,13 @@ public class zTags {
         public static final TagKey<Block> CONSUMER = RegistryUtils
                 .tagBlock(MODULE_ID, "rpm/consumer");
 
+
+        public static final TagKey<Block> TREE_TAP_LEAVES = RegistryUtils
+                .tagBlock(MODULE_ID, "treetap/valid_leaves");
+
+        public static final TagKey<Block> TREE_TAP_LOGS = RegistryUtils
+                .tagBlock(MODULE_ID, "treetap/valid_logs");
+
     }
 
     public class Items {

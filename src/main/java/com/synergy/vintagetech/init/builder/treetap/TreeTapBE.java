@@ -9,15 +9,13 @@ import com.synergy.vintagetech.init.builder.evaporation_basin.EvaporationBasinBE
 import com.synergy.vintagetech.init.builder.treetap.recipe.TreeTapRecipe;
 import com.synergy.vintagetech.init.types.zBlockEntities;
 import com.synergy.vintagetech.init.types.zRecipeTypes;
+import com.synergy.vintagetech.init.types.zTags;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.crafting.RecipeHolder;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.transfer.ResourceHandlerUtil;
 import net.neoforged.neoforge.transfer.fluid.FluidResource;
-import net.neoforged.neoforge.transfer.transaction.Transaction;
 
 public class TreeTapBE extends TickingBE {
 
@@ -35,26 +33,38 @@ public class TreeTapBE extends TickingBE {
 
             BlockState leaves = null;
 
-            var trunk = pos.relative(state.getValue(TreeTapBlock.FACING));
+            var facing = state.getValue(TreeTapBlock.FACING);
 
-            if (!level.getBlockState(trunk).is(BlockTags.LOGS))
+            var trunk = pos.relative(facing.getOpposite());
+
+            if (!level.getBlockState(trunk).is(zTags.Blocks.TREE_TAP_LOGS))
                 return;
 
             var log = level.getBlockState(trunk);
 
             for (int y = 0; y < 32 && leaves == null; y++) {
+
                 var current = trunk.above(y);
 
-                if (!level.getBlockState(current).is(BlockTags.LOGS))
+                if (!level.getBlockState(current).is(log.getBlock()))
                     break;
 
-                for (int dx = -2; dx <= 2 && leaves == null; dx++)
-                    for (int dz = -2; dz <= 2 && leaves == null; dz++)
-                        if (level.getBlockState(current.offset(dx, 0, dz))
-                                .is(BlockTags.LEAVES)) {
-                            leaves = level.getBlockState(current.offset(dx, 0, dz));
-                        }
+                for (BlockPos offset : BlockPos.betweenClosed(
+                        current.offset(-2, 0, -2),
+                        current.offset(2, 0, 2))) {
 
+                    if (offset.equals(pos))
+                        continue;
+
+                    var related = level.getBlockState(offset);
+
+                    if (!related.is(zTags.Blocks.TREE_TAP_LEAVES))
+                        continue;
+
+                    leaves = related;
+                    break;
+
+                }
             }
 
             if (leaves == null)
@@ -75,43 +85,12 @@ public class TreeTapBE extends TickingBE {
             if (!RandomUtil.chance(level, recipe.getChance()))
                 return;
 
-            try (var tx = Transaction.openRoot()) {
-                if (basin.getFluidStorage().getResource(0).is(recipe.getFluid().create().getFluidType())
-                        && basin.getFluidStorage().getAmountAsInt(0) < basin.getFluidStorage().getCapacityAsInt(0,
-                                basin.getFluidStorage().getResource(0))) {
-                    basin.getFluidStorage().insert(0, FluidResource.of(recipe.getFluid()), recipe.getFluid().amount(),
-                            tx);
-                    tx.commit();
-                }
-            }
+            ResourceHandlerUtil.insertStacking(basin.getFluidStorage(), FluidResource.of(recipe.getFluid()),
+                    recipe.getFluid().amount(), null);
+
 
         }
 
-    }
-
-    // TODO API : unify to api?
-    public static boolean isFacingTree(Level level, BlockPos pos, Direction facing) {
-        var trunk = pos.relative(facing);
-
-        if (!level.getBlockState(trunk).is(BlockTags.LOGS))
-            return false;
-
-        for (int y = 0; y < 32; y++) {
-            var current = trunk.above(y);
-            var state = level.getBlockState(current);
-
-            if (!state.is(BlockTags.LOGS))
-                break;
-
-            for (int dx = -2; dx <= 2; dx++)
-                for (int dz = -2; dz <= 2; dz++)
-                    if (level.getBlockState(current.offset(dx, 0, dz))
-                            .is(BlockTags.LEAVES))
-                        return true;
-
-        }
-
-        return false;
     }
 
 }

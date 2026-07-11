@@ -125,6 +125,14 @@ public class DataBlockTag extends BlockTagsProvider {
                                                 zBlocks.HEMP.get(),
                                                 zBlocks.CAVE_WHEAT.get());
 
+
+                tag(zTags.Blocks.TREE_TAP_LEAVES)
+                .addTags(BlockTags.LEAVES,BlockTags.WART_BLOCKS);
+
+                tag(zTags.Blocks.TREE_TAP_LOGS)
+                .addTags(BlockTags.LOGS,Tags.Blocks.NATURAL_LOGS);
+
+
         }
 
 }
