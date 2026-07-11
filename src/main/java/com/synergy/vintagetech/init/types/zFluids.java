@@ -24,12 +24,18 @@ public class zFluids {
         public static final DeferredRegister<FluidType> zFluidTypes = DeferredRegister.create(Keys.FLUID_TYPES,
                         MODULE_ID);
 
-        public static final FluidRegister SALT_SOLUTION = FluidRegister.create("salt_solution",ColorUtils.argb(255, 236, 202, 202));
-        public static final FluidRegister SOY_WHEY = FluidRegister.create("soy_whey",ColorUtils.argb(255, 255, 236, 236));
-       
-        public static final FluidRegister RESIN = FluidRegister.create("resin",ColorUtils.argb(255,175, 119, 56));
-        public static final FluidRegister LATEX = FluidRegister.create("latex",ColorUtils.argb(255,246, 238, 228));
-        public static final FluidRegister SAP = FluidRegister.create("sap",ColorUtils.argb(255,255, 211, 72));
-        public static final FluidRegister AMBER = FluidRegister.create("amber",ColorUtils.argb(255,237, 169, 41));
+        public static final FluidRegister SALT_SOLUTION = FluidRegister.create("salt_solution",
+                        ColorUtils.argb(255, 236, 202, 202));
+        public static final FluidRegister SOY_WHEY = FluidRegister.create("soy_whey",
+                        ColorUtils.argb(255, 255, 236, 236));
+
+        // spruce 
+        public static final FluidRegister RESIN = FluidRegister.create("resin", ColorUtils.argb(255, 175, 119, 56));
+        // jungle , mangrove , acacia , cherry
+        public static final FluidRegister LATEX = FluidRegister.create("latex", ColorUtils.argb(255, 246, 238, 228));
+        // oak , pale ,dark  , birch
+        public static final FluidRegister SAP = FluidRegister.create("sap", ColorUtils.argb(255, 255, 211, 72));
+        // nether 
+        public static final FluidRegister OIL = FluidRegister.create("oil", ColorUtils.argb(255, 71, 54, 40));
 
 }
