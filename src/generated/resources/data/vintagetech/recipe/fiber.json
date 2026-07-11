@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "vintagetech:hemp"
+  ],
+  "result": {
+    "count": 3,
+    "id": "vintagetech:fiber"
+  }
+}
