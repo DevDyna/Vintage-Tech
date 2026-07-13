@@ -5,19 +5,19 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 
 import java.util.List;
 
+import com.devdyna.cakesticklib.api.datagen.LangGenerators;
 import com.devdyna.cakesticklib.api.datagen.LangUtils;
 import com.devdyna.cakesticklib.api.utils.StringUtil;
 import com.synergy.vintagetech.init.types.zBlocks;
 import com.synergy.vintagetech.init.types.zItems;
 import com.synergy.vintagetech.init.types.zFluids;
-import com.synergy.vintagetech.api.LangAddition;
 
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 @SuppressWarnings("unused")
-public class DataLang extends LanguageProvider implements LangAddition {
+public class DataLang extends LanguageProvider implements LangGenerators {
 
         public DataLang(PackOutput o) {
                 super(o, MODULE_ID, "en_us");
