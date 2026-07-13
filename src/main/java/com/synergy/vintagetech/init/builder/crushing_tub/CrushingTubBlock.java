@@ -101,7 +101,7 @@ public class CrushingTubBlock extends TickingBlock
     public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, double fallDistance) {
 
         if (level.getBlockEntity(pos) instanceof CrushingTubBE be)
-            be.whenItemFallOnIt(level,pos, entity);
+            be.collectItem(level,pos, entity);
 
         if (level.getBlockEntity(pos) instanceof CrushingTubBE be &&
                 entity.is(zTags.Entities.CRUSHING_TUB_ALLOW_CRUSHING))

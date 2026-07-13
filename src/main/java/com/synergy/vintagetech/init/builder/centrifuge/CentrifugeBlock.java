@@ -99,7 +99,7 @@ public class CentrifugeBlock extends MonoDirectionalAxleBlock
     @Override
     public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, double fallDistance) {
         if (level.getBlockEntity(pos) instanceof CentrifugeBE be)
-            be.whenItemFallOnIt(level,pos, entity);
+            be.collectItem(level,pos, entity);
         super.fallOn(level, state, pos, entity, fallDistance);
     }
 

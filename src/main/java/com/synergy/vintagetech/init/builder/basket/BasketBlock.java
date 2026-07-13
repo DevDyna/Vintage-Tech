@@ -112,7 +112,7 @@ public class BasketBlock extends TickingBlock {
     protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity,
             InsideBlockEffectApplier effectApplier, boolean isPrecise) {
         if (entity instanceof ItemEntity item && level.getBlockEntity(pos) instanceof BasketBE be)
-            be.whenItemFallOnIt(level, pos, item);// TODO HOT : update cakesticklib to replace
+            be.collectItem(level, pos, item);
 
     }
 
