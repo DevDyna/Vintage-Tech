@@ -3,7 +3,10 @@ package com.synergy.vintagetech.datagen.client;
 import static com.devdyna.cakesticklib.api.datagen.LangUtils.*;
 import static com.synergy.vintagetech.Main.MODULE_ID;
 
+import java.util.List;
+
 import com.devdyna.cakesticklib.api.datagen.LangUtils;
+import com.devdyna.cakesticklib.api.utils.StringUtil;
 import com.synergy.vintagetech.init.types.zBlocks;
 import com.synergy.vintagetech.init.types.zItems;
 import com.synergy.vintagetech.init.types.zFluids;
@@ -23,8 +26,10 @@ public class DataLang extends LanguageProvider implements LangAddition {
         @Override
         protected void addTranslations() {
 
-                zBlocks.zRender.getEntries().forEach(b -> addBlock(b, LangUtils.TipColors.RED + "DEV BLOCK ONLY, DON'T USE!"));
-                zFluids.zFluidTypes.getEntries().forEach(f -> addFluid(f.get(), named(f, MODULE_ID).replace(" Type", "")));
+                zBlocks.zRender.getEntries()
+                                .forEach(b -> addBlock(b, LangUtils.TipColors.RED + "DEV BLOCK ONLY, DON'T USE!"));
+                zFluids.zFluidTypes.getEntries()
+                                .forEach(f -> addFluid(f.get(), named(f, MODULE_ID).replace(" Type", "")));
                 zItems.zBucketItems.getEntries().forEach(i -> addItem(i, named(i, MODULE_ID)));
                 zBlocks.zBlockItem.getEntries().forEach(b -> addBlock(b, LangUtils.named(b, MODULE_ID)));
                 zItems.zItem.getEntries().forEach(b -> addItem(b, LangUtils.named(b, MODULE_ID)));
@@ -36,6 +41,16 @@ public class DataLang extends LanguageProvider implements LangAddition {
                 add(MODULE_ID + ".jei.alias.rpm.generator", "Generator");
 
                 add(MODULE_ID + ".creative_tab." + MODULE_ID, "Vintage Tech");
+
+                List.of(
+                                "centrifuge",
+                                "crushing_tub",
+                                "drying_rack",
+                                "evaporation_basin",
+                                "millstone",
+                                "tree_tap"
+
+                ).forEach(s -> add(MODULE_ID + ".jei." + s, StringUtil.formatToDisplay(s) + " Recipes"));
 
         }
 
