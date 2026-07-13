@@ -13,7 +13,7 @@ public class MillstoneRenderer extends TransmissionRenderer<MillstoneBE> {
     }
 
     @Override
-    public Block getBlockRendered() {
+    public Block getBlockRendered(MillstoneBE be) {
         return zBlocks.RENDER_MILLSTONE.get();
     }
 

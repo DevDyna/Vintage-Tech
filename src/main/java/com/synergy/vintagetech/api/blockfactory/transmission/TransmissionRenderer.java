@@ -36,7 +36,7 @@ public class TransmissionRenderer<BE extends TransmissionBE>
         return new TransmissionRenderState();
     }
 
-    public Block getBlockRendered() {
+    public Block getBlockRendered(BE be) {
         return zBlocks.RENDER_HALF_AXLE.get();
     }
 
@@ -47,7 +47,7 @@ public class TransmissionRenderer<BE extends TransmissionBE>
 
         BlockEntityRenderState.extractBase(be, state, overlay);
 
-        resolver.update(state.block, getBlockRendered().defaultBlockState(), BlockDisplayContext.create());
+        resolver.update(state.block, getBlockRendered(be).defaultBlockState(), BlockDisplayContext.create());
 
         state.rotation = be.getRotation(partialTicks);
         state.dirs = be.getBlockState().getBlock() instanceof AxleHandler axle

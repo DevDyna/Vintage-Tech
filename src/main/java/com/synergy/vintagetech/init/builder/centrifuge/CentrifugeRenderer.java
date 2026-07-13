@@ -13,7 +13,7 @@ public class CentrifugeRenderer extends TransmissionRenderer<CentrifugeBE> {
     }
 
     @Override
-    public Block getBlockRendered() {
+    public Block getBlockRendered(CentrifugeBE be) {
         return zBlocks.RENDER_CENTRIFUGE.get();
     }
 

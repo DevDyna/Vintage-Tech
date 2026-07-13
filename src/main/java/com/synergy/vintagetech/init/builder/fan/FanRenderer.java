@@ -18,7 +18,7 @@ public class FanRenderer extends TransmissionRenderer<FanBE> {
     }
 
     @Override
-    public Block getBlockRendered() {
+    public Block getBlockRendered(FanBE be) {
         return zBlocks.RENDER_FAN_BLADE.get();
     }
 
