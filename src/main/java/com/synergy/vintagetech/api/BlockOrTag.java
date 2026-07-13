@@ -1,5 +1,7 @@
 package com.synergy.vintagetech.api;
 
+import java.util.Optional;
+
 import com.devdyna.cakesticklib.api.utils.x;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
@@ -10,6 +12,9 @@ import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 
 public sealed interface BlockOrTag permits BlockOrTag.block, BlockOrTag.tag {
@@ -49,6 +54,34 @@ public sealed interface BlockOrTag permits BlockOrTag.block, BlockOrTag.tag {
             }
         }
     };
+
+    default Ingredient getasIngredient(Level level) {
+        return switch (this) {
+            case block b -> Ingredient.of(b.block());
+            case tag t ->
+                x.itemIngredient(level.registryAccess()
+                        .lookupOrThrow(Registries.BLOCK)
+                        .getOrThrow(t.tag()).stream()
+                        .map(holder -> holder.value().asItem())
+                        .filter(item -> item != Items.AIR && item != null)
+                        .toList());
+
+        };
+    }
+
+    default Optional<Block> getBlock() {
+        return switch (this) {
+            case block b -> Optional.of(b.block());
+            case tag _ -> Optional.empty();
+        };
+    }
+
+    default Optional<TagKey<Block>> getTag() {
+        return switch (this) {
+            case block _ -> Optional.empty();
+            case tag t -> Optional.of(t.tag());
+        };
+    }
 
     boolean test(Block block);
 
