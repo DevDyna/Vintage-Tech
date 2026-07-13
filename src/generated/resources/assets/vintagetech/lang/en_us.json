@@ -66,5 +66,11 @@
   "vintagetech.jei.alias.rpm.base": "Mechanical Rotation Block",
   "vintagetech.jei.alias.rpm.generator": "Generator",
   "vintagetech.jei.alias.rpm.rotation.change": "Change Rotation",
-  "vintagetech.jei.alias.rpm.transmission": "Transmission"
+  "vintagetech.jei.alias.rpm.transmission": "Transmission",
+  "vintagetech.jei.centrifuge": "Centrifuge Recipes",
+  "vintagetech.jei.crushing_tub": "Crushing Tub Recipes",
+  "vintagetech.jei.drying_rack": "Drying Rack Recipes",
+  "vintagetech.jei.evaporation_basin": "Evaporation Basin Recipes",
+  "vintagetech.jei.millstone": "Millstone Recipes",
+  "vintagetech.jei.tree_tap": "Tree Tap Recipes"
 }
