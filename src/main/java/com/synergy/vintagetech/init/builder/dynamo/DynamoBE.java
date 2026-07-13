@@ -10,8 +10,6 @@ import com.synergy.vintagetech.init.types.zBlockEntities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.BlockCapabilityCache;
 import net.neoforged.neoforge.transfer.energy.EnergyHandler;
@@ -27,7 +25,6 @@ public class DynamoBE extends TransmissionBE implements EnergyProvider {
 
     @Override
     public void tickServer() {
-        
 
         if (getEnergyStorage() == null)
             return;
@@ -41,18 +38,9 @@ public class DynamoBE extends TransmissionBE implements EnergyProvider {
 
         }
 
-        if(canExtract())
-                providePowerAdjacent(level, getBlockPos(), cache, getFERate());
+        if (canExtract())
+            providePowerAdjacent(level, getBlockPos(), cache, getFERate());
 
-
-       
-
-    }
-
-    // TODO API : optional
-    @Override
-    public ContainerData getContainerData() {
-        return new SimpleContainerData(1);
     }
 
     @Override
