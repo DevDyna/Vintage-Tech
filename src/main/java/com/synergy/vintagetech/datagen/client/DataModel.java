@@ -62,7 +62,7 @@ public class DataModel extends ModelProvider {
                 BlockModelUtils.simplePlain(blockModels, zBlocks.HYDRAULIC_PRESS);
                 BlockModelUtils.simplePlain(blockModels, zBlocks.MIXING_BARREL);
                 BlockModelUtils.simplePlain(blockModels, zBlocks.CRUCIBLE);
-                BlockModelUtils.simplePlain(blockModels, zBlocks.TURNTABLE);
+                // BlockModelUtils.simplePlain(blockModels, zBlocks.TURNTABLE);
 
                 blockModels.blockStateOutput.accept(
                                 BlockModelGenerators.createSimpleBlock(zBlocks.LAVENDER.get(),

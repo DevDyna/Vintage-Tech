@@ -115,8 +115,8 @@ public class zBlocks {
         // item -> item
         public static final DeferredHolder<Block, Block> HYDRAULIC_PRESS = registerItemBlock("hydraulic_press",
                         p -> new Block(p));
-        public static final DeferredHolder<Block, Block> TURNTABLE = registerItemBlock("turntable",
-                        p -> new Block(p));
+        // public static final DeferredHolder<Block, Block> TURNTABLE = registerItemBlock("turntable",
+        //                 p -> new Block(p));
 
         // renderer
         public static final DeferredHolder<Block, Block> RENDER_HALF_AXLE = renderBlock("render_half_axle");
