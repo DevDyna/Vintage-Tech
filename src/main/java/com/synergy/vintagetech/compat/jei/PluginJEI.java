@@ -7,8 +7,12 @@ import java.util.List;
 import com.devdyna.cakesticklib.api.compat.jei.JEIAliasesHelper;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.synergy.vintagetech.Client;
+import com.synergy.vintagetech.compat.jei.categories.CentrifugeCategory;
 import com.synergy.vintagetech.compat.jei.categories.CrushingTubCategory;
+import com.synergy.vintagetech.compat.jei.categories.DryingRackCategory;
 import com.synergy.vintagetech.compat.jei.categories.EvaporationBasinCategory;
+import com.synergy.vintagetech.compat.jei.categories.MillstoneCategory;
+import com.synergy.vintagetech.compat.jei.categories.TreeTapCategory;
 import com.synergy.vintagetech.init.types.zBlocks;
 import com.synergy.vintagetech.init.types.zRecipeTypes;
 
@@ -36,6 +40,10 @@ public class PluginJEI implements IModPlugin {
         public void registerRecipeCatalysts(IRecipeCatalystRegistration r) {
                 r.addCraftingStation(CrushingTubCategory.TYPE, x.item(zBlocks.CRUSHING_TUB.get()));
                 r.addCraftingStation(EvaporationBasinCategory.TYPE, x.item(zBlocks.EVAPORATION_BASIN.get()));
+                r.addCraftingStation(CentrifugeCategory.TYPE, x.item(zBlocks.CENTRIFUGE.get()));
+                r.addCraftingStation(DryingRackCategory.TYPE, x.item(zBlocks.DRYING_RACK.get()));
+                r.addCraftingStation(MillstoneCategory.TYPE, x.item(zBlocks.MILLSTONE.get()));
+                r.addCraftingStation(TreeTapCategory.TYPE, x.item(zBlocks.TREE_TAP.get()));
 
         }
 
@@ -46,7 +54,11 @@ public class PluginJEI implements IModPlugin {
                 r.addRecipeCategories(
 
                                 new CrushingTubCategory(helper),
-                                new EvaporationBasinCategory(helper)
+                                new EvaporationBasinCategory(helper),
+                                new CentrifugeCategory(helper),
+                                new DryingRackCategory(helper),
+                                new MillstoneCategory(helper),
+                                new TreeTapCategory(helper)
 
                 );
 
@@ -60,6 +72,18 @@ public class PluginJEI implements IModPlugin {
 
                 r.addRecipes(EvaporationBasinCategory.TYPE,
                                 getRecipes(zRecipeTypes.EVAPORATION_BASIN.getType()));
+
+                r.addRecipes(CentrifugeCategory.TYPE,
+                                getRecipes(zRecipeTypes.CENTRIFUGE.getType()));
+
+                r.addRecipes(DryingRackCategory.TYPE,
+                                getRecipes(zRecipeTypes.DRYING_RACK.getType()));
+
+                r.addRecipes(MillstoneCategory.TYPE,
+                                getRecipes(zRecipeTypes.MILLSTONE.getType()));
+
+                r.addRecipes(TreeTapCategory.TYPE,
+                                getRecipes(zRecipeTypes.TREE_TAP.getType()));
 
         }
 
@@ -113,7 +137,6 @@ public class PluginJEI implements IModPlugin {
 
         }
 
-        @SuppressWarnings("unused")
         private <C extends RecipeInput, T extends Recipe<C>> List<RecipeHolder<T>> getRecipes(RecipeType<T> type) {
                 return List.copyOf(Client.getRecipeCollector().byType(type));
         }

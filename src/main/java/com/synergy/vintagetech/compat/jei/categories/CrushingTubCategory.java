@@ -5,6 +5,7 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 import com.devdyna.cakesticklib.api.compat.jei.BaseRecipeCategory;
 import com.devdyna.cakesticklib.api.compat.jei.JEIFluidTankHelper;
 import com.devdyna.cakesticklib.api.primitive.Size;
+import com.devdyna.cakesticklib.api.utils.ColorUtils;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.synergy.vintagetech.init.builder.crushing_tub.recipe.CrushingTubRecipe;
 import com.synergy.vintagetech.init.types.zBlocks;
@@ -74,7 +75,7 @@ public class CrushingTubCategory extends BaseRecipeCategory<CrushingTubRecipe> {
                     .build((x, y) -> builder.addOutputSlot(x, y));
 
         if (recipe.getOutput() != null)
-            builder.addSlot(RecipeIngredientRole.OUTPUT, 70 + 1, 46 + 1).add(recipe.getOutput().item());
+            builder.addOutputSlot( 70 + 1, 46 + 1).add(recipe.getOutput().item());
 
     }
 
@@ -88,7 +89,7 @@ public class CrushingTubCategory extends BaseRecipeCategory<CrushingTubRecipe> {
                     Component.literal(
                             ((int) (recipe.getOutput().chance() * 100)) + "%"),
                     55, 53,
-                    defaultToolTipColor.getRGB(), false);
+                    ColorUtils.WHITE.getRGB(), true);
 
     }
 
