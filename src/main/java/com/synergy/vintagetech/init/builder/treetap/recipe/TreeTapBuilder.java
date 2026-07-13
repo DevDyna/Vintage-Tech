@@ -87,8 +87,8 @@ public class TreeTapBuilder extends BaseRecipeBuilder implements FluidAttach.Out
     }
 
     @Override
-    public Identifier getSuffix(String extra) {// TODO API : move to api x.name(<Resource>StackTemplate)
-        return x.rl(MODULE_ID, "tree_tap/" + x.name(fluid.fluid().value())
+    public Identifier getSuffix(String extra) {
+        return x.rl(MODULE_ID, "tree_tap/" + x.name(fluid)
                 + extra);
     }
 

@@ -75,7 +75,7 @@ public class CentrifugeBuilder extends BaseRecipeBuilder
 
     @Override
     public Identifier getSuffix(String extra) {
-        return x.rl(MODULE_ID, "centrifuge/" + x.name(output_fluid.fluid().value())
+        return x.rl(MODULE_ID, "centrifuge/" + x.name(output_fluid)
                 + extra);
     }
 

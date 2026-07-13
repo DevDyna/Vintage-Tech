@@ -66,7 +66,7 @@ public class EvaporationBasinBuilder extends BaseRecipeBuilder
 
     @Override
     public Identifier getSuffix(String extra) {
-        return x.rl(MODULE_ID, "evaporation_basin/" + x.name(output.item().value())
+        return x.rl(MODULE_ID, "evaporation_basin/" + x.name(output)
                 + extra);
     }
 
