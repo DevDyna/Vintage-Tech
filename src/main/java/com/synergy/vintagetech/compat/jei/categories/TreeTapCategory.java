@@ -66,7 +66,7 @@ public class TreeTapCategory extends BaseRecipeCategory<TreeTapRecipe> {
                 .fluid(recipe.getFluid().create())
                 .offset(105, 35 + 1)
                 .scale(2.0f, 1.0f)
-                .build((x, y) -> builder.addInputSlot(x, y));
+                .build((x, y) -> builder.addOutputSlot(x, y));
 
         builder.addInputSlot(57, 21).add(recipe.getLog().getasIngredient(level));
         builder.addInputSlot(57, 2).add(recipe.getLeaves().getasIngredient(level));
