@@ -50,7 +50,7 @@ public class TreeTapBlock extends TickingBlock {
 
     }
 
-    // TODO IMP : tree tap model and properties
+    // TODO IMP : tree tap properties
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> b) {
