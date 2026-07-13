@@ -122,13 +122,6 @@ public class CentrifugeBE extends TransmissionBE
         return 1;
     }
 
-    // TODO API : move to api
-    public boolean isFull() {
-        return !getItemStorage().getResource(0).isEmpty()
-                && getItemStorage().getCapacityAsInt(0, getItemStorage().getResource(0)) <= getItemStorage()
-                        .getAmountAsInt(0);
-    }
-
     @Override
     public FluidStacksResourceHandler getFluidStorage() {
         return getData(LibHandlers.FLUID_STORAGE);
