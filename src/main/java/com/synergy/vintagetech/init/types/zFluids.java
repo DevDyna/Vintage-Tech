@@ -29,13 +29,9 @@ public class zFluids {
         public static final FluidRegister SOY_WHEY = FluidRegister.create("soy_whey",
                         ColorUtils.argb(255, 255, 236, 236));
 
-        // spruce 
         public static final FluidRegister RESIN = FluidRegister.create("resin", ColorUtils.argb(255, 175, 119, 56));
-        // jungle , mangrove , acacia , cherry
         public static final FluidRegister LATEX = FluidRegister.create("latex", ColorUtils.argb(255, 246, 238, 228));
-        // oak , pale ,dark  , birch
         public static final FluidRegister SAP = FluidRegister.create("sap", ColorUtils.argb(255, 255, 211, 72));
-        // nether 
         public static final FluidRegister OIL = FluidRegister.create("oil", ColorUtils.argb(255, 71, 54, 40));
 
 }
