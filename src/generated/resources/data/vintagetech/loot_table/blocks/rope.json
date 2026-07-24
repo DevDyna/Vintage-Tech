@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "vintagetech:mixing_barrel"
+          "name": "vintagetech:rope"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "vintagetech:blocks/mixing_barrel"
+  "random_sequence": "vintagetech:blocks/rope"
 }

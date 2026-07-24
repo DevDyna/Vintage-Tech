@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "vintagetech:block/mixing_barrel"
+    "model": "vintagetech:item/rope"
   }
 }
