@@ -134,6 +134,9 @@ public class DataBlockTag extends BlockTagsProvider {
                 tag(zTags.Blocks.SAW_GENERATOR_BLOCKS)
                                 .add(Blocks.STONE, Blocks.COBBLESTONE);
 
+                tag(BlockTags.CLIMBABLE)
+                                .add(zBlocks.ROPE.get());
+
         }
 
 }
