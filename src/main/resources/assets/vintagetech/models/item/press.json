@@ -3,10 +3,10 @@
   "credit": "Made by DevDyna",
   "parent": "block/block",
   "textures": {
-    "3": "vintagetech:block/piston_inner",
-    "4": "vintagetech:block/piston_side",
-    "5": "vintagetech:block/piston_top",
-    "particle": "vintagetech:block/piston_bottom"
+    "3": "block/piston_inner",
+    "4": "block/piston_side",
+    "5": "block/piston_top",
+    "particle": "block/piston_bottom"
   },
   "elements": [
     {

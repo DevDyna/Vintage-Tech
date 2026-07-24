@@ -5,8 +5,8 @@
   "render_type": "cutout",
   "textures": {
     "5": "block/dropper_front_vertical",
-    "particle": "vintagetech:block/anvil",
-    "all": "vintagetech:block/anvil"
+    "all": "block/anvil",
+    "particle": "block/anvil"
   },
   "elements": [
     {

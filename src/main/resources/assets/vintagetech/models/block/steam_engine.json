@@ -4,8 +4,8 @@
   "parent": "block/block",
   "render_type": "cutout",
   "textures": {
-    "12": "vintagetech:block/copper_bulb_powered",
-    "particle": "vintagetech:block/metal_pipes_copper_window"
+    "12": "block/copper_bulb_powered",
+    "particle": "block/copper_bulb_powered"
   },
   "elements": [
     {

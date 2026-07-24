@@ -4,11 +4,11 @@
   "parent": "block/block",
   "render_type": "cutout",
   "textures": {
-    "9": "vintagetech:block/woodcutter_bottom",
-    "10": "vintagetech:block/woodcutter_saw_off",
-    "13": "vintagetech:block/woodcutter_side",
-    "14": "vintagetech:block/woodcutter_top",
-    "particle": "vintagetech:block/large_blade_top"
+    "9": "vintagetech:block/saw/woodcutter_bottom",
+    "10": "vintagetech:block/saw/woodcutter_saw_off",
+    "13": "vintagetech:block/saw/woodcutter_side",
+    "14": "vintagetech:block/saw/woodcutter_top",
+    "particle": "vintagetech:block/saw/large_blade_top"
   },
   "elements": [
     {

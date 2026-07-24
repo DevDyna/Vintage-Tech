@@ -4,10 +4,10 @@
   "parent": "block/block",
   "render_type": "cutout",
   "textures": {
-    "0": "vintagetech:block/cheese_plain_side",
-    "1": "vintagetech:block/cheese_plain_top",
-    "2": "vintagetech:block/cheese_plain_bottom",
-    "particle": "vintagetech:block/cheese_plain_top"
+    "0": "vintagetech:block/cheese/cheese_plain_side",
+    "1": "vintagetech:block/cheese/cheese_plain_top",
+    "2": "vintagetech:block/cheese/cheese_plain_bottom",
+    "particle": "vintagetech:block/cheese/cheese_plain_top"
   },
   "elements": [
     {

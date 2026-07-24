@@ -4,8 +4,8 @@
   "parent": "block/block",
   "render_type": "cutout",
   "textures": {
-    "0": "vintagetech:block/observer_side",
-    "particle": "vintagetech:block/observer_side"
+    "0": "block/observer_side",
+    "particle": "#0"
   },
   "elements": [
     {

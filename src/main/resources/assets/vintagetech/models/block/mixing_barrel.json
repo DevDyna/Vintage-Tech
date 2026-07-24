@@ -4,9 +4,9 @@
   "parent": "block/block",
   "render_type": "cutout",
   "textures": {
-    "3": "vintagetech:block/barrel_bottom",
-    "4": "vintagetech:block/barrel_side",
-    "7": "vintagetech:block/barrel_top"
+    "3": "block/barrel_bottom",
+    "4": "block/barrel_side",
+    "7": "block/barrel_top"
   },
   "elements": [
     {

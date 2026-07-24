@@ -4,12 +4,12 @@
   "parent": "block/block",
   "render_type": "cutout",
   "textures": {
-    "0": "vintagetech:block/basket_top",
-    "1": "vintagetech:block/basket_inner",
-    "2": "vintagetech:block/basket_side",
-    "3": "vintagetech:block/basket_side_handles",
-    "4": "vintagetech:block/wicker_block",
-    "particle": "vintagetech:block/wicker_block"
+    "0": "vintagetech:block/basket/basket_top",
+    "1": "vintagetech:block/basket/basket_inner",
+    "2": "vintagetech:block/basket/basket_side",
+    "3": "vintagetech:block/basket/basket_side_handles",
+    "4": "vintagetech:block/basket/wicker_block",
+    "particle": "vintagetech:block/basket/wicker_block"
   },
   "elements": [
     {

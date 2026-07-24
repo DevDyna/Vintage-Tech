@@ -3,7 +3,7 @@
   "credit": "Made by DevDyna",
   "parent": "block/block",
   "render_type": "cutout",
-  "textures": { "blade": "vintagetech:block/quern/small_blade" },
+  "textures": { "blade": "vintagetech:block/millstone/small_blade", "particle":"#blade" },
   "elements": [
     {
       "from": [1.5, 4, 6.5],

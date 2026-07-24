@@ -4,11 +4,11 @@
   "parent": "block/block",
   "render_type": "cutout",
   "textures": {
-    "0": "vintagetech:block/cauldron_inner",
-    "1": "vintagetech:block/cauldron_side",
-    "2": "vintagetech:block/cauldron_top",
-    "3": "vintagetech:block/hopper_outside",
-    "particle": "vintagetech:block/cauldron_inner"
+    "0": "block/cauldron_inner",
+    "1": "block/cauldron_side",
+    "2": "block/cauldron_top",
+    "3": "block/hopper_outside",
+    "particle": "block/cauldron_inner"
   },
   "elements": [
     {

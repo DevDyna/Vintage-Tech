@@ -5,7 +5,7 @@
   "render_type": "cutout",
   "textures": {
     "5": "vintagetech:block/elder_fancy_fence",
-    "particle": "vintagetech:block/metal_pipes_copper_window"
+    "particle": "#5"
   },
   "elements": [
     {

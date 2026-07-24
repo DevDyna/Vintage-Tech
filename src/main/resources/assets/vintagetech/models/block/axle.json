@@ -5,7 +5,7 @@
   "textures": {
     "4": "vintagetech:block/elder_beam_connected",
     "5": "vintagetech:block/elder_fancy_fence",
-    "particle": "vintagetech:block/stripped_oak_log"
+    "particle": "block/stripped_oak_log"
   },
   "elements": [
     {

@@ -4,7 +4,7 @@
   "parent": "block/block",
   "textures": {
     "4": "vintagetech:block/blade",
-    "particle": "vintagetech:block/elder_fancy_fence"
+    "particle": "#4"
   },
   "elements": [
     {

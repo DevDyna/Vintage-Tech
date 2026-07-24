@@ -4,8 +4,8 @@
   "parent": "block/block",
   "render_type": "cutout",
   "textures": {
-    "5": "vintagetech:block/industrial_metal_duct_fan",
-    "particle": "vintagetech:block/elder_fancy_fence"
+    "5": "cakesticklib:block/wrought_iron_block",
+    "particle": "#5"
   },
   "elements": [
     {

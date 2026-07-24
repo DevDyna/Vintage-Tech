@@ -4,11 +4,11 @@
   "parent": "block/block",
   "render_type": "cutout",
   "textures": {
-    "0": "vintagetech:block/observer_side",
-    "2": "vintagetech:block/piston_bottom",
-    "4": "vintagetech:block/piston_side",
-    "5": "vintagetech:block/piston_top",
-    "particle": "vintagetech:block/observer_side"
+    "0": "block/observer_side",
+    "2": "block/piston_bottom",
+    "4": "block/piston_side",
+    "5": "block/piston_top",
+    "particle": "block/observer_side"
   },
   "elements": [
     {

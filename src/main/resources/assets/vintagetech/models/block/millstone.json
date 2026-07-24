@@ -7,10 +7,10 @@
     "hopper_top": "block/hopper_top",
     "hopper_inside": "block/hopper_inside",
     "hopper_outside": "block/hopper_outside",
-    "large_blade_side": "vintagetech:block/quern/large_blade_side",
-    "large_blade_top": "vintagetech:block/quern/large_blade_top",
-    "particle": "#large_blade_side",
-    "small_blade": "vintagetech:block/quern/small_blade"
+    "large_blade_side": "vintagetech:block/millstone/large_blade_side",
+    "large_blade_top": "vintagetech:block/millstone/large_blade_top",
+    "small_blade": "vintagetech:block/millstone/small_blade",
+    "particle": "#large_blade_side"
   },
   "elements": [
     {

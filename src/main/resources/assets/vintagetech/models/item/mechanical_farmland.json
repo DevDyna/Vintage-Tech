@@ -3,10 +3,10 @@
   "credit": "Made by DevDyna",
   "parent": "block/block",
   "textures": {
-    "2": "vintagetech:block/rooted_dirt",
-    "4": "vintagetech:block/composter_bottom",
-    "5": "vintagetech:block/composter_side",
-    "particle": "vintagetech:block/crushing_tub/bottom"
+    "2": "block/rooted_dirt",
+    "4": "block/composter_bottom",
+    "5": "block/composter_side",
+    "particle": "#5"
   },
   "elements": [
     {
