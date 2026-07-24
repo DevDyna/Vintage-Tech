@@ -69,6 +69,9 @@ public class zTags {
         public static final TagKey<Block> TREE_TAP_LOGS = RegistryUtils
                 .tagBlock(MODULE_ID, "treetap/valid_logs");
 
+        public static final TagKey<Block> SAW_GENERATOR_BLOCKS = RegistryUtils
+                .tagBlock(MODULE_ID, "saw/generator_blocks");
+
     }
 
     public class Items {

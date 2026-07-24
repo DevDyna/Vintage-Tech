@@ -12,6 +12,8 @@ import com.devdyna.cakesticklib.api.ItemLogisticUtils;
 import com.devdyna.cakesticklib.api.aspect.templates.TickingBE;
 import com.devdyna.cakesticklib.api.factories.plants.VanillaPlants;
 import com.devdyna.cakesticklib.setup.Config;
+import com.synergy.vintagetech.init.builder.basket.BasketBE;
+import com.synergy.vintagetech.init.builder.basket.BasketBlock;
 import com.synergy.vintagetech.init.types.zBlockEntities;
 import com.synergy.vintagetech.init.types.zTags;
 
@@ -28,7 +30,10 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.level.block.LiquidBlock;
+import net.minecraft.world.level.block.entity.HopperBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.transfer.item.ItemResource;
+import net.neoforged.neoforge.transfer.transaction.Transaction;
 
 public class SawBE extends TickingBE {
 
@@ -89,11 +94,15 @@ public class SawBE extends TickingBE {
                         SoundSource.BLOCKS);
                 level.levelEvent(LevelEvent.PARTICLES_DESTROY_BLOCK, getOffset(), Block.getId(relative));
 
+                var drops = Block.getDrops(relative, (ServerLevel) level, getOffset(), null);
 
-                Block.getDrops(relative, (ServerLevel) level, getOffset(), null)
-                        .forEach(i -> ItemLogisticUtils.createLazyItemEntity(i, level, getOffset(), 2400, true));
+                if (!trySimulateBreakAction(relative, drops)) {
 
-                level.setBlockAndUpdate(getOffset(), Blocks.AIR.defaultBlockState());
+                    drops.forEach(i -> ItemLogisticUtils.createLazyItemEntity(i, level, getOffset(), 2400, true));
+
+                    level.setBlockAndUpdate(getOffset(), Blocks.AIR.defaultBlockState());
+
+                }
 
             }
 
@@ -105,10 +114,41 @@ public class SawBE extends TickingBE {
 
     }
 
+    public boolean trySimulateBreakAction(BlockState relative, List<ItemStack> drops) {
+
+        if(!relative.is(zTags.Blocks.SAW_GENERATOR_BLOCKS))
+        return false;
+
+        if (drops.isEmpty())
+            return false;
+
+        var be = level.getBlockEntity(getOffset().below());
+
+        if (be == null)
+            return false;
+
+        if (be instanceof HopperBlockEntity hopper)
+            drops.forEach(i -> HopperBlockEntity.addItem(null, hopper, i.copy(), null));
+
+        // TODO API : add another collectItem method to accept ItemStack
+        if (be instanceof BasketBE basket)
+            if (level.getBlockState(getOffset().below()).getValue(BasketBlock.FACING).equals(Direction.UP))
+                if (!basket.isSlotsFull())
+                    try (var tx = Transaction.openRoot()) {
+
+                        drops.forEach(i -> basket.getItemStorage()
+                                .insert(ItemResource.of(i.copy()),
+                                        i.count(),
+                                        tx));
+                        tx.commit();
+                    }
+
+        return true;
+    }
+
     public boolean isFast(BlockState s) {
         return s.is(zTags.Blocks.MINEABLE_WITH_SAW);
     }
-
 
     public void resetBreak() {
         level.destroyBlockProgress(UUID, getOffset(), -1);

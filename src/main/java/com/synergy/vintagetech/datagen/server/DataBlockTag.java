@@ -131,6 +131,9 @@ public class DataBlockTag extends BlockTagsProvider {
                 tag(zTags.Blocks.TREE_TAP_LOGS)
                                 .addTags(BlockTags.LOGS, Tags.Blocks.NATURAL_LOGS);
 
+                tag(zTags.Blocks.SAW_GENERATOR_BLOCKS)
+                                .add(Blocks.STONE, Blocks.COBBLESTONE);
+
         }
 
 }
