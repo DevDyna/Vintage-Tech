@@ -1,6 +1,7 @@
 package com.synergy.vintagetech.init.builder;
 
 import com.mojang.serialization.MapCodec;
+import com.synergy.vintagetech.api.RopeHandler;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -11,6 +12,7 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.PipeBlock;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
@@ -22,7 +24,7 @@ public class RopeBlock extends PipeBlock
     public static final BooleanProperty HAS_CORNER = BooleanProperty.create("has_corner");
 
     public RopeBlock(Properties properties) {
-        super(4, properties);
+        super(4, properties.sound(SoundType.WOOL));
     }
 
     @Override
@@ -39,7 +41,7 @@ public class RopeBlock extends PipeBlock
         var state = level.getBlockState(pos.relative(dir));
         return !isExceptionForConnection(state)
                 && state.isFaceSturdy(level, pos.relative(dir.getOpposite()), dir)
-                || state.is(this);
+                || state.is(this) || state.getBlock() instanceof RopeHandler;
     }
 
     @Override
