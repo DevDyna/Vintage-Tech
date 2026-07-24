@@ -6,6 +6,7 @@ import com.synergy.vintagetech.api.ItemModelUtil;
 import com.devdyna.cakesticklib.api.factories.plants.builder.BaseShortCropBlock;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.synergy.vintagetech.api.BlockModelUtils;
+import com.synergy.vintagetech.init.builder.RopeBlock;
 import com.synergy.vintagetech.init.builder.plants.Aloe;
 import com.synergy.vintagetech.init.builder.plants.BlueBerry;
 import com.synergy.vintagetech.init.builder.plants.Hemp;
@@ -17,6 +18,7 @@ import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.data.models.MultiVariant;
+import net.minecraft.client.data.models.blockstates.MultiPartGenerator;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
 import net.minecraft.client.data.models.model.ItemModelUtils;
@@ -112,8 +114,6 @@ public class DataModel extends ModelProvider {
                                                 BlockModelGenerators.plainVariant(
                                                                 x.rl(MODULE_ID, "block/gearshift"))));
 
-                
-
                 MultiVariant sawOff = BlockModelGenerators.plainVariant(
                                 x.rl(MODULE_ID, "block/saw/off"));
 
@@ -161,28 +161,55 @@ public class DataModel extends ModelProvider {
                                                                                                 sawOn.with(BlockModelGenerators.X_ROT_90)
                                                                                                                 .with(BlockModelGenerators.Y_ROT_270))));
 
-               
-                BlockModelUtils.createFacingBlock(blockModels, zBlocks.BASKET.get(), x.rl(MODULE_ID, "block/basket"),false);
-                BlockModelUtils.createFacingBlock(blockModels, zBlocks.FAN.get(), x.rl(MODULE_ID, "block/fan"),true);
-                                BlockModelUtils.createHorizontalFacingBlock(blockModels, zBlocks.TREE_TAP.get(), x.rl(MODULE_ID, "block/tree_tap"),false);
+                BlockModelUtils.createFacingBlock(blockModels, zBlocks.BASKET.get(), x.rl(MODULE_ID, "block/basket"),
+                                false);
+                BlockModelUtils.createFacingBlock(blockModels, zBlocks.FAN.get(), x.rl(MODULE_ID, "block/fan"), true);
+                BlockModelUtils.createHorizontalFacingBlock(blockModels, zBlocks.TREE_TAP.get(),
+                                x.rl(MODULE_ID, "block/tree_tap"), false);
 
+                MultiVariant line = BlockModelGenerators.plainVariant(
+                                x.rl(MODULE_ID, "block/rope/line"));
 
+                MultiVariant dot = BlockModelGenerators.plainVariant(
+                                x.rl(MODULE_ID, "block/rope/dot"));
+
+                blockModels.blockStateOutput.accept(
+                                MultiPartGenerator.multiPart(zBlocks.ROPE.get())
+                                                .with(BlockModelGenerators.condition().term(RopeBlock.DOWN,
+                                                                true), line)
+                                                .with(BlockModelGenerators.condition().term(RopeBlock.UP,
+                                                                true), line.with(BlockModelGenerators.X_ROT_180))
+                                                .with(BlockModelGenerators.condition().term(RopeBlock.SOUTH,
+                                                                true), line.with(BlockModelGenerators.X_ROT_90))
+                                                .with(BlockModelGenerators.condition().term(RopeBlock.NORTH,
+                                                                true),
+                                                                line.with(BlockModelGenerators.X_ROT_90)
+                                                                                .with(BlockModelGenerators.Y_ROT_180))
+                                                .with(BlockModelGenerators.condition().term(RopeBlock.WEST,
+                                                                true),
+                                                                line.with(BlockModelGenerators.X_ROT_90)
+                                                                                .with(BlockModelGenerators.Y_ROT_90))
+                                                .with(BlockModelGenerators.condition().term(RopeBlock.EAST,
+                                                                true),
+                                                                line.with(BlockModelGenerators.X_ROT_90)
+                                                                                .with(BlockModelGenerators.Y_ROT_270))
+                                                .with(BlockModelGenerators.condition().term(RopeBlock.HAS_CORNER, true),
+                                                                dot)
+
+                );
 
                 // TODO MODELS : create models for dynamo and electric motor
-                BlockModelUtils.createHorizontalFacingBlock(blockModels, zBlocks.STEAM_ENGINE.get(), x.rl(MODULE_ID, "block/steam_engine"),false);
-                BlockModelUtils.createHorizontalFacingBlock(blockModels, zBlocks.DYNAMO.get(), x.rl(MODULE_ID, "block/steam_engine"),false);
-                BlockModelUtils.createHorizontalFacingBlock(blockModels, zBlocks.ELECTRIC_MOTOR.get(), x.rl(MODULE_ID, "block/steam_engine"),false);
-
-
-
-
+                BlockModelUtils.createHorizontalFacingBlock(blockModels, zBlocks.STEAM_ENGINE.get(),
+                                x.rl(MODULE_ID, "block/steam_engine"), false);
+                BlockModelUtils.createHorizontalFacingBlock(blockModels, zBlocks.DYNAMO.get(),
+                                x.rl(MODULE_ID, "block/steam_engine"), false);
+                BlockModelUtils.createHorizontalFacingBlock(blockModels, zBlocks.ELECTRIC_MOTOR.get(),
+                                x.rl(MODULE_ID, "block/steam_engine"), false);
 
                 BlockModelUtils.cropWithoutSeed(blockModels, zBlocks.CAVE_WHEAT.get(), BaseShortCropBlock.AGE, 0, 1,
                                 2, 3, 4, 5);
                 BlockModelUtils.cropWithoutSeed(blockModels, zBlocks.SOYBEANS.get(), BaseShortCropBlock.AGE, 0, 1,
                                 2, 3, 4, 5);
-
-               
 
                 BlockModelUtils.createBushBlock(blockModels, zBlocks.ALOE_PLANT.get(), Aloe.AGE);
                 BlockModelUtils.createBushBlock(blockModels, zBlocks.BLUEBERRY_BUSH.get(), BlueBerry.AGE);
@@ -222,6 +249,7 @@ public class DataModel extends ModelProvider {
                 itemModels.generateFlatItem(zBlocks.FAN.get().asItem(), ModelTemplates.FLAT_ITEM);
                 itemModels.generateFlatItem(zBlocks.CHEESE.get().asItem(), ModelTemplates.FLAT_ITEM);
                 itemModels.generateFlatItem(zBlocks.LAVENDER.get().asItem(), ModelTemplates.FLAT_ITEM);
+                itemModels.generateFlatItem(zBlocks.ROPE.get().asItem(), ModelTemplates.FLAT_ITEM);
 
                 itemModels.itemModelOutput.accept(zBlocks.JUNCTION.get().asItem(),
                                 ItemModelUtils.plainModel(x.rl(MODULE_ID, "item/junction")));

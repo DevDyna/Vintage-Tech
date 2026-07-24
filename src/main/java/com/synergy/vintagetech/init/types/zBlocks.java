@@ -5,6 +5,7 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 import java.util.function.Function;
 
 import com.synergy.vintagetech.init.builder.GearShiftBlock;
+import com.synergy.vintagetech.init.builder.RopeBlock;
 import com.synergy.vintagetech.init.builder.basket.BasketBlock;
 import com.synergy.vintagetech.init.builder.centrifuge.CentrifugeBlock;
 import com.synergy.vintagetech.init.builder.creative_engine.CreativeEngineBlock;
@@ -99,6 +100,9 @@ public class zBlocks {
 
         public static final DeferredHolder<Block, Block> MECHANICAL_FARMLAND = registerItemBlock("mechanical_farmland",
                         p -> new MechanicalFarmlandBlock(p));
+
+        public static final DeferredHolder<Block, Block> ROPE = registerItemBlock("rope",
+                        p -> new RopeBlock(p));
 
         // TODO IMP : BLOCKS
         public static final DeferredHolder<Block, Block> CHEESE = registerItemBlock("cheese",
