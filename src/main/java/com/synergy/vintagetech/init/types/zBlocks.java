@@ -110,8 +110,8 @@ public class zBlocks {
                         p -> new Block(p));
 
         // fluid + item -> item
-        public static final DeferredHolder<Block, Block> MIXING_BARREL = registerItemBlock("mixing_barrel",
-                        p -> new Block(p));
+        // public static final DeferredHolder<Block, Block> MIXING_BARREL = registerItemBlock("mixing_barrel",
+        //                 p -> new Block(p));
         // item -> item
         public static final DeferredHolder<Block, Block> HYDRAULIC_PRESS = registerItemBlock("hydraulic_press",
                         p -> new Block(p));
