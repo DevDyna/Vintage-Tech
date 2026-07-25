@@ -2,7 +2,10 @@
   "format_version": "1.9.0",
   "credit": "Made by DevDyna",
   "parent": "block/block",
-  "textures": { "rope": "vintagetech:block/rope" },
+  "textures": {
+    "rope": "vintagetech:block/rope",
+    "particle": "#rope"
+  },
   "elements": [
     {
       "from": [6, 6, 6],

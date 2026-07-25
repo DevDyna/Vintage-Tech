@@ -2,7 +2,7 @@
   "format_version": "1.9.0",
   "credit": "Made by DevDyna",
   "parent": "block/block",
-  "textures": { "particle": "side" },
+  "textures": { "particle": "#side" },
   "elements": [
     {
       "from": [5, 0, 5],
