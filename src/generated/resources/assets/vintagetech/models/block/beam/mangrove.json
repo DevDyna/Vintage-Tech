@@ -1,0 +1,7 @@
+{
+  "parent": "vintagetech:block/template/beam",
+  "textures": {
+    "side": "minecraft:block/mangrove_log",
+    "top": "vintagetech:block/beam/mangrove"
+  }
+}

@@ -2,7 +2,7 @@
   "multipart": [
     {
       "apply": {
-        "model": "vintagetech:block/beam/axle",
+        "model": "vintagetech:block/beam/birc",
         "x": 90,
         "y": 90
       },
@@ -12,7 +12,7 @@
     },
     {
       "apply": {
-        "model": "vintagetech:block/beam/axle"
+        "model": "vintagetech:block/beam/birc"
       },
       "when": {
         "axis": "y"
@@ -20,7 +20,7 @@
     },
     {
       "apply": {
-        "model": "vintagetech:block/beam/axle",
+        "model": "vintagetech:block/beam/birc",
         "x": 90
       },
       "when": {

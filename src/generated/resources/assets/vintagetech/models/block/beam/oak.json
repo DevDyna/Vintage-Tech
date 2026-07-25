@@ -1,0 +1,7 @@
+{
+  "parent": "vintagetech:block/template/beam",
+  "textures": {
+    "side": "minecraft:block/oak_log",
+    "top": "vintagetech:block/beam/oak"
+  }
+}
