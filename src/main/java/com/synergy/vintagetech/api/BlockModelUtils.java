@@ -194,14 +194,17 @@ public class BlockModelUtils {
 
         }
 
-        public static void createBeamBlock(BlockModelGenerators b, Block block, String top, String side) {
-                createBeamBlock(b, block, x.rl(MODULE_ID, top), x.rl(MODULE_ID, side));
-        }
-        public static void createBeamBlock(BlockModelGenerators b, Block block, Identifier top, String side) {
-                createBeamBlock(b, block, top, x.rl(MODULE_ID, side));
-        }
-        public static void createBeamBlock(BlockModelGenerators b, Block block, String top, Identifier side) {
-                createBeamBlock(b, block, x.rl(MODULE_ID, top), side);
+        public static void createRopeBeamBlock(BlockModelGenerators b, Block block) {
+
+                b.blockStateOutput.accept(
+                                MultiPartGenerator.multiPart(block)
+                                                .with(BlockModelGenerators.condition()
+                                                                .term(RopeHandler.HAS_ROPE, true),
+                                                                BlockModelGenerators.plainVariant(
+                                                                                x.rl(MODULE_ID, "block/rope/on_beam")))
+
+                );
+
         }
 
 }

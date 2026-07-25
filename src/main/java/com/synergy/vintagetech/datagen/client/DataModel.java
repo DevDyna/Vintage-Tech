@@ -2,6 +2,8 @@ package com.synergy.vintagetech.datagen.client;
 
 import static com.synergy.vintagetech.Main.MODULE_ID;
 
+import java.util.Optional;
+
 import com.synergy.vintagetech.api.ItemModelUtil;
 import com.devdyna.cakesticklib.api.factories.plants.builder.BaseShortCropBlock;
 import com.devdyna.cakesticklib.api.utils.x;
@@ -23,6 +25,7 @@ import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
 import net.minecraft.client.data.models.model.ItemModelUtils;
 import net.minecraft.client.data.models.model.ModelLocationUtils;
+import net.minecraft.client.data.models.model.ModelTemplate;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.data.models.model.TextureSlot;
@@ -104,22 +107,26 @@ public class DataModel extends ModelProvider {
                                                                                                                                 "block/lavender/2"))),
                                                                                                 blockModels.modelOutput)))));
 
-                // blockModels.blockStateOutput
-                //                 .accept(BlockModelGenerators.createAxisAlignedPillarBlock(zBlocks.AXLE.get(),
-                //                                 BlockModelGenerators.plainVariant(
-                //                                                 x.rl(MODULE_ID, "block/axle"))));
+                BlockModelUtils.createRopeBeamBlock(blockModels, zBlocks.AXLE.get());
 
-                                        BlockModelUtils.createBeamBlock(blockModels, zBlocks.AXLE.get(), "block/beam/axle", "block/beam/axle");
-                                       
-                                        BlockModelUtils.createBeamBlock(blockModels, zBlocks.OAK_BEAM.get(), "block/beam/oak", x.mcLoc("block/oak_log"));
-                                        BlockModelUtils.createBeamBlock(blockModels, zBlocks.BIRCH_BEAM.get(), "block/beam/birch", x.mcLoc("block/birch_log"));
-                                        BlockModelUtils.createBeamBlock(blockModels, zBlocks.SPRUCE_BEAM.get(), "block/beam/spruce", x.mcLoc("block/spruce_log"));
-                                        BlockModelUtils.createBeamBlock(blockModels, zBlocks.JUNGLE_BEAM.get(), "block/beam/jungle", x.mcLoc("block/jungle_log"));
-                                        BlockModelUtils.createBeamBlock(blockModels, zBlocks.ACACIA_BEAM.get(), "block/beam/acacia", x.mcLoc("block/acacia_log"));
-                                        BlockModelUtils.createBeamBlock(blockModels, zBlocks.DARK_OAK_BEAM.get(), "block/beam/dark_oak", x.mcLoc("block/dark_oak_log"));
-                                        BlockModelUtils.createBeamBlock(blockModels, zBlocks.CHERRY_BEAM.get(), "block/beam/cherry", x.mcLoc("block/cherry_log"));
-                                        BlockModelUtils.createBeamBlock(blockModels, zBlocks.MANGROVE_BEAM.get(), "block/beam/mangrove", x.mcLoc("block/mangrove_log"));
-                                        BlockModelUtils.createBeamBlock(blockModels, zBlocks.PALE_OAK_BEAM.get(), "block/beam/pale_oak", x.mcLoc("block/pale_oak_log"));
+                BlockModelUtils.createBeamBlock(blockModels, zBlocks.OAK_BEAM.get(), x.rl(MODULE_ID, "block/beam/oak"),
+                                x.mcLoc("block/oak_log"));
+                BlockModelUtils.createBeamBlock(blockModels, zBlocks.BIRCH_BEAM.get(),
+                                x.rl(MODULE_ID, "block/beam/birch"), x.mcLoc("block/birch_log"));
+                BlockModelUtils.createBeamBlock(blockModels, zBlocks.SPRUCE_BEAM.get(),
+                                x.rl(MODULE_ID, "block/beam/spruce"), x.mcLoc("block/spruce_log"));
+                BlockModelUtils.createBeamBlock(blockModels, zBlocks.JUNGLE_BEAM.get(),
+                                x.rl(MODULE_ID, "block/beam/jungle"), x.mcLoc("block/jungle_log"));
+                BlockModelUtils.createBeamBlock(blockModels, zBlocks.ACACIA_BEAM.get(),
+                                x.rl(MODULE_ID, "block/beam/acacia"), x.mcLoc("block/acacia_log"));
+                BlockModelUtils.createBeamBlock(blockModels, zBlocks.DARK_OAK_BEAM.get(),
+                                x.rl(MODULE_ID, "block/beam/dark_oak"), x.mcLoc("block/dark_oak_log"));
+                BlockModelUtils.createBeamBlock(blockModels, zBlocks.CHERRY_BEAM.get(),
+                                x.rl(MODULE_ID, "block/beam/cherry"), x.mcLoc("block/cherry_log"));
+                BlockModelUtils.createBeamBlock(blockModels, zBlocks.MANGROVE_BEAM.get(),
+                                x.rl(MODULE_ID, "block/beam/mangrove"), x.mcLoc("block/mangrove_log"));
+                BlockModelUtils.createBeamBlock(blockModels, zBlocks.PALE_OAK_BEAM.get(),
+                                x.rl(MODULE_ID, "block/beam/pale_oak"), x.mcLoc("block/pale_oak_log"));
 
                 blockModels.blockStateOutput
                                 .accept(BlockModelGenerators.createAxisAlignedPillarBlock(zBlocks.GEARSHIFT.get(),
@@ -210,7 +217,6 @@ public class DataModel extends ModelProvider {
 
                 );
 
-
                 // TODO MODELS : create models for dynamo and electric motor
                 BlockModelUtils.createHorizontalFacingBlock(blockModels, zBlocks.STEAM_ENGINE.get(),
                                 x.rl(MODULE_ID, "block/steam_engine"), false);
@@ -263,6 +269,24 @@ public class DataModel extends ModelProvider {
                 itemModels.generateFlatItem(zBlocks.CHEESE.get().asItem(), ModelTemplates.FLAT_ITEM);
                 itemModels.generateFlatItem(zBlocks.LAVENDER.get().asItem(), ModelTemplates.FLAT_ITEM);
                 itemModels.generateFlatItem(zBlocks.ROPE.get().asItem(), ModelTemplates.FLAT_ITEM);
+
+                itemModels.itemModelOutput.accept(zBlocks.AXLE.get().asItem(),
+                                ItemModelUtils.plainModel(
+                                                new ModelTemplate(
+                                                                Optional.of(x.rl(MODULE_ID, "block/template/beam")),
+                                                                Optional.empty(),
+                                                                TextureSlot.TOP, TextureSlot.SIDE)
+                                                                .create(x.rl(MODULE_ID, "block/axle"),
+                                                                                new TextureMapping()
+                                                                                                .put(TextureSlot.TOP,
+                                                                                                                new Material(x.rl(
+                                                                                                                                MODULE_ID,
+                                                                                                                                "block/beam/axle")))
+                                                                                                .put(TextureSlot.SIDE,
+                                                                                                                new Material(x.rl(
+                                                                                                                                MODULE_ID,
+                                                                                                                                "block/beam/axle"))),
+                                                                                itemModels.modelOutput)));
 
                 itemModels.itemModelOutput.accept(zBlocks.JUNCTION.get().asItem(),
                                 ItemModelUtils.plainModel(x.rl(MODULE_ID, "item/junction")));
