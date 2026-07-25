@@ -58,7 +58,10 @@ public class DataModel extends ModelProvider {
                 BlockModelUtils.simplePlain(blockModels, zBlocks.MILLSTONE);
                 BlockModelUtils.simplePlain(blockModels, zBlocks.CRUSHING_TUB);
                 BlockModelUtils.simplePlain(blockModels, zBlocks.EVAPORATION_BASIN);
-                BlockModelUtils.simplePlain(blockModels, zBlocks.DRYING_RACK);
+
+                BlockModelUtils.createHorizontalFacingBlock(blockModels, zBlocks.DRYING_RACK.get(),
+                                x.rl(MODULE_ID, "block/drying_rack"), false);
+
                 BlockModelUtils.simplePlain(blockModels, zBlocks.CENTRIFUGE);
 
                 // TODO IMP : Models by logic
