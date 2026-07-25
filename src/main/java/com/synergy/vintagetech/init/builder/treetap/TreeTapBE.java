@@ -31,9 +31,15 @@ public class TreeTapBE extends TickingBE {
 
         EvaporationBasinBE basin = null;
 
-        for (int y = 0; y < 8; y++)
-            if (level.getBlockEntity(pos.below(y)) instanceof EvaporationBasinBE t)
+        for (int y = 0; y < 8; y++) {
+            if (level.getBlockEntity(pos.below(y)) instanceof EvaporationBasinBE t) {
                 basin = t;
+                break;
+            }
+
+            if (level.getBlockState(pos.below(y)).isSolidRender())
+                break;
+        }
 
         if (basin == null)
             return;
