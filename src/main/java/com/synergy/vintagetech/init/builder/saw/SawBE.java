@@ -177,6 +177,7 @@ public class SawBE extends TickingBE {
 
         if (canProcede) {
 
+            //TODO IMP : use QueueUtils
             ArrayList<ItemStack> itemList = new ArrayList<>();
 
             ArrayList<SoundEvent> souldList = new ArrayList<>();
