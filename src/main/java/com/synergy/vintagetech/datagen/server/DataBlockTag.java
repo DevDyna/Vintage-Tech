@@ -137,6 +137,17 @@ public class DataBlockTag extends BlockTagsProvider {
                 tag(BlockTags.CLIMBABLE)
                                 .add(zBlocks.ROPE.get());
 
+                tag(zTags.Blocks.ROPE_IGNORE_CONNECTION)
+                                .add(
+                                                zBlocks.CRUSHING_TUB.get(),
+                                                zBlocks.EVAPORATION_BASIN.get(),
+                                                Blocks.BARRIER,
+                                                Blocks.JACK_O_LANTERN,
+                                                Blocks.MELON)
+                                .addTags(
+                                                Tags.Blocks.PUMPKINS,
+                                                BlockTags.SHULKER_BOXES);
+
         }
 
 }

@@ -72,6 +72,9 @@ public class zTags {
         public static final TagKey<Block> SAW_GENERATOR_BLOCKS = RegistryUtils
                 .tagBlock(MODULE_ID, "saw/generator_blocks");
 
+        public static final TagKey<Block> ROPE_IGNORE_CONNECTION = RegistryUtils
+                .tagBlock(MODULE_ID, "rope/ignore_connection");
+
     }
 
     public class Items {

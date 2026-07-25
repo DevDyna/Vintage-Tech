@@ -36,7 +36,7 @@ public class WoodenBeam extends RotatedPillarBlock implements RopeHandler {
     public BlockState getStateForPlacement(BlockPlaceContext c) {
         return this.defaultBlockState()
                 .setValue(AXIS, c.getClickedFace().getAxis())
-                .setValue(HAS_ROPE, hasRope(c.getLevel(), c.getClickedPos()));
+                .setValue(HAS_ROPE, hasRope(c.getLevel(), c.getClickedPos(), c.getClickedFace().getAxis()));
     }
 
     @Override
@@ -50,7 +50,7 @@ public class WoodenBeam extends RotatedPillarBlock implements RopeHandler {
             BlockState neighbourState,
             RandomSource random) {
 
-        return state.setValue(HAS_ROPE, hasRope(level, pos));
+        return state.setValue(HAS_ROPE, hasRope(level, pos, state.getValue(AXIS)));
     }
 
     @Override

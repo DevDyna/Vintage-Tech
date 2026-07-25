@@ -1,7 +1,10 @@
 package com.synergy.vintagetech.init.builder;
 
 import com.mojang.serialization.MapCodec;
+import com.synergy.vintagetech.api.QueueUtil;
 import com.synergy.vintagetech.api.RopeHandler;
+import com.synergy.vintagetech.api.QueueUtil.QueueStatus;
+import com.synergy.vintagetech.init.types.zTags;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -11,6 +14,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.PipeBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -39,9 +43,20 @@ public class RopeBlock extends PipeBlock
 
     public boolean connectsTo(BlockGetter level, BlockPos pos, Direction dir) {
         var state = level.getBlockState(pos.relative(dir));
-        return !isExceptionForConnection(state)
-                && state.isFaceSturdy(level, pos.relative(dir.getOpposite()), dir)
-                || state.is(this) || state.getBlock() instanceof RopeHandler;
+
+        if (state.is(zTags.Blocks.ROPE_IGNORE_CONNECTION))
+            return false;
+
+        if (state.is(this))
+            return true;
+
+        if (state.getBlock() instanceof RopeHandler h)
+            return h.getWhenRopeConnect(dir);
+
+        if (canSupportCenter((LevelReader) level, pos.relative(dir), dir))
+            return true;
+
+        return false;
     }
 
     @Override
@@ -89,9 +104,37 @@ public class RopeBlock extends PipeBlock
             BlockPos neighbourPos,
             BlockState neighbourState,
             RandomSource random) {
-        return state.setValue(PROPERTY_BY_DIRECTION.get(directionToNeighbour),
-                this.connectsTo(level, pos, directionToNeighbour))
-                .setValue(HAS_CORNER, hasCorner(level, pos));
+        return !this.canSurvive(state, level, pos)
+                ? Blocks.AIR.defaultBlockState()
+                : state.setValue(PROPERTY_BY_DIRECTION.get(directionToNeighbour),
+                        this.connectsTo(level, pos, directionToNeighbour))
+                        .setValue(HAS_CORNER, hasCorner(level, pos));
+    }
+
+    @Override
+    protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+        return QueueUtil.of(pos).clear()
+                .define((queue, off) -> {
+
+                    boolean foundRope = false;
+
+                    for (Direction dir : Direction.values()) {
+                        var offset = off.relative(dir);
+                        var neighbour = level.getBlockState(offset);
+
+                        if (neighbour.is(this)) {
+                            queue.add(offset);
+                            foundRope = true;
+                            continue;
+                        }
+
+                        if (connectsTo(level, off, dir))
+                            return QueueStatus.SUCCESS;
+                    }
+
+                    return foundRope ? QueueStatus.CONTINUE : QueueStatus.FAIL;
+
+                }).run();
     }
 
 }

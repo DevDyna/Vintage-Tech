@@ -62,7 +62,7 @@ public class AxleBlock extends BaseKineticBlock implements RopeHandler {
             BlockState neighbourState,
             RandomSource random) {
 
-        return state.setValue(HAS_ROPE, hasRope(level, pos));
+        return state.setValue(HAS_ROPE, hasRope(level, pos, state.getValue(AXIS)));
     }
 
     @Override
@@ -71,7 +71,7 @@ public class AxleBlock extends BaseKineticBlock implements RopeHandler {
                 .setValue(ENABLED, false)
                 .setValue(INVERTED, false)
                 .setValue(AXIS, c.getClickedFace().getAxis())
-                .setValue(HAS_ROPE, hasRope(c.getLevel(), c.getClickedPos()));
+                .setValue(HAS_ROPE, hasRope(c.getLevel(), c.getClickedPos(), c.getClickedFace().getAxis()));
     }
 
     @Override
