@@ -2,22 +2,19 @@
   "format_version": "1.9.0",
   "credit": "Made by DevDyna",
   "parent": "block/block",
-  "textures": {
-    "3": "vintagetech:block/rope_connector_2",
-    "particle": "block/stripped_oak_log"
-  },
+  "textures": { "rope": "vintagetech:block/rope" },
   "elements": [
     {
       "from": [6, 6, 6],
       "to": [10, 10, 10],
       "rotation": { "angle": 0, "axis": "y", "origin": [7, 6, 7] },
       "faces": {
-        "north": { "uv": [2, 9, 6, 13], "texture": "#3" },
-        "east": { "uv": [2, 9, 6, 13], "texture": "#3" },
-        "south": { "uv": [2, 9, 6, 13], "texture": "#3" },
-        "west": { "uv": [2, 9, 6, 13], "texture": "#3" },
-        "up": { "uv": [2, 9, 6, 13], "texture": "#3" },
-        "down": { "uv": [2, 9, 6, 13], "texture": "#3" }
+        "north": { "uv": [2, 9, 6, 13], "texture": "#rope" },
+        "east": { "uv": [2, 9, 6, 13], "texture": "#rope" },
+        "south": { "uv": [2, 9, 6, 13], "texture": "#rope" },
+        "west": { "uv": [2, 9, 6, 13], "texture": "#rope" },
+        "up": { "uv": [2, 9, 6, 13], "texture": "#rope" },
+        "down": { "uv": [2, 9, 6, 13], "texture": "#rope" }
       }
     }
   ]
