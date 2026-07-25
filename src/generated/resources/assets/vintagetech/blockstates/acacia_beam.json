@@ -2,7 +2,7 @@
   "multipart": [
     {
       "apply": {
-        "model": "vintagetech:block/beam/acacia",
+        "model": "vintagetech:block/acacia_beam",
         "x": 90,
         "y": 90
       },
@@ -12,7 +12,7 @@
     },
     {
       "apply": {
-        "model": "vintagetech:block/beam/acacia"
+        "model": "vintagetech:block/acacia_beam"
       },
       "when": {
         "axis": "y"
@@ -20,7 +20,7 @@
     },
     {
       "apply": {
-        "model": "vintagetech:block/beam/acacia",
+        "model": "vintagetech:block/acacia_beam",
         "x": 90
       },
       "when": {

@@ -2,7 +2,7 @@
   "multipart": [
     {
       "apply": {
-        "model": "vintagetech:block/beam/pale_oak",
+        "model": "vintagetech:block/pale_oak_beam",
         "x": 90,
         "y": 90
       },
@@ -12,7 +12,7 @@
     },
     {
       "apply": {
-        "model": "vintagetech:block/beam/pale_oak"
+        "model": "vintagetech:block/pale_oak_beam"
       },
       "when": {
         "axis": "y"
@@ -20,7 +20,7 @@
     },
     {
       "apply": {
-        "model": "vintagetech:block/beam/pale_oak",
+        "model": "vintagetech:block/pale_oak_beam",
         "x": 90
       },
       "when": {

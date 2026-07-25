@@ -2,7 +2,7 @@
   "multipart": [
     {
       "apply": {
-        "model": "vintagetech:block/beam/cherry",
+        "model": "vintagetech:block/cherry_beam",
         "x": 90,
         "y": 90
       },
@@ -12,7 +12,7 @@
     },
     {
       "apply": {
-        "model": "vintagetech:block/beam/cherry"
+        "model": "vintagetech:block/cherry_beam"
       },
       "when": {
         "axis": "y"
@@ -20,7 +20,7 @@
     },
     {
       "apply": {
-        "model": "vintagetech:block/beam/cherry",
+        "model": "vintagetech:block/cherry_beam",
         "x": 90
       },
       "when": {
