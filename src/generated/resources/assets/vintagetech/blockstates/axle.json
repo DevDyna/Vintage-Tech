@@ -2,33 +2,6 @@
   "multipart": [
     {
       "apply": {
-        "model": "vintagetech:block/axle",
-        "x": 90,
-        "y": 90
-      },
-      "when": {
-        "axis": "x"
-      }
-    },
-    {
-      "apply": {
-        "model": "vintagetech:block/axle"
-      },
-      "when": {
-        "axis": "y"
-      }
-    },
-    {
-      "apply": {
-        "model": "vintagetech:block/axle",
-        "x": 90
-      },
-      "when": {
-        "axis": "z"
-      }
-    },
-    {
-      "apply": {
         "model": "vintagetech:block/rope/on_beam"
       },
       "when": {
