@@ -112,7 +112,7 @@ public class zBlocks {
                         p -> new WoodenBeam(Properties.ofFullCopy(Blocks.OAK_LOG).setId(ResourceKey.create(Registries.BLOCK, x.rl(MODULE_ID,"oak_beam")))));
         public static final DeferredHolder<Block, Block> SPRUCE_BEAM = registerItemBlock("spruce_beam",
                         p -> new WoodenBeam(Properties.ofFullCopy(Blocks.SPRUCE_LOG).setId(ResourceKey.create(Registries.BLOCK, x.rl(MODULE_ID,"spruce_beam")))));
-        public static final DeferredHolder<Block, Block> BIRCH_BEAM = registerItemBlock("birc_beam",
+        public static final DeferredHolder<Block, Block> BIRCH_BEAM = registerItemBlock("birch_beam",
                         p -> new WoodenBeam(Properties.ofFullCopy(Blocks.BIRCH_LOG).setId(ResourceKey.create(Registries.BLOCK, x.rl(MODULE_ID,"birc_beam")))));
         public static final DeferredHolder<Block, Block> JUNGLE_BEAM = registerItemBlock("jungle_beam",
                         p -> new WoodenBeam(Properties.ofFullCopy(Blocks.JUNGLE_LOG).setId(ResourceKey.create(Registries.BLOCK, x.rl(MODULE_ID,"jungle_beam")))));
