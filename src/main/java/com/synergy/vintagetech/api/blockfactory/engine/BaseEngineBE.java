@@ -6,7 +6,7 @@ import com.synergy.vintagetech.api.AxleHandler;
 import com.synergy.vintagetech.api.blockfactory.BaseKineticBlock;
 import com.synergy.vintagetech.api.blockfactory.KineticGenerator;
 import com.synergy.vintagetech.api.blockfactory.transmission.TransmissionBE;
-import com.synergy.vintagetech.init.builder.GearShiftBlock;
+import com.synergy.vintagetech.init.builder.transmission.GearShiftBlock;
 import com.synergy.vintagetech.init.types.zBlockEntities;
 
 import net.minecraft.core.BlockPos;

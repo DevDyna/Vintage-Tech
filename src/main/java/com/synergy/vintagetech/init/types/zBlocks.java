@@ -5,7 +5,6 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 import java.util.function.Function;
 
 import com.devdyna.cakesticklib.api.utils.x;
-import com.synergy.vintagetech.init.builder.GearShiftBlock;
 import com.synergy.vintagetech.init.builder.RopeBlock;
 import com.synergy.vintagetech.init.builder.WoodenBeam;
 import com.synergy.vintagetech.init.builder.basket.BasketBlock;
@@ -28,6 +27,7 @@ import com.synergy.vintagetech.init.builder.plants.SoyBeans;
 import com.synergy.vintagetech.init.builder.saw.SawBlock;
 import com.synergy.vintagetech.init.builder.steam_engine.SteamEngineBlock;
 import com.synergy.vintagetech.init.builder.transmission.AxleBlock;
+import com.synergy.vintagetech.init.builder.transmission.GearShiftBlock;
 import com.synergy.vintagetech.init.builder.transmission.JunctionBlock;
 import com.synergy.vintagetech.init.builder.treetap.TreeTapBlock;
 

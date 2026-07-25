@@ -1,4 +1,4 @@
-package com.synergy.vintagetech.init.builder;
+package com.synergy.vintagetech.init.builder.transmission;
 
 import java.util.HashMap;
 import java.util.List;
