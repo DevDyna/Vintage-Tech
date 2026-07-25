@@ -2,6 +2,7 @@
   "format_version": "1.9.0",
   "credit": "Made by DevDyna",
   "parent": "block/block",
+  "render_type": "cutout",
   "textures": {
     "rope": "vintagetech:block/rope",
     "particle": "#rope"
