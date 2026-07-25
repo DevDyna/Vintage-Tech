@@ -2,22 +2,23 @@
   "format_version": "1.9.0",
   "credit": "Made by DevDyna",
   "parent": "block/block",
+  "render_type": "cutout",
   "textures": {
-    "rope": "vintagetech:block/rope",
-    "particle": "#rope"
+    "particle": "vintagetech:block/rope",
+    "rope": "vintagetech:block/rope"
   },
   "elements": [
     {
-      "from": [4.75, 4.75, 4.75],
-      "to": [11.25, 11.25, 11.25],
+      "from": [4.5, 4.5, 4.5],
+      "to": [11.5, 11.5, 11.5],
       "rotation": { "angle": 0, "axis": "y", "origin": [5, 6, 5] },
       "faces": {
-        "north": { "uv": [1, 9, 7, 15], "texture": "#rope" },
-        "east": { "uv": [1, 9, 7, 15], "texture": "#rope" },
-        "south": { "uv": [1, 9, 7, 15], "texture": "#rope" },
-        "west": { "uv": [1, 9, 7, 15], "texture": "#rope" },
-        "up": { "uv": [1, 9, 7, 15], "texture": "#rope" },
-        "down": { "uv": [1, 9, 7, 15], "texture": "#rope" }
+        "north": { "uv": [0, 8, 7, 15], "texture": "#rope" },
+        "east": { "uv": [0, 8, 7, 15], "texture": "#rope" },
+        "south": { "uv": [0, 8, 7, 15], "texture": "#rope" },
+        "west": { "uv": [0, 8, 7, 15], "texture": "#rope" },
+        "up": { "uv": [0, 8, 7, 15], "texture": "#rope" },
+        "down": { "uv": [0, 8, 7, 15], "texture": "#rope" }
       }
     }
   ]
