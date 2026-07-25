@@ -24,7 +24,7 @@ public class RopeBlock extends PipeBlock
     public static final BooleanProperty HAS_CORNER = BooleanProperty.create("has_corner");
 
     public RopeBlock(Properties properties) {
-        super(4, properties.sound(SoundType.WOOL));
+        super(4, properties.sound(SoundType.WOOL).noOcclusion());
     }
 
     @Override
