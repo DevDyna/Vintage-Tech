@@ -5,10 +5,11 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 import java.util.Optional;
 
 import com.devdyna.cakesticklib.api.utils.x;
-
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.minecraft.client.data.models.BlockModelGenerators;
+import net.minecraft.client.data.models.MultiVariant;
+import net.minecraft.client.data.models.blockstates.MultiPartGenerator;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
 import net.minecraft.client.data.models.model.ModelLocationUtils;
@@ -113,31 +114,95 @@ public class BlockModelUtils {
                                                                                                                                                                 TextureMapping::cross)))));
         }
 
-        public static void createHorizontalFacingBlock(BlockModelGenerators b, Block block, Identifier model,boolean invertDirections) {
+        public static void createHorizontalFacingBlock(BlockModelGenerators b, Block block, Identifier model,
+                        boolean invertDirections) {
                 b.blockStateOutput.accept(BlockModelGenerators
                                 .createSimpleBlock(block,
                                                 BlockModelGenerators
                                                                 .plainVariant(model))
                                 .with(PropertyDispatch.modify(BlockStateProperties.HORIZONTAL_FACING)
-                                                .select((invertDirections ? Direction.NORTH : Direction.SOUTH), BlockModelGenerators.NOP)
-                                                .select((invertDirections ? Direction.EAST :Direction.WEST), BlockModelGenerators.Y_ROT_90)
-                                                .select((invertDirections ? Direction.SOUTH :Direction.NORTH), BlockModelGenerators.Y_ROT_180)
-                                                .select((invertDirections ? Direction.WEST :Direction.EAST), BlockModelGenerators.Y_ROT_270)));
+                                                .select((invertDirections ? Direction.NORTH : Direction.SOUTH),
+                                                                BlockModelGenerators.NOP)
+                                                .select((invertDirections ? Direction.EAST : Direction.WEST),
+                                                                BlockModelGenerators.Y_ROT_90)
+                                                .select((invertDirections ? Direction.SOUTH : Direction.NORTH),
+                                                                BlockModelGenerators.Y_ROT_180)
+                                                .select((invertDirections ? Direction.WEST : Direction.EAST),
+                                                                BlockModelGenerators.Y_ROT_270)));
         }
 
-        public static void createFacingBlock(BlockModelGenerators b, Block block, Identifier model,boolean invertDirections) {
+        public static void createFacingBlock(BlockModelGenerators b, Block block, Identifier model,
+                        boolean invertDirections) {
 
                 b.blockStateOutput.accept(BlockModelGenerators
                                 .createSimpleBlock(block,
                                                 BlockModelGenerators.plainVariant(model))
                                 .with(PropertyDispatch.modify(BlockStateProperties.FACING)
-                                                .select((invertDirections ? Direction.SOUTH :Direction.NORTH), BlockModelGenerators.NOP)
-                                                .select((invertDirections ? Direction.WEST :Direction.EAST), BlockModelGenerators.Y_ROT_90)
-                                                .select((invertDirections ? Direction.NORTH :Direction.SOUTH), BlockModelGenerators.Y_ROT_180)
-                                                .select((invertDirections ? Direction.EAST :Direction.WEST), BlockModelGenerators.Y_ROT_270)
-                                                .select((invertDirections ? Direction.UP :Direction.DOWN), BlockModelGenerators.X_ROT_90)
-                                                .select((invertDirections ? Direction.DOWN :Direction.UP), BlockModelGenerators.X_ROT_270)));
+                                                .select((invertDirections ? Direction.SOUTH : Direction.NORTH),
+                                                                BlockModelGenerators.NOP)
+                                                .select((invertDirections ? Direction.WEST : Direction.EAST),
+                                                                BlockModelGenerators.Y_ROT_90)
+                                                .select((invertDirections ? Direction.NORTH : Direction.SOUTH),
+                                                                BlockModelGenerators.Y_ROT_180)
+                                                .select((invertDirections ? Direction.EAST : Direction.WEST),
+                                                                BlockModelGenerators.Y_ROT_270)
+                                                .select((invertDirections ? Direction.UP : Direction.DOWN),
+                                                                BlockModelGenerators.X_ROT_90)
+                                                .select((invertDirections ? Direction.DOWN : Direction.UP),
+                                                                BlockModelGenerators.X_ROT_270)));
 
+        }
+
+        public static void createBeamBlock(BlockModelGenerators b, Block block, Identifier top, Identifier side) {
+
+                MultiVariant beam = BlockModelGenerators.plainVariant(
+                                new ModelTemplate(
+                                                Optional.of(x.rl(MODULE_ID, "block/template/beam")), Optional.empty(),
+                                                TextureSlot.TOP, TextureSlot.SIDE)
+                                                .create(
+                                                                x.rl(MODULE_ID, "block/beam/" + x.name(block)
+                                                                                .replace("_beam", "")),
+                                                                new TextureMapping()
+                                                                                .put(
+                                                                                                TextureSlot.TOP,
+                                                                                                new Material(
+                                                                                                                top))
+                                                                                .put(
+                                                                                                TextureSlot.SIDE,
+                                                                                                new Material(
+                                                                                                                side)),
+                                                                b.modelOutput));
+
+                MultiVariant rope = BlockModelGenerators.plainVariant(
+                                x.rl(MODULE_ID, "block/rope/on_beam"));
+
+                b.blockStateOutput.accept(
+                                MultiPartGenerator.multiPart(block)
+                                                .with(BlockModelGenerators.condition()
+                                                                .term(BlockStateProperties.AXIS, Direction.Axis.X),
+                                                                beam.with(BlockModelGenerators.X_ROT_90
+                                                                                .then(BlockModelGenerators.Y_ROT_90)))
+                                                .with(BlockModelGenerators.condition()
+                                                                .term(BlockStateProperties.AXIS, Direction.Axis.Y),
+                                                                beam)
+                                                .with(BlockModelGenerators.condition()
+                                                                .term(BlockStateProperties.AXIS, Direction.Axis.Z),
+                                                                beam.with(BlockModelGenerators.X_ROT_90))
+                                                .with(BlockModelGenerators.condition()
+                                                                .term(RopeHandler.HAS_ROPE, true), rope)
+
+                );
+
+        }
+
+        public static void createBeamBlock(BlockModelGenerators b, Block block, String top, String side) {
+                createBeamBlock(b, block, x.rl(MODULE_ID, top), x.rl(MODULE_ID, side));
+        }
+        public static void createBeamBlock(BlockModelGenerators b, Block block, Identifier top, String side) {
+                createBeamBlock(b, block, top, x.rl(MODULE_ID, side));
+        }
+        public static void createBeamBlock(BlockModelGenerators b, Block block, String top, Identifier side) {
+                createBeamBlock(b, block, x.rl(MODULE_ID, top), side);
         }
 
 }

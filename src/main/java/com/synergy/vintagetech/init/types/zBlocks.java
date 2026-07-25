@@ -4,8 +4,10 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 
 import java.util.function.Function;
 
+import com.devdyna.cakesticklib.api.utils.x;
 import com.synergy.vintagetech.init.builder.GearShiftBlock;
 import com.synergy.vintagetech.init.builder.RopeBlock;
+import com.synergy.vintagetech.init.builder.WoodenBeam;
 import com.synergy.vintagetech.init.builder.basket.BasketBlock;
 import com.synergy.vintagetech.init.builder.centrifuge.CentrifugeBlock;
 import com.synergy.vintagetech.init.builder.creative_engine.CreativeEngineBlock;
@@ -29,9 +31,13 @@ import com.synergy.vintagetech.init.builder.transmission.AxleBlock;
 import com.synergy.vintagetech.init.builder.transmission.JunctionBlock;
 import com.synergy.vintagetech.init.builder.treetap.TreeTapBlock;
 
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -57,8 +63,6 @@ public class zBlocks {
         public static final DeferredHolder<Block, Block> CREATIVE_ENGINE = registerItemBlock("creative_engine",
                         p -> new CreativeEngineBlock(p));
 
-        
-
         // transmissions
         public static final DeferredHolder<Block, Block> AXLE = registerItemBlock("axle", p -> new AxleBlock(p));
 
@@ -73,8 +77,8 @@ public class zBlocks {
         public static final DeferredHolder<Block, Block> FAN = registerItemBlock("fan", p -> new FanBlock(p));
         public static final DeferredHolder<Block, Block> MILLSTONE = registerItemBlock("millstone",
                         p -> new MillstoneBlock(p));
-      
-                        public static final DeferredHolder<Block, Block> TREE_TAP = registerItemBlock("tree_tap",
+
+        public static final DeferredHolder<Block, Block> TREE_TAP = registerItemBlock("tree_tap",
                         p -> new TreeTapBlock(p));
 
         public static final DeferredHolder<Block, Block> CENTRIFUGE = registerItemBlock("centrifuge",
@@ -104,23 +108,43 @@ public class zBlocks {
         public static final DeferredHolder<Block, Block> ROPE = registerItemBlock("rope",
                         p -> new RopeBlock(p));
 
+        public static final DeferredHolder<Block, Block> OAK_BEAM = registerItemBlock("oak_beam",
+                        p -> new WoodenBeam(Properties.ofFullCopy(Blocks.OAK_LOG).setId(ResourceKey.create(Registries.BLOCK, x.rl(MODULE_ID,"oak_beam")))));
+        public static final DeferredHolder<Block, Block> SPRUCE_BEAM = registerItemBlock("spruce_beam",
+                        p -> new WoodenBeam(Properties.ofFullCopy(Blocks.SPRUCE_LOG).setId(ResourceKey.create(Registries.BLOCK, x.rl(MODULE_ID,"spruce_beam")))));
+        public static final DeferredHolder<Block, Block> BIRCH_BEAM = registerItemBlock("birc_beam",
+                        p -> new WoodenBeam(Properties.ofFullCopy(Blocks.BIRCH_LOG).setId(ResourceKey.create(Registries.BLOCK, x.rl(MODULE_ID,"birc_beam")))));
+        public static final DeferredHolder<Block, Block> JUNGLE_BEAM = registerItemBlock("jungle_beam",
+                        p -> new WoodenBeam(Properties.ofFullCopy(Blocks.JUNGLE_LOG).setId(ResourceKey.create(Registries.BLOCK, x.rl(MODULE_ID,"jungle_beam")))));
+        public static final DeferredHolder<Block, Block> ACACIA_BEAM = registerItemBlock("acacia_beam",
+                        p -> new WoodenBeam(Properties.ofFullCopy(Blocks.ACACIA_LOG).setId(ResourceKey.create(Registries.BLOCK, x.rl(MODULE_ID,"acacia_beam")))));
+        public static final DeferredHolder<Block, Block> DARK_OAK_BEAM = registerItemBlock("dark_oak_beam",
+                        p -> new WoodenBeam(Properties.ofFullCopy(Blocks.DARK_OAK_LOG).setId(ResourceKey.create(Registries.BLOCK, x.rl(MODULE_ID,"dark_oak_beam")))));
+        public static final DeferredHolder<Block, Block> MANGROVE_BEAM = registerItemBlock("mangrove_beam",
+                        p -> new WoodenBeam(Properties.ofFullCopy(Blocks.MANGROVE_LOG).setId(ResourceKey.create(Registries.BLOCK, x.rl(MODULE_ID,"mangrove_beam")))));
+        public static final DeferredHolder<Block, Block> CHERRY_BEAM = registerItemBlock("cherry_beam",
+                        p -> new WoodenBeam(Properties.ofFullCopy(Blocks.CHERRY_LOG).setId(ResourceKey.create(Registries.BLOCK, x.rl(MODULE_ID,"cherry_beam")))));
+        public static final DeferredHolder<Block, Block> PALE_OAK_BEAM = registerItemBlock("pale_oak_beam",
+                        p -> new WoodenBeam(Properties.ofFullCopy(Blocks.PALE_OAK_LOG).setId(ResourceKey.create(Registries.BLOCK, x.rl(MODULE_ID,"pale_oak_beam")))));
+
         // TODO IMP : BLOCKS
         public static final DeferredHolder<Block, Block> CHEESE = registerItemBlock("cheese",
                         p -> new Block(p));
 
-        
         // heat + fluid + item -> fluid + item
         public static final DeferredHolder<Block, Block> CRUCIBLE = registerItemBlock("crucible",
                         p -> new Block(p));
 
         // fluid + item -> item
-        // public static final DeferredHolder<Block, Block> MIXING_BARREL = registerItemBlock("mixing_barrel",
-        //                 p -> new Block(p));
+        // public static final DeferredHolder<Block, Block> MIXING_BARREL =
+        // registerItemBlock("mixing_barrel",
+        // p -> new Block(p));
         // item -> item
         public static final DeferredHolder<Block, Block> HYDRAULIC_PRESS = registerItemBlock("hydraulic_press",
                         p -> new Block(p));
-        // public static final DeferredHolder<Block, Block> TURNTABLE = registerItemBlock("turntable",
-        //                 p -> new Block(p));
+        // public static final DeferredHolder<Block, Block> TURNTABLE =
+        // registerItemBlock("turntable",
+        // p -> new Block(p));
 
         // renderer
         public static final DeferredHolder<Block, Block> RENDER_HALF_AXLE = renderBlock("render_half_axle");
@@ -158,5 +182,7 @@ public class zBlocks {
         public static DeferredHolder<Block, Block> renderBlock(String id) {
                 return zRender.registerSimpleBlock(id, p -> p.noLootTable());
         }
+
+       
 
 }
