@@ -16,6 +16,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
@@ -34,6 +35,11 @@ public class AxleBlock extends BaseKineticBlock implements RopeHandler {
 
     public BlockState rotate(BlockState state, Rotation rotation) {
         return RotatedPillarBlock.rotatePillar(state, rotation);
+    }
+
+    @Override
+    protected RenderShape getRenderShape(BlockState state) {
+        return state.getValue(HAS_ROPE) ? RenderShape.MODEL : RenderShape.INVISIBLE;
     }
 
     @Override
