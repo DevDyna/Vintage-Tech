@@ -3,6 +3,8 @@ package com.synergy.vintagetech.init.builder.drying_rack;
 import javax.annotation.Nullable;
 
 import com.devdyna.cakesticklib.api.aspect.templates.TickingBlock;
+import com.synergy.vintagetech.api.RopeHandler;
+import com.synergy.vintagetech.init.builder.RopeBlock;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -30,7 +32,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class DryingRackBlock extends TickingBlock {
+public class DryingRackBlock extends TickingBlock implements RopeHandler {
 
     public DryingRackBlock(Properties properties) {
         super(properties.instrument(NoteBlockInstrument.BASEDRUM).strength(1F, 2.25F).noOcclusion());
@@ -81,7 +83,8 @@ public class DryingRackBlock extends TickingBlock {
 
     @Override
     protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
-        return Block.canSupportCenter(level, pos.above(), Direction.DOWN);
+        return Block.canSupportCenter(level, pos.above(), Direction.DOWN)
+                || level.getBlockState(pos.above()).getBlock() instanceof RopeBlock;
     }
 
     @Override
@@ -104,6 +107,11 @@ public class DryingRackBlock extends TickingBlock {
         if (level.getBlockEntity(pos) instanceof DryingRackBE be)
             return be.itemUseOn(player, level, pos, hand);
         return InteractionResult.FAIL;
+    }
+
+    @Override
+    public boolean getWhenRopeConnect(Direction dir) {
+        return dir == Direction.DOWN;
     }
 
 }
