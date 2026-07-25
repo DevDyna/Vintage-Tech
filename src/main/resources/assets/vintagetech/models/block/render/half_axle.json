@@ -2,22 +2,19 @@
   "format_version": "1.9.0",
   "credit": "Made by DevDyna",
   "parent": "block/block",
-  "textures": {
-    "4": "vintagetech:block/elder_beam_connected",
-    "particle": "vintagetech:block/elder_fancy_fence"
-  },
+  "textures": { "particle": "vintagetech:block/beam/axle" },
   "elements": [
     {
       "from": [5, 0, 5],
       "to": [11, 8, 11],
       "rotation": { "angle": 0, "axis": "y", "origin": [5, 0, 5] },
       "faces": {
-        "north": { "uv": [1, 8, 7, 16], "texture": "#4" },
-        "east": { "uv": [1, 8, 7, 16], "texture": "#4" },
-        "south": { "uv": [1, 8, 7, 16], "texture": "#4" },
-        "west": { "uv": [1, 8, 7, 16], "texture": "#4" },
-        "up": { "uv": [6, 0, 12, 6], "texture": "#particle" },
-        "down": { "uv": [6, 0, 12, 6], "texture": "#particle" }
+        "north": { "uv": [6, 8, 12, 16], "texture": "#particle" },
+        "east": { "uv": [6, 8, 12, 16], "texture": "#particle" },
+        "south": { "uv": [6, 8, 12, 16], "texture": "#particle" },
+        "west": { "uv": [6, 8, 12, 16], "texture": "#particle" },
+        "up": { "uv": [0, 0, 6, 6], "texture": "#particle" },
+        "down": { "uv": [0, 0, 6, 6], "texture": "#particle" }
       }
     }
   ]
