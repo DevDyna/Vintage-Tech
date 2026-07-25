@@ -26,9 +26,7 @@ import com.synergy.vintagetech.init.builder.plants.Lavender;
 import com.synergy.vintagetech.init.builder.plants.SoyBeans;
 import com.synergy.vintagetech.init.builder.saw.SawBlock;
 import com.synergy.vintagetech.init.builder.steam_engine.SteamEngineBlock;
-import com.synergy.vintagetech.init.builder.transmission.AxleBlock;
-import com.synergy.vintagetech.init.builder.transmission.GearShiftBlock;
-import com.synergy.vintagetech.init.builder.transmission.JunctionBlock;
+import com.synergy.vintagetech.init.builder.transmission.*;
 import com.synergy.vintagetech.init.builder.treetap.TreeTapBlock;
 
 import net.minecraft.core.registries.Registries;
