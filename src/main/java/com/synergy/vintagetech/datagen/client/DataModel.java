@@ -104,10 +104,22 @@ public class DataModel extends ModelProvider {
                                                                                                                                 "block/lavender/2"))),
                                                                                                 blockModels.modelOutput)))));
 
-                blockModels.blockStateOutput
-                                .accept(BlockModelGenerators.createAxisAlignedPillarBlock(zBlocks.AXLE.get(),
-                                                BlockModelGenerators.plainVariant(
-                                                                x.rl(MODULE_ID, "block/axle"))));
+                // blockModels.blockStateOutput
+                //                 .accept(BlockModelGenerators.createAxisAlignedPillarBlock(zBlocks.AXLE.get(),
+                //                                 BlockModelGenerators.plainVariant(
+                //                                                 x.rl(MODULE_ID, "block/axle"))));
+
+                                        BlockModelUtils.createBeamBlock(blockModels, zBlocks.AXLE.get(), "block/beam/axle", "block/beam/axle");
+                                       
+                                        BlockModelUtils.createBeamBlock(blockModels, zBlocks.OAK_BEAM.get(), "block/beam/oak", x.mcLoc("block/oak_log"));
+                                        BlockModelUtils.createBeamBlock(blockModels, zBlocks.BIRCH_BEAM.get(), "block/beam/birch", x.mcLoc("block/birch_log"));
+                                        BlockModelUtils.createBeamBlock(blockModels, zBlocks.SPRUCE_BEAM.get(), "block/beam/spruce", x.mcLoc("block/spruce_log"));
+                                        BlockModelUtils.createBeamBlock(blockModels, zBlocks.JUNGLE_BEAM.get(), "block/beam/jungle", x.mcLoc("block/jungle_log"));
+                                        BlockModelUtils.createBeamBlock(blockModels, zBlocks.ACACIA_BEAM.get(), "block/beam/acacia", x.mcLoc("block/acacia_log"));
+                                        BlockModelUtils.createBeamBlock(blockModels, zBlocks.DARK_OAK_BEAM.get(), "block/beam/dark_oak", x.mcLoc("block/dark_oak_log"));
+                                        BlockModelUtils.createBeamBlock(blockModels, zBlocks.CHERRY_BEAM.get(), "block/beam/cherry", x.mcLoc("block/cherry_log"));
+                                        BlockModelUtils.createBeamBlock(blockModels, zBlocks.MANGROVE_BEAM.get(), "block/beam/mangrove", x.mcLoc("block/mangrove_log"));
+                                        BlockModelUtils.createBeamBlock(blockModels, zBlocks.PALE_OAK_BEAM.get(), "block/beam/pale_oak", x.mcLoc("block/pale_oak_log"));
 
                 blockModels.blockStateOutput
                                 .accept(BlockModelGenerators.createAxisAlignedPillarBlock(zBlocks.GEARSHIFT.get(),
@@ -197,6 +209,7 @@ public class DataModel extends ModelProvider {
                                                                 dot)
 
                 );
+
 
                 // TODO MODELS : create models for dynamo and electric motor
                 BlockModelUtils.createHorizontalFacingBlock(blockModels, zBlocks.STEAM_ENGINE.get(),
