@@ -1,31 +1,36 @@
 package com.synergy.vintagetech.init.builder;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.jspecify.annotations.Nullable;
 
-import com.synergy.vintagetech.init.builder.transmission.AxleBlock;
+import com.synergy.vintagetech.api.blockfactory.BaseKineticBlock;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Direction.Axis;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.NoteBlock;
 import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.redstone.Orientation;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class GearShiftBlock extends AxleBlock {
+public class GearShiftBlock extends BaseKineticBlock {
 
     public static final BooleanProperty POWERED = NoteBlock.POWERED;
+    public static final EnumProperty<Axis> AXIS = RotatedPillarBlock.AXIS;
 
     public GearShiftBlock(Properties p) {
         super(p);
@@ -77,5 +82,15 @@ public class GearShiftBlock extends AxleBlock {
             map.put(d, state.getValue(INVERTED));
 
         return map;
+    }
+
+    @Override
+    public List<Direction> getOutputDirections(BlockState state) {
+        return List.of(state.getValue(AXIS).getDirections());
+    }
+
+    @Override
+    public boolean canInputFrom(Direction dir, BlockState state) {
+        return dir.getAxis() == state.getValue(AXIS);
     }
 }

@@ -4,13 +4,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.synergy.vintagetech.api.RopeHandler;
 import com.synergy.vintagetech.api.blockfactory.BaseKineticBlock;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.Rotation;
@@ -20,7 +24,7 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class AxleBlock extends BaseKineticBlock {
+public class AxleBlock extends BaseKineticBlock implements RopeHandler {
 
     public static final EnumProperty<Axis> AXIS = RotatedPillarBlock.AXIS;
 
@@ -42,16 +46,31 @@ public class AxleBlock extends BaseKineticBlock {
     }
 
     @Override
+    protected BlockState updateShape(
+            BlockState state,
+            LevelReader level,
+            ScheduledTickAccess ticks,
+            BlockPos pos,
+            Direction direction,
+            BlockPos neighbourPos,
+            BlockState neighbourState,
+            RandomSource random) {
+
+        return state.setValue(HAS_ROPE, hasRope(level, pos));
+    }
+
+    @Override
     public BlockState getStateForPlacement(BlockPlaceContext c) {
         return this.defaultBlockState()
                 .setValue(ENABLED, false)
                 .setValue(INVERTED, false)
-                .setValue(AXIS, c.getClickedFace().getAxis());
+                .setValue(AXIS, c.getClickedFace().getAxis())
+                .setValue(HAS_ROPE, hasRope(c.getLevel(), c.getClickedPos()));
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> b) {
-        b.add(AXIS, ENABLED, INVERTED);
+        b.add(AXIS, ENABLED, INVERTED, HAS_ROPE);
     }
 
     @Override
@@ -69,7 +88,7 @@ public class AxleBlock extends BaseKineticBlock {
         Map<Direction, Boolean> map = new HashMap<>();
 
         for (Direction d : state.getValue(AXIS).getDirections())
-            map.put(d,state.getValue(INVERTED));
+            map.put(d, state.getValue(INVERTED));
 
         return map;
     }
