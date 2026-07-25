@@ -9,56 +9,54 @@ import java.util.Set;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
-import net.minecraft.core.BlockPos;
-
 /**
- * Create a generic blockpos queue
+ * Create a generic queue list to check multiple elements based on a mutable value
  */
 // TODO API : move to api
-public class QueueUtil {
+public class QueueUtil<T> {
 
     private boolean add_start = true;
-    private Function<Queue<BlockPos>, Boolean> loop_when = q -> !q.isEmpty();
-    private BlockPos start;
-    private List<BiFunction<Queue<BlockPos>, BlockPos, QueueStatus>> chain = List
+    private Function<Queue<T>, Boolean> loop_when = q -> !q.isEmpty();
+    private T start;
+    private List<BiFunction<Queue<T>, T, QueueStatus>> chain = List
             .of((queue, pos) -> QueueStatus.SUCCESS);
 
-    public QueueUtil(BlockPos pos) {
+    public QueueUtil(T pos) {
         this.start = pos;
     }
 
-    public static QueueUtil of(BlockPos pos) {
-        return new QueueUtil(pos);
+    public static <T> QueueUtil<T> of(T pos) {
+        return new QueueUtil<>(pos);
     }
 
-    public QueueUtil ignoreStart() {
+    public QueueUtil<T> ignoreStart() {
         this.add_start = false;
         return this;
     }
 
-    public QueueUtil condition(Function<Queue<BlockPos>, Boolean> loop_when) {
+    public QueueUtil<T> condition(Function<Queue<T>, Boolean> loop_when) {
         this.loop_when = loop_when;
         return this;
     }
 
-    public QueueUtil define(List<BiFunction<Queue<BlockPos>, BlockPos, QueueStatus>> chain) {
+    public QueueUtil<T> define(List<BiFunction<Queue<T>, T, QueueStatus>> chain) {
         this.chain = new ArrayList<>(chain);
         return this;
     }
 
-    public QueueUtil clear() {
+    public QueueUtil<T> clear() {
         this.chain = new ArrayList<>();
         return this;
     }
 
-    public QueueUtil define(BiFunction<Queue<BlockPos>, BlockPos, QueueStatus> action) {
+    public QueueUtil<T> define(BiFunction<Queue<T>, T, QueueStatus> action) {
         this.chain.add(action);
         return this;
     }
 
     public boolean run() {
-        Set<BlockPos> visited = new HashSet<>();
-        Queue<BlockPos> queue = new LinkedList<>();
+        Set<T> visited = new HashSet<>();
+        Queue<T> queue = new LinkedList<>();
 
         if (add_start)
             queue.add(start);
