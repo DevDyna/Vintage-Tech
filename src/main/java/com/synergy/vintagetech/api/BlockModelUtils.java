@@ -160,8 +160,7 @@ public class BlockModelUtils {
                                                 Optional.of(x.rl(MODULE_ID, "block/template/beam")), Optional.empty(),
                                                 TextureSlot.TOP, TextureSlot.SIDE)
                                                 .create(
-                                                                x.rl(MODULE_ID, "block/" + x.name(block)
-                                                                                .replace("_beam", "")),
+                                                                x.rl(MODULE_ID, "block/" + x.name(block)),
                                                                 new TextureMapping()
                                                                                 .put(
                                                                                                 TextureSlot.TOP,
