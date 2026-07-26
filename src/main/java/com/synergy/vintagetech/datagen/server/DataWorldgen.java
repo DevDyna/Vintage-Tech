@@ -203,7 +203,7 @@ public class DataWorldgen extends DatapackBuiltinEntriesProvider {
                                 zWorldGenFeatures.ConfiguredFeatures.HEMP, 4, 3, 50, 120);
 
                 registerUndergroundPatchPlaced(c, zWorldGenFeatures.PlacedFeatures.CAVE_WHEAT,
-                                zWorldGenFeatures.ConfiguredFeatures.CAVE_WHEAT, 15, 1, -56, 24);
+                                zWorldGenFeatures.ConfiguredFeatures.CAVE_WHEAT, 32, 1, -56, 24);
 
                 c.register(zWorldGenFeatures.PlacedFeatures.IRONWOOD,
                                 new PlacedFeature(
