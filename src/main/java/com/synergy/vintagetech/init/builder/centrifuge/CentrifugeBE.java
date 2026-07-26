@@ -43,7 +43,7 @@ public class CentrifugeBE extends TransmissionBE
 
     @Override
     public ItemStack extractItem() {
-        return simpleExtractItem();
+        return simpleExtractItemByIndex(0);
     }
 
     private Ticker ticker = null;
