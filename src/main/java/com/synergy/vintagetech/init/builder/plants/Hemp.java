@@ -25,6 +25,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -32,6 +33,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class Hemp extends BaseCropBlock {
 
     public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
+    public static final BooleanProperty NATURAL = BooleanProperty.create("natural");
     public static final int MAX_AGE = 3;
 
     public static final int[] HEIGHT_BY_AGE = new int[] { 2, 7, 12, 16 };
@@ -51,8 +53,18 @@ public class Hemp extends BaseCropBlock {
         return MAX_AGE;
     }
 
+    @Override
+    public void growCrops(Level level, BlockPos pos, BlockState state) {
+        level.setBlock(pos, getStateForAge(Math.min(getMaxAge(), getAge(state) +
+                getBonemealAgeIncrease(level)))
+                .setValue(NATURAL, state.getValue(NATURAL)), 2);
+    }
+
     public Hemp(Properties p) {
         super(p);
+        registerDefaultState(stateDefinition.any()
+                .setValue(AGE, 0)
+                .setValue(NATURAL, false));
     }
 
     @Override
@@ -62,8 +74,22 @@ public class Hemp extends BaseCropBlock {
 
     @Override
     protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
+        // TODO IMP : maybe this is overkill
+        if (level.getBlockState(pos.above()).getValue(NATURAL))
+            return state.is(zTags.Blocks.SUPPORT_NATURAL_HEMP_PLANT);
+
         return state.is(zTags.Blocks.SUPPORT_HEMP_PLANT)
                 && (state.is(this) ? isMaxAge(state) : true);
+    }
+
+    @Override
+    public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+        var soil = level.getBlockState(pos.below());
+
+        if (state.getValue(NATURAL))
+            return soil.is(zTags.Blocks.SUPPORT_NATURAL_HEMP_PLANT);
+
+        return soil.is(zTags.Blocks.SUPPORT_HEMP_PLANT) && (soil.is(this) ? isMaxAge(soil) : true);
     }
 
     @Override
@@ -71,7 +97,11 @@ public class Hemp extends BaseCropBlock {
         if (RandomUtil.chance(level, 75))
             if (!isMaxAge(state)) {
                 super.performBonemeal(level, random, pos, state);
-            } else  {
+            } else {
+
+                if (state.getValue(NATURAL))
+                    return;
+
                 ParticleUtils.spawnParticleInBlock(level, pos.above(), 6 + random.nextInt(10),
                         ParticleTypes.HAPPY_VILLAGER);
                 if (!hasAbove(level, pos))
@@ -83,12 +113,12 @@ public class Hemp extends BaseCropBlock {
 
     @Override
     protected boolean isRandomlyTicking(BlockState state) {
-        return true;
+        return state.getValue(NATURAL) ? !isMaxAge(state) : true;
     }
 
     @Override
     public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
-        return !isFullyMature((Level) level, pos);
+        return state.getValue(NATURAL) ? !isMaxAge(state) : !isFullyMature((Level) level, pos);
     }
 
     @Override
@@ -103,17 +133,15 @@ public class Hemp extends BaseCropBlock {
             return;
         }
 
-        // if (hasAbove(level, pos) && isMaxAge(state))
-        //     super.randomTick(above, level, pos.above(), random);
-
-        if (above.canBeReplaced() && !below.is(this))
-            level.setBlockAndUpdate(pos.above(), this.defaultBlockState());
+        if (!state.getValue(NATURAL))
+            if (above.canBeReplaced() && !below.is(this))
+                level.setBlockAndUpdate(pos.above(), this.defaultBlockState());
 
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(AGE);
+        builder.add(AGE, NATURAL);
     }
 
     @Override
@@ -169,6 +197,11 @@ public class Hemp extends BaseCropBlock {
     public void replant(Context ctx) {
         var level = ctx.level();
         var pos = ctx.pos();
+
+        if (level.getBlockState(pos).getValue(NATURAL)) {
+            level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
+            return;
+        }
 
         if (isDouble(level, pos)) {
             if (hasBelow(level, pos)) {

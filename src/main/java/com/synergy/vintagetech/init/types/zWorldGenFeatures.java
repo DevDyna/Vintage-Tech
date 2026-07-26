@@ -16,13 +16,22 @@ public class zWorldGenFeatures {
 
         public class PlacedFeatures {
                 public static final ResourceKey<PlacedFeature> IRONWOOD = RegistryUtils
-                                .createPlacedFeature(MODULE_ID,"ironwood_tree");
+                                .createPlacedFeature(MODULE_ID, "ironwood_tree");
 
                 public static final ResourceKey<PlacedFeature> CAVE_WHEAT = RegistryUtils
                                 .createPlacedFeature(MODULE_ID, "cave_wheat");
 
-                public static final ResourceKey<PlacedFeature> WILD_CAVE_WHEAT = RegistryUtils
-                                .createPlacedFeature(MODULE_ID, "wild_cave_wheat");
+                public static final ResourceKey<PlacedFeature> BLUEBERRIES = RegistryUtils
+                                .createPlacedFeature(MODULE_ID, "blueberries");
+
+                public static final ResourceKey<PlacedFeature> ALOE = RegistryUtils
+                                .createPlacedFeature(MODULE_ID, "aloe");
+
+                public static final ResourceKey<PlacedFeature> LAVENDER = RegistryUtils
+                                .createPlacedFeature(MODULE_ID, "lavender");
+
+                public static final ResourceKey<PlacedFeature> HEMP = RegistryUtils
+                                .createPlacedFeature(MODULE_ID, "hemp");
 
         }
 
@@ -33,14 +42,38 @@ public class zWorldGenFeatures {
                 public static final ResourceKey<ConfiguredFeature<?, ?>> CAVE_WHEAT = RegistryUtils
                                 .createConfiguredFeature(MODULE_ID, "cave_wheat");
 
+                public static final ResourceKey<ConfiguredFeature<?, ?>> BLUEBERRIES = RegistryUtils
+                                .createConfiguredFeature(MODULE_ID, "blueberries");
+
+                public static final ResourceKey<ConfiguredFeature<?, ?>> ALOE = RegistryUtils
+                                .createConfiguredFeature(MODULE_ID, "aloe");
+
+                public static final ResourceKey<ConfiguredFeature<?, ?>> LAVENDER = RegistryUtils
+                                .createConfiguredFeature(MODULE_ID, "lavender");
+
+                public static final ResourceKey<ConfiguredFeature<?, ?>> HEMP = RegistryUtils
+                                .createConfiguredFeature(MODULE_ID, "hemp");
+
         }
 
         public class BiomeModifiers {
                 public static final ResourceKey<BiomeModifier> IRONWOOD = RegistryUtils.createBiomeModifier(MODULE_ID,
-                                "add_ironwood");
+                                "ironwood");
 
                 public static final ResourceKey<BiomeModifier> CAVE_WHEAT = RegistryUtils
-                                .createBiomeModifier(MODULE_ID, "add_cave_wheat");
+                                .createBiomeModifier(MODULE_ID, "cave_wheat");
+
+                public static final ResourceKey<BiomeModifier> BLUEBERRIES = RegistryUtils
+                                .createBiomeModifier(MODULE_ID, "blueberries");
+
+                public static final ResourceKey<BiomeModifier> ALOE = RegistryUtils
+                                .createBiomeModifier(MODULE_ID, "aloe");
+
+                public static final ResourceKey<BiomeModifier> LAVENDER = RegistryUtils
+                                .createBiomeModifier(MODULE_ID, "lavender");
+                                
+                public static final ResourceKey<BiomeModifier> HEMP = RegistryUtils
+                                .createBiomeModifier(MODULE_ID, "hemp");
 
         }
 
