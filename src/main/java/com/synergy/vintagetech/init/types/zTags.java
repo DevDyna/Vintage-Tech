@@ -45,6 +45,9 @@ public class zTags {
                 public static final TagKey<Block> SUPPORT_HEMP_PLANT = RegistryUtils
                                 .tagBlock(MODULE_ID, "support/hemp");
 
+                public static final TagKey<Block> SUPPORT_NATURAL_HEMP_PLANT = RegistryUtils
+                                .tagBlock(MODULE_ID, "support/natural_hemp");
+
                 public static final TagKey<Block> SUPPORT_LAVENDER = RegistryUtils
                                 .tagBlock(MODULE_ID, "support/lavender");
 
@@ -81,6 +84,9 @@ public class zTags {
                 public static final TagKey<Block> STRIPPED_BEAMS = RegistryUtils
                                 .tagBlock(MODULE_ID, "beam/stripped");
 
+                public static final TagKey<Block> IRONWOOD_LOGS = RegistryUtils
+                                .tagBlock(MODULE_ID, "ironwood_logs");
+
         }
 
         public class Items {
@@ -95,8 +101,23 @@ public class zTags {
                 public static void register(IEventBus bus) {
                 }
 
-                public static final TagKey<Biome> WILD_CAVE_WHEAT_SPAWN = RegistryUtils.tagBiome(MODULE_ID,
-                                "worldgen/wild_cave_wheat");
+                public static final TagKey<Biome> LAVENDER_SPAWN = RegistryUtils.tagBiome(MODULE_ID,
+                                "worldgen/lavender");
+
+                public static final TagKey<Biome> ALOE_SPAWN = RegistryUtils.tagBiome(MODULE_ID,
+                                "worldgen/aloe");
+                                
+                public static final TagKey<Biome> BLUEBERRIES_SPAWN = RegistryUtils.tagBiome(MODULE_ID,
+                                "worldgen/blueberries");
+                                
+                public static final TagKey<Biome> CAVE_WHEAT_SPAWN = RegistryUtils.tagBiome(MODULE_ID,
+                                "worldgen/cave_wheat");
+
+                public static final TagKey<Biome> IRONWOOD_TREE_SPAWN = RegistryUtils.tagBiome(MODULE_ID,
+                                "worldgen/ironwood_tree");
+
+                public static final TagKey<Biome> HEMP_SPAWN = RegistryUtils.tagBiome(MODULE_ID,
+                                "worldgen/hemp");
 
         }
 

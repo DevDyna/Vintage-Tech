@@ -23,6 +23,56 @@ public class DataBlockTag extends BlockTagsProvider {
         @Override
         protected void addTags(Provider p) {
 
+                tag(BlockTags.MINEABLE_WITH_AXE)
+                                .add(
+
+                                                zBlocks.AXLE.get(),
+                                                zBlocks.BASKET.get(),
+                                                zBlocks.CRUSHING_TUB.get(),
+                                                zBlocks.DRYING_RACK.get(),
+                                                zBlocks.JUNCTION.get(),
+                                                zBlocks.SAW.get(),
+                                                zBlocks.MECHANICAL_FARMLAND.get(),
+                                                zBlocks.CENTRIFUGE.get(),
+
+                                                zBlocks.OAK_BEAM.get(),
+                                                zBlocks.SPRUCE_BEAM.get(),
+                                                zBlocks.BIRCH_BEAM.get(),
+                                                zBlocks.JUNGLE_BEAM.get(),
+                                                zBlocks.ACACIA_BEAM.get(),
+                                                zBlocks.DARK_OAK_BEAM.get(),
+                                                zBlocks.MANGROVE_BEAM.get(),
+                                                zBlocks.CHERRY_BEAM.get(),
+                                                zBlocks.PALE_OAK_BEAM.get(),
+
+                                                zBlocks.IRONWOOD_SAPLING.get(),
+                                                zBlocks.IRONWOOD_PLANKS.get(),
+                                                zBlocks.IRONWOOD_SLAB.get(),
+                                                zBlocks.IRONWOOD_STAIRS.get()
+
+                                )
+
+                                .addTags(zTags.Blocks.IRONWOOD_LOGS);
+
+                tag(BlockTags.MINEABLE_WITH_SHOVEL)
+                                .add(
+                                                zBlocks.MECHANICAL_FARMLAND.get());
+
+                tag(BlockTags.MINEABLE_WITH_HOE)
+                                .add(
+                                                zBlocks.IRONWOOD_LEAVES.get());
+
+                tag(BlockTags.MINEABLE_WITH_PICKAXE)
+                                .add(
+                                                zBlocks.CREATIVE_ENGINE.get(),
+                                                zBlocks.EVAPORATION_BASIN.get(),
+                                                zBlocks.FAN.get(),
+                                                zBlocks.GEARSHIFT.get(),
+                                                zBlocks.SAW.get(),
+                                                zBlocks.STEAM_ENGINE.get(),
+                                                zBlocks.TREE_TAP.get(),
+                                                zBlocks.MILLSTONE.get());
+
                 tag(zTags.Blocks.SAW_DENY_BREAK).addTag(Tags.Blocks.RELOCATION_NOT_SUPPORTED);
                 tag(zTags.Blocks.EVAPORATION_BASIC_HEATER).add(Blocks.MAGMA_BLOCK);
                 tag(zTags.Blocks.DRYING_RACK_HEATER).addTag(BlockTags.CAMPFIRES);
@@ -71,45 +121,6 @@ public class DataBlockTag extends BlockTagsProvider {
                                 .add(
                                                 zBlocks.SAW.get(),
                                                 zBlocks.FAN.get());
-
-                tag(BlockTags.MINEABLE_WITH_AXE)
-                                .add(
-
-                                                zBlocks.AXLE.get(),
-                                                zBlocks.BASKET.get(),
-                                                zBlocks.CRUSHING_TUB.get(),
-                                                zBlocks.DRYING_RACK.get(),
-                                                zBlocks.JUNCTION.get(),
-                                                zBlocks.SAW.get(),
-                                                zBlocks.MECHANICAL_FARMLAND.get(),
-                                                zBlocks.CENTRIFUGE.get(),
-
-                                                zBlocks.OAK_BEAM.get(),
-                                                zBlocks.SPRUCE_BEAM.get(),
-                                                zBlocks.BIRCH_BEAM.get(),
-                                                zBlocks.JUNGLE_BEAM.get(),
-                                                zBlocks.ACACIA_BEAM.get(),
-                                                zBlocks.DARK_OAK_BEAM.get(),
-                                                zBlocks.MANGROVE_BEAM.get(),
-                                                zBlocks.CHERRY_BEAM.get(),
-                                                zBlocks.PALE_OAK_BEAM.get()
-
-                                );
-
-                tag(BlockTags.MINEABLE_WITH_SHOVEL)
-                                .add(
-                                                zBlocks.MECHANICAL_FARMLAND.get());
-
-                tag(BlockTags.MINEABLE_WITH_PICKAXE)
-                                .add(
-                                                zBlocks.CREATIVE_ENGINE.get(),
-                                                zBlocks.EVAPORATION_BASIN.get(),
-                                                zBlocks.FAN.get(),
-                                                zBlocks.GEARSHIFT.get(),
-                                                zBlocks.SAW.get(),
-                                                zBlocks.STEAM_ENGINE.get(),
-                                                zBlocks.TREE_TAP.get(),
-                                                zBlocks.MILLSTONE.get());
 
                 tag(BlockTags.SUPPORTS_VEGETATION)
                                 .add(zBlocks.MECHANICAL_FARMLAND.get());
@@ -176,6 +187,51 @@ public class DataBlockTag extends BlockTagsProvider {
 
                 tag(zTags.Blocks.STRIPPED_BEAMS)// TODO IMP : Stripped beams
                                 .add();
+
+                tag(zTags.Blocks.IRONWOOD_LOGS)
+                                .add(
+                                                zBlocks.IRONWOOD_LOG.get(),
+                                                zBlocks.IRONWOOD_WOOD.get(),
+                                                zBlocks.STRIPPED_IRONWOOD_LOG.get(),
+                                                zBlocks.STRIPPED_IRONWOOD_WOOD.get()
+
+                                );
+
+                tag(BlockTags.LOGS)
+                                .add(zBlocks.IRONWOOD_LOG.get());
+
+                tag(BlockTags.SAPLINGS)
+                                .add(zBlocks.IRONWOOD_SAPLING.get());
+
+                tag(BlockTags.LOGS_THAT_BURN)
+                                .addTag(zTags.Blocks.IRONWOOD_LOGS);
+
+                tag(Tags.Blocks.STRIPPED_LOGS)
+                                .add(zBlocks.STRIPPED_IRONWOOD_LOG.get());
+
+                tag(Tags.Blocks.STRIPPED_WOODS)
+                                .add(zBlocks.STRIPPED_IRONWOOD_WOOD.get());
+
+                tag(BlockTags.LEAVES)
+                                .add(zBlocks.IRONWOOD_LEAVES.get());
+
+                tag(BlockTags.PLANKS)
+                                .add(zBlocks.IRONWOOD_PLANKS.get());
+
+                tag(BlockTags.WOODEN_SLABS)
+                                .add(zBlocks.IRONWOOD_SLAB.get());
+                tag(BlockTags.SLABS)
+                                .add(zBlocks.IRONWOOD_SLAB.get());
+
+                tag(BlockTags.WOODEN_STAIRS)
+                                .add(zBlocks.IRONWOOD_STAIRS.get());
+
+                tag(BlockTags.STAIRS)
+                                .add(zBlocks.IRONWOOD_STAIRS.get());
+
+                tag(zTags.Blocks.SUPPORT_NATURAL_HEMP_PLANT)
+                                .add(Blocks.GRASS_BLOCK)
+                                .addTag(zTags.Blocks.SUPPORT_HEMP_PLANT);
 
         }
 
