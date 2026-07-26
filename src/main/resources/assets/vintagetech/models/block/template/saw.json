@@ -4,11 +4,10 @@
   "parent": "block/block",
   "render_type": "cutout",
   "textures": {
-    "9": "vintagetech:block/saw/woodcutter_bottom",
-    "10": "vintagetech:block/saw/woodcutter_saw",
-    "13": "vintagetech:block/saw/woodcutter_side",
-    "14": "vintagetech:block/saw/woodcutter_top",
-    "particle": "vintagetech:block/saw/large_blade_top"
+    "bottom": "vintagetech:block/saw/bottom",
+    "side": "vintagetech:block/saw/side",
+    "top": "vintagetech:block/saw/top",
+    "particle": "#bottom"
   },
   "elements": [
     {
@@ -16,8 +15,8 @@
       "to": [15, 16, 8],
       "rotation": { "angle": 0, "axis": "x", "origin": [8, 8, 8] },
       "faces": {
-        "north": { "uv": [15, 9, 1, 16], "texture": "#10", "tintindex": 0 },
-        "south": { "uv": [1, 9, 15, 16], "texture": "#10", "tintindex": 0 }
+        "north": { "uv": [15, 9, 1, 16], "texture": "#saw", "tintindex": 0 },
+        "south": { "uv": [1, 9, 15, 16], "texture": "#saw", "tintindex": 0 }
       }
     },
     {
@@ -27,29 +26,30 @@
       "faces": {
         "north": {
           "uv": [0, 7, 16, 16],
-          "texture": "#13"
+          "texture": "#side",
+          "cullface": "north"
         },
         "east": {
           "uv": [0, 7, 16, 16],
-          "texture": "#13"
+          "texture": "#side"
         },
         "south": {
           "uv": [0, 7, 16, 16],
-          "texture": "#13"
+          "texture": "#side"
         },
         "west": {
           "uv": [0, 7, 16, 16],
-          "texture": "#13"
+          "texture": "#side"
         },
         "up": {
           "uv": [0, 0, 16, 16],
           "rotation": 180,
-          "texture": "#14"
+          "texture": "#top"
         },
         "down": {
           "uv": [0, 0, 16, 16],
           "rotation": 180,
-          "texture": "#9"
+          "texture": "#bottom"
         }
       }
     }
