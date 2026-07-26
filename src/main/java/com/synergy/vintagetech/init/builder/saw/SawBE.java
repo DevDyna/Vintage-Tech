@@ -1,6 +1,7 @@
 package com.synergy.vintagetech.init.builder.saw;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -116,8 +117,8 @@ public class SawBE extends TickingBE {
 
     public boolean trySimulateBreakAction(BlockState relative, List<ItemStack> drops) {
 
-        if(!relative.is(zTags.Blocks.SAW_GENERATOR_BLOCKS))
-        return false;
+        if (!relative.is(zTags.Blocks.SAW_GENERATOR_BLOCKS))
+            return false;
 
         if (drops.isEmpty())
             return false;
@@ -125,6 +126,22 @@ public class SawBE extends TickingBE {
         var be = level.getBlockEntity(getOffset().below());
 
         if (be == null)
+            return false;
+
+        var fluids = new ArrayList<>();
+
+        // TODO IMP : maybe can be simplified with FluidInteractionRegistry
+        for (var dir : Arrays.asList(Direction.values())) {
+
+            if (dir == getBlockState().getValue(SawBlock.FACING).getOpposite() || dir == Direction.DOWN)
+                continue;
+
+            var fluid = level.getFluidState(getOffset().relative(dir));
+            if (!fluid.isEmpty() && !fluids.contains(fluid.getFluidType()))
+                fluids.add(fluid.getFluidType());
+        }
+
+        if (fluids.size() <= 1)
             return false;
 
         if (be instanceof HopperBlockEntity hopper)
@@ -177,7 +194,7 @@ public class SawBE extends TickingBE {
 
         if (canProcede) {
 
-            //TODO IMP : use QueueUtils
+            // TODO IMP : use QueueUtils
             ArrayList<ItemStack> itemList = new ArrayList<>();
 
             ArrayList<SoundEvent> souldList = new ArrayList<>();
