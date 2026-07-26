@@ -8,7 +8,7 @@
           "data": {
             "Name": "vintagetech:aloe_plant",
             "Properties": {
-              "age": "1"
+              "age": "0"
             }
           },
           "weight": 2
@@ -17,7 +17,7 @@
           "data": {
             "Name": "vintagetech:aloe_plant",
             "Properties": {
-              "age": "0"
+              "age": "1"
             }
           },
           "weight": 2

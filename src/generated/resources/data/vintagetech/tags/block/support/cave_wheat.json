@@ -1,6 +1,7 @@
 {
   "values": [
     "#minecraft:supports_crops",
-    "#minecraft:base_stone_overworld"
+    "#minecraft:base_stone_overworld",
+    "#minecraft:supports_azalea"
   ]
 }
