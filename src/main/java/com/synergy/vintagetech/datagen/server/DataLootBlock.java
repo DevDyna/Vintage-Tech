@@ -23,7 +23,7 @@ import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
-import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 public class DataLootBlock extends BlockLootSubProvider {
 
@@ -42,7 +42,7 @@ public class DataLootBlock extends BlockLootSubProvider {
         protected void generate() {
 
                 LootTableHelper.getValidBlocks(zBlocks.zBlockItem)
-                .stream().filter(Predicate.not(BLACKLIST::contains)).forEach(this::dropSelf);
+                                .stream().filter(Predicate.not(BLACKLIST::contains)).forEach(this::dropSelf);
 
                 add(zBlocks.CAVE_WHEAT.get(), createCropDrops(zBlocks.CAVE_WHEAT.get(),
                                 Items.WHEAT, zItems.CAVE_WHEAT_SEEDS.get(),
@@ -86,7 +86,7 @@ public class DataLootBlock extends BlockLootSubProvider {
                                                 NORMAL_LEAVES_SAPLING_CHANCES)
                                                 .withPool(
                                                                 LootPool.lootPool()
-                                                                                .setRolls(ConstantValue.exactly(1.0F))
+                                                                                .setRolls(UniformGenerator.between(1, 5))
                                                                                 .when(
                                                                                                 hasShears().or(hasSilkTouch())
                                                                                                                 .invert())
@@ -103,10 +103,10 @@ public class DataLootBlock extends BlockLootSubProvider {
                                                                                                                                                                                 registries,
                                                                                                                                                                                 Enchantments.FORTUNE),
                                                                                                                                                                 0.05F,
-                                                                                                                                                                0.055555557F,
-                                                                                                                                                                0.0625F,
-                                                                                                                                                                0.08333334F,
-                                                                                                                                                                0.25F))))
+                                                                                                                                                                0.25F,
+                                                                                                                                                                0.275F,
+                                                                                                                                                                0.3F,
+                                                                                                                                                                0.325F))))
 
                 );
 
