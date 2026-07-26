@@ -1,11 +1,16 @@
 package com.synergy.vintagetech.init.builder.basket;
 
 import com.devdyna.cakesticklib.api.aspect.templates.TickingBlock;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -18,6 +23,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -113,7 +119,14 @@ public class BasketBlock extends TickingBlock {
             InsideBlockEffectApplier effectApplier, boolean isPrecise) {
         if (entity instanceof ItemEntity item && level.getBlockEntity(pos) instanceof BasketBE be)
             be.collectItem(level, pos, item);
+    }
 
+    @Override
+    protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos,
+            Player player, InteractionHand hand, BlockHitResult hitResult) {
+        if (level.getBlockEntity(pos) instanceof BasketBE be)
+            return be.itemUseOn(player, level, pos, hand);
+        return InteractionResult.FAIL;
     }
 
 }
