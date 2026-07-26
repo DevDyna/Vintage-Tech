@@ -37,19 +37,12 @@ public class MillstoneBE extends TransmissionBE implements ItemStorageBlock, NoG
     @Override
     public ItemStack extractItem() {
 
-        if (!getStackInSlot(OUTPUT).isEmpty())
-            try (Transaction tx = Transaction.openRoot()) {
+        var extracted = simpleExtractItemByIndex(OUTPUT);
 
-                var resource = getItemStorage().getResource(OUTPUT);
+        if(extracted.isEmpty())
+        extracted = simpleExtractItemByIndex(INPUT);
 
-                var extracted = getItemStorage()
-                        .extract(OUTPUT, resource, getItemStorage().getAmountAsInt(OUTPUT), tx);
-                tx.commit();
-
-                return resource.toStack(extracted);
-            }
-
-        return simpleExtractItem();
+        return extracted;
     }
 
     private Ticker ticker = null;
