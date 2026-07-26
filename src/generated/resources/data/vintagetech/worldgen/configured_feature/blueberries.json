@@ -8,15 +8,6 @@
           "data": {
             "Name": "vintagetech:blueberry_bush",
             "Properties": {
-              "age": "1"
-            }
-          },
-          "weight": 4
-        },
-        {
-          "data": {
-            "Name": "vintagetech:blueberry_bush",
-            "Properties": {
               "age": "2"
             }
           },
@@ -39,6 +30,15 @@
             }
           },
           "weight": 1
+        },
+        {
+          "data": {
+            "Name": "vintagetech:blueberry_bush",
+            "Properties": {
+              "age": "1"
+            }
+          },
+          "weight": 4
         }
       ]
     }

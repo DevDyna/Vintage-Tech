@@ -8,6 +8,15 @@
           "data": {
             "Name": "vintagetech:cave_wheat",
             "Properties": {
+              "age": "4"
+            }
+          },
+          "weight": 2
+        },
+        {
+          "data": {
+            "Name": "vintagetech:cave_wheat",
+            "Properties": {
               "age": "3"
             }
           },
@@ -21,15 +30,6 @@
             }
           },
           "weight": 1
-        },
-        {
-          "data": {
-            "Name": "vintagetech:cave_wheat",
-            "Properties": {
-              "age": "4"
-            }
-          },
-          "weight": 2
         }
       ]
     }

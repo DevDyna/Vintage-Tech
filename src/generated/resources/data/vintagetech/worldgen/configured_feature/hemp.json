@@ -18,21 +18,21 @@
           "data": {
             "Name": "vintagetech:hemp",
             "Properties": {
-              "age": "2",
-              "natural": "true"
-            }
-          },
-          "weight": 2
-        },
-        {
-          "data": {
-            "Name": "vintagetech:hemp",
-            "Properties": {
               "age": "3",
               "natural": "true"
             }
           },
           "weight": 1
+        },
+        {
+          "data": {
+            "Name": "vintagetech:hemp",
+            "Properties": {
+              "age": "2",
+              "natural": "true"
+            }
+          },
+          "weight": 2
         }
       ]
     }
