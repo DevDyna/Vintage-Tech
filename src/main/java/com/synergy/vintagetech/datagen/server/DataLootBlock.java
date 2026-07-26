@@ -36,7 +36,7 @@ public class DataLootBlock extends BlockLootSubProvider {
                 return LootTableHelper.getValidBlocks(zBlocks.zBlock, zBlocks.zBlockItem);
         }
 
-        List<Block> BLACKLIST = List.of(zBlocks.IRONWOOD_LEAVES.get());
+        List<Block> BLACKLIST = List.of(zBlocks.IRONWOOD_LEAVES.get(),zBlocks.IRONWOOD_SLAB.get());
 
         @Override
         protected void generate() {
@@ -109,6 +109,8 @@ public class DataLootBlock extends BlockLootSubProvider {
                                                                                                                                                                 0.25F))))
 
                 );
+
+                add(zBlocks.IRONWOOD_SLAB.get(), b -> createSlabItemTable(b));
 
         }
 
