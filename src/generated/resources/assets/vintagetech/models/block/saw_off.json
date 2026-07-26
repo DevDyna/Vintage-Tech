@@ -1,0 +1,6 @@
+{
+  "parent": "vintagetech:block/template/saw",
+  "textures": {
+    "saw": "vintagetech:block/saw/blade/off"
+  }
+}
