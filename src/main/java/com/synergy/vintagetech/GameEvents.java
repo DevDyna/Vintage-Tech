@@ -13,6 +13,7 @@ public class GameEvents {
         bus.addListener(Capability::register);
         bus.register(CreativeTabs.class);
         NeoForge.EVENT_BUS.register(RecipeSender.class);
+        NeoForge.EVENT_BUS.register(ItemToolTipped.class);
         bus.addListener(FlowerPotRegistry::common);
 
     }
