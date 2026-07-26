@@ -10,10 +10,12 @@ import com.synergy.vintagetech.init.builder.centrifuge.CentrifugeRenderer;
 import com.synergy.vintagetech.init.builder.fan.FanRenderer;
 import com.synergy.vintagetech.init.builder.millstone.MillstoneRenderer;
 import com.synergy.vintagetech.init.types.zBlockEntities;
+import com.synergy.vintagetech.init.types.zBlocks;
 import com.synergy.vintagetech.init.types.zFluids;
 import com.synergy.vintagetech.init.types.zParticles;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.color.block.BlockTintSources;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.crafting.RecipeMap;
 import net.minecraft.world.level.material.FluidState;
@@ -26,6 +28,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RecipesReceivedEvent;
+import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.event.RegisterFluidModelsEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
@@ -125,6 +128,20 @@ public class Client {
                                 f.getFlowing()));
 
     }
+
+    @SubscribeEvent
+    public static void registerBlockColors(RegisterColorHandlersEvent.BlockTintSources event) {
+
+        event.register(List.of(BlockTintSources.foliage()), zBlocks.IRONWOOD_LEAVES.get());
+
+    }
+
+    //  @SubscribeEvent
+    // public static void registerItemColor(RegisterColorHandlersEvent.ItemTintSources event) {
+        
+        
+
+    // }
 
     // Recipe collector client-side
 

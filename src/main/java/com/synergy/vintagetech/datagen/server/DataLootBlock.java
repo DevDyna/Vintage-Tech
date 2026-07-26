@@ -1,7 +1,9 @@
 package com.synergy.vintagetech.datagen.server;
 
 import java.util.*;
+import java.util.function.Predicate;
 
+import com.devdyna.cakesticklib.api.utils.EnchantUtil;
 import com.devdyna.cakesticklib.api.utils.LootTableHelper;
 import com.synergy.vintagetech.init.builder.plants.Aloe;
 import com.synergy.vintagetech.init.builder.plants.CaveWheat;
@@ -15,8 +17,13 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 
 public class DataLootBlock extends BlockLootSubProvider {
 
@@ -29,10 +36,13 @@ public class DataLootBlock extends BlockLootSubProvider {
                 return LootTableHelper.getValidBlocks(zBlocks.zBlock, zBlocks.zBlockItem);
         }
 
+        List<Block> BLACKLIST = List.of(zBlocks.IRONWOOD_LEAVES.get());
+
         @Override
         protected void generate() {
 
-                LootTableHelper.getValidBlocks(zBlocks.zBlockItem).forEach(this::dropSelf);
+                LootTableHelper.getValidBlocks(zBlocks.zBlockItem)
+                .stream().filter(Predicate.not(BLACKLIST::contains)).forEach(this::dropSelf);
 
                 add(zBlocks.CAVE_WHEAT.get(), createCropDrops(zBlocks.CAVE_WHEAT.get(),
                                 Items.WHEAT, zItems.CAVE_WHEAT_SEEDS.get(),
@@ -70,6 +80,35 @@ public class DataLootBlock extends BlockLootSubProvider {
                                                                                 .properties()
                                                                                 .hasProperty(Hemp.AGE,
                                                                                                 Hemp.MAX_AGE - 1)))));
+
+                add(zBlocks.IRONWOOD_LEAVES.get(),
+                                b -> createLeavesDrops(b, zBlocks.IRONWOOD_SAPLING.get(),
+                                                NORMAL_LEAVES_SAPLING_CHANCES)
+                                                .withPool(
+                                                                LootPool.lootPool()
+                                                                                .setRolls(ConstantValue.exactly(1.0F))
+                                                                                .when(
+                                                                                                hasShears().or(hasSilkTouch())
+                                                                                                                .invert())
+                                                                                .add(
+                                                                                                applyExplosionCondition(
+                                                                                                                b,
+                                                                                                                LootItem.lootTableItem(
+                                                                                                                                zItems.IRONBERRIES
+                                                                                                                                                .get()))
+                                                                                                                .when(
+                                                                                                                                BonusLevelTableCondition
+                                                                                                                                                .bonusLevelFlatChance(
+                                                                                                                                                                EnchantUtil.getEnchantHolder(
+                                                                                                                                                                                registries,
+                                                                                                                                                                                Enchantments.FORTUNE),
+                                                                                                                                                                0.05F,
+                                                                                                                                                                0.055555557F,
+                                                                                                                                                                0.0625F,
+                                                                                                                                                                0.08333334F,
+                                                                                                                                                                0.25F))))
+
+                );
 
         }
 

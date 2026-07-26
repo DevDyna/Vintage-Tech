@@ -19,6 +19,7 @@ import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.data.models.MultiVariant;
+import net.minecraft.client.data.models.BlockModelGenerators.PlantType;
 import net.minecraft.client.data.models.blockstates.MultiPartGenerator;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
@@ -28,9 +29,11 @@ import net.minecraft.client.data.models.model.ModelTemplate;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.data.models.model.TextureSlot;
+import net.minecraft.client.data.models.model.TexturedModel;
 import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.core.Direction.Axis;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
 public class DataModel extends ModelProvider {
@@ -51,6 +54,41 @@ public class DataModel extends ModelProvider {
                                 b -> BlockModelUtils.simplePlain(blockModels, b, "block/render/", "render_", ""));
 
                 // BLOCK MODELS
+
+                blockModels.woodProvider(zBlocks.IRONWOOD_LOG.get())
+                                .logWithHorizontal(zBlocks.IRONWOOD_LOG.get())
+                                .wood(zBlocks.IRONWOOD_WOOD.get());
+
+                blockModels.woodProvider(zBlocks.STRIPPED_IRONWOOD_LOG.get())
+                                .logWithHorizontal(zBlocks.STRIPPED_IRONWOOD_LOG.get())
+                                .wood(zBlocks.STRIPPED_IRONWOOD_WOOD.get());
+
+                blockModels.createTintedLeaves(zBlocks.IRONWOOD_LEAVES.get(), TexturedModel.LEAVES,
+                                FoliageColor.FOLIAGE_DEFAULT);
+                blockModels.createTrivialCube(zBlocks.IRONWOOD_PLANKS.get());
+                blockModels.createPlantWithDefaultItem(zBlocks.IRONWOOD_SAPLING.get(),
+                                zBlocks.POTTED_IRONWOOD_SAPLING.get(), PlantType.NOT_TINTED);
+
+
+                                var ironwood_variants = BlockModelGenerators.plainVariant(ModelTemplates.SLAB_BOTTOM
+                                                                .create(zBlocks.IRONWOOD_SLAB.get(),
+                                                                                TextureMapping.cube(new Material(x.rl(
+                                                                                                MODULE_ID,
+                                                                                                "block/ironwood/planks"))),
+                                                                                blockModels.modelOutput));
+
+
+                blockModels.blockStateOutput.accept(
+                                BlockModelGenerators.createStairs(zBlocks.IRONWOOD_STAIRS.get(),
+                                                ironwood_variants,
+                                                ironwood_variants,
+                                                ironwood_variants));
+
+                blockModels.blockStateOutput.accept(
+                                BlockModelGenerators.createSlab(zBlocks.IRONWOOD_SLAB.get(),
+                                                ironwood_variants,
+                                                ironwood_variants,
+                                                ironwood_variants));
 
                 BlockModelUtils.simplePlain(blockModels, zBlocks.JUNCTION);
                 BlockModelUtils.simplePlain(blockModels, zBlocks.MILLSTONE);
@@ -220,7 +258,7 @@ public class DataModel extends ModelProvider {
 
                 // ITEM MODELS
 
-                // blockitems
+                // blockitems                
                 itemModels.generateFlatItem(zBlocks.FAN.get().asItem(), ModelTemplates.FLAT_ITEM);
                 itemModels.generateFlatItem(zBlocks.CHEESE.get().asItem(), ModelTemplates.FLAT_ITEM);
                 itemModels.generateFlatItem(zBlocks.LAVENDER.get().asItem(), ModelTemplates.FLAT_ITEM);

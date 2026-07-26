@@ -14,6 +14,7 @@ public class Material {
                 zParticles.register(bus);
                 zFluids.register(bus);
                 zCreativeTab.register(bus);
+                zWorldGenFeatures.register(bus);
         }
 
 
