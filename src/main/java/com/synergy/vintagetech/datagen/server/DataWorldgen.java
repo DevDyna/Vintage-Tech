@@ -2,6 +2,7 @@ package com.synergy.vintagetech.datagen.server;
 
 import static com.synergy.vintagetech.Main.MODULE_ID;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
@@ -116,7 +117,7 @@ public class DataWorldgen extends DatapackBuiltinEntriesProvider {
         protected static void configuredFeatures(BootstrapContext<ConfiguredFeature<?, ?>> c) {
 
                 registerPatchConfig(c, zWorldGenFeatures.ConfiguredFeatures.BLUEBERRIES,
-                                Map.of(
+                                new LinkedHashMap<>(Map.of(
                                                 zBlocks.BLUEBERRY_BUSH
                                                                 .get().defaultBlockState().setValue(BlueBerry.AGE, 0),
                                                 8,
@@ -130,25 +131,25 @@ public class DataWorldgen extends DatapackBuiltinEntriesProvider {
                                                                 3),
                                                 1
 
-                                ));
+                                )));
 
                 registerPatchConfig(c, zWorldGenFeatures.ConfiguredFeatures.ALOE,
-                                Map.of(
+                                new LinkedHashMap<>(Map.of(
                                                 zBlocks.ALOE_PLANT.get().defaultBlockState().setValue(Aloe.AGE, 0), 2,
                                                 zBlocks.ALOE_PLANT.get().defaultBlockState().setValue(Aloe.AGE, 1), 2,
                                                 zBlocks.ALOE_PLANT.get().defaultBlockState().setValue(Aloe.AGE, 2), 1
 
-                                ));
+                                )));
 
                 registerPatchConfig(c, zWorldGenFeatures.ConfiguredFeatures.LAVENDER,
-                                Map.of(
+                                new LinkedHashMap<>(Map.of(
 
                                                 zBlocks.LAVENDER.get().defaultBlockState(), 1
 
-                                ));
+                                )));
 
                 registerPatchConfig(c, zWorldGenFeatures.ConfiguredFeatures.CAVE_WHEAT,
-                                Map.of(
+                                new LinkedHashMap<>(Map.of(
                                                 zBlocks.CAVE_WHEAT.get().defaultBlockState().setValue(CaveWheat.AGE, 3),
                                                 4,
                                                 zBlocks.CAVE_WHEAT.get().defaultBlockState().setValue(CaveWheat.AGE, 4),
@@ -156,12 +157,12 @@ public class DataWorldgen extends DatapackBuiltinEntriesProvider {
                                                 zBlocks.CAVE_WHEAT.get().defaultBlockState().setValue(CaveWheat.AGE, 5),
                                                 1
 
-                                )
+                                ))
 
                 );
 
                 registerPatchConfig(c, zWorldGenFeatures.ConfiguredFeatures.HEMP,
-                                Map.of(
+                                new LinkedHashMap<>(Map.of(
                                                 zBlocks.HEMP.get().defaultBlockState().setValue(Hemp.AGE, 1)
                                                                 .setValue(Hemp.NATURAL, true),
                                                 4,
@@ -172,7 +173,7 @@ public class DataWorldgen extends DatapackBuiltinEntriesProvider {
                                                                 .setValue(Hemp.NATURAL, true),
                                                 1
 
-                                )
+                                ))
 
                 );
 
@@ -281,43 +282,41 @@ public class DataWorldgen extends DatapackBuiltinEntriesProvider {
                                                                 BlockPredicate.ONLY_IN_AIR_PREDICATE)));
 
         }
-public static void registerUndergroundPatchPlaced(
-        BootstrapContext<PlacedFeature> c,
-        ResourceKey<PlacedFeature> k,
-        ResourceKey<ConfiguredFeature<?, ?>> configured,
-        int count,
-        int rarity,
-        int minY,
-        int maxY) {
 
-    PlacementUtils.register(
-            c,
-            k,
-            c.lookup(Registries.CONFIGURED_FEATURE)
-                    .getOrThrow(configured),
+        public static void registerUndergroundPatchPlaced(
+                        BootstrapContext<PlacedFeature> c,
+                        ResourceKey<PlacedFeature> k,
+                        ResourceKey<ConfiguredFeature<?, ?>> configured,
+                        int count,
+                        int rarity,
+                        int minY,
+                        int maxY) {
 
-            CountPlacement.of(count),
-            InSquarePlacement.spread(),
-            RarityFilter.onAverageOnceEvery(rarity),
+                PlacementUtils.register(
+                                c,
+                                k,
+                                c.lookup(Registries.CONFIGURED_FEATURE)
+                                                .getOrThrow(configured),
 
-            HeightRangePlacement.uniform(
-                    VerticalAnchor.absolute(minY),
-                    VerticalAnchor.absolute(maxY)),
+                                CountPlacement.of(count),
+                                InSquarePlacement.spread(),
+                                RarityFilter.onAverageOnceEvery(rarity),
 
-            BiomeFilter.biome(),
+                                HeightRangePlacement.uniform(
+                                                VerticalAnchor.absolute(minY),
+                                                VerticalAnchor.absolute(maxY)),
 
-            BlockPredicateFilter.forPredicate(
-                    BlockPredicate.allOf(
-                            BlockPredicate.ONLY_IN_AIR_PREDICATE,
+                                BiomeFilter.biome(),
 
-                            BlockPredicate.matchesTag(
-                                new Vec3i(0, -1, 0),
-                                    zTags.Blocks.SUPPORT_CAVE_WHEAT_PLANT
-                                    
-                            )
-                    )
-            )
-    );
-}
+                                BlockPredicateFilter.forPredicate(
+                                                BlockPredicate.allOf(
+                                                                BlockPredicate.ONLY_IN_AIR_PREDICATE,
+
+                                                                BlockPredicate.matchesTag(
+                                                                                new Vec3i(0, -1, 0),
+                                                                                zTags.Blocks.SUPPORT_CAVE_WHEAT_PLANT
+
+                                                                ))));
+        }
 
 }
