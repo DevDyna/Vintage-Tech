@@ -12,7 +12,6 @@ import com.synergy.vintagetech.init.builder.RopeBlock;
 import com.synergy.vintagetech.init.builder.plants.Aloe;
 import com.synergy.vintagetech.init.builder.plants.BlueBerry;
 import com.synergy.vintagetech.init.builder.plants.Hemp;
-import com.synergy.vintagetech.init.builder.saw.SawBlock;
 import com.synergy.vintagetech.init.types.zBlocks;
 import com.synergy.vintagetech.init.types.zItems;
 
@@ -30,7 +29,6 @@ import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.data.models.model.TextureSlot;
 import net.minecraft.client.resources.model.sprite.Material;
-import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -136,52 +134,7 @@ public class DataModel extends ModelProvider {
                                                 BlockModelGenerators.plainVariant(
                                                                 x.rl(MODULE_ID, "block/gearshift"))));
 
-                MultiVariant sawOff = BlockModelGenerators.plainVariant(
-                                x.rl(MODULE_ID, "block/saw/off"));
-
-                MultiVariant sawOn = BlockModelGenerators.plainVariant(
-                                x.rl(MODULE_ID, "block/saw/on"));
-
-                blockModels.blockStateOutput.accept(
-                                MultiVariantGenerator.dispatch(zBlocks.SAW.get())
-                                                .with(
-                                                                PropertyDispatch.initial(
-                                                                                BlockStateProperties.FACING,
-                                                                                SawBlock.ENABLED)
-
-                                                                                .select(Direction.UP, false, sawOff)
-                                                                                .select(Direction.UP, true, sawOn)
-
-                                                                                .select(Direction.DOWN, false,
-                                                                                                sawOff.with(BlockModelGenerators.X_ROT_180))
-                                                                                .select(Direction.DOWN, true,
-                                                                                                sawOn.with(BlockModelGenerators.X_ROT_180))
-
-                                                                                .select(Direction.NORTH, false,
-                                                                                                sawOff.with(BlockModelGenerators.X_ROT_90))
-                                                                                .select(Direction.NORTH, true,
-                                                                                                sawOn.with(BlockModelGenerators.X_ROT_90))
-
-                                                                                .select(Direction.EAST, false,
-                                                                                                sawOff.with(BlockModelGenerators.X_ROT_90)
-                                                                                                                .with(BlockModelGenerators.Y_ROT_90))
-                                                                                .select(Direction.EAST, true,
-                                                                                                sawOn.with(BlockModelGenerators.X_ROT_90)
-                                                                                                                .with(BlockModelGenerators.Y_ROT_90))
-
-                                                                                .select(Direction.SOUTH, false,
-                                                                                                sawOff.with(BlockModelGenerators.X_ROT_90)
-                                                                                                                .with(BlockModelGenerators.Y_ROT_180))
-                                                                                .select(Direction.SOUTH, true,
-                                                                                                sawOn.with(BlockModelGenerators.X_ROT_90)
-                                                                                                                .with(BlockModelGenerators.Y_ROT_180))
-
-                                                                                .select(Direction.WEST, false,
-                                                                                                sawOff.with(BlockModelGenerators.X_ROT_90)
-                                                                                                                .with(BlockModelGenerators.Y_ROT_270))
-                                                                                .select(Direction.WEST, true,
-                                                                                                sawOn.with(BlockModelGenerators.X_ROT_90)
-                                                                                                                .with(BlockModelGenerators.Y_ROT_270))));
+                BlockModelUtils.createSawToggleBlock(blockModels, zBlocks.SAW.get());
 
                 BlockModelUtils.createFacingBlock(blockModels, zBlocks.BASKET.get(), x.rl(MODULE_ID, "block/basket"),
                                 false);
@@ -298,7 +251,7 @@ public class DataModel extends ModelProvider {
                                 ItemModelUtils.plainModel(x.rl(MODULE_ID, "item/millstone")));
 
                 itemModels.itemModelOutput.accept(zBlocks.SAW.get().asItem(),
-                                ItemModelUtils.plainModel(x.rl(MODULE_ID, "block/saw/off")));
+                                ItemModelUtils.plainModel(x.rl(MODULE_ID, "block/saw_off")));
 
                 itemModels.itemModelOutput.accept(zBlocks.MECHANICAL_FARMLAND.get().asItem(),
                                 ItemModelUtils.plainModel(x.rl(MODULE_ID, "item/mechanical_farmland")));

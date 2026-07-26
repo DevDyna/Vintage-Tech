@@ -5,6 +5,8 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 import java.util.Optional;
 
 import com.devdyna.cakesticklib.api.utils.x;
+import com.synergy.vintagetech.init.builder.saw.SawBlock;
+
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.minecraft.client.data.models.BlockModelGenerators;
@@ -197,6 +199,68 @@ public class BlockModelUtils {
 
                 );
 
+        }
+
+       
+
+        public static void createSawToggleBlock(BlockModelGenerators b, Block block) {
+
+                MultiVariant sawOff = BlockModelGenerators.plainVariant(
+                                TemplateCollection.SAW_TEMPLATE.create(x.rl(MODULE_ID, "block/" + x.name(block)+"_off"),
+                                                new TextureMapping()
+                                                                .put(TemplateCollection.SAW, new Material(x.rl(MODULE_ID,
+                                                                                "block/saw/blade/off"))),
+                                                b.modelOutput));
+
+                MultiVariant sawOn = BlockModelGenerators.plainVariant(
+                                TemplateCollection.SAW_TEMPLATE.create(x.rl(MODULE_ID, "block/" + x.name(block)+"_on"),
+                                                new TextureMapping()
+                                                                .put(TemplateCollection.SAW, new Material(x.rl(MODULE_ID,
+                                                                                "block/saw/blade/on"))),
+                                                b.modelOutput));
+
+                
+
+                b.blockStateOutput.accept(
+                                MultiVariantGenerator.dispatch(block)
+                                                .with(
+                                                                PropertyDispatch.initial(
+                                                                                BlockStateProperties.FACING,
+                                                                                SawBlock.ENABLED)
+
+                                                                                .select(Direction.UP, false, sawOff)
+                                                                                .select(Direction.UP, true, sawOn)
+
+                                                                                .select(Direction.DOWN, false,
+                                                                                                sawOff.with(BlockModelGenerators.X_ROT_180))
+                                                                                .select(Direction.DOWN, true,
+                                                                                                sawOn.with(BlockModelGenerators.X_ROT_180))
+
+                                                                                .select(Direction.NORTH, false,
+                                                                                                sawOff.with(BlockModelGenerators.X_ROT_90))
+                                                                                .select(Direction.NORTH, true,
+                                                                                                sawOn.with(BlockModelGenerators.X_ROT_90))
+
+                                                                                .select(Direction.EAST, false,
+                                                                                                sawOff.with(BlockModelGenerators.X_ROT_90)
+                                                                                                                .with(BlockModelGenerators.Y_ROT_90))
+                                                                                .select(Direction.EAST, true,
+                                                                                                sawOn.with(BlockModelGenerators.X_ROT_90)
+                                                                                                                .with(BlockModelGenerators.Y_ROT_90))
+
+                                                                                .select(Direction.SOUTH, false,
+                                                                                                sawOff.with(BlockModelGenerators.X_ROT_90)
+                                                                                                                .with(BlockModelGenerators.Y_ROT_180))
+                                                                                .select(Direction.SOUTH, true,
+                                                                                                sawOn.with(BlockModelGenerators.X_ROT_90)
+                                                                                                                .with(BlockModelGenerators.Y_ROT_180))
+
+                                                                                .select(Direction.WEST, false,
+                                                                                                sawOff.with(BlockModelGenerators.X_ROT_90)
+                                                                                                                .with(BlockModelGenerators.Y_ROT_270))
+                                                                                .select(Direction.WEST, true,
+                                                                                                sawOn.with(BlockModelGenerators.X_ROT_90)
+                                                                                                                .with(BlockModelGenerators.Y_ROT_270))));
         }
 
 }
