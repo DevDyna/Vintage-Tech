@@ -75,6 +75,12 @@ public class zTags {
         public static final TagKey<Block> ROPE_IGNORE_CONNECTION = RegistryUtils
                 .tagBlock(MODULE_ID, "rope/ignore_connection");
 
+        public static final TagKey<Block> WOODEN_BEAMS = RegistryUtils
+                .tagBlock(MODULE_ID, "beam/wooden");
+
+        public static final TagKey<Block> STRIPPED_BEAMS = RegistryUtils
+                .tagBlock(MODULE_ID, "beam/stripped");
+
     }
 
     public class Items {
