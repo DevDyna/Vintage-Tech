@@ -153,24 +153,16 @@ public class BlockModelUtils {
 
         }
 
+        
+
         public static void createBeamBlock(BlockModelGenerators b, Block block, Identifier top, Identifier side) {
 
                 MultiVariant beam = BlockModelGenerators.plainVariant(
-                                new ModelTemplate(
-                                                Optional.of(x.rl(MODULE_ID, "block/template/beam")), Optional.empty(),
-                                                TextureSlot.TOP, TextureSlot.SIDE)
-                                                .create(
-                                                                x.rl(MODULE_ID, "block/" + x.name(block)),
-                                                                new TextureMapping()
-                                                                                .put(
-                                                                                                TextureSlot.TOP,
-                                                                                                new Material(
-                                                                                                                top))
-                                                                                .put(
-                                                                                                TextureSlot.SIDE,
-                                                                                                new Material(
-                                                                                                                side)),
-                                                                b.modelOutput));
+                                TemplateCollection.BEAM_TEMPLATE.create(x.rl(MODULE_ID, "block/" + x.name(block)),
+                                                new TextureMapping()
+                                                                .put(TextureSlot.TOP, new Material(top))
+                                                                .put(TextureSlot.SIDE, new Material(side)),
+                                                b.modelOutput));
 
                 MultiVariant rope = BlockModelGenerators.plainVariant(
                                 x.rl(MODULE_ID, "block/rope/on_beam"));
