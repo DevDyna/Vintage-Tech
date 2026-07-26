@@ -61,7 +61,7 @@ public class DryingRackBE extends TickingBE
   
     public ItemStack extractItem() {
         update();
-        return simpleExtractItem();
+        return simpleExtractItemByIndex(0);
     }
     
 
