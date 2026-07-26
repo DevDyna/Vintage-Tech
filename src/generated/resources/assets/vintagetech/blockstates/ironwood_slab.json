@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "vintagetech:block/ironwood_slab"
+    },
+    "type=double": {
+      "model": "vintagetech:block/ironwood_slab_double"
+    },
+    "type=top": {
+      "model": "vintagetech:block/ironwood_slab_top"
+    }
+  }
+}

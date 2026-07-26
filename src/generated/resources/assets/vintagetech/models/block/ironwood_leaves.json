@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/leaves",
+  "textures": {
+    "all": "vintagetech:block/ironwood_leaves"
+  }
+}

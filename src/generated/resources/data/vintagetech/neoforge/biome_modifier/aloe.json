@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#vintagetech:worldgen/aloe",
+  "features": "vintagetech:aloe",
+  "step": "vegetal_decoration"
+}

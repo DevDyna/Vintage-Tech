@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "vintagetech:block/ironwood_planks",
+    "side": "vintagetech:block/ironwood_planks",
+    "top": "vintagetech:block/ironwood_planks"
+  }
+}

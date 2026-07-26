@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#vintagetech:worldgen/cave_wheat",
+  "features": "vintagetech:cave_wheat",
+  "step": "vegetal_decoration"
+}

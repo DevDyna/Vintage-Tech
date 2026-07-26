@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "vintagetech:block/stripped_ironwood_log",
+    "side": "vintagetech:block/stripped_ironwood_log"
+  }
+}

@@ -16,6 +16,11 @@
     "vintagetech:dark_oak_beam",
     "vintagetech:mangrove_beam",
     "vintagetech:cherry_beam",
-    "vintagetech:pale_oak_beam"
+    "vintagetech:pale_oak_beam",
+    "vintagetech:ironwood_sapling",
+    "vintagetech:ironwood_planks",
+    "vintagetech:ironwood_slab",
+    "vintagetech:ironwood_stairs",
+    "#vintagetech:ironwood_logs"
   ]
 }

@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#vintagetech:worldgen/lavender",
+  "features": "vintagetech:lavender",
+  "step": "vegetal_decoration"
+}

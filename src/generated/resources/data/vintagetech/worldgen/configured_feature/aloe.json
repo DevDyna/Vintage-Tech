@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:simple_block",
+  "config": {
+    "to_place": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "data": {
+            "Name": "vintagetech:aloe_plant",
+            "Properties": {
+              "age": "1"
+            }
+          },
+          "weight": 2
+        },
+        {
+          "data": {
+            "Name": "vintagetech:aloe_plant",
+            "Properties": {
+              "age": "0"
+            }
+          },
+          "weight": 2
+        },
+        {
+          "data": {
+            "Name": "vintagetech:aloe_plant",
+            "Properties": {
+              "age": "2"
+            }
+          },
+          "weight": 1
+        }
+      ]
+    }
+  }
+}

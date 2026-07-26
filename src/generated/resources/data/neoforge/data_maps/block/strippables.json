@@ -1,0 +1,20 @@
+{
+  "values": {
+    "vintagetech:ironwood_log": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "stripped_block": "vintagetech:stripped_ironwood_log"
+    },
+    "vintagetech:ironwood_wood": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "stripped_block": "vintagetech:stripped_ironwood_wood"
+    }
+  }
+}
