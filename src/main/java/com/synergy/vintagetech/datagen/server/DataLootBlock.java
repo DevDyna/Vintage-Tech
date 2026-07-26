@@ -110,6 +110,7 @@ public class DataLootBlock extends BlockLootSubProvider {
 
                 );
 
+                dropPottedContents(zBlocks.POTTED_IRONWOOD_SAPLING.get());
                 add(zBlocks.IRONWOOD_SLAB.get(), b -> createSlabItemTable(b));
 
         }
