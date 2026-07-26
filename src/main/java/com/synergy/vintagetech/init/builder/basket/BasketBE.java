@@ -2,17 +2,19 @@ package com.synergy.vintagetech.init.builder.basket;
 
 import com.devdyna.cakesticklib.api.aspect.logic.DropCollector;
 import com.devdyna.cakesticklib.api.aspect.logic.ItemStorageBlock;
+import com.devdyna.cakesticklib.api.aspect.logic.NoGuiStorage;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
 import com.synergy.vintagetech.init.types.zBlockEntities;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 
-public class BasketBE extends BlockEntity implements ItemStorageBlock, DropCollector {
+public class BasketBE extends BlockEntity implements ItemStorageBlock, DropCollector, NoGuiStorage {
 
     public BasketBE(BlockPos pos, BlockState state) {
         super(zBlockEntities.BASKET.get(), pos, state);
@@ -41,6 +43,14 @@ public class BasketBE extends BlockEntity implements ItemStorageBlock, DropColle
     @Override
     public boolean ignoreIndex() {
         return true;
+    }
+
+    public ItemStack insertItem(ItemStack stack) {
+        return simpleInsertItem(stack);
+    }
+
+    public ItemStack extractItem() {
+        return simpleExtractItemFromSize();
     }
 
 }
