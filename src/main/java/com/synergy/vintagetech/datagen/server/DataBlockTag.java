@@ -83,7 +83,8 @@ public class DataBlockTag extends BlockTagsProvider {
 
                 tag(zTags.Blocks.SUPPORT_CAVE_WHEAT_PLANT)
                                 .addTags(BlockTags.SUPPORTS_CROPS,
-                                                BlockTags.BASE_STONE_OVERWORLD);
+                                                BlockTags.BASE_STONE_OVERWORLD,
+                                                BlockTags.SUPPORTS_AZALEA);
 
                 tag(zTags.Blocks.SUPPORT_HEMP_PLANT)
                                 .addTags(BlockTags.SUPPORTS_CROPS)
