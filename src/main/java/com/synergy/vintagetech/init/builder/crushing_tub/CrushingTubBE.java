@@ -44,7 +44,7 @@ public class CrushingTubBE extends TickingBE
 
     public ItemStack insertItem(ItemStack stack) {
         update();
-        var inserted = MANUAL_SLOT;
+        var inserted = 0;
 
         try (Transaction tx = Transaction.openRoot()) {
             inserted = getItemStorage().insert(MANUAL_SLOT, ItemResource.of(stack), stack.getCount(), tx);
