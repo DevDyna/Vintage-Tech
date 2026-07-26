@@ -197,7 +197,7 @@ public class zBlocks {
 
     public static final DeferredHolder<Block, Block> BIRCH_BEAM = registerItemBlock("birch_beam",
             p -> new WoodenBeam(Properties.ofFullCopy(Blocks.BIRCH_LOG)
-                    .setId(ResourceKey.create(Registries.BLOCK, x.rl(MODULE_ID, "birc_beam")))));
+                    .setId(ResourceKey.create(Registries.BLOCK, x.rl(MODULE_ID, "birch_beam")))));
 
     public static final DeferredHolder<Block, Block> JUNGLE_BEAM = registerItemBlock("jungle_beam",
             p -> new WoodenBeam(Properties.ofFullCopy(Blocks.JUNGLE_LOG)
