@@ -24,7 +24,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.BooleanOp;
@@ -34,8 +33,8 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class DryingRackBlock extends TickingBlock implements RopeHandler {
 
-    public DryingRackBlock(Properties properties) {
-        super(properties.instrument(NoteBlockInstrument.BASEDRUM).strength(1F, 2.25F).noOcclusion());
+    public DryingRackBlock(Properties p) {
+        super(p);
     }
 
     @Override

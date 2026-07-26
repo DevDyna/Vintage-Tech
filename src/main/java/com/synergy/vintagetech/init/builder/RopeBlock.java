@@ -16,7 +16,6 @@ import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.PipeBlock;
-import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
@@ -27,8 +26,8 @@ public class RopeBlock extends PipeBlock
 
     public static final BooleanProperty HAS_CORNER = BooleanProperty.create("has_corner");
 
-    public RopeBlock(Properties properties) {
-        super(4, properties.sound(SoundType.WOOL).noOcclusion());
+    public RopeBlock(Properties p) {
+        super(4, p);
     }
 
     @Override

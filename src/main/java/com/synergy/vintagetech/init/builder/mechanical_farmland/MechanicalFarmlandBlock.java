@@ -52,7 +52,7 @@ public class MechanicalFarmlandBlock extends FarmlandBlock
     public static final EnumProperty<Axis> HORIZONTAL_AXIS = BlockStateProperties.HORIZONTAL_AXIS;
 
     public MechanicalFarmlandBlock(Properties p) {
-        super(p.noOcclusion());
+        super(p);
     }
 
     @Override

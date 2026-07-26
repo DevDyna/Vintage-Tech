@@ -18,7 +18,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DirectionalBlock;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
-import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -34,7 +33,7 @@ public class BasketBlock extends TickingBlock {
     public static final EnumProperty<Direction> FACING = DirectionalBlock.FACING;
 
     public BasketBlock(Properties p) {
-        super(p.sound(SoundType.GRASS));
+        super(p);
     }
 
     @Override

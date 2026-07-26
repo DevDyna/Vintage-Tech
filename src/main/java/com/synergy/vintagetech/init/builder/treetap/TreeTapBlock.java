@@ -50,8 +50,6 @@ public class TreeTapBlock extends TickingBlock {
 
     }
 
-    // TODO IMP : tree tap properties
-
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> b) {
         b.add(FACING);
@@ -98,10 +96,10 @@ public class TreeTapBlock extends TickingBlock {
 
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
-        
+
         if (!RandomUtil.chance(level, 0.05))
-        return;
-        
+            return;
+
         var opposite = state.getValue(FACING).getOpposite();
 
         var found = false;
@@ -112,11 +110,11 @@ public class TreeTapBlock extends TickingBlock {
         if (!found)
             return;
 
-                level.addParticle(ParticleTypes.DRIPPING_DRIPSTONE_WATER,
-                        pos.getX() + 0.5 + 0.09 * opposite.getStepX(),
-                        pos.getY(),
-                        pos.getZ() + 0.5 + 0.09 * opposite.getStepZ(),
-                        0.0, 0.0, 0.0);
+        level.addParticle(ParticleTypes.DRIPPING_DRIPSTONE_WATER,
+                pos.getX() + 0.5 + 0.09 * opposite.getStepX(),
+                pos.getY(),
+                pos.getZ() + 0.5 + 0.09 * opposite.getStepZ(),
+                0.0, 0.0, 0.0);
     }
 
     @Override

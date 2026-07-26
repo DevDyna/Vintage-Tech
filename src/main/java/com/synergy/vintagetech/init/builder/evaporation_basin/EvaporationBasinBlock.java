@@ -17,8 +17,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
-import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -27,9 +25,8 @@ import net.neoforged.neoforge.transfer.fluid.FluidStacksResourceHandler;
 public class EvaporationBasinBlock extends TickingBlock
         implements BucketInteraction, FluidClearableTank, FluidTooltipWhenEmpty {
 
-    public EvaporationBasinBlock(Properties properties) {
-        super(properties.mapColor(MapColor.COLOR_ORANGE).instrument(NoteBlockInstrument.BASEDRUM).strength(1F,
-                2.25F));
+    public EvaporationBasinBlock(Properties p) {
+        super(p);
     }
 
     @Override
