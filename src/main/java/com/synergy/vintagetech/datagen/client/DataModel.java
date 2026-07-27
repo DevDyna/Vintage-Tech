@@ -110,7 +110,7 @@ public class DataModel extends ModelProvider {
 
                                                 BlockModelGenerators.plainVariant(
                                                                 ModelTemplates.STAIRS_OUTER.create(
-                                                                                zBlocks.IRONWOOD_STAIRS.get(), 
+                                                                                zBlocks.IRONWOOD_STAIRS.get(),
                                                                                 new TextureMapping()
                                                                                                 .put(TextureSlot.BOTTOM,
                                                                                                                 new Material(x.rl(
@@ -145,7 +145,7 @@ public class DataModel extends ModelProvider {
                                                                                                                                 "block/ironwood_planks"))),
                                                                                 blockModels.modelOutput)),
                                                 BlockModelGenerators.plainVariant(ModelTemplates.SLAB_TOP
-                                                                .create(zBlocks.IRONWOOD_SLAB.get(), 
+                                                                .create(zBlocks.IRONWOOD_SLAB.get(),
                                                                                 new TextureMapping()
                                                                                                 .put(TextureSlot.BOTTOM,
                                                                                                                 new Material(x.rl(
@@ -245,10 +245,8 @@ public class DataModel extends ModelProvider {
                 BlockModelUtils.createBeamBlock(blockModels, zBlocks.PALE_OAK_BEAM.get(),
                                 x.rl(MODULE_ID, "block/beam/pale_oak"), x.mcLoc("block/pale_oak_log"));
 
-                blockModels.blockStateOutput
-                                .accept(BlockModelGenerators.createAxisAlignedPillarBlock(zBlocks.GEARSHIFT.get(),
-                                                BlockModelGenerators.plainVariant(
-                                                                x.rl(MODULE_ID, "block/gearshift"))));
+                BlockModelUtils.createModifierBlock(blockModels, zBlocks.GEARSHIFT.get());
+                BlockModelUtils.createModifierBlock(blockModels, zBlocks.CLUTCH.get());
 
                 BlockModelUtils.createSawToggleBlock(blockModels, zBlocks.SAW.get());
 
@@ -369,6 +367,12 @@ public class DataModel extends ModelProvider {
                 itemModels.itemModelOutput.accept(zBlocks.SAW.get().asItem(),
                                 ItemModelUtils.plainModel(x.rl(MODULE_ID, "block/saw_off")));
 
+                itemModels.itemModelOutput.accept(zBlocks.GEARSHIFT.get().asItem(),
+                                ItemModelUtils.plainModel(x.rl(MODULE_ID, "block/gearshift_off")));
+
+                itemModels.itemModelOutput.accept(zBlocks.CLUTCH.get().asItem(),
+                                ItemModelUtils.plainModel(x.rl(MODULE_ID, "block/clutch_off")));
+
                 itemModels.itemModelOutput.accept(zBlocks.MECHANICAL_FARMLAND.get().asItem(),
                                 ItemModelUtils.plainModel(x.rl(MODULE_ID, "item/mechanical_farmland")));
 
@@ -379,15 +383,7 @@ public class DataModel extends ModelProvider {
                 itemModels.itemModelOutput.accept(zBlocks.DYNAMO.get().asItem(),
                                 ItemModelUtils.plainModel(x.rl(MODULE_ID, "block/steam_engine")));
 
-
-
-// itemModels.itemModelOutput.accept(zBlocks.IRONWOOD_SLAB.get().asItem(),
-//                                 ItemModelUtils.plainModel(x.rl(MODULE_ID, "block/junction")));
-
-//                                 itemModels.itemModelOutput.accept(zBlocks.IRONWOOD_STAIRS.get().asItem(),
-//                                 ItemModelUtils.plainModel(x.rl(MODULE_ID, "block/ironwood_stairs")));
-
-
+                
         }
 
 }

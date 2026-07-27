@@ -68,6 +68,7 @@ public class DataBlockTag extends BlockTagsProvider {
                                                 zBlocks.EVAPORATION_BASIN.get(),
                                                 zBlocks.FAN.get(),
                                                 zBlocks.GEARSHIFT.get(),
+                                                zBlocks.CLUTCH.get(),
                                                 zBlocks.SAW.get(),
                                                 zBlocks.STEAM_ENGINE.get(),
                                                 zBlocks.TREE_TAP.get(),
@@ -111,6 +112,7 @@ public class DataBlockTag extends BlockTagsProvider {
                                 .add(
                                                 zBlocks.AXLE.get(),
                                                 zBlocks.JUNCTION.get(),
+                                                zBlocks.CLUTCH.get(),
                                                 zBlocks.GEARSHIFT.get());
 
                 tag(zTags.Blocks.GENERATOR)

@@ -38,6 +38,7 @@ public class DataLang extends LanguageProvider implements LangGenerators {
                 add(MODULE_ID + ".jei.alias.rpm.base", "Mechanical Rotation Block");
                 add(MODULE_ID + ".jei.alias.rpm.transmission", "Transmission");
                 add(MODULE_ID + ".jei.alias.rpm.rotation.change", "Change Rotation");
+                add(MODULE_ID + ".jei.alias.rpm.activation.break", "Disable Network");
                 add(MODULE_ID + ".jei.alias.rpm.generator", "Generator");
 
                 add(MODULE_ID + ".creative_tab." + MODULE_ID, "Vintage Tech");

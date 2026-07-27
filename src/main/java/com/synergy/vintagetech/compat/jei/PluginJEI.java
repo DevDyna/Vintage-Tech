@@ -110,7 +110,7 @@ public class PluginJEI implements IModPlugin {
                                 JEIAliasesHelper.Aliases.ENTITY_MOVER);
 
                 JEIAliasesHelper.addAlias(r, List.of(
-                                zBlocks.AXLE, zBlocks.GEARSHIFT, zBlocks.JUNCTION),
+                                zBlocks.AXLE, zBlocks.GEARSHIFT,zBlocks.CLUTCH, zBlocks.JUNCTION),
                                 MODULE_ID + ".jei.alias.rpm.transmission");
 
                 JEIAliasesHelper.addAlias(r, List.of(
@@ -118,16 +118,21 @@ public class PluginJEI implements IModPlugin {
                                 MODULE_ID + ".jei.alias.rpm.rotation.change");
 
                 JEIAliasesHelper.addAlias(r, List.of(
+                                zBlocks.CLUTCH),
+                                MODULE_ID + ".jei.alias.rpm.activation.break");
+
+                JEIAliasesHelper.addAlias(r, List.of(
                                 zBlocks.CREATIVE_ENGINE, zBlocks.STEAM_ENGINE),
                                 MODULE_ID + ".jei.alias.rpm.generator");
 
                 JEIAliasesHelper.addAlias(r, List.of(
-                                zBlocks.SAW, zBlocks.GEARSHIFT),
+                                zBlocks.SAW, zBlocks.GEARSHIFT,zBlocks.CLUTCH),
                                 JEIAliasesHelper.Aliases.REDSTONE_SENSIBLE);
 
                 JEIAliasesHelper.addAlias(r, List.of(
                                 zBlocks.AXLE,
                                 zBlocks.GEARSHIFT,
+                                zBlocks.CLUTCH,
                                 zBlocks.JUNCTION,
                                 zBlocks.CREATIVE_ENGINE,
                                 zBlocks.STEAM_ENGINE,
