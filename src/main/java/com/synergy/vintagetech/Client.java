@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.devdyna.cakesticklib.api.FluidRenderUtils;
 import com.devdyna.cakesticklib.api.utils.x;
+import com.synergy.vintagetech.api.ClassUtils;
+import com.synergy.vintagetech.api.FluidRegister;
 import com.synergy.vintagetech.api.blockfactory.transmission.TransmissionRenderer;
 import com.synergy.vintagetech.client.particles.fan.AirFlowParticleProvider;
 import com.synergy.vintagetech.init.builder.centrifuge.CentrifugeRenderer;
@@ -36,6 +38,8 @@ import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsE
 import net.neoforged.neoforge.client.fluid.FluidTintSource;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
+import net.neoforged.neoforge.fluids.FluidType;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 @Mod(value = Main.MODULE_ID, dist = Dist.CLIENT)
 @EventBusSubscriber(modid = Main.MODULE_ID, value = Dist.CLIENT)
@@ -101,31 +105,29 @@ public class Client {
             public Identifier getRenderOverlayTexture(Minecraft mc) {
                 return x.parse("textures/misc/underwater.png");
             }
-        }, zFluids.SALT_SOLUTION.getType(), zFluids.SOY_WHEY.getType());
+        }, ClassUtils.getAll(zFluids.class, FluidRegister.class)
+                .stream()
+                .map(FluidRegister::getType)
+                .map(DeferredHolder::get)
+                .toArray(FluidType[]::new));
 
     }
 
     @SubscribeEvent
     public static void onRegisterFluidModels(RegisterFluidModelsEvent event) {
 
-        List.of(
-                zFluids.LATEX,
-                zFluids.RESIN,
-                zFluids.SALT_SOLUTION,
-                zFluids.SAP,
-                zFluids.OIL,
-                zFluids.SOY_WHEY).forEach(
-                        f -> event.register(
-                                FluidRenderUtils.createWaterModel(new FluidTintSource() {
+        ClassUtils.getAll(zFluids.class, FluidRegister.class).forEach(
+                f -> event.register(
+                        FluidRenderUtils.createWaterModel(new FluidTintSource() {
 
-                                    @Override
-                                    public int color(FluidState state) {
-                                        return f.getColor();
-                                    }
+                            @Override
+                            public int color(FluidState state) {
+                                return f.getColor();
+                            }
 
-                                }),
-                                f.getSource(),
-                                f.getFlowing()));
+                        }),
+                        f.getSource(),
+                        f.getFlowing()));
 
     }
 
@@ -136,10 +138,9 @@ public class Client {
 
     }
 
-    //  @SubscribeEvent
-    // public static void registerItemColor(RegisterColorHandlersEvent.ItemTintSources event) {
-        
-        
+    // @SubscribeEvent
+    // public static void
+    // registerItemColor(RegisterColorHandlersEvent.ItemTintSources event) {
 
     // }
 
