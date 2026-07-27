@@ -115,61 +115,56 @@ public class DataWorldgen extends DatapackBuiltinEntriesProvider {
         protected static void configuredFeatures(BootstrapContext<ConfiguredFeature<?, ?>> c) {
 
                 registerPatchConfig(c, zWorldGenFeatures.ConfiguredFeatures.BLUEBERRIES,
-                                statePool(
-                                                zBlocks.BLUEBERRY_BUSH
-                                                                .get().defaultBlockState().setValue(BlueBerry.AGE, 0),
-                                                8,
-                                                zBlocks.BLUEBERRY_BUSH
-                                                                .get().defaultBlockState().setValue(BlueBerry.AGE, 1),
-                                                4,
-                                                zBlocks.BLUEBERRY_BUSH.get().defaultBlockState().setValue(BlueBerry.AGE,
-                                                                2),
-                                                2,
-                                                zBlocks.BLUEBERRY_BUSH.get().defaultBlockState().setValue(BlueBerry.AGE,
-                                                                3),
-                                                1));
+
+                                zBlocks.BLUEBERRY_BUSH
+                                                .get().defaultBlockState().setValue(BlueBerry.AGE, 0),
+                                8,
+                                zBlocks.BLUEBERRY_BUSH
+                                                .get().defaultBlockState().setValue(BlueBerry.AGE, 1),
+                                4,
+                                zBlocks.BLUEBERRY_BUSH.get().defaultBlockState().setValue(BlueBerry.AGE,
+                                                2),
+                                2,
+                                zBlocks.BLUEBERRY_BUSH.get().defaultBlockState().setValue(BlueBerry.AGE,
+                                                3),
+                                1);
 
                 registerPatchConfig(c, zWorldGenFeatures.ConfiguredFeatures.ALOE,
-                                statePool(
-                                                zBlocks.ALOE_PLANT.get().defaultBlockState().setValue(Aloe.AGE, 0), 2,
-                                                zBlocks.ALOE_PLANT.get().defaultBlockState().setValue(Aloe.AGE, 1), 2,
-                                                zBlocks.ALOE_PLANT.get().defaultBlockState().setValue(Aloe.AGE, 2), 1
 
-                                ));
+                                zBlocks.ALOE_PLANT.get().defaultBlockState().setValue(Aloe.AGE, 0), 2,
+                                zBlocks.ALOE_PLANT.get().defaultBlockState().setValue(Aloe.AGE, 1), 2,
+                                zBlocks.ALOE_PLANT.get().defaultBlockState().setValue(Aloe.AGE, 2), 1
+
+                );
 
                 registerPatchConfig(c, zWorldGenFeatures.ConfiguredFeatures.LAVENDER,
-                                statePool(
 
-                                                zBlocks.LAVENDER.get().defaultBlockState(), 1
+                                zBlocks.LAVENDER.get().defaultBlockState(), 1
 
-                                ));
+                );
 
                 registerPatchConfig(c, zWorldGenFeatures.ConfiguredFeatures.CAVE_WHEAT,
-                                statePool(
-                                                zBlocks.CAVE_WHEAT.get().defaultBlockState().setValue(CaveWheat.AGE, 3),
-                                                4,
-                                                zBlocks.CAVE_WHEAT.get().defaultBlockState().setValue(CaveWheat.AGE, 4),
-                                                2,
-                                                zBlocks.CAVE_WHEAT.get().defaultBlockState().setValue(CaveWheat.AGE, 5),
-                                                1
 
-                                )
+                                zBlocks.CAVE_WHEAT.get().defaultBlockState().setValue(CaveWheat.AGE, 3),
+                                4,
+                                zBlocks.CAVE_WHEAT.get().defaultBlockState().setValue(CaveWheat.AGE, 4),
+                                2,
+                                zBlocks.CAVE_WHEAT.get().defaultBlockState().setValue(CaveWheat.AGE, 5),
+                                1
 
                 );
 
                 registerPatchConfig(c, zWorldGenFeatures.ConfiguredFeatures.HEMP,
-                                statePool(
-                                                zBlocks.HEMP.get().defaultBlockState().setValue(Hemp.AGE, 1)
-                                                                .setValue(Hemp.NATURAL, true),
-                                                4,
-                                                zBlocks.HEMP.get().defaultBlockState().setValue(Hemp.AGE, 2)
-                                                                .setValue(Hemp.NATURAL, true),
-                                                2,
-                                                zBlocks.HEMP.get().defaultBlockState().setValue(Hemp.AGE, 3)
-                                                                .setValue(Hemp.NATURAL, true),
-                                                1
 
-                                )
+                                zBlocks.HEMP.get().defaultBlockState().setValue(Hemp.AGE, 1)
+                                                .setValue(Hemp.NATURAL, true),
+                                4,
+                                zBlocks.HEMP.get().defaultBlockState().setValue(Hemp.AGE, 2)
+                                                .setValue(Hemp.NATURAL, true),
+                                2,
+                                zBlocks.HEMP.get().defaultBlockState().setValue(Hemp.AGE, 3)
+                                                .setValue(Hemp.NATURAL, true),
+                                1
 
                 );
 
@@ -228,14 +223,19 @@ public class DataWorldgen extends DatapackBuiltinEntriesProvider {
         public static void registerPatchConfig(
                         BootstrapContext<ConfiguredFeature<?, ?>> c,
                         ResourceKey<ConfiguredFeature<?, ?>> k,
-                        WeightedList.Builder<BlockState> states) {
+                        Object... states) {
+
+                var builder = WeightedList.<BlockState>builder();
+
+                for (int i = 0; i < states.length; i += 2)
+                        builder.add((BlockState) states[i], (int) states[i + 1]);
 
                 FeatureUtils.register(
                                 c,
                                 k,
                                 Feature.SIMPLE_BLOCK,
                                 new SimpleBlockConfiguration(
-                                                new WeightedStateProvider(states)));
+                                                new WeightedStateProvider(builder)));
         }
 
         public static void registerPatchPlaced(
@@ -309,17 +309,6 @@ public class DataWorldgen extends DatapackBuiltinEntriesProvider {
                                                                                 zTags.Blocks.SUPPORT_CAVE_WHEAT_PLANT
 
                                                                 ))));
-        }
-
-        private static <A, B> WeightedList.Builder<BlockState> statePool(Object... values) {
-
-                var builder = WeightedList.<BlockState>builder();
-
-                for (int i = 0; i < values.length; i += 2)
-                        builder.add((BlockState) values[i], (int) values[i + 1]);
-
-                return builder;
-
         }
 
 }
