@@ -2,8 +2,6 @@ package com.synergy.vintagetech.datagen.server;
 
 import static com.synergy.vintagetech.Main.MODULE_ID;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
@@ -117,7 +115,7 @@ public class DataWorldgen extends DatapackBuiltinEntriesProvider {
         protected static void configuredFeatures(BootstrapContext<ConfiguredFeature<?, ?>> c) {
 
                 registerPatchConfig(c, zWorldGenFeatures.ConfiguredFeatures.BLUEBERRIES,
-                                new LinkedHashMap<>(Map.of(
+                                statePool(
                                                 zBlocks.BLUEBERRY_BUSH
                                                                 .get().defaultBlockState().setValue(BlueBerry.AGE, 0),
                                                 8,
@@ -129,27 +127,25 @@ public class DataWorldgen extends DatapackBuiltinEntriesProvider {
                                                 2,
                                                 zBlocks.BLUEBERRY_BUSH.get().defaultBlockState().setValue(BlueBerry.AGE,
                                                                 3),
-                                                1
-
-                                )));
+                                                1));
 
                 registerPatchConfig(c, zWorldGenFeatures.ConfiguredFeatures.ALOE,
-                                new LinkedHashMap<>(Map.of(
+                                statePool(
                                                 zBlocks.ALOE_PLANT.get().defaultBlockState().setValue(Aloe.AGE, 0), 2,
                                                 zBlocks.ALOE_PLANT.get().defaultBlockState().setValue(Aloe.AGE, 1), 2,
                                                 zBlocks.ALOE_PLANT.get().defaultBlockState().setValue(Aloe.AGE, 2), 1
 
-                                )));
+                                ));
 
                 registerPatchConfig(c, zWorldGenFeatures.ConfiguredFeatures.LAVENDER,
-                                new LinkedHashMap<>(Map.of(
+                                statePool(
 
                                                 zBlocks.LAVENDER.get().defaultBlockState(), 1
 
-                                )));
+                                ));
 
                 registerPatchConfig(c, zWorldGenFeatures.ConfiguredFeatures.CAVE_WHEAT,
-                                new LinkedHashMap<>(Map.of(
+                                statePool(
                                                 zBlocks.CAVE_WHEAT.get().defaultBlockState().setValue(CaveWheat.AGE, 3),
                                                 4,
                                                 zBlocks.CAVE_WHEAT.get().defaultBlockState().setValue(CaveWheat.AGE, 4),
@@ -157,12 +153,12 @@ public class DataWorldgen extends DatapackBuiltinEntriesProvider {
                                                 zBlocks.CAVE_WHEAT.get().defaultBlockState().setValue(CaveWheat.AGE, 5),
                                                 1
 
-                                ))
+                                )
 
                 );
 
                 registerPatchConfig(c, zWorldGenFeatures.ConfiguredFeatures.HEMP,
-                                new LinkedHashMap<>(Map.of(
+                                statePool(
                                                 zBlocks.HEMP.get().defaultBlockState().setValue(Hemp.AGE, 1)
                                                                 .setValue(Hemp.NATURAL, true),
                                                 4,
@@ -173,7 +169,7 @@ public class DataWorldgen extends DatapackBuiltinEntriesProvider {
                                                                 .setValue(Hemp.NATURAL, true),
                                                 1
 
-                                ))
+                                )
 
                 );
 
@@ -232,18 +228,14 @@ public class DataWorldgen extends DatapackBuiltinEntriesProvider {
         public static void registerPatchConfig(
                         BootstrapContext<ConfiguredFeature<?, ?>> c,
                         ResourceKey<ConfiguredFeature<?, ?>> k,
-                        Map<BlockState, Integer> states) {
-
-                var builder = WeightedList.<BlockState>builder();
-
-                states.forEach((state, weight) -> builder.add(state, weight));
+                        WeightedList.Builder<BlockState> states) {
 
                 FeatureUtils.register(
                                 c,
                                 k,
                                 Feature.SIMPLE_BLOCK,
                                 new SimpleBlockConfiguration(
-                                                new WeightedStateProvider(builder)));
+                                                new WeightedStateProvider(states)));
         }
 
         public static void registerPatchPlaced(
@@ -317,6 +309,17 @@ public class DataWorldgen extends DatapackBuiltinEntriesProvider {
                                                                                 zTags.Blocks.SUPPORT_CAVE_WHEAT_PLANT
 
                                                                 ))));
+        }
+
+        private static <A, B> WeightedList.Builder<BlockState> statePool(Object... values) {
+
+                var builder = WeightedList.<BlockState>builder();
+
+                for (int i = 0; i < values.length; i += 2)
+                        builder.add((BlockState) values[i], (int) values[i + 1]);
+
+                return builder;
+
         }
 
 }
