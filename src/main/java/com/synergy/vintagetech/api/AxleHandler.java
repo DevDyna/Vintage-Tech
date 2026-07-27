@@ -6,10 +6,9 @@ import java.util.Map;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.DaylightDetectorBlock;
 import net.minecraft.world.level.block.EntityBlock;
-import net.minecraft.world.level.block.HopperBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -28,8 +27,8 @@ public interface AxleHandler extends EntityBlock {
   public static final VoxelShape axle_Y = Shapes.join(axle_up, axle_down, BooleanOp.OR);
   public static final VoxelShape axle_Z = Shapes.join(axle_north, axle_south, BooleanOp.OR);
 
-  public static final BooleanProperty ENABLED = HopperBlock.ENABLED;
-  public static final BooleanProperty INVERTED = DaylightDetectorBlock.INVERTED;
+  public static final BooleanProperty ENABLED = BlockStateProperties.ENABLED;
+  public static final BooleanProperty INVERTED = BlockStateProperties.INVERTED;
 
   boolean canInputFrom(Direction dir, BlockState state);
 
@@ -41,13 +40,13 @@ public interface AxleHandler extends EntityBlock {
   /**
    * Called when powered
    */
-  default void setActive(Level level, BlockPos pos, BlockState state, boolean inverted) {
+  default boolean setActive(Level level, BlockPos pos, BlockState state, boolean inverted) {
     if (!state.getValueOrElse(ENABLED, true))
       level.setBlockAndUpdate(pos, state.trySetValue(ENABLED, true));
 
     if (state.hasProperty(INVERTED) && state.getValue(INVERTED) != inverted)
       level.setBlockAndUpdate(pos, state.setValue(INVERTED, inverted));
-
+    return true;
   }
 
   /**

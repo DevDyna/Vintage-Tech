@@ -5,8 +5,8 @@ import java.util.*;
 import com.synergy.vintagetech.api.AxleHandler;
 import com.synergy.vintagetech.api.blockfactory.BaseKineticBlock;
 import com.synergy.vintagetech.api.blockfactory.KineticGenerator;
+import com.synergy.vintagetech.api.blockfactory.transmission.MotionAlteratorBlock;
 import com.synergy.vintagetech.api.blockfactory.transmission.TransmissionBE;
-import com.synergy.vintagetech.init.builder.transmission.GearShiftBlock;
 import com.synergy.vintagetech.init.types.zBlockEntities;
 
 import net.minecraft.core.BlockPos;
@@ -45,31 +45,38 @@ public class BaseEngineBE extends TransmissionBE implements KineticGenerator {
         if (!state.getValue(BaseEngineBlock.ENABLED))
             return;
 
+        // TODO IMP : rework to use QueueUtils
+
         Set<BlockPos> visited = new HashSet<>();
         Queue<NetworkElement> queue = new ArrayDeque<>();
 
-        for (Direction dir : getBlock().getGenDirections(level, pos, state)) 
+        for (Direction dir : getBlock().getGenDirections(level, pos, state))
             if (level.getBlockState(pos.relative(dir)).getBlock() instanceof BaseKineticBlock axle)
                 if (axle.canInputFrom(dir, level.getBlockState(pos.relative(dir))))
-                    queue.add(NetworkElement.create(pos.relative(dir), getBlock().getDefaultRotationState()));
-
-        
+                    queue.add(NetworkElement.create(pos.relative(dir), getBlock().getWhenActive(level, pos, state),
+                            getBlock().getDefaultRotationState()));
 
         while (!queue.isEmpty()) {
 
             var network = queue.poll();
             var currentPos = network.pos();
-            var inverted = network.rotation();
+            var inverted = network.state().rotation();
+            var active = network.state().active();
 
             if (!visited.add(currentPos))
                 continue;
 
             var offsetstate = level.getBlockState(currentPos);
 
+            // TODO IMP : when collide explode
+
             if (!(offsetstate.getBlock() instanceof AxleHandler axle))
                 continue;
 
-            axle.setActive(level, currentPos, offsetstate, inverted);
+            if (active)
+                axle.setActive(level, currentPos, offsetstate, inverted);
+            else
+                axle.setDeactive(level, currentPos, offsetstate, inverted);
 
             for (Direction out : axle.getOutputDirections(offsetstate)) {
 
@@ -82,18 +89,25 @@ public class BaseEngineBE extends TransmissionBE implements KineticGenerator {
                 if (!nextAxle.canInputFrom(out.getOpposite(), nextState))
                     continue;
 
+                var newActive = active;
                 var newInverted = inverted;
 
-                if (nextState.getBlock() instanceof GearShiftBlock shift && shift.isActive(level, nextPos))
-                    newInverted = !newInverted;
+                if (nextState.getBlock() instanceof MotionAlteratorBlock alterator) {
+                    var result = alterator.modifyNetwork(
+                            level,
+                            nextPos,
+                            nextState,
+                            NetworkState.of(newActive, newInverted));
 
-                // TODO BUG : dont work atm
-                if (nextState.getBlock() instanceof BaseEngineBlock)
-                    explode(nextPos);
+                    newActive = result.active();
+                    newInverted = result.rotation();
+                }
 
-                // TODO IMP : when collide explode
+                // if (nextState.getBlock() instanceof GearShiftBlock shift &&
+                // shift.isActive(level, nextPos))
+                // newInverted = !newInverted;
 
-                queue.add(NetworkElement.create(nextPos, newInverted));
+                queue.add(NetworkElement.create(nextPos, newActive, newInverted));
             }
         }
 

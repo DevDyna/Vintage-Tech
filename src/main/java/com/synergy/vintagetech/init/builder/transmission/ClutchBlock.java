@@ -7,9 +7,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class GearShiftBlock extends MotionAlteratorBlock {
+public class ClutchBlock extends MotionAlteratorBlock {
 
-    public GearShiftBlock(Properties p) {
+    public ClutchBlock(Properties p) {
         super(p);
     }
 
@@ -19,8 +19,8 @@ public class GearShiftBlock extends MotionAlteratorBlock {
             return status;
 
         return NetworkState.of(
-                status.active(),
-                !status.rotation());
+                false,
+                status.rotation());
     }
 
 }

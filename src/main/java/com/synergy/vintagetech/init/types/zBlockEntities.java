@@ -48,7 +48,7 @@ public class zBlockEntities {
 
         public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TransmissionBE>> TRANSMISSION = RegistryUtils
                         .createBlockEntity("transmission", zTiles, TransmissionBE::new, zBlocks.AXLE, zBlocks.JUNCTION,
-                                        zBlocks.GEARSHIFT);
+                                        zBlocks.GEARSHIFT,zBlocks.CLUTCH);
 
         public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BasketBE>> BASKET = RegistryUtils
                         .createBlockEntity("basket", zTiles, BasketBE::new, zBlocks.BASKET);

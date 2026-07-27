@@ -11,6 +11,7 @@ import net.minecraft.client.data.models.model.TextureSlot;
 
 public class TemplateCollection {
     public static final TextureSlot SAW = TextureSlot.create("saw");
+    public static final TextureSlot FRAME = TextureSlot.create("frame");
 
     public static final ModelTemplate SAW_TEMPLATE = new ModelTemplate(
             Optional.of(x.rl(MODULE_ID, "block/template/saw")),
@@ -21,4 +22,9 @@ public class TemplateCollection {
             Optional.of(x.rl(MODULE_ID, "block/template/beam")),
             Optional.empty(),
             TextureSlot.TOP, TextureSlot.SIDE);
+
+        public static final ModelTemplate MODIFIER_TEMPLATE = new ModelTemplate(
+            Optional.of(x.rl(MODULE_ID, "block/template/modifier")),
+            Optional.empty(),
+            FRAME);
 }

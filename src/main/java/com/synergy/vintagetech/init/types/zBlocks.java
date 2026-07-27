@@ -93,6 +93,16 @@ public class zBlocks {
 
         public static final DeferredHolder<Block, Block> GEARSHIFT = registerItemBlock("gearshift",
                         p -> new GearShiftBlock(p
+                                        .noOcclusion()
+                                        .mapColor(MapColor.WOOD)
+                                        .instrument(NoteBlockInstrument.BASS)
+                                        .strength(2.0F)
+                                        .sound(SoundType.WOOD)
+                                        .ignitedByLava()));
+
+        public static final DeferredHolder<Block, Block> CLUTCH = registerItemBlock("clutch",
+                        p -> new ClutchBlock(p
+                                        .noOcclusion()
                                         .mapColor(MapColor.WOOD)
                                         .instrument(NoteBlockInstrument.BASS)
                                         .strength(2.0F)
@@ -313,9 +323,9 @@ public class zBlocks {
                         p -> new SaplingBlock(new TreeGrower(
                                         "ironwood",
                                         0.5F,
+                                        Optional.empty(),
+                                        Optional.empty(),
                                         Optional.of(zWorldGenFeatures.ConfiguredFeatures.IRONWOOD),
-                                        Optional.empty(),
-                                        Optional.empty(),
                                         Optional.empty(),
                                         Optional.empty(),
                                         Optional.empty()),
@@ -364,6 +374,8 @@ public class zBlocks {
                                         .ignitedByLava()
                                         .mapColor(MapColor.RAW_IRON)
                                         .instrument(NoteBlockInstrument.BASS)));
+
+        // TODO IMP : FLAX
 
         // renderer
         public static final DeferredHolder<Block, Block> RENDER_HALF_AXLE = renderBlock("render_half_axle");

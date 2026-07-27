@@ -5,7 +5,6 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 import java.util.Optional;
 
 import com.devdyna.cakesticklib.api.utils.x;
-import com.synergy.vintagetech.init.builder.saw.SawBlock;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
@@ -33,30 +32,27 @@ public class BlockModelUtils {
         public static void cropWithoutSeed(BlockModelGenerators b, Block block, Property<Integer> property,
                         int... stages) {
 
-                if (property.getPossibleValues().size() != stages.length)
-                        throw new IllegalArgumentException();
-                else {
-                        Int2ObjectMap<Identifier> models = new Int2ObjectOpenHashMap<>();
-                        b.blockStateOutput
-                                        .accept(
-                                                        MultiVariantGenerator.dispatch(block)
-                                                                        .with(
-                                                                                        PropertyDispatch.initial(
-                                                                                                        property)
-                                                                                                        .generate(
-                                                                                                                        i -> {
-                                                                                                                                int stage = stages[i];
-                                                                                                                                return BlockModelGenerators
-                                                                                                                                                .plainVariant(
-                                                                                                                                                                models.computeIfAbsent(
-                                                                                                                                                                                stage,
-                                                                                                                                                                                s -> b.createSuffixedVariant(
-                                                                                                                                                                                                block,
-                                                                                                                                                                                                "/" + s,
-                                                                                                                                                                                                ModelTemplates.CROP,
-                                                                                                                                                                                                TextureMapping::crop)));
-                                                                                                                        })));
-                }
+                Int2ObjectMap<Identifier> models = new Int2ObjectOpenHashMap<>();
+                b.blockStateOutput
+                                .accept(
+                                                MultiVariantGenerator.dispatch(block)
+                                                                .with(
+                                                                                PropertyDispatch.initial(
+                                                                                                property)
+                                                                                                .generate(
+                                                                                                                i -> {
+                                                                                                                        int stage = stages[i];
+                                                                                                                        return BlockModelGenerators
+                                                                                                                                        .plainVariant(
+                                                                                                                                                        models.computeIfAbsent(
+                                                                                                                                                                        stage,
+                                                                                                                                                                        s -> b.createSuffixedVariant(
+                                                                                                                                                                                        block,
+                                                                                                                                                                                        "/" + s,
+                                                                                                                                                                                        ModelTemplates.CROP,
+                                                                                                                                                                                        TextureMapping::crop)));
+                                                                                                                })));
+
         }
 
         // TODO API : move to api
@@ -155,8 +151,6 @@ public class BlockModelUtils {
 
         }
 
-        
-
         public static void createBeamBlock(BlockModelGenerators b, Block block, Identifier top, Identifier side) {
 
                 MultiVariant beam = BlockModelGenerators.plainVariant(
@@ -201,32 +195,32 @@ public class BlockModelUtils {
 
         }
 
-       
-
         public static void createSawToggleBlock(BlockModelGenerators b, Block block) {
 
                 MultiVariant sawOff = BlockModelGenerators.plainVariant(
-                                TemplateCollection.SAW_TEMPLATE.create(x.rl(MODULE_ID, "block/" + x.name(block)+"_off"),
+                                TemplateCollection.SAW_TEMPLATE.create(
+                                                x.rl(MODULE_ID, "block/" + x.name(block) + "_off"),
                                                 new TextureMapping()
-                                                                .put(TemplateCollection.SAW, new Material(x.rl(MODULE_ID,
+                                                                .put(TemplateCollection.SAW, new Material(x.rl(
+                                                                                MODULE_ID,
                                                                                 "block/saw/blade/off"))),
                                                 b.modelOutput));
 
                 MultiVariant sawOn = BlockModelGenerators.plainVariant(
-                                TemplateCollection.SAW_TEMPLATE.create(x.rl(MODULE_ID, "block/" + x.name(block)+"_on"),
+                                TemplateCollection.SAW_TEMPLATE.create(
+                                                x.rl(MODULE_ID, "block/" + x.name(block) + "_on"),
                                                 new TextureMapping()
-                                                                .put(TemplateCollection.SAW, new Material(x.rl(MODULE_ID,
-                                                                                "block/saw/blade/on"))),
+                                                                .put(TemplateCollection.SAW,
+                                                                                new Material(x.rl(MODULE_ID,
+                                                                                                "block/saw/blade/on"))),
                                                 b.modelOutput));
-
-                
 
                 b.blockStateOutput.accept(
                                 MultiVariantGenerator.dispatch(block)
                                                 .with(
                                                                 PropertyDispatch.initial(
                                                                                 BlockStateProperties.FACING,
-                                                                                SawBlock.ENABLED)
+                                                                                BlockStateProperties.ENABLED)
 
                                                                                 .select(Direction.UP, false, sawOff)
                                                                                 .select(Direction.UP, true, sawOn)
@@ -261,6 +255,50 @@ public class BlockModelUtils {
                                                                                 .select(Direction.WEST, true,
                                                                                                 sawOn.with(BlockModelGenerators.X_ROT_90)
                                                                                                                 .with(BlockModelGenerators.Y_ROT_270))));
+        }
+
+        public static void createModifierBlock(BlockModelGenerators b, Block block) {
+
+                MultiVariant off = BlockModelGenerators.plainVariant(
+                                TemplateCollection.MODIFIER_TEMPLATE.create(
+                                                x.rl(MODULE_ID, "block/" + x.name(block) + "_off"),
+                                                new TextureMapping()
+                                                                .put(TemplateCollection.FRAME, new Material(x.rl(
+                                                                                MODULE_ID,
+                                                                                "block/" + x.name(block) + "/off"))),
+                                                b.modelOutput));
+
+                MultiVariant on = BlockModelGenerators.plainVariant(
+                                TemplateCollection.MODIFIER_TEMPLATE.create(
+                                                x.rl(MODULE_ID, "block/" + x.name(block) + "_on"),
+                                                new TextureMapping()
+                                                                .put(TemplateCollection.FRAME, new Material(x.rl(
+                                                                                MODULE_ID,
+                                                                                "block/" + x.name(block) + "/on"))),
+                                                b.modelOutput));
+
+                b.blockStateOutput
+                                .accept(MultiVariantGenerator.dispatch(block)
+                                                .with(PropertyDispatch
+                                                                .initial(BlockStateProperties.AXIS, BlockStateProperties.POWERED)
+
+                                                                .select(Direction.Axis.Y, false, off)
+                                                                .select(Direction.Axis.Y, true, on)
+
+                                                                .select(Direction.Axis.Z, false,
+                                                                                off.with(BlockModelGenerators.X_ROT_90))
+                                                                .select(Direction.Axis.Z, true,
+                                                                                on.with(BlockModelGenerators.X_ROT_90))
+
+                                                                .select(Direction.Axis.X, false,
+                                                                                off.with(BlockModelGenerators.X_ROT_90
+                                                                                                .then(BlockModelGenerators.Y_ROT_90)))
+                                                                .select(Direction.Axis.X, true,
+                                                                                on.with(BlockModelGenerators.X_ROT_90
+                                                                                                .then(BlockModelGenerators.Y_ROT_90)))
+
+                                                ));
+
         }
 
 }
