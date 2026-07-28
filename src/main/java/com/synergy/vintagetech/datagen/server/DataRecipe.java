@@ -362,6 +362,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .define('G', LibTags.Items.WOODEN_GEAR)
                                 .define('S', zTags.Items.STONE_SLABS)
                                 .define('I', Tags.Items.INGOTS_IRON)
+                                .define('P', Tags.Items.STONES)
                                 .pattern(" H ")
                                 .pattern("SGS")
                                 .pattern("PIP")
