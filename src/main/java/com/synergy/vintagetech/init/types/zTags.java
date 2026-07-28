@@ -6,6 +6,7 @@ import com.devdyna.cakesticklib.api.RegistryUtils;
 
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.bus.api.IEventBus;
@@ -93,6 +94,15 @@ public class zTags {
 
                 public static void register(IEventBus bus) {
                 }
+
+                public static final TagKey<Item> IRONWOOD_LOGS = RegistryUtils
+                                .tagItem(MODULE_ID, "ironwood_logs");
+
+                public static final TagKey<Item> BEAM_LOGS_NORMAL = RegistryUtils
+                                .tagItem(MODULE_ID, "beam/normal");
+
+                public static final TagKey<Item> STONE_SLABS = RegistryUtils
+                                .tagItem("c", "slabs/stone");
 
         }
 
