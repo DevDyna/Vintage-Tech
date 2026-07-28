@@ -37,7 +37,8 @@ public class zItems {
                         p -> new BlockItem(zBlocks.ALOE_PLANT.get(), p.useItemDescriptionPrefix()));
 
         public static final DeferredHolder<Item, Item> BLUEBERRIES = zItem.registerItem("blueberries",
-                        p -> new BlockItem(zBlocks.BLUEBERRY_BUSH.get(), p.useItemDescriptionPrefix()));
+                        p -> new BlockItem(zBlocks.BLUEBERRY_BUSH.get(),
+                                        p.useItemDescriptionPrefix().food(new FoodProperties(2, 0.1f, true))));
 
         // plant products
 
@@ -61,8 +62,15 @@ public class zItems {
         public static final DeferredHolder<Item, Item> BITUMEN = zItem.registerSimpleItem("bitumen");
 
         public static final DeferredHolder<Item, Item> HEMP_FIBER = zItem.registerSimpleItem("hemp_fiber");
-      
-        public static final DeferredHolder<Item, Item> IRONBERRIES = zItem.registerSimpleItem("ironberries");
+
+        public static final DeferredHolder<Item, Item> IRONBERRIES = zItem.registerSimpleItem("ironberries", p -> p
+                        .food(new FoodProperties(1, 0.2f, true), Consumable.builder()
+                                        .onConsume(new ApplyStatusEffectsConsumeEffect(
+                                                        new MobEffectInstance(MobEffects.NAUSEA, 40, 0)))
+                                        .onConsume(new ApplyStatusEffectsConsumeEffect(
+                                                        new MobEffectInstance(MobEffects.HUNGER, 40, 1)))
+                                        .build()));
+
         public static final DeferredHolder<Item, Item> TINY_IRON_DUST = zItem.registerSimpleItem("tiny_iron_dust");
 
 
