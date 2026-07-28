@@ -245,8 +245,8 @@ public class DataModel extends ModelProvider {
                 BlockModelUtils.createBeamBlock(blockModels, zBlocks.PALE_OAK_BEAM.get(),
                                 x.rl(MODULE_ID, "block/beam/pale_oak"), x.mcLoc("block/pale_oak_log"));
 
-                BlockModelUtils.createModifierBlock(blockModels, zBlocks.GEARSHIFT.get());
-                BlockModelUtils.createModifierBlock(blockModels, zBlocks.CLUTCH.get());
+                BlockModelUtils.createGearShiftBlock(blockModels, zBlocks.GEARSHIFT.get());
+                BlockModelUtils.createClutchBlock(blockModels, zBlocks.CLUTCH.get());
 
                 BlockModelUtils.createSawToggleBlock(blockModels, zBlocks.SAW.get());
 

@@ -257,7 +257,7 @@ public class BlockModelUtils {
                                                                                                                 .with(BlockModelGenerators.Y_ROT_270))));
         }
 
-        public static void createModifierBlock(BlockModelGenerators b, Block block) {
+        public static void createClutchBlock(BlockModelGenerators b, Block block) {
 
                 MultiVariant off = BlockModelGenerators.plainVariant(
                                 TemplateCollection.MODIFIER_TEMPLATE.create(
@@ -280,7 +280,8 @@ public class BlockModelUtils {
                 b.blockStateOutput
                                 .accept(MultiVariantGenerator.dispatch(block)
                                                 .with(PropertyDispatch
-                                                                .initial(BlockStateProperties.AXIS, BlockStateProperties.POWERED)
+                                                                .initial(BlockStateProperties.AXIS,
+                                                                                BlockStateProperties.POWERED)
 
                                                                 .select(Direction.Axis.Y, false, off)
                                                                 .select(Direction.Axis.Y, true, on)
@@ -295,6 +296,87 @@ public class BlockModelUtils {
                                                                                                 .then(BlockModelGenerators.Y_ROT_90)))
                                                                 .select(Direction.Axis.X, true,
                                                                                 on.with(BlockModelGenerators.X_ROT_90
+                                                                                                .then(BlockModelGenerators.Y_ROT_90)))
+
+                                                ));
+
+        }
+
+        public static void createGearShiftBlock(BlockModelGenerators b, Block block) {
+
+                MultiVariant off = BlockModelGenerators.plainVariant(
+                                TemplateCollection.MODIFIER_TEMPLATE.create(
+                                                x.rl(MODULE_ID, "block/" + x.name(block) + "_off"),
+                                                new TextureMapping()
+                                                                .put(TemplateCollection.FRAME, new Material(x.rl(
+                                                                                MODULE_ID,
+                                                                                "block/" + x.name(block) + "/off"))),
+                                                b.modelOutput));
+
+                MultiVariant off_alt = BlockModelGenerators.plainVariant(
+                                TemplateCollection.MODIFIER_TEMPLATE.create(
+                                                x.rl(MODULE_ID, "block/" + x.name(block) + "_off_alt"),
+                                                new TextureMapping()
+                                                                .put(TemplateCollection.FRAME, new Material(x.rl(
+                                                                                MODULE_ID,
+                                                                                "block/" + x.name(block)
+                                                                                                + "/off_inverted"))),
+                                                b.modelOutput));
+
+                MultiVariant on = BlockModelGenerators.plainVariant(
+                                TemplateCollection.MODIFIER_TEMPLATE.create(
+                                                x.rl(MODULE_ID, "block/" + x.name(block) + "_on"),
+                                                new TextureMapping()
+                                                                .put(TemplateCollection.FRAME, new Material(x.rl(
+                                                                                MODULE_ID,
+                                                                                "block/" + x.name(block) + "/on"))),
+                                                b.modelOutput));
+
+                MultiVariant on_alt = BlockModelGenerators.plainVariant(
+                                TemplateCollection.MODIFIER_TEMPLATE.create(
+                                                x.rl(MODULE_ID, "block/" + x.name(block) + "_on_alt"),
+                                                new TextureMapping()
+                                                                .put(TemplateCollection.FRAME, new Material(x.rl(
+                                                                                MODULE_ID,
+                                                                                "block/" + x.name(block)
+                                                                                                + "/on_inverted"))),
+                                                b.modelOutput));
+
+                b.blockStateOutput
+                                .accept(MultiVariantGenerator.dispatch(block)
+                                                .with(PropertyDispatch
+                                                                .initial(BlockStateProperties.AXIS,
+                                                                                BlockStateProperties.POWERED,
+                                                                                BlockStateProperties.INVERTED)
+
+                                                                .select(Direction.Axis.Y, false, false, off)
+                                                                .select(Direction.Axis.Y, true, false, on)
+
+                                                                .select(Direction.Axis.Z, false, false,
+                                                                                off.with(BlockModelGenerators.X_ROT_90))
+                                                                .select(Direction.Axis.Z, true, false,
+                                                                                on.with(BlockModelGenerators.X_ROT_90))
+
+                                                                .select(Direction.Axis.X, false, false,
+                                                                                off.with(BlockModelGenerators.X_ROT_90
+                                                                                                .then(BlockModelGenerators.Y_ROT_90)))
+                                                                .select(Direction.Axis.X, true, false,
+                                                                                on.with(BlockModelGenerators.X_ROT_90
+                                                                                                .then(BlockModelGenerators.Y_ROT_90)))
+
+                                                                .select(Direction.Axis.Y, false, true, off_alt)
+                                                                .select(Direction.Axis.Y, true, true, on_alt)
+
+                                                                .select(Direction.Axis.Z, false, true,
+                                                                                off_alt.with(BlockModelGenerators.X_ROT_90))
+                                                                .select(Direction.Axis.Z, true, true,
+                                                                                on_alt.with(BlockModelGenerators.X_ROT_90))
+
+                                                                .select(Direction.Axis.X, false, true,
+                                                                                off_alt.with(BlockModelGenerators.X_ROT_90
+                                                                                                .then(BlockModelGenerators.Y_ROT_90)))
+                                                                .select(Direction.Axis.X, true, true,
+                                                                                on_alt.with(BlockModelGenerators.X_ROT_90
                                                                                                 .then(BlockModelGenerators.Y_ROT_90)))
 
                                                 ));
