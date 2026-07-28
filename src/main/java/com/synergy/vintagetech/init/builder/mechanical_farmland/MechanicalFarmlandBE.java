@@ -3,7 +3,6 @@ package com.synergy.vintagetech.init.builder.mechanical_farmland;
 import java.util.Optional;
 
 import com.devdyna.cakesticklib.api.ItemLogisticUtils;
-import com.devdyna.cakesticklib.api.RandomUtil;
 import com.devdyna.cakesticklib.api.aspect.logic.SimpleFluidStorage;
 import com.devdyna.cakesticklib.api.factories.plants.VanillaPlants;
 import com.devdyna.cakesticklib.api.recipe.recipeInput.FluidInput;
@@ -54,7 +53,7 @@ public class MechanicalFarmlandBE extends TransmissionBE implements SimpleFluidS
         var above = pos.above();
         var crop = level.getBlockState(above);
 
-        if (level.getGameTime() % 2 + RandomUtil.between(level, 0, 20) != 0)
+        if (level.getGameTime() % 20 != 0)
             return;
 
         if (!getBlockState().getValue(BlockStateProperties.ENABLED)) {
@@ -88,7 +87,8 @@ public class MechanicalFarmlandBE extends TransmissionBE implements SimpleFluidS
             return;
 
         try (var tx = Transaction.openRoot()) {
-            getFluidStorage().extract(FLUID_TANK, FluidResource.of(getAsStack(FLUID_TANK)), recipe.getFluid().amount(), tx);
+            getFluidStorage().extract(FLUID_TANK, FluidResource.of(getAsStack(FLUID_TANK)), recipe.getFluid().amount(),
+                    tx);
             tx.commit();
         }
 
