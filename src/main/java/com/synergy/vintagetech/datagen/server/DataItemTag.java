@@ -6,11 +6,13 @@ import java.util.concurrent.CompletableFuture;
 
 import com.synergy.vintagetech.init.types.zBlocks;
 import com.synergy.vintagetech.init.types.zItems;
+import com.synergy.vintagetech.init.types.zTags;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ItemTagsProvider;
@@ -82,6 +84,45 @@ public class DataItemTag extends ItemTagsProvider {
 
                 tag(ItemTags.STAIRS)
                                 .add(zBlocks.IRONWOOD_STAIRS.get().asItem());
+
+                tag(zTags.Items.IRONWOOD_LOGS)
+                                .add(zBlocks.IRONWOOD_LOG.get().asItem(),
+                                                zBlocks.STRIPPED_IRONWOOD_LOG.get().asItem(),
+                                                zBlocks.IRONWOOD_WOOD.get().asItem(),
+                                                zBlocks.STRIPPED_IRONWOOD_WOOD.get().asItem());
+
+                tag(zTags.Items.BEAM_LOGS_NORMAL).add(
+                                zBlocks.OAK_BEAM.get().asItem(),
+                                zBlocks.SPRUCE_BEAM.get().asItem(),
+                                zBlocks.BIRCH_BEAM.get().asItem(),
+                                zBlocks.JUNGLE_BEAM.get().asItem(),
+                                zBlocks.ACACIA_BEAM.get().asItem(),
+                                zBlocks.DARK_OAK_BEAM.get().asItem(),
+                                zBlocks.MANGROVE_BEAM.get().asItem(),
+                                zBlocks.CHERRY_BEAM.get().asItem(),
+                                zBlocks.PALE_OAK_BEAM.get().asItem());
+
+                tag(zTags.Items.STONE_SLABS)
+                                .add(
+                                                Items.STONE_SLAB,
+                                                Items.ANDESITE_SLAB,
+                                                Items.DIORITE_SLAB,
+                                                Items.GRANITE_SLAB,
+                                                Items.TUFF_SLAB);
+
+                tag(Tags.Items.FOODS_SOUP)
+                                .add(
+                                                zItems.BLUEBERRIES_SOUP.get(),
+                                                zItems.SWEET_BERRIES_SOUP.get(),
+                                                zItems.GLOWBERRIES_SOUP.get(),
+                                                zItems.IRONBERRIES_SOUP.get(),
+                                                zItems.BLUEBERRIES.get(),
+                                                zItems.BLUEBERRIES_MUFFIN.get(),
+                                                zItems.IRONBERRIES.get()
+                                );
+
+                tag(Tags.Items.SLIME_BALLS).add(zItems.GLUE.get());
+                // tag(Tags.Items.FOODS).add(zItems.BLUEBERRIES_SOUP.get());
 
         }
 
