@@ -36,7 +36,10 @@ public class FanBlock extends MonoDirectionalAxleBlock implements RotableAxleBlo
     @Override
     protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
         var facing = state.getValue(FACING);
-        return level.getBlockState(pos.relative(facing.getOpposite())).isFaceSturdy(level, pos, facing) || level.getBlockState(pos.relative(facing.getOpposite())) instanceof AxleHandler;
+        return level.getBlockState(pos.relative(facing.getOpposite())).isFaceSturdy(level, pos, facing)
+                || (level.getBlockState(pos.relative(facing.getOpposite())).getBlock() instanceof AxleHandler axle
+                        && axle.getOutputDirections(level.getBlockState(pos.relative(facing.getOpposite())))
+                                .contains(facing.getOpposite()));
     }
 
     @Override
