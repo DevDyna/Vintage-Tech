@@ -642,7 +642,8 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .save(output);
 
                 CrucibleBuilder.of(registries)
-                                .input(zItems.SALT)
+                                .add(zItems.SALT)
+                                .add(LibTags.Items.SULFUR_DUST)
                                 .fluid(zFluids.SOYMILK.getFluid(), 250)
                                 .output(zItems.SOY_RENNET, 2, 1f)
                                 .output(zFluids.SOY_WHEY.getFluid(), 150)
