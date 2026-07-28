@@ -375,7 +375,7 @@ public class DataModel extends ModelProvider {
                                                                                 itemModels.modelOutput)));
 
                 itemModels.itemModelOutput.accept(zBlocks.CRUSHING_TUB.get().asItem(),
-                                ItemModelUtils.plainModel(x.rl(MODULE_ID, "item/crushing_tub/tub")));
+                                ItemModelUtils.plainModel(x.rl(MODULE_ID, "block/crushing_tub/tub")));
 
                 itemModels.itemModelOutput.accept(zBlocks.JUNCTION.get().asItem(),
                                 ItemModelUtils.plainModel(x.rl(MODULE_ID, "item/junction")));
