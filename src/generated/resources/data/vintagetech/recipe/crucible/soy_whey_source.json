@@ -4,10 +4,16 @@
     "amount": 250,
     "ingredient": "vintagetech:soymilk_source"
   },
-  "input_item": {
-    "count": 1,
-    "ingredient": "vintagetech:salt"
-  },
+  "input_items": [
+    {
+      "count": 1,
+      "ingredient": "vintagetech:salt"
+    },
+    {
+      "count": 1,
+      "ingredient": "#c:dusts/sulfur"
+    }
+  ],
   "output_fluid": {
     "amount": 150,
     "id": "vintagetech:soy_whey_source"
