@@ -90,21 +90,23 @@ public class zItems {
                                                                                         1)))
                                                         .build()));
 
-        public static final DeferredHolder<Item, Item> BLUEBERRIES_MUFFIN = zItem.registerSimpleItem("blueberries_muffin",
+        public static final DeferredHolder<Item, Item> BLUEBERRIES_MUFFIN = zItem.registerSimpleItem(
+                        "blueberries_muffin",
                         p -> p
-                                        .food(new FoodProperties(12, 6f, true), Consumable.builder()
+                                        .food(new FoodProperties(6, 6f, true), Consumable.builder()
                                                         .onConsume(new ApplyStatusEffectsConsumeEffect(
                                                                         new MobEffectInstance(MobEffects.NIGHT_VISION,
                                                                                         400,
                                                                                         1)))
                                                         .build()));
 
-        public static final DeferredHolder<Item, Item> SWEET_BERRIES_SOUP = zItem.registerSimpleItem("sweet_berries_soup",
+        public static final DeferredHolder<Item, Item> SWEET_BERRIES_SOUP = zItem.registerSimpleItem(
+                        "sweet_berries_soup",
                         p -> p
                                         .stacksTo(16)
                                         .usingConvertsTo(Items.BOWL)
                                         .craftRemainder(Items.BOWL)
-                                        .food(new FoodProperties(12, 2f, true), Consumable.builder()
+                                        .food(new FoodProperties(12, 10f, true), Consumable.builder()
                                                         .onConsume(new ApplyStatusEffectsConsumeEffect(
                                                                         new MobEffectInstance(MobEffects.STRENGTH,
                                                                                         160,
@@ -116,7 +118,7 @@ public class zItems {
                                         .stacksTo(16)
                                         .usingConvertsTo(Items.BOWL)
                                         .craftRemainder(Items.BOWL)
-                                        .food(new FoodProperties(12, 5f, true), Consumable.builder()
+                                        .food(new FoodProperties(12, 8f, true), Consumable.builder()
                                                         .onConsume(new ApplyStatusEffectsConsumeEffect(
                                                                         new MobEffectInstance(MobEffects.GLOWING,
                                                                                         320,
@@ -128,7 +130,7 @@ public class zItems {
                                         .stacksTo(16)
                                         .usingConvertsTo(Items.BOWL)
                                         .craftRemainder(Items.BOWL)
-                                        .food(new FoodProperties(12, 1f, true), Consumable.builder()
+                                        .food(new FoodProperties(12, 4f, true), Consumable.builder()
                                                         .onConsume(new ApplyStatusEffectsConsumeEffect(
                                                                         new MobEffectInstance(MobEffects.UNLUCK,
                                                                                         160,
