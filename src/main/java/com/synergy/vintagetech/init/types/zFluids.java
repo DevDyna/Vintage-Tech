@@ -41,7 +41,7 @@ public class zFluids {
                         ColorUtils.argb(255, 236, 177, 177));
 
         public static final FluidRegister SULFURIC_ACID = FluidRegister.create("sulfuric_acid",
-                        ColorUtils.argb(255, 75, 200, 200));
+                        ColorUtils.argb(255, 245, 212, 66));
 
         public static final FluidRegister SOYMILK = FluidRegister.create("soymilk",
                         ColorUtils.argb(255, 200, 200, 200));
