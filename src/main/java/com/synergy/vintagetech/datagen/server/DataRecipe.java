@@ -8,6 +8,7 @@ import com.devdyna.cakesticklib.api.datagen.RecipeGenerators;
 import com.devdyna.cakesticklib.setup.registry.LibItems;
 import com.devdyna.cakesticklib.setup.registry.LibTags;
 import com.synergy.vintagetech.init.builder.centrifuge.recipe.CentrifugeBuilder;
+import com.synergy.vintagetech.init.builder.crucible.recipe.CrucibleBuilder;
 import com.synergy.vintagetech.init.builder.crushing_tub.recipe.CrushingTubBuilder;
 import com.synergy.vintagetech.init.builder.drying_rack.recipe.DryingRackBuilder;
 import com.synergy.vintagetech.init.builder.evaporation_basin.recipe.EvaporationBasinBuilder;
@@ -111,6 +112,12 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .input(ItemTags.SAPLINGS)
                                 .output(Items.DEAD_BUSH)
                                 .unlockedBy(getHasName(ItemTags.SAPLINGS), has(ItemTags.SAPLINGS))
+                                .save(output);
+
+                DryingRackBuilder.of(registries)
+                                .input(Items.KELP)
+                                .output(Items.DRIED_KELP)
+                                .unlockedBy(getHasName(Items.KELP), has(Items.KELP))
                                 .save(output);
 
                 MillstoneBuilder.of(registries)
@@ -253,7 +260,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .unlockedBy(getHasName(zItems.HEMP_FIBER.get()), has(zItems.HEMP_FIBER.get()))
                                 .save(output, MODULE_ID + ":rope_alt");
 
-                twoByTwoPacker(output, zItems.TINY_IRON_DUST.get(), Items.RAW_IRON,
+                twoByTwoPacker(output, Items.RAW_IRON, zItems.TINY_IRON_DUST.get(),
                                 MODULE_ID + ":raw_iron_from_tiny_iron_dust");
 
                 shapeless(RecipeCategory.MISC, zBlocks.JUNCTION.get())
@@ -264,7 +271,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .unlockedBy(getHasName(zBlocks.ROPE.get()), has(zBlocks.ROPE.get()))
                                 .save(output);
 
-                shapeless(RecipeCategory.MISC, Items.TORCH,6)
+                shapeless(RecipeCategory.MISC, Items.TORCH, 6)
                                 .requires(zItems.AMBER.get())
                                 .requires(Items.STRING)
                                 .requires(Items.STICK)
@@ -395,8 +402,8 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
 
                 CentrifugeBuilder.of(registries)
                                 .input(zItems.SAP)
-                                .fluid(Fluids.WATER, 1000)
-                                .output(zFluids.FERTILIZER_NATURAL.getFluid(), 250)
+                                .fluid(Fluids.WATER, 100)
+                                .output(zFluids.FERTILIZER_NATURAL.getFluid(), 25)
                                 .unlockedBy(getHasName(zItems.SAP.get()), has(zItems.SAP.get()))
                                 .save(output, "_from_sap");
 
@@ -481,6 +488,12 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .output(zItems.OKARA, 1f)
                                 .output(zFluids.SOYMILK.getFluid(), 100)
                                 .unlockedBy(getHasName(zItems.SOY_DOUGH.get()), has(zItems.SOY_DOUGH.get()))
+                                .save(output);
+
+                CrushingTubBuilder.of(registries)
+                                .input(zItems.SOY_RENNET)
+                                .output(zItems.TOFU, 1f)
+                                .unlockedBy(getHasName(zItems.SOY_RENNET.get()), has(zItems.SOY_RENNET.get()))
                                 .save(output);
 
                 MillstoneBuilder.of(registries)
@@ -626,6 +639,14 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .fluid(zFluids.FERTILIZER_NATURAL.getFluid(), 350)
                                 .unlockedBy(getHasName(zBlocks.MECHANICAL_FARMLAND.get()),
                                                 has(zBlocks.MECHANICAL_FARMLAND.get()))
+                                .save(output);
+
+                CrucibleBuilder.of(registries)
+                                .input(zItems.SALT)
+                                .fluid(zFluids.SOYMILK.getFluid(), 250)
+                                .output(zItems.SOY_RENNET, 2, 1f)
+                                .output(zFluids.SOY_WHEY.getFluid(), 150)
+                                .unlockedBy(getHasName(zItems.SALT.get()), has(zItems.SALT.get()))
                                 .save(output);
 
         }
