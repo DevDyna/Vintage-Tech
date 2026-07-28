@@ -2,9 +2,14 @@ package com.synergy.vintagetech.init.types;
 
 import static com.synergy.vintagetech.Main.MODULE_ID;
 
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.Consumable;
+import net.minecraft.world.item.consume_effects.ApplyStatusEffectsConsumeEffect;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -50,8 +55,8 @@ public class zItems {
         public static final DeferredHolder<Item, Item> OKARA = zItem.registerSimpleItem("okara");
         public static final DeferredHolder<Item, Item> SOY_RENNET = zItem.registerSimpleItem("soy_rennet");
         public static final DeferredHolder<Item, Item> SOY_DOUGH = zItem.registerSimpleItem("soy_dough");
-      
-        //TODO IMP : itemtags
+
+        // TODO IMP : itemtags
         public static final DeferredHolder<Item, Item> TOFU = zItem.registerSimpleItem("tofu",
                         p -> p.food(new FoodProperties(6, 0.75f, true)));
 
@@ -74,6 +79,63 @@ public class zItems {
         public static final DeferredHolder<Item, Item> TINY_IRON_DUST = zItem.registerSimpleItem("tiny_iron_dust");
 
         public static final DeferredHolder<Item, Item> MINERAL_MIXTURE = zItem.registerSimpleItem("mineral_mixture");
+
+        public static final DeferredHolder<Item, Item> BLUEBERRIES_SOUP = zItem.registerSimpleItem("blueberries_soup",
+                        p -> p
+                                        .stacksTo(16)
+                                        .usingConvertsTo(Items.BOWL)
+                                        .craftRemainder(Items.BOWL)
+                                        .food(new FoodProperties(12, 0.6f, true), Consumable.builder()
+                                                        .onConsume(new ApplyStatusEffectsConsumeEffect(
+                                                                        new MobEffectInstance(MobEffects.NIGHT_VISION,
+                                                                                        160,
+                                                                                        1)))
+                                                        .build()));
+
+        public static final DeferredHolder<Item, Item> BLUEBERRIES_MUFFIN = zItem.registerSimpleItem("blueberries_muffin",
+                        p -> p
+                                        .food(new FoodProperties(10, 0.6f, true), Consumable.builder()
+                                                        .onConsume(new ApplyStatusEffectsConsumeEffect(
+                                                                        new MobEffectInstance(MobEffects.NIGHT_VISION,
+                                                                                        400,
+                                                                                        1)))
+                                                        .build()));
+
+        public static final DeferredHolder<Item, Item> SWEET_BERRIES_SOUP = zItem.registerSimpleItem("sweet_berries_soup",
+                        p -> p
+                                        .stacksTo(16)
+                                        .usingConvertsTo(Items.BOWL)
+                                        .craftRemainder(Items.BOWL)
+                                        .food(new FoodProperties(6, 0.2f, true), Consumable.builder()
+                                                        .onConsume(new ApplyStatusEffectsConsumeEffect(
+                                                                        new MobEffectInstance(MobEffects.STRENGTH,
+                                                                                        160,
+                                                                                        1)))
+                                                        .build()));
+
+        public static final DeferredHolder<Item, Item> GLOWBERRIES_SOUP = zItem.registerSimpleItem("glowberries_soup",
+                        p -> p
+                                        .stacksTo(16)
+                                        .usingConvertsTo(Items.BOWL)
+                                        .craftRemainder(Items.BOWL)
+                                        .food(new FoodProperties(3, 0.5f, true), Consumable.builder()
+                                                        .onConsume(new ApplyStatusEffectsConsumeEffect(
+                                                                        new MobEffectInstance(MobEffects.GLOWING,
+                                                                                        320,
+                                                                                        1)))
+                                                        .build()));
+
+        public static final DeferredHolder<Item, Item> IRONBERRIES_SOUP = zItem.registerSimpleItem("ironberries_soup",
+                        p -> p
+                                        .stacksTo(16)
+                                        .usingConvertsTo(Items.BOWL)
+                                        .craftRemainder(Items.BOWL)
+                                        .food(new FoodProperties(8, 0.1f, true), Consumable.builder()
+                                                        .onConsume(new ApplyStatusEffectsConsumeEffect(
+                                                                        new MobEffectInstance(MobEffects.UNLUCK,
+                                                                                        160,
+                                                                                        1)))
+                                                        .build()));
 
         public static final DeferredHolder<Item, Item> MESH = zItem.registerSimpleItem("mesh", p -> p.stacksTo(16));
 
