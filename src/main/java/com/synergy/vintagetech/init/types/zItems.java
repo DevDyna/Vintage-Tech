@@ -29,11 +29,11 @@ public class zItems {
         // seeds
         public static final DeferredHolder<Item, Item> SOYBEANS = zItem.registerItem("soybeans",
                         p -> new BlockItem(zBlocks.SOYBEANS.get(), p.useItemDescriptionPrefix()
-                                        .food(new FoodProperties(1, 0.25f, true))));
+                                        .food(new FoodProperties(1, 25f, true))));
 
         public static final DeferredHolder<Item, Item> CAVE_WHEAT_SEEDS = zItem.registerItem("cave_wheat_seeds",
                         p -> new BlockItem(zBlocks.CAVE_WHEAT.get(), p.useItemDescriptionPrefix()
-                                        .food(new FoodProperties(2, 0.25f, true))));
+                                        .food(new FoodProperties(2, 25f, true))));
 
         public static final DeferredHolder<Item, Item> HEMP_SEEDS = zItem.registerItem("hemp_seeds",
                         p -> new BlockItem(zBlocks.HEMP.get(), p.useItemDescriptionPrefix()));
@@ -43,7 +43,7 @@ public class zItems {
 
         public static final DeferredHolder<Item, Item> BLUEBERRIES = zItem.registerItem("blueberries",
                         p -> new BlockItem(zBlocks.BLUEBERRY_BUSH.get(),
-                                        p.useItemDescriptionPrefix().food(new FoodProperties(2, 0.1f, true))));
+                                        p.useItemDescriptionPrefix().food(new FoodProperties(2, 1f, true))));
 
         // plant products
 
@@ -58,7 +58,7 @@ public class zItems {
 
         // TODO IMP : itemtags
         public static final DeferredHolder<Item, Item> TOFU = zItem.registerSimpleItem("tofu",
-                        p -> p.food(new FoodProperties(6, 0.75f, true)));
+                        p -> p.food(new FoodProperties(6, 7f, true)));
 
         public static final DeferredHolder<Item, Item> SALT = zItem.registerSimpleItem("salt");
         public static final DeferredHolder<Item, Item> AMBER = zItem.registerSimpleItem("amber");
@@ -69,7 +69,7 @@ public class zItems {
         public static final DeferredHolder<Item, Item> HEMP_FIBER = zItem.registerSimpleItem("hemp_fiber");
 
         public static final DeferredHolder<Item, Item> IRONBERRIES = zItem.registerSimpleItem("ironberries", p -> p
-                        .food(new FoodProperties(1, 0.2f, true), Consumable.builder()
+                        .food(new FoodProperties(1, 2f, true), Consumable.builder()
                                         .onConsume(new ApplyStatusEffectsConsumeEffect(
                                                         new MobEffectInstance(MobEffects.NAUSEA, 40, 0)))
                                         .onConsume(new ApplyStatusEffectsConsumeEffect(
@@ -83,7 +83,7 @@ public class zItems {
                                         .stacksTo(16)
                                         .usingConvertsTo(Items.BOWL)
                                         .craftRemainder(Items.BOWL)
-                                        .food(new FoodProperties(12, 0.6f, true), Consumable.builder()
+                                        .food(new FoodProperties(12, 6f, true), Consumable.builder()
                                                         .onConsume(new ApplyStatusEffectsConsumeEffect(
                                                                         new MobEffectInstance(MobEffects.NIGHT_VISION,
                                                                                         160,
@@ -92,7 +92,7 @@ public class zItems {
 
         public static final DeferredHolder<Item, Item> BLUEBERRIES_MUFFIN = zItem.registerSimpleItem("blueberries_muffin",
                         p -> p
-                                        .food(new FoodProperties(10, 0.6f, true), Consumable.builder()
+                                        .food(new FoodProperties(12, 6f, true), Consumable.builder()
                                                         .onConsume(new ApplyStatusEffectsConsumeEffect(
                                                                         new MobEffectInstance(MobEffects.NIGHT_VISION,
                                                                                         400,
@@ -104,7 +104,7 @@ public class zItems {
                                         .stacksTo(16)
                                         .usingConvertsTo(Items.BOWL)
                                         .craftRemainder(Items.BOWL)
-                                        .food(new FoodProperties(6, 0.2f, true), Consumable.builder()
+                                        .food(new FoodProperties(12, 2f, true), Consumable.builder()
                                                         .onConsume(new ApplyStatusEffectsConsumeEffect(
                                                                         new MobEffectInstance(MobEffects.STRENGTH,
                                                                                         160,
@@ -116,7 +116,7 @@ public class zItems {
                                         .stacksTo(16)
                                         .usingConvertsTo(Items.BOWL)
                                         .craftRemainder(Items.BOWL)
-                                        .food(new FoodProperties(3, 0.5f, true), Consumable.builder()
+                                        .food(new FoodProperties(12, 5f, true), Consumable.builder()
                                                         .onConsume(new ApplyStatusEffectsConsumeEffect(
                                                                         new MobEffectInstance(MobEffects.GLOWING,
                                                                                         320,
@@ -128,7 +128,7 @@ public class zItems {
                                         .stacksTo(16)
                                         .usingConvertsTo(Items.BOWL)
                                         .craftRemainder(Items.BOWL)
-                                        .food(new FoodProperties(8, 0.1f, true), Consumable.builder()
+                                        .food(new FoodProperties(12, 1f, true), Consumable.builder()
                                                         .onConsume(new ApplyStatusEffectsConsumeEffect(
                                                                         new MobEffectInstance(MobEffects.UNLUCK,
                                                                                         160,
