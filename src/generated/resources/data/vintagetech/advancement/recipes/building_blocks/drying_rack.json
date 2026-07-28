@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_natural_logs": {
+    "has_logs": {
       "conditions": {
         "items": [
           {
-            "items": "#c:natural_logs"
+            "items": "#minecraft:logs"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_natural_logs"
+      "has_logs"
     ]
   ],
   "rewards": {

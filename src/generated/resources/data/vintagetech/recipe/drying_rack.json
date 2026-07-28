@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "L": "#c:natural_logs",
+    "L": "#minecraft:logs",
     "R": "vintagetech:rope"
   },
   "pattern": [

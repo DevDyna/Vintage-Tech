@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "vintagetech:item/crushing_tub/tub"
+    "model": "vintagetech:block/crushing_tub/tub"
   }
 }
