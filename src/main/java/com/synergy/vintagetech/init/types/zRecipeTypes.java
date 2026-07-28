@@ -4,6 +4,7 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 
 import com.synergy.vintagetech.api.RecipeRegister;
 import com.synergy.vintagetech.init.builder.centrifuge.recipe.CentrifugeRecipe;
+import com.synergy.vintagetech.init.builder.crucible.recipe.CrucibleRecipe;
 import com.synergy.vintagetech.init.builder.crushing_tub.recipe.CrushingTubRecipe;
 import com.synergy.vintagetech.init.builder.drying_rack.recipe.DryingRackRecipe;
 import com.synergy.vintagetech.init.builder.evaporation_basin.recipe.EvaporationBasinRecipe;
@@ -50,5 +51,8 @@ public class zRecipeTypes {
 
     public static final RecipeRegister<FarmlandFuelsRecipe> FARMLAND_FUELS = RecipeRegister.of("farmland_fuels",
             () -> FarmlandFuelsRecipe.serializer());
+
+    public static final RecipeRegister<CrucibleRecipe> CRUCIBLE = RecipeRegister.of("crucible",
+            () -> CrucibleRecipe.serializer());
 
 }

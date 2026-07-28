@@ -7,6 +7,7 @@ import com.synergy.vintagetech.api.blockfactory.engine.BaseEngineBE;
 import com.synergy.vintagetech.api.blockfactory.transmission.TransmissionBE;
 import com.synergy.vintagetech.init.builder.basket.BasketBE;
 import com.synergy.vintagetech.init.builder.centrifuge.CentrifugeBE;
+import com.synergy.vintagetech.init.builder.crucible.CrucibleBE;
 import com.synergy.vintagetech.init.builder.crushing_tub.CrushingTubBE;
 import com.synergy.vintagetech.init.builder.drying_rack.DryingRackBE;
 import com.synergy.vintagetech.init.builder.dynamo.DynamoBE;
@@ -48,7 +49,7 @@ public class zBlockEntities {
 
         public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TransmissionBE>> TRANSMISSION = RegistryUtils
                         .createBlockEntity("transmission", zTiles, TransmissionBE::new, zBlocks.AXLE, zBlocks.JUNCTION,
-                                        zBlocks.GEARSHIFT,zBlocks.CLUTCH);
+                                        zBlocks.GEARSHIFT, zBlocks.CLUTCH);
 
         public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BasketBE>> BASKET = RegistryUtils
                         .createBlockEntity("basket", zTiles, BasketBE::new, zBlocks.BASKET);
@@ -84,5 +85,8 @@ public class zBlockEntities {
 
         public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TreeTapBE>> TREE_TAP = RegistryUtils
                         .createBlockEntity("tree_tap", zTiles, TreeTapBE::new, zBlocks.TREE_TAP);
+
+        public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CrucibleBE>> CRUCIBLE = RegistryUtils
+                        .createBlockEntity("crucible", zTiles, CrucibleBE::new, zBlocks.CRUCIBLE);
 
 }

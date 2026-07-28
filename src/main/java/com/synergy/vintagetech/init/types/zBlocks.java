@@ -12,6 +12,7 @@ import com.synergy.vintagetech.init.builder.WoodenBeam;
 import com.synergy.vintagetech.init.builder.basket.BasketBlock;
 import com.synergy.vintagetech.init.builder.centrifuge.CentrifugeBlock;
 import com.synergy.vintagetech.init.builder.creative_engine.CreativeEngineBlock;
+import com.synergy.vintagetech.init.builder.crucible.CrucibleBlock;
 import com.synergy.vintagetech.init.builder.crushing_tub.CrushingTubBlock;
 import com.synergy.vintagetech.init.builder.drying_rack.DryingRackBlock;
 import com.synergy.vintagetech.init.builder.dynamo.DynamoBlock;
@@ -78,7 +79,7 @@ public class zBlocks {
         public static final DeferredHolder<Block, Block> AXLE = registerItemBlock("axle",
                         p -> new AxleBlock(p
                                         .mapColor(MapColor.WOOD)
-                                        .instrument(NoteBlockInstrument.BASS)
+                                        
                                         .strength(2.0F)
                                         .sound(SoundType.WOOD)
                                         .ignitedByLava()));
@@ -86,7 +87,7 @@ public class zBlocks {
         public static final DeferredHolder<Block, Block> JUNCTION = registerItemBlock("junction",
                         p -> new JunctionBlock(p
                                         .mapColor(MapColor.WOOD)
-                                        .instrument(NoteBlockInstrument.BASS)
+                                        
                                         .strength(2.0F)
                                         .sound(SoundType.WOOD)
                                         .ignitedByLava()));
@@ -95,7 +96,7 @@ public class zBlocks {
                         p -> new GearShiftBlock(p
                                         .noOcclusion()
                                         .mapColor(MapColor.WOOD)
-                                        .instrument(NoteBlockInstrument.BASS)
+                                        
                                         .strength(2.0F)
                                         .sound(SoundType.WOOD)
                                         .ignitedByLava()));
@@ -104,7 +105,7 @@ public class zBlocks {
                         p -> new ClutchBlock(p
                                         .noOcclusion()
                                         .mapColor(MapColor.WOOD)
-                                        .instrument(NoteBlockInstrument.BASS)
+                                        
                                         .strength(2.0F)
                                         .sound(SoundType.WOOD)
                                         .ignitedByLava()));
@@ -113,7 +114,7 @@ public class zBlocks {
         public static final DeferredHolder<Block, Block> SAW = registerItemBlock("saw",
                         p -> new SawBlock(p
                                         .mapColor(MapColor.WOOD)
-                                        .instrument(NoteBlockInstrument.BASS)
+                                        
                                         .strength(2.0F)
                                         .sound(SoundType.WOOD)
                                         .ignitedByLava()));
@@ -121,7 +122,7 @@ public class zBlocks {
         public static final DeferredHolder<Block, Block> FAN = registerItemBlock("fan",
                         p -> new FanBlock(p
                                         .mapColor(MapColor.METAL)
-                                        .instrument(NoteBlockInstrument.BASS)
+                                        
                                         .strength(3.5F)
                                         .noOcclusion()
                                         .sound(SoundType.METAL)));
@@ -129,21 +130,28 @@ public class zBlocks {
         public static final DeferredHolder<Block, Block> MILLSTONE = registerItemBlock("millstone",
                         p -> new MillstoneBlock(p
                                         .mapColor(MapColor.STONE)
-                                        .instrument(NoteBlockInstrument.BASS)
+                                        
                                         .strength(3.0F)
                                         .sound(SoundType.STONE)));
 
         public static final DeferredHolder<Block, Block> TREE_TAP = registerItemBlock("tree_tap",
                         p -> new TreeTapBlock(p
                                         .mapColor(MapColor.WOOD)
-                                        .instrument(NoteBlockInstrument.BASS)
+                                        
                                         .strength(1.0F)
                                         .sound(SoundType.WOOD)));
+
+        public static final DeferredHolder<Block, Block> CRUCIBLE = registerItemBlock("crucible",
+                        p -> new CrucibleBlock(p
+                                        .mapColor(MapColor.METAL)
+                                        
+                                        .strength(2.0F)
+                                        .sound(SoundType.METAL)));
 
         public static final DeferredHolder<Block, Block> CENTRIFUGE = registerItemBlock("centrifuge",
                         p -> new CentrifugeBlock(p
                                         .mapColor(MapColor.WOOD)
-                                        .instrument(NoteBlockInstrument.BASS)
+                                        
                                         .strength(2.0F)
                                         .sound(SoundType.WOOD)
                                         .ignitedByLava()));
@@ -160,7 +168,7 @@ public class zBlocks {
         public static final DeferredHolder<Block, Block> BASKET = registerItemBlock("basket",
                         p -> new BasketBlock(p
                                         .mapColor(MapColor.WOOD)
-                                        .instrument(NoteBlockInstrument.BASS)
+                                        
                                         .strength(2.0F)
                                         .sound(SoundType.GRASS)
                                         .ignitedByLava()));
@@ -169,7 +177,7 @@ public class zBlocks {
                         p -> new CrushingTubBlock(p
                                         .strength(1.0F, 1.50F)
                                         .sound(SoundType.WOOD)
-                                        .instrument(NoteBlockInstrument.BASS)
+                                        
                                         .mapColor(MapColor.RAW_IRON)));
 
         public static final DeferredHolder<Block, Block> DRYING_RACK = registerItemBlock("drying_rack",
@@ -191,7 +199,7 @@ public class zBlocks {
         public static final DeferredHolder<Block, Block> MECHANICAL_FARMLAND = registerItemBlock("mechanical_farmland",
                         p -> new MechanicalFarmlandBlock(p
                                         .mapColor(MapColor.WOOD)
-                                        .instrument(NoteBlockInstrument.BASS)
+                                        
                                         .strength(2.0F)
                                         .noOcclusion()
                                         .sound(SoundType.WOOD)
@@ -200,7 +208,7 @@ public class zBlocks {
         public static final DeferredHolder<Block, Block> ROPE = registerItemBlock("rope",
                         p -> new RopeBlock(p
                                         .mapColor(MapColor.WOOD)
-                                        .instrument(NoteBlockInstrument.BASS)
+                                        
                                         .instabreak()
                                         .noOcclusion()
                                         .sound(SoundType.WOOL)
@@ -251,10 +259,6 @@ public class zBlocks {
         public static final DeferredHolder<Block, Block> CHEESE = registerItemBlock("cheese",
                         p -> new Block(p));
 
-        // heat + fluid + item -> fluid + item
-        public static final DeferredHolder<Block, Block> CRUCIBLE = registerItemBlock("crucible",
-                        p -> new Block(p));
-
         // item -> item
         // public static final DeferredHolder<Block, Block> HYDRAULIC_PRESS =
         // registerItemBlock("hydraulic_press",
@@ -284,7 +288,7 @@ public class zBlocks {
                                         .strength(2.0F, 3.0F)
                                         .sound(SoundType.WOOD)
                                         .ignitedByLava()
-                                        .instrument(NoteBlockInstrument.BASS)
+                                        
                                         .mapColor(
                                                         (s) -> s.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y
                                                                         ? MapColor.TERRACOTTA_BLACK
@@ -296,7 +300,7 @@ public class zBlocks {
                                         .sound(SoundType.WOOD)
                                         .ignitedByLava()
                                         .mapColor(MapColor.RAW_IRON)
-                                        .instrument(NoteBlockInstrument.BASS)));
+                                        ));
 
         public static final DeferredHolder<Block, Block> IRONWOOD_WOOD = registerItemBlock("ironwood_wood",
                         p -> new RotatedPillarBlock(p
@@ -304,7 +308,7 @@ public class zBlocks {
                                         .sound(SoundType.WOOD)
                                         .ignitedByLava()
                                         .mapColor(MapColor.TERRACOTTA_BLACK)
-                                        .instrument(NoteBlockInstrument.BASS)));
+                                        ));
 
         public static final DeferredHolder<Block, Block> STRIPPED_IRONWOOD_WOOD = registerItemBlock(
                         "stripped_ironwood_wood", p -> new RotatedPillarBlock(p
@@ -312,7 +316,7 @@ public class zBlocks {
                                         .sound(SoundType.WOOD)
                                         .ignitedByLava()
                                         .mapColor(MapColor.RAW_IRON)
-                                        .instrument(NoteBlockInstrument.BASS)));
+                                        ));
 
         public static final DeferredHolder<Block, Block> IRONWOOD_PLANKS = registerItemBlock("ironwood_planks",
                         p -> new Block(p
@@ -320,7 +324,7 @@ public class zBlocks {
                                         .sound(SoundType.WOOD)
                                         .ignitedByLava()
                                         .mapColor(MapColor.RAW_IRON)
-                                        .instrument(NoteBlockInstrument.BASS)));
+                                        ));
 
         public static final DeferredHolder<Block, Block> IRONWOOD_SAPLING = registerItemBlock("ironwood_sapling",
                         p -> new SaplingBlock(new TreeGrower(
@@ -361,7 +365,7 @@ public class zBlocks {
                                         .sound(SoundType.WOOD)
                                         .ignitedByLava()
                                         .mapColor(MapColor.RAW_IRON)
-                                        .instrument(NoteBlockInstrument.BASS)));
+                                        ));
 
         public static final DeferredHolder<Block, Block> POTTED_IRONWOOD_SAPLING = zBlock.registerBlock(
                         "potted_ironwood_sapling",
@@ -376,7 +380,7 @@ public class zBlocks {
                                         .sound(SoundType.WOOD)
                                         .ignitedByLava()
                                         .mapColor(MapColor.RAW_IRON)
-                                        .instrument(NoteBlockInstrument.BASS)));
+                                        ));
 
         // TODO IMP : FLAX
 

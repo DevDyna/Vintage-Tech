@@ -82,11 +82,15 @@ public class zTags {
                 public static final TagKey<Block> WOODEN_BEAMS = RegistryUtils
                                 .tagBlock(MODULE_ID, "beam/wooden");
 
+                                //TODO IMP : stripped beams
                 public static final TagKey<Block> STRIPPED_BEAMS = RegistryUtils
                                 .tagBlock(MODULE_ID, "beam/stripped");
 
                 public static final TagKey<Block> IRONWOOD_LOGS = RegistryUtils
                                 .tagBlock(MODULE_ID, "ironwood_logs");
+
+                public static final TagKey<Block> CRUCIBLE_HEAT_SOURCES = RegistryUtils
+                                .tagBlock(MODULE_ID, "crucible/heat_sources");
 
         }
 
