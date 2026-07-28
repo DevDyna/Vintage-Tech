@@ -264,7 +264,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .unlockedBy(getHasName(zBlocks.ROPE.get()), has(zBlocks.ROPE.get()))
                                 .save(output);
 
-                shapeless(RecipeCategory.MISC, Items.TORCH)
+                shapeless(RecipeCategory.MISC, Items.TORCH,6)
                                 .requires(zItems.AMBER.get())
                                 .requires(Items.STRING)
                                 .requires(Items.STICK)
