@@ -57,7 +57,7 @@ public class FarmlandFuelsCategory extends BaseRecipeCategory<FarmlandFuelsRecip
 
         JEIFluidTankHelper.of()
                 .fluid(recipe.getFluid())
-                .offset(10, 18-16)
+                .offset(10, 18+16)
                 .scale(1.0f, 1.0f)
                 .build((x, y) -> builder.addInputSlot(x, y));
 
