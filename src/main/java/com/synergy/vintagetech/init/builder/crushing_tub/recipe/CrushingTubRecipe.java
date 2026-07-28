@@ -101,13 +101,15 @@ public class CrushingTubRecipe extends BaseRecipeType<ItemInput.simple> {
         return new RecipeSerializer<>(CODEC, STREAM_CODEC);
     }
 
+//TODO API BUG : fix FluidStackTemplate optionalCodec(FluidStackTemplate f) f.fluid() because f is null
+
     public static final MapCodec<CrushingTubRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
             Ingredient.CODEC.fieldOf("input").forGetter(CrushingTubRecipe::getInput),
             Codec.BOOL.fieldOf("require_mesh").forGetter(CrushingTubRecipe::getRequireMesh),
             ChanceOutput.Item.CODEC.optionalFieldOf("output")
                     .forGetter(r -> ChanceOutput.Item.optional(r.getOutput())),
             FluidStackTemplate.CODEC.optionalFieldOf("fluid")
-                    .forGetter(r -> Optional.of(RecipeCodecUtils.optionalCodec(r.getFluid()))))
+                    .forGetter(r -> r.getFluid() == null ? Optional.empty() : Optional.of(r.getFluid())))
             .apply(inst, (i,r ,o, f) -> new CrushingTubRecipe(i,r, o.orElse(null), f.orElse(null))));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, CrushingTubRecipe> STREAM_CODEC = StreamCodec
