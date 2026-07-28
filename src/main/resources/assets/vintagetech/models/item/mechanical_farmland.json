@@ -4,9 +4,10 @@
   "parent": "block/block",
   "textures": {
     "2": "block/rooted_dirt",
+    "3": "vintagetech:block/beam/axle",
     "4": "block/composter_bottom",
     "5": "block/composter_side",
-    "particle": "#5"
+    "particle": "block/composter_side"
   },
   "elements": [
     {
@@ -106,6 +107,19 @@
         "south": { "uv": [1, 0, 15, 14], "texture": "#5" },
         "west": { "uv": [11, 0, 15, 14], "texture": "#5" },
         "down": { "uv": [1, 1, 15, 5], "texture": "#4" }
+      }
+    },
+    {
+      "from": [0, 5, 5],
+      "to": [16, 11, 11],
+      "rotation": { "angle": 0, "axis": "z", "origin": [8, 8, 8] },
+      "faces": {
+        "north": { "uv": [6, 0, 12, 16], "rotation": 90, "texture": "#3" },
+        "east": { "uv": [0, 0, 6, 6], "rotation": 270, "texture": "#3" },
+        "south": { "uv": [6, 0, 12, 16], "rotation": 270, "texture": "#3" },
+        "west": { "uv": [0, 0, 6, 6], "rotation": 270, "texture": "#3" },
+        "up": { "uv": [6, 0, 12, 16], "rotation": 270, "texture": "#3" },
+        "down": { "uv": [6, 0, 12, 16], "rotation": 270, "texture": "#3" }
       }
     }
   ]

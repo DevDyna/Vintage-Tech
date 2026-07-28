@@ -11,6 +11,7 @@ import com.synergy.vintagetech.compat.jei.categories.CentrifugeCategory;
 import com.synergy.vintagetech.compat.jei.categories.CrushingTubCategory;
 import com.synergy.vintagetech.compat.jei.categories.DryingRackCategory;
 import com.synergy.vintagetech.compat.jei.categories.EvaporationBasinCategory;
+import com.synergy.vintagetech.compat.jei.categories.FarmlandFuelsCategory;
 import com.synergy.vintagetech.compat.jei.categories.MillstoneCategory;
 import com.synergy.vintagetech.compat.jei.categories.TreeTapCategory;
 import com.synergy.vintagetech.init.types.zBlocks;
@@ -44,6 +45,7 @@ public class PluginJEI implements IModPlugin {
                 r.addCraftingStation(DryingRackCategory.TYPE, x.item(zBlocks.DRYING_RACK.get()));
                 r.addCraftingStation(MillstoneCategory.TYPE, x.item(zBlocks.MILLSTONE.get()));
                 r.addCraftingStation(TreeTapCategory.TYPE, x.item(zBlocks.TREE_TAP.get()));
+                r.addCraftingStation(FarmlandFuelsCategory.TYPE, x.item(zBlocks.MECHANICAL_FARMLAND.get()));
 
         }
 
@@ -58,7 +60,8 @@ public class PluginJEI implements IModPlugin {
                                 new CentrifugeCategory(helper),
                                 new DryingRackCategory(helper),
                                 new MillstoneCategory(helper),
-                                new TreeTapCategory(helper)
+                                new TreeTapCategory(helper),
+                                new FarmlandFuelsCategory(helper)
 
                 );
 
@@ -84,6 +87,9 @@ public class PluginJEI implements IModPlugin {
 
                 r.addRecipes(TreeTapCategory.TYPE,
                                 getRecipes(zRecipeTypes.TREE_TAP.getType()));
+
+                r.addRecipes(FarmlandFuelsCategory.TYPE,
+                                getRecipes(zRecipeTypes.FARMLAND_FUELS.getType()));
 
         }
 

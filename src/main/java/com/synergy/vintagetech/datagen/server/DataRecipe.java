@@ -11,6 +11,7 @@ import com.synergy.vintagetech.init.builder.centrifuge.recipe.CentrifugeBuilder;
 import com.synergy.vintagetech.init.builder.crushing_tub.recipe.CrushingTubBuilder;
 import com.synergy.vintagetech.init.builder.drying_rack.recipe.DryingRackBuilder;
 import com.synergy.vintagetech.init.builder.evaporation_basin.recipe.EvaporationBasinBuilder;
+import com.synergy.vintagetech.init.builder.mechanical_farmland.recipe.FarmlandFuelsBuilder;
 import com.synergy.vintagetech.init.builder.millstone.recipe.MillstoneBuilder;
 import com.synergy.vintagetech.init.builder.treetap.recipe.TreeTapBuilder;
 import com.synergy.vintagetech.init.types.zBlocks;
@@ -600,6 +601,30 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .input(Items.AMETHYST_BLOCK)
                                 .output(Items.AMETHYST_SHARD, 4)
                                 .unlockedBy(getHasName(Items.AMETHYST_BLOCK), has(Items.AMETHYST_BLOCK))
+                                .save(output);
+
+                FarmlandFuelsBuilder.of(registries)
+                                .fluid(Fluids.WATER, 1000)
+                                .unlockedBy(getHasName(zBlocks.MECHANICAL_FARMLAND.get()),
+                                                has(zBlocks.MECHANICAL_FARMLAND.get()))
+                                .save(output);
+
+                FarmlandFuelsBuilder.of(registries)
+                                .fluid(zFluids.SOY_WHEY.getFluid(), 250)
+                                .unlockedBy(getHasName(zBlocks.MECHANICAL_FARMLAND.get()),
+                                                has(zBlocks.MECHANICAL_FARMLAND.get()))
+                                .save(output);
+
+                FarmlandFuelsBuilder.of(registries)
+                                .fluid(zFluids.FERTILIZER_CHEMICAL.getFluid(), 450)
+                                .unlockedBy(getHasName(zBlocks.MECHANICAL_FARMLAND.get()),
+                                                has(zBlocks.MECHANICAL_FARMLAND.get()))
+                                .save(output);
+
+                FarmlandFuelsBuilder.of(registries)
+                                .fluid(zFluids.FERTILIZER_NATURAL.getFluid(), 350)
+                                .unlockedBy(getHasName(zBlocks.MECHANICAL_FARMLAND.get()),
+                                                has(zBlocks.MECHANICAL_FARMLAND.get()))
                                 .save(output);
 
         }

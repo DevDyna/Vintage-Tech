@@ -7,6 +7,7 @@ import com.synergy.vintagetech.init.builder.centrifuge.recipe.CentrifugeRecipe;
 import com.synergy.vintagetech.init.builder.crushing_tub.recipe.CrushingTubRecipe;
 import com.synergy.vintagetech.init.builder.drying_rack.recipe.DryingRackRecipe;
 import com.synergy.vintagetech.init.builder.evaporation_basin.recipe.EvaporationBasinRecipe;
+import com.synergy.vintagetech.init.builder.mechanical_farmland.recipe.FarmlandFuelsRecipe;
 import com.synergy.vintagetech.init.builder.millstone.recipe.MillstoneRecipe;
 import com.synergy.vintagetech.init.builder.treetap.recipe.TreeTapRecipe;
 
@@ -46,5 +47,8 @@ public class zRecipeTypes {
 
     public static final RecipeRegister<TreeTapRecipe> TREE_TAP = RecipeRegister.of("tree_tap",
             () -> TreeTapRecipe.serializer());
+
+    public static final RecipeRegister<FarmlandFuelsRecipe> FARMLAND_FUELS = RecipeRegister.of("farmland_fuels",
+            () -> FarmlandFuelsRecipe.serializer());
 
 }

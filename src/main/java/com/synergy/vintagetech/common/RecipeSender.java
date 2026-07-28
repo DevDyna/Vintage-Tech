@@ -16,7 +16,8 @@ public class RecipeSender {
                     zRecipeTypes.EVAPORATION_BASIN.getType(),
                     zRecipeTypes.MILLSTONE.getType(),
                     zRecipeTypes.CENTRIFUGE.getType(),
-                    zRecipeTypes.TREE_TAP.getType()
+                    zRecipeTypes.TREE_TAP.getType(),
+                    zRecipeTypes.FARMLAND_FUELS.getType()
                     );
         }
 

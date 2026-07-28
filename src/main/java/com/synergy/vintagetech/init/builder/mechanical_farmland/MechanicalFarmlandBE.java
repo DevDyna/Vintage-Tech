@@ -1,18 +1,24 @@
 package com.synergy.vintagetech.init.builder.mechanical_farmland;
 
+import java.util.Optional;
+
 import com.devdyna.cakesticklib.api.ItemLogisticUtils;
 import com.devdyna.cakesticklib.api.RandomUtil;
 import com.devdyna.cakesticklib.api.aspect.logic.SimpleFluidStorage;
 import com.devdyna.cakesticklib.api.factories.plants.VanillaPlants;
+import com.devdyna.cakesticklib.api.recipe.recipeInput.FluidInput;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
 import com.synergy.vintagetech.api.blockfactory.transmission.TransmissionBE;
-import com.synergy.vintagetech.init.builder.fan.FanBlock;
+import com.synergy.vintagetech.init.builder.mechanical_farmland.recipe.FarmlandFuelsRecipe;
 import com.synergy.vintagetech.init.types.zBlockEntities;
+import com.synergy.vintagetech.init.types.zRecipeTypes;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import net.neoforged.neoforge.transfer.fluid.FluidStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
@@ -32,7 +38,7 @@ public class MechanicalFarmlandBE extends TransmissionBE implements SimpleFluidS
 
     @Override
     public int getTankCapacity() {
-        return 1_000;
+        return 10_000;
     }
 
     @Override
@@ -48,20 +54,10 @@ public class MechanicalFarmlandBE extends TransmissionBE implements SimpleFluidS
         var above = pos.above();
         var crop = level.getBlockState(above);
 
-        if (!getBlockState().getValue(FanBlock.ENABLED))
+        if (level.getGameTime() % 2 + RandomUtil.between(level, 0, 20) != 0)
             return;
 
-        if (level.getGameTime() % 20 != 0)
-            return;
-
-        if (RandomUtil.chance(level, 50))
-            return;
-
-        if (getFluidStorage() == null)
-            return;
-
-        if (getAsStack(FLUID_TANK).isEmpty() && getBlockState().getValue(FanBlock.ENABLED)) {
-
+        if (!getBlockState().getValue(BlockStateProperties.ENABLED)) {
             if (state.getValue(MechanicalFarmlandBlock.MOISTURE) > 0)
                 level.setBlock(pos,
                         state.setValue(MechanicalFarmlandBlock.MOISTURE,
@@ -69,18 +65,32 @@ public class MechanicalFarmlandBE extends TransmissionBE implements SimpleFluidS
                         2);
 
             return;
-        }
-
-        try (var tx = Transaction.openRoot()) {
-            getFluidStorage().extract(FLUID_TANK, FluidResource.of(getAsStack(FLUID_TANK)), 10, tx);
-            tx.commit();
-        }
-
-        if (state.getValue(MechanicalFarmlandBlock.MOISTURE) < 7)
+        } else if (state.getValue(MechanicalFarmlandBlock.MOISTURE) < 7)
             level.setBlock(pos,
                     state.setValue(MechanicalFarmlandBlock.MOISTURE,
                             state.getValue(MechanicalFarmlandBlock.MOISTURE) + 1),
                     2);
+
+        if (getFluidStorage() == null || getFluidStorage().getResource(FLUID_TANK).isEmpty())
+            return;
+
+        Optional<RecipeHolder<FarmlandFuelsRecipe>> r = level.getServer().getRecipeManager()
+                .getRecipeFor(zRecipeTypes.FARMLAND_FUELS.getType(),
+                        new FluidInput.withNumber(getAsStack(FLUID_TANK), getFluidStorage().getAmountAsInt(FLUID_TANK)),
+                        level);
+
+        if (r.isEmpty())
+            return;
+
+        var recipe = r.get().value();
+
+        if (recipe.getFluid().amount() > getAsStack(FLUID_TANK).amount())
+            return;
+
+        try (var tx = Transaction.openRoot()) {
+            getFluidStorage().extract(FLUID_TANK, FluidResource.of(getAsStack(FLUID_TANK)), recipe.getFluid().amount(), tx);
+            tx.commit();
+        }
 
         if (state.getValue(MechanicalFarmlandBlock.MOISTURE) >= 3) {
             var items = VanillaPlants.checkReplant(level, above, null, null);

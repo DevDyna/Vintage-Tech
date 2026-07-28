@@ -53,6 +53,8 @@ public class DataLang extends LanguageProvider implements LangGenerators {
 
                 ).forEach(s -> add(MODULE_ID + ".jei." + s, StringUtil.formatToDisplay(s) + " Recipes"));
 
+                add(MODULE_ID+".jei.farmland_fuels", "Mechanical Farmland Fuels");
+
         }
 
 }
