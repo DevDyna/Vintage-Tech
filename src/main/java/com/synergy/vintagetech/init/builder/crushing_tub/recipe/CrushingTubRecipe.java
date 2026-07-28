@@ -119,7 +119,7 @@ public class CrushingTubRecipe extends BaseRecipeType<ItemInput.simple> {
                     ByteBufCodecs.optional(ChanceOutput.Item.STREAM_CODEC),
                     r -> ChanceOutput.Item.optional(r.getOutput()),
                     ByteBufCodecs.optional(FluidStackTemplate.STREAM_CODEC),
-                    r -> Optional.of(RecipeCodecUtils.optionalCodec(r.getFluid())),
+                   r-> r.getFluid() == null ? Optional.empty() : Optional.of(r.getFluid()),
                     (i,r, o, f) -> new CrushingTubRecipe(i,r, o.orElse(null), f.orElse(null)));
 
 }
