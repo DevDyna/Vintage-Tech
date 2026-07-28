@@ -11,7 +11,7 @@ import com.devdyna.cakesticklib.api.primitive.Ticker;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
 import com.synergy.vintagetech.api.blockfactory.transmission.TransmissionBE;
-import com.synergy.vintagetech.api.recipeinput.CentrifugeInput;
+import com.synergy.vintagetech.api.recipeinput.FluidAndItemInput;
 import com.synergy.vintagetech.init.builder.centrifuge.recipe.CentrifugeRecipe;
 import com.synergy.vintagetech.init.types.zBlockEntities;
 import com.synergy.vintagetech.init.types.zRecipeTypes;
@@ -78,7 +78,7 @@ public class CentrifugeBE extends TransmissionBE
 
         Optional<RecipeHolder<CentrifugeRecipe>> r = level.getServer().getRecipeManager()
                 .getRecipeFor(zRecipeTypes.CENTRIFUGE.getType(),
-                        new CentrifugeInput(fluid, item), level);
+                        new FluidAndItemInput(fluid, item), level);
 
         if (r.isEmpty())
             return;
@@ -88,7 +88,11 @@ public class CentrifugeBE extends TransmissionBE
         if (recipe.getInputFluid().amount() > fluid.amount())
             return;
 
-        int recipeMultiplier = fluid.amount() / recipe.getInputFluid().amount();
+        if (recipe.getItemInput().count() > item.count())
+            return;
+
+        int recipeMultiplier = Math.min(item.count() / recipe.getItemInput().count(),
+                fluid.amount() / recipe.getInputFluid().amount());
 
         if (item.count() < recipe.getItemInput().count() * recipeMultiplier)
             return;
@@ -96,14 +100,18 @@ public class CentrifugeBE extends TransmissionBE
         if (fluid.amount() % recipe.getInputFluid().amount() != 0)
             return;
 
-            if(recipe.getOutputFluid()!= null)
-        if (recipe.getOutputFluid().amount() * recipeMultiplier > getTankCapacity())
-            return;
+        if (recipe.getOutputFluid() != null)
+                if (recipe.getOutputFluid().amount() * recipeMultiplier > getTankCapacity())
+                    return;
 
-            if(recipe.getOutputItem()!= null)
-        if (recipe.getOutputItem().item().count() * recipeMultiplier > getItemStorage().getCapacityAsInt(ITEM_OUTPUT,
-                getItemStorage().getResource(ITEM_OUTPUT)))
-            return;
+        if (recipe.getOutputItem() != null)
+            if (!getStackInSlot(ITEM_OUTPUT).isEmpty())
+                if (getItemStorage().getResource(ITEM_OUTPUT).is(recipe.getOutputItem().item().item()))
+                        if((recipe.getOutputItem().item().count() * recipeMultiplier)
+                                + getItemStorage().getAmountAsInt(ITEM_OUTPUT) > getItemStorage().getCapacityAsInt(
+                                        ITEM_OUTPUT,
+                                        getItemStorage().getResource(ITEM_OUTPUT)))
+                    return;
 
         if (ticker == null)
             ticker = Ticker.of(recipe.getTicks() * recipeMultiplier);
@@ -111,20 +119,21 @@ public class CentrifugeBE extends TransmissionBE
         if (ticker.commit()) {
             try (var tx = Transaction.openRoot()) {
 
-                getFluidStorage().extract(FLUID_TANK, FluidResource.of(fluid), fluid.amount(), tx);
+                getFluidStorage().extract(FLUID_TANK, FluidResource.of(fluid),
+                        recipe.getInputFluid().amount() * recipeMultiplier, tx);
 
-                if(recipe.getOutputFluid()!= null)
-                getFluidStorage().insert(FLUID_TANK, FluidResource.of(recipe.getOutputFluid()),
-                        recipe.getOutputFluid().amount() * recipeMultiplier, tx);
+                if (recipe.getOutputFluid() != null)
+                    getFluidStorage().insert(FLUID_TANK, FluidResource.of(recipe.getOutputFluid()),
+                            recipe.getOutputFluid().amount() * recipeMultiplier, tx);
 
                 getItemStorage().extract(ITEM_INPUT, ItemResource.of(item),
                         recipe.getItemInput().count() * recipeMultiplier, tx);
 
-                        if(recipe.getOutputItem()!= null)
-                for (int i = 0; i < recipeMultiplier; i++)
-                    if (RandomUtil.chance(level, recipe.getOutputItem().chance()))
-                        getItemStorage().insert(ITEM_OUTPUT, ItemResource.of(recipe.getOutputItem().item()),
-                                recipe.getOutputItem().item().count(), tx);
+                if (recipe.getOutputItem() != null)
+                    for (int i = 0; i < recipeMultiplier; i++)
+                        if (RandomUtil.chance(level, recipe.getOutputItem().chance()))
+                            getItemStorage().insert(ITEM_OUTPUT, ItemResource.of(recipe.getOutputItem().item()),
+                                    recipe.getOutputItem().item().count(), tx);
 
                 tx.commit();
             }

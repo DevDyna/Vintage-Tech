@@ -23,7 +23,7 @@ public class CentrifugeBuilder extends BaseRecipeBuilder
         FluidAttach.Output.OutputFluid<CentrifugeBuilder>, ItemAttach.Output.ItemOutputChance<CentrifugeBuilder> {
 
     private SizedFluidIngredient input_fluid;
-    private SizedIngredient catalyst;
+    private SizedIngredient input_item;
     private int ticks;
     private FluidStackTemplate output_fluid;
     private ChanceOutput.Item output_item;
@@ -40,7 +40,7 @@ public class CentrifugeBuilder extends BaseRecipeBuilder
 
     @Override
     public CentrifugeBuilder input(SizedIngredient i) {
-        this.catalyst = i;
+        this.input_item = i;
         return this;
     }
 
@@ -74,7 +74,7 @@ public class CentrifugeBuilder extends BaseRecipeBuilder
 
     @Override
     public Recipe<?> createRecipe() {
-        return new CentrifugeRecipe(input_fluid, catalyst, ticks, output_fluid, output_item);
+        return new CentrifugeRecipe(input_fluid, input_item, ticks, output_fluid, output_item);
     }
 
     @Override

@@ -4,7 +4,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeInput;
 import net.neoforged.neoforge.fluids.FluidStack;
 
-public record CentrifugeInput(FluidStack fluid ,ItemStack catalyst) implements RecipeInput{
+public record FluidAndItemInput(FluidStack fluid ,ItemStack catalyst) implements RecipeInput{
 
     @Override
     public ItemStack getItem(int index) {

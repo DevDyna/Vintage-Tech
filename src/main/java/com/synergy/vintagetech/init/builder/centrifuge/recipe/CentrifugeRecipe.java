@@ -11,7 +11,7 @@ import com.devdyna.cakesticklib.api.utils.x;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.synergy.vintagetech.api.recipeinput.CentrifugeInput;
+import com.synergy.vintagetech.api.recipeinput.FluidAndItemInput;
 import com.synergy.vintagetech.init.types.zBlocks;
 import com.synergy.vintagetech.init.types.zRecipeTypes;
 
@@ -30,7 +30,7 @@ import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 
-public class CentrifugeRecipe extends BaseRecipeType<CentrifugeInput> {
+public class CentrifugeRecipe extends BaseRecipeType<FluidAndItemInput> {
 
     private final SizedFluidIngredient input_fluid;
     private final SizedIngredient catalyst;
@@ -52,12 +52,12 @@ public class CentrifugeRecipe extends BaseRecipeType<CentrifugeInput> {
         return new CentrifugeRecipe(input_fluid, catalyst, ticks, output_fluid, output_item);
     }
 
-    public boolean matches(CentrifugeInput r, Level l) {
+    public boolean matches(FluidAndItemInput r, Level l) {
         return this.input_fluid.test(r.fluid()) && this.catalyst.test(r.catalyst());
     }
 
     @Override
-    public ItemStack assemble(CentrifugeInput r) {
+    public ItemStack assemble(FluidAndItemInput r) {
         return x.item(this.output_fluid.create().getFluid().getBucket()).copy();
     }
 
@@ -86,12 +86,12 @@ public class CentrifugeRecipe extends BaseRecipeType<CentrifugeInput> {
     }
 
     @Override
-    public RecipeType<? extends Recipe<CentrifugeInput>> getType() {
+    public RecipeType<? extends Recipe<FluidAndItemInput>> getType() {
         return zRecipeTypes.CENTRIFUGE.getType();
     }
 
     @Override
-    public RecipeSerializer<? extends Recipe<CentrifugeInput>> getSerializer() {
+    public RecipeSerializer<? extends Recipe<FluidAndItemInput>> getSerializer() {
         return zRecipeTypes.CENTRIFUGE.getSerializer();
     }
 
@@ -114,7 +114,7 @@ public class CentrifugeRecipe extends BaseRecipeType<CentrifugeInput> {
             SizedIngredient.NESTED_CODEC.fieldOf("input_item").forGetter(CentrifugeRecipe::getItemInput),
             Codec.intRange(1, Integer.MAX_VALUE).fieldOf("ticks").forGetter(CentrifugeRecipe::getTicks),
             FluidStackTemplate.CODEC.optionalFieldOf("output_fluid").forGetter(r -> Optional.of(r.getOutputFluid())),
-            ChanceOutput.Item.CODEC.optionalFieldOf("output")
+            ChanceOutput.Item.CODEC.optionalFieldOf("output_item")
                     .forGetter(r -> ChanceOutput.Item.optional(r.getOutputItem())))
             .apply(inst,
                     (inf, ini, ti, of, oi) -> new CentrifugeRecipe(inf, ini, ti, of.orElse(null), oi.orElse(null))));
