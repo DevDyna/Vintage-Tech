@@ -29,7 +29,7 @@ public class zItems {
         // seeds
         public static final DeferredHolder<Item, Item> SOYBEANS = zItem.registerItem("soybeans",
                         p -> new BlockItem(zBlocks.SOYBEANS.get(), p.useItemDescriptionPrefix()
-                                        .food(new FoodProperties(1, 25f, true))));
+                                        .food(new FoodProperties(1, 5f, true))));
 
         public static final DeferredHolder<Item, Item> CAVE_WHEAT_SEEDS = zItem.registerItem("cave_wheat_seeds",
                         p -> new BlockItem(zBlocks.CAVE_WHEAT.get(), p.useItemDescriptionPrefix()
