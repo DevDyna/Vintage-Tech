@@ -236,6 +236,9 @@ public class DataBlockTag extends BlockTagsProvider {
                                 .add(Blocks.GRASS_BLOCK)
                                 .addTag(zTags.Blocks.SUPPORT_HEMP_PLANT);
 
+                tag(zTags.Blocks.CRUCIBLE_HEAT_SOURCES)
+                                .addTags(BlockTags.FIRE, BlockTags.CAMPFIRES);
+
         }
 
 }
