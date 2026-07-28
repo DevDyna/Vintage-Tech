@@ -3,15 +3,29 @@
   "pools": [
     {
       "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "vintagetech:crushing_tub"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
       "conditions": [
         {
-          "condition": "minecraft:survives_explosion"
+          "block": "vintagetech:crushing_tub",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "has_mesh": "true"
+          }
         }
       ],
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "vintagetech:crushing_tub"
+          "name": "vintagetech:mesh"
         }
       ],
       "rolls": 1.0
