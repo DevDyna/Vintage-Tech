@@ -167,7 +167,7 @@ public class zBlocks {
 
         public static final DeferredHolder<Block, Block> CRUSHING_TUB = registerItemBlock("crushing_tub",
                         p -> new CrushingTubBlock(p
-                                        .strength(2.0F, 3.0F)
+                                        .strength(1.0F, 1.50F)
                                         .sound(SoundType.WOOD)
                                         .instrument(NoteBlockInstrument.BASS)
                                         .mapColor(MapColor.RAW_IRON)));
