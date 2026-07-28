@@ -1,27 +1,51 @@
 {
   "variants": {
-    "axis=x,powered=false": {
+    "axis=x,inverted=false,powered=false": {
       "model": "vintagetech:block/gearshift_off",
       "x": 90,
       "y": 90
     },
-    "axis=x,powered=true": {
+    "axis=x,inverted=false,powered=true": {
       "model": "vintagetech:block/gearshift_on",
       "x": 90,
       "y": 90
     },
-    "axis=y,powered=false": {
+    "axis=x,inverted=true,powered=false": {
+      "model": "vintagetech:block/gearshift_off_alt",
+      "x": 90,
+      "y": 90
+    },
+    "axis=x,inverted=true,powered=true": {
+      "model": "vintagetech:block/gearshift_on_alt",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y,inverted=false,powered=false": {
       "model": "vintagetech:block/gearshift_off"
     },
-    "axis=y,powered=true": {
+    "axis=y,inverted=false,powered=true": {
       "model": "vintagetech:block/gearshift_on"
     },
-    "axis=z,powered=false": {
+    "axis=y,inverted=true,powered=false": {
+      "model": "vintagetech:block/gearshift_off_alt"
+    },
+    "axis=y,inverted=true,powered=true": {
+      "model": "vintagetech:block/gearshift_on_alt"
+    },
+    "axis=z,inverted=false,powered=false": {
       "model": "vintagetech:block/gearshift_off",
       "x": 90
     },
-    "axis=z,powered=true": {
+    "axis=z,inverted=false,powered=true": {
       "model": "vintagetech:block/gearshift_on",
+      "x": 90
+    },
+    "axis=z,inverted=true,powered=false": {
+      "model": "vintagetech:block/gearshift_off_alt",
+      "x": 90
+    },
+    "axis=z,inverted=true,powered=true": {
+      "model": "vintagetech:block/gearshift_on_alt",
       "x": 90
     }
   }
