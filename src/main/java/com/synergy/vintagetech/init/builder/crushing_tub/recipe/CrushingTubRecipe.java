@@ -106,9 +106,9 @@ public class CrushingTubRecipe extends BaseRecipeType<ItemInput.simple> {
             Codec.BOOL.fieldOf("require_mesh").forGetter(CrushingTubRecipe::getRequireMesh),
             ChanceOutput.Item.CODEC.optionalFieldOf("output")
                     .forGetter(r -> ChanceOutput.Item.optional(r.getOutput())),
-            FluidStackTemplate.CODEC.optionalFieldOf("fluid", null)
-                    .forGetter(r -> RecipeCodecUtils.optionalCodec(r.getFluid())))
-            .apply(inst, (i,r ,o, f) -> new CrushingTubRecipe(i,r, o.orElse(null), f)));
+            FluidStackTemplate.CODEC.optionalFieldOf("fluid")
+                    .forGetter(r -> Optional.of(RecipeCodecUtils.optionalCodec(r.getFluid()))))
+            .apply(inst, (i,r ,o, f) -> new CrushingTubRecipe(i,r, o.orElse(null), f.orElse(null))));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, CrushingTubRecipe> STREAM_CODEC = StreamCodec
             .composite(
