@@ -386,11 +386,11 @@ public class DataModel extends ModelProvider {
                 itemModels.itemModelOutput.accept(zBlocks.SAW.get().asItem(),
                                 ItemModelUtils.plainModel(x.rl(MODULE_ID, "block/saw_off")));
 
-                itemModels.itemModelOutput.accept(zBlocks.GEARSHIFT.get().asItem(),
-                                ItemModelUtils.plainModel(x.rl(MODULE_ID, "block/gearshift_off")));
-
                 itemModels.itemModelOutput.accept(zBlocks.CLUTCH.get().asItem(),
-                                ItemModelUtils.plainModel(x.rl(MODULE_ID, "block/clutch_off")));
+                                ItemModelUtils.plainModel(x.rl(MODULE_ID, "item/clutch")));
+
+                itemModels.itemModelOutput.accept(zBlocks.GEARSHIFT.get().asItem(),
+                                ItemModelUtils.plainModel(x.rl(MODULE_ID, "item/gearshift")));
 
                 itemModels.itemModelOutput.accept(zBlocks.MECHANICAL_FARMLAND.get().asItem(),
                                 ItemModelUtils.plainModel(x.rl(MODULE_ID, "item/mechanical_farmland")));

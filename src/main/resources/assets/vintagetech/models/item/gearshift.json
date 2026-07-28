@@ -1,0 +1,6 @@
+{
+  "parent": "vintagetech:item/template/modifier",
+  "textures": {
+    "frame": "vintagetech:block/gearshift/off"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "vintagetech:item/template/modifier",
+  "textures": {
+    "layer0": "vintagetech:block/clutch/off"
+  }
+}
