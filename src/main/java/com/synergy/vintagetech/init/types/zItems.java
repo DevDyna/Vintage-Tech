@@ -66,5 +66,6 @@ public class zItems {
         public static final DeferredHolder<Item, Item> TINY_IRON_DUST = zItem.registerSimpleItem("tiny_iron_dust");
 
 
+        public static final DeferredHolder<Item, Item> MESH = zItem.registerSimpleItem("mesh", p -> p.stacksTo(16));
 
 }

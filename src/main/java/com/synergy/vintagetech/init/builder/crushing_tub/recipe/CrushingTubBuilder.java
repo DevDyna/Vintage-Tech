@@ -21,6 +21,7 @@ public class CrushingTubBuilder extends BaseRecipeBuilder
          FluidAttach.Output.OutputFluid<CrushingTubBuilder> {
 
     private Ingredient input;
+    private boolean require_mesh = false;
     private FluidStackTemplate fluid;
     private ChanceOutput.Item output;
 
@@ -35,6 +36,11 @@ public class CrushingTubBuilder extends BaseRecipeBuilder
 
     public CrushingTubBuilder input(Ingredient input) {
         this.input = input;
+        return this;
+    }
+
+    public CrushingTubBuilder requireMesh() {
+        this.require_mesh = true;
         return this;
     }
 
@@ -63,7 +69,7 @@ public class CrushingTubBuilder extends BaseRecipeBuilder
 
     @Override
     public Recipe<?> createRecipe() {
-        return new CrushingTubRecipe(input, output, fluid);
+        return new CrushingTubRecipe(input,require_mesh, output, fluid);
     }
 
     @Override

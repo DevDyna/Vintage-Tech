@@ -13,11 +13,14 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition.Builder;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -25,6 +28,8 @@ import net.neoforged.neoforge.transfer.fluid.FluidStacksResourceHandler;
 
 public class CrushingTubBlock extends TickingBlock
         implements BucketInteraction, FluidClearableTank, FluidTooltipWhenEmpty {
+
+            public final static BooleanProperty MESH = BooleanProperty.create("has_mesh");
 
     public CrushingTubBlock(Properties p) {
         super(p);
@@ -34,6 +39,18 @@ public class CrushingTubBlock extends TickingBlock
     @Nullable
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return new CrushingTubBE(pos, state);
+    }
+
+    @Override
+    protected void createBlockStateDefinition(Builder<Block, BlockState> b) {
+        b.add(MESH);
+    }
+
+    @Override
+    @Nullable
+    public BlockState getStateForPlacement(BlockPlaceContext c) {
+        return defaultBlockState()
+                .setValue(MESH, false);
     }
 
     @Override
@@ -101,7 +118,7 @@ public class CrushingTubBlock extends TickingBlock
 
         if (level.getBlockEntity(pos) instanceof CrushingTubBE be &&
                 entity.is(zTags.Entities.CRUSHING_TUB_ALLOW_CRUSHING))
-            be.craft(false);
+            be.craft();
 
         super.fallOn(level, state, pos, entity, fallDistance);
     }
