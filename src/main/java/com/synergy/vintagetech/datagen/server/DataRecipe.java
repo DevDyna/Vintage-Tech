@@ -127,8 +127,8 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                 CentrifugeBuilder.of(registries)
                                 .input(zItems.MASHED_SOYBEANS)
                                 .fluid(Fluids.WATER, 125)
-                                // .output(zFluids.SOYMILK.getFluid(), 125)
-                                // TODO IMP : .output(zItems.SOY_DOUGH)
+                                .output(zFluids.SOYMILK.getFluid(), 125)
+                                .output(zItems.SOY_DOUGH, 2, 1f)
                                 .unlockedBy(getHasName(Items.SUGAR), has(Items.SUGAR))
                                 .save(output);
 
