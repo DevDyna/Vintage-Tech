@@ -397,14 +397,14 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .fluid(Fluids.WATER, 1000)
                                 .output(zFluids.FERTILIZER_NATURAL.getFluid(), 250)
                                 .unlockedBy(getHasName(zItems.SAP.get()), has(zItems.SAP.get()))
-                                .save(output);
+                                .save(output,"_from_sap");
 
                 CentrifugeBuilder.of(registries)
                                 .input(zItems.OKARA)
                                 .fluid(Fluids.WATER, 1000)
                                 .output(zFluids.FERTILIZER_NATURAL.getFluid(), 750)
                                 .unlockedBy(getHasName(zItems.OKARA.get()), has(zItems.OKARA.get()))
-                                .save(output);
+                                .save(output,"_from_okara");
 
                 CentrifugeBuilder.of(registries)
                                 .input(Items.BONE_MEAL)
