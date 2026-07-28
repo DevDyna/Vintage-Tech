@@ -80,6 +80,13 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                                 has(zBlocks.EVAPORATION_BASIN.get()))
                                 .save(output);
 
+                EvaporationBasinBuilder.of(registries)
+                                .fluid(zFluids.IRONBERRY_JUICE.getFluid(), 125)
+                                .output(zItems.TINY_IRON_DUST)
+                                .unlockedBy(getHasName(zBlocks.EVAPORATION_BASIN.get()),
+                                                has(zBlocks.EVAPORATION_BASIN.get()))
+                                .save(output);
+
                 DryingRackBuilder.of(registries)
                                 .input(ItemTags.SAPLINGS)
                                 .output(Items.DEAD_BUSH)
@@ -172,6 +179,13 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .log(Tags.Blocks.NETHER_NATURAL_LOGS)
                                 .leaves(BlockTags.WART_BLOCKS)
                                 .output(zFluids.OIL.getFluid(), 25)
+                                .unlockedBy(getHasName(zBlocks.TREE_TAP.get()), has(zBlocks.TREE_TAP.get()))
+                                .save(output);
+
+                TreeTapBuilder.of(registries)
+                                .log(zBlocks.IRONWOOD_LOG.get())
+                                .leaves(zBlocks.IRONWOOD_LEAVES.get())
+                                .output(zFluids.IRONBERRY_JUICE.getFluid(), 250)
                                 .unlockedBy(getHasName(zBlocks.TREE_TAP.get()), has(zBlocks.TREE_TAP.get()))
                                 .save(output);
 
