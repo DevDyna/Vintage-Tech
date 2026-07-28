@@ -97,7 +97,7 @@ public class CrushingTubBlock extends TickingBlock
     @Override
     public InteractionResult executeWhenEmpty(ItemStack stack, BlockState state, Level level, BlockPos pos,
             Player player, InteractionHand hand, BlockHitResult hitResult) {
-        if (state.getValue(MESH))
+        if (state.getValue(MESH) && !level.isClientSide())
             if (level.getBlockEntity(pos) instanceof CrushingTubBE be)
                 return be.itemUseOn(player, level, pos, hand);
         if (player.isCrouching())
