@@ -1,0 +1,11 @@
+{
+  "type": "vintagetech:tree_tap",
+  "chance": 0.5,
+  "delay": 200,
+  "fluid": {
+    "amount": 250,
+    "id": "vintagetech:ironberry_juice_source"
+  },
+  "leaves": "vintagetech:ironwood_leaves",
+  "logs": "vintagetech:ironwood_log"
+}

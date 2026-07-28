@@ -1,0 +1,11 @@
+{
+  "type": "vintagetech:evaporation_basin",
+  "fluid": {
+    "amount": 125,
+    "ingredient": "vintagetech:ironberry_juice_source"
+  },
+  "output": {
+    "id": "vintagetech:tiny_iron_dust"
+  },
+  "ticks": 20
+}

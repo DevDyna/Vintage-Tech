@@ -1,27 +1,27 @@
 {
   "variants": {
     "axis=x,powered=false": {
-      "model": "vintagetech:block/gearshift_off",
+      "model": "vintagetech:block/clutch_off",
       "x": 90,
       "y": 90
     },
     "axis=x,powered=true": {
-      "model": "vintagetech:block/gearshift_on",
+      "model": "vintagetech:block/clutch_on",
       "x": 90,
       "y": 90
     },
     "axis=y,powered=false": {
-      "model": "vintagetech:block/gearshift_off"
+      "model": "vintagetech:block/clutch_off"
     },
     "axis=y,powered=true": {
-      "model": "vintagetech:block/gearshift_on"
+      "model": "vintagetech:block/clutch_on"
     },
     "axis=z,powered=false": {
-      "model": "vintagetech:block/gearshift_off",
+      "model": "vintagetech:block/clutch_off",
       "x": 90
     },
     "axis=z,powered=true": {
-      "model": "vintagetech:block/gearshift_on",
+      "model": "vintagetech:block/clutch_on",
       "x": 90
     }
   }

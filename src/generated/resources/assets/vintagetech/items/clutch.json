@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "vintagetech:block/gearshift_off"
+    "model": "vintagetech:block/clutch_off"
   }
 }
