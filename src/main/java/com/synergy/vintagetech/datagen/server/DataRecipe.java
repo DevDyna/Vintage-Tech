@@ -251,7 +251,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .define('#', zItems.HEMP_FIBER.get())
                                 .pattern("###")
                                 .unlockedBy(getHasName(zItems.HEMP_FIBER.get()), has(zItems.HEMP_FIBER.get()))
-                                .save(output, getSimpleRecipeName(zBlocks.ROPE.get()) + "_alt");
+                                .save(output, MODULE_ID + ":rope_alt");
 
                 twoByTwoPacker(output, zItems.TINY_IRON_DUST.get(), Items.RAW_IRON,
                                 MODULE_ID + ":raw_iron_from_tiny_iron_dust");
@@ -269,17 +269,17 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .requires(Items.STRING)
                                 .requires(Items.STICK)
                                 .unlockedBy(getHasName(zItems.AMBER.get()), has(zItems.AMBER.get()))
-                                .save(output);
+                                .save(output, MODULE_ID + ":torch_from_amber");
 
                 shapeless(RecipeCategory.MISC, Items.MAGENTA_DYE, 2)
                                 .requires(zBlocks.LAVENDER.get())
                                 .unlockedBy(getHasName(zBlocks.LAVENDER.get()), has(zBlocks.LAVENDER.get()))
-                                .save(output);
+                                .save(output, MODULE_ID + ":magenta_dye_from_lavender");
 
                 shapeless(RecipeCategory.MISC, Items.LIME_DYE, 2)
                                 .requires(zItems.ALOE.get())
                                 .unlockedBy(getHasName(zItems.ALOE.get()), has(zItems.ALOE.get()))
-                                .save(output);
+                                .save(output, MODULE_ID + ":lime_dye_from_aloe");
 
                 MillstoneBuilder.of(registries)
                                 .input(zItems.ALOE.get())
@@ -398,14 +398,14 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .fluid(Fluids.WATER, 1000)
                                 .output(zFluids.FERTILIZER_NATURAL.getFluid(), 250)
                                 .unlockedBy(getHasName(zItems.SAP.get()), has(zItems.SAP.get()))
-                                .save(output,"_from_sap");
+                                .save(output, "_from_sap");
 
                 CentrifugeBuilder.of(registries)
                                 .input(zItems.OKARA)
                                 .fluid(Fluids.WATER, 1000)
                                 .output(zFluids.FERTILIZER_NATURAL.getFluid(), 750)
                                 .unlockedBy(getHasName(zItems.OKARA.get()), has(zItems.OKARA.get()))
-                                .save(output,"_from_okara");
+                                .save(output, "_from_okara");
 
                 CentrifugeBuilder.of(registries)
                                 .input(Items.BONE_MEAL)
