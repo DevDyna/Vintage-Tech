@@ -9,6 +9,7 @@ import com.devdyna.cakesticklib.api.factories.plants.builder.BaseShortCropBlock;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.synergy.vintagetech.api.BlockModelUtils;
 import com.synergy.vintagetech.init.builder.RopeBlock;
+import com.synergy.vintagetech.init.builder.crushing_tub.CrushingTubBlock;
 import com.synergy.vintagetech.init.builder.plants.Aloe;
 import com.synergy.vintagetech.init.builder.plants.BlueBerry;
 import com.synergy.vintagetech.init.builder.plants.Hemp;
@@ -170,7 +171,7 @@ public class DataModel extends ModelProvider {
 
                 BlockModelUtils.simplePlain(blockModels, zBlocks.JUNCTION);
                 BlockModelUtils.simplePlain(blockModels, zBlocks.MILLSTONE);
-                BlockModelUtils.simplePlain(blockModels, zBlocks.CRUSHING_TUB);
+                // BlockModelUtils.simplePlain(blockModels, zBlocks.CRUSHING_TUB);
                 BlockModelUtils.simplePlain(blockModels, zBlocks.EVAPORATION_BASIN);
 
                 BlockModelUtils.createHorizontalFacingBlock(blockModels, zBlocks.DRYING_RACK.get(),
@@ -184,7 +185,19 @@ public class DataModel extends ModelProvider {
                 // BlockModelUtils.simplePlain(blockModels, zBlocks.HYDRAULIC_PRESS);
                 // BlockModelUtils.simplePlain(blockModels, zBlocks.MIXING_BARREL);
                 BlockModelUtils.simplePlain(blockModels, zBlocks.CRUCIBLE);
+                // BlockModelUtils.simplePlain(blockModels, zBlocks.NODE);
                 // BlockModelUtils.simplePlain(blockModels, zBlocks.TURNTABLE);
+
+                blockModels.blockStateOutput.accept(
+                                MultiPartGenerator.multiPart(zBlocks.CRUSHING_TUB.get())
+                                                .with(BlockModelGenerators.plainVariant(
+                                                                x.rl(MODULE_ID, "block/crushing_tub/tub")))
+                                                .with(BlockModelGenerators.condition().term(CrushingTubBlock.MESH,
+                                                                true),
+                                                                BlockModelGenerators.plainVariant(
+                                                                                x.rl(MODULE_ID, "block/crushing_tub/mesh")))
+
+                );
 
                 blockModels.blockStateOutput.accept(
                                 BlockModelGenerators.createSimpleBlock(zBlocks.LAVENDER.get(),
@@ -340,6 +353,9 @@ public class DataModel extends ModelProvider {
                 itemModels.generateFlatItem(zBlocks.LAVENDER.get().asItem(), ModelTemplates.FLAT_ITEM);
                 itemModels.generateFlatItem(zBlocks.ROPE.get().asItem(), ModelTemplates.FLAT_ITEM);
 
+                // itemModels.generateFlatItem(zBlocks.NODE.get().asItem(),
+                // ModelTemplates.FLAT_ITEM);
+
                 itemModels.itemModelOutput.accept(zBlocks.AXLE.get().asItem(),
                                 ItemModelUtils.plainModel(
                                                 new ModelTemplate(
@@ -357,6 +373,9 @@ public class DataModel extends ModelProvider {
                                                                                                                                 MODULE_ID,
                                                                                                                                 "block/beam/axle"))),
                                                                                 itemModels.modelOutput)));
+
+                itemModels.itemModelOutput.accept(zBlocks.CRUSHING_TUB.get().asItem(),
+                                ItemModelUtils.plainModel(x.rl(MODULE_ID, "item/crushing_tub/tub")));
 
                 itemModels.itemModelOutput.accept(zBlocks.JUNCTION.get().asItem(),
                                 ItemModelUtils.plainModel(x.rl(MODULE_ID, "item/junction")));
@@ -383,7 +402,6 @@ public class DataModel extends ModelProvider {
                 itemModels.itemModelOutput.accept(zBlocks.DYNAMO.get().asItem(),
                                 ItemModelUtils.plainModel(x.rl(MODULE_ID, "block/steam_engine")));
 
-                
         }
 
 }
