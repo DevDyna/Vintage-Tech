@@ -10,5 +10,6 @@
     "item": {
       "id": "minecraft:stick"
     }
-  }
+  },
+  "require_mesh": false
 }

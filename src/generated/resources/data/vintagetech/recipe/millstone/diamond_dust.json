@@ -1,0 +1,8 @@
+{
+  "type": "vintagetech:millstone",
+  "input": "#c:gems/diamond",
+  "output": {
+    "id": "cakesticklib:diamond_dust"
+  },
+  "ticks": 40
+}

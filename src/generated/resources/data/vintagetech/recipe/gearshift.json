@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "vintagetech:axle",
+    "#c:ingots/copper",
+    "minecraft:repeater"
+  ],
+  "result": {
+    "id": "vintagetech:gearshift"
+  }
+}

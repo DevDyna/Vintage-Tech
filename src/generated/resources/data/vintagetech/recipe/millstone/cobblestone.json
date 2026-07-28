@@ -1,0 +1,8 @@
+{
+  "type": "vintagetech:millstone",
+  "input": "minecraft:stone",
+  "output": {
+    "id": "minecraft:cobblestone"
+  },
+  "ticks": 40
+}

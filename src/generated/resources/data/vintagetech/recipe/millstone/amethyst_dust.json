@@ -1,0 +1,8 @@
+{
+  "type": "vintagetech:millstone",
+  "input": "#c:gems/amethyst",
+  "output": {
+    "id": "cakesticklib:amethyst_dust"
+  },
+  "ticks": 40
+}

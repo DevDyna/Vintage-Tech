@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "I": "#c:ingots/iron",
+    "P": "#minecraft:planks"
+  },
+  "pattern": [
+    " I ",
+    "PPP"
+  ],
+  "result": {
+    "id": "vintagetech:saw"
+  }
+}

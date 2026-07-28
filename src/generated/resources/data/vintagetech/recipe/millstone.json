@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "G": "#c:gears/wooden",
+    "H": "minecraft:hopper",
+    "I": "#c:ingots/iron",
+    "P": "#c:stones",
+    "S": "#c:slabs/stone"
+  },
+  "pattern": [
+    " H ",
+    "SGS",
+    "PIP"
+  ],
+  "result": {
+    "id": "vintagetech:millstone"
+  }
+}

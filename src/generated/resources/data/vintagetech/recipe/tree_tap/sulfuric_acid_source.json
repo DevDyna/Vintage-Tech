@@ -1,0 +1,11 @@
+{
+  "type": "vintagetech:tree_tap",
+  "chance": 0.5,
+  "delay": 200,
+  "fluid": {
+    "amount": 25,
+    "id": "vintagetech:sulfuric_acid_source"
+  },
+  "leaves": "#minecraft:wart_blocks",
+  "logs": "#c:natural_logs/nether"
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_okara": {
+      "conditions": {
+        "items": [
+          {
+            "items": "vintagetech:okara"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "vintagetech:centrifuge/natural_fertilizer_source_from_okara"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_okara"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "vintagetech:centrifuge/natural_fertilizer_source_from_okara"
+    ]
+  }
+}

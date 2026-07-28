@@ -1,0 +1,11 @@
+{
+  "type": "vintagetech:evaporation_basin",
+  "fluid": {
+    "amount": 25,
+    "ingredient": "vintagetech:sulfuric_acid_source"
+  },
+  "output": {
+    "id": "cakesticklib:sulfur_dust"
+  },
+  "ticks": 20
+}

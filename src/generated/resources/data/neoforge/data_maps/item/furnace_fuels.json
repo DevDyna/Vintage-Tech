@@ -1,0 +1,36 @@
+{
+  "values": {
+    "vintagetech:bitumen": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "burn_time": 800
+    },
+    "vintagetech:crushing_tub": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "burn_time": 400
+    },
+    "vintagetech:glue": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "burn_time": 400
+    },
+    "vintagetech:mesh": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "burn_time": 100
+    }
+  }
+}

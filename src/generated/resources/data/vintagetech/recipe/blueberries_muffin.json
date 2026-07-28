@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "cakesticklib:flour",
+    "vintagetech:blueberries",
+    "vintagetech:blueberries",
+    "minecraft:sugar"
+  ],
+  "result": {
+    "count": 2,
+    "id": "vintagetech:blueberries_muffin"
+  }
+}

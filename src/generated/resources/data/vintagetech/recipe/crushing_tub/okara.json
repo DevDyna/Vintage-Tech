@@ -1,0 +1,15 @@
+{
+  "type": "vintagetech:crushing_tub",
+  "fluid": {
+    "amount": 100,
+    "id": "vintagetech:soymilk_source"
+  },
+  "input": "vintagetech:soy_dough",
+  "output": {
+    "chance": 1.0,
+    "item": {
+      "id": "vintagetech:okara"
+    }
+  },
+  "require_mesh": true
+}

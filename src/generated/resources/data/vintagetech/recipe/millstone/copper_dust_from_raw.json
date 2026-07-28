@@ -1,0 +1,9 @@
+{
+  "type": "vintagetech:millstone",
+  "input": "#c:raw_materials/copper",
+  "output": {
+    "count": 2,
+    "id": "cakesticklib:copper_dust"
+  },
+  "ticks": 40
+}

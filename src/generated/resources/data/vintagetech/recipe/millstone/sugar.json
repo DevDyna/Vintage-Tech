@@ -1,0 +1,9 @@
+{
+  "type": "vintagetech:millstone",
+  "input": "#c:crops/sugar_cane",
+  "output": {
+    "count": 2,
+    "id": "minecraft:sugar"
+  },
+  "ticks": 40
+}

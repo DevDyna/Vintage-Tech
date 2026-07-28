@@ -1,0 +1,8 @@
+{
+  "type": "vintagetech:millstone",
+  "input": "#c:gems/emerald",
+  "output": {
+    "id": "cakesticklib:emerald_dust"
+  },
+  "ticks": 40
+}

@@ -1,0 +1,9 @@
+{
+  "type": "vintagetech:millstone",
+  "input": "vintagetech:aloe",
+  "output": {
+    "count": 4,
+    "id": "minecraft:lime_dye"
+  },
+  "ticks": 40
+}

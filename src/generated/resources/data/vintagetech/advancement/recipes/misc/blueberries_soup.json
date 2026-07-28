@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_blueberries": {
+      "conditions": {
+        "items": [
+          {
+            "items": "vintagetech:blueberries"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "vintagetech:blueberries_soup"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_blueberries"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "vintagetech:blueberries_soup"
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_soy_dough": {
+      "conditions": {
+        "items": [
+          {
+            "items": "vintagetech:soy_dough"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "vintagetech:crushing_tub/okara"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_soy_dough"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "vintagetech:crushing_tub/okara"
+    ]
+  }
+}

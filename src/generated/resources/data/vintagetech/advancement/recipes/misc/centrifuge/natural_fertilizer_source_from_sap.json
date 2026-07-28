@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_sap": {
+      "conditions": {
+        "items": [
+          {
+            "items": "vintagetech:sap"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "vintagetech:centrifuge/natural_fertilizer_source_from_sap"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_sap"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "vintagetech:centrifuge/natural_fertilizer_source_from_sap"
+    ]
+  }
+}

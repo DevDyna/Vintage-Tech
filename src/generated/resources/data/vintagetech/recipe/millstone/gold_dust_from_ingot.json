@@ -1,0 +1,8 @@
+{
+  "type": "vintagetech:millstone",
+  "input": "#c:ingots/gold",
+  "output": {
+    "id": "cakesticklib:gold_dust"
+  },
+  "ticks": 40
+}

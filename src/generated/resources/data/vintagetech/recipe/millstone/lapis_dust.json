@@ -1,0 +1,8 @@
+{
+  "type": "vintagetech:millstone",
+  "input": "#c:gems/lapis",
+  "output": {
+    "id": "cakesticklib:lapis_dust"
+  },
+  "ticks": 40
+}

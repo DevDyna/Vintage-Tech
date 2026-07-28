@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:bowl",
+    "vintagetech:ironberries",
+    "vintagetech:ironberries",
+    "vintagetech:ironberries",
+    "vintagetech:ironberries",
+    "vintagetech:ironberries",
+    "vintagetech:ironberries"
+  ],
+  "result": {
+    "id": "vintagetech:ironberries_soup"
+  }
+}

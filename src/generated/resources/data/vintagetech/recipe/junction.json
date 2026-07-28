@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "vintagetech:axle",
+    "vintagetech:axle",
+    "vintagetech:axle",
+    "vintagetech:rope"
+  ],
+  "result": {
+    "id": "vintagetech:junction"
+  }
+}

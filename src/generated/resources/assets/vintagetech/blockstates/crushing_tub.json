@@ -1,7 +1,17 @@
 {
-  "variants": {
-    "": {
-      "model": "vintagetech:block/crushing_tub"
+  "multipart": [
+    {
+      "apply": {
+        "model": "vintagetech:block/crushing_tub/tub"
+      }
+    },
+    {
+      "apply": {
+        "model": "vintagetech:block/crushing_tub/mesh"
+      },
+      "when": {
+        "has_mesh": "true"
+      }
     }
-  }
+  ]
 }

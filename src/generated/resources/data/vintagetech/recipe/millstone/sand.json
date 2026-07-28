@@ -1,0 +1,8 @@
+{
+  "type": "vintagetech:millstone",
+  "input": "#c:gravels",
+  "output": {
+    "id": "minecraft:sand"
+  },
+  "ticks": 40
+}

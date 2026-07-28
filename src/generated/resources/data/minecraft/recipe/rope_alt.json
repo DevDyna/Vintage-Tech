@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": "vintagetech:hemp_fiber"
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "count": 8,
+    "id": "vintagetech:rope"
+  }
+}

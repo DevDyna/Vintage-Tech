@@ -1,0 +1,84 @@
+{
+  "values": {
+    "vintagetech:aloe": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "chance": 0.3
+    },
+    "vintagetech:blueberries": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "chance": 0.3
+    },
+    "vintagetech:cave_wheat_seeds": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "chance": 0.3
+    },
+    "vintagetech:hemp": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "chance": 0.3
+    },
+    "vintagetech:hemp_seeds": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "chance": 0.3
+    },
+    "vintagetech:ironberries": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "chance": 0.3
+    },
+    "vintagetech:ironwood_leaves": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "chance": 0.3
+    },
+    "vintagetech:ironwood_sapling": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "chance": 0.3
+    },
+    "vintagetech:lavender": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "chance": 0.3
+    },
+    "vintagetech:soybeans": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "chance": 0.3
+    }
+  }
+}

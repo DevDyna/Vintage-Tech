@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "A": "vintagetech:axle",
+    "B": "minecraft:barrel",
+    "F": "vintagetech:fan",
+    "S": "#minecraft:wooden_slabs"
+  },
+  "pattern": [
+    "SFS",
+    "SAS",
+    "SBS"
+  ],
+  "result": {
+    "id": "vintagetech:centrifuge"
+  }
+}

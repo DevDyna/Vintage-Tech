@@ -1,0 +1,8 @@
+{
+  "type": "vintagetech:millstone",
+  "input": "#c:ingots/copper",
+  "output": {
+    "id": "cakesticklib:copper_dust"
+  },
+  "ticks": 40
+}

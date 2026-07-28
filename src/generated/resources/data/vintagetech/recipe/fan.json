@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "I": "#c:ingots/iron",
+    "N": "#c:nuggets/iron"
+  },
+  "pattern": [
+    " I ",
+    "INI",
+    " I "
+  ],
+  "result": {
+    "id": "vintagetech:fan"
+  }
+}

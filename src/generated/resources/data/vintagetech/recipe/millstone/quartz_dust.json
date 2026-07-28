@@ -1,0 +1,8 @@
+{
+  "type": "vintagetech:millstone",
+  "input": "#c:gems/quartz",
+  "output": {
+    "id": "cakesticklib:quartz_dust"
+  },
+  "ticks": 40
+}

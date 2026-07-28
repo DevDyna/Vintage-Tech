@@ -1,0 +1,8 @@
+{
+  "type": "vintagetech:millstone",
+  "input": "minecraft:deepslate",
+  "output": {
+    "id": "minecraft:cobbled_deepslate"
+  },
+  "ticks": 40
+}

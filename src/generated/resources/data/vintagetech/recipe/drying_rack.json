@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "L": "#c:natural_logs",
+    "R": "vintagetech:rope"
+  },
+  "pattern": [
+    " L ",
+    "R R",
+    "LLL"
+  ],
+  "result": {
+    "id": "vintagetech:drying_rack"
+  }
+}

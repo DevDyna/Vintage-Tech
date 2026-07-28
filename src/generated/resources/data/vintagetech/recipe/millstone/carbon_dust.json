@@ -1,0 +1,8 @@
+{
+  "type": "vintagetech:millstone",
+  "input": "#minecraft:coals",
+  "output": {
+    "id": "cakesticklib:carbon_dust"
+  },
+  "ticks": 40
+}

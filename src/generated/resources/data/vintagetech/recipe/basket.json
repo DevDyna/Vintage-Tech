@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "B": "minecraft:barrel",
+    "R": "vintagetech:mesh"
+  },
+  "pattern": [
+    "R R",
+    "R R",
+    "RBR"
+  ],
+  "result": {
+    "id": "vintagetech:basket"
+  }
+}

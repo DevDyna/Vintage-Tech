@@ -1,0 +1,7 @@
+{
+  "type": "vintagetech:farmland_fuels",
+  "fluid": {
+    "amount": 1000,
+    "ingredient": "minecraft:water"
+  }
+}

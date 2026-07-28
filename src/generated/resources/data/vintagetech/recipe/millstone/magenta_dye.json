@@ -1,0 +1,9 @@
+{
+  "type": "vintagetech:millstone",
+  "input": "vintagetech:lavender",
+  "output": {
+    "count": 4,
+    "id": "minecraft:magenta_dye"
+  },
+  "ticks": 40
+}

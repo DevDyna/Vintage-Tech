@@ -1,0 +1,16 @@
+{
+  "type": "vintagetech:centrifuge",
+  "input_fluid": {
+    "amount": 1000,
+    "ingredient": "minecraft:water"
+  },
+  "input_item": {
+    "count": 1,
+    "ingredient": "vintagetech:okara"
+  },
+  "output_fluid": {
+    "amount": 750,
+    "id": "vintagetech:natural_fertilizer_source"
+  },
+  "ticks": 40
+}

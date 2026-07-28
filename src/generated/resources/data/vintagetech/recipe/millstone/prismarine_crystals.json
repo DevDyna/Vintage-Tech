@@ -1,0 +1,8 @@
+{
+  "type": "vintagetech:millstone",
+  "input": "minecraft:prismarine_shard",
+  "output": {
+    "id": "minecraft:prismarine_crystals"
+  },
+  "ticks": 40
+}

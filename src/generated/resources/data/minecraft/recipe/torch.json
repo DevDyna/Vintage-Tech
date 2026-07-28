@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "vintagetech:amber",
+    "minecraft:string",
+    "minecraft:stick"
+  ],
+  "result": {
+    "id": "minecraft:torch"
+  }
+}

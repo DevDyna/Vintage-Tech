@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "#vintagetech:beam/normal",
+    "vintagetech:rope"
+  ],
+  "result": {
+    "id": "vintagetech:axle"
+  }
+}
