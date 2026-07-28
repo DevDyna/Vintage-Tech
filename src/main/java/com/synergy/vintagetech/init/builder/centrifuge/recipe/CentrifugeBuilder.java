@@ -5,6 +5,8 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 import java.util.LinkedHashMap;
 
 import com.devdyna.cakesticklib.api.recipe.recipeBuilder.*;
+import com.devdyna.cakesticklib.api.recipe.recipeOutput.ChanceOutput;
+import com.devdyna.cakesticklib.api.recipe.recipeOutput.ChanceOutput.Item;
 import com.devdyna.cakesticklib.api.utils.x;
 
 import net.minecraft.advancements.Criterion;
@@ -18,12 +20,13 @@ import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 public class CentrifugeBuilder extends BaseRecipeBuilder
         implements ItemAttach.Input.ItemCounted<CentrifugeBuilder>,
         FluidAttach.Input.SizedFluid<CentrifugeBuilder>,
-        FluidAttach.Output.OutputFluid<CentrifugeBuilder> {
+        FluidAttach.Output.OutputFluid<CentrifugeBuilder>, ItemAttach.Output.ItemOutputChance<CentrifugeBuilder> {
 
     private SizedFluidIngredient input_fluid;
     private SizedIngredient catalyst;
     private int ticks;
     private FluidStackTemplate output_fluid;
+    private ChanceOutput.Item output_item;
 
     private CentrifugeBuilder(HolderLookup.Provider p) {
         super(p);
@@ -58,6 +61,12 @@ public class CentrifugeBuilder extends BaseRecipeBuilder
         return this;
     }
 
+    @Override
+    public CentrifugeBuilder output(Item output_item) {
+        this.output_item = output_item;
+        return this;
+    }
+
     public CentrifugeBuilder unlockedBy(String name, Criterion<?> criterion) {
         this.criteria.put(name, criterion);
         return this;
@@ -65,7 +74,7 @@ public class CentrifugeBuilder extends BaseRecipeBuilder
 
     @Override
     public Recipe<?> createRecipe() {
-        return new CentrifugeRecipe(input_fluid, catalyst, ticks, output_fluid);
+        return new CentrifugeRecipe(input_fluid, catalyst, ticks, output_fluid, output_item);
     }
 
     @Override

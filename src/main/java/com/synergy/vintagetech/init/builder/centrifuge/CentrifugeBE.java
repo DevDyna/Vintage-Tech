@@ -2,6 +2,7 @@ package com.synergy.vintagetech.init.builder.centrifuge;
 
 import java.util.Optional;
 
+import com.devdyna.cakesticklib.api.RandomUtil;
 import com.devdyna.cakesticklib.api.aspect.logic.DropCollector;
 import com.devdyna.cakesticklib.api.aspect.logic.ItemStorageBlock;
 import com.devdyna.cakesticklib.api.aspect.logic.NoGuiStorage;
@@ -28,7 +29,8 @@ import net.neoforged.neoforge.transfer.transaction.Transaction;
 public class CentrifugeBE extends TransmissionBE
         implements ItemStorageBlock, NoGuiStorage, SimpleFluidStorage, DropCollector {
 
-    public static final int ITEM_CATALYST = 0;
+    public static final int ITEM_INPUT = 0;
+    public static final int ITEM_OUTPUT = 1;
 
     public static final int FLUID_TANK = 0;
 
@@ -43,7 +45,13 @@ public class CentrifugeBE extends TransmissionBE
 
     @Override
     public ItemStack extractItem() {
-        return simpleExtractItemByIndex(0);
+
+        var extracted = simpleExtractItemByIndex(ITEM_OUTPUT);
+
+        if (extracted.isEmpty())
+            extracted = simpleExtractItemByIndex(ITEM_INPUT);
+
+        return extracted;
     }
 
     private Ticker ticker = null;
@@ -63,7 +71,7 @@ public class CentrifugeBE extends TransmissionBE
         if (getItemStorage() == null)
             return;
 
-        var item = getStackInSlot(ITEM_CATALYST);
+        var item = getStackInSlot(ITEM_INPUT);
 
         if (item.isEmpty())
             return;
@@ -91,6 +99,10 @@ public class CentrifugeBE extends TransmissionBE
         if (recipe.getOutputFluid().amount() * recipeMultiplier > getTankCapacity())
             return;
 
+        if (recipe.getOutputItem().item().count() * recipeMultiplier > getItemStorage().getCapacityAsInt(ITEM_OUTPUT,
+                getItemStorage().getResource(ITEM_OUTPUT)))
+            return;
+
         if (ticker == null)
             ticker = Ticker.of(recipe.getTicks() * recipeMultiplier);
 
@@ -102,8 +114,14 @@ public class CentrifugeBE extends TransmissionBE
                 getFluidStorage().insert(FLUID_TANK, FluidResource.of(recipe.getOutputFluid()),
                         recipe.getOutputFluid().amount() * recipeMultiplier, tx);
 
-                getItemStorage().extract(ITEM_CATALYST, ItemResource.of(item),
+                getItemStorage().extract(ITEM_INPUT, ItemResource.of(item),
                         recipe.getCatalyst().count() * recipeMultiplier, tx);
+
+                for (int i = 0; i < recipeMultiplier; i++)
+                    if (RandomUtil.chance(level, recipe.getOutputItem().chance()))
+                        getItemStorage().insert(ITEM_OUTPUT, ItemResource.of(recipe.getOutputItem().item()),
+                                recipe.getOutputItem().item().count(), tx);
+
                 tx.commit();
             }
 
@@ -119,7 +137,7 @@ public class CentrifugeBE extends TransmissionBE
 
     @Override
     public int getSlots() {
-        return 1;
+        return 2;
     }
 
     @Override

@@ -12,9 +12,12 @@ import com.synergy.vintagetech.init.types.zBlocks;
 import com.synergy.vintagetech.init.types.zRecipeTypes;
 
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
+import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.types.IRecipeType;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.ItemLike;
@@ -69,8 +72,23 @@ public class CentrifugeCategory extends BaseRecipeCategory<CentrifugeRecipe> {
                 .build((x, y) -> builder.addOutputSlot(x, y));
 
         builder.addInputSlot(2, 39).addItemStacks(x.getItemStacksFromIngredient(recipe.getCatalyst()));
-        // TODO IMP : centrifuge output
-        builder.addOutputSlot(65, 39).addItemStacks(x.getItemStacksFromIngredient(recipe.getCatalyst()));
+        if (recipe.getOutputItem() != null)
+            builder.addOutputSlot(65, 39).add(recipe.getOutputItem().item());
+    }
+
+    @Override
+    public void draw(CentrifugeRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphicsExtractor guiGraphics,
+            double mouseX,
+            double mouseY) {
+        super.draw(recipe, recipeSlotsView, guiGraphics, mouseX, mouseY);
+
+        if (recipe.getOutputItem() != null && recipe.getOutputItem().chance() < 1)
+            drawCentredStringFixed(guiGraphics, font,
+                    Component.literal(
+                            ((int) (recipe.getOutputItem().chance() * 100)) + "%"),
+                    55, 53,
+                    ColorUtils.WHITE.getRGB(), true);
+
     }
 
     @Override
