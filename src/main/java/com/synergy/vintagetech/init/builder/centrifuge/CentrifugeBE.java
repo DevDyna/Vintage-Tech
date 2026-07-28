@@ -11,7 +11,7 @@ import com.devdyna.cakesticklib.api.primitive.Ticker;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
 import com.synergy.vintagetech.api.blockfactory.transmission.TransmissionBE;
-import com.synergy.vintagetech.api.recipeinput.FluidAndItemInput;
+import com.synergy.vintagetech.api.recipeinput.CentrifugeInput;
 import com.synergy.vintagetech.init.builder.centrifuge.recipe.CentrifugeRecipe;
 import com.synergy.vintagetech.init.types.zBlockEntities;
 import com.synergy.vintagetech.init.types.zRecipeTypes;
@@ -78,7 +78,7 @@ public class CentrifugeBE extends TransmissionBE
 
         Optional<RecipeHolder<CentrifugeRecipe>> r = level.getServer().getRecipeManager()
                 .getRecipeFor(zRecipeTypes.CENTRIFUGE.getType(),
-                        new FluidAndItemInput(fluid, item), level);
+                        new CentrifugeInput(fluid, item), level);
 
         if (r.isEmpty())
             return;

@@ -11,7 +11,7 @@ import com.devdyna.cakesticklib.api.utils.x;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.synergy.vintagetech.api.recipeinput.FluidAndItemInput;
+import com.synergy.vintagetech.api.recipeinput.CentrifugeInput;
 import com.synergy.vintagetech.init.types.zBlocks;
 import com.synergy.vintagetech.init.types.zRecipeTypes;
 
@@ -30,7 +30,7 @@ import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 
-public class CentrifugeRecipe extends BaseRecipeType<FluidAndItemInput> {
+public class CentrifugeRecipe extends BaseRecipeType<CentrifugeInput> {
 
     private final SizedFluidIngredient input_fluid;
     private final SizedIngredient catalyst;
@@ -52,12 +52,12 @@ public class CentrifugeRecipe extends BaseRecipeType<FluidAndItemInput> {
         return new CentrifugeRecipe(input_fluid, catalyst, ticks, output_fluid, output_item);
     }
 
-    public boolean matches(FluidAndItemInput r, Level l) {
+    public boolean matches(CentrifugeInput r, Level l) {
         return this.input_fluid.test(r.fluid()) && this.catalyst.test(r.catalyst());
     }
 
     @Override
-    public ItemStack assemble(FluidAndItemInput r) {
+    public ItemStack assemble(CentrifugeInput r) {
         return x.item(this.output_fluid.create().getFluid().getBucket()).copy();
     }
 
@@ -86,12 +86,12 @@ public class CentrifugeRecipe extends BaseRecipeType<FluidAndItemInput> {
     }
 
     @Override
-    public RecipeType<? extends Recipe<FluidAndItemInput>> getType() {
+    public RecipeType<? extends Recipe<CentrifugeInput>> getType() {
         return zRecipeTypes.CENTRIFUGE.getType();
     }
 
     @Override
-    public RecipeSerializer<? extends Recipe<FluidAndItemInput>> getSerializer() {
+    public RecipeSerializer<? extends Recipe<CentrifugeInput>> getSerializer() {
         return zRecipeTypes.CENTRIFUGE.getSerializer();
     }
 

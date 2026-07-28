@@ -2,7 +2,9 @@ package com.synergy.vintagetech.init.builder.crucible.recipe;
 
 import static com.synergy.vintagetech.Main.MODULE_ID;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 import com.devdyna.cakesticklib.api.recipe.recipeBuilder.*;
 import com.devdyna.cakesticklib.api.recipe.recipeOutput.ChanceOutput;
@@ -18,20 +20,23 @@ import net.neoforged.neoforge.fluids.FluidStackTemplate;
 import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 
 public class CrucibleBuilder extends BaseRecipeBuilder
-        implements ItemAttach.Input.ItemCounted<CrucibleBuilder>,
+        implements ItemAttach.Input.ListedItemCount<CrucibleBuilder>,
         FluidAttach.Input.SizedFluid<CrucibleBuilder>,
         FluidAttach.Output.OutputFluid<CrucibleBuilder>, ItemAttach.Output.ItemOutputChance<CrucibleBuilder> {
 
     private SizedFluidIngredient input_fluid;
-    private SizedIngredient input_item;
+    private List<SizedIngredient> input_items;
     private int ticks;
     private FluidStackTemplate output_fluid;
     private ChanceOutput.Item output_item;
+
+    public static final int MAX_ITEMS = 4;
 
     private CrucibleBuilder(HolderLookup.Provider p) {
         super(p);
         this.criteria = new LinkedHashMap<String, Criterion<?>>();
         this.ticks = 80;
+        this.input_items = new ArrayList<>(MAX_ITEMS);
     }
 
     public static CrucibleBuilder of(HolderLookup.Provider p) {
@@ -39,8 +44,12 @@ public class CrucibleBuilder extends BaseRecipeBuilder
     }
 
     @Override
-    public CrucibleBuilder input(SizedIngredient i) {
-        this.input_item = i;
+    public CrucibleBuilder add(SizedIngredient i) {
+
+        if (input_items.size() >= MAX_ITEMS)
+            throw new IndexOutOfBoundsException("CrucibleBuilder.add has reached the max amount of item inputs!");
+
+        this.input_items.add(i);
         return this;
     }
 
@@ -74,7 +83,7 @@ public class CrucibleBuilder extends BaseRecipeBuilder
 
     @Override
     public Recipe<?> createRecipe() {
-        return new CrucibleRecipe(input_fluid, input_item, ticks, output_fluid, output_item);
+        return new CrucibleRecipe(input_fluid, input_items, ticks, output_fluid, output_item);
     }
 
     @Override
