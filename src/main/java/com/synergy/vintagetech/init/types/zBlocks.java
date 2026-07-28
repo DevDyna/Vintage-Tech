@@ -254,8 +254,8 @@ public class zBlocks {
                         p -> new Block(p));
 
         // item -> item
-        public static final DeferredHolder<Block, Block> HYDRAULIC_PRESS = registerItemBlock("hydraulic_press",
-                        p -> new Block(p));
+        // public static final DeferredHolder<Block, Block> HYDRAULIC_PRESS = registerItemBlock("hydraulic_press",
+        //                 p -> new Block(p));
 
         // crops
         public static final DeferredHolder<Block, Block> CAVE_WHEAT = zBlock.registerBlock("cave_wheat",

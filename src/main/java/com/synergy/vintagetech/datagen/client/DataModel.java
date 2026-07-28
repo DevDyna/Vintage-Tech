@@ -181,7 +181,7 @@ public class DataModel extends ModelProvider {
                 // TODO IMP : Models by logic
                 BlockModelUtils.simplePlain(blockModels, zBlocks.CHEESE);
                 BlockModelUtils.simplePlain(blockModels, zBlocks.CREATIVE_ENGINE);
-                BlockModelUtils.simplePlain(blockModels, zBlocks.HYDRAULIC_PRESS);
+                // BlockModelUtils.simplePlain(blockModels, zBlocks.HYDRAULIC_PRESS);
                 // BlockModelUtils.simplePlain(blockModels, zBlocks.MIXING_BARREL);
                 BlockModelUtils.simplePlain(blockModels, zBlocks.CRUCIBLE);
                 // BlockModelUtils.simplePlain(blockModels, zBlocks.TURNTABLE);
