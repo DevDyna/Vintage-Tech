@@ -29,7 +29,7 @@ import net.neoforged.neoforge.transfer.fluid.FluidStacksResourceHandler;
 public class CrushingTubBlock extends TickingBlock
         implements BucketInteraction, FluidClearableTank, FluidTooltipWhenEmpty {
 
-            public final static BooleanProperty MESH = BooleanProperty.create("has_mesh");
+    public final static BooleanProperty MESH = BooleanProperty.create("has_mesh");
 
     public CrushingTubBlock(Properties p) {
         super(p);
@@ -97,6 +97,9 @@ public class CrushingTubBlock extends TickingBlock
     @Override
     public InteractionResult executeWhenEmpty(ItemStack stack, BlockState state, Level level, BlockPos pos,
             Player player, InteractionHand hand, BlockHitResult hitResult) {
+        if (state.getValue(MESH))
+            if (level.getBlockEntity(pos) instanceof CrushingTubBE be)
+                return be.itemUseOn(player, level, pos, hand);
         if (player.isCrouching())
             return useItemToClear(state, level, pos, player, hitResult);
         else
@@ -114,7 +117,7 @@ public class CrushingTubBlock extends TickingBlock
     public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, double fallDistance) {
 
         if (level.getBlockEntity(pos) instanceof CrushingTubBE be)
-            be.collectItem(level,pos, entity);
+            be.collectItem(level, pos, entity);
 
         if (level.getBlockEntity(pos) instanceof CrushingTubBE be &&
                 entity.is(zTags.Entities.CRUSHING_TUB_ALLOW_CRUSHING))
