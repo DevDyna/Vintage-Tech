@@ -9,6 +9,7 @@ import com.devdyna.cakesticklib.api.utils.ColorUtils;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.synergy.vintagetech.init.builder.crushing_tub.recipe.CrushingTubRecipe;
 import com.synergy.vintagetech.init.types.zBlocks;
+import com.synergy.vintagetech.init.types.zItems;
 import com.synergy.vintagetech.init.types.zRecipeTypes;
 
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -66,6 +67,9 @@ public class CrushingTubCategory extends BaseRecipeCategory<CrushingTubRecipe> {
     public void setRecipe(IRecipeLayoutBuilder builder, CrushingTubRecipe recipe, IFocusGroup focuses) {
 
         builder.addSlot(RecipeIngredientRole.INPUT, 21, 29).add(recipe.getInput());
+       
+        if(recipe.getRequireMesh())
+        builder.addSlot(RecipeIngredientRole.INPUT, 21, 29-18).add(zItems.MESH.get());
 
         if (recipe.getFluid() != null && recipe.getFluid().amount() > 0)
             JEIFluidTankHelper.of()
