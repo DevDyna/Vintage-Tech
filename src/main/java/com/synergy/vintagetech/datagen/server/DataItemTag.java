@@ -114,7 +114,7 @@ public class DataItemTag extends ItemTagsProvider {
                                 .add(
                                                 zItems.BLUEBERRIES_SOUP.get(),
                                                 zItems.SWEET_BERRIES_SOUP.get(),
-                                                zItems.GLOWBERRIES_SOUP.get(),
+                                                zItems.GLOW_BERRIES_SOUP.get(),
                                                 zItems.IRONBERRIES_SOUP.get(),
                                                 zItems.BLUEBERRIES.get(),
                                                 zItems.BLUEBERRIES_MUFFIN.get(),

@@ -113,7 +113,7 @@ public class zItems {
                                                                                         1)))
                                                         .build()));
 
-        public static final DeferredHolder<Item, Item> GLOWBERRIES_SOUP = zItem.registerSimpleItem("glowberries_soup",
+        public static final DeferredHolder<Item, Item> GLOW_BERRIES_SOUP = zItem.registerSimpleItem("glow_berries_soup",
                         p -> p
                                         .stacksTo(16)
                                         .usingConvertsTo(Items.BOWL)

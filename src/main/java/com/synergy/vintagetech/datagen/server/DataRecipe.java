@@ -314,7 +314,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .unlockedBy(getHasName(zItems.IRONBERRIES.get()), has(zItems.IRONBERRIES.get()))
                                 .save(output);
 
-                shapeless(RecipeCategory.MISC, zItems.GLOWBERRIES_SOUP.get(), 1)
+                shapeless(RecipeCategory.MISC, zItems.GLOW_BERRIES_SOUP.get(), 1)
                                 .requires(Items.BOWL)
                                 .requires(Items.GLOW_BERRIES)
                                 .requires(Items.GLOW_BERRIES)
