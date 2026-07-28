@@ -54,6 +54,9 @@ public interface AxleHandler extends EntityBlock {
    */
   default void setDeactive(Level level, BlockPos pos, BlockState state, boolean inverted) {
     level.setBlockAndUpdate(pos, state.trySetValue(ENABLED, false));
+    
+    if (state.hasProperty(INVERTED) && state.getValue(INVERTED) != inverted)
+      level.setBlockAndUpdate(pos, state.setValue(INVERTED, inverted));
   }
 
   /**
