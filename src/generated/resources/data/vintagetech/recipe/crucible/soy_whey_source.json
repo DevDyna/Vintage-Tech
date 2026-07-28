@@ -1,0 +1,23 @@
+{
+  "type": "vintagetech:crucible",
+  "input_fluid": {
+    "amount": 250,
+    "ingredient": "vintagetech:soymilk_source"
+  },
+  "input_item": {
+    "count": 1,
+    "ingredient": "vintagetech:salt"
+  },
+  "output_fluid": {
+    "amount": 150,
+    "id": "vintagetech:soy_whey_source"
+  },
+  "output_item": {
+    "chance": 1.0,
+    "item": {
+      "count": 2,
+      "id": "vintagetech:soy_rennet"
+    }
+  },
+  "ticks": 80
+}

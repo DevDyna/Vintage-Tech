@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_soy_rennet": {
+      "conditions": {
+        "items": [
+          {
+            "items": "vintagetech:soy_rennet"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "vintagetech:crushing_tub/tofu"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_soy_rennet"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "vintagetech:crushing_tub/tofu"
+    ]
+  }
+}

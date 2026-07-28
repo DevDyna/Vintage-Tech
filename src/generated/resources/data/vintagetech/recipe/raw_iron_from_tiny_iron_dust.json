@@ -2,13 +2,13 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": "minecraft:raw_iron"
+    "#": "vintagetech:tiny_iron_dust"
   },
   "pattern": [
     "##",
     "##"
   ],
   "result": {
-    "id": "vintagetech:tiny_iron_dust"
+    "id": "minecraft:raw_iron"
   }
 }

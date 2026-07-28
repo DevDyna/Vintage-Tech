@@ -1,0 +1,8 @@
+{
+  "type": "vintagetech:drying_rack",
+  "input": "minecraft:kelp",
+  "output": {
+    "id": "minecraft:dried_kelp"
+  },
+  "ticks": 200
+}

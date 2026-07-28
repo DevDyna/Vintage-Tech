@@ -1,0 +1,11 @@
+{
+  "type": "vintagetech:crushing_tub",
+  "input": "vintagetech:soy_rennet",
+  "output": {
+    "chance": 1.0,
+    "item": {
+      "id": "vintagetech:tofu"
+    }
+  },
+  "require_mesh": false
+}
