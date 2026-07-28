@@ -36,5 +36,19 @@ public class zFluids {
         public static final FluidRegister IRONBERRY_JUICE = FluidRegister.create("ironberry_juice",
                         ColorUtils.argb(255, 192, 192, 192));
 
-        
+        public static final FluidRegister FERTILIZER_NATURAL = FluidRegister.create("natural_fertilizer",
+                        ColorUtils.argb(255, 177, 236, 177));
+
+        public static final FluidRegister FERTILIZER_CHEMICAL = FluidRegister.create("chemical_fertilizer",
+                        ColorUtils.argb(255, 236, 177, 177));
+
+        public static final FluidRegister FERTILIZER_MINERAL = FluidRegister.create("mineral_fertilizer",
+                        ColorUtils.argb(255, 177, 177, 236));
+
+        public static final FluidRegister SULFURIC_ACID = FluidRegister.create("sulfuric_acid",
+                        ColorUtils.argb(255, 75, 200, 200));
+
+        public static final FluidRegister SOYMILK = FluidRegister.create("soymilk",
+                        ColorUtils.argb(255, 200, 200, 200));
+
 }
