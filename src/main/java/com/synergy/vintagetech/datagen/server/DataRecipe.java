@@ -340,11 +340,11 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                 shaped(RecipeCategory.BUILDING_BLOCKS,
                                 zBlocks.DRYING_RACK.get(), 1)
                                 .define('R', zBlocks.ROPE.get())
-                                .define('L', Tags.Items.NATURAL_LOGS)
+                                .define('L', ItemTags.LOGS)
                                 .pattern(" L ")
                                 .pattern("R R")
                                 .pattern("LLL")
-                                .unlockedBy(getHasName(Tags.Items.NATURAL_LOGS), has(Tags.Items.NATURAL_LOGS))
+                                .unlockedBy(getHasName(ItemTags.LOGS), has(ItemTags.LOGS))
                                 .save(output);
 
                 shaped(RecipeCategory.BUILDING_BLOCKS,
