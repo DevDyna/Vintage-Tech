@@ -58,8 +58,8 @@ public class zItems {
         public static final DeferredHolder<Item, Item> AMBER = zItem.registerSimpleItem("amber");
         public static final DeferredHolder<Item, Item> SAP = zItem.registerSimpleItem("sap");
         public static final DeferredHolder<Item, Item> GLUE = zItem.registerSimpleItem("glue");
-        public static final DeferredHolder<Item, Item> OIL = zItem.registerSimpleItem("oil");
-       
+        public static final DeferredHolder<Item, Item> BITUMEN = zItem.registerSimpleItem("bitumen");
+
         public static final DeferredHolder<Item, Item> HEMP_FIBER = zItem.registerSimpleItem("hemp_fiber");
       
         public static final DeferredHolder<Item, Item> IRONBERRIES = zItem.registerSimpleItem("ironberries");
