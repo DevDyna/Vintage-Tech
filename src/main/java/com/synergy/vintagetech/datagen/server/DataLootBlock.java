@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import com.devdyna.cakesticklib.api.utils.EnchantUtil;
 import com.devdyna.cakesticklib.api.utils.LootTableHelper;
+import com.synergy.vintagetech.init.builder.crushing_tub.CrushingTubBlock;
 import com.synergy.vintagetech.init.builder.plants.Aloe;
 import com.synergy.vintagetech.init.builder.plants.CaveWheat;
 import com.synergy.vintagetech.init.builder.plants.Hemp;
@@ -20,9 +21,11 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 public class DataLootBlock extends BlockLootSubProvider {
@@ -36,7 +39,8 @@ public class DataLootBlock extends BlockLootSubProvider {
                 return LootTableHelper.getValidBlocks(zBlocks.zBlock, zBlocks.zBlockItem);
         }
 
-        List<Block> BLACKLIST = List.of(zBlocks.IRONWOOD_LEAVES.get(),zBlocks.IRONWOOD_SLAB.get());
+        List<Block> BLACKLIST = List.of(zBlocks.IRONWOOD_LEAVES.get(), zBlocks.IRONWOOD_SLAB.get(),
+                        zBlocks.CRUSHING_TUB.get());
 
         @Override
         protected void generate() {
@@ -86,7 +90,8 @@ public class DataLootBlock extends BlockLootSubProvider {
                                                 NORMAL_LEAVES_SAPLING_CHANCES)
                                                 .withPool(
                                                                 LootPool.lootPool()
-                                                                                .setRolls(UniformGenerator.between(1, 5))
+                                                                                .setRolls(UniformGenerator.between(1,
+                                                                                                5))
                                                                                 .when(
                                                                                                 hasShears().or(hasSilkTouch())
                                                                                                                 .invert())
@@ -113,6 +118,31 @@ public class DataLootBlock extends BlockLootSubProvider {
                 dropPottedContents(zBlocks.POTTED_IRONWOOD_SAPLING.get());
                 add(zBlocks.IRONWOOD_SLAB.get(), b -> createSlabItemTable(b));
 
+                add(zBlocks.CRUSHING_TUB.get(),
+                                LootTable.lootTable()
+
+                                                .withPool(
+                                                                LootPool.lootPool()
+                                                                                .setRolls(ConstantValue.exactly(1))
+                                                                                .add(LootItem.lootTableItem(
+                                                                                                zBlocks.CRUSHING_TUB
+                                                                                                                .get())))
+
+                                                .withPool(
+                                                                LootPool.lootPool()
+                                                                                .setRolls(ConstantValue.exactly(1))
+                                                                                .add(LootItem.lootTableItem(
+                                                                                                zItems.MESH.get()))
+                                                                                .when(
+                                                                                                LootItemBlockStatePropertyCondition
+                                                                                                                .hasBlockStateProperties(
+                                                                                                                                zBlocks.CRUSHING_TUB
+                                                                                                                                                .get())
+                                                                                                                .setProperties(
+                                                                                                                                StatePropertiesPredicate.Builder
+                                                                                                                                                .properties()
+                                                                                                                                                .hasProperty(CrushingTubBlock.MESH,
+                                                                                                                                                                true)))));
         }
 
 }
