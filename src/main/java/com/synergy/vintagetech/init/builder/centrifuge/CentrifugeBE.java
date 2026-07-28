@@ -90,15 +90,17 @@ public class CentrifugeBE extends TransmissionBE
 
         int recipeMultiplier = fluid.amount() / recipe.getInputFluid().amount();
 
-        if (item.count() < recipe.getCatalyst().count() * recipeMultiplier)
+        if (item.count() < recipe.getItemInput().count() * recipeMultiplier)
             return;
 
         if (fluid.amount() % recipe.getInputFluid().amount() != 0)
             return;
 
+            if(recipe.getOutputFluid()!= null)
         if (recipe.getOutputFluid().amount() * recipeMultiplier > getTankCapacity())
             return;
 
+            if(recipe.getOutputItem()!= null)
         if (recipe.getOutputItem().item().count() * recipeMultiplier > getItemStorage().getCapacityAsInt(ITEM_OUTPUT,
                 getItemStorage().getResource(ITEM_OUTPUT)))
             return;
@@ -111,12 +113,14 @@ public class CentrifugeBE extends TransmissionBE
 
                 getFluidStorage().extract(FLUID_TANK, FluidResource.of(fluid), fluid.amount(), tx);
 
+                if(recipe.getOutputFluid()!= null)
                 getFluidStorage().insert(FLUID_TANK, FluidResource.of(recipe.getOutputFluid()),
                         recipe.getOutputFluid().amount() * recipeMultiplier, tx);
 
                 getItemStorage().extract(ITEM_INPUT, ItemResource.of(item),
-                        recipe.getCatalyst().count() * recipeMultiplier, tx);
+                        recipe.getItemInput().count() * recipeMultiplier, tx);
 
+                        if(recipe.getOutputItem()!= null)
                 for (int i = 0; i < recipeMultiplier; i++)
                     if (RandomUtil.chance(level, recipe.getOutputItem().chance()))
                         getItemStorage().insert(ITEM_OUTPUT, ItemResource.of(recipe.getOutputItem().item()),

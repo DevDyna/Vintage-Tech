@@ -3,6 +3,7 @@ package com.synergy.vintagetech.init.builder.centrifuge.recipe;
 import static com.synergy.vintagetech.Main.MODULE_ID;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.devdyna.cakesticklib.api.recipe.recipeOutput.ChanceOutput;
 import com.devdyna.cakesticklib.api.recipe.recipeType.BaseRecipeType;
@@ -38,7 +39,7 @@ public class CentrifugeRecipe extends BaseRecipeType<CentrifugeInput> {
     private final ChanceOutput.Item output_item;
 
     public CentrifugeRecipe(SizedFluidIngredient input_fluid, SizedIngredient catalyst,
-            int ticks, FluidStackTemplate output_fluid,ChanceOutput.Item output_item) {
+            int ticks, FluidStackTemplate output_fluid, ChanceOutput.Item output_item) {
         this.input_fluid = input_fluid;
         this.catalyst = catalyst;
         this.ticks = ticks;
@@ -47,8 +48,8 @@ public class CentrifugeRecipe extends BaseRecipeType<CentrifugeInput> {
     }
 
     public static CentrifugeRecipe of(SizedFluidIngredient input_fluid, SizedIngredient catalyst,
-            int ticks, FluidStackTemplate output_fluid,ChanceOutput.Item output_item) {
-        return new CentrifugeRecipe(input_fluid, catalyst, ticks, output_fluid,output_item);
+            int ticks, FluidStackTemplate output_fluid, ChanceOutput.Item output_item) {
+        return new CentrifugeRecipe(input_fluid, catalyst, ticks, output_fluid, output_item);
     }
 
     public boolean matches(CentrifugeInput r, Level l) {
@@ -72,7 +73,7 @@ public class CentrifugeRecipe extends BaseRecipeType<CentrifugeInput> {
         return ticks;
     }
 
-    public SizedIngredient getCatalyst() {
+    public SizedIngredient getItemInput() {
         return catalyst;
     }
 
@@ -110,19 +111,21 @@ public class CentrifugeRecipe extends BaseRecipeType<CentrifugeInput> {
 
     public static final MapCodec<CentrifugeRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
             SizedFluidIngredient.CODEC.fieldOf("input_fluid").forGetter(CentrifugeRecipe::getInputFluid),
-            SizedIngredient.NESTED_CODEC.fieldOf("catalyst").forGetter(CentrifugeRecipe::getCatalyst),
+            SizedIngredient.NESTED_CODEC.fieldOf("input_item").forGetter(CentrifugeRecipe::getItemInput),
             Codec.intRange(1, Integer.MAX_VALUE).fieldOf("ticks").forGetter(CentrifugeRecipe::getTicks),
-            FluidStackTemplate.CODEC.fieldOf("output_fluid").forGetter(CentrifugeRecipe::getOutputFluid),
-            ChanceOutput.Item.CODEC.fieldOf("output_item").forGetter(CentrifugeRecipe::getOutputItem)
-            )
-            .apply(inst, CentrifugeRecipe::new));
+            FluidStackTemplate.CODEC.optionalFieldOf("output_fluid").forGetter(r -> Optional.of(r.getOutputFluid())),
+            ChanceOutput.Item.CODEC.optionalFieldOf("output")
+                    .forGetter(r -> ChanceOutput.Item.optional(r.getOutputItem())))
+            .apply(inst,
+                    (inf, ini, ti, of, oi) -> new CentrifugeRecipe(inf, ini, ti, of.orElse(null), oi.orElse(null))));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, CentrifugeRecipe> STREAM_CODEC = StreamCodec
             .composite(
                     SizedFluidIngredient.STREAM_CODEC, CentrifugeRecipe::getInputFluid,
-                    SizedIngredient.STREAM_CODEC, CentrifugeRecipe::getCatalyst,
+                    SizedIngredient.STREAM_CODEC, CentrifugeRecipe::getItemInput,
                     ByteBufCodecs.INT, CentrifugeRecipe::getTicks,
-                    FluidStackTemplate.STREAM_CODEC, CentrifugeRecipe::getOutputFluid,
-                    ChanceOutput.Item.STREAM_CODEC, CentrifugeRecipe::getOutputItem,
-                    CentrifugeRecipe::new);
+                    ByteBufCodecs.optional(FluidStackTemplate.STREAM_CODEC), f -> Optional.of(f.getOutputFluid()),
+                    ByteBufCodecs.optional(ChanceOutput.Item.STREAM_CODEC),
+                    f -> ChanceOutput.Item.optional(f.getOutputItem()),
+                    (inf, ini, ti, of, oi) -> new CentrifugeRecipe(inf, ini, ti, of.orElse(null), oi.orElse(null)));
 }

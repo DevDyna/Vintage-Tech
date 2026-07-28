@@ -65,13 +65,15 @@ public class CentrifugeCategory extends BaseRecipeCategory<CentrifugeRecipe> {
                 .scale(2.0f, 1.0f)
                 .build((x, y) -> builder.addInputSlot(x, y));
 
-        JEIFluidTankHelper.of()
-                .fluid(recipe.getOutputFluid().create())
-                .offset(65, 35 + 1)
-                .scale(2.0f, 1.0f)
-                .build((x, y) -> builder.addOutputSlot(x, y));
+        if (recipe.getOutputFluid() != null)
+            JEIFluidTankHelper.of()
+                    .fluid(recipe.getOutputFluid().create())
+                    .offset(65, 35 + 1)
+                    .scale(2.0f, 1.0f)
+                    .build((x, y) -> builder.addOutputSlot(x, y));
 
-        builder.addInputSlot(2, 39).addItemStacks(x.getItemStacksFromIngredient(recipe.getCatalyst()));
+        builder.addInputSlot(2, 39).addItemStacks(x.getItemStacksFromIngredient(recipe.getItemInput()));
+
         if (recipe.getOutputItem() != null)
             builder.addOutputSlot(65, 39).add(recipe.getOutputItem().item());
     }
