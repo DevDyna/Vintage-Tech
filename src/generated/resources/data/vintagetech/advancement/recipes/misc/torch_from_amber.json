@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_hemp_fiber": {
+    "has_amber": {
       "conditions": {
         "items": [
           {
-            "items": "vintagetech:hemp_fiber"
+            "items": "vintagetech:amber"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:rope_alt"
+        "recipe": "vintagetech:torch_from_amber"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_hemp_fiber"
+      "has_amber"
     ]
   ],
   "rewards": {
     "recipes": [
-      "minecraft:rope_alt"
+      "vintagetech:torch_from_amber"
     ]
   }
 }

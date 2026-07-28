@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_aloe": {
+    "has_hemp_fiber": {
       "conditions": {
         "items": [
           {
-            "items": "vintagetech:aloe"
+            "items": "vintagetech:hemp_fiber"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:lime_dye"
+        "recipe": "vintagetech:rope_alt"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_aloe"
+      "has_hemp_fiber"
     ]
   ],
   "rewards": {
     "recipes": [
-      "minecraft:lime_dye"
+      "vintagetech:rope_alt"
     ]
   }
 }
