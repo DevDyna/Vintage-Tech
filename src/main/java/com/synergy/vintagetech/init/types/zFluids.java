@@ -24,7 +24,6 @@ public class zFluids {
         public static final DeferredRegister<FluidType> zFluidTypes = DeferredRegister.create(Keys.FLUID_TYPES,
                         MODULE_ID);
 
-        
         public static final FluidRegister SOY_WHEY = FluidRegister.create("soy_whey",
                         ColorUtils.argb(255, 255, 236, 236));
 
@@ -40,9 +39,6 @@ public class zFluids {
 
         public static final FluidRegister FERTILIZER_CHEMICAL = FluidRegister.create("chemical_fertilizer",
                         ColorUtils.argb(255, 236, 177, 177));
-
-        public static final FluidRegister FERTILIZER_MINERAL = FluidRegister.create("mineral_fertilizer",
-                        ColorUtils.argb(255, 177, 177, 236));
 
         public static final FluidRegister SULFURIC_ACID = FluidRegister.create("sulfuric_acid",
                         ColorUtils.argb(255, 75, 200, 200));

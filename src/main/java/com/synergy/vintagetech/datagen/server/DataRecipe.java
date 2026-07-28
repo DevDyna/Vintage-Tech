@@ -408,24 +408,8 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                 CentrifugeBuilder.of(registries)
                                 .input(Items.BONE_MEAL)
                                 .fluid(Fluids.WATER, 1000)
-                                .output(zFluids.FERTILIZER_CHEMICAL.getFluid(), 500)
+                                .output(zFluids.FERTILIZER_CHEMICAL.getFluid(), 250)
                                 .unlockedBy(getHasName(Items.BONE_MEAL), has(Items.BONE_MEAL))
-                                .save(output);
-
-                CentrifugeBuilder.of(registries)
-                                .input(zItems.MINERAL_MIXTURE)
-                                .fluid(Fluids.WATER, 1000)
-                                .output(zFluids.FERTILIZER_MINERAL.getFluid(), 750)
-                                .unlockedBy(getHasName(zItems.MINERAL_MIXTURE.get()),
-                                                has(zItems.MINERAL_MIXTURE.get()))
-                                .save(output);
-
-                shapeless(RecipeCategory.MISC, zItems.MINERAL_MIXTURE.get(), 6)
-                                .requires(LibTags.Items.COPPER_DUST)
-                                .requires(LibTags.Items.COAL_DUST)
-                                .requires(LibTags.Items.QUARTZ_DUST)
-                                .requires(LibTags.Items.SULFUR_DUST)
-                                .unlockedBy(getHasName(LibTags.Items.SULFUR_DUST), has(LibTags.Items.SULFUR_DUST))
                                 .save(output);
 
                 shaped(RecipeCategory.BUILDING_BLOCKS, zBlocks.MECHANICAL_FARMLAND.get().asItem())
@@ -465,18 +449,13 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .unlockedBy(getHasName(zBlocks.AXLE.get()), has(zBlocks.AXLE.get()))
                                 .save(output);
 
-
-                shapeless(RecipeCategory.MISC, zItems.BLUEBERRIES_MUFFIN.get(),2)
+                shapeless(RecipeCategory.MISC, zItems.BLUEBERRIES_MUFFIN.get(), 2)
                                 .requires(LibItems.FLOUR.get())
                                 .requires(zItems.BLUEBERRIES.get())
                                 .requires(zItems.BLUEBERRIES.get())
                                 .requires(Items.SUGAR)
                                 .unlockedBy(getHasName(LibItems.FLOUR.get()), has(LibItems.FLOUR.get()))
                                 .save(output);
-
-
-                                
-
 
                 shaped(RecipeCategory.BUILDING_BLOCKS, zItems.MESH.get(), 2)
                                 .pattern("RR")

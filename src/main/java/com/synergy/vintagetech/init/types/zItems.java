@@ -78,8 +78,6 @@ public class zItems {
 
         public static final DeferredHolder<Item, Item> TINY_IRON_DUST = zItem.registerSimpleItem("tiny_iron_dust");
 
-        public static final DeferredHolder<Item, Item> MINERAL_MIXTURE = zItem.registerSimpleItem("mineral_mixture");
-
         public static final DeferredHolder<Item, Item> BLUEBERRIES_SOUP = zItem.registerSimpleItem("blueberries_soup",
                         p -> p
                                         .stacksTo(16)
