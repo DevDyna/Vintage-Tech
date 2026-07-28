@@ -50,7 +50,7 @@ public class FarmlandFuelsBuilder extends BaseRecipeBuilder
 
     @Override
     public Identifier getSuffix(String extra) {
-        return x.rl(MODULE_ID, "farmland_fuels/" + fluid.ingredient().toString()
+        return x.rl(MODULE_ID, "farmland_fuels/" + fluid.ingredient().fluids().getFirst().getKey().identifier().getPath()
                 + extra);
     }
 
