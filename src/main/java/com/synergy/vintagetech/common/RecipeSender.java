@@ -17,7 +17,8 @@ public class RecipeSender {
                     zRecipeTypes.MILLSTONE.getType(),
                     zRecipeTypes.CENTRIFUGE.getType(),
                     zRecipeTypes.TREE_TAP.getType(),
-                    zRecipeTypes.FARMLAND_FUELS.getType()
+                    zRecipeTypes.FARMLAND_FUELS.getType(),
+                    zRecipeTypes.CRUCIBLE.getType()
                     );
         }
 
