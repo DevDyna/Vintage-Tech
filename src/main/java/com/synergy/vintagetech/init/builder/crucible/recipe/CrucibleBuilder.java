@@ -12,7 +12,9 @@ import com.devdyna.cakesticklib.api.utils.x;
 
 import net.minecraft.advancements.Criterion;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
@@ -111,7 +113,7 @@ public class CrucibleBuilder extends BaseRecipeBuilder
 
     @Override
     public Identifier getSuffix(String extra) {
-        return x.rl(MODULE_ID, "crucible/" + (output_fluid == null ? x.name(x.getItemsFromIngredient(input_items.getFirst().ingredient())[0]) : x.name(output_fluid))
+        return x.rl(MODULE_ID, "crucible/" + (output_fluid == null ? input_items.getFirst().ingredient().getValues().unwrapKey().get().location().getPath() : x.name(output_fluid))
                 + extra);
     }
 
