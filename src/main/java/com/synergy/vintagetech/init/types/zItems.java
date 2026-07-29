@@ -33,7 +33,7 @@ public class zItems {
 
         public static final DeferredHolder<Item, Item> CAVE_WHEAT_SEEDS = zItem.registerItem("cave_wheat_seeds",
                         p -> new BlockItem(zBlocks.CAVE_WHEAT.get(), p.useItemDescriptionPrefix()
-                                        .food(new FoodProperties(2, 25f, true))));
+                                        .food(new FoodProperties(2, 3f, true))));
 
         public static final DeferredHolder<Item, Item> HEMP_SEEDS = zItem.registerItem("hemp_seeds",
                         p -> new BlockItem(zBlocks.HEMP.get(), p.useItemDescriptionPrefix()));
