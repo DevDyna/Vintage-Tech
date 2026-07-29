@@ -27,6 +27,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
@@ -660,6 +661,49 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .pattern("III")
                                 .unlockedBy(getHasName(Tags.Items.INGOTS_IRON), has(Tags.Items.INGOTS_IRON))
                                 .save(output);
+
+                createRecycleRecipe(
+                                output,
+                                Items.COPPER_INGOT,
+                                Items.COPPER_NUGGET,
+                                zTags.Items.RECYCLE_COPPER_1,
+                                zTags.Items.RECYCLE_COPPER_2,
+                                zTags.Items.RECYCLE_COPPER_3,
+                                zTags.Items.RECYCLE_COPPER_4,
+                                zTags.Items.RECYCLE_COPPER_5,
+                                zTags.Items.RECYCLE_COPPER_6,
+                                zTags.Items.RECYCLE_COPPER_7,
+                                zTags.Items.RECYCLE_COPPER_8,
+                                zTags.Items.RECYCLE_COPPER_9);
+
+                createRecycleRecipe(
+                                output,
+                                Items.IRON_INGOT,
+                                Items.IRON_NUGGET,
+                                zTags.Items.RECYCLE_IRON_1,
+                                zTags.Items.RECYCLE_IRON_2,
+                                zTags.Items.RECYCLE_IRON_3,
+                                zTags.Items.RECYCLE_IRON_4,
+                                zTags.Items.RECYCLE_IRON_5,
+                                zTags.Items.RECYCLE_IRON_6,
+                                zTags.Items.RECYCLE_IRON_7,
+                                zTags.Items.RECYCLE_IRON_8,
+                                zTags.Items.RECYCLE_IRON_9);
+
+                createRecycleRecipe(
+                                output,
+                                Items.GOLD_INGOT,
+                                Items.GOLD_NUGGET,
+                                zTags.Items.RECYCLE_GOLD_1,
+                                zTags.Items.RECYCLE_GOLD_2,
+                                zTags.Items.RECYCLE_GOLD_3,
+                                zTags.Items.RECYCLE_GOLD_4,
+                                zTags.Items.RECYCLE_GOLD_5,
+                                zTags.Items.RECYCLE_GOLD_6,
+                                zTags.Items.RECYCLE_GOLD_7,
+                                zTags.Items.RECYCLE_GOLD_8,
+                                zTags.Items.RECYCLE_GOLD_9);
+
         }
 
         public static final class RecipeRunner extends RecipeProvider.Runner {
@@ -703,6 +747,103 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .pattern("#")
                                 .pattern("#")
                                 .unlockedBy(getHasName(log), has(log))
+                                .save(output);
+        }
+
+        private void createRecycleRecipe(
+                        RecipeOutput output, Item ingot, Item nugget,
+                        TagKey<Item> t1, TagKey<Item> t2, TagKey<Item> t3,
+                        TagKey<Item> t4, TagKey<Item> t5, TagKey<Item> t6,
+                        TagKey<Item> t7, TagKey<Item> t8, TagKey<Item> t9) {
+
+                CrucibleBuilder.of(registries)
+                                .add(t1)
+                                .fluid(zFluids.SULFURIC_ACID.getFluid(), 25)
+                                .output(nugget, 2, 1f)
+                                .output(nugget, 2, 0.9f)
+                                .output(nugget, 1, 0.75f)
+                                .output(nugget, 1, 0.15f)
+                                .unlockedBy(getHasName(t1), has(t1))
+                                .save(output);
+
+                CrucibleBuilder.of(registries)
+                                .add(t2)
+                                .fluid(zFluids.SULFURIC_ACID.getFluid(), 50)
+                                .output(ingot, 1, 1f)
+                                .output(nugget, 2, 1f)
+                                .output(nugget, 2, 0.9f)
+                                .output(nugget, 1, 0.5f)
+                                .unlockedBy(getHasName(t2), has(t2))
+                                .save(output);
+
+                CrucibleBuilder.of(registries)
+                                .add(t3)
+                                .fluid(zFluids.SULFURIC_ACID.getFluid(), 75)
+                                .output(ingot, 2, 1f)
+                                .output(nugget, 2, 1f)
+                                .output(nugget, 1, 0.9f)
+                                .output(nugget, 1, 0.35f)
+                                .unlockedBy(getHasName(t3), has(t3))
+                                .save(output);
+
+                CrucibleBuilder.of(registries)
+                                .add(t4)
+                                .fluid(zFluids.SULFURIC_ACID.getFluid(), 100)
+                                .output(ingot, 3, 1f)
+                                .output(nugget, 2, 1f)
+                                .output(nugget, 1, 0.9f)
+                                .output(nugget, 1, 0.35f)
+                                .unlockedBy(getHasName(t4), has(t4))
+                                .save(output);
+
+                CrucibleBuilder.of(registries)
+                                .add(t5)
+                                .fluid(zFluids.SULFURIC_ACID.getFluid(), 125)
+                                .output(ingot, 3, 1f)
+                                .output(ingot, 1, 0.75f)
+                                .output(nugget, 2, 1f)
+                                .output(nugget, 1, 0.75f)
+                                .unlockedBy(getHasName(t5), has(t5))
+                                .save(output);
+
+                CrucibleBuilder.of(registries)
+                                .add(t6)
+                                .fluid(zFluids.SULFURIC_ACID.getFluid(), 150)
+                                .output(ingot, 4, 1f)
+                                .output(nugget, 3, 1f)
+                                .output(nugget, 2, 0.5f)
+                                .output(nugget, 1, 0.5f)
+                                .unlockedBy(getHasName(t6), has(t6))
+                                .save(output);
+
+                CrucibleBuilder.of(registries)
+                                .add(t7)
+                                .fluid(zFluids.SULFURIC_ACID.getFluid(), 175)
+                                .output(ingot, 5, 1f)
+                                .output(nugget, 2, 1f)
+                                .output(nugget, 2, 0.5f)
+                                .output(nugget, 1, 0.75f)
+                                .unlockedBy(getHasName(t7), has(t7))
+                                .save(output);
+
+                CrucibleBuilder.of(registries)
+                                .add(t8)
+                                .fluid(zFluids.SULFURIC_ACID.getFluid(), 200)
+                                .output(ingot, 6, 1f)
+                                .output(nugget, 2, 1f)
+                                .output(nugget, 1, 0.9f)
+                                .output(nugget, 1, 0.1f)
+                                .unlockedBy(getHasName(t8), has(t8))
+                                .save(output);
+
+                CrucibleBuilder.of(registries)
+                                .add(t9)
+                                .fluid(zFluids.SULFURIC_ACID.getFluid(), 225)
+                                .output(ingot, 6, 1f)
+                                .output(nugget, 4, 1f)
+                                .output(nugget, 2, 0.8f)
+                                .output(nugget, 1, 0.75f)
+                                .unlockedBy(getHasName(t9), has(t9))
                                 .save(output);
         }
 
