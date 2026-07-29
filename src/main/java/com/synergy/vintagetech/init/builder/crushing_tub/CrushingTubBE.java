@@ -23,8 +23,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.storage.ValueInput;
-import net.minecraft.world.level.storage.ValueOutput;
 import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import net.neoforged.neoforge.transfer.fluid.FluidStacksResourceHandler;
 import net.neoforged.neoforge.transfer.item.ItemResource;
@@ -134,20 +132,6 @@ public class CrushingTubBE extends TickingBE
                 SoundSource.BLOCKS, 1f, 1f);
 
         update();
-    }
-
-    @Override
-    protected void saveAdditional(ValueOutput output) {
-        getItemStorage().serialize(output);
-        getFluidStorage().serialize(output);
-        super.saveAdditional(output);
-    }
-
-    @Override
-    protected void loadAdditional(ValueInput input) {
-        getItemStorage().deserialize(input);
-        getFluidStorage().deserialize(input);
-        super.loadAdditional(input);
     }
 
     @Override
