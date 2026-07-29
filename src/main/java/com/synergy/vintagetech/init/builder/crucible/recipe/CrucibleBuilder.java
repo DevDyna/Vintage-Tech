@@ -105,14 +105,29 @@ public class CrucibleBuilder extends BaseRecipeBuilder
         return this;
     }
 
-    //TODO API : add prefix on save()
+    // TODO API : add prefix on save()
 
-    //TODO API : x.name(Ingredient) -> Ingredient.getValues().unwrapKey().get().location().getPath()
+    // TODO API : x.name(Ingredient) ->
+    // Ingredient.getValues().unwrapKey().get().location().getPath()
 
     @Override
     public Identifier getSuffix(String extra) {
-        return x.rl(MODULE_ID, "crucible/" + (output_fluid == null ? input_items.getFirst().ingredient().getValues().unwrapKey().get().location().getPath() : x.name(output_fluid))
-                + extra);
+
+        var in = input_items.getFirst().ingredient().getValues();
+
+        if (in.unwrapKey().isPresent())
+            return x.rl(MODULE_ID, "crucible/" + in.unwrapKey().get().location().getPath()
+                    + extra);
+
+        if (output_fluid != null)
+            return x.rl(MODULE_ID, "crucible/" + x.name(output_fluid)
+                    + extra);
+
+        if (!output_item.isEmpty())
+            return x.rl(MODULE_ID, "crucible/" + x.name(output_item.getFirst().item())
+                    + extra);
+
+        throw new NullPointerException("CrucibleBuilder RecipeID cannot be created");
     }
 
 }
