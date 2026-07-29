@@ -33,6 +33,9 @@ public class zWorldGenFeatures {
                 public static final ResourceKey<PlacedFeature> HEMP = RegistryUtils
                                 .createPlacedFeature(MODULE_ID, "hemp");
 
+                public static final ResourceKey<PlacedFeature> SOYBEANS = RegistryUtils
+                                .createPlacedFeature(MODULE_ID, "soybeans");
+
         }
 
         public class ConfiguredFeatures {
@@ -54,6 +57,9 @@ public class zWorldGenFeatures {
                 public static final ResourceKey<ConfiguredFeature<?, ?>> HEMP = RegistryUtils
                                 .createConfiguredFeature(MODULE_ID, "hemp");
 
+                public static final ResourceKey<ConfiguredFeature<?, ?>> SOYBEANS = RegistryUtils
+                                .createConfiguredFeature(MODULE_ID, "soybeans");
+
         }
 
         public class BiomeModifiers {
@@ -74,6 +80,9 @@ public class zWorldGenFeatures {
                                 
                 public static final ResourceKey<BiomeModifier> HEMP = RegistryUtils
                                 .createBiomeModifier(MODULE_ID, "hemp");
+
+                public static final ResourceKey<BiomeModifier> SOYBEANS = RegistryUtils
+                                .createBiomeModifier(MODULE_ID, "soybeans");
 
         }
 

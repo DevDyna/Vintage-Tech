@@ -46,6 +46,9 @@ public class DataBiomeTag extends BiomeTagsProvider {
                         tag(zTags.Biomes.HEMP_SPAWN)
                                 .addTag(Tags.Biomes.IS_JUNGLE);
 
+                        tag(zTags.Biomes.SOYBEANS_SPAWN)
+                                .addTag(Tags.Biomes.IS_SAVANNA);
+
         }
 
 }

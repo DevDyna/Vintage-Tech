@@ -6,10 +6,12 @@ import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 import com.devdyna.cakesticklib.api.datagen.WorldgenUtils;
+import com.synergy.vintagetech.api.NaturalCrop;
 import com.synergy.vintagetech.init.builder.plants.Aloe;
 import com.synergy.vintagetech.init.builder.plants.BlueBerry;
 import com.synergy.vintagetech.init.builder.plants.CaveWheat;
 import com.synergy.vintagetech.init.builder.plants.Hemp;
+import com.synergy.vintagetech.init.builder.plants.SoyBeans;
 import com.synergy.vintagetech.init.types.zBlocks;
 import com.synergy.vintagetech.init.types.zTags;
 import com.synergy.vintagetech.init.types.zWorldGenFeatures;
@@ -110,6 +112,13 @@ public class DataWorldgen extends DatapackBuiltinEntriesProvider {
                                                                 .getOrThrow(PlacedFeatures.HEMP)),
                                                 GenerationStep.Decoration.VEGETAL_DECORATION));
 
+                c.register(zWorldGenFeatures.BiomeModifiers.SOYBEANS,
+                                new AddFeaturesBiomeModifier(
+                                                c.lookup(Registries.BIOME).getOrThrow(zTags.Biomes.SOYBEANS_SPAWN),
+                                                HolderSet.direct(c.lookup(Registries.PLACED_FEATURE)
+                                                                .getOrThrow(PlacedFeatures.SOYBEANS)),
+                                                GenerationStep.Decoration.VEGETAL_DECORATION));
+
         }
 
         protected static void configuredFeatures(BootstrapContext<ConfiguredFeature<?, ?>> c) {
@@ -157,13 +166,27 @@ public class DataWorldgen extends DatapackBuiltinEntriesProvider {
                 registerPatchConfig(c, zWorldGenFeatures.ConfiguredFeatures.HEMP,
 
                                 zBlocks.HEMP.get().defaultBlockState().setValue(Hemp.AGE, 1)
-                                                .setValue(Hemp.NATURAL, true),
+                                                .setValue(NaturalCrop.NATURAL, true),
                                 4,
                                 zBlocks.HEMP.get().defaultBlockState().setValue(Hemp.AGE, 2)
-                                                .setValue(Hemp.NATURAL, true),
+                                                .setValue(NaturalCrop.NATURAL, true),
                                 2,
                                 zBlocks.HEMP.get().defaultBlockState().setValue(Hemp.AGE, 3)
-                                                .setValue(Hemp.NATURAL, true),
+                                                .setValue(NaturalCrop.NATURAL, true),
+                                1
+
+                );
+
+                registerPatchConfig(c, zWorldGenFeatures.ConfiguredFeatures.SOYBEANS,
+
+                                zBlocks.SOYBEANS.get().defaultBlockState().setValue(SoyBeans.AGE, 3)
+                                                .setValue(NaturalCrop.NATURAL, true),
+                                4,
+                                zBlocks.SOYBEANS.get().defaultBlockState().setValue(SoyBeans.AGE, 4)
+                                                .setValue(NaturalCrop.NATURAL, true),
+                                2,
+                                zBlocks.SOYBEANS.get().defaultBlockState().setValue(SoyBeans.AGE, 5)
+                                                .setValue(NaturalCrop.NATURAL, true),
                                 1
 
                 );
@@ -193,6 +216,9 @@ public class DataWorldgen extends DatapackBuiltinEntriesProvider {
 
                 registerPatchPlaced(c, zWorldGenFeatures.PlacedFeatures.HEMP,
                                 zWorldGenFeatures.ConfiguredFeatures.HEMP, 4, 3, 50, 120);
+
+                registerPatchPlaced(c, zWorldGenFeatures.PlacedFeatures.SOYBEANS,
+                                zWorldGenFeatures.ConfiguredFeatures.SOYBEANS, 7, 5, 40, 90);
 
                 registerUndergroundPatchPlaced(c, zWorldGenFeatures.PlacedFeatures.CAVE_WHEAT,
                                 zWorldGenFeatures.ConfiguredFeatures.CAVE_WHEAT, 32, 1, -56, 24);

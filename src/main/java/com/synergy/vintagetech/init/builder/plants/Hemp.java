@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.devdyna.cakesticklib.api.RandomUtil;
 import com.devdyna.cakesticklib.api.factories.plants.builder.BaseCropBlock;
+import com.synergy.vintagetech.api.NaturalCrop;
 import com.synergy.vintagetech.init.types.zItems;
 import com.synergy.vintagetech.init.types.zTags;
 
@@ -25,15 +26,13 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class Hemp extends BaseCropBlock {
+public class Hemp extends BaseCropBlock implements NaturalCrop{
 
     public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
-    public static final BooleanProperty NATURAL = BooleanProperty.create("natural");
     public static final int MAX_AGE = 3;
 
     public static final int[] HEIGHT_BY_AGE = new int[] { 2, 7, 12, 16 };
@@ -51,6 +50,11 @@ public class Hemp extends BaseCropBlock {
     @Override
     public int getMaxAge() {
         return MAX_AGE;
+    }
+
+    @Override
+    public int getBonemealAgeIncrease(Level level) {
+        return super.getBonemealAgeIncrease(level);
     }
 
     @Override

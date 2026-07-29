@@ -49,6 +49,9 @@ public class zTags {
                 public static final TagKey<Block> SUPPORT_NATURAL_HEMP_PLANT = RegistryUtils
                                 .tagBlock(MODULE_ID, "support/natural_hemp");
 
+                public static final TagKey<Block> SUPPORT_NATURAL_SOYBEANS_PLANT = RegistryUtils
+                                .tagBlock(MODULE_ID, "support/natural_soybeans");
+
                 public static final TagKey<Block> SUPPORT_LAVENDER = RegistryUtils
                                 .tagBlock(MODULE_ID, "support/lavender");
 
@@ -193,6 +196,9 @@ public class zTags {
 
                 public static final TagKey<Biome> HEMP_SPAWN = RegistryUtils.tagBiome(MODULE_ID,
                                 "worldgen/hemp");
+
+                public static final TagKey<Biome> SOYBEANS_SPAWN = RegistryUtils.tagBiome(MODULE_ID,
+                                "worldgen/soybeans");
 
         }
 
