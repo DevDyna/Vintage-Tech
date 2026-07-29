@@ -70,7 +70,7 @@ public class DataBlockTag extends BlockTagsProvider {
                                                 zBlocks.GEARSHIFT.get(),
                                                 zBlocks.CLUTCH.get(),
                                                 zBlocks.SAW.get(),
-                                                zBlocks.STEAM_ENGINE.get(),
+                                                zBlocks.WINDMILL.get(),
                                                 zBlocks.TREE_TAP.get(),
                                                 zBlocks.MILLSTONE.get());
 
@@ -117,7 +117,7 @@ public class DataBlockTag extends BlockTagsProvider {
 
                 tag(zTags.Blocks.GENERATOR)
                                 .add(
-                                                zBlocks.STEAM_ENGINE.get(),
+                                                zBlocks.WINDMILL.get(),
                                                 zBlocks.CREATIVE_ENGINE.get());
 
                 tag(zTags.Blocks.CONSUMER)

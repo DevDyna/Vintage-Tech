@@ -240,6 +240,8 @@ public class DataItemTag extends ItemTagsProvider {
                 tag(zTags.Items.RECYCLE_GOLD_9).add(
                                 Items.GOLDEN_NAUTILUS_ARMOR);
 
+                tag(zTags.Items.WINDMILL_REPAIR).add(zItems.CLOTH.get());
+
         }
 
 }

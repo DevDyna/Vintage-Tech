@@ -301,8 +301,8 @@ public class DataModel extends ModelProvider {
                 );
 
                 // TODO MODELS : create models for dynamo and electric motor
-                BlockModelUtils.createHorizontalFacingBlock(blockModels, zBlocks.STEAM_ENGINE.get(),
-                                x.rl(MODULE_ID, "block/steam_engine"), false);
+                BlockModelUtils.createFacingBlock(blockModels, zBlocks.WINDMILL.get(),
+                                x.rl(MODULE_ID, "block/windmill"), true);
                 BlockModelUtils.createHorizontalFacingBlock(blockModels, zBlocks.DYNAMO.get(),
                                 x.rl(MODULE_ID, "block/steam_engine"), false);
                 BlockModelUtils.createHorizontalFacingBlock(blockModels, zBlocks.ELECTRIC_MOTOR.get(),
@@ -373,6 +373,9 @@ public class DataModel extends ModelProvider {
                                                                                                                                 MODULE_ID,
                                                                                                                                 "block/beam/axle"))),
                                                                                 itemModels.modelOutput)));
+
+                itemModels.itemModelOutput.accept(zBlocks.WINDMILL.get().asItem(),
+                                ItemModelUtils.plainModel(x.rl(MODULE_ID, "item/windmill")));
 
                 itemModels.itemModelOutput.accept(zBlocks.CRUSHING_TUB.get().asItem(),
                                 ItemModelUtils.plainModel(x.rl(MODULE_ID, "block/crushing_tub/tub")));
