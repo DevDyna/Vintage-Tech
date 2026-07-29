@@ -131,22 +131,6 @@ public class CrucibleBE extends TickingBE implements ItemStorageBlock, NoGuiStor
 
                 return;
 
-        if (!recipe.getOutputItems().isEmpty()) {
-
-            try (var tx = Transaction.openRoot()) {
-
-                for (ChanceOutput.Item output : recipe.getOutputItems()) {
-
-                    int amount = output.item().count() * multiplier;
-
-                    if (getItemStorage().insert(ItemResource.of(output.item()), amount, tx) < amount)
-                        return;
-                }
-
-                tx.close();
-            }
-        }
-
         if (RandomUtil.chance(level, 0.05f))
 
             level.playSound(null, getBlockPos(), SoundEvents.BREWING_STAND_BREW, SoundSource.BLOCKS, 0.15f,
@@ -163,22 +147,13 @@ public class CrucibleBE extends TickingBE implements ItemStorageBlock, NoGuiStor
 
         try (var tx = Transaction.openRoot()) {
 
-            getFluidStorage().extract(FLUID_TANK, FluidResource.of(fluid), recipe.getInputFluid().amount() * multiplier,
-                    tx);
-
-            List<ItemStack> remaining = new ArrayList<>();
-
-            for (ItemStack stack : items)
-
-                remaining.add(stack.copy());
-
             for (SizedIngredient ingredient : recipe.getItemInputs()) {
 
                 int needed = ingredient.count() * multiplier;
 
-                for (int i = 0; i < remaining.size() && needed > 0; i++) {
+                for (int i = 0; i < items.size() && needed > 0; i++) {
 
-                    var stack = remaining.get(i);
+                    var stack = items.get(i);
 
                     if (ingredient.ingredient().test(stack)) {
 
@@ -187,20 +162,26 @@ public class CrucibleBE extends TickingBE implements ItemStorageBlock, NoGuiStor
                         getItemStorage().extract(slots.get(i), ItemResource.of(getStackInSlot(slots.get(i))), remove,
                                 tx);
 
-                        stack.shrink(remove);
-
                         needed -= remove;
                     }
                 }
             }
 
+            for (ChanceOutput.Item output : recipe.getOutputItems()) {
+                int amount = output.item().count() * multiplier;
+
+                if (RandomUtil.chance(level, output.chance()))
+                    if (getItemStorage().insert(ItemResource.of(output.item()), amount, tx) < amount)
+                        return;
+
+            }
+
+            getFluidStorage().extract(FLUID_TANK, FluidResource.of(fluid), recipe.getInputFluid().amount() * multiplier,
+                    tx);
+
             if (recipe.getOutputFluid() != null)
                 getFluidStorage().insert(FLUID_TANK, FluidResource.of(recipe.getOutputFluid()),
                         recipe.getOutputFluid().amount() * multiplier, tx);
-
-            for (ChanceOutput.Item output : recipe.getOutputItems())
-                if (RandomUtil.chance(level, output.chance()))
-                    getItemStorage().insert(ItemResource.of(output.item()), output.item().count() * multiplier, tx);
 
             tx.commit();
         }
