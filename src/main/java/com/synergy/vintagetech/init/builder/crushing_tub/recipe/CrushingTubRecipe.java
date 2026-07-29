@@ -5,7 +5,6 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 import java.util.List;
 import java.util.Optional;
 
-import com.devdyna.cakesticklib.api.recipe.RecipeCodecUtils;
 import com.devdyna.cakesticklib.api.recipe.recipeInput.ItemInput;
 import com.devdyna.cakesticklib.api.recipe.recipeOutput.ChanceOutput;
 import com.devdyna.cakesticklib.api.recipe.recipeType.BaseRecipeType;
