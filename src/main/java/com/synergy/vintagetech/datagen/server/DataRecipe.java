@@ -241,10 +241,12 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
 
                 shaped(RecipeCategory.BUILDING_BLOCKS,
                                 zBlocks.TREE_TAP.get(), 1)
-                                .define('#', Items.IRON_NUGGET)
-                                .pattern("# #")
-                                .pattern(" # ")
-                                .unlockedBy(getHasName(Items.IRON_NUGGET), has(Items.IRON_NUGGET))
+                                .define('P', LibTags.Items.IRON_PLATE)
+                                .define('N', Tags.Items.NUGGETS_IRON)
+                                .define('I', Tags.Items.INGOTS_IRON)
+                                .pattern("PIN")
+                                .pattern(" N ")
+                                .unlockedBy(getHasName(LibTags.Items.IRON_PLATE), has(LibTags.Items.IRON_PLATE))
                                 .save(output);
 
                 shaped(RecipeCategory.BUILDING_BLOCKS,
