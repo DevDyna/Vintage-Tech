@@ -121,7 +121,6 @@ public class DataItemTag extends ItemTagsProvider {
                                                 zItems.IRONBERRIES.get());
 
                 tag(Tags.Items.SLIME_BALLS).add(zItems.GLUE.get());
-                // tag(Tags.Items.FOODS).add(zItems.BLUEBERRIES_SOUP.get());
 
                 tag(Tags.Items.FOODS_RAW_MEAT).add(zItems.TOFU.get());
                 tag(Tags.Items.FOODS_RAW_FISH).add(zItems.TOFU.get());
