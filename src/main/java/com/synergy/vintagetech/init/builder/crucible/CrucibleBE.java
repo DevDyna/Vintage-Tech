@@ -14,7 +14,7 @@ import com.devdyna.cakesticklib.api.primitive.Ticker;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
 
 import com.devdyna.cakesticklib.api.recipe.recipeOutput.ChanceOutput;
-
+import com.synergy.vintagetech.api.TreeTapHandler;
 import com.synergy.vintagetech.api.recipeinput.CrucibleInput;
 import com.synergy.vintagetech.init.builder.crucible.recipe.CrucibleRecipe;
 import com.synergy.vintagetech.init.types.zBlockEntities;
@@ -34,7 +34,7 @@ import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 
-public class CrucibleBE extends TickingBE implements ItemStorageBlock, NoGuiStorage, SimpleFluidStorage, DropCollector {
+public class CrucibleBE extends TickingBE implements ItemStorageBlock, NoGuiStorage, SimpleFluidStorage, DropCollector, TreeTapHandler {
 
     public static final List<Integer> ITEM_SLOTS = List.of(0, 1, 2, 3,4,5,6,7);
 

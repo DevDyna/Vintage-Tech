@@ -4,8 +4,8 @@ import java.util.Optional;
 
 import com.devdyna.cakesticklib.api.RandomUtil;
 import com.devdyna.cakesticklib.api.aspect.templates.TickingBE;
+import com.synergy.vintagetech.api.TreeTapHandler;
 import com.synergy.vintagetech.api.recipeinput.TreeTapInput;
-import com.synergy.vintagetech.init.builder.evaporation_basin.EvaporationBasinBE;
 import com.synergy.vintagetech.init.builder.treetap.recipe.TreeTapRecipe;
 import com.synergy.vintagetech.init.types.zBlockEntities;
 import com.synergy.vintagetech.init.types.zRecipeTypes;
@@ -29,10 +29,10 @@ public class TreeTapBE extends TickingBE {
         var pos = getBlockPos();
         var state = getBlockState();
 
-        EvaporationBasinBE basin = null;
+        TreeTapHandler basin = null;
 
         for (int y = 0; y < 8; y++) {
-            if (level.getBlockEntity(pos.below(y)) instanceof EvaporationBasinBE t) {
+            if (level.getBlockEntity(pos.below(y)) instanceof TreeTapHandler t) {
                 basin = t;
                 break;
             }

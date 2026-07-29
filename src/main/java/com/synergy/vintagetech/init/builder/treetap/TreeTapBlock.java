@@ -4,7 +4,7 @@ import javax.annotation.Nullable;
 
 import com.devdyna.cakesticklib.api.RandomUtil;
 import com.devdyna.cakesticklib.api.aspect.templates.TickingBlock;
-import com.synergy.vintagetech.init.builder.evaporation_basin.EvaporationBasinBE;
+import com.synergy.vintagetech.api.TreeTapHandler;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -104,7 +104,7 @@ public class TreeTapBlock extends TickingBlock {
 
         var found = false;
         for (int y = 0; y < 8; y++)
-            if (level.getBlockEntity(pos.below(y)) instanceof EvaporationBasinBE)
+            if (level.getBlockEntity(pos.below(y)) instanceof TreeTapHandler)
                 found = true;
 
         if (!found)

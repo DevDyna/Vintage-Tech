@@ -10,6 +10,7 @@ import com.devdyna.cakesticklib.api.aspect.logic.SimpleFluidStorage;
 import com.devdyna.cakesticklib.api.primitive.Ticker;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
+import com.synergy.vintagetech.api.TreeTapHandler;
 import com.synergy.vintagetech.api.blockfactory.transmission.TransmissionBE;
 import com.synergy.vintagetech.api.recipeinput.CentrifugeInput;
 import com.synergy.vintagetech.init.builder.centrifuge.recipe.CentrifugeRecipe;
@@ -27,7 +28,7 @@ import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 
 public class CentrifugeBE extends TransmissionBE
-        implements ItemStorageBlock, NoGuiStorage, SimpleFluidStorage, DropCollector {
+        implements ItemStorageBlock, NoGuiStorage, SimpleFluidStorage, DropCollector, TreeTapHandler {
 
     public static final int ITEM_INPUT = 0;
     public static final int ITEM_OUTPUT = 1;
@@ -101,17 +102,17 @@ public class CentrifugeBE extends TransmissionBE
             return;
 
         if (recipe.getOutputFluid() != null)
-                if (recipe.getOutputFluid().amount() * recipeMultiplier > getTankCapacity())
-                    return;
+            if (recipe.getOutputFluid().amount() * recipeMultiplier > getTankCapacity())
+                return;
 
         if (recipe.getOutputItem() != null)
             if (!getStackInSlot(ITEM_OUTPUT).isEmpty())
                 if (getItemStorage().getResource(ITEM_OUTPUT).is(recipe.getOutputItem().item().item()))
-                        if((recipe.getOutputItem().item().count() * recipeMultiplier)
-                                + getItemStorage().getAmountAsInt(ITEM_OUTPUT) > getItemStorage().getCapacityAsInt(
-                                        ITEM_OUTPUT,
-                                        getItemStorage().getResource(ITEM_OUTPUT)))
-                    return;
+                    if ((recipe.getOutputItem().item().count() * recipeMultiplier)
+                            + getItemStorage().getAmountAsInt(ITEM_OUTPUT) > getItemStorage().getCapacityAsInt(
+                                    ITEM_OUTPUT,
+                                    getItemStorage().getResource(ITEM_OUTPUT)))
+                        return;
 
         if (ticker == null)
             ticker = Ticker.of(recipe.getTicks() * recipeMultiplier);
