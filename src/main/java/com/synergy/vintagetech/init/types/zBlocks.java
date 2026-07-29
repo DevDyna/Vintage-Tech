@@ -28,9 +28,9 @@ import com.synergy.vintagetech.init.builder.plants.Hemp;
 import com.synergy.vintagetech.init.builder.plants.Lavender;
 import com.synergy.vintagetech.init.builder.plants.SoyBeans;
 import com.synergy.vintagetech.init.builder.saw.SawBlock;
-import com.synergy.vintagetech.init.builder.steam_engine.SteamEngineBlock;
 import com.synergy.vintagetech.init.builder.transmission.*;
 import com.synergy.vintagetech.init.builder.treetap.TreeTapBlock;
+import com.synergy.vintagetech.init.builder.windmill.WindmillBlock;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -69,8 +69,13 @@ public class zBlocks {
         public static final DeferredRegister.Blocks zBlockItem = DeferredRegister.createBlocks(MODULE_ID);
 
         // generators
-        public static final DeferredHolder<Block, Block> STEAM_ENGINE = registerItemBlock("steam_engine",
-                        p -> new SteamEngineBlock(p));
+
+        public static final DeferredHolder<Block, Block> WINDMILL = registerItemBlock("windmill",
+                        p -> new WindmillBlock(p
+                                        .strength(2.0F, 3.0F)
+                                        .sound(SoundType.WOOD)
+                                        .ignitedByLava()
+                                        .mapColor(MapColor.WOOD)));
 
         public static final DeferredHolder<Block, Block> CREATIVE_ENGINE = registerItemBlock("creative_engine",
                         p -> new CreativeEngineBlock(p));
@@ -384,6 +389,7 @@ public class zBlocks {
         public static final DeferredHolder<Block, Block> RENDER_MILLSTONE = renderBlock("render_millstone");
         public static final DeferredHolder<Block, Block> RENDER_CENTRIFUGE = renderBlock("render_centrifuge_blades");
         public static final DeferredHolder<Block, Block> RENDER_PRESS_HEAD = renderBlock("render_press_head");
+        public static final DeferredHolder<Block, Block> RENDER_WINDMILL = renderBlock("render_windmill");
 
         public static DeferredHolder<Block, Block> registerItemBlock(String blockname,
                         Function<BlockBehaviour.Properties, ? extends Block> sup) {

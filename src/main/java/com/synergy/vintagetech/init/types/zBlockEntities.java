@@ -17,8 +17,8 @@ import com.synergy.vintagetech.init.builder.fan.FanBE;
 import com.synergy.vintagetech.init.builder.mechanical_farmland.MechanicalFarmlandBE;
 import com.synergy.vintagetech.init.builder.millstone.MillstoneBE;
 import com.synergy.vintagetech.init.builder.saw.SawBE;
-import com.synergy.vintagetech.init.builder.steam_engine.SteamEngineBE;
 import com.synergy.vintagetech.init.builder.treetap.TreeTapBE;
+import com.synergy.vintagetech.init.builder.windmill.WindMillBE;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -35,8 +35,8 @@ public class zBlockEntities {
         public static final DeferredRegister<BlockEntityType<?>> zTiles = DeferredRegister
                         .create(BuiltInRegistries.BLOCK_ENTITY_TYPE, MODULE_ID);
 
-        public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<SteamEngineBE>> STEAM_ENGINE = RegistryUtils
-                        .createBlockEntity("steam_engine", zTiles, SteamEngineBE::new, zBlocks.STEAM_ENGINE);
+        public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<WindMillBE>> WINDMILL = RegistryUtils
+                        .createBlockEntity("windmill", zTiles, WindMillBE::new, zBlocks.WINDMILL);
 
         public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BaseEngineBE>> CREATIVE_ENGINE = RegistryUtils
                         .createBlockEntity("creative_engine", zTiles, BaseEngineBE::new, zBlocks.CREATIVE_ENGINE);

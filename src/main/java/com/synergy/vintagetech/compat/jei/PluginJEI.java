@@ -134,7 +134,7 @@ public class PluginJEI implements IModPlugin {
                                 MODULE_ID + ".jei.alias.rpm.activation.break");
 
                 JEIAliasesHelper.addAlias(r, List.of(
-                                zBlocks.CREATIVE_ENGINE, zBlocks.STEAM_ENGINE),
+                                zBlocks.CREATIVE_ENGINE, zBlocks.WINDMILL),
                                 MODULE_ID + ".jei.alias.rpm.generator");
 
                 JEIAliasesHelper.addAlias(r, List.of(
@@ -147,7 +147,7 @@ public class PluginJEI implements IModPlugin {
                                 zBlocks.CLUTCH,
                                 zBlocks.JUNCTION,
                                 zBlocks.CREATIVE_ENGINE,
-                                zBlocks.STEAM_ENGINE,
+                                zBlocks.WINDMILL,
                                 zBlocks.FAN,
                                 zBlocks.SAW),
                                 MODULE_ID + ".jei.alias.rpm.base");

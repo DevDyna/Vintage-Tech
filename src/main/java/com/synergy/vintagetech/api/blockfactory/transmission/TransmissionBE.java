@@ -11,8 +11,6 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class TransmissionBE extends TickingBE {
 
-    protected float speed;
-
     public TransmissionBE(BlockPos pos, BlockState state) {
         super(zBlockEntities.TRANSMISSION.get(), pos, state);
     }
@@ -23,10 +21,19 @@ public class TransmissionBE extends TickingBE {
 
     public float getRotation(float partialTicks) {
         if (level == null)
-            return 0;
+            return getDeactiveSpeed();
 
-        return (level.getGameTime() + partialTicks) *
-                (getBlockState().getValue(AxleHandler.ENABLED) ? 16f : 0f);
+        var speed = getBlockState().getValue(AxleHandler.ENABLED) ? getActiveSpeed() : getDeactiveSpeed();
+
+        return ((level.getGameTime() + partialTicks) * speed) % 360;
+    }
+
+    public float getActiveSpeed() {
+        return 12f;
+    }
+
+    public float getDeactiveSpeed() {
+        return 0f;
     }
 
 }

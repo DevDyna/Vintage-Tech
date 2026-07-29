@@ -11,6 +11,7 @@ import com.synergy.vintagetech.client.particles.fan.AirFlowParticleProvider;
 import com.synergy.vintagetech.init.builder.centrifuge.CentrifugeRenderer;
 import com.synergy.vintagetech.init.builder.fan.FanRenderer;
 import com.synergy.vintagetech.init.builder.millstone.MillstoneRenderer;
+import com.synergy.vintagetech.init.builder.windmill.WindMillRenderer;
 import com.synergy.vintagetech.init.types.zBlockEntities;
 import com.synergy.vintagetech.init.types.zBlocks;
 import com.synergy.vintagetech.init.types.zFluids;
@@ -61,8 +62,8 @@ public class Client {
                 TransmissionRenderer::new);
 
         event.registerBlockEntityRenderer(
-                zBlockEntities.STEAM_ENGINE.get(),
-                TransmissionRenderer::new);
+                zBlockEntities.WINDMILL.get(),
+                WindMillRenderer::new);
 
         event.registerBlockEntityRenderer(
                 zBlockEntities.ELECTRIC_MOTOR.get(),
@@ -87,6 +88,8 @@ public class Client {
         event.registerBlockEntityRenderer(
                 zBlockEntities.CENTRIFUGE.get(),
                 CentrifugeRenderer::new);
+
+        
 
     }
 

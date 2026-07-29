@@ -166,6 +166,9 @@ public class zTags {
                 public static final TagKey<Item> RECYCLE_GOLD_9 = RegistryUtils.tagItem(MODULE_ID,
                                 "recipe_recycle/gold/9");
 
+                public static final TagKey<Item> WINDMILL_REPAIR = RegistryUtils.tagItem(MODULE_ID,
+                                "windmill/repair");
+
         }
 
         public class Biomes {
