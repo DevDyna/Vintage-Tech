@@ -4,9 +4,8 @@ import java.util.Map;
 
 import org.jspecify.annotations.Nullable;
 
+import com.synergy.vintagetech.api.blockfactory.HorizontalAxleBlock;
 import com.synergy.vintagetech.api.blockfactory.MonoDirectionalAxleBlock;
-import com.synergy.vintagetech.init.builder.steam_engine.SteamEngineBlock;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -18,13 +17,10 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class DynamoBlock extends MonoDirectionalAxleBlock {
-
-    public final static EnumProperty<Direction> HORIZONTAL_FACING = SteamEngineBlock.HORIZONTAL_FACING;
+public class DynamoBlock extends MonoDirectionalAxleBlock implements HorizontalAxleBlock{
 
     public DynamoBlock(Properties p) {
         super(p);
