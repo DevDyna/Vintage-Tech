@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_iron_nugget": {
+    "has_plates/iron": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:iron_nugget"
+            "items": "#c:plates/iron"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_iron_nugget"
+      "has_plates/iron"
     ]
   ],
   "rewards": {

@@ -2,11 +2,13 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "#": "minecraft:iron_nugget"
+    "I": "#c:ingots/iron",
+    "N": "#c:nuggets/iron",
+    "P": "#c:plates/iron"
   },
   "pattern": [
-    "# #",
-    " # "
+    "PIN",
+    " N "
   ],
   "result": {
     "id": "vintagetech:tree_tap"

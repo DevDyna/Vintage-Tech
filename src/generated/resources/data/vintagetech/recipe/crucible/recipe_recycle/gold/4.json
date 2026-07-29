@@ -1,7 +1,7 @@
 {
   "type": "vintagetech:crucible",
   "input_fluid": {
-    "amount": 100,
+    "amount": 20,
     "ingredient": "vintagetech:sulfuric_acid_source"
   },
   "input_items": [
