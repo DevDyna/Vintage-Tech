@@ -149,7 +149,7 @@ public class zBlocks {
         public static final DeferredHolder<Block, Block> CRUCIBLE = registerItemBlock("crucible",
                         p -> new CrucibleBlock(p
                                         .mapColor(MapColor.METAL)
-
+                                        .noOcclusion()
                                         .strength(2.0F)
                                         .sound(SoundType.METAL)));
 
