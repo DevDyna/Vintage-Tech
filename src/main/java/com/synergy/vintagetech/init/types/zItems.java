@@ -59,6 +59,7 @@ public class zItems {
         public static final DeferredHolder<Item, Item> TOFU = zItem.registerSimpleItem("tofu",
                         p -> p.food(new FoodProperties(6, 7f, true)));
 
+        public static final DeferredHolder<Item, Item> CLOTH = zItem.registerSimpleItem("cloth");
         public static final DeferredHolder<Item, Item> SALT = zItem.registerSimpleItem("salt",p -> p
                         .food(new FoodProperties(0, 0f, true), Consumable.builder()
                                         .onConsume(new ApplyStatusEffectsConsumeEffect(
