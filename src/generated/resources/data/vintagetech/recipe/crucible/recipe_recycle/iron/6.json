@@ -1,0 +1,43 @@
+{
+  "type": "vintagetech:crucible",
+  "input_fluid": {
+    "amount": 150,
+    "ingredient": "vintagetech:sulfuric_acid_source"
+  },
+  "input_items": [
+    {
+      "count": 1,
+      "ingredient": "#vintagetech:recipe_recycle/iron/6"
+    }
+  ],
+  "output_items": [
+    {
+      "chance": 1.0,
+      "item": {
+        "count": 4,
+        "id": "minecraft:iron_ingot"
+      }
+    },
+    {
+      "chance": 1.0,
+      "item": {
+        "count": 3,
+        "id": "minecraft:iron_nugget"
+      }
+    },
+    {
+      "chance": 0.5,
+      "item": {
+        "count": 2,
+        "id": "minecraft:iron_nugget"
+      }
+    },
+    {
+      "chance": 0.5,
+      "item": {
+        "id": "minecraft:iron_nugget"
+      }
+    }
+  ],
+  "ticks": 80
+}

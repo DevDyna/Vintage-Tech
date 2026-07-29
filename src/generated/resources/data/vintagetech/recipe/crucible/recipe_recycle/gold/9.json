@@ -1,0 +1,43 @@
+{
+  "type": "vintagetech:crucible",
+  "input_fluid": {
+    "amount": 225,
+    "ingredient": "vintagetech:sulfuric_acid_source"
+  },
+  "input_items": [
+    {
+      "count": 1,
+      "ingredient": "#vintagetech:recipe_recycle/gold/9"
+    }
+  ],
+  "output_items": [
+    {
+      "chance": 1.0,
+      "item": {
+        "count": 6,
+        "id": "minecraft:gold_ingot"
+      }
+    },
+    {
+      "chance": 1.0,
+      "item": {
+        "count": 4,
+        "id": "minecraft:gold_nugget"
+      }
+    },
+    {
+      "chance": 0.8,
+      "item": {
+        "count": 2,
+        "id": "minecraft:gold_nugget"
+      }
+    },
+    {
+      "chance": 0.75,
+      "item": {
+        "id": "minecraft:gold_nugget"
+      }
+    }
+  ],
+  "ticks": 80
+}

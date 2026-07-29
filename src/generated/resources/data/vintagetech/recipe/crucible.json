@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "B": "minecraft:bone",
+    "C": "minecraft:cauldron",
+    "I": "#c:ingots/iron"
+  },
+  "pattern": [
+    "IBI",
+    "ICI",
+    "III"
+  ],
+  "result": {
+    "id": "vintagetech:crucible"
+  }
+}

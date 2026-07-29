@@ -18,12 +18,14 @@
     "amount": 150,
     "id": "vintagetech:soy_whey_source"
   },
-  "output_item": {
-    "chance": 1.0,
-    "item": {
-      "count": 2,
-      "id": "vintagetech:soy_rennet"
+  "output_items": [
+    {
+      "chance": 1.0,
+      "item": {
+        "count": 2,
+        "id": "vintagetech:soy_rennet"
+      }
     }
-  },
+  ],
   "ticks": 80
 }

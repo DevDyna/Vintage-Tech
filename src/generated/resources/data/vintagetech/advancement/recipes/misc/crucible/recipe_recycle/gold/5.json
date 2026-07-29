@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_recipe_recycle/gold/5": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#vintagetech:recipe_recycle/gold/5"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "vintagetech:crucible/recipe_recycle/gold/5"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_recipe_recycle/gold/5"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "vintagetech:crucible/recipe_recycle/gold/5"
+    ]
+  }
+}

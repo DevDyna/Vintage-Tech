@@ -1,0 +1,42 @@
+{
+  "type": "vintagetech:crucible",
+  "input_fluid": {
+    "amount": 25,
+    "ingredient": "vintagetech:sulfuric_acid_source"
+  },
+  "input_items": [
+    {
+      "count": 1,
+      "ingredient": "#vintagetech:recipe_recycle/copper/1"
+    }
+  ],
+  "output_items": [
+    {
+      "chance": 1.0,
+      "item": {
+        "count": 2,
+        "id": "minecraft:copper_nugget"
+      }
+    },
+    {
+      "chance": 0.9,
+      "item": {
+        "count": 2,
+        "id": "minecraft:copper_nugget"
+      }
+    },
+    {
+      "chance": 0.75,
+      "item": {
+        "id": "minecraft:copper_nugget"
+      }
+    },
+    {
+      "chance": 0.15,
+      "item": {
+        "id": "minecraft:copper_nugget"
+      }
+    }
+  ],
+  "ticks": 80
+}
