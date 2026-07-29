@@ -9,14 +9,17 @@ import com.devdyna.cakesticklib.api.aspect.templates.TickingBlock;
 import com.synergy.vintagetech.init.types.zTags;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
@@ -25,10 +28,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.shapes.BooleanOp;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.transfer.fluid.FluidStacksResourceHandler;
 
 public class CrucibleBlock extends TickingBlock
@@ -42,29 +41,26 @@ public class CrucibleBlock extends TickingBlock
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext c) {
-        return this.defaultBlockState()
-                .setValue(HEATED, isHeated(c.getLevel(), c.getClickedPos().relative(c.getClickedFace().getOpposite())));
+        return defaultBlockState()
+                .setValue(HEATED, isHeated(c.getLevel(), c.getClickedPos().below()));
     }
 
-    public boolean isHeated(Level level, BlockPos pos) {
-        return level.getBlockState(pos.below()).is(zTags.Blocks.CRUCIBLE_HEAT_SOURCES);
+    @Override
+    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess ticks, BlockPos pos,
+            Direction direction, BlockPos neighborPos, BlockState neighborState, RandomSource random) {
+        if (direction == Direction.DOWN)
+            return state.setValue(HEATED, isHeated(level, neighborPos));
+
+        return super.updateShape(state, level, ticks, pos, direction, neighborPos, neighborState, random);
+    }
+
+    public boolean isHeated(LevelReader level, BlockPos pos) {
+        return level.getBlockState(pos).is(zTags.Blocks.CRUCIBLE_HEAT_SOURCES);
     }
 
     @Override
     protected void createBlockStateDefinition(Builder<Block, BlockState> b) {
         b.add(HEATED);
-    }
-
-    @Override
-    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-        VoxelShape shape = Shapes.empty();
-        shape = Shapes.join(shape, Shapes.box(0, 0, 0, 1, 0.125, 1), BooleanOp.OR);
-        shape = Shapes.join(shape, Shapes.box(0.375, 0.125, 0.375, 0.625, 0.6875, 0.625), BooleanOp.OR);
-        shape = Shapes.join(shape, Shapes.box(0, 0.125, 0, 1, 1, 0.125), BooleanOp.OR);
-        shape = Shapes.join(shape, Shapes.box(0, 0.125, 0.875, 1, 1, 1), BooleanOp.OR);
-        shape = Shapes.join(shape, Shapes.box(0, 0.125, 0.125, 0.125, 1, 0.875), BooleanOp.OR);
-        shape = Shapes.join(shape, Shapes.box(0.875, 0.125, 0.125, 1, 1, 0.875), BooleanOp.OR);
-        return shape;
     }
 
     @Override

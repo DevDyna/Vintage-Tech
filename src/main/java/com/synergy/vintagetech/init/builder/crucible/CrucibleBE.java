@@ -11,7 +11,6 @@ import com.devdyna.cakesticklib.api.aspect.logic.NoGuiStorage;
 import com.devdyna.cakesticklib.api.aspect.logic.SimpleFluidStorage;
 import com.devdyna.cakesticklib.api.aspect.templates.TickingBE;
 import com.devdyna.cakesticklib.api.primitive.Ticker;
-import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
 
 import com.synergy.vintagetech.api.recipeinput.CrucibleInput;
@@ -33,382 +32,152 @@ import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 
+public class CrucibleBE extends TickingBE implements ItemStorageBlock, NoGuiStorage, SimpleFluidStorage, DropCollector {
 
-public class CrucibleBE extends TickingBE
-        implements ItemStorageBlock, NoGuiStorage,
-        SimpleFluidStorage, DropCollector {
-
-
-    public static final List<Integer> ITEM_SLOTS =
-            List.of(0,1,2,3);
-
+    public static final List<Integer> ITEM_SLOTS = List.of(0, 1, 2, 3);
 
     public static final int FLUID_TANK = 0;
 
-
-
     public CrucibleBE(BlockPos pos, BlockState state) {
-        super(
-            zBlockEntities.CRUCIBLE.get(),
-            pos,
-            state
-        );
+        super(zBlockEntities.CRUCIBLE.get(), pos, state);
     }
-
-
 
     @Override
     public ItemStack insertItem(ItemStack stack) {
         return simpleInsertItem(stack);
     }
 
-
-
     @Override
     public ItemStack extractItem() {
 
-        for(int slot : ITEM_SLOTS) {
+        for (int slot : ITEM_SLOTS) {
 
-            ItemStack stack =
-                    simpleExtractItemByIndex(slot);
+            var stack = simpleExtractItemByIndex(slot);
 
-            if(!stack.isEmpty())
+            if (!stack.isEmpty())
                 return stack;
         }
 
         return ItemStack.EMPTY;
     }
 
-
-
-
     private Ticker ticker;
-
-
 
     @Override
     public void tickServer() {
 
-
-        if(getFluidStorage() == null)
+        if (getFluidStorage() == null)
             return;
 
+        var fluid = getAsStack(FLUID_TANK);
 
-        var fluid =
-                x.fluid(
-                    getFluidStorage()
-                    .getResource(FLUID_TANK)
-                    .getFluid(),
-
-                    getFluidStorage()
-                    .getAmountAsInt(FLUID_TANK)
-                );
-
-
-        if(fluid.isEmpty())
+        if (fluid.isEmpty())
             return;
 
-
-
-        if(getItemStorage() == null)
+        if (getItemStorage() == null)
             return;
 
-
-
-        if(!getBlockState()
-                .getValue(CrucibleBlock.HEATED))
+        if (!getBlockState().getValue(CrucibleBlock.HEATED))
             return;
 
+        List<ItemStack> items = new ArrayList<>();
 
+        List<Integer> slots = new ArrayList<>();
 
-        /*
-         * Collect all input slots
-         */
-        List<ItemStack> items =
-                new ArrayList<>();
+        for (int slot : ITEM_SLOTS) {
 
+            var stack = getStackInSlot(slot);
 
-        List<Integer> slots =
-                new ArrayList<>();
-
-
-        for(int slot : ITEM_SLOTS) {
-
-            ItemStack stack =
-                    getStackInSlot(slot);
-
-
-            if(!stack.isEmpty()) {
-
+            if (!stack.isEmpty()) {
                 items.add(stack);
                 slots.add(slot);
             }
         }
 
-
-
-        if(items.isEmpty())
+        if (items.isEmpty())
             return;
 
+        Optional<RecipeHolder<CrucibleRecipe>> r = level.getServer().getRecipeManager()
+                .getRecipeFor(zRecipeTypes.CRUCIBLE.getType(), new CrucibleInput(items, fluid), level);
 
-
-        Optional<RecipeHolder<CrucibleRecipe>> recipeHolder =
-                level.getServer()
-                .getRecipeManager()
-                .getRecipeFor(
-
-                    zRecipeTypes.CRUCIBLE.getType(),
-
-                    new CrucibleInput(
-                        items,
-                        fluid
-                    ),
-
-                    level
-                );
-
-
-
-        if(recipeHolder.isEmpty())
+        if (r.isEmpty())
             return;
 
+        var recipe = r.get().value();
 
-
-        CrucibleRecipe recipe =
-                recipeHolder.get().value();
-
-
-
-        int fluidAmount =
-                recipe.getInputFluid().amount();
-
-
-
-        if(fluid.amount() < fluidAmount)
+        if (fluid.amount() < recipe.getInputFluid().amount())
             return;
 
+        int multiplier = fluid.amount() / recipe.getInputFluid().amount();
 
-
-        /*
-         * Calculate multiplier
-         */
-        int multiplier =
-                fluid.amount()
-                /
-                fluidAmount;
-
-
-
-        for(SizedIngredient ingredient :
-                recipe.getItemInputs()) {
-
+        for (var ingredient : recipe.getItemInputs()) {
 
             int count = 0;
 
-
-            for(ItemStack stack : items) {
-
-                if(ingredient.ingredient().test(stack))
+            for (ItemStack stack : items)
+                if (ingredient.ingredient().test(stack))
                     count += stack.getCount();
-            }
 
-
-            multiplier =
-                Math.min(
-                    multiplier,
-                    count / ingredient.count()
-                );
+            multiplier = Math.min(multiplier, count / ingredient.count());
         }
 
-
-
-        if(multiplier <= 0)
+        if (multiplier <= 0)
             return;
 
-
-
-        /*
-         * Output tank check
-         */
-        if(recipe.getOutputFluid() != null) {
-
-            int amount =
-                recipe.getOutputFluid()
-                .amount()
-                *
-                multiplier;
-
-
-            if(amount > getTankCapacity())
+        if (recipe.getOutputFluid() != null)
+            if (recipe.getOutputFluid().amount() * multiplier > getTankCapacity())
                 return;
-        }
 
+        if (recipe.getOutputItem() != null)
+            try (var tx = Transaction.openRoot()) {
 
-
-        /*
-         * Output item check
-         */
-        if(recipe.getOutputItem() != null) {
-
-            try(var tx = Transaction.openRoot()) {
-
-
-                int inserted =
-                    getItemStorage()
-                    .insert(
-
-                        ItemResource.of(
-                            recipe.getOutputItem().item()
-                        ),
-
-                        recipe.getOutputItem()
-                        .item()
-                        .count()
-                        *
-                        multiplier,
-
-                        tx
-                    );
-
-
-                if(inserted <
-                    recipe.getOutputItem()
-                    .item()
-                    .count()
-                    *
-                    multiplier) {
-
+                if (getItemStorage().insert(ItemResource.of(recipe.getOutputItem().item()),
+                        recipe.getOutputItem().item().count() * multiplier,
+                        tx) < recipe.getOutputItem().item().count() * multiplier)
                     return;
-                }
-
 
                 tx.close();
             }
-        }
 
+        if (RandomUtil.chance(level, 0.05f))
+            level.playSound(null, getBlockPos(), SoundEvents.BREWING_STAND_BREW, SoundSource.BLOCKS, 0.15f,
+                    1.25f + (RandomUtil.chance(level, 50) ? 0.5f : 0.25f));
 
+        if (ticker == null)
+            ticker = Ticker.of(recipe.getTicks() * multiplier);
 
-        if(RandomUtil.chance(level,25)) {
-
-            level.playSound(
-                null,
-                getBlockPos(),
-
-                SoundEvents.BREWING_STAND_BREW,
-
-                SoundSource.BLOCKS,
-
-                0.3f,
-
-                1.5f +
-                (
-                    RandomUtil.chance(level,50)
-                    ? 0.5f
-                    : 0.25f
-                )
-            );
-        }
-
-
-
-        if(ticker == null)
-            ticker =
-                Ticker.of(
-                    recipe.getTicks()
-                    *
-                    multiplier
-                );
-
-
-
-        if(!ticker.commit())
+        if (!ticker.commit())
             return;
 
+        level.playSound(null, getBlockPos(), SoundEvents.BREWING_STAND_BREW, SoundSource.BLOCKS, 0.3f,
+                0.25f + (RandomUtil.chance(level, 50) ? 0.5f : 0.25f));
 
+        try (var tx = Transaction.openRoot()) {
 
+            getFluidStorage().extract(FLUID_TANK, FluidResource.of(fluid), recipe.getInputFluid().amount() * multiplier,
+                    tx);
 
-        try(var tx = Transaction.openRoot()) {
+            List<ItemStack> remaining = new ArrayList<>();
 
-
-
-            /*
-             * Consume fluid
-             */
-            getFluidStorage()
-            .extract(
-
-                FLUID_TANK,
-
-                FluidResource.of(fluid),
-
-                fluidAmount * multiplier,
-
-                tx
-            );
-
-
-
-            /*
-             * Consume items
-             */
-            List<ItemStack> remaining =
-                    new ArrayList<>();
-
-
-            for(ItemStack stack : items)
+            for (ItemStack stack : items)
                 remaining.add(stack.copy());
 
+            for (SizedIngredient ingredient : recipe.getItemInputs()) {
 
+                int needed = ingredient.count() * multiplier;
 
-            for(SizedIngredient ingredient :
-                    recipe.getItemInputs()) {
+                for (int i = 0; i < remaining.size() && needed > 0; i++) {
 
+                    var stack = remaining.get(i);
 
-                int needed =
-                    ingredient.count()
-                    *
-                    multiplier;
+                    if (ingredient.ingredient().test(stack)) {
 
+                        int remove = Math.min(needed, stack.getCount());
 
+                        //TODO IMP : rework to use extract(T r, int a, TransactionContext tx) intend of index based
 
-                for(int i = 0;
-                    i < remaining.size()
-                    &&
-                    needed > 0;
-                    i++) {
-
-
-                    ItemStack stack =
-                            remaining.get(i);
-
-
-
-                    if(ingredient
-                        .ingredient()
-                        .test(stack)) {
-
-
-                        int remove =
-                            Math.min(
-                                needed,
-                                stack.getCount()
-                            );
-
-
-                        getItemStorage()
-                        .extract(
-
-                            slots.get(i),
-
-                            ItemResource.of(
-                                getStackInSlot(slots.get(i))
-                            ),
-
-                            remove,
-
-                            tx
-                        );
-
+                        getItemStorage().extract(slots.get(i),ItemResource.of(getStackInSlot(slots.get(i))), remove,
+                                tx);
 
                         stack.shrink(remove);
 
@@ -417,105 +186,39 @@ public class CrucibleBE extends TickingBE
                 }
             }
 
+            if (recipe.getOutputFluid() != null)
+                getFluidStorage().insert(FLUID_TANK, FluidResource.of(recipe.getOutputFluid()),
+                        recipe.getOutputFluid().amount() * multiplier, tx);
 
-
-            /*
-             * Output fluid
-             */
-            if(recipe.getOutputFluid() != null) {
-
-                getFluidStorage()
-                .insert(
-
-                    FLUID_TANK,
-
-                    FluidResource.of(
-                        recipe.getOutputFluid()
-                    ),
-
-                    recipe.getOutputFluid()
-                    .amount()
-                    *
-                    multiplier,
-
-                    tx
-                );
-            }
-
-
-
-
-            /*
-             * Output item chance
-             */
-            if(recipe.getOutputItem() != null
-                &&
-                RandomUtil.chance(
-                    level,
-                    recipe.getOutputItem()
-                    .chance()
-                )) {
-
-
-                getItemStorage()
-                .insert(
-
-                    ItemResource.of(
-                        recipe.getOutputItem()
-                        .item()
-                    ),
-
-                    recipe.getOutputItem()
-                    .item()
-                    .count()
-                    *
-                    multiplier,
-
-                    tx
-                );
-            }
-
-
+            if (recipe.getOutputItem() != null && RandomUtil.chance(level, recipe.getOutputItem().chance()))
+                getItemStorage().insert(ItemResource.of(recipe.getOutputItem().item()),
+                        recipe.getOutputItem().item().count() * multiplier, tx);
 
             tx.commit();
         }
 
-
-
         ticker = null;
     }
-
-
-
-
 
     @Override
     public ItemStacksResourceHandler getItemStorage() {
         return getData(LibHandlers.ITEM_STORAGE);
     }
 
-
-
     @Override
     public int getSlots() {
         return 4;
     }
-
-
 
     @Override
     public FluidStacksResourceHandler getFluidStorage() {
         return getData(LibHandlers.FLUID_STORAGE);
     }
 
-
-
     @Override
     public int getTankCapacity() {
-        return 1000;
+        return 10000;
     }
-
-
 
     @Override
     public int getTanks() {
