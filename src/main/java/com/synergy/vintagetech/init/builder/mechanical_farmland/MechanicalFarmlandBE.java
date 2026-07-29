@@ -70,7 +70,13 @@ public class MechanicalFarmlandBE extends TransmissionBE implements SimpleFluidS
                             state.getValue(MechanicalFarmlandBlock.MOISTURE) + 1),
                     2);
 
-        if (getFluidStorage() == null || getFluidStorage().getResource(FLUID_TANK).isEmpty())
+        if (getFluidStorage() == null)
+            return;
+
+        if (getFluidStorage().getResource(FLUID_TANK) == null)
+            return;
+
+        if (getFluidStorage().getResource(FLUID_TANK).isEmpty())
             return;
 
         Optional<RecipeHolder<FarmlandFuelsRecipe>> r = level.getServer().getRecipeManager()
