@@ -126,6 +126,10 @@ public class CrucibleBlock extends TickingBlock
     @Override
     public InteractionResult executeWhenEmpty(ItemStack stack, BlockState state, Level level, BlockPos pos,
             Player player, InteractionHand hand, BlockHitResult hitResult) {
+
+        if (level.getBlockEntity(pos) instanceof CrucibleBE be)
+            if (!be.isSlotsEmpty())
+                    return be.itemUseOn(player, level, pos, hand);
         if (player.isCrouching())
             return useItemToClear(state, level, pos, player, hitResult);
         else
