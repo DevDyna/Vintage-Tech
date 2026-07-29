@@ -760,7 +760,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
 
                 CrucibleBuilder.of(registries)
                                 .add(t1)
-                                .fluid(zFluids.SULFURIC_ACID.getFluid(), 25)
+                                .fluid(zFluids.SULFURIC_ACID.getFluid(), 5)
                                 .output(nugget, 2, 1f)
                                 .output(nugget, 2, 0.9f)
                                 .output(nugget, 1, 0.75f)
@@ -770,7 +770,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
 
                 CrucibleBuilder.of(registries)
                                 .add(t2)
-                                .fluid(zFluids.SULFURIC_ACID.getFluid(), 50)
+                                .fluid(zFluids.SULFURIC_ACID.getFluid(), 10)
                                 .output(ingot, 1, 1f)
                                 .output(nugget, 2, 1f)
                                 .output(nugget, 2, 0.9f)
@@ -780,7 +780,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
 
                 CrucibleBuilder.of(registries)
                                 .add(t3)
-                                .fluid(zFluids.SULFURIC_ACID.getFluid(), 75)
+                                .fluid(zFluids.SULFURIC_ACID.getFluid(), 15)
                                 .output(ingot, 2, 1f)
                                 .output(nugget, 2, 1f)
                                 .output(nugget, 1, 0.9f)
@@ -790,7 +790,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
 
                 CrucibleBuilder.of(registries)
                                 .add(t4)
-                                .fluid(zFluids.SULFURIC_ACID.getFluid(), 100)
+                                .fluid(zFluids.SULFURIC_ACID.getFluid(), 20)
                                 .output(ingot, 3, 1f)
                                 .output(nugget, 2, 1f)
                                 .output(nugget, 1, 0.9f)
@@ -800,7 +800,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
 
                 CrucibleBuilder.of(registries)
                                 .add(t5)
-                                .fluid(zFluids.SULFURIC_ACID.getFluid(), 125)
+                                .fluid(zFluids.SULFURIC_ACID.getFluid(), 25)
                                 .output(ingot, 3, 1f)
                                 .output(ingot, 1, 0.75f)
                                 .output(nugget, 2, 1f)
@@ -810,7 +810,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
 
                 CrucibleBuilder.of(registries)
                                 .add(t6)
-                                .fluid(zFluids.SULFURIC_ACID.getFluid(), 150)
+                                .fluid(zFluids.SULFURIC_ACID.getFluid(), 30)
                                 .output(ingot, 4, 1f)
                                 .output(nugget, 3, 1f)
                                 .output(nugget, 2, 0.5f)
@@ -820,7 +820,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
 
                 CrucibleBuilder.of(registries)
                                 .add(t7)
-                                .fluid(zFluids.SULFURIC_ACID.getFluid(), 175)
+                                .fluid(zFluids.SULFURIC_ACID.getFluid(), 35)
                                 .output(ingot, 5, 1f)
                                 .output(nugget, 2, 1f)
                                 .output(nugget, 2, 0.5f)
@@ -830,7 +830,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
 
                 CrucibleBuilder.of(registries)
                                 .add(t8)
-                                .fluid(zFluids.SULFURIC_ACID.getFluid(), 200)
+                                .fluid(zFluids.SULFURIC_ACID.getFluid(), 40)
                                 .output(ingot, 6, 1f)
                                 .output(nugget, 2, 1f)
                                 .output(nugget, 1, 0.9f)
@@ -840,7 +840,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
 
                 CrucibleBuilder.of(registries)
                                 .add(t9)
-                                .fluid(zFluids.SULFURIC_ACID.getFluid(), 225)
+                                .fluid(zFluids.SULFURIC_ACID.getFluid(), 45)
                                 .output(ingot, 6, 1f)
                                 .output(nugget, 4, 1f)
                                 .output(nugget, 2, 0.8f)
