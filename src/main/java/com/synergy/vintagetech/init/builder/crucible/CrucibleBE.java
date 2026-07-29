@@ -36,7 +36,7 @@ import net.neoforged.neoforge.transfer.transaction.Transaction;
 
 public class CrucibleBE extends TickingBE implements ItemStorageBlock, NoGuiStorage, SimpleFluidStorage, DropCollector {
 
-    public static final List<Integer> ITEM_SLOTS = List.of(0, 1, 2, 3);
+    public static final List<Integer> ITEM_SLOTS = List.of(0, 1, 2, 3,4,5,6,7);
 
     public static final int FLUID_TANK = 0;
 
@@ -196,7 +196,7 @@ public class CrucibleBE extends TickingBE implements ItemStorageBlock, NoGuiStor
 
     @Override
     public int getSlots() {
-        return 4;
+        return 8;
     }
 
     @Override
