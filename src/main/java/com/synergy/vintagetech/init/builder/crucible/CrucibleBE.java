@@ -13,6 +13,8 @@ import com.devdyna.cakesticklib.api.aspect.templates.TickingBE;
 import com.devdyna.cakesticklib.api.primitive.Ticker;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
 
+import com.devdyna.cakesticklib.api.recipe.recipeOutput.ChanceOutput;
+
 import com.synergy.vintagetech.api.recipeinput.CrucibleInput;
 import com.synergy.vintagetech.init.builder.crucible.recipe.CrucibleRecipe;
 import com.synergy.vintagetech.init.types.zBlockEntities;
@@ -51,9 +53,7 @@ public class CrucibleBE extends TickingBE implements ItemStorageBlock, NoGuiStor
     public ItemStack extractItem() {
 
         for (int slot : ITEM_SLOTS) {
-
             var stack = simpleExtractItemByIndex(slot);
-
             if (!stack.isEmpty())
                 return stack;
         }
@@ -81,7 +81,6 @@ public class CrucibleBE extends TickingBE implements ItemStorageBlock, NoGuiStor
             return;
 
         List<ItemStack> items = new ArrayList<>();
-
         List<Integer> slots = new ArrayList<>();
 
         for (int slot : ITEM_SLOTS) {
@@ -89,6 +88,7 @@ public class CrucibleBE extends TickingBE implements ItemStorageBlock, NoGuiStor
             var stack = getStackInSlot(slot);
 
             if (!stack.isEmpty()) {
+
                 items.add(stack);
                 slots.add(slot);
             }
@@ -115,6 +115,7 @@ public class CrucibleBE extends TickingBE implements ItemStorageBlock, NoGuiStor
             int count = 0;
 
             for (ItemStack stack : items)
+
                 if (ingredient.ingredient().test(stack))
                     count += stack.getCount();
 
@@ -125,21 +126,29 @@ public class CrucibleBE extends TickingBE implements ItemStorageBlock, NoGuiStor
             return;
 
         if (recipe.getOutputFluid() != null)
+
             if (recipe.getOutputFluid().amount() * multiplier > getTankCapacity())
+
                 return;
 
-        if (recipe.getOutputItem() != null)
+        if (!recipe.getOutputItems().isEmpty()) {
+
             try (var tx = Transaction.openRoot()) {
 
-                if (getItemStorage().insert(ItemResource.of(recipe.getOutputItem().item()),
-                        recipe.getOutputItem().item().count() * multiplier,
-                        tx) < recipe.getOutputItem().item().count() * multiplier)
-                    return;
+                for (ChanceOutput.Item output : recipe.getOutputItems()) {
+
+                    int amount = output.item().count() * multiplier;
+
+                    if (getItemStorage().insert(ItemResource.of(output.item()), amount, tx) < amount)
+                        return;
+                }
 
                 tx.close();
             }
+        }
 
         if (RandomUtil.chance(level, 0.05f))
+
             level.playSound(null, getBlockPos(), SoundEvents.BREWING_STAND_BREW, SoundSource.BLOCKS, 0.15f,
                     1.25f + (RandomUtil.chance(level, 50) ? 0.5f : 0.25f));
 
@@ -160,6 +169,7 @@ public class CrucibleBE extends TickingBE implements ItemStorageBlock, NoGuiStor
             List<ItemStack> remaining = new ArrayList<>();
 
             for (ItemStack stack : items)
+
                 remaining.add(stack.copy());
 
             for (SizedIngredient ingredient : recipe.getItemInputs()) {
@@ -174,9 +184,7 @@ public class CrucibleBE extends TickingBE implements ItemStorageBlock, NoGuiStor
 
                         int remove = Math.min(needed, stack.getCount());
 
-                        //TODO IMP : rework to use extract(T r, int a, TransactionContext tx) intend of index based
-
-                        getItemStorage().extract(slots.get(i),ItemResource.of(getStackInSlot(slots.get(i))), remove,
+                        getItemStorage().extract(slots.get(i), ItemResource.of(getStackInSlot(slots.get(i))), remove,
                                 tx);
 
                         stack.shrink(remove);
@@ -190,9 +198,9 @@ public class CrucibleBE extends TickingBE implements ItemStorageBlock, NoGuiStor
                 getFluidStorage().insert(FLUID_TANK, FluidResource.of(recipe.getOutputFluid()),
                         recipe.getOutputFluid().amount() * multiplier, tx);
 
-            if (recipe.getOutputItem() != null && RandomUtil.chance(level, recipe.getOutputItem().chance()))
-                getItemStorage().insert(ItemResource.of(recipe.getOutputItem().item()),
-                        recipe.getOutputItem().item().count() * multiplier, tx);
+            for (ChanceOutput.Item output : recipe.getOutputItems())
+                if (RandomUtil.chance(level, output.chance()))
+                    getItemStorage().insert(ItemResource.of(output.item()), output.item().count() * multiplier, tx);
 
             tx.commit();
         }

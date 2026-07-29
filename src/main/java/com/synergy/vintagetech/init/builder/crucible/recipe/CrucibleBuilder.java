@@ -8,13 +8,13 @@ import java.util.List;
 
 import com.devdyna.cakesticklib.api.recipe.recipeBuilder.*;
 import com.devdyna.cakesticklib.api.recipe.recipeOutput.ChanceOutput;
-import com.devdyna.cakesticklib.api.recipe.recipeOutput.ChanceOutput.Item;
 import com.devdyna.cakesticklib.api.utils.x;
 
 import net.minecraft.advancements.Criterion;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import net.neoforged.neoforge.fluids.FluidStackTemplate;
 import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
@@ -22,13 +22,13 @@ import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 public class CrucibleBuilder extends BaseRecipeBuilder
         implements ItemAttach.Input.ListedItemCount<CrucibleBuilder>,
         FluidAttach.Input.SizedFluid<CrucibleBuilder>,
-        FluidAttach.Output.OutputFluid<CrucibleBuilder>, ItemAttach.Output.ItemOutputChance<CrucibleBuilder> {
+        FluidAttach.Output.OutputFluid<CrucibleBuilder> {
 
     private SizedFluidIngredient input_fluid;
     private List<SizedIngredient> input_items;
     private int ticks;
     private FluidStackTemplate output_fluid;
-    private ChanceOutput.Item output_item;
+    private List<ChanceOutput.Item> output_item;
 
     public static final int MAX_ITEMS = 4;
 
@@ -37,6 +37,7 @@ public class CrucibleBuilder extends BaseRecipeBuilder
         this.criteria = new LinkedHashMap<String, Criterion<?>>();
         this.ticks = 80;
         this.input_items = new ArrayList<>(MAX_ITEMS);
+        this.output_item = new ArrayList<>(MAX_ITEMS);
     }
 
     public static CrucibleBuilder of(HolderLookup.Provider p) {
@@ -45,7 +46,6 @@ public class CrucibleBuilder extends BaseRecipeBuilder
 
     @Override
     public CrucibleBuilder add(SizedIngredient i) {
-
         if (input_items.size() >= MAX_ITEMS)
             throw new IndexOutOfBoundsException("CrucibleBuilder.add has reached the max amount of item inputs!");
 
@@ -70,10 +70,24 @@ public class CrucibleBuilder extends BaseRecipeBuilder
         return this;
     }
 
-    @Override
-    public CrucibleBuilder output(Item output_item) {
-        this.output_item = output_item;
+    public CrucibleBuilder output(ChanceOutput.Item i) {
+        if (output_item.size() >= MAX_ITEMS)
+            throw new IndexOutOfBoundsException("CrucibleBuilder.add has reached the max amount of item inputs!");
+
+        this.output_item.add(i);
         return this;
+    }
+
+    public CrucibleBuilder output(ItemLike i, int count, float chance) {
+        return output(ChanceOutput.Item.of(x.itemTemplate(i.asItem(), count), chance));
+    }
+
+    public CrucibleBuilder output(ItemLike i, float chance) {
+        return output(ChanceOutput.Item.of(x.itemTemplate(i.asItem()), chance));
+    }
+
+    public CrucibleBuilder output(ItemLike i) {
+        return output(ChanceOutput.Item.of(x.itemTemplate(i.asItem()), 1f));
     }
 
     public CrucibleBuilder unlockedBy(String name, Criterion<?> criterion) {

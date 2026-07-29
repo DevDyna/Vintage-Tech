@@ -27,6 +27,7 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
+
 import net.neoforged.neoforge.fluids.FluidStackTemplate;
 import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
@@ -37,35 +38,20 @@ public class CrucibleRecipe extends BaseRecipeType<CrucibleInput> {
     private final List<SizedIngredient> input_items;
     private final int ticks;
     private final FluidStackTemplate output_fluid;
-    private final ChanceOutput.Item output_item;
+    private final List<ChanceOutput.Item> output_items;
 
-    public CrucibleRecipe(
-            SizedFluidIngredient input_fluid,
-            List<SizedIngredient> input_items,
-            int ticks,
-            FluidStackTemplate output_fluid,
-            ChanceOutput.Item output_item) {
-
+    public CrucibleRecipe(SizedFluidIngredient input_fluid, List<SizedIngredient> input_items, int ticks,
+            FluidStackTemplate output_fluid, List<ChanceOutput.Item> output_items) {
         this.input_fluid = input_fluid;
         this.input_items = input_items;
         this.ticks = ticks;
         this.output_fluid = output_fluid;
-        this.output_item = output_item;
+        this.output_items = output_items;
     }
 
-    public static CrucibleRecipe of(
-            SizedFluidIngredient input_fluid,
-            List<SizedIngredient> input_items,
-            int ticks,
-            FluidStackTemplate output_fluid,
-            ChanceOutput.Item output_item) {
-
-        return new CrucibleRecipe(
-                input_fluid,
-                input_items,
-                ticks,
-                output_fluid,
-                output_item);
+    public static CrucibleRecipe of(SizedFluidIngredient input_fluid, List<SizedIngredient> input_items, int ticks,
+            FluidStackTemplate output_fluid, List<ChanceOutput.Item> output_items) {
+        return new CrucibleRecipe(input_fluid, input_items, ticks, output_fluid, output_items);
     }
 
     @Override
@@ -82,18 +68,14 @@ public class CrucibleRecipe extends BaseRecipeType<CrucibleInput> {
         for (SizedIngredient ingredient : input_items) {
 
             boolean found = false;
-
-            for (ItemStack stack : available) {
-
-                if (ingredient.ingredient().test(stack)
-                        && stack.getCount() >= ingredient.count()) {
+            for (ItemStack stack : available)
+                if (ingredient.ingredient().test(stack) && stack.getCount() >= ingredient.count()) {
 
                     stack.shrink(ingredient.count());
 
                     found = true;
                     break;
                 }
-            }
 
             if (!found)
                 return false;
@@ -106,11 +88,7 @@ public class CrucibleRecipe extends BaseRecipeType<CrucibleInput> {
     public ItemStack assemble(CrucibleInput input) {
 
         if (output_fluid != null)
-            return x.item(
-                    output_fluid.create()
-                            .getFluid()
-                            .getBucket())
-                    .copy();
+            return x.item(output_fluid.create().getFluid().getBucket()).copy();
 
         return ItemStack.EMPTY;
     }
@@ -141,8 +119,8 @@ public class CrucibleRecipe extends BaseRecipeType<CrucibleInput> {
         return output_fluid;
     }
 
-    public ChanceOutput.Item getOutputItem() {
-        return output_item;
+    public List<ChanceOutput.Item> getOutputItems() {
+        return output_items;
     }
 
     @Override
@@ -189,16 +167,11 @@ public class CrucibleRecipe extends BaseRecipeType<CrucibleInput> {
                     .forGetter(r -> Optional.ofNullable(r.getOutputFluid())),
 
             ChanceOutput.Item.CODEC
-                    .optionalFieldOf("output_item")
-                    .forGetter(r -> ChanceOutput.Item.optional(r.getOutputItem()))
+                    .listOf()
+                    .optionalFieldOf("output_items", List.of())
+                    .forGetter(CrucibleRecipe::getOutputItems)
 
-    ).apply(inst,
-            (fluid, items, ticks, outputFluid, outputItem) -> new CrucibleRecipe(
-                    fluid,
-                    items,
-                    ticks,
-                    outputFluid.orElse(null),
-                    outputItem.orElse(null))));
+    ).apply(inst, (inf, ini, t, ouf, oui) -> new CrucibleRecipe(inf, ini, t, ouf.orElse(null), oui)));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, CrucibleRecipe> STREAM_CODEC = StreamCodec.composite(
 
@@ -216,14 +189,11 @@ public class CrucibleRecipe extends BaseRecipeType<CrucibleInput> {
                     FluidStackTemplate.STREAM_CODEC),
             r -> Optional.ofNullable(r.getOutputFluid()),
 
-            ByteBufCodecs.optional(
-                    ChanceOutput.Item.STREAM_CODEC),
-            r -> ChanceOutput.Item.optional(r.getOutputItem()),
+            ChanceOutput.Item.STREAM_CODEC
+                    .apply(ByteBufCodecs.list()),
+            CrucibleRecipe::getOutputItems,
 
-            (fluid, items, ticks, outputFluid, outputItem) -> new CrucibleRecipe(
-                    fluid,
-                    items,
-                    ticks,
-                    outputFluid.orElse(null),
-                    outputItem.orElse(null)));
+            (inf, ini, t, ouf, oui) -> new CrucibleRecipe(inf, ini, t, ouf.orElse(null), oui)
+
+    );
 }
