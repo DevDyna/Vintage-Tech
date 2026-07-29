@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "B": "#c:coils/copper",
+    "R": "vintagetech:rope",
+    "T": "vintagetech:cloth"
+  },
+  "pattern": [
+    "RTR",
+    "TBT",
+    "RTR"
+  ],
+  "result": {
+    "id": "vintagetech:windmill"
+  }
+}

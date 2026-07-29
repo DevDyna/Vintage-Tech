@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_coils/copper": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:coils/copper"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "vintagetech:windmill"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_coils/copper"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "vintagetech:windmill"
+    ]
+  }
+}

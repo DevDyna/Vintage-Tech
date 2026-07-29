@@ -1,0 +1,36 @@
+{
+  "type": "vintagetech:crucible",
+  "input_fluid": {
+    "amount": 5,
+    "ingredient": "vintagetech:sap_source"
+  },
+  "input_items": [
+    {
+      "count": 1,
+      "ingredient": "vintagetech:amber"
+    },
+    {
+      "count": 5,
+      "ingredient": "#c:strings"
+    },
+    {
+      "count": 1,
+      "ingredient": "vintagetech:mesh"
+    }
+  ],
+  "output_items": [
+    {
+      "chance": 1.0,
+      "item": {
+        "id": "vintagetech:cloth"
+      }
+    },
+    {
+      "chance": 0.25,
+      "item": {
+        "id": "vintagetech:cloth"
+      }
+    }
+  ],
+  "ticks": 80
+}

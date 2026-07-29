@@ -1,0 +1,40 @@
+{
+  "type": "minecraft:simple_block",
+  "config": {
+    "to_place": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "data": {
+            "Name": "vintagetech:soybeans",
+            "Properties": {
+              "age": "3",
+              "natural": "true"
+            }
+          },
+          "weight": 4
+        },
+        {
+          "data": {
+            "Name": "vintagetech:soybeans",
+            "Properties": {
+              "age": "4",
+              "natural": "true"
+            }
+          },
+          "weight": 2
+        },
+        {
+          "data": {
+            "Name": "vintagetech:soybeans",
+            "Properties": {
+              "age": "5",
+              "natural": "true"
+            }
+          },
+          "weight": 1
+        }
+      ]
+    }
+  }
+}
