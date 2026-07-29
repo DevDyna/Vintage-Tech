@@ -653,6 +653,36 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .unlockedBy(getHasName(zItems.SALT.get()), has(zItems.SALT.get()))
                                 .save(output);
 
+                CrucibleBuilder.of(registries)
+                                .add(Tags.Items.SLIME_BALLS)
+                                .add(Tags.Items.STRINGS,3)
+                                .add(zItems.MESH,2)
+                                .fluid(zFluids.SAP.getFluid(), 25)
+                                .output(zItems.CLOTH.get(), 2, 1f)
+                                .unlockedBy(getHasName(Tags.Items.SLIME_BALLS), has(Tags.Items.SLIME_BALLS))
+                                .save(output,"_from_slime");
+
+                CrucibleBuilder.of(registries)
+                                .add(zItems.AMBER)
+                                .add(Tags.Items.STRINGS,5)
+                                .add(zItems.MESH)
+                                .fluid(zFluids.SAP.getFluid(), 5)
+                                .output(zItems.CLOTH.get(), 1, 1f)
+                                .output(zItems.CLOTH.get(), 1, 0.25f)
+                                .unlockedBy(getHasName(zItems.AMBER.get()), has(zItems.AMBER.get()))
+                                .save(output,"_from_amber");
+
+                shaped(RecipeCategory.BUILDING_BLOCKS,
+                                zBlocks.WINDMILL.get())
+                                .define('R', zBlocks.ROPE.get())
+                                .define('B', LibTags.Items.COPPER_COIL)
+                                .define('T', zItems.CLOTH.get())
+                                .pattern("RTR")
+                                .pattern("TBT")
+                                .pattern("RTR")
+                                .unlockedBy(getHasName(LibTags.Items.COPPER_COIL), has(LibTags.Items.COPPER_COIL))
+                                .save(output);
+
                 shaped(RecipeCategory.BUILDING_BLOCKS,
                                 zBlocks.CRUCIBLE.get())
                                 .define('I', Tags.Items.INGOTS_IRON)
