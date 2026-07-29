@@ -25,7 +25,7 @@ public class BaseEngineBE extends TransmissionBE implements KineticGenerator {
         super(zBlockEntities.CREATIVE_ENGINE.get(), pos, state);
     }
 
-    private Set<BlockPos> cache = new HashSet<>();
+    private Map<BlockPos, Boolean> cache = new HashMap<>();
 
     public BaseEngineBlock getBlock() {
         return (BaseEngineBlock) getBlockState().getBlock();
@@ -47,7 +47,7 @@ public class BaseEngineBE extends TransmissionBE implements KineticGenerator {
 
         // TODO IMP : rework to use QueueUtils
 
-        Set<BlockPos> visited = new HashSet<>();
+        Map<BlockPos, Boolean> visited = new HashMap<>();
         Queue<NetworkElement> queue = new ArrayDeque<>();
 
         for (Direction dir : getBlock().getGenDirections(level, pos, state))
@@ -63,8 +63,10 @@ public class BaseEngineBE extends TransmissionBE implements KineticGenerator {
             var inverted = network.state().rotation();
             var active = network.state().active();
 
-            if (!visited.add(currentPos))
+            if (visited.containsKey(currentPos))
                 continue;
+
+            visited.put(currentPos, inverted);
 
             var offsetstate = level.getBlockState(currentPos);
 
@@ -103,22 +105,21 @@ public class BaseEngineBE extends TransmissionBE implements KineticGenerator {
                     newInverted = result.rotation();
                 }
 
-                // if (nextState.getBlock() instanceof GearShiftBlock shift &&
-                // shift.isActive(level, nextPos))
-                // newInverted = !newInverted;
-
                 queue.add(NetworkElement.create(nextPos, newActive, newInverted));
             }
         }
 
-        for (BlockPos oldPos : cache)
-            if (!visited.contains(oldPos)) {
+        for (var entry : cache.entrySet()) {
+            var oldPos = entry.getKey();
+
+            if (!visited.containsKey(oldPos)) {
+
                 var oldState = level.getBlockState(oldPos);
 
                 if (oldState.getBlock() instanceof AxleHandler axle)
-                    axle.setDeactive(level, oldPos, oldState, false);
-
+                    axle.setDeactive(level, oldPos, oldState, entry.getValue());
             }
+        }
 
         cache = visited;
     }
@@ -146,13 +147,15 @@ public class BaseEngineBE extends TransmissionBE implements KineticGenerator {
     }
 
     protected void updateOnBreakNetwork() {
-        for (BlockPos pos : cache) {
+
+        for (var entry : cache.entrySet()) {
+
+            var pos = entry.getKey();
             var state = level.getBlockState(pos);
 
-            if (state.getBlock() instanceof AxleHandler axle &&
-                    state.getValueOrElse(AxleHandler.ENABLED, false)) {
-                axle.setDeactive(level, pos, state, false);
-            }
+            if (state.getBlock() instanceof AxleHandler axle && state.getValue(AxleHandler.ENABLED))
+                axle.setDeactive(level, pos, state, entry.getValue());
+
         }
 
         cache.clear();
