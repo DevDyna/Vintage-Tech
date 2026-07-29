@@ -49,7 +49,8 @@ public class DataLang extends LanguageProvider implements LangGenerators {
                                 "drying_rack",
                                 "evaporation_basin",
                                 "millstone",
-                                "tree_tap"
+                                "tree_tap",
+                                "crucible"
 
                 ).forEach(s -> add(MODULE_ID + ".jei." + s, StringUtil.formatToDisplay(s) + " Recipes"));
 
