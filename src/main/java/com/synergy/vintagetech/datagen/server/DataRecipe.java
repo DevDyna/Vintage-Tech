@@ -650,6 +650,16 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .unlockedBy(getHasName(zItems.SALT.get()), has(zItems.SALT.get()))
                                 .save(output);
 
+                shaped(RecipeCategory.BUILDING_BLOCKS,
+                                zBlocks.CRUCIBLE.get())
+                                .define('I', Tags.Items.INGOTS_IRON)
+                                .define('B', Items.BONE)
+                                .define('C', Items.CAULDRON)
+                                .pattern("IBI")
+                                .pattern("ICI")
+                                .pattern("III")
+                                .unlockedBy(getHasName(Tags.Items.INGOTS_IRON), has(Tags.Items.INGOTS_IRON))
+                                .save(output);
         }
 
         public static final class RecipeRunner extends RecipeProvider.Runner {
