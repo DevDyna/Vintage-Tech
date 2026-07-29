@@ -82,7 +82,7 @@ public class zTags {
                 public static final TagKey<Block> WOODEN_BEAMS = RegistryUtils
                                 .tagBlock(MODULE_ID, "beam/wooden");
 
-                                //TODO IMP : stripped beams
+                // TODO IMP : stripped beams
                 public static final TagKey<Block> STRIPPED_BEAMS = RegistryUtils
                                 .tagBlock(MODULE_ID, "beam/stripped");
 
@@ -104,6 +104,7 @@ public class zTags {
 
                 public static final TagKey<Item> BEAM_LOGS_NORMAL = RegistryUtils
                                 .tagItem(MODULE_ID, "beam/normal");
+                // TODO IMP : stripped beam itemtag
 
                 public static final TagKey<Item> STONE_SLABS = RegistryUtils
                                 .tagItem("c", "slabs/stone");
@@ -120,10 +121,10 @@ public class zTags {
 
                 public static final TagKey<Biome> ALOE_SPAWN = RegistryUtils.tagBiome(MODULE_ID,
                                 "worldgen/aloe");
-                                
+
                 public static final TagKey<Biome> BLUEBERRIES_SPAWN = RegistryUtils.tagBiome(MODULE_ID,
                                 "worldgen/blueberries");
-                                
+
                 public static final TagKey<Biome> CAVE_WHEAT_SPAWN = RegistryUtils.tagBiome(MODULE_ID,
                                 "worldgen/cave_wheat");
 
