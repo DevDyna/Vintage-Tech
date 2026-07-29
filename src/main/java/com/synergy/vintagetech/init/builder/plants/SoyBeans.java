@@ -60,7 +60,9 @@ public class SoyBeans extends BaseShortCropBlock implements NaturalCrop {
 
     @Override
     public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
-        this.growCrops(level, pos, state);
+        level.setBlock(pos, getStateForAge(Math.min(getMaxAge(), getAge(state) +
+                getBonemealAgeIncrease(level)))
+                .setValue(NATURAL, state.getValue(NATURAL)), 2);
     }
 
     @Override
