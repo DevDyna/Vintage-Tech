@@ -82,12 +82,14 @@ public class zTags {
                 public static final TagKey<Block> ROPE_IGNORE_CONNECTION = RegistryUtils
                                 .tagBlock(MODULE_ID, "rope/ignore_connection");
 
-                public static final TagKey<Block> WOODEN_BEAMS = RegistryUtils
-                                .tagBlock(MODULE_ID, "beam/wooden");
+                public static final TagKey<Block> BEAM_NORMAL = RegistryUtils
+                                .tagBlock(MODULE_ID, "beam/normal");
 
-                // TODO IMP : stripped beams
-                public static final TagKey<Block> STRIPPED_BEAMS = RegistryUtils
+                public static final TagKey<Block> BEAM_STRIPPED = RegistryUtils
                                 .tagBlock(MODULE_ID, "beam/stripped");
+
+                public static final TagKey<Block> BEAMS = RegistryUtils
+                                .tagBlock(MODULE_ID, "beam");
 
                 public static final TagKey<Block> IRONWOOD_LOGS = RegistryUtils
                                 .tagBlock(MODULE_ID, "ironwood_logs");
@@ -105,9 +107,14 @@ public class zTags {
                 public static final TagKey<Item> IRONWOOD_LOGS = RegistryUtils
                                 .tagItem(MODULE_ID, "ironwood_logs");
 
-                public static final TagKey<Item> BEAM_LOGS_NORMAL = RegistryUtils
+                public static final TagKey<Item> BEAM_NORMAL = RegistryUtils
                                 .tagItem(MODULE_ID, "beam/normal");
-                // TODO IMP : stripped beam itemtag
+
+                public static final TagKey<Item> BEAM_STRIPPED = RegistryUtils
+                                .tagItem(MODULE_ID, "beam/stripped");
+
+                public static final TagKey<Item> BEAMS = RegistryUtils
+                                .tagItem(MODULE_ID, "beam");
 
                 public static final TagKey<Item> STONE_SLABS = RegistryUtils
                                 .tagItem("c", "slabs/stone");
@@ -171,6 +178,9 @@ public class zTags {
 
                 public static final TagKey<Item> WINDMILL_REPAIR = RegistryUtils.tagItem(MODULE_ID,
                                 "windmill/repair");
+
+                public static final TagKey<Item> TREE_TAP_HANDLER = RegistryUtils.tagItem(MODULE_ID,
+                                "treetap/handler");
 
         }
 

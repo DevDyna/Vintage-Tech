@@ -4,6 +4,7 @@ import java.util.concurrent.CompletableFuture;
 
 import com.synergy.vintagetech.init.types.zBlocks;
 import com.synergy.vintagetech.init.types.zItems;
+import com.synergy.vintagetech.init.types.zTags;
 
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
@@ -25,10 +26,40 @@ public class DataMaps extends DataMapProvider {
         protected void gather(Provider p) {
 
                 builder(NeoForgeDataMaps.STRIPPABLES)
+                                .add(zBlocks.OAK_BEAM.getId(),
+                                                new Strippable(zBlocks.STRIPPED_OAK_BEAM.get()),
+                                                false, AlwaysCondition.INSTANCE)
+                                .add(zBlocks.BIRCH_BEAM.getId(),
+                                                new Strippable(zBlocks.STRIPPED_BIRCH_BEAM.get()),
+                                                false, AlwaysCondition.INSTANCE)
+                                .add(zBlocks.SPRUCE_BEAM.getId(),
+                                                new Strippable(zBlocks.STRIPPED_SPRUCE_BEAM.get()),
+                                                false, AlwaysCondition.INSTANCE)
+                                .add(zBlocks.JUNGLE_BEAM.getId(),
+                                                new Strippable(zBlocks.STRIPPED_JUNGLE_BEAM.get()),
+                                                false, AlwaysCondition.INSTANCE)
+                                .add(zBlocks.ACACIA_BEAM.getId(),
+                                                new Strippable(zBlocks.STRIPPED_ACACIA_BEAM.get()),
+                                                false, AlwaysCondition.INSTANCE)
+                                .add(zBlocks.DARK_OAK_BEAM.getId(),
+                                                new Strippable(zBlocks.STRIPPED_DARK_OAK_BEAM.get()),
+                                                false, AlwaysCondition.INSTANCE)
+                                .add(zBlocks.CHERRY_BEAM.getId(),
+                                                new Strippable(zBlocks.STRIPPED_CHERRY_BEAM.get()),
+                                                false, AlwaysCondition.INSTANCE)
+                                .add(zBlocks.MANGROVE_BEAM.getId(),
+                                                new Strippable(zBlocks.STRIPPED_MANGROVE_BEAM.get()),
+                                                false, AlwaysCondition.INSTANCE)
+                                .add(zBlocks.PALE_OAK_BEAM.getId(),
+                                                new Strippable(zBlocks.STRIPPED_PALE_OAK_BEAM.get()),
+                                                false, AlwaysCondition.INSTANCE)
+                                .add(zBlocks.BAMBOO_BEAM.getId(),
+                                                new Strippable(zBlocks.STRIPPED_BAMBOO_BEAM.get()),
+                                                false, AlwaysCondition.INSTANCE)
+
                                 .add(zBlocks.IRONWOOD_LOG.getId(),
                                                 new Strippable(zBlocks.STRIPPED_IRONWOOD_LOG.get()),
                                                 false, AlwaysCondition.INSTANCE)
-
                                 .add(zBlocks.IRONWOOD_WOOD.getId(),
                                                 new Strippable(zBlocks.STRIPPED_IRONWOOD_WOOD.get()),
                                                 false, AlwaysCondition.INSTANCE);
@@ -74,6 +105,9 @@ public class DataMaps extends DataMapProvider {
                                                 false, AlwaysCondition.INSTANCE)
                                 .add(zBlocks.CRUSHING_TUB.getId(),
                                                 new FurnaceFuel(AbstractFurnaceBlockEntity.BURN_TIME_STANDARD * 2),
+                                                false, AlwaysCondition.INSTANCE)
+                                .add(zTags.Items.BEAMS.location(),
+                                                new FurnaceFuel(AbstractFurnaceBlockEntity.BURN_TIME_STANDARD * 3 / 4),
                                                 false, AlwaysCondition.INSTANCE)
                                 .add(zItems.MESH.getId(),
                                                 new FurnaceFuel(AbstractFurnaceBlockEntity.BURN_TIME_STANDARD / 2),

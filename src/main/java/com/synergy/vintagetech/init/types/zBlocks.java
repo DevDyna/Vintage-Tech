@@ -3,6 +3,7 @@ package com.synergy.vintagetech.init.types;
 import static com.synergy.vintagetech.Main.MODULE_ID;
 
 import java.util.Optional;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 import net.minecraft.core.Direction;
@@ -45,9 +46,7 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.TintedParticleLeavesBlock;
 import net.minecraft.world.level.block.grower.TreeGrower;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
-import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
@@ -187,7 +186,6 @@ public class zBlocks {
 
         public static final DeferredHolder<Block, Block> DRYING_RACK = registerItemBlock("drying_rack",
                         p -> new DryingRackBlock(p
-                                        .instrument(NoteBlockInstrument.BASEDRUM)
                                         .strength(1F, 2.25F)
                                         .sound(SoundType.WOOD)
                                         .mapColor(MapColor.WOOD)
@@ -196,7 +194,6 @@ public class zBlocks {
         public static final DeferredHolder<Block, Block> EVAPORATION_BASIN = registerItemBlock("evaporation_basin",
                         p -> new EvaporationBasinBlock(p
                                         .mapColor(MapColor.COLOR_ORANGE)
-                                        .instrument(NoteBlockInstrument.BASEDRUM)
                                         .strength(1F, 2.25F)
                                         .sound(SoundType.STONE)
                                         .mapColor(MapColor.TERRACOTTA_ORANGE)));
@@ -220,43 +217,72 @@ public class zBlocks {
                                         .ignitedByLava()));
 
         public static final DeferredHolder<Block, Block> OAK_BEAM = registerItemBlock("oak_beam",
-                        p -> new WoodenBeam(Properties.ofFullCopy(Blocks.OAK_LOG)
-                                        .setId(ResourceKey.create(Registries.BLOCK, x.rl(MODULE_ID, "oak_beam")))));
+                        (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.OAK_LOG).setId(k)));
 
         public static final DeferredHolder<Block, Block> SPRUCE_BEAM = registerItemBlock("spruce_beam",
-                        p -> new WoodenBeam(Properties.ofFullCopy(Blocks.SPRUCE_LOG)
-                                        .setId(ResourceKey.create(Registries.BLOCK, x.rl(MODULE_ID, "spruce_beam")))));
+                        (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.SPRUCE_LOG).setId(k)));
 
         public static final DeferredHolder<Block, Block> BIRCH_BEAM = registerItemBlock("birch_beam",
-                        p -> new WoodenBeam(Properties.ofFullCopy(Blocks.BIRCH_LOG)
-                                        .setId(ResourceKey.create(Registries.BLOCK, x.rl(MODULE_ID, "birch_beam")))));
+                        (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.BIRCH_LOG).setId(k)));
 
         public static final DeferredHolder<Block, Block> JUNGLE_BEAM = registerItemBlock("jungle_beam",
-                        p -> new WoodenBeam(Properties.ofFullCopy(Blocks.JUNGLE_LOG)
-                                        .setId(ResourceKey.create(Registries.BLOCK, x.rl(MODULE_ID, "jungle_beam")))));
+                        (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.JUNGLE_LOG).setId(k)));
 
         public static final DeferredHolder<Block, Block> ACACIA_BEAM = registerItemBlock("acacia_beam",
-                        p -> new WoodenBeam(Properties.ofFullCopy(Blocks.ACACIA_LOG)
-                                        .setId(ResourceKey.create(Registries.BLOCK, x.rl(MODULE_ID, "acacia_beam")))));
+                        (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.ACACIA_LOG).setId(k)));
 
         public static final DeferredHolder<Block, Block> DARK_OAK_BEAM = registerItemBlock("dark_oak_beam",
-                        p -> new WoodenBeam(Properties.ofFullCopy(Blocks.DARK_OAK_LOG)
-                                        .setId(ResourceKey.create(Registries.BLOCK,
-                                                        x.rl(MODULE_ID, "dark_oak_beam")))));
+                        (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.DARK_OAK_LOG).setId(k)));
 
         public static final DeferredHolder<Block, Block> MANGROVE_BEAM = registerItemBlock("mangrove_beam",
-                        p -> new WoodenBeam(Properties.ofFullCopy(Blocks.MANGROVE_LOG)
-                                        .setId(ResourceKey.create(Registries.BLOCK,
-                                                        x.rl(MODULE_ID, "mangrove_beam")))));
+                        (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.MANGROVE_LOG).setId(k)));
 
         public static final DeferredHolder<Block, Block> CHERRY_BEAM = registerItemBlock("cherry_beam",
-                        p -> new WoodenBeam(Properties.ofFullCopy(Blocks.CHERRY_LOG)
-                                        .setId(ResourceKey.create(Registries.BLOCK, x.rl(MODULE_ID, "cherry_beam")))));
+                        (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.CHERRY_LOG).setId(k)));
 
         public static final DeferredHolder<Block, Block> PALE_OAK_BEAM = registerItemBlock("pale_oak_beam",
-                        p -> new WoodenBeam(Properties.ofFullCopy(Blocks.PALE_OAK_LOG)
-                                        .setId(ResourceKey.create(Registries.BLOCK,
-                                                        x.rl(MODULE_ID, "pale_oak_beam")))));
+                        (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.PALE_OAK_LOG).setId(k)));
+
+        public static final DeferredHolder<Block, Block> BAMBOO_BEAM = registerItemBlock("bamboo_beam",
+                        (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.BAMBOO_BLOCK).setId(k)));
+
+        public static final DeferredHolder<Block, Block> STRIPPED_OAK_BEAM = registerItemBlock("stripped_oak_beam",
+                        (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG).setId(k)));
+
+        public static final DeferredHolder<Block, Block> STRIPPED_SPRUCE_BEAM = registerItemBlock(
+                        "stripped_spruce_beam",
+                        (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.STRIPPED_SPRUCE_LOG).setId(k)));
+
+        public static final DeferredHolder<Block, Block> STRIPPED_BIRCH_BEAM = registerItemBlock("stripped_birch_beam",
+                        (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.STRIPPED_BIRCH_LOG).setId(k)));
+
+        public static final DeferredHolder<Block, Block> STRIPPED_JUNGLE_BEAM = registerItemBlock(
+                        "stripped_jungle_beam",
+                        (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.STRIPPED_JUNGLE_LOG).setId(k)));
+
+        public static final DeferredHolder<Block, Block> STRIPPED_ACACIA_BEAM = registerItemBlock(
+                        "stripped_acacia_beam",
+                        (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.STRIPPED_ACACIA_LOG).setId(k)));
+
+        public static final DeferredHolder<Block, Block> STRIPPED_DARK_OAK_BEAM = registerItemBlock(
+                        "stripped_dark_oak_beam",
+                        (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.STRIPPED_DARK_OAK_LOG).setId(k)));
+
+        public static final DeferredHolder<Block, Block> STRIPPED_MANGROVE_BEAM = registerItemBlock(
+                        "stripped_mangrove_beam",
+                        (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.STRIPPED_MANGROVE_LOG).setId(k)));
+
+        public static final DeferredHolder<Block, Block> STRIPPED_CHERRY_BEAM = registerItemBlock(
+                        "stripped_cherry_beam",
+                        (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.STRIPPED_CHERRY_LOG).setId(k)));
+
+        public static final DeferredHolder<Block, Block> STRIPPED_PALE_OAK_BEAM = registerItemBlock(
+                        "stripped_pale_oak_beam",
+                        (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.STRIPPED_PALE_OAK_LOG).setId(k)));
+
+        public static final DeferredHolder<Block, Block> STRIPPED_BAMBOO_BEAM = registerItemBlock(
+                        "stripped_bamboo_beam",
+                        (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.STRIPPED_BAMBOO_BLOCK).setId(k)));
 
         // TODO IMP : TURNTABLE
         // TODO IMP : PRESS?
@@ -391,11 +417,17 @@ public class zBlocks {
         public static final DeferredHolder<Block, Block> RENDER_PRESS_HEAD = renderBlock("render_press_head");
         public static final DeferredHolder<Block, Block> RENDER_WINDMILL = renderBlock("render_windmill");
 
-        public static DeferredHolder<Block, Block> registerItemBlock(String blockname,
-                        Function<BlockBehaviour.Properties, ? extends Block> sup) {
-                DeferredHolder<Block, Block> block = zBlockItem.registerBlock(blockname, sup);
+        public static DeferredHolder<Block, Block> registerItemBlock(String id,
+                        Function<Properties, ? extends Block> p) {
+                DeferredHolder<Block, Block> block = zBlockItem.registerBlock(id, p);
                 zItems.zBlockItem.registerSimpleBlockItem(block);
                 return block;
+        }
+
+        public static DeferredHolder<Block, Block> registerItemBlock(String id,
+                        BiFunction<Properties, ResourceKey<Block>, ? extends Block> p) {
+                return registerItemBlock(id,
+                                pr -> p.apply(pr, ResourceKey.create(Registries.BLOCK, x.rl(MODULE_ID, id))));
         }
 
         public static DeferredHolder<Block, Block> renderBlock(String id) {

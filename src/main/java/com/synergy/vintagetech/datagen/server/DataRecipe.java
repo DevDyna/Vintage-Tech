@@ -232,9 +232,21 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                 pillar(zBlocks.MANGROVE_BEAM.get(), Items.MANGROVE_LOG);
                 pillar(zBlocks.CHERRY_BEAM.get(), Items.CHERRY_LOG);
                 pillar(zBlocks.PALE_OAK_BEAM.get(), Items.PALE_OAK_LOG);
+                pillar(zBlocks.BAMBOO_BEAM.get(), Items.BAMBOO_BLOCK);
+
+                pillar(zBlocks.STRIPPED_OAK_BEAM.get(), Items.STRIPPED_OAK_LOG);
+                pillar(zBlocks.STRIPPED_SPRUCE_BEAM.get(), Items.STRIPPED_SPRUCE_LOG);
+                pillar(zBlocks.STRIPPED_BIRCH_BEAM.get(), Items.STRIPPED_BIRCH_LOG);
+                pillar(zBlocks.STRIPPED_JUNGLE_BEAM.get(), Items.STRIPPED_JUNGLE_LOG);
+                pillar(zBlocks.STRIPPED_ACACIA_BEAM.get(), Items.STRIPPED_ACACIA_LOG);
+                pillar(zBlocks.STRIPPED_DARK_OAK_BEAM.get(), Items.STRIPPED_DARK_OAK_LOG);
+                pillar(zBlocks.STRIPPED_MANGROVE_BEAM.get(), Items.STRIPPED_MANGROVE_LOG);
+                pillar(zBlocks.STRIPPED_CHERRY_BEAM.get(), Items.STRIPPED_CHERRY_LOG);
+                pillar(zBlocks.STRIPPED_PALE_OAK_BEAM.get(), Items.STRIPPED_PALE_OAK_LOG);
+                pillar(zBlocks.STRIPPED_BAMBOO_BEAM.get(), Items.STRIPPED_BAMBOO_BLOCK);
 
                 shapeless(RecipeCategory.MISC, zBlocks.AXLE.get())
-                                .requires(zTags.Items.BEAM_LOGS_NORMAL)
+                                .requires(zTags.Items.BEAM_NORMAL)
                                 .requires(zBlocks.ROPE.get())
                                 .unlockedBy(getHasName(zBlocks.ROPE.get()), has(zBlocks.ROPE.get()))
                                 .save(output);
