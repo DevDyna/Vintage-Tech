@@ -106,7 +106,7 @@ public class DataMaps extends DataMapProvider {
                                 .add(zBlocks.CRUSHING_TUB.getId(),
                                                 new FurnaceFuel(AbstractFurnaceBlockEntity.BURN_TIME_STANDARD * 2),
                                                 false, AlwaysCondition.INSTANCE)
-                                .add(zTags.Items.BEAMS.location(),
+                                .add(zTags.Items.BEAMS,
                                                 new FurnaceFuel(AbstractFurnaceBlockEntity.BURN_TIME_STANDARD * 3 / 4),
                                                 false, AlwaysCondition.INSTANCE)
                                 .add(zItems.MESH.getId(),
