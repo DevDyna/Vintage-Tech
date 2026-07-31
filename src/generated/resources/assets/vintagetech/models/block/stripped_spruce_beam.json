@@ -1,0 +1,7 @@
+{
+  "parent": "vintagetech:block/template/beam",
+  "textures": {
+    "side": "minecraft:block/stripped_spruce_log",
+    "top": "vintagetech:block/beam/stripped/spruce"
+  }
+}

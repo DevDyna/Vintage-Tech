@@ -2,6 +2,6 @@
   "parent": "vintagetech:block/template/beam",
   "textures": {
     "side": "minecraft:block/cherry_log",
-    "top": "vintagetech:block/beam/cherry"
+    "top": "vintagetech:block/beam/normal/cherry"
   }
 }

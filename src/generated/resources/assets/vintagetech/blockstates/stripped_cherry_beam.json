@@ -1,0 +1,39 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "vintagetech:block/stripped_cherry_beam",
+        "x": 90,
+        "y": 90
+      },
+      "when": {
+        "axis": "x"
+      }
+    },
+    {
+      "apply": {
+        "model": "vintagetech:block/stripped_cherry_beam"
+      },
+      "when": {
+        "axis": "y"
+      }
+    },
+    {
+      "apply": {
+        "model": "vintagetech:block/stripped_cherry_beam",
+        "x": 90
+      },
+      "when": {
+        "axis": "z"
+      }
+    },
+    {
+      "apply": {
+        "model": "vintagetech:block/rope/on_beam"
+      },
+      "when": {
+        "has_rope": "true"
+      }
+    }
+  ]
+}

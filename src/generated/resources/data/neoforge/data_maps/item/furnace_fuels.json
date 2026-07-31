@@ -1,5 +1,13 @@
 {
   "values": {
+    "vintagetech:beam": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "burn_time": 150
+    },
     "vintagetech:bitumen": {
       "neoforge:conditions": [
         {
