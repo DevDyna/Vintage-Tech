@@ -68,7 +68,7 @@ public class WindmillBlock extends BaseEngineBlock implements RotableAxleBlock {
     protected InteractionResult useItemOn(ItemStack item, BlockState state, Level level, BlockPos pos,
             Player player, InteractionHand hand, BlockHitResult hitResult) {
 
-        if (item.is(zTags.Items.WINDMILL_REPAIR)) {
+        if (item.is(zTags.Items.WINDMILL_REPAIR) && state.getValue(CRACKED)) {
             item.shrink(1);
             level.setBlockAndUpdate(pos, state.setValue(CRACKED, false));
             level.playSound(player, pos, SoundEvents.SMITHING_TABLE_USE, SoundSource.BLOCKS);
