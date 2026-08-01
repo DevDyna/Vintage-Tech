@@ -95,7 +95,6 @@ public class WindmillBlock extends BaseEngineBlock implements RotableAxleBlock {
         return this.defaultBlockState()
                 .setValue(CRACKED, false)
                 .setValue(ENABLED, false)
-                .setValue(ENABLED, false)
                 .setValue(FACING, c.getClickedFace());
     }
 
