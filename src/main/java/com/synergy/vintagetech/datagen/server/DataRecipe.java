@@ -512,6 +512,13 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .save(output);
 
                 MillstoneBuilder.of(registries)
+                                .input(zItems.HEMP)
+                                .output(zItems.HEMP_FIBER,6)
+                                .unlockedBy(getHasName(zItems.HEMP.get()),
+                                                has(zItems.HEMP.get()))
+                                .save(output);
+
+                MillstoneBuilder.of(registries)
                                 .input(Tags.Items.COBBLESTONES_NORMAL)
                                 .output(Items.GRAVEL)
                                 .unlockedBy(getHasName(Tags.Items.COBBLESTONES_NORMAL),
