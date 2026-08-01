@@ -5,8 +5,10 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 
 import java.util.List;
 
+import com.devdyna.cakesticklib.CakeStickLib;
 import com.devdyna.cakesticklib.api.datagen.LangGenerators;
 import com.devdyna.cakesticklib.api.datagen.LangUtils;
+import com.devdyna.cakesticklib.api.datagen.LangUtils.TipColors;
 import com.devdyna.cakesticklib.api.utils.StringUtil;
 import com.synergy.vintagetech.init.types.zBlocks;
 import com.synergy.vintagetech.init.types.zItems;
@@ -54,7 +56,93 @@ public class DataLang extends LanguageProvider implements LangGenerators {
 
                 ).forEach(s -> add(MODULE_ID + ".jei." + s, StringUtil.formatToDisplay(s) + " Recipes"));
 
-                add(MODULE_ID+".jei.farmland_fuels", "Mechanical Farmland Fuels");
+                add(MODULE_ID + ".jei.farmland_fuels", "Mechanical Farmland Fuels");
+
+                add(MODULE_ID + ".basket.info",
+                                TipColors.ITEM_TOOLTIP + "A portable chest that can absorb items");
+
+                // TODO API : move to api
+                add(MODULE_ID + ".basket.keep",
+                                TipColors.ITEM_TOOLTIP + "Keeps its items when broken");
+
+                add(MODULE_ID + ".centrifuge.info",
+                                TipColors.ITEM_TOOLTIP + "Mix ingredients to create new ones");
+
+                add(MODULE_ID + ".crucible.info",
+                                TipColors.ITEM_TOOLTIP + "Processes items and fluids when heated from below");
+
+                add(MODULE_ID + ".crushing_tub.info",
+                                TipColors.ITEM_TOOLTIP + "Processes items when a living entity jumps on it");
+
+                add(MODULE_ID + ".drying_rack.info",
+                                TipColors.ITEM_TOOLTIP + "Dries items over time");
+
+                add(MODULE_ID + ".evaporation_basin.info",
+                                TipColors.ITEM_TOOLTIP + "Evaporates fluids into items");
+
+                add(MODULE_ID + ".fan.info",
+                                TipColors.ITEM_TOOLTIP + "Creates an airflow that pushes items and entities");
+
+                add(MODULE_ID + ".mechanical_farmland.info",
+                                TipColors.ITEM_TOOLTIP
+                                                + "Speeds up crops planted above it and automatically harvests them when fully grown");
+
+                add(MODULE_ID + ".millstone.info",
+                                TipColors.ITEM_TOOLTIP + "Crushes items into other items");
+
+                add(MODULE_ID + ".saw.info",
+                                TipColors.ITEM_TOOLTIP + "Breaks blocks and entire trees when possible");
+
+                add(MODULE_ID + ".clutch.info",
+                                TipColors.ITEM_TOOLTIP + "Disconnects part of the network when actived by redstone");
+                add(MODULE_ID + ".gearshift.info",
+                                TipColors.ITEM_TOOLTIP
+                                                + "Reverses the rotation of part of the network when actived by redstone");
+
+                add(MODULE_ID + ".treetap.info",
+                                TipColors.ITEM_TOOLTIP + "Extracts fluids from trees");
+                add(MODULE_ID + ".treetap.output",
+                                TipColors.ITEM_TOOLTIP
+                                                + "Inserts the output into any valid container below");
+
+                add(MODULE_ID + ".windmill.info",
+                                TipColors.ITEM_TOOLTIP + "Generates Rotational Power");
+
+                add(MODULE_ID + ".windmill.rain",
+                                TipColors.ITEM_TOOLTIP + "Can break during rain if not enclosed");
+
+                add(MODULE_ID + ".rpm.require",
+                                TipColors.ITEM_TOOLTIP + "Requires Rotational Power to operate");
+
+                add(MODULE_ID + ".hemp.spawn",
+                                TipColors.ITEM_TOOLTIP + "Can be found in jungle biomes");
+
+                add(MODULE_ID + ".soy.spawn",
+                                TipColors.ITEM_TOOLTIP + "Can be found in savanna biomes");
+
+                add(MODULE_ID + ".aloe.spawn",
+                                TipColors.ITEM_TOOLTIP + "Can be found in desert biomes");
+
+                add(MODULE_ID + ".cave_wheat.spawn",
+                                TipColors.ITEM_TOOLTIP + "Can be found underground");
+
+                add(MODULE_ID + ".blueberries.spawn",
+                                TipColors.ITEM_TOOLTIP + "Can be found in forests, coniferous biomes, and meadows");
+
+                add(MODULE_ID + ".lavender.spawn",
+                                TipColors.ITEM_TOOLTIP + "Can be found in plains biomes");
+
+                add(MODULE_ID + ".ironwood.spawn",
+                                TipColors.ITEM_TOOLTIP + "Can be found in forests , windswept biomes and meadows");
+
+                add(MODULE_ID + ".treetap.handler",
+                                TipColors.ITEM_TOOLTIP + "Can receive fluids extracted by a Tree Tap");
+
+                add(MODULE_ID + ".windmill.repair",
+                                TipColors.ITEM_TOOLTIP + "Can be used to repair a Cracked Windmill");
+
+                add(MODULE_ID + ".rope.info",
+                                TipColors.ITEM_TOOLTIP + "Decorative block that can connect to various blocks");
 
         }
 
