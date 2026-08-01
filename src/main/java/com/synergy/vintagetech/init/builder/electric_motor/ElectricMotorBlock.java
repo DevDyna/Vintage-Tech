@@ -61,13 +61,6 @@ public class ElectricMotorBlock extends BaseEngineBlock
         return new ElectricMotorBE(p, s);
     }
 
-    // @Override
-    // public void destroy(LevelAccessor level, BlockPos pos, BlockState state) {
-    // if (level.getBlockEntity(pos) instanceof SteamEngineBE engine)
-    // engine.setRemoved();
-    // super.destroy(level, pos, state);
-    // }
-
     @Override
     public Map<Direction, Boolean> getAxis(BlockState state) {
         return Map.of(state.getValue(HORIZONTAL_FACING), false);
@@ -81,7 +74,7 @@ public class ElectricMotorBlock extends BaseEngineBlock
     @Override
     public boolean getWhenActive(Level level, BlockPos pos, BlockState state) {
 
-        var FE_EVERY_TICK = 1000;
+        var FE_EVERY_TICK = 1000;// TODO IMP : config
 
         if (level.getBlockEntity(pos) instanceof ElectricMotorBE be) {
 
@@ -92,7 +85,7 @@ public class ElectricMotorBlock extends BaseEngineBlock
 
                 try (var tx = Transaction.openRoot()) {
                     be.getEnergyStorage().extract(FE_EVERY_TICK, tx);
-                     tx.commit();
+                    tx.commit();
                 }
 
                 return true;
