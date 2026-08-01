@@ -172,8 +172,7 @@ public class zBlocks {
         public static final DeferredHolder<Block, Block> BASKET = registerItemBlock("basket",
                         p -> new BasketBlock(p
                                         .mapColor(MapColor.WOOD)
-
-                                        .strength(2.0F)
+                                        .strength(0.75F)
                                         .sound(SoundType.GRASS)
                                         .ignitedByLava()));
 
