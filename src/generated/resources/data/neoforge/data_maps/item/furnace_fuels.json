@@ -1,6 +1,6 @@
 {
   "values": {
-    "vintagetech:beam": {
+    "#vintagetech:beam": {
       "neoforge:conditions": [
         {
           "type": "neoforge:always"

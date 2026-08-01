@@ -1,0 +1,9 @@
+{
+  "type": "vintagetech:millstone",
+  "input": "vintagetech:hemp",
+  "output": {
+    "count": 6,
+    "id": "vintagetech:hemp_fiber"
+  },
+  "ticks": 40
+}
