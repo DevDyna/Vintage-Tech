@@ -55,7 +55,7 @@ public class DynamoBE extends TransmissionBE implements EnergyProvider {
 
     @Override
     public int getFERate() {
-        return 1;
+        return 1;// TODO IMP : config
     }
 
 }
