@@ -43,10 +43,10 @@ public class DataBiomeTag extends BiomeTagsProvider {
                                 .addTag(Tags.Biomes.IS_WINDSWEPT)
                                 .addTag(Tags.Biomes.IS_CONIFEROUS_TREE);
 
-                        tag(zTags.Biomes.HEMP_SPAWN)
+                tag(zTags.Biomes.HEMP_SPAWN)
                                 .addTag(Tags.Biomes.IS_JUNGLE);
 
-                        tag(zTags.Biomes.SOYBEANS_SPAWN)
+                tag(zTags.Biomes.SOYBEANS_SPAWN)
                                 .addTag(Tags.Biomes.IS_SAVANNA);
 
         }
