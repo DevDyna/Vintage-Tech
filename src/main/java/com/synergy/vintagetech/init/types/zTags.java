@@ -179,8 +179,10 @@ public class zTags {
                 public static final TagKey<Item> WINDMILL_REPAIR = RegistryUtils.tagItem(MODULE_ID,
                                 "windmill/repair");
 
-                public static final TagKey<Item> TREE_TAP_HANDLER = RegistryUtils.tagItem(MODULE_ID,
-                                "treetap/handler");
+                public static final TagKey<Item> BASKET_DENY = RegistryUtils.tagItem(MODULE_ID,
+                                "basket/deny");
+
+               
 
         }
 

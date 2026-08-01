@@ -103,7 +103,7 @@ public class DataItemTag extends ItemTagsProvider {
                                 zBlocks.CHERRY_BEAM.get().asItem(),
                                 zBlocks.PALE_OAK_BEAM.get().asItem(),
                                 zBlocks.BAMBOO_BEAM.get().asItem());
-                                
+
                 tag(zTags.Items.BEAM_STRIPPED).add(
                                 zBlocks.STRIPPED_OAK_BEAM.get().asItem(),
                                 zBlocks.STRIPPED_SPRUCE_BEAM.get().asItem(),
@@ -116,7 +116,7 @@ public class DataItemTag extends ItemTagsProvider {
                                 zBlocks.STRIPPED_PALE_OAK_BEAM.get().asItem(),
                                 zBlocks.STRIPPED_BAMBOO_BEAM.get().asItem());
 
-                                tag(zTags.Items.BEAMS).addTags(zTags.Items.BEAM_NORMAL,zTags.Items.BEAM_STRIPPED);
+                tag(zTags.Items.BEAMS).addTags(zTags.Items.BEAM_NORMAL, zTags.Items.BEAM_STRIPPED);
 
                 tag(zTags.Items.STONE_SLABS)
                                 .add(
@@ -257,14 +257,14 @@ public class DataItemTag extends ItemTagsProvider {
 
                 tag(Tags.Items.STRINGS).add(zItems.HEMP_FIBER.get());
                 tag(Tags.Items.LEATHERS).add(zItems.CLOTH.get());
-                
+
                 tag(zTags.Items.WINDMILL_REPAIR).add(zItems.CLOTH.get());
 
-                tag(zTags.Items.TREE_TAP_HANDLER).add(
-                        zBlocks.CENTRIFUGE.get().asItem(),
-                        zBlocks.CRUCIBLE.get().asItem(),
-                        zBlocks.EVAPORATION_BASIN.get().asItem(),
-                        zBlocks.CRUSHING_TUB.get().asItem());
+                tag(zTags.Items.BASKET_DENY)
+                                .add(zBlocks.BASKET.get().asItem())
+                                .addTag(ItemTags.SHULKER_BOXES);
+
+                
 
         }
 

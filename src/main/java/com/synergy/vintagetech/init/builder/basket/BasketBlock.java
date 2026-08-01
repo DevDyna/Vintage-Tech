@@ -1,13 +1,16 @@
 package com.synergy.vintagetech.init.builder.basket;
 
-import com.devdyna.cakesticklib.api.aspect.templates.TickingBlock;
+import java.util.List;
 
+import com.devdyna.cakesticklib.api.aspect.logic.BlockItemKeeper;
+import com.devdyna.cakesticklib.api.aspect.templates.TickingBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.InsideBlockEffectApplier;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -22,13 +25,14 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.storage.loot.LootParams.Builder;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class BasketBlock extends TickingBlock {
+public class BasketBlock extends TickingBlock implements BlockItemKeeper {
 
     public static final EnumProperty<Direction> FACING = DirectionalBlock.FACING;
 
@@ -126,6 +130,22 @@ public class BasketBlock extends TickingBlock {
         if (level.getBlockEntity(pos) instanceof BasketBE be)
             return be.itemUseOn(player, level, pos, hand);
         return InteractionResult.FAIL;
+    }
+
+    @Override
+    public List<ItemStack> getDrops(BlockState state, Builder builder) {
+        return getResultDrops(super.getDrops(state, builder), this.asItem(), state, builder);
+    }
+
+    @Override
+    public void setPlacedBy(Level level, BlockPos pos, BlockState state, LivingEntity entity,
+            ItemStack stack) {
+
+        super.setPlacedBy(level, pos, state, entity, stack);
+
+        // FUTURE DEPRECATED
+        placeBlockAndItems(level, pos, state, entity, stack);
+
     }
 
 }
