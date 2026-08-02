@@ -24,7 +24,7 @@ public class zFluids {
         public static final DeferredRegister<FluidType> zFluidTypes = DeferredRegister.create(Keys.FLUID_TYPES,
                         MODULE_ID);
 
-        public static final FluidRegister SOY_WHEY = FluidRegister.create("soy_whey",
+        public static final FluidRegister WHEY = FluidRegister.create("whey",
                         ColorUtils.argb(255, 255, 236, 236));
 
         public static final FluidRegister RESIN = FluidRegister.create("resin", ColorUtils.argb(255, 175, 119, 56));

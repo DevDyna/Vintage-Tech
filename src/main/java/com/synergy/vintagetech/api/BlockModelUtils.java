@@ -5,6 +5,8 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 import java.util.Optional;
 
 import com.devdyna.cakesticklib.api.utils.x;
+import com.synergy.vintagetech.init.builder.cheese.BaseCheeseBlock;
+import com.synergy.vintagetech.init.builder.cheese.SealedCheeseBlock;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
@@ -383,4 +385,110 @@ public class BlockModelUtils {
 
         }
 
+        public static void createCheeseBlock(BlockModelGenerators b, Block block) {
+
+                var name = x.name(block).replace("_cheese", "");
+
+                MultiVariant[] variants = new MultiVariant[4];
+
+                for (int i = 0; i < 4; i++)
+                        variants[i] = BlockModelGenerators.plainVariant(
+                                        TemplateCollection.CHEESE.ALL[i].create(
+                                                        x.rl(MODULE_ID, "block/cheese/" + name + "/" + i),
+                                                        new TextureMapping()
+                                                                        .put(TextureSlot.SIDE,
+                                                                                        new Material(x.rl(MODULE_ID,
+                                                                                                        "block/cheese/" + name
+                                                                                                                        + "/side")))
+                                                                        .put(TextureSlot.TOP,
+                                                                                        new Material(x.rl(MODULE_ID,
+                                                                                                        "block/cheese/" + name
+                                                                                                                        + "/top")))
+                                                                        .put(TextureSlot.BOTTOM,
+                                                                                        new Material(x.rl(MODULE_ID,
+                                                                                                        "block/cheese/" + name
+                                                                                                                        + "/bottom")))
+                                                                        .put(TextureSlot.INSIDE,
+                                                                                        new Material(x.rl(MODULE_ID,
+                                                                                                        "block/cheese/" + name
+                                                                                                                        + "/inside"))),
+                                                        b.modelOutput));
+
+                b.blockStateOutput.accept(
+                                MultiVariantGenerator.dispatch(block)
+                                                .with(PropertyDispatch.initial(BaseCheeseBlock.PIECES)
+                                                                .select(0, variants[0])
+                                                                .select(1, variants[1])
+                                                                .select(2, variants[2])
+                                                                .select(3, variants[3])));
+        }
+
+        public static void createAgedCheeseBlock(BlockModelGenerators b, Block block) {
+
+                var name = x.name(block).replace("_cheese", "");
+
+                MultiVariant[][] variants = new MultiVariant[2][4];
+
+                for (int age = 0; age < 2; age++)
+                        for (int pieces = 0; pieces < 4; pieces++)
+                                variants[age][pieces] = BlockModelGenerators.plainVariant(
+                                                TemplateCollection.CHEESE.ALL[pieces].create(
+                                                                x.rl(MODULE_ID,
+                                                                                "block/cheese/" + name + "/" +
+                                                                                                (age == 1 ? "aged/"
+                                                                                                                : "plain/")
+                                                                                                + pieces),
+
+                                                                new TextureMapping()
+                                                                                .put(TextureSlot.SIDE,
+                                                                                                new Material(x.rl(
+                                                                                                                MODULE_ID,
+                                                                                                                "block/cheese/" + name
+                                                                                                                                + "/side")))
+
+                                                                                .put(TextureSlot.TOP,
+                                                                                                new Material(x.rl(
+                                                                                                                MODULE_ID,
+                                                                                                                "block/cheese/" + name
+                                                                                                                                + "/top")))
+
+                                                                                .put(TextureSlot.BOTTOM,
+                                                                                                new Material(x.rl(
+                                                                                                                MODULE_ID,
+                                                                                                                "block/cheese/" + name
+                                                                                                                                + "/bottom")))
+
+                                                                                .put(TextureSlot.INSIDE,
+                                                                                                new Material(x.rl(
+                                                                                                                MODULE_ID,
+                                                                                                                "block/cheese/" + name
+                                                                                                                                + "/inside/"
+                                                                                                                                +
+                                                                                                                                (age == 1 ? "aged"
+                                                                                                                                                : "plain")))),
+
+                                                                b.modelOutput));
+
+                var dispatch = PropertyDispatch.initial(
+                                BaseCheeseBlock.PIECES,
+                                SealedCheeseBlock.AGE);
+
+                for (int pieces = 0; pieces < 4; pieces++) {
+
+                        for (int age = 0; age < SealedCheeseBlock.MAX_AGE; age++)
+                                dispatch.select(
+                                                pieces,
+                                                age,
+                                                variants[0][pieces]);
+
+                        dispatch.select(
+                                        pieces,
+                                        SealedCheeseBlock.MAX_AGE,
+                                        variants[1][pieces]);
+                }
+
+                b.blockStateOutput.accept(
+                                MultiVariantGenerator.dispatch(block)
+                                                .with(dispatch));
+        }
 }

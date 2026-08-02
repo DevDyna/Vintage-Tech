@@ -60,7 +60,7 @@ public class zItems {
                         p -> p.food(new FoodProperties(6, 7f, true)));
 
         public static final DeferredHolder<Item, Item> CLOTH = zItem.registerSimpleItem("cloth");
-        public static final DeferredHolder<Item, Item> SALT = zItem.registerSimpleItem("salt",p -> p
+        public static final DeferredHolder<Item, Item> SALT = zItem.registerSimpleItem("salt", p -> p
                         .food(new FoodProperties(0, 0f, true), Consumable.builder()
                                         .onConsume(new ApplyStatusEffectsConsumeEffect(
                                                         new MobEffectInstance(MobEffects.HUNGER, 40, 3)))
@@ -142,5 +142,17 @@ public class zItems {
                                                         .build()));
 
         public static final DeferredHolder<Item, Item> MESH = zItem.registerSimpleItem("mesh", p -> p.stacksTo(16));
+        public static final DeferredHolder<Item, Item> CHEESE_MOLD = zItem.registerSimpleItem("cheese_mold", p -> p.stacksTo(16));
+
+        public static final DeferredHolder<Item, Item> PLAIN_CHEESE_SLICE = zItem.registerSimpleItem(
+                        "plain_cheese_slice",
+                        p -> p
+                                        .stacksTo(16)
+                                        .food(new FoodProperties(6, 4f, false)));
+
+        public static final DeferredHolder<Item, Item> AGED_CHEESE_SLICE = zItem.registerSimpleItem("aged_cheese_slice",
+                        p -> p
+                                        .stacksTo(16)
+                                        .food(new FoodProperties(12, 9f, false)));
 
 }

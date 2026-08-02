@@ -179,13 +179,17 @@ public class DataModel extends ModelProvider {
 
                 BlockModelUtils.simplePlain(blockModels, zBlocks.CENTRIFUGE);
 
+                BlockModelUtils.createCheeseBlock(blockModels, zBlocks.PLAIN_CHEESE.get()); 
+                BlockModelUtils.createAgedCheeseBlock(blockModels, zBlocks.SEALED_CHEESE.get()); 
+                BlockModelUtils.createCheeseBlock(blockModels, zBlocks.AGED_CHEESE.get()); 
+
+BlockModelUtils.simplePlain(blockModels, zBlocks.CRUCIBLE);
+
                 // TODO IMP : Models by logic
-                BlockModelUtils.simplePlain(blockModels, zBlocks.CHEESE);
+                   
+
                 BlockModelUtils.simplePlain(blockModels, zBlocks.CREATIVE_ENGINE);
                 // BlockModelUtils.simplePlain(blockModels, zBlocks.HYDRAULIC_PRESS);
-                // BlockModelUtils.simplePlain(blockModels, zBlocks.MIXING_BARREL);
-                BlockModelUtils.simplePlain(blockModels, zBlocks.CRUCIBLE);
-                // BlockModelUtils.simplePlain(blockModels, zBlocks.NODE);
                 // BlockModelUtils.simplePlain(blockModels, zBlocks.TURNTABLE);
 
                 blockModels.blockStateOutput.accept(
@@ -392,7 +396,9 @@ public class DataModel extends ModelProvider {
 
                 // blockitems
                 itemModels.generateFlatItem(zBlocks.FAN.get().asItem(), ModelTemplates.FLAT_ITEM);
-                itemModels.generateFlatItem(zBlocks.CHEESE.get().asItem(), ModelTemplates.FLAT_ITEM);
+                itemModels.generateFlatItem(zBlocks.AGED_CHEESE.get().asItem(), ModelTemplates.FLAT_ITEM);
+                itemModels.generateFlatItem(zBlocks.PLAIN_CHEESE.get().asItem(), ModelTemplates.FLAT_ITEM);
+                itemModels.generateFlatItem(zBlocks.SEALED_CHEESE.get().asItem(), ModelTemplates.FLAT_ITEM);
                 itemModels.generateFlatItem(zBlocks.LAVENDER.get().asItem(), ModelTemplates.FLAT_ITEM);
                 itemModels.generateFlatItem(zBlocks.ROPE.get().asItem(), ModelTemplates.FLAT_ITEM);
 

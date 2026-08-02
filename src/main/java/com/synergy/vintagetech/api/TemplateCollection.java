@@ -23,8 +23,34 @@ public class TemplateCollection {
             Optional.empty(),
             TextureSlot.TOP, TextureSlot.SIDE);
 
-        public static final ModelTemplate MODIFIER_TEMPLATE = new ModelTemplate(
+    public static final ModelTemplate MODIFIER_TEMPLATE = new ModelTemplate(
             Optional.of(x.rl(MODULE_ID, "block/template/modifier")),
             Optional.empty(),
             FRAME);
+
+    public class CHEESE {
+
+        public static final ModelTemplate PIECE_0 = new ModelTemplate(
+                Optional.of(x.rl(MODULE_ID, "block/template/cheese/0")),
+                Optional.empty(),
+                TextureSlot.TOP, TextureSlot.SIDE, TextureSlot.BOTTOM, TextureSlot.INSIDE);
+
+        public static final ModelTemplate PIECE_1 = new ModelTemplate(
+                Optional.of(x.rl(MODULE_ID, "block/template/cheese/1")),
+                Optional.empty(),
+                TextureSlot.TOP, TextureSlot.SIDE, TextureSlot.BOTTOM, TextureSlot.INSIDE);
+
+        public static final ModelTemplate PIECE_2 = new ModelTemplate(
+                Optional.of(x.rl(MODULE_ID, "block/template/cheese/2")),
+                Optional.empty(),
+                TextureSlot.TOP, TextureSlot.SIDE, TextureSlot.BOTTOM, TextureSlot.INSIDE);
+
+        public static final ModelTemplate PIECE_3 = new ModelTemplate(
+                Optional.of(x.rl(MODULE_ID, "block/template/cheese/3")),
+                Optional.empty(),
+                TextureSlot.TOP, TextureSlot.SIDE, TextureSlot.BOTTOM, TextureSlot.INSIDE);
+
+        public static final ModelTemplate[] ALL = new ModelTemplate[] { PIECE_0, PIECE_1, PIECE_2, PIECE_3 };
+
+    }
 }
