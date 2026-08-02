@@ -54,8 +54,6 @@ public class WindmillBlock extends BaseEngineBlock implements RotableAxleBlock {
         return !state.getValue(CRACKED);
     }
 
-    // TODO IMP : cracked windmill
-
     @Override
     protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         if (!state.getValue(CRACKED))
