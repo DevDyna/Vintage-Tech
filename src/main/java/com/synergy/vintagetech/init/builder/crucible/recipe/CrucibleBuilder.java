@@ -105,11 +105,6 @@ public class CrucibleBuilder extends BaseRecipeBuilder
         return this;
     }
 
-    // TODO API : add prefix on save()
-
-    // TODO API : x.name(Ingredient) ->
-    // Ingredient.getValues().unwrapKey().get().location().getPath()
-
     @Override
     public Identifier getSuffix(String extra) {
 
