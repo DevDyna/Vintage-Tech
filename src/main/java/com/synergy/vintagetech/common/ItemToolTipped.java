@@ -39,19 +39,19 @@ public class ItemToolTipped {
                                 MODULE_ID + ".rope.info");
 
                 ToolTipHelper.addToggle(t, item.is(zBlocks.CENTRIFUGE.get().asItem()),
-                                MODULE_ID + ".centrifuge.info",
-                                MODULE_ID + ".treetap.handler");
+                                MODULE_ID + ".treetap.handler",
+                                MODULE_ID + ".centrifuge.info");
                 ToolTipHelper.addToggle(t, item.is(zBlocks.CRUCIBLE.get().asItem()),
-                                MODULE_ID + ".crucible.info",
-                                MODULE_ID + ".treetap.handler");
+                                MODULE_ID + ".treetap.handler",
+                                MODULE_ID + ".crucible.info");
                 ToolTipHelper.addToggle(t, item.is(zBlocks.CRUSHING_TUB.get().asItem()),
-                                MODULE_ID + ".crushing_tub.info",
-                                MODULE_ID + ".treetap.handler");
+                                MODULE_ID + ".treetap.handler",
+                                MODULE_ID + ".crushing_tub.info");
                 ToolTipHelper.addToggle(t, item.is(zBlocks.DRYING_RACK.get().asItem()),
                                 MODULE_ID + ".drying_rack.info");
                 ToolTipHelper.addToggle(t, item.is(zBlocks.EVAPORATION_BASIN.get().asItem()),
-                                MODULE_ID + ".evaporation_basin.info",
-                                MODULE_ID + ".treetap.handler");
+                                MODULE_ID + ".treetap.handler",
+                                MODULE_ID + ".evaporation_basin.info");
                 ToolTipHelper.addToggle(t, item.is(zBlocks.FAN.get().asItem()),
                                 MODULE_ID + ".fan.info");
                 ToolTipHelper.addToggle(t, item.is(zBlocks.MECHANICAL_FARMLAND.get().asItem()),
@@ -68,8 +68,8 @@ public class ItemToolTipped {
                                 MODULE_ID + ".treetap.info",
                                 MODULE_ID + ".treetap.output");
                 ToolTipHelper.addToggle(t, item.is(zBlocks.WINDMILL.get().asItem()),
-                                MODULE_ID + ".windmill.info",
-                                MODULE_ID + ".treetap.rain");
+                                MODULE_ID + ".windmill.rain",
+                                MODULE_ID + ".windmill.info");
 
                 if (!item.has(LibComponents.ITEM_CONTAINER) || item.get(LibComponents.ITEM_CONTAINER) == null)
                         ToolTipHelper.addToggle(t, item.is(zBlocks.BASKET.get().asItem()),
