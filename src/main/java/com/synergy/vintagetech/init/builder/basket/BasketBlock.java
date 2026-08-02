@@ -140,11 +140,8 @@ public class BasketBlock extends TickingBlock implements BlockItemKeeper {
     @Override
     public void setPlacedBy(Level level, BlockPos pos, BlockState state, LivingEntity entity,
             ItemStack stack) {
-
         super.setPlacedBy(level, pos, state, entity, stack);
-
         addItemsToBlockPlaced(level, pos, state, entity, stack);
-
     }
 
 }
