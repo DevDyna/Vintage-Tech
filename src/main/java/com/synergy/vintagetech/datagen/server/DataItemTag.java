@@ -92,7 +92,7 @@ public class DataItemTag extends ItemTagsProvider {
                                                 zBlocks.IRONWOOD_WOOD.get().asItem(),
                                                 zBlocks.STRIPPED_IRONWOOD_WOOD.get().asItem());
 
-                tag(zTags.Items.BEAM_LOGS_NORMAL).add(
+                tag(zTags.Items.BEAM_NORMAL).add(
                                 zBlocks.OAK_BEAM.get().asItem(),
                                 zBlocks.SPRUCE_BEAM.get().asItem(),
                                 zBlocks.BIRCH_BEAM.get().asItem(),
@@ -101,7 +101,22 @@ public class DataItemTag extends ItemTagsProvider {
                                 zBlocks.DARK_OAK_BEAM.get().asItem(),
                                 zBlocks.MANGROVE_BEAM.get().asItem(),
                                 zBlocks.CHERRY_BEAM.get().asItem(),
-                                zBlocks.PALE_OAK_BEAM.get().asItem());
+                                zBlocks.PALE_OAK_BEAM.get().asItem(),
+                                zBlocks.BAMBOO_BEAM.get().asItem());
+
+                tag(zTags.Items.BEAM_STRIPPED).add(
+                                zBlocks.STRIPPED_OAK_BEAM.get().asItem(),
+                                zBlocks.STRIPPED_SPRUCE_BEAM.get().asItem(),
+                                zBlocks.STRIPPED_BIRCH_BEAM.get().asItem(),
+                                zBlocks.STRIPPED_JUNGLE_BEAM.get().asItem(),
+                                zBlocks.STRIPPED_ACACIA_BEAM.get().asItem(),
+                                zBlocks.STRIPPED_DARK_OAK_BEAM.get().asItem(),
+                                zBlocks.STRIPPED_MANGROVE_BEAM.get().asItem(),
+                                zBlocks.STRIPPED_CHERRY_BEAM.get().asItem(),
+                                zBlocks.STRIPPED_PALE_OAK_BEAM.get().asItem(),
+                                zBlocks.STRIPPED_BAMBOO_BEAM.get().asItem());
+
+                tag(zTags.Items.BEAMS).addTags(zTags.Items.BEAM_NORMAL, zTags.Items.BEAM_STRIPPED);
 
                 tag(zTags.Items.STONE_SLABS)
                                 .add(
@@ -242,8 +257,14 @@ public class DataItemTag extends ItemTagsProvider {
 
                 tag(Tags.Items.STRINGS).add(zItems.HEMP_FIBER.get());
                 tag(Tags.Items.LEATHERS).add(zItems.CLOTH.get());
-                
+
                 tag(zTags.Items.WINDMILL_REPAIR).add(zItems.CLOTH.get());
+
+                tag(zTags.Items.BASKET_DENY)
+                                .add(zBlocks.BASKET.get().asItem())
+                                .addTag(ItemTags.SHULKER_BOXES);
+
+                
 
         }
 

@@ -35,16 +35,6 @@ public class DataBlockTag extends BlockTagsProvider {
                                                 zBlocks.MECHANICAL_FARMLAND.get(),
                                                 zBlocks.CENTRIFUGE.get(),
 
-                                                zBlocks.OAK_BEAM.get(),
-                                                zBlocks.SPRUCE_BEAM.get(),
-                                                zBlocks.BIRCH_BEAM.get(),
-                                                zBlocks.JUNGLE_BEAM.get(),
-                                                zBlocks.ACACIA_BEAM.get(),
-                                                zBlocks.DARK_OAK_BEAM.get(),
-                                                zBlocks.MANGROVE_BEAM.get(),
-                                                zBlocks.CHERRY_BEAM.get(),
-                                                zBlocks.PALE_OAK_BEAM.get(),
-
                                                 zBlocks.IRONWOOD_SAPLING.get(),
                                                 zBlocks.IRONWOOD_PLANKS.get(),
                                                 zBlocks.IRONWOOD_SLAB.get(),
@@ -52,7 +42,7 @@ public class DataBlockTag extends BlockTagsProvider {
 
                                 )
 
-                                .addTags(zTags.Blocks.IRONWOOD_LOGS);
+                                .addTags(zTags.Blocks.IRONWOOD_LOGS, zTags.Blocks.BEAMS);
 
                 tag(BlockTags.MINEABLE_WITH_SHOVEL)
                                 .add(
@@ -176,7 +166,10 @@ public class DataBlockTag extends BlockTagsProvider {
                                                 Tags.Blocks.PUMPKINS,
                                                 BlockTags.SHULKER_BOXES);
 
-                tag(zTags.Blocks.WOODEN_BEAMS)
+                tag(zTags.Blocks.BEAMS)
+                        .addTags(zTags.Blocks.BEAM_NORMAL,zTags.Blocks.BEAM_STRIPPED);
+
+                tag(zTags.Blocks.BEAM_NORMAL)
                                 .add(
                                                 zBlocks.OAK_BEAM.get(),
                                                 zBlocks.SPRUCE_BEAM.get(),
@@ -186,10 +179,21 @@ public class DataBlockTag extends BlockTagsProvider {
                                                 zBlocks.DARK_OAK_BEAM.get(),
                                                 zBlocks.MANGROVE_BEAM.get(),
                                                 zBlocks.CHERRY_BEAM.get(),
-                                                zBlocks.PALE_OAK_BEAM.get());
+                                                zBlocks.PALE_OAK_BEAM.get(),
+                                                zBlocks.BAMBOO_BEAM.get());
 
-                tag(zTags.Blocks.STRIPPED_BEAMS)// TODO IMP : Stripped beams
-                                .add();
+                tag(zTags.Blocks.BEAM_STRIPPED)
+                                .add(
+                                                zBlocks.STRIPPED_OAK_BEAM.get(),
+                                                zBlocks.STRIPPED_SPRUCE_BEAM.get(),
+                                                zBlocks.STRIPPED_BIRCH_BEAM.get(),
+                                                zBlocks.STRIPPED_JUNGLE_BEAM.get(),
+                                                zBlocks.STRIPPED_ACACIA_BEAM.get(),
+                                                zBlocks.STRIPPED_DARK_OAK_BEAM.get(),
+                                                zBlocks.STRIPPED_MANGROVE_BEAM.get(),
+                                                zBlocks.STRIPPED_CHERRY_BEAM.get(),
+                                                zBlocks.STRIPPED_PALE_OAK_BEAM.get(),
+                                                zBlocks.STRIPPED_BAMBOO_BEAM.get());
 
                 tag(zTags.Blocks.IRONWOOD_LOGS)
                                 .add(

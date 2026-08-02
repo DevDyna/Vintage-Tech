@@ -33,8 +33,6 @@ import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.entity.HopperBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.transfer.item.ItemResource;
-import net.neoforged.neoforge.transfer.transaction.Transaction;
 
 public class SawBE extends TickingBE {
 
@@ -147,18 +145,10 @@ public class SawBE extends TickingBE {
         if (be instanceof HopperBlockEntity hopper)
             drops.forEach(i -> HopperBlockEntity.addItem(null, hopper, i.copy(), null));
 
-        // TODO API : add another collectItem method to accept ItemStack
         if (be instanceof BasketBE basket)
             if (level.getBlockState(getOffset().below()).getValue(BasketBlock.FACING).equals(Direction.UP))
                 if (!basket.isSlotsFull())
-                    try (var tx = Transaction.openRoot()) {
-
-                        drops.forEach(i -> basket.getItemStorage()
-                                .insert(ItemResource.of(i.copy()),
-                                        i.count(),
-                                        tx));
-                        tx.commit();
-                    }
+                    basket.collectItem(level, getOffset().below(), drops);
 
         return true;
     }

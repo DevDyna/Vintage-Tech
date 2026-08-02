@@ -54,8 +54,6 @@ public class WindmillBlock extends BaseEngineBlock implements RotableAxleBlock {
         return !state.getValue(CRACKED);
     }
 
-    // TODO IMP : cracked windmill
-
     @Override
     protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         if (!state.getValue(CRACKED))
@@ -68,7 +66,7 @@ public class WindmillBlock extends BaseEngineBlock implements RotableAxleBlock {
     protected InteractionResult useItemOn(ItemStack item, BlockState state, Level level, BlockPos pos,
             Player player, InteractionHand hand, BlockHitResult hitResult) {
 
-        if (item.is(zTags.Items.WINDMILL_REPAIR)) {
+        if (item.is(zTags.Items.WINDMILL_REPAIR) && state.getValue(CRACKED)) {
             item.shrink(1);
             level.setBlockAndUpdate(pos, state.setValue(CRACKED, false));
             level.playSound(player, pos, SoundEvents.SMITHING_TABLE_USE, SoundSource.BLOCKS);
@@ -94,7 +92,6 @@ public class WindmillBlock extends BaseEngineBlock implements RotableAxleBlock {
     public BlockState getStateForPlacement(BlockPlaceContext c) {
         return this.defaultBlockState()
                 .setValue(CRACKED, false)
-                .setValue(ENABLED, false)
                 .setValue(ENABLED, false)
                 .setValue(FACING, c.getClickedFace());
     }

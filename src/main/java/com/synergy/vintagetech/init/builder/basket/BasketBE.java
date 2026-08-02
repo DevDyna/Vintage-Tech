@@ -5,6 +5,7 @@ import com.devdyna.cakesticklib.api.aspect.logic.ItemStorageBlock;
 import com.devdyna.cakesticklib.api.aspect.logic.NoGuiStorage;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
 import com.synergy.vintagetech.init.types.zBlockEntities;
+import com.synergy.vintagetech.init.types.zTags;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
@@ -46,6 +47,8 @@ public class BasketBE extends BlockEntity implements ItemStorageBlock, DropColle
     }
 
     public ItemStack insertItem(ItemStack stack) {
+        if (stack.is(zTags.Items.BASKET_DENY))
+            return stack;
         return simpleInsertItem(stack);
     }
 

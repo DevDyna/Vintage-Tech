@@ -1,0 +1,7 @@
+{
+  "parent": "vintagetech:block/template/beam",
+  "textures": {
+    "side": "vintagetech:block/beam/stripped/bamboo",
+    "top": "vintagetech:block/beam/stripped/bamboo"
+  }
+}

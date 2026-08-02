@@ -239,24 +239,67 @@ public class DataModel extends ModelProvider {
 
                 BlockModelUtils.createRopeBeamBlock(blockModels, zBlocks.AXLE.get());
 
-                BlockModelUtils.createBeamBlock(blockModels, zBlocks.OAK_BEAM.get(), x.rl(MODULE_ID, "block/beam/oak"),
+                BlockModelUtils.createBeamBlock(blockModels, zBlocks.OAK_BEAM.get(),
+                                x.rl(MODULE_ID, "block/beam/normal/oak"),
                                 x.mcLoc("block/oak_log"));
                 BlockModelUtils.createBeamBlock(blockModels, zBlocks.BIRCH_BEAM.get(),
-                                x.rl(MODULE_ID, "block/beam/birch"), x.mcLoc("block/birch_log"));
+                                x.rl(MODULE_ID, "block/beam/normal/birch"),
+                                x.mcLoc("block/birch_log"));
                 BlockModelUtils.createBeamBlock(blockModels, zBlocks.SPRUCE_BEAM.get(),
-                                x.rl(MODULE_ID, "block/beam/spruce"), x.mcLoc("block/spruce_log"));
+                                x.rl(MODULE_ID, "block/beam/normal/spruce"),
+                                x.mcLoc("block/spruce_log"));
                 BlockModelUtils.createBeamBlock(blockModels, zBlocks.JUNGLE_BEAM.get(),
-                                x.rl(MODULE_ID, "block/beam/jungle"), x.mcLoc("block/jungle_log"));
+                                x.rl(MODULE_ID, "block/beam/normal/jungle"),
+                                x.mcLoc("block/jungle_log"));
                 BlockModelUtils.createBeamBlock(blockModels, zBlocks.ACACIA_BEAM.get(),
-                                x.rl(MODULE_ID, "block/beam/acacia"), x.mcLoc("block/acacia_log"));
+                                x.rl(MODULE_ID, "block/beam/normal/acacia"),
+                                x.mcLoc("block/acacia_log"));
                 BlockModelUtils.createBeamBlock(blockModels, zBlocks.DARK_OAK_BEAM.get(),
-                                x.rl(MODULE_ID, "block/beam/dark_oak"), x.mcLoc("block/dark_oak_log"));
+                                x.rl(MODULE_ID, "block/beam/normal/dark_oak"),
+                                x.mcLoc("block/dark_oak_log"));
                 BlockModelUtils.createBeamBlock(blockModels, zBlocks.CHERRY_BEAM.get(),
-                                x.rl(MODULE_ID, "block/beam/cherry"), x.mcLoc("block/cherry_log"));
+                                x.rl(MODULE_ID, "block/beam/normal/cherry"),
+                                x.mcLoc("block/cherry_log"));
                 BlockModelUtils.createBeamBlock(blockModels, zBlocks.MANGROVE_BEAM.get(),
-                                x.rl(MODULE_ID, "block/beam/mangrove"), x.mcLoc("block/mangrove_log"));
+                                x.rl(MODULE_ID, "block/beam/normal/mangrove"),
+                                x.mcLoc("block/mangrove_log"));
                 BlockModelUtils.createBeamBlock(blockModels, zBlocks.PALE_OAK_BEAM.get(),
-                                x.rl(MODULE_ID, "block/beam/pale_oak"), x.mcLoc("block/pale_oak_log"));
+                                x.rl(MODULE_ID, "block/beam/normal/pale_oak"),
+                                x.mcLoc("block/pale_oak_log"));
+                BlockModelUtils.createBeamBlock(blockModels, zBlocks.BAMBOO_BEAM.get(),
+                                x.rl(MODULE_ID, "block/beam/normal/bamboo"),
+                                x.rl(MODULE_ID, "block/beam/normal/bamboo"));
+
+                BlockModelUtils.createBeamBlock(blockModels, zBlocks.STRIPPED_OAK_BEAM.get(),
+                                x.rl(MODULE_ID, "block/beam/stripped/oak"),
+                                x.mcLoc("block/stripped_oak_log"));
+                BlockModelUtils.createBeamBlock(blockModels, zBlocks.STRIPPED_BIRCH_BEAM.get(),
+                                x.rl(MODULE_ID, "block/beam/stripped/birch"),
+                                x.mcLoc("block/stripped_birch_log"));
+                BlockModelUtils.createBeamBlock(blockModels, zBlocks.STRIPPED_SPRUCE_BEAM.get(),
+                                x.rl(MODULE_ID, "block/beam/stripped/spruce"),
+                                x.mcLoc("block/stripped_spruce_log"));
+                BlockModelUtils.createBeamBlock(blockModels, zBlocks.STRIPPED_JUNGLE_BEAM.get(),
+                                x.rl(MODULE_ID, "block/beam/stripped/jungle"),
+                                x.mcLoc("block/stripped_jungle_log"));
+                BlockModelUtils.createBeamBlock(blockModels, zBlocks.STRIPPED_ACACIA_BEAM.get(),
+                                x.rl(MODULE_ID, "block/beam/stripped/acacia"),
+                                x.mcLoc("block/stripped_acacia_log"));
+                BlockModelUtils.createBeamBlock(blockModels, zBlocks.STRIPPED_DARK_OAK_BEAM.get(),
+                                x.rl(MODULE_ID, "block/beam/stripped/dark_oak"),
+                                x.mcLoc("block/stripped_dark_oak_log"));
+                BlockModelUtils.createBeamBlock(blockModels, zBlocks.STRIPPED_CHERRY_BEAM.get(),
+                                x.rl(MODULE_ID, "block/beam/stripped/cherry"),
+                                x.mcLoc("block/stripped_cherry_log"));
+                BlockModelUtils.createBeamBlock(blockModels, zBlocks.STRIPPED_MANGROVE_BEAM.get(),
+                                x.rl(MODULE_ID, "block/beam/stripped/mangrove"),
+                                x.mcLoc("block/stripped_mangrove_log"));
+                BlockModelUtils.createBeamBlock(blockModels, zBlocks.STRIPPED_PALE_OAK_BEAM.get(),
+                                x.rl(MODULE_ID, "block/beam/stripped/pale_oak"),
+                                x.mcLoc("block/stripped_pale_oak_log"));
+                BlockModelUtils.createBeamBlock(blockModels, zBlocks.STRIPPED_BAMBOO_BEAM.get(),
+                                x.rl(MODULE_ID, "block/beam/stripped/bamboo"),
+                                x.rl(MODULE_ID, "block/beam/stripped/bamboo"));
 
                 BlockModelUtils.createGearShiftBlock(blockModels, zBlocks.GEARSHIFT.get());
                 BlockModelUtils.createClutchBlock(blockModels, zBlocks.CLUTCH.get());
