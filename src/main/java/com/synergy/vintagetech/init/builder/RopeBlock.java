@@ -1,9 +1,9 @@
 package com.synergy.vintagetech.init.builder;
 
+import com.devdyna.cakesticklib.api.primitive.QueueUtil;
+import com.devdyna.cakesticklib.api.primitive.QueueUtil.QueueStatus;
 import com.mojang.serialization.MapCodec;
-import com.synergy.vintagetech.api.QueueUtil;
 import com.synergy.vintagetech.api.RopeHandler;
-import com.synergy.vintagetech.api.QueueUtil.QueueStatus;
 import com.synergy.vintagetech.init.types.zTags;
 
 import net.minecraft.core.BlockPos;
@@ -20,9 +20,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 
-public class RopeBlock extends PipeBlock
-// implements Connectable //TODO API : rework Connectable
-{
+public class RopeBlock extends PipeBlock {
 
     public static final BooleanProperty HAS_CORNER = BooleanProperty.create("has_corner");
 
