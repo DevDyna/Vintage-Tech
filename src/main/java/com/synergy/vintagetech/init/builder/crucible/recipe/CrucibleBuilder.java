@@ -108,11 +108,12 @@ public class CrucibleBuilder extends BaseRecipeBuilder
     @Override
     public Identifier getSuffix(String extra) {
 
-        var in = input_items.getFirst().ingredient().getValues();
-
-        if (in.unwrapKey().isPresent())
-            return x.rl(MODULE_ID, "crucible/" + in.unwrapKey().get().location().getPath()
-                    + extra);
+        if (!input_items.isEmpty()) {
+            var in = input_items.getFirst().ingredient().getValues();
+            if (in.unwrapKey().isPresent())
+                return x.rl(MODULE_ID, "crucible/" + in.unwrapKey().get().location().getPath()
+                        + extra);
+        }
 
         if (output_fluid != null)
             return x.rl(MODULE_ID, "crucible/" + x.name(output_fluid)
