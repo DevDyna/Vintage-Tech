@@ -2,6 +2,8 @@ package com.synergy.vintagetech.api;
 
 import java.util.function.ToIntFunction;
 
+import javax.annotation.Nullable;
+
 import com.synergy.vintagetech.init.types.zBlocks;
 import com.synergy.vintagetech.init.types.zFluids;
 import com.synergy.vintagetech.init.types.zItems;
@@ -46,9 +48,13 @@ public class FluidRegister {
     private boolean canSwim;
     private boolean canPushEntity;
     private boolean canConvertToSource;
-    private int color ;
+    private int color;
 
-    public FluidRegister(String id,int color) {
+    public FluidRegister(String id, int color) {
+        this(id, color, false);
+    }
+
+    public FluidRegister(String id, int color, boolean noBucket) {
 
         this.id = id;
         this.color = color;
@@ -82,9 +88,10 @@ public class FluidRegister {
         this.fluidflowing = zFluids.zFluids.register(id + "_flowing",
                 p -> new BaseFlowingFluid.Flowing(this.prop));
 
-        this.itemBucket = zItems.zBucketItems.registerItem(id + "_bucket",
-                p -> new BucketItem(this.fluidsource.get(),
-                        p.craftRemainder(Items.BUCKET).stacksTo(1)));
+        this.itemBucket = noBucket ? null
+                : zItems.zBucketItems.registerItem(id + "_bucket",
+                        p -> new BucketItem(this.fluidsource.get(),
+                                p.craftRemainder(Items.BUCKET).stacksTo(1)));
 
         this.block = zBlocks.zBlockFluids.registerBlock(
                 id,
@@ -96,12 +103,16 @@ public class FluidRegister {
                                 .lightLevel(dynLightLevel)
                                 .emissiveRendering((s, g, p) -> lightLevel > 0 || dynLightLevel.applyAsInt(s) > 0)));
 
-        this.prop = new BaseFlowingFluid.Properties(
+        var sampleProp = new BaseFlowingFluid.Properties(
                 this.type,
                 this.fluidsource,
-                this.fluidflowing)
-                .bucket(this.itemBucket)
-                .block(this.block);
+                this.fluidflowing).block(this.block);
+
+        if (!noBucket)
+            sampleProp = sampleProp
+                    .bucket(this.itemBucket);
+
+        this.prop = sampleProp;
     }
 
     public DeferredHolder<Block, LiquidBlock> getBlock() {
@@ -116,7 +127,7 @@ public class FluidRegister {
         return fluidsource;
     }
 
-    public DeferredHolder<Item, BucketItem> getItemBucket() {
+    public @Nullable DeferredHolder<Item, BucketItem> getItemBucket() {
         return itemBucket;
     }
 
@@ -187,8 +198,12 @@ public class FluidRegister {
         return color;
     }
 
-    public static FluidRegister create(String id,int color) {
-        return new FluidRegister(id,color);
+    public static FluidRegister create(String id, int color) {
+        return new FluidRegister(id, color);
+    }
+
+    public static FluidRegister create(String id, int color,boolean noBucket) {
+        return new FluidRegister(id, color,noBucket);
     }
 
     public Fluid getFluid() {
