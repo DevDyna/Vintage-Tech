@@ -16,7 +16,7 @@
   ],
   "output_fluid": {
     "amount": 150,
-    "id": "vintagetech:soy_whey_source"
+    "id": "vintagetech:whey_source"
   },
   "output_items": [
     {

@@ -1,0 +1,82 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "vintagetech:plain_cheese",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "pieces": "0"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "vintagetech:plain_cheese"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "vintagetech:plain_cheese",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "pieces": "1"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "vintagetech:plain_cheese_slice"
+        }
+      ],
+      "rolls": 3.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "vintagetech:plain_cheese",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "pieces": "2"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "vintagetech:plain_cheese_slice"
+        }
+      ],
+      "rolls": 2.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "vintagetech:plain_cheese",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "pieces": "3"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "vintagetech:plain_cheese_slice"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "vintagetech:blocks/plain_cheese"
+}

@@ -1,0 +1,11 @@
+{
+  "type": "vintagetech:crushing_tub",
+  "input": "vintagetech:cheese_mold",
+  "output": {
+    "chance": 1.0,
+    "item": {
+      "id": "vintagetech:plain_cheese"
+    }
+  },
+  "require_mesh": false
+}

@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "age=0,pieces=0": {
+      "model": "vintagetech:block/cheese/sealed/plain/0"
+    },
+    "age=0,pieces=1": {
+      "model": "vintagetech:block/cheese/sealed/plain/1"
+    },
+    "age=0,pieces=2": {
+      "model": "vintagetech:block/cheese/sealed/plain/2"
+    },
+    "age=0,pieces=3": {
+      "model": "vintagetech:block/cheese/sealed/plain/3"
+    },
+    "age=1,pieces=0": {
+      "model": "vintagetech:block/cheese/sealed/plain/0"
+    },
+    "age=1,pieces=1": {
+      "model": "vintagetech:block/cheese/sealed/plain/1"
+    },
+    "age=1,pieces=2": {
+      "model": "vintagetech:block/cheese/sealed/plain/2"
+    },
+    "age=1,pieces=3": {
+      "model": "vintagetech:block/cheese/sealed/plain/3"
+    },
+    "age=2,pieces=0": {
+      "model": "vintagetech:block/cheese/sealed/plain/0"
+    },
+    "age=2,pieces=1": {
+      "model": "vintagetech:block/cheese/sealed/plain/1"
+    },
+    "age=2,pieces=2": {
+      "model": "vintagetech:block/cheese/sealed/plain/2"
+    },
+    "age=2,pieces=3": {
+      "model": "vintagetech:block/cheese/sealed/plain/3"
+    },
+    "age=3,pieces=0": {
+      "model": "vintagetech:block/cheese/sealed/aged/0"
+    },
+    "age=3,pieces=1": {
+      "model": "vintagetech:block/cheese/sealed/aged/1"
+    },
+    "age=3,pieces=2": {
+      "model": "vintagetech:block/cheese/sealed/aged/2"
+    },
+    "age=3,pieces=3": {
+      "model": "vintagetech:block/cheese/sealed/aged/3"
+    }
+  }
+}

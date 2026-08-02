@@ -1,0 +1,166 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "vintagetech:sealed_cheese",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "0",
+            "pieces": "0"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "vintagetech:sealed_cheese"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "vintagetech:sealed_cheese",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "3",
+            "pieces": "0"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "vintagetech:aged_cheese"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "vintagetech:sealed_cheese",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "0",
+            "pieces": "1"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "vintagetech:plain_cheese_slice"
+        }
+      ],
+      "rolls": 3.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "vintagetech:sealed_cheese",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "3",
+            "pieces": "1"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "vintagetech:aged_cheese_slice"
+        }
+      ],
+      "rolls": 3.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "vintagetech:sealed_cheese",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "0",
+            "pieces": "2"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "vintagetech:plain_cheese_slice"
+        }
+      ],
+      "rolls": 2.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "vintagetech:sealed_cheese",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "3",
+            "pieces": "2"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "vintagetech:aged_cheese_slice"
+        }
+      ],
+      "rolls": 2.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "vintagetech:sealed_cheese",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "0",
+            "pieces": "3"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "vintagetech:plain_cheese_slice"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "vintagetech:sealed_cheese",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "3",
+            "pieces": "3"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "vintagetech:aged_cheese_slice"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "vintagetech:blocks/sealed_cheese"
+}

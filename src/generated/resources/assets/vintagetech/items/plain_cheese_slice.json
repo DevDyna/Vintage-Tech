@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "vintagetech:item/cheese"
+    "model": "vintagetech:item/plain_cheese_slice"
   }
 }

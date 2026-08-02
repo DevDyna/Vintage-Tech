@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "pieces=0": {
+      "model": "vintagetech:block/cheese/aged/0"
+    },
+    "pieces=1": {
+      "model": "vintagetech:block/cheese/aged/1"
+    },
+    "pieces=2": {
+      "model": "vintagetech:block/cheese/aged/2"
+    },
+    "pieces=3": {
+      "model": "vintagetech:block/cheese/aged/3"
+    }
+  }
+}

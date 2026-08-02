@@ -2,6 +2,6 @@
   "type": "vintagetech:farmland_fuels",
   "fluid": {
     "amount": 250,
-    "ingredient": "vintagetech:soy_whey_source"
+    "ingredient": "vintagetech:whey_source"
   }
 }
