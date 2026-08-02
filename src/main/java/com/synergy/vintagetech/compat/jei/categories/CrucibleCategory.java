@@ -6,6 +6,7 @@ import com.devdyna.cakesticklib.api.compat.jei.BaseRecipeCategory;
 import com.devdyna.cakesticklib.api.compat.jei.JEIFluidTankHelper;
 import com.devdyna.cakesticklib.api.primitive.Size;
 import com.devdyna.cakesticklib.api.utils.ColorUtils;
+import com.devdyna.cakesticklib.api.utils.TimeUtil;
 import com.devdyna.cakesticklib.api.utils.x;
 
 import com.synergy.vintagetech.init.builder.crucible.recipe.CrucibleRecipe;
@@ -70,7 +71,7 @@ public class CrucibleCategory extends BaseRecipeCategory<CrucibleRecipe> {
         if (recipe.getOutputFluid() != null)
             JEIFluidTankHelper.of()
                     .fluid(recipe.getOutputFluid().create())
-                    .offset(149, 53 - 3+4)
+                    .offset(149, 53 - 3 + 4)
                     .scale(2.5f, 1.0f)
                     .build((x, y) -> builder.addOutputSlot(x, y));
 
@@ -127,6 +128,7 @@ public class CrucibleCategory extends BaseRecipeCategory<CrucibleRecipe> {
 
     }
 
+    // TODO API : add recipe
     @Override
     public boolean enableTimerRender() {
         return true;
@@ -137,11 +139,19 @@ public class CrucibleCategory extends BaseRecipeCategory<CrucibleRecipe> {
         return recipe.getTicks();
     }
 
+    // TODO API : add recipe
     @Override
     public Size tickPos() {
-        return Size.of(78 - 8, 13);
+        return Size.of(78 - 8-4, 13);
     }
 
+    @Override
+    public void renderTickDelay(CrucibleRecipe recipe, GuiGraphicsExtractor guiGraphics) {
+        guiGraphics.text(this.font, Component.literal(TimeUtil.getTimeValue(this.tickValue(recipe), this.shortTicks())),
+                this.tickPos().getX() - (recipe.getTicks() > 9 ? 5+4 : 0), this.tickPos().getY(), this.tickColor());
+    }
+
+    // TODO API : add recipe
     @Override
     public int tickColor() {
         return ColorUtils.WHITE.getRGB();
