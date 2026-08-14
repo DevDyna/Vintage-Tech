@@ -27,6 +27,7 @@ import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
+import net.minecraft.world.level.storage.loot.predicates.InvertedLootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
@@ -149,38 +150,34 @@ public class DataLootBlock extends BlockLootSubProvider {
 
                 addCheese(zBlocks.PLAIN_CHEESE.get(), zItems.PLAIN_CHEESE_SLICE.get());
                 addCheese(zBlocks.AGED_CHEESE.get(), zItems.AGED_CHEESE_SLICE.get());
-                addAgedCheese(zBlocks.SEALED_CHEESE.get(), zBlocks.AGED_CHEESE.get(), zItems.PLAIN_CHEESE_SLICE.get(), zItems.AGED_CHEESE_SLICE.get());
+                addAgedCheese(zBlocks.SEALED_CHEESE.get(), zBlocks.AGED_CHEESE.get(), zItems.PLAIN_CHEESE_SLICE.get(),
+                                zItems.AGED_CHEESE_SLICE.get());
         }
 
         private void addCheese(Block b, ItemLike i) {
-
                 var table = LootTable.lootTable();
 
                 table.withPool(
                                 LootPool.lootPool()
                                                 .setRolls(ConstantValue.exactly(1))
                                                 .add(LootItem.lootTableItem(b))
-                                                .when(LootItemBlockStatePropertyCondition
-                                                                .hasBlockStateProperties(b)
-                                                                .setProperties(StatePropertiesPredicate.Builder
-                                                                                .properties()
-                                                                                .hasProperty(BaseCheeseBlock.PIECES,
-                                                                                                0))));
+                                                .when(hasSilkTouch()));
 
-                for (int pieces = 1; pieces <= BaseCheeseBlock.MAX_PIECES; pieces++)
+                for (int pieces = 0; pieces <= BaseCheeseBlock.MAX_PIECES; pieces++) {
                         table.withPool(
                                         LootPool.lootPool()
-                                                        .setRolls(ConstantValue.exactly(4- pieces))
+                                                        .setRolls(ConstantValue.exactly(4 - pieces))
                                                         .add(LootItem.lootTableItem(i))
                                                         .when(LootItemBlockStatePropertyCondition
                                                                         .hasBlockStateProperties(b)
                                                                         .setProperties(StatePropertiesPredicate.Builder
                                                                                         .properties()
                                                                                         .hasProperty(BaseCheeseBlock.PIECES,
-                                                                                                        pieces))));
+                                                                                                        pieces)))
+                                                        .when(InvertedLootItemCondition.invert(hasSilkTouch())));
+                }
 
                 add(b, table);
-
         }
 
         private void addAgedCheese(Block baseBlock, Block agedBlock, ItemLike baseSlice, ItemLike agedSlice) {
@@ -215,7 +212,7 @@ public class DataLootBlock extends BlockLootSubProvider {
 
                         table.withPool(
                                         LootPool.lootPool()
-                                                        .setRolls(ConstantValue.exactly(4- pieces))
+                                                        .setRolls(ConstantValue.exactly(4 - pieces))
                                                         .add(LootItem.lootTableItem(baseSlice))
                                                         .when(LootItemBlockStatePropertyCondition
                                                                         .hasBlockStateProperties(baseBlock)
@@ -228,7 +225,7 @@ public class DataLootBlock extends BlockLootSubProvider {
 
                         table.withPool(
                                         LootPool.lootPool()
-                                                        .setRolls(ConstantValue.exactly(4- pieces))
+                                                        .setRolls(ConstantValue.exactly(4 - pieces))
                                                         .add(LootItem.lootTableItem(agedSlice))
                                                         .when(LootItemBlockStatePropertyCondition
                                                                         .hasBlockStateProperties(baseBlock)
