@@ -56,6 +56,9 @@ public class SealedCheeseBlock extends BaseCheeseBlock {
         if (RandomUtil.chance(level, (0.15f + 0.15f * state.getValue(PIECES))))
             return;
 
+        if (RandomUtil.chance(level, 0.5f))
+            level.playSound(null, pos, SoundEvents.HONEYCOMB_WAX_ON, SoundSource.BLOCKS, 1, 0);
+
         level.setBlockAndUpdate(pos, state.setValue(AGE, state.getValue(AGE) + 1));
 
     }
