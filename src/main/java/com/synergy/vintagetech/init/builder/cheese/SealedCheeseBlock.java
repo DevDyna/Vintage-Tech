@@ -6,6 +6,8 @@ import com.synergy.vintagetech.init.types.zBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
@@ -83,10 +85,21 @@ public class SealedCheeseBlock extends BaseCheeseBlock {
         double y = pos.getY() + 0.5;
         double z = pos.getZ() + 0.5;
 
-        if(state.getValue(AGE) < MAX_AGE)
-        if (random.nextInt(6) == 0)
-            level.addParticle(ParticleTypes.WHITE_SMOKE, x, y, z, 0.0, 0.02, 0.0);
+        if (level.canSeeSky(pos))
+            return;
 
+        if (level.getEffectiveSkyBrightness(pos) > 5)
+            return;
+
+        if (state.getValue(AGE) < MAX_AGE) {
+            if (random.nextInt(6) == 0)
+                level.addParticle(ParticleTypes.WHITE_SMOKE, x, y, z, 0.0, 0.02, 0.0);
+            if (random.nextInt(6) == 0)
+                level.addParticle(ParticleTypes.WHITE_ASH, x, y, z, 0.0, 0.02, 0.0);
+        } else {
+            if (random.nextInt(6) == 0)
+                level.addParticle(ParticleTypes.DUST_PLUME, x, y, z, 0.0, 0.02, 0.0);
+        }
     }
 
 }
