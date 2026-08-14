@@ -161,7 +161,7 @@ public class CentrifugeBE extends TransmissionBE
 
     @Override
     public int getTankCapacity() {
-        return 1000;
+        return 5000;
     }
 
     @Override
