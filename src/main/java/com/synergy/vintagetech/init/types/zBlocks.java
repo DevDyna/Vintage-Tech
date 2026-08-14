@@ -316,7 +316,7 @@ public class zBlocks {
         public static final DeferredHolder<Block, Block> LAVENDER = registerItemBlock("lavender",
                         p -> new Lavender(MobEffects.INSTANT_HEALTH, 1.0F, p));
 
-        public static final DeferredHolder<Block, Block> ALOE_PLANT = zBlock.registerBlock("aloe_plant",
+        public static final DeferredHolder<Block, Block> ALOE_PLANT = zBlock.registerBlock("aloe",
                         p -> new Aloe(p));
 
         public static final DeferredHolder<Block, Block> BLUEBERRY_BUSH = zBlock.registerBlock("blueberry_bush",
