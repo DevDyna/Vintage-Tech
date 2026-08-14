@@ -776,6 +776,13 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 zTags.Items.RECYCLE_GOLD_8,
                                 zTags.Items.RECYCLE_GOLD_9);
 
+                // TODO API : add without recipeid
+                twoByTwoPacker(output, zBlocks.PLAIN_CHEESE.get(), zItems.PLAIN_CHEESE_SLICE.get(),
+                                MODULE_ID + ":cheese_from_slices/plain");
+
+                twoByTwoPacker(output, zBlocks.AGED_CHEESE.get(), zItems.AGED_CHEESE_SLICE.get(),
+                                MODULE_ID + ":cheese_from_slices/aged");
+
         }
 
         public static final class RecipeRunner extends RecipeProvider.Runner {
