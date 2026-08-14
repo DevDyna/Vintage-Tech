@@ -10,9 +10,9 @@ import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import com.devdyna.cakesticklib.api.ItemLogisticUtils;
-import com.devdyna.cakesticklib.api.aspect.templates.TickingBE;
 import com.devdyna.cakesticklib.api.factories.plants.VanillaPlants;
 import com.devdyna.cakesticklib.setup.Config;
+import com.synergy.vintagetech.api.blockfactory.transmission.TransmissionBE;
 import com.synergy.vintagetech.init.builder.basket.BasketBE;
 import com.synergy.vintagetech.init.builder.basket.BasketBlock;
 import com.synergy.vintagetech.init.types.zBlockEntities;
@@ -34,7 +34,7 @@ import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.entity.HopperBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class SawBE extends TickingBE {
+public class SawBE extends TransmissionBE {
 
     public static final AtomicInteger UUID_GENERATOR = new AtomicInteger();
 

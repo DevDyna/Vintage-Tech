@@ -60,7 +60,12 @@ public class SawBlock extends MonoDirectionalAxleBlock implements RotableAxleBlo
 
     @Override
     public Map<Direction, Boolean> getAxis(BlockState state) {
-        return Map.of();
+        var dir = state.getValue(FACING);
+        
+        if (state.getValue(FACING).getAxis().isHorizontal())
+            dir = dir.getOpposite();
+
+        return Map.of(dir, state.getValue(INVERTED));
     }
 
     @Override

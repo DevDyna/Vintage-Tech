@@ -438,7 +438,10 @@ public class DataModel extends ModelProvider {
                                 ItemModelUtils.plainModel(x.rl(MODULE_ID, "item/millstone")));
 
                 itemModels.itemModelOutput.accept(zBlocks.SAW.get().asItem(),
-                                ItemModelUtils.plainModel(x.rl(MODULE_ID, "block/saw_off")));
+                                ItemModelUtils.plainModel(x.rl(MODULE_ID, "item/saw")));
+
+                itemModels.itemModelOutput.accept(zBlocks.CENTRIFUGE.get().asItem(),
+                                ItemModelUtils.plainModel(x.rl(MODULE_ID, "item/centrifuge")));
 
                 itemModels.itemModelOutput.accept(zBlocks.CLUTCH.get().asItem(),
                                 ItemModelUtils.plainModel(x.rl(MODULE_ID, "item/clutch")));

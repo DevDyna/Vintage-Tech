@@ -5,7 +5,8 @@
   "render_type": "cutout",
   "textures": {
     "0": "block/observer_side",
-    "particle": "#0"
+    "1": "vintagetech:block/beam/axle",
+    "particle": "block/observer_side"
   },
   "elements": [
     {
@@ -59,6 +60,19 @@
         "up": { "uv": [1, 1, 11, 3], "texture": "#0" },
         "down": { "uv": [1, 1, 11, 3], "texture": "#0" }
       }
+    },
+    {
+      "from": [5, 0, 5],
+      "to": [11, 4, 11],
+      "rotation": { "angle": 0, "axis": "y", "origin": [5, 0, 5] },
+      "faces": {
+        "north": { "uv": [6, 12, 12, 16], "texture": "#1" },
+        "east": { "uv": [6, 12, 12, 16], "texture": "#1" },
+        "south": { "uv": [6, 12, 12, 16], "texture": "#1" },
+        "west": { "uv": [6, 12, 12, 16], "texture": "#1" },
+        "up": { "uv": [0, 0, 6, 6], "texture": "#1" },
+        "down": { "uv": [0, 0, 6, 6], "texture": "#1" }
+      }
     }
   ],
   "groups": [
@@ -75,6 +89,7 @@
       "scope": 0,
       "color": 0,
       "children": [2, 3]
-    }
+    },
+    4
   ]
 }
