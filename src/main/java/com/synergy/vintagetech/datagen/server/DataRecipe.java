@@ -454,9 +454,9 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .save(output);
 
                 shaped(RecipeCategory.BUILDING_BLOCKS, zBlocks.CENTRIFUGE.get().asItem())
-                                .pattern("SFS")
-                                .pattern("SAS")
                                 .pattern("SBS")
+                                .pattern("SAS")
+                                .pattern("SFS")
                                 .define('B', Items.BARREL)
                                 .define('F', zBlocks.FAN.get())
                                 .define('A', zBlocks.AXLE.get())
