@@ -16,7 +16,7 @@
               "type": "minecraft:item",
               "conditions": [
                 {
-                  "block": "vintagetech:aloe_plant",
+                  "block": "vintagetech:aloe",
                   "condition": "minecraft:block_state_property",
                   "properties": {
                     "age": "2"
@@ -38,7 +38,7 @@
       "bonus_rolls": 0.0,
       "conditions": [
         {
-          "block": "vintagetech:aloe_plant",
+          "block": "vintagetech:aloe",
           "condition": "minecraft:block_state_property",
           "properties": {
             "age": "2"
@@ -65,5 +65,5 @@
       "rolls": 1.0
     }
   ],
-  "random_sequence": "vintagetech:blocks/aloe_plant"
+  "random_sequence": "vintagetech:blocks/aloe"
 }

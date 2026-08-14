@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cross",
   "textures": {
-    "cross": "vintagetech:block/aloe_plant/1"
+    "cross": "vintagetech:block/aloe/2"
   }
 }
