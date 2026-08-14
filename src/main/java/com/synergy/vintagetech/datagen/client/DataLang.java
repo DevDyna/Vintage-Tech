@@ -37,6 +37,14 @@ public class DataLang extends LanguageProvider implements LangGenerators {
                 zItems.zItem.getEntries().forEach(b -> addItem(b, LangUtils.named(b, MODULE_ID)));
                 zBlocks.zBlockFluids.getEntries().forEach(b -> addBlock(b, LangUtils.named(b, MODULE_ID)));
 
+                //crops blocks required
+                List.of(
+                        zBlocks.HEMP,
+                        zBlocks.ALOE_PLANT,
+                        zBlocks.BLUEBERRY_BUSH,
+                        zBlocks.CAVE_WHEAT
+                ).forEach(b->named(b, MODULE_ID));
+
                 add(MODULE_ID + ".jei.alias.rpm.base", "Mechanical Rotation Block");
                 add(MODULE_ID + ".jei.alias.rpm.transmission", "Transmission");
                 add(MODULE_ID + ".jei.alias.rpm.rotation.change", "Change Rotation");
