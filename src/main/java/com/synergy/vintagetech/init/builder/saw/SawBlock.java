@@ -38,12 +38,13 @@ public class SawBlock extends MonoDirectionalAxleBlock implements RotableAxleBlo
     public BlockState getStateForPlacement(BlockPlaceContext c) {
         return this.defaultBlockState()
                 .setValue(ENABLED, false)
+                .setValue(INVERTED, false)
                 .setValue(FACING, c.getClickedFace());
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> b) {
-        b.add(FACING, ENABLED);
+        b.add(FACING, ENABLED, INVERTED);
     }
 
     @Override
