@@ -59,6 +59,13 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .unlockedBy(getHasName(ItemTags.LEAVES), has(ItemTags.LEAVES))
                                 .save(output);
 
+                CrushingTubBuilder.of(registries)
+                                .input(zItems.IRONBERRIES)
+                                .output(zItems.TINY_IRON_DUST, 1.0f)
+                                .output(zFluids.IRONBERRY_JUICE.getFluid(), 250)
+                                .unlockedBy(getHasName(zItems.IRONBERRIES.get()), has(zItems.IRONBERRIES.get()))
+                                .save(output);
+
                 EvaporationBasinBuilder.of(registries)
                                 .fluid(Fluids.WATER, 125)
                                 .output(zItems.SALT)
