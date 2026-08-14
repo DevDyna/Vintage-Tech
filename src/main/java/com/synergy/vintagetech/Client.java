@@ -86,6 +86,10 @@ public class Client {
                 TransmissionRenderer::new);
 
         event.registerBlockEntityRenderer(
+                zBlockEntities.SAW.get(),
+                TransmissionRenderer::new);
+
+        event.registerBlockEntityRenderer(
                 zBlockEntities.CENTRIFUGE.get(),
                 CentrifugeRenderer::new);
 
