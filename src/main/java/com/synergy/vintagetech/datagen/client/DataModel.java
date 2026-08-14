@@ -179,14 +179,13 @@ public class DataModel extends ModelProvider {
 
                 BlockModelUtils.simplePlain(blockModels, zBlocks.CENTRIFUGE);
 
-                BlockModelUtils.createCheeseBlock(blockModels, zBlocks.PLAIN_CHEESE.get()); 
-                BlockModelUtils.createAgedCheeseBlock(blockModels, zBlocks.SEALED_CHEESE.get()); 
-                BlockModelUtils.createCheeseBlock(blockModels, zBlocks.AGED_CHEESE.get()); 
+                BlockModelUtils.createCheeseBlock(blockModels, zBlocks.PLAIN_CHEESE.get());
+                BlockModelUtils.createAgedCheeseBlock(blockModels, zBlocks.SEALED_CHEESE.get());
+                BlockModelUtils.createCheeseBlock(blockModels, zBlocks.AGED_CHEESE.get());
 
-BlockModelUtils.simplePlain(blockModels, zBlocks.CRUCIBLE);
+                BlockModelUtils.simplePlain(blockModels, zBlocks.CRUCIBLE);
 
                 // TODO IMP : Models by logic
-                   
 
                 BlockModelUtils.simplePlain(blockModels, zBlocks.CREATIVE_ENGINE);
                 // BlockModelUtils.simplePlain(blockModels, zBlocks.HYDRAULIC_PRESS);
@@ -357,8 +356,11 @@ BlockModelUtils.simplePlain(blockModels, zBlocks.CRUCIBLE);
 
                 BlockModelUtils.cropWithoutSeed(blockModels, zBlocks.CAVE_WHEAT.get(), BaseShortCropBlock.AGE, 0, 1,
                                 2, 3, 4, 5);
-                BlockModelUtils.cropWithoutSeed(blockModels, zBlocks.SOYBEANS.get(), BaseShortCropBlock.AGE, 0, 1,
-                                2, 3, 4, 5);
+                                
+                BlockModelUtils.createBushBlock(blockModels, zBlocks.SOYBEANS.get(), BaseShortCropBlock.AGE);
+
+
+
 
                 BlockModelUtils.createBushBlock(blockModels, zBlocks.ALOE_PLANT.get(), Aloe.AGE);
                 BlockModelUtils.createBushBlock(blockModels, zBlocks.BLUEBERRY_BUSH.get(), BlueBerry.AGE);
