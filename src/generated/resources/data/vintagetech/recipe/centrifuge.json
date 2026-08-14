@@ -8,9 +8,9 @@
     "S": "#minecraft:wooden_slabs"
   },
   "pattern": [
-    "SFS",
+    "SBS",
     "SAS",
-    "SBS"
+    "SFS"
   ],
   "result": {
     "id": "vintagetech:centrifuge"
