@@ -652,7 +652,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .save(output);
 
                 FarmlandFuelsBuilder.of(registries)
-                                .fluid(Fluids.WATER, 1000)
+                                .fluid(Fluids.WATER, 5000)
                                 .unlockedBy(getHasName(zBlocks.MECHANICAL_FARMLAND.get()),
                                                 has(zBlocks.MECHANICAL_FARMLAND.get()))
                                 .save(output);
