@@ -37,7 +37,7 @@ public class MechanicalFarmlandBE extends TransmissionBE implements SimpleFluidS
 
     @Override
     public int getTankCapacity() {
-        return 10_000;
+        return 16_000;
     }
 
     @Override

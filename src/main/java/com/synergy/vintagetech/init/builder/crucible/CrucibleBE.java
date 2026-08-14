@@ -206,7 +206,7 @@ public class CrucibleBE extends TickingBE implements ItemStorageBlock, NoGuiStor
 
     @Override
     public int getTankCapacity() {
-        return 10000;
+        return 16_000;
     }
 
     @Override
