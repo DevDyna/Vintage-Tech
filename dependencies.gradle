@@ -1,6 +1,7 @@
 repositories {
 
 mavenLocal()
+mavenCentral()
     
     maven { url = "https://maven.ithundxr.dev/snapshots" } // Registrate
     maven { url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/" }
@@ -32,6 +33,9 @@ dependencies {
     runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
     implementation "curse.maven:jade-324717:8326300"
 
+    //guideme
+    compileOnly "org.appliedenergistics:guideme:26.1.12-beta:api"
+    runtimeOnly "org.appliedenergistics:guideme:26.1.12-beta"
    
   
 }
