@@ -55,8 +55,6 @@ public class BasketBE extends BlockEntity implements ItemStorageBlock, DropColle
     public ItemStack extractItem() {
         return simpleExtractItemFromSize();
     }
-
-    //TODO API : dropOnBreak() params
     
 
 }
