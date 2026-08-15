@@ -128,7 +128,6 @@ public class CrucibleCategory extends BaseRecipeCategory<CrucibleRecipe> {
 
     }
 
-    // TODO API : add recipe
     @Override
     public boolean enableTimerRender() {
         return true;
@@ -139,7 +138,6 @@ public class CrucibleCategory extends BaseRecipeCategory<CrucibleRecipe> {
         return recipe.getTicks();
     }
 
-    // TODO API : add recipe
     @Override
     public Size tickPos() {
         return Size.of(78 - 8-4, 13);
@@ -151,7 +149,6 @@ public class CrucibleCategory extends BaseRecipeCategory<CrucibleRecipe> {
                 this.tickPos().getX() - (recipe.getTicks() > 9 ? 5+4 : 0), this.tickPos().getY(), this.tickColor());
     }
 
-    // TODO API : add recipe
     @Override
     public int tickColor() {
         return ColorUtils.WHITE.getRGB();
