@@ -69,10 +69,6 @@ public class DataLang extends LanguageProvider implements LangGenerators {
                 add(MODULE_ID + ".basket.info",
                                 TipColors.ITEM_TOOLTIP + "A portable chest that can absorb items");
 
-                // TODO API : move to api
-                add(MODULE_ID + ".basket.keep",
-                                TipColors.ITEM_TOOLTIP + "Keeps its items when broken");
-
                 add(MODULE_ID + ".centrifuge.info",
                                 TipColors.ITEM_TOOLTIP + "Mix ingredients to create new ones");
 

@@ -73,8 +73,7 @@ public class ItemToolTipped {
 
                 if (!item.has(LibComponents.ITEM_CONTAINER) || item.get(LibComponents.ITEM_CONTAINER) == null)
                         ToolTipHelper.addToggle(t, item.is(zBlocks.BASKET.get().asItem()),
-                                        MODULE_ID + ".basket.info",
-                                        MODULE_ID + ".basket.keep");
+                                        MODULE_ID + ".basket.info");
 
         }
 
