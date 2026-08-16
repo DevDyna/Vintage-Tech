@@ -818,9 +818,9 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                 return registries;
         }
 
-        //TODO API : doesn't require ID
-        private void twoByTwoPacker(RecipeOutput c, ItemLike i, ItemLike o){
-                twoByTwoPacker(c, i, o,getModName() + getConversionRecipeName(o, i));
+        // TODO API : doesn't require ID
+        private void twoByTwoPacker(RecipeOutput c, ItemLike i, ItemLike o) {
+                twoByTwoPacker(c, i, o, getModName() + getConversionRecipeName(o, i));
         }
 
         private void createRecycleRecipe(
