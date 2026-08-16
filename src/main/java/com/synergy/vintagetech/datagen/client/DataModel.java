@@ -50,7 +50,7 @@ public class DataModel extends ModelProvider {
 
                 zItems.zItem.getEntries().forEach(i -> itemModels.generateFlatItem(i.get(), ModelTemplates.FLAT_ITEM));
                 zItems.zBucketItems.getEntries().forEach(b -> ItemModelUtil.createBucketItem(itemModels, b.get()));
-                zBlocks.zBlockFluids.getEntries().forEach(b -> BlockModelUtils.fluid(blockModels, b.get()));
+                zBlocks.zBlockFluids.getEntries().forEach(b -> ModelUtils.fluid(blockModels, b.get(), MODULE_ID));
                 zBlocks.zRender.getEntries().forEach(
                                 b -> BlockModelUtils.simplePlain(blockModels, b, "block/render/", "render_", ""));
 

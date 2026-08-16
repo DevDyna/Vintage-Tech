@@ -2,8 +2,6 @@ package com.synergy.vintagetech.api;
 
 import static com.synergy.vintagetech.Main.MODULE_ID;
 
-import java.util.Optional;
-
 import com.devdyna.cakesticklib.api.utils.x;
 import com.synergy.vintagetech.init.builder.cheese.BaseCheeseBlock;
 import com.synergy.vintagetech.init.builder.cheese.SealedCheeseBlock;
@@ -15,8 +13,6 @@ import net.minecraft.client.data.models.MultiVariant;
 import net.minecraft.client.data.models.blockstates.MultiPartGenerator;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
-import net.minecraft.client.data.models.model.ModelLocationUtils;
-import net.minecraft.client.data.models.model.ModelTemplate;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.data.models.model.TextureSlot;
@@ -55,19 +51,6 @@ public class BlockModelUtils {
                                                                                                                                                                                         TextureMapping::crop)));
                                                                                                                 })));
 
-        }
-
-        // TODO API : move to api
-        public static void fluid(BlockModelGenerators b, Block block) {
-
-                ModelTemplate particleModel = new ModelTemplate(Optional.empty(), Optional.empty(),
-                                TextureSlot.PARTICLE);
-                Identifier modelId = ModelLocationUtils.getModelLocation(block);
-                TextureMapping mapping = new TextureMapping().put(TextureSlot.PARTICLE,
-                                getBlockTexture("fluid_source"));
-                particleModel.create(modelId, mapping, b.modelOutput);
-                b.blockStateOutput.accept(
-                                MultiVariantGenerator.dispatch(block, BlockModelGenerators.plainVariant(modelId)));
         }
 
         public static Material getBlockTexture(String b) {
