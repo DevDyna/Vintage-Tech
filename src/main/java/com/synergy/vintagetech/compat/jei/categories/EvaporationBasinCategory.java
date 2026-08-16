@@ -66,7 +66,7 @@ public class EvaporationBasinCategory extends BaseRecipeCategory<EvaporationBasi
     }
 
     @Override
-    public boolean enableTimerRender() {
+    public boolean enableTimerRender(EvaporationBasinRecipe recipe) {
         return true;
     }
 
@@ -76,12 +76,12 @@ public class EvaporationBasinCategory extends BaseRecipeCategory<EvaporationBasi
     }
 
     @Override
-    public Size tickPos() {
+    public Size tickPos(EvaporationBasinRecipe recipe) {
         return Size.of(21, 53);
     }
 
     @Override
-    public int tickColor() {
+    public int tickColor(EvaporationBasinRecipe recipe) {
         return ColorUtils.WHITE.getRGB();
     }
 

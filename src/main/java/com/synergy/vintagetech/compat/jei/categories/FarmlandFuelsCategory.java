@@ -63,9 +63,9 @@ public class FarmlandFuelsCategory extends BaseRecipeCategory<FarmlandFuelsRecip
 
     }
 
-    @Override
-    public boolean enableTimerRender() {
-        return false;
-    }
+    // @Override
+    // public boolean enableTimerRender() {
+    //     return false;
+    // }
 
 }

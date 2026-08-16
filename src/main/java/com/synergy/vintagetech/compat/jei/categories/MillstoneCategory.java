@@ -60,7 +60,7 @@ public class MillstoneCategory extends BaseRecipeCategory<MillstoneRecipe> {
     }
 
     @Override
-    public boolean enableTimerRender() {
+    public boolean enableTimerRender(MillstoneRecipe recipe) {
         return true;
     }
 
@@ -70,12 +70,12 @@ public class MillstoneCategory extends BaseRecipeCategory<MillstoneRecipe> {
     }
 
     @Override
-    public Size tickPos() {
+    public Size tickPos(MillstoneRecipe recipe) {
         return Size.of(58, 4);
     }
 
     @Override
-    public int tickColor() {
+    public int tickColor(MillstoneRecipe recipe) {
         return ColorUtils.WHITE.getRGB();
     }
 
