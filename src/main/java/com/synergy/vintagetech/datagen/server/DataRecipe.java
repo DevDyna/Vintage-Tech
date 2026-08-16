@@ -30,6 +30,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.common.Tags;
@@ -281,8 +282,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .unlockedBy(getHasName(zItems.HEMP_FIBER.get()), has(zItems.HEMP_FIBER.get()))
                                 .save(output, MODULE_ID + ":rope_alt");
 
-                twoByTwoPacker(output, Items.RAW_IRON, zItems.TINY_IRON_DUST.get(),
-                                MODULE_ID + ":raw_iron_from_tiny_iron_dust");
+                twoByTwoPacker(output, Items.RAW_IRON, zItems.TINY_IRON_DUST.get());
 
                 shapeless(RecipeCategory.MISC, zBlocks.JUNCTION.get())
                                 .requires(zBlocks.AXLE.get())
@@ -816,6 +816,11 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
         @Override
         public Provider getProvider() {
                 return registries;
+        }
+
+        //TODO API : doesn't require ID
+        private void twoByTwoPacker(RecipeOutput c, ItemLike i, ItemLike o){
+                twoByTwoPacker(c, i, o,getModName() + getConversionRecipeName(o, i));
         }
 
         private void createRecycleRecipe(
