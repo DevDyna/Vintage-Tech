@@ -1,19 +1,22 @@
 package com.synergy.vintagetech.init.builder.cheese;
 
+import javax.annotation.Nullable;
+
 import com.devdyna.cakesticklib.api.RandomUtil;
-import com.synergy.vintagetech.init.types.zBlocks;
+import com.synergy.vintagetech.api.blockfactory.cheese.BaseCheeseBlock;
+import com.synergy.vintagetech.init.types.zTags;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -24,19 +27,25 @@ import net.minecraft.world.phys.BlockHitResult;
 
 public class SealedCheeseBlock extends BaseCheeseBlock {
 
-    public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
-    public static final int MAX_AGE = BlockStateProperties.MAX_AGE_3;
+    public static final IntegerProperty AGE = BlockStateProperties.AGE_2;
+    public static final int MAX_AGE = BlockStateProperties.MAX_AGE_2;
 
     public SealedCheeseBlock(Properties p) {
         super(p);
-        this.registerDefaultState(this.stateDefinition.any()
+    }
+
+    @Override
+    @Nullable
+    public BlockState getStateForPlacement(BlockPlaceContext c) {
+        return defaultBlockState()
                 .setValue(PIECES, 0)
-                .setValue(AGE, 0));
+                .setValue(AGE, 0)
+                .setValue(FACING, c.getHorizontalDirection().getOpposite());
     }
 
     @Override
     protected void createBlockStateDefinition(Builder<Block, BlockState> builder) {
-        builder.add(AGE, PIECES);
+        builder.add(AGE, PIECES, FACING);
     }
 
     @Override
@@ -53,7 +62,14 @@ public class SealedCheeseBlock extends BaseCheeseBlock {
         if (level.getEffectiveSkyBrightness(pos) > 5)
             return;
 
-        if (RandomUtil.chance(level, (0.15f + 0.15f * state.getValue(PIECES))))
+        var pieces = state.getValue(PIECES);
+
+        var chance = 25f + 5f * pieces;
+
+        if (level.getBlockState(pos.below()).is(zTags.Blocks.CHEESE_BOOSTER))
+            chance = 17.5f + 5.5f * pieces;// increase the chance of +10%
+
+        if (RandomUtil.chance(level, chance))
             return;
 
         if (RandomUtil.chance(level, 0.5f))
@@ -67,14 +83,12 @@ public class SealedCheeseBlock extends BaseCheeseBlock {
     protected InteractionResult useItemOn(ItemStack itemStack, BlockState state, Level level, BlockPos pos,
             Player player, InteractionHand hand, BlockHitResult hitResult) {
 
-        // TODO API : jei custom waxing and scrapping
-        if (itemStack.is(ItemTags.AXES)) {
-
-            var block = (state.getValue(AGE) == MAX_AGE) ? zBlocks.AGED_CHEESE : zBlocks.PLAIN_CHEESE;
-
+        if (itemStack.is(zTags.Items.CHEESE_UNSEALER)) {
             level.setBlockAndUpdate(pos,
-                    block.get().defaultBlockState()
-                            .setValue(PIECES, state.getValue(PIECES)));
+                    getStage(state.getValue(AGE)).get()
+                            .defaultBlockState()
+                            .setValue(PIECES, state.getValue(PIECES))
+                            .setValue(FACING, state.getValue(FACING)));
 
             return InteractionResult.SUCCESS_SERVER;
         }
@@ -85,7 +99,7 @@ public class SealedCheeseBlock extends BaseCheeseBlock {
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
         double x = pos.getX() + 0.5;
-        double y = pos.getY() + 0.5;
+        double y = pos.getY() + (state.getValue(PIECES) > 3 ? 1 : 0.5);
         double z = pos.getZ() + 0.5;
 
         if (level.canSeeSky(pos))

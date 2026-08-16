@@ -1,19 +1,19 @@
 package com.synergy.vintagetech.init.builder.cheese;
 
-import com.synergy.vintagetech.api.blockfactory.cheese.EatableCheeseBlock;
+import com.synergy.vintagetech.api.blockfactory.cheese.WaxableCheeseBlock;
 import com.synergy.vintagetech.init.types.zItems;
 
 import net.minecraft.world.item.Item;
 
-public class AgedCheeseBlock extends EatableCheeseBlock {
+public class FreshCheeseBlock extends WaxableCheeseBlock {
 
-    public AgedCheeseBlock(Properties p) {
+    public FreshCheeseBlock(Properties p) {
         super(p);
     }
 
     @Override
     public Item getItemOnUse() {
-        return zItems.AGED_CHEESE_SLICE.get();
+        return zItems.FRESH_CHEESE_SLICE.get();
     }
 
 }

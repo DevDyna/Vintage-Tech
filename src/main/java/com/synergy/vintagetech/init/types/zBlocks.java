@@ -13,7 +13,8 @@ import com.synergy.vintagetech.init.builder.WoodenBeam;
 import com.synergy.vintagetech.init.builder.basket.BasketBlock;
 import com.synergy.vintagetech.init.builder.centrifuge.CentrifugeBlock;
 import com.synergy.vintagetech.init.builder.cheese.AgedCheeseBlock;
-import com.synergy.vintagetech.init.builder.cheese.PlainCheeseBlock;
+import com.synergy.vintagetech.init.builder.cheese.FreshCheeseBlock;
+import com.synergy.vintagetech.init.builder.cheese.MaturedCheeseBlock;
 import com.synergy.vintagetech.init.builder.cheese.SealedCheeseBlock;
 import com.synergy.vintagetech.init.builder.creative_engine.CreativeEngineBlock;
 import com.synergy.vintagetech.init.builder.crucible.CrucibleBlock;
@@ -289,14 +290,21 @@ public class zBlocks {
         // TODO IMP : TURNTABLE
         // TODO IMP : PRESS?
 
-        public static final DeferredHolder<Block, Block> PLAIN_CHEESE = registerItemBlock("plain_cheese",
-                        p -> new PlainCheeseBlock(p.forceSolidOn().strength(0.25F).sound(SoundType.WOOL).pushReaction(PushReaction.DESTROY)));
+        public static final DeferredHolder<Block, Block> FRESH_CHEESE = registerItemBlock("fresh_cheese",
+                        p -> new FreshCheeseBlock(p.forceSolidOn().strength(0.25F).sound(SoundType.WOOL)
+                                        .pushReaction(PushReaction.DESTROY)));
 
         public static final DeferredHolder<Block, Block> SEALED_CHEESE = registerItemBlock("sealed_cheese",
-                        p -> new SealedCheeseBlock(p.forceSolidOn().strength(0.25F).sound(SoundType.WOOL).pushReaction(PushReaction.DESTROY)));
+                        p -> new SealedCheeseBlock(p.forceSolidOn().strength(0.25F).sound(SoundType.WOOL)
+                                        .pushReaction(PushReaction.DESTROY)));
+
+        public static final DeferredHolder<Block, Block> MATURED_CHEESE = registerItemBlock("matured_cheese",
+                        p -> new MaturedCheeseBlock(p.forceSolidOn().strength(0.25F).sound(SoundType.WOOL)
+                                        .pushReaction(PushReaction.DESTROY)));
 
         public static final DeferredHolder<Block, Block> AGED_CHEESE = registerItemBlock("aged_cheese",
-                        p -> new AgedCheeseBlock(p.forceSolidOn().strength(0.25F).sound(SoundType.WOOL).pushReaction(PushReaction.DESTROY)));
+                        p -> new AgedCheeseBlock(p.forceSolidOn().strength(0.25F).sound(SoundType.WOOL)
+                                        .pushReaction(PushReaction.DESTROY)));
 
         // item -> item
         // public static final DeferredHolder<Block, Block> HYDRAULIC_PRESS =

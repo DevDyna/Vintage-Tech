@@ -115,17 +115,25 @@ public class zItems {
                                         .food(new FoodProperties(12, 4f, true)));
 
         public static final DeferredHolder<Item, Item> MESH = zItem.registerSimpleItem("mesh", p -> p.stacksTo(16));
-        public static final DeferredHolder<Item, Item> CHEESE_MOLD = zItem.registerSimpleItem("cheese_mold", p -> p.stacksTo(16));
+        public static final DeferredHolder<Item, Item> CHEESE_MOLD = zItem.registerSimpleItem("cheese_mold",
+                        p -> p.stacksTo(16));
 
-        public static final DeferredHolder<Item, Item> PLAIN_CHEESE_SLICE = zItem.registerSimpleItem(
-                        "plain_cheese_slice",
+        public static final DeferredHolder<Item, Item> FRESH_CHEESE_SLICE = zItem.registerSimpleItem(
+                        "fresh_cheese_slice",
                         p -> p
                                         .stacksTo(16)
                                         .food(new FoodProperties(6, 4f, false)));
 
-        public static final DeferredHolder<Item, Item> AGED_CHEESE_SLICE = zItem.registerSimpleItem("aged_cheese_slice",
+        public static final DeferredHolder<Item, Item> MATURED_CHEESE_SLICE = zItem.registerSimpleItem(
+                        "matured_cheese_slice",
                         p -> p
                                         .stacksTo(16)
-                                        .food(new FoodProperties(12, 9f, false)));
+                                        .food(new FoodProperties(9, 7f, false)));
+
+        public static final DeferredHolder<Item, Item> AGED_CHEESE_SLICE = zItem.registerSimpleItem(
+                        "aged_cheese_slice",
+                        p -> p
+                                        .stacksTo(16)
+                                        .food(new FoodProperties(12, 10f, false)));
 
 }
