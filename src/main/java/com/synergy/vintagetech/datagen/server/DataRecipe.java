@@ -608,7 +608,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
 
                 MillstoneBuilder.of(registries)
                                 .input(ItemTags.LOGS)
-                                .output(LibItems.SAWDUST.get(), 2)
+                                .output(LibItems.SAWDUST.get(), 4)
                                 .unlockedBy(getHasName(ItemTags.LOGS), has(ItemTags.LOGS))
                                 .save(output);
 
