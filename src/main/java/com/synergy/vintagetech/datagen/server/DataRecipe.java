@@ -519,7 +519,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
 
                 CrushingTubBuilder.of(registries)
                                 .input(zItems.CHEESE_MOLD)
-                                .output(zBlocks.PLAIN_CHEESE.get(), 1f)
+                                .output(zBlocks.FRESH_CHEESE.get(), 1f)
                                 .unlockedBy(getHasName(zItems.CHEESE_MOLD.get()), has(zItems.CHEESE_MOLD.get()))
                                 .save(output);
 
@@ -776,12 +776,14 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 zTags.Items.RECYCLE_GOLD_8,
                                 zTags.Items.RECYCLE_GOLD_9);
 
-                // TODO API : add without recipeid
-                twoByTwoPacker(output, zBlocks.PLAIN_CHEESE.get(), zItems.PLAIN_CHEESE_SLICE.get(),
-                                MODULE_ID + ":cheese_from_slices/plain");
+                twoByTwoPacker(output, zBlocks.FRESH_CHEESE.get(), zItems.FRESH_CHEESE_SLICE.get(),
+                                MODULE_ID + ":cheese_from_slice/fresh");
+
+                twoByTwoPacker(output, zBlocks.MATURED_CHEESE.get(), zItems.MATURED_CHEESE_SLICE.get(),
+                                MODULE_ID + ":cheese_from_slice/mature");
 
                 twoByTwoPacker(output, zBlocks.AGED_CHEESE.get(), zItems.AGED_CHEESE_SLICE.get(),
-                                MODULE_ID + ":cheese_from_slices/aged");
+                                MODULE_ID + ":cheese_from_slice/aged");
 
         }
 

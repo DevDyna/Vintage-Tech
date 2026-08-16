@@ -264,7 +264,8 @@ public class DataItemTag extends ItemTagsProvider {
                                 .add(zBlocks.BASKET.get().asItem())
                                 .addTag(ItemTags.SHULKER_BOXES);
 
-                
+                tag(zTags.Items.CHEESE_SEALER).addTag(LibTags.Items.WAXING);
+                tag(zTags.Items.CHEESE_UNSEALER).addTag(ItemTags.AXES);
 
         }
 

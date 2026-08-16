@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 import com.devdyna.cakesticklib.api.utils.EnchantUtil;
 import com.devdyna.cakesticklib.api.utils.LootTableHelper;
-import com.synergy.vintagetech.init.builder.cheese.BaseCheeseBlock;
+import com.synergy.vintagetech.api.blockfactory.cheese.BaseCheeseBlock;
 import com.synergy.vintagetech.init.builder.cheese.SealedCheeseBlock;
 import com.synergy.vintagetech.init.builder.crushing_tub.CrushingTubBlock;
 import com.synergy.vintagetech.init.builder.plants.Aloe;
@@ -148,96 +148,256 @@ public class DataLootBlock extends BlockLootSubProvider {
                                                                                                                                                 .hasProperty(CrushingTubBlock.MESH,
                                                                                                                                                                 true)))));
 
-                addCheese(zBlocks.PLAIN_CHEESE.get(), zItems.PLAIN_CHEESE_SLICE.get());
+                addCheese(zBlocks.FRESH_CHEESE.get(), zItems.FRESH_CHEESE_SLICE.get());
+                addCheese(zBlocks.MATURED_CHEESE.get(), zItems.MATURED_CHEESE_SLICE.get());
                 addCheese(zBlocks.AGED_CHEESE.get(), zItems.AGED_CHEESE_SLICE.get());
-                addAgedCheese(zBlocks.SEALED_CHEESE.get(), zBlocks.AGED_CHEESE.get(), zItems.PLAIN_CHEESE_SLICE.get(),
-                                zItems.AGED_CHEESE_SLICE.get());
+                addAgedCheese(zBlocks.SEALED_CHEESE.get(), zBlocks.MATURED_CHEESE.get(), zBlocks.AGED_CHEESE.get(),
+                                zItems.FRESH_CHEESE_SLICE.get(),
+                                zItems.MATURED_CHEESE_SLICE.get(), zItems.AGED_CHEESE_SLICE.get());
         }
 
-        private void addCheese(Block b, ItemLike i) {
+        private void addCheese(Block block, ItemLike slice) {
                 var table = LootTable.lootTable();
 
                 table.withPool(
                                 LootPool.lootPool()
                                                 .setRolls(ConstantValue.exactly(1))
-                                                .add(LootItem.lootTableItem(b))
-                                                .when(hasSilkTouch()));
-
-                for (int pieces = 0; pieces <= BaseCheeseBlock.MAX_PIECES; pieces++) {
-                        table.withPool(
-                                        LootPool.lootPool()
-                                                        .setRolls(ConstantValue.exactly(4 - pieces))
-                                                        .add(LootItem.lootTableItem(i))
-                                                        .when(LootItemBlockStatePropertyCondition
-                                                                        .hasBlockStateProperties(b)
-                                                                        .setProperties(StatePropertiesPredicate.Builder
-                                                                                        .properties()
-                                                                                        .hasProperty(BaseCheeseBlock.PIECES,
-                                                                                                        pieces)))
-                                                        .when(InvertedLootItemCondition.invert(hasSilkTouch())));
-                }
-
-                add(b, table);
-        }
-
-        private void addAgedCheese(Block baseBlock, Block agedBlock, ItemLike baseSlice, ItemLike agedSlice) {
-
-                var table = LootTable.lootTable();
+                                                .add(LootItem.lootTableItem(block))
+                                                .when(hasSilkTouch())
+                                                .when(LootItemBlockStatePropertyCondition
+                                                                .hasBlockStateProperties(block)
+                                                                .setProperties(
+                                                                                StatePropertiesPredicate.Builder
+                                                                                                .properties()
+                                                                                                .hasProperty(
+                                                                                                                BaseCheeseBlock.PIECES,
+                                                                                                                4))));
 
                 table.withPool(
                                 LootPool.lootPool()
                                                 .setRolls(ConstantValue.exactly(1))
-                                                .add(LootItem.lootTableItem(baseBlock))
+                                                .add(LootItem.lootTableItem(block))
+                                                .when(hasSilkTouch())
                                                 .when(LootItemBlockStatePropertyCondition
-                                                                .hasBlockStateProperties(baseBlock)
-                                                                .setProperties(StatePropertiesPredicate.Builder
-                                                                                .properties()
-                                                                                .hasProperty(BaseCheeseBlock.PIECES, 0)
-                                                                                .hasProperty(SealedCheeseBlock.AGE,
-                                                                                                0))));
-
-                table.withPool(
-                                LootPool.lootPool()
-                                                .setRolls(ConstantValue.exactly(1))
-                                                .add(LootItem.lootTableItem(agedBlock))
-                                                .when(LootItemBlockStatePropertyCondition
-                                                                .hasBlockStateProperties(baseBlock)
-                                                                .setProperties(StatePropertiesPredicate.Builder
-                                                                                .properties()
-                                                                                .hasProperty(BaseCheeseBlock.PIECES, 0)
-                                                                                .hasProperty(SealedCheeseBlock.AGE,
-                                                                                                SealedCheeseBlock.MAX_AGE))));
+                                                                .hasBlockStateProperties(block)
+                                                                .setProperties(
+                                                                                StatePropertiesPredicate.Builder
+                                                                                                .properties()
+                                                                                                .hasProperty(
+                                                                                                                BaseCheeseBlock.PIECES,
+                                                                                                                8))));
 
                 for (int pieces = 1; pieces <= BaseCheeseBlock.MAX_PIECES; pieces++) {
-
                         table.withPool(
                                         LootPool.lootPool()
-                                                        .setRolls(ConstantValue.exactly(4 - pieces))
-                                                        .add(LootItem.lootTableItem(baseSlice))
+                                                        .setRolls(ConstantValue.exactly(pieces))
+                                                        .add(LootItem.lootTableItem(slice))
                                                         .when(LootItemBlockStatePropertyCondition
-                                                                        .hasBlockStateProperties(baseBlock)
-                                                                        .setProperties(StatePropertiesPredicate.Builder
-                                                                                        .properties()
-                                                                                        .hasProperty(BaseCheeseBlock.PIECES,
-                                                                                                        pieces)
-                                                                                        .hasProperty(SealedCheeseBlock.AGE,
-                                                                                                        0))));
-
-                        table.withPool(
-                                        LootPool.lootPool()
-                                                        .setRolls(ConstantValue.exactly(4 - pieces))
-                                                        .add(LootItem.lootTableItem(agedSlice))
-                                                        .when(LootItemBlockStatePropertyCondition
-                                                                        .hasBlockStateProperties(baseBlock)
-                                                                        .setProperties(StatePropertiesPredicate.Builder
-                                                                                        .properties()
-                                                                                        .hasProperty(BaseCheeseBlock.PIECES,
-                                                                                                        pieces)
-                                                                                        .hasProperty(SealedCheeseBlock.AGE,
-                                                                                                        SealedCheeseBlock.MAX_AGE))));
+                                                                        .hasBlockStateProperties(block)
+                                                                        .setProperties(
+                                                                                        StatePropertiesPredicate.Builder
+                                                                                                        .properties()
+                                                                                                        .hasProperty(
+                                                                                                                        BaseCheeseBlock.PIECES,
+                                                                                                                        pieces)))
+                                                        .when(InvertedLootItemCondition.invert(
+                                                                        hasSilkTouch())));
                 }
 
-                add(baseBlock, table);
+                for (int pieces = 1; pieces <= BaseCheeseBlock.MAX_PIECES; pieces++) {
+                        if (pieces == 4 || pieces == 8)
+                                continue;
+
+                        table.withPool(
+                                        LootPool.lootPool()
+                                                        .setRolls(ConstantValue.exactly(pieces))
+                                                        .add(LootItem.lootTableItem(slice))
+                                                        .when(hasSilkTouch())
+                                                        .when(LootItemBlockStatePropertyCondition
+                                                                        .hasBlockStateProperties(block)
+                                                                        .setProperties(
+                                                                                        StatePropertiesPredicate.Builder
+                                                                                                        .properties()
+                                                                                                        .hasProperty(
+                                                                                                                        BaseCheeseBlock.PIECES,
+                                                                                                                        pieces))));
+                }
+
+                add(block, table);
         }
 
+        private void addAgedCheese(Block block, Block matureBlock, Block agedBlock, ItemLike baseSlice,
+                        ItemLike matureSlice, ItemLike agedSlice) {
+
+                var table = LootTable.lootTable();
+
+                for (int pieces = 1; pieces <= BaseCheeseBlock.MAX_PIECES; pieces++) {
+                        if (pieces == 4 || pieces == 8) {
+                                table.withPool(
+                                                LootPool.lootPool()
+                                                                .setRolls(ConstantValue.exactly(1))
+                                                                .add(LootItem.lootTableItem(block))
+                                                                .when(hasSilkTouch())
+                                                                .when(LootItemBlockStatePropertyCondition
+                                                                                .hasBlockStateProperties(block)
+                                                                                .setProperties(
+                                                                                                StatePropertiesPredicate.Builder
+                                                                                                                .properties()
+                                                                                                                .hasProperty(
+                                                                                                                                BaseCheeseBlock.PIECES,
+                                                                                                                                pieces)
+                                                                                                                .hasProperty(
+                                                                                                                                SealedCheeseBlock.AGE,
+                                                                                                                                0))));
+
+                                table.withPool(
+                                                LootPool.lootPool()
+                                                                .setRolls(ConstantValue.exactly(1))
+                                                                .add(LootItem.lootTableItem(matureBlock))
+                                                                .when(hasSilkTouch())
+                                                                .when(LootItemBlockStatePropertyCondition
+                                                                                .hasBlockStateProperties(block)
+                                                                                .setProperties(
+                                                                                                StatePropertiesPredicate.Builder
+                                                                                                                .properties()
+                                                                                                                .hasProperty(
+                                                                                                                                BaseCheeseBlock.PIECES,
+                                                                                                                                pieces)
+                                                                                                                .hasProperty(
+                                                                                                                                SealedCheeseBlock.AGE,
+                                                                                                                                1))));
+
+                                table.withPool(
+                                                LootPool.lootPool()
+                                                                .setRolls(ConstantValue.exactly(1))
+                                                                .add(LootItem.lootTableItem(agedBlock))
+                                                                .when(hasSilkTouch())
+                                                                .when(LootItemBlockStatePropertyCondition
+                                                                                .hasBlockStateProperties(block)
+                                                                                .setProperties(
+                                                                                                StatePropertiesPredicate.Builder
+                                                                                                                .properties()
+                                                                                                                .hasProperty(
+                                                                                                                                BaseCheeseBlock.PIECES,
+                                                                                                                                pieces)
+                                                                                                                .hasProperty(
+                                                                                                                                SealedCheeseBlock.AGE,
+                                                                                                                                SealedCheeseBlock.MAX_AGE))));
+                        }
+                }
+
+                for (int pieces = 1; pieces <= BaseCheeseBlock.MAX_PIECES; pieces++) {
+                        table.withPool(
+                                        LootPool.lootPool()
+                                                        .setRolls(ConstantValue.exactly(pieces))
+                                                        .add(LootItem.lootTableItem(baseSlice))
+                                                        .when(LootItemBlockStatePropertyCondition
+                                                                        .hasBlockStateProperties(block)
+                                                                        .setProperties(
+                                                                                        StatePropertiesPredicate.Builder
+                                                                                                        .properties()
+                                                                                                        .hasProperty(
+                                                                                                                        BaseCheeseBlock.PIECES,
+                                                                                                                        pieces)
+                                                                                                        .hasProperty(
+                                                                                                                        SealedCheeseBlock.AGE,
+                                                                                                                        0)))
+                                                        .when(InvertedLootItemCondition.invert(
+                                                                        hasSilkTouch())));
+
+                        table.withPool(
+                                        LootPool.lootPool()
+                                                        .setRolls(ConstantValue.exactly(pieces))
+                                                        .add(LootItem.lootTableItem(matureSlice))
+                                                        .when(LootItemBlockStatePropertyCondition
+                                                                        .hasBlockStateProperties(block)
+                                                                        .setProperties(
+                                                                                        StatePropertiesPredicate.Builder
+                                                                                                        .properties()
+                                                                                                        .hasProperty(
+                                                                                                                        BaseCheeseBlock.PIECES,
+                                                                                                                        pieces)
+                                                                                                        .hasProperty(
+                                                                                                                        SealedCheeseBlock.AGE,
+                                                                                                                        1)))
+                                                        .when(InvertedLootItemCondition.invert(
+                                                                        hasSilkTouch())));
+
+                        table.withPool(
+                                        LootPool.lootPool()
+                                                        .setRolls(ConstantValue.exactly(pieces))
+                                                        .add(LootItem.lootTableItem(agedSlice))
+                                                        .when(LootItemBlockStatePropertyCondition
+                                                                        .hasBlockStateProperties(block)
+                                                                        .setProperties(
+                                                                                        StatePropertiesPredicate.Builder
+                                                                                                        .properties()
+                                                                                                        .hasProperty(
+                                                                                                                        BaseCheeseBlock.PIECES,
+                                                                                                                        pieces)
+                                                                                                        .hasProperty(
+                                                                                                                        SealedCheeseBlock.AGE,
+                                                                                                                        SealedCheeseBlock.MAX_AGE)))
+                                                        .when(InvertedLootItemCondition.invert(
+                                                                        hasSilkTouch())));
+                }
+
+                for (int pieces = 1; pieces <= BaseCheeseBlock.MAX_PIECES; pieces++) {
+                        if (pieces == 4 || pieces == 8)
+                                continue;
+
+                        table.withPool(
+                                        LootPool.lootPool()
+                                                        .setRolls(ConstantValue.exactly(pieces))
+                                                        .add(LootItem.lootTableItem(baseSlice))
+                                                        .when(hasSilkTouch())
+                                                        .when(LootItemBlockStatePropertyCondition
+                                                                        .hasBlockStateProperties(block)
+                                                                        .setProperties(
+                                                                                        StatePropertiesPredicate.Builder
+                                                                                                        .properties()
+                                                                                                        .hasProperty(
+                                                                                                                        BaseCheeseBlock.PIECES,
+                                                                                                                        pieces)
+                                                                                                        .hasProperty(
+                                                                                                                        SealedCheeseBlock.AGE,
+                                                                                                                        0))));
+
+                        table.withPool(
+                                        LootPool.lootPool()
+                                                        .setRolls(ConstantValue.exactly(pieces))
+                                                        .add(LootItem.lootTableItem(matureSlice))
+                                                        .when(hasSilkTouch())
+                                                        .when(LootItemBlockStatePropertyCondition
+                                                                        .hasBlockStateProperties(block)
+                                                                        .setProperties(
+                                                                                        StatePropertiesPredicate.Builder
+                                                                                                        .properties()
+                                                                                                        .hasProperty(
+                                                                                                                        BaseCheeseBlock.PIECES,
+                                                                                                                        pieces)
+                                                                                                        .hasProperty(
+                                                                                                                        SealedCheeseBlock.AGE,
+                                                                                                                        1))));
+
+                        table.withPool(
+                                        LootPool.lootPool()
+                                                        .setRolls(ConstantValue.exactly(pieces))
+                                                        .add(LootItem.lootTableItem(agedSlice))
+                                                        .when(hasSilkTouch())
+                                                        .when(LootItemBlockStatePropertyCondition
+                                                                        .hasBlockStateProperties(block)
+                                                                        .setProperties(
+                                                                                        StatePropertiesPredicate.Builder
+                                                                                                        .properties()
+                                                                                                        .hasProperty(
+                                                                                                                        BaseCheeseBlock.PIECES,
+                                                                                                                        pieces)
+                                                                                                        .hasProperty(
+                                                                                                                        SealedCheeseBlock.AGE,
+                                                                                                                        SealedCheeseBlock.MAX_AGE))));
+                }
+
+                add(block, table);
+        }
 }

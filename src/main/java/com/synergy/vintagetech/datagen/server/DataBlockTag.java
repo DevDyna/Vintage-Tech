@@ -167,7 +167,7 @@ public class DataBlockTag extends BlockTagsProvider {
                                                 BlockTags.SHULKER_BOXES);
 
                 tag(zTags.Blocks.BEAMS)
-                        .addTags(zTags.Blocks.BEAM_NORMAL,zTags.Blocks.BEAM_STRIPPED);
+                                .addTags(zTags.Blocks.BEAM_NORMAL, zTags.Blocks.BEAM_STRIPPED);
 
                 tag(zTags.Blocks.BEAM_NORMAL)
                                 .add(
@@ -246,6 +246,15 @@ public class DataBlockTag extends BlockTagsProvider {
 
                 tag(zTags.Blocks.CRUCIBLE_HEAT_SOURCES)
                                 .addTags(BlockTags.FIRE, BlockTags.CAMPFIRES);
+
+                tag(zTags.Blocks.CHEESE_BOOSTER)
+                                .addTags(
+                                                BlockTags.LOGS_THAT_BURN,
+                                                BlockTags.PLANKS,
+                                                BlockTags.WOODEN_TRAPDOORS,
+                                                BlockTags.WOODEN_SLABS,
+                                                BlockTags.WOODEN_STAIRS,
+                                                zTags.Blocks.BEAMS);
 
         }
 

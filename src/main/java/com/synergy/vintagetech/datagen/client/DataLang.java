@@ -37,13 +37,12 @@ public class DataLang extends LanguageProvider implements LangGenerators {
                 zItems.zItem.getEntries().forEach(b -> addItem(b, LangUtils.named(b, MODULE_ID)));
                 zBlocks.zBlockFluids.getEntries().forEach(b -> addBlock(b, LangUtils.named(b, MODULE_ID)));
 
-                //crops blocks required
+                // crops blocks required
                 List.of(
-                        zBlocks.HEMP,
-                        zBlocks.ALOE_PLANT,
-                        zBlocks.BLUEBERRY_BUSH,
-                        zBlocks.CAVE_WHEAT
-                ).forEach(b->addBlock(b,named(b, MODULE_ID)));
+                                zBlocks.HEMP,
+                                zBlocks.ALOE_PLANT,
+                                zBlocks.BLUEBERRY_BUSH,
+                                zBlocks.CAVE_WHEAT).forEach(b -> addBlock(b, named(b, MODULE_ID)));
 
                 add(MODULE_ID + ".jei.alias.rpm.base", "Mechanical Rotation Block");
                 add(MODULE_ID + ".jei.alias.rpm.transmission", "Transmission");
@@ -63,6 +62,8 @@ public class DataLang extends LanguageProvider implements LangGenerators {
                                 "crucible"
 
                 ).forEach(s -> add(MODULE_ID + ".jei." + s, StringUtil.formatToDisplay(s) + " Recipes"));
+
+                add(MODULE_ID + ".jei.cheese", "Cheese Processing Info");
 
                 add(MODULE_ID + ".jei.farmland_fuels", "Mechanical Farmland Fuels");
 
@@ -147,6 +148,12 @@ public class DataLang extends LanguageProvider implements LangGenerators {
 
                 add(MODULE_ID + ".rope.info",
                                 TipColors.ITEM_TOOLTIP + "Decorative block that can connect to various blocks");
+
+                add(MODULE_ID + ".jei.cheese.aging.condition","Require light level below 5");
+                add(MODULE_ID + ".jei.cheese.aging", "Sealed cheese can age over time");
+                add(MODULE_ID + ".jei.cheese.sealing", "Right click to seal");
+                add(MODULE_ID + ".jei.cheese.unsealing", "Right click to unseal");
+                add(MODULE_ID + ".jei.cheese.slicing", "When broken it will drop slices");
 
         }
 

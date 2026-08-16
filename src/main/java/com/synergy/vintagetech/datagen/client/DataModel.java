@@ -5,6 +5,7 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 import java.util.Optional;
 
 import com.synergy.vintagetech.api.ItemModelUtil;
+import com.devdyna.cakesticklib.api.datagen.ModelUtils;
 import com.devdyna.cakesticklib.api.factories.plants.builder.BaseShortCropBlock;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.synergy.vintagetech.api.BlockModelUtils;
@@ -179,8 +180,9 @@ public class DataModel extends ModelProvider {
 
                 BlockModelUtils.simplePlain(blockModels, zBlocks.CENTRIFUGE);
 
-                BlockModelUtils.createCheeseBlock(blockModels, zBlocks.PLAIN_CHEESE.get());
-                BlockModelUtils.createAgedCheeseBlock(blockModels, zBlocks.SEALED_CHEESE.get());
+                BlockModelUtils.createCheeseBlock(blockModels, zBlocks.FRESH_CHEESE.get());
+                BlockModelUtils.createCheeseBlock(blockModels, zBlocks.MATURED_CHEESE.get());
+                BlockModelUtils.createSealedCheeseBlock(blockModels, zBlocks.SEALED_CHEESE.get());
                 BlockModelUtils.createCheeseBlock(blockModels, zBlocks.AGED_CHEESE.get());
 
                 BlockModelUtils.simplePlain(blockModels, zBlocks.CRUCIBLE);
@@ -356,11 +358,8 @@ public class DataModel extends ModelProvider {
 
                 BlockModelUtils.cropWithoutSeed(blockModels, zBlocks.CAVE_WHEAT.get(), BaseShortCropBlock.AGE, 0, 1,
                                 2, 3, 4, 5);
-                                
+
                 BlockModelUtils.createBushBlock(blockModels, zBlocks.SOYBEANS.get(), BaseShortCropBlock.AGE);
-
-
-
 
                 BlockModelUtils.createBushBlock(blockModels, zBlocks.ALOE_PLANT.get(), Aloe.AGE);
                 BlockModelUtils.createBushBlock(blockModels, zBlocks.BLUEBERRY_BUSH.get(), BlueBerry.AGE);
@@ -399,7 +398,8 @@ public class DataModel extends ModelProvider {
                 // blockitems
                 itemModels.generateFlatItem(zBlocks.FAN.get().asItem(), ModelTemplates.FLAT_ITEM);
                 itemModels.generateFlatItem(zBlocks.AGED_CHEESE.get().asItem(), ModelTemplates.FLAT_ITEM);
-                itemModels.generateFlatItem(zBlocks.PLAIN_CHEESE.get().asItem(), ModelTemplates.FLAT_ITEM);
+                itemModels.generateFlatItem(zBlocks.FRESH_CHEESE.get().asItem(), ModelTemplates.FLAT_ITEM);
+                itemModels.generateFlatItem(zBlocks.MATURED_CHEESE.get().asItem(), ModelTemplates.FLAT_ITEM);
                 itemModels.generateFlatItem(zBlocks.SEALED_CHEESE.get().asItem(), ModelTemplates.FLAT_ITEM);
                 itemModels.generateFlatItem(zBlocks.LAVENDER.get().asItem(), ModelTemplates.FLAT_ITEM);
                 itemModels.generateFlatItem(zBlocks.ROPE.get().asItem(), ModelTemplates.FLAT_ITEM);
