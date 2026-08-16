@@ -32,6 +32,8 @@ To obtain an aged cheese you need to seal using a <ItemLink id="cakesticklib:hon
 
 To unseal a sealed cheese you need to use an axe
 
+Placing a sealed cheese over specific blocks it will reduce the process of aging
+
 <GameScene zoom="2" interactive={true}>
   <Block  x="2" id="vintagetech:aged_cheese" />
   <Block  x="1" id="vintagetech:sealed_cheese" />
