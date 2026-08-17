@@ -23,6 +23,8 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
@@ -399,5 +401,65 @@ public class DataLootBlock extends BlockLootSubProvider {
                 }
 
                 add(block, table);
+        }
+
+        private void addDoubleCrop(Block block, ItemLike seed, ItemLike result, IntegerProperty age, int max_age,
+                        BooleanProperty isTop) {
+
+                add(block,
+                                LootTable.lootTable()
+
+                                                .withPool(
+                                                                LootPool.lootPool()
+                                                                                .setRolls(ConstantValue.exactly(1))
+                                                                                .add(LootItem.lootTableItem(seed))
+                                                                                .when(
+                                                                                                LootItemBlockStatePropertyCondition
+                                                                                                                .hasBlockStateProperties(
+                                                                                                                                block)
+                                                                                                                .setProperties(
+                                                                                                                                StatePropertiesPredicate.Builder
+                                                                                                                                                .properties()
+                                                                                                                                                .hasProperty(
+                                                                                                                                                                isTop,
+                                                                                                                                                                false))))
+
+                                                .withPool(
+                                                                LootPool.lootPool()
+                                                                                .setRolls(ConstantValue.exactly(1))
+                                                                                .add(LootItem.lootTableItem(seed))
+                                                                                .when(
+                                                                                                LootItemBlockStatePropertyCondition
+                                                                                                                .hasBlockStateProperties(
+                                                                                                                                block)
+                                                                                                                .setProperties(
+                                                                                                                                StatePropertiesPredicate.Builder
+                                                                                                                                                .properties()
+                                                                                                                                                .hasProperty(
+                                                                                                                                                                isTop,
+                                                                                                                                                                false)
+                                                                                                                                                .hasProperty(
+                                                                                                                                                                age,
+                                                                                                                                                                max_age))))
+
+                                                .withPool(
+                                                                LootPool.lootPool()
+                                                                                .setRolls(ConstantValue.exactly(1))
+                                                                                .add(LootItem.lootTableItem(
+                                                                                                block))
+                                                                                .when(
+                                                                                                LootItemBlockStatePropertyCondition
+                                                                                                                .hasBlockStateProperties(
+                                                                                                                                block)
+                                                                                                                .setProperties(
+                                                                                                                                StatePropertiesPredicate.Builder
+                                                                                                                                                .properties()
+                                                                                                                                                .hasProperty(
+                                                                                                                                                                isTop,
+                                                                                                                                                                true)
+                                                                                                                                                .hasProperty(
+                                                                                                                                                                age,
+                                                                                                                                                                max_age)))));
+
         }
 }
