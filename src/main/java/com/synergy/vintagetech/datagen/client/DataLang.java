@@ -149,7 +149,7 @@ public class DataLang extends LanguageProvider implements LangGenerators {
                 add(MODULE_ID + ".rope.info",
                                 TipColors.ITEM_TOOLTIP + "Decorative block that can connect to various blocks");
 
-                add(MODULE_ID + ".jei.cheese.aging.condition","Require light level below 5");
+                add(MODULE_ID + ".jei.cheese.aging.condition", "Require light level below 5");
                 add(MODULE_ID + ".jei.cheese.aging", "Sealed cheese can age over time");
                 add(MODULE_ID + ".jei.cheese.sealing", "Right click to seal");
                 add(MODULE_ID + ".jei.cheese.unsealing", "Right click to unseal");
