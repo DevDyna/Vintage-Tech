@@ -269,7 +269,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .save(output);
 
                 shaped(RecipeCategory.BUILDING_BLOCKS,
-                                zBlocks.ROPE.get(), 4)
+                                zBlocks.ROPE.get(), 2)
                                 .define('#', Items.STRING)
                                 .pattern("###")
                                 .unlockedBy(getHasName(Items.STRING), has(Items.STRING))
