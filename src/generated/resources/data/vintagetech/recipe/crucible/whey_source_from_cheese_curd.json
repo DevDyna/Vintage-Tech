@@ -1,0 +1,37 @@
+{
+  "type": "vintagetech:crucible",
+  "input_fluid": {
+    "amount": 125,
+    "ingredient": "#c:water"
+  },
+  "input_items": [
+    {
+      "count": 4,
+      "ingredient": "vintagetech:milk_curd"
+    },
+    {
+      "count": 8,
+      "ingredient": "vintagetech:salt"
+    }
+  ],
+  "output_fluid": {
+    "amount": 500,
+    "id": "vintagetech:whey_source"
+  },
+  "output_items": [
+    {
+      "chance": 1.0,
+      "item": {
+        "id": "vintagetech:cheese_curd"
+      }
+    },
+    {
+      "chance": 0.25,
+      "item": {
+        "count": 3,
+        "id": "vintagetech:condensed_milk"
+      }
+    }
+  ],
+  "ticks": 80
+}

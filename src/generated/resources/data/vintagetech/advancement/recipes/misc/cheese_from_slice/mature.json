@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_matured_cheese_slice": {
+      "conditions": {
+        "items": [
+          {
+            "items": "vintagetech:matured_cheese_slice"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "vintagetech:cheese_from_slice/mature"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_matured_cheese_slice"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "vintagetech:cheese_from_slice/mature"
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "cheese_curd": {
+      "conditions": {
+        "items": [
+          {
+            "items": "vintagetech:cheese_curd"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "vintagetech:crushing_tub/fresh_cheese"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "cheese_curd"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "vintagetech:crushing_tub/fresh_cheese"
+    ]
+  }
+}

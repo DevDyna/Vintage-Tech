@@ -1,16 +1,124 @@
 {
   "variants": {
-    "pieces=0": {
-      "model": "vintagetech:block/cheese/aged/0"
+    "facing=east,pieces=1": {
+      "model": "vintagetech:block/cheese/aged/1",
+      "y": 90
     },
-    "pieces=1": {
+    "facing=east,pieces=2": {
+      "model": "vintagetech:block/cheese/aged/2",
+      "y": 90
+    },
+    "facing=east,pieces=3": {
+      "model": "vintagetech:block/cheese/aged/3",
+      "y": 90
+    },
+    "facing=east,pieces=4": {
+      "model": "vintagetech:block/cheese/aged/4",
+      "y": 90
+    },
+    "facing=east,pieces=5": {
+      "model": "vintagetech:block/cheese/aged/5",
+      "y": 90
+    },
+    "facing=east,pieces=6": {
+      "model": "vintagetech:block/cheese/aged/6",
+      "y": 90
+    },
+    "facing=east,pieces=7": {
+      "model": "vintagetech:block/cheese/aged/7",
+      "y": 90
+    },
+    "facing=east,pieces=8": {
+      "model": "vintagetech:block/cheese/aged/8",
+      "y": 90
+    },
+    "facing=north,pieces=1": {
       "model": "vintagetech:block/cheese/aged/1"
     },
-    "pieces=2": {
+    "facing=north,pieces=2": {
       "model": "vintagetech:block/cheese/aged/2"
     },
-    "pieces=3": {
+    "facing=north,pieces=3": {
       "model": "vintagetech:block/cheese/aged/3"
+    },
+    "facing=north,pieces=4": {
+      "model": "vintagetech:block/cheese/aged/4"
+    },
+    "facing=north,pieces=5": {
+      "model": "vintagetech:block/cheese/aged/5"
+    },
+    "facing=north,pieces=6": {
+      "model": "vintagetech:block/cheese/aged/6"
+    },
+    "facing=north,pieces=7": {
+      "model": "vintagetech:block/cheese/aged/7"
+    },
+    "facing=north,pieces=8": {
+      "model": "vintagetech:block/cheese/aged/8"
+    },
+    "facing=south,pieces=1": {
+      "model": "vintagetech:block/cheese/aged/1",
+      "y": 180
+    },
+    "facing=south,pieces=2": {
+      "model": "vintagetech:block/cheese/aged/2",
+      "y": 180
+    },
+    "facing=south,pieces=3": {
+      "model": "vintagetech:block/cheese/aged/3",
+      "y": 180
+    },
+    "facing=south,pieces=4": {
+      "model": "vintagetech:block/cheese/aged/4",
+      "y": 180
+    },
+    "facing=south,pieces=5": {
+      "model": "vintagetech:block/cheese/aged/5",
+      "y": 180
+    },
+    "facing=south,pieces=6": {
+      "model": "vintagetech:block/cheese/aged/6",
+      "y": 180
+    },
+    "facing=south,pieces=7": {
+      "model": "vintagetech:block/cheese/aged/7",
+      "y": 180
+    },
+    "facing=south,pieces=8": {
+      "model": "vintagetech:block/cheese/aged/8",
+      "y": 180
+    },
+    "facing=west,pieces=1": {
+      "model": "vintagetech:block/cheese/aged/1",
+      "y": 270
+    },
+    "facing=west,pieces=2": {
+      "model": "vintagetech:block/cheese/aged/2",
+      "y": 270
+    },
+    "facing=west,pieces=3": {
+      "model": "vintagetech:block/cheese/aged/3",
+      "y": 270
+    },
+    "facing=west,pieces=4": {
+      "model": "vintagetech:block/cheese/aged/4",
+      "y": 270
+    },
+    "facing=west,pieces=5": {
+      "model": "vintagetech:block/cheese/aged/5",
+      "y": 270
+    },
+    "facing=west,pieces=6": {
+      "model": "vintagetech:block/cheese/aged/6",
+      "y": 270
+    },
+    "facing=west,pieces=7": {
+      "model": "vintagetech:block/cheese/aged/7",
+      "y": 270
+    },
+    "facing=west,pieces=8": {
+      "model": "vintagetech:block/cheese/aged/8",
+      "y": 270
     }
   }
 }

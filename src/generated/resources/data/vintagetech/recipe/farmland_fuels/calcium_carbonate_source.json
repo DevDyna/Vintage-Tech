@@ -1,0 +1,7 @@
+{
+  "type": "vintagetech:farmland_fuels",
+  "fluid": {
+    "amount": 450,
+    "ingredient": "vintagetech:calcium_carbonate_source"
+  }
+}

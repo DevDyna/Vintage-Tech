@@ -1,52 +1,364 @@
 {
   "variants": {
-    "age=0,pieces=0": {
-      "model": "vintagetech:block/cheese/sealed/plain/0"
+    "age=0,facing=east,pieces=1": {
+      "model": "vintagetech:block/cheese/sealed/fresh/1",
+      "y": 90
     },
-    "age=0,pieces=1": {
-      "model": "vintagetech:block/cheese/sealed/plain/1"
+    "age=0,facing=east,pieces=2": {
+      "model": "vintagetech:block/cheese/sealed/fresh/2",
+      "y": 90
     },
-    "age=0,pieces=2": {
-      "model": "vintagetech:block/cheese/sealed/plain/2"
+    "age=0,facing=east,pieces=3": {
+      "model": "vintagetech:block/cheese/sealed/fresh/3",
+      "y": 90
     },
-    "age=0,pieces=3": {
-      "model": "vintagetech:block/cheese/sealed/plain/3"
+    "age=0,facing=east,pieces=4": {
+      "model": "vintagetech:block/cheese/sealed/fresh/4",
+      "y": 90
     },
-    "age=1,pieces=0": {
-      "model": "vintagetech:block/cheese/sealed/plain/0"
+    "age=0,facing=east,pieces=5": {
+      "model": "vintagetech:block/cheese/sealed/fresh/5",
+      "y": 90
     },
-    "age=1,pieces=1": {
-      "model": "vintagetech:block/cheese/sealed/plain/1"
+    "age=0,facing=east,pieces=6": {
+      "model": "vintagetech:block/cheese/sealed/fresh/6",
+      "y": 90
     },
-    "age=1,pieces=2": {
-      "model": "vintagetech:block/cheese/sealed/plain/2"
+    "age=0,facing=east,pieces=7": {
+      "model": "vintagetech:block/cheese/sealed/fresh/7",
+      "y": 90
     },
-    "age=1,pieces=3": {
-      "model": "vintagetech:block/cheese/sealed/plain/3"
+    "age=0,facing=east,pieces=8": {
+      "model": "vintagetech:block/cheese/sealed/fresh/8",
+      "y": 90
     },
-    "age=2,pieces=0": {
-      "model": "vintagetech:block/cheese/sealed/plain/0"
+    "age=0,facing=north,pieces=1": {
+      "model": "vintagetech:block/cheese/sealed/fresh/1"
     },
-    "age=2,pieces=1": {
-      "model": "vintagetech:block/cheese/sealed/plain/1"
+    "age=0,facing=north,pieces=2": {
+      "model": "vintagetech:block/cheese/sealed/fresh/2"
     },
-    "age=2,pieces=2": {
-      "model": "vintagetech:block/cheese/sealed/plain/2"
+    "age=0,facing=north,pieces=3": {
+      "model": "vintagetech:block/cheese/sealed/fresh/3"
     },
-    "age=2,pieces=3": {
-      "model": "vintagetech:block/cheese/sealed/plain/3"
+    "age=0,facing=north,pieces=4": {
+      "model": "vintagetech:block/cheese/sealed/fresh/4"
     },
-    "age=3,pieces=0": {
-      "model": "vintagetech:block/cheese/sealed/aged/0"
+    "age=0,facing=north,pieces=5": {
+      "model": "vintagetech:block/cheese/sealed/fresh/5"
     },
-    "age=3,pieces=1": {
+    "age=0,facing=north,pieces=6": {
+      "model": "vintagetech:block/cheese/sealed/fresh/6"
+    },
+    "age=0,facing=north,pieces=7": {
+      "model": "vintagetech:block/cheese/sealed/fresh/7"
+    },
+    "age=0,facing=north,pieces=8": {
+      "model": "vintagetech:block/cheese/sealed/fresh/8"
+    },
+    "age=0,facing=south,pieces=1": {
+      "model": "vintagetech:block/cheese/sealed/fresh/1",
+      "y": 180
+    },
+    "age=0,facing=south,pieces=2": {
+      "model": "vintagetech:block/cheese/sealed/fresh/2",
+      "y": 180
+    },
+    "age=0,facing=south,pieces=3": {
+      "model": "vintagetech:block/cheese/sealed/fresh/3",
+      "y": 180
+    },
+    "age=0,facing=south,pieces=4": {
+      "model": "vintagetech:block/cheese/sealed/fresh/4",
+      "y": 180
+    },
+    "age=0,facing=south,pieces=5": {
+      "model": "vintagetech:block/cheese/sealed/fresh/5",
+      "y": 180
+    },
+    "age=0,facing=south,pieces=6": {
+      "model": "vintagetech:block/cheese/sealed/fresh/6",
+      "y": 180
+    },
+    "age=0,facing=south,pieces=7": {
+      "model": "vintagetech:block/cheese/sealed/fresh/7",
+      "y": 180
+    },
+    "age=0,facing=south,pieces=8": {
+      "model": "vintagetech:block/cheese/sealed/fresh/8",
+      "y": 180
+    },
+    "age=0,facing=west,pieces=1": {
+      "model": "vintagetech:block/cheese/sealed/fresh/1",
+      "y": 270
+    },
+    "age=0,facing=west,pieces=2": {
+      "model": "vintagetech:block/cheese/sealed/fresh/2",
+      "y": 270
+    },
+    "age=0,facing=west,pieces=3": {
+      "model": "vintagetech:block/cheese/sealed/fresh/3",
+      "y": 270
+    },
+    "age=0,facing=west,pieces=4": {
+      "model": "vintagetech:block/cheese/sealed/fresh/4",
+      "y": 270
+    },
+    "age=0,facing=west,pieces=5": {
+      "model": "vintagetech:block/cheese/sealed/fresh/5",
+      "y": 270
+    },
+    "age=0,facing=west,pieces=6": {
+      "model": "vintagetech:block/cheese/sealed/fresh/6",
+      "y": 270
+    },
+    "age=0,facing=west,pieces=7": {
+      "model": "vintagetech:block/cheese/sealed/fresh/7",
+      "y": 270
+    },
+    "age=0,facing=west,pieces=8": {
+      "model": "vintagetech:block/cheese/sealed/fresh/8",
+      "y": 270
+    },
+    "age=1,facing=east,pieces=1": {
+      "model": "vintagetech:block/cheese/sealed/matured/1",
+      "y": 90
+    },
+    "age=1,facing=east,pieces=2": {
+      "model": "vintagetech:block/cheese/sealed/matured/2",
+      "y": 90
+    },
+    "age=1,facing=east,pieces=3": {
+      "model": "vintagetech:block/cheese/sealed/matured/3",
+      "y": 90
+    },
+    "age=1,facing=east,pieces=4": {
+      "model": "vintagetech:block/cheese/sealed/matured/4",
+      "y": 90
+    },
+    "age=1,facing=east,pieces=5": {
+      "model": "vintagetech:block/cheese/sealed/matured/5",
+      "y": 90
+    },
+    "age=1,facing=east,pieces=6": {
+      "model": "vintagetech:block/cheese/sealed/matured/6",
+      "y": 90
+    },
+    "age=1,facing=east,pieces=7": {
+      "model": "vintagetech:block/cheese/sealed/matured/7",
+      "y": 90
+    },
+    "age=1,facing=east,pieces=8": {
+      "model": "vintagetech:block/cheese/sealed/matured/8",
+      "y": 90
+    },
+    "age=1,facing=north,pieces=1": {
+      "model": "vintagetech:block/cheese/sealed/matured/1"
+    },
+    "age=1,facing=north,pieces=2": {
+      "model": "vintagetech:block/cheese/sealed/matured/2"
+    },
+    "age=1,facing=north,pieces=3": {
+      "model": "vintagetech:block/cheese/sealed/matured/3"
+    },
+    "age=1,facing=north,pieces=4": {
+      "model": "vintagetech:block/cheese/sealed/matured/4"
+    },
+    "age=1,facing=north,pieces=5": {
+      "model": "vintagetech:block/cheese/sealed/matured/5"
+    },
+    "age=1,facing=north,pieces=6": {
+      "model": "vintagetech:block/cheese/sealed/matured/6"
+    },
+    "age=1,facing=north,pieces=7": {
+      "model": "vintagetech:block/cheese/sealed/matured/7"
+    },
+    "age=1,facing=north,pieces=8": {
+      "model": "vintagetech:block/cheese/sealed/matured/8"
+    },
+    "age=1,facing=south,pieces=1": {
+      "model": "vintagetech:block/cheese/sealed/matured/1",
+      "y": 180
+    },
+    "age=1,facing=south,pieces=2": {
+      "model": "vintagetech:block/cheese/sealed/matured/2",
+      "y": 180
+    },
+    "age=1,facing=south,pieces=3": {
+      "model": "vintagetech:block/cheese/sealed/matured/3",
+      "y": 180
+    },
+    "age=1,facing=south,pieces=4": {
+      "model": "vintagetech:block/cheese/sealed/matured/4",
+      "y": 180
+    },
+    "age=1,facing=south,pieces=5": {
+      "model": "vintagetech:block/cheese/sealed/matured/5",
+      "y": 180
+    },
+    "age=1,facing=south,pieces=6": {
+      "model": "vintagetech:block/cheese/sealed/matured/6",
+      "y": 180
+    },
+    "age=1,facing=south,pieces=7": {
+      "model": "vintagetech:block/cheese/sealed/matured/7",
+      "y": 180
+    },
+    "age=1,facing=south,pieces=8": {
+      "model": "vintagetech:block/cheese/sealed/matured/8",
+      "y": 180
+    },
+    "age=1,facing=west,pieces=1": {
+      "model": "vintagetech:block/cheese/sealed/matured/1",
+      "y": 270
+    },
+    "age=1,facing=west,pieces=2": {
+      "model": "vintagetech:block/cheese/sealed/matured/2",
+      "y": 270
+    },
+    "age=1,facing=west,pieces=3": {
+      "model": "vintagetech:block/cheese/sealed/matured/3",
+      "y": 270
+    },
+    "age=1,facing=west,pieces=4": {
+      "model": "vintagetech:block/cheese/sealed/matured/4",
+      "y": 270
+    },
+    "age=1,facing=west,pieces=5": {
+      "model": "vintagetech:block/cheese/sealed/matured/5",
+      "y": 270
+    },
+    "age=1,facing=west,pieces=6": {
+      "model": "vintagetech:block/cheese/sealed/matured/6",
+      "y": 270
+    },
+    "age=1,facing=west,pieces=7": {
+      "model": "vintagetech:block/cheese/sealed/matured/7",
+      "y": 270
+    },
+    "age=1,facing=west,pieces=8": {
+      "model": "vintagetech:block/cheese/sealed/matured/8",
+      "y": 270
+    },
+    "age=2,facing=east,pieces=1": {
+      "model": "vintagetech:block/cheese/sealed/aged/1",
+      "y": 90
+    },
+    "age=2,facing=east,pieces=2": {
+      "model": "vintagetech:block/cheese/sealed/aged/2",
+      "y": 90
+    },
+    "age=2,facing=east,pieces=3": {
+      "model": "vintagetech:block/cheese/sealed/aged/3",
+      "y": 90
+    },
+    "age=2,facing=east,pieces=4": {
+      "model": "vintagetech:block/cheese/sealed/aged/4",
+      "y": 90
+    },
+    "age=2,facing=east,pieces=5": {
+      "model": "vintagetech:block/cheese/sealed/aged/5",
+      "y": 90
+    },
+    "age=2,facing=east,pieces=6": {
+      "model": "vintagetech:block/cheese/sealed/aged/6",
+      "y": 90
+    },
+    "age=2,facing=east,pieces=7": {
+      "model": "vintagetech:block/cheese/sealed/aged/7",
+      "y": 90
+    },
+    "age=2,facing=east,pieces=8": {
+      "model": "vintagetech:block/cheese/sealed/aged/8",
+      "y": 90
+    },
+    "age=2,facing=north,pieces=1": {
       "model": "vintagetech:block/cheese/sealed/aged/1"
     },
-    "age=3,pieces=2": {
+    "age=2,facing=north,pieces=2": {
       "model": "vintagetech:block/cheese/sealed/aged/2"
     },
-    "age=3,pieces=3": {
+    "age=2,facing=north,pieces=3": {
       "model": "vintagetech:block/cheese/sealed/aged/3"
+    },
+    "age=2,facing=north,pieces=4": {
+      "model": "vintagetech:block/cheese/sealed/aged/4"
+    },
+    "age=2,facing=north,pieces=5": {
+      "model": "vintagetech:block/cheese/sealed/aged/5"
+    },
+    "age=2,facing=north,pieces=6": {
+      "model": "vintagetech:block/cheese/sealed/aged/6"
+    },
+    "age=2,facing=north,pieces=7": {
+      "model": "vintagetech:block/cheese/sealed/aged/7"
+    },
+    "age=2,facing=north,pieces=8": {
+      "model": "vintagetech:block/cheese/sealed/aged/8"
+    },
+    "age=2,facing=south,pieces=1": {
+      "model": "vintagetech:block/cheese/sealed/aged/1",
+      "y": 180
+    },
+    "age=2,facing=south,pieces=2": {
+      "model": "vintagetech:block/cheese/sealed/aged/2",
+      "y": 180
+    },
+    "age=2,facing=south,pieces=3": {
+      "model": "vintagetech:block/cheese/sealed/aged/3",
+      "y": 180
+    },
+    "age=2,facing=south,pieces=4": {
+      "model": "vintagetech:block/cheese/sealed/aged/4",
+      "y": 180
+    },
+    "age=2,facing=south,pieces=5": {
+      "model": "vintagetech:block/cheese/sealed/aged/5",
+      "y": 180
+    },
+    "age=2,facing=south,pieces=6": {
+      "model": "vintagetech:block/cheese/sealed/aged/6",
+      "y": 180
+    },
+    "age=2,facing=south,pieces=7": {
+      "model": "vintagetech:block/cheese/sealed/aged/7",
+      "y": 180
+    },
+    "age=2,facing=south,pieces=8": {
+      "model": "vintagetech:block/cheese/sealed/aged/8",
+      "y": 180
+    },
+    "age=2,facing=west,pieces=1": {
+      "model": "vintagetech:block/cheese/sealed/aged/1",
+      "y": 270
+    },
+    "age=2,facing=west,pieces=2": {
+      "model": "vintagetech:block/cheese/sealed/aged/2",
+      "y": 270
+    },
+    "age=2,facing=west,pieces=3": {
+      "model": "vintagetech:block/cheese/sealed/aged/3",
+      "y": 270
+    },
+    "age=2,facing=west,pieces=4": {
+      "model": "vintagetech:block/cheese/sealed/aged/4",
+      "y": 270
+    },
+    "age=2,facing=west,pieces=5": {
+      "model": "vintagetech:block/cheese/sealed/aged/5",
+      "y": 270
+    },
+    "age=2,facing=west,pieces=6": {
+      "model": "vintagetech:block/cheese/sealed/aged/6",
+      "y": 270
+    },
+    "age=2,facing=west,pieces=7": {
+      "model": "vintagetech:block/cheese/sealed/aged/7",
+      "y": 270
+    },
+    "age=2,facing=west,pieces=8": {
+      "model": "vintagetech:block/cheese/sealed/aged/8",
+      "y": 270
     }
   }
 }

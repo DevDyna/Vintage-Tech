@@ -1,0 +1,9 @@
+{
+  "parent": "vintagetech:block/template/cheese/6",
+  "textures": {
+    "bottom": "vintagetech:block/cheese/fresh/bottom",
+    "inside": "vintagetech:block/cheese/fresh/inside",
+    "side": "vintagetech:block/cheese/fresh/side",
+    "top": "vintagetech:block/cheese/fresh/top"
+  }
+}
