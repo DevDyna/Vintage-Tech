@@ -82,7 +82,7 @@ public class CrucibleCategory extends BaseRecipeCategory<CrucibleRecipe> {
             builder.addInputSlot(
                     7 + col * 18,
                     16 + row * 18)
-                    .addItemStacks(x.getItemStacksFromIngredient(recipe.getItemInputs().get(i).ingredient()));
+                    .addItemStacks(x.getItemStacksFromIngredient(recipe.getItemInputs().get(i)));
         }
 
         for (int i = 0; i < recipe.getOutputItems().size() && i < 4; i++) {
