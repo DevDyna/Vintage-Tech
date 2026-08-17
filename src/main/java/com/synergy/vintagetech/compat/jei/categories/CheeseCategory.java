@@ -69,7 +69,8 @@ public class CheeseCategory extends BaseCategory<CheeseCategory.CheesePage> {
         switch (page.type()) {
             case SEALING -> {
                 builder.addInputSlot(LEFT, Y)
-                        .add(zBlocks.FRESH_CHEESE.get());
+                        .add(zBlocks.FRESH_CHEESE.get())
+                        .add(zBlocks.MATURED_CHEESE.get());
 
                 builder.addInputSlot(MIDDLE, Y)
                         .add(LibItems.HONEY_SOLUTION.get());
