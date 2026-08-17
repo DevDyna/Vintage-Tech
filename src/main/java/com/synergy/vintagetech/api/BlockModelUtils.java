@@ -21,6 +21,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -79,6 +80,24 @@ public class BlockModelUtils {
                                 .accept(BlockModelGenerators.createSimpleBlock(block.get(),
                                                 BlockModelGenerators.plainVariant(
                                                                 x.rl(MODULE_ID, prefix))));
+        }
+
+        public static void createDoubleCrop(   BlockModelGenerators b,  Block block,  IntegerProperty age,BooleanProperty isTop) {
+                b.blockStateOutput.accept(
+                                MultiVariantGenerator.dispatch(block)
+                                                .with(
+                                                                PropertyDispatch.initial(age, isTop)
+                                                                                .generate((ageValue,
+                                                                                                top) -> BlockModelGenerators
+                                                                                                                .plainVariant(
+                                                                                                                                b.createSuffixedVariant(
+                                                                                                                                                block,
+                                                                                                                                                "/" + (top ? "top"
+                                                                                                                                                                : "bottom")
+                                                                                                                                                                + "/"
+                                                                                                                                                                + ageValue,
+                                                                                                                                                ModelTemplates.CROSS,
+                                                                                                                                                TextureMapping::cross)))));
         }
 
         public static void createBushBlock(BlockModelGenerators b, Block block, IntegerProperty prop) {
