@@ -1,7 +1,11 @@
 package com.synergy.vintagetech.api;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.devdyna.cakesticklib.api.utils.ColorUtils;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -11,44 +15,44 @@ import net.minecraft.world.item.Item;
 //TODO API : move to api?
 public class EffectConsumableItem extends Item {
 
-    private MobEffectInstance instance;
+    private List<MobEffectInstance> effects;
 
-    public EffectConsumableItem(Properties p, MobEffectInstance instance) {
+    public EffectConsumableItem(Properties p, List<MobEffectInstance> effects) {
         super(p);
-        this.instance = instance;
+        this.effects = effects;
     }
 
-    public Component getEffectToolTip() {
+    public List<Component> getEffectToolTip() {
 
-        var effect = instance.getEffect().value();
+        var list = new ArrayList<Component>();
 
-        var result = Component.empty()
-                .append(effect.getDisplayName());
+        for (var instance : effects) {
 
-        if (instance.getAmplifier() > 0) {
-            result.append(" ")
-                    .append(Component.translatable(
-                            "potion.potency." + instance.getAmplifier()));
+            var effect = instance.getEffect().value();
+
+            var result = Component.empty()
+                    .append(effect.getDisplayName());
+
+            if (instance.getAmplifier() > 0)
+                result.append(" ")
+                        .append(Component.translatable(
+                                "potion.potency." + instance.getAmplifier()));
+
+            result.append(" (")
+                    .append(MobEffectUtil.formatDuration(instance, 1.0F,
+                            Minecraft.getInstance().level.tickRateManager().tickrate()))
+                    .append(")");
+
+            result.withStyle(style -> style.withColor(switch (effect.getCategory()) {
+                case MobEffectCategory.BENEFICIAL -> ColorUtils.rgb(85, 85, 255);
+                case MobEffectCategory.HARMFUL -> ColorUtils.rgb(255, 85, 85);
+                case MobEffectCategory.NEUTRAL -> ColorUtils.rgb(170, 0, 170);
+            }));
+
+            list.add(result);
         }
 
-        result.append(" (")
-                .append(MobEffectUtil.formatDuration(
-                        instance,
-                        1.0F,
-                        20.0F))
-                .append(")");
-
-        int color;
-
-        if (effect.getCategory() == MobEffectCategory.BENEFICIAL) {
-            color = ColorUtils.rgb(85, 85, 255);
-        } else if (effect.getCategory() == MobEffectCategory.HARMFUL) {
-            color = ColorUtils.rgb(255, 85, 85);
-        } else {
-            color = ColorUtils.rgb(170, 0, 170);
-        }
-
-        return result.withStyle(style -> style.withColor(color));
+        return list;
 
     }
 

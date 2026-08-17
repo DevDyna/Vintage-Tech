@@ -2,19 +2,14 @@ package com.synergy.vintagetech.init.types;
 
 import static com.synergy.vintagetech.Main.MODULE_ID;
 
-import java.util.function.Function;
-
-import com.synergy.vintagetech.api.EffectConsumableItem;
+import com.synergy.vintagetech.init.Material;
 
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Item.Properties;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.component.Consumable;
-import net.minecraft.world.item.consume_effects.ApplyStatusEffectsConsumeEffect;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -65,8 +60,11 @@ public class zItems {
                         p -> p.food(new FoodProperties(6, 7f, true)));
 
         public static final DeferredHolder<Item, Item> CLOTH = zItem.registerSimpleItem("cloth");
-        public static final DeferredHolder<Item, Item> SALT = foodEffectsItems("salt",
-                        new MobEffectInstance(MobEffects.HUNGER, 40, 3), 0, 0f, true, p -> p);
+        public static final DeferredHolder<Item, Item> SALT = Material.registerFoodEffectItem(
+                        "salt",
+                        p -> p,
+                        new FoodProperties(0, 0f, true),
+                        new MobEffectInstance(MobEffects.HUNGER, 40, 3));
 
         public static final DeferredHolder<Item, Item> AMBER = zItem.registerSimpleItem("amber");
         public static final DeferredHolder<Item, Item> SAP = zItem.registerSimpleItem("sap");
@@ -75,8 +73,11 @@ public class zItems {
 
         public static final DeferredHolder<Item, Item> HEMP_FIBER = zItem.registerSimpleItem("hemp_fiber");
 
-        public static final DeferredHolder<Item, Item> IRONBERRIES = foodEffectsItems("ironberries",
-                        new MobEffectInstance(MobEffects.HUNGER, 20, 1), 1, 2f, true, p -> p);
+        public static final DeferredHolder<Item, Item> IRONBERRIES = Material.registerFoodEffectItem(
+                        "ironberries",
+                        p -> p,
+                        new FoodProperties(1, 2f, true),
+                        new MobEffectInstance(MobEffects.HUNGER, 20, 1));
 
         public static final DeferredHolder<Item, Item> TINY_IRON_DUST = zItem.registerSimpleItem("tiny_iron_dust");
 
@@ -144,24 +145,12 @@ public class zItems {
         public static final DeferredHolder<Item, Item> CHEESE_CURD = zItem.registerSimpleItem("cheese_curd", p -> p);
         public static final DeferredHolder<Item, Item> MOZZARELLA_CURD = zItem.registerSimpleItem("mozzarella_curd",
                         p -> p);
-        public static final DeferredHolder<Item, Item> MOZZARELLA = foodEffectsItems("mozzarella",
-                        new MobEffectInstance(MobEffects.REGENERATION, 50, 1), 6, 10, false, p -> p);
+        public static final DeferredHolder<Item, Item> MOZZARELLA = Material.registerFoodEffectItem(
+                        "mozzarella",
 
-        public static DeferredHolder<Item, Item> foodEffectsItems(String id, MobEffectInstance effect, int n,
-                        float s,
-                        Function<Properties, Properties> p) {
-                return foodEffectsItems(id, effect, n, s, false, p);
-        }
+                        p -> p,
+                        new FoodProperties(6, 10f, true),
+                        new MobEffectInstance(MobEffects.REGENERATION, 50, 1));
 
-        public static DeferredHolder<Item, Item> foodEffectsItems(String id, MobEffectInstance effect, int n,
-                        float s, boolean e,
-                        Function<Properties, Properties> p) {
-                return zItem.registerItem(id, pr -> new EffectConsumableItem(
-                                p.apply(pr).food(new FoodProperties(n, s, e),
-                                                Consumable.builder()
-                                                                .onConsume(new ApplyStatusEffectsConsumeEffect(effect))
-                                                                .build()),
-                                effect));
-        }
 
 }
