@@ -144,7 +144,7 @@ public class CrucibleBE extends TickingBE
 
             level.playSound(null, getBlockPos(), SoundEvents.BREWING_STAND_BREW, SoundSource.BLOCKS, 0.15f,
                     1.25f + (RandomUtil.chance(level, 50) ? 0.5f : 0.25f));
-        }
+        
 
         if (ticker == null)
             ticker = Ticker.of(recipe.getTicks() * multiplier);
