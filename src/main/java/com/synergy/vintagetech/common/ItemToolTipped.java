@@ -4,6 +4,7 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 
 import com.devdyna.cakesticklib.api.ToolTipHelper;
 import com.devdyna.cakesticklib.setup.registry.LibComponents;
+import com.synergy.vintagetech.api.EffectConsumableItem;
 import com.synergy.vintagetech.init.types.*;
 
 import net.neoforged.bus.api.SubscribeEvent;
@@ -74,6 +75,9 @@ public class ItemToolTipped {
                 if (!item.has(LibComponents.ITEM_CONTAINER) || item.get(LibComponents.ITEM_CONTAINER) == null)
                         ToolTipHelper.addToggle(t, item.is(zBlocks.BASKET.get().asItem()),
                                         MODULE_ID + ".basket.info");
+
+                if (item.getItem() instanceof EffectConsumableItem effect)
+                        t.add(ToolTipHelper.INDEX, effect.getEffectToolTip());
 
         }
 
