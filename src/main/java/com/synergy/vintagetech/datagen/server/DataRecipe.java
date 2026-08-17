@@ -708,7 +708,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .output(zItems.MOZZARELLA_CURD.get(), 1, 1f)
                                 .output(zItems.CONDENSED_MILK.get(), 1, 0.15f)
                                 .unlockedBy(zItems.MILK_CURD.get())
-                                .save(output,"_from_mozzarella_curd");
+                                .save(output, "_from_mozzarella_curd");
 
                 CrucibleBuilder.of(registries)
                                 .add(zItems.MILK_CURD.get(), 5)
@@ -719,7 +719,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .output(zItems.CONDENSED_MILK.get(), 1, 0.50f)
                                 .output(zItems.CONDENSED_MILK.get(), 1, 0.25f)
                                 .unlockedBy(zItems.MILK_CURD.get())
-                                .save(output,"_from_cheese_curd");
+                                .save(output, "_from_cheese_curd");
 
                 CrushingTubBuilder.of(registries)
                                 .requireMesh()
@@ -820,8 +820,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                 twoByTwoPacker(output, zBlocks.AGED_CHEESE.get(), zItems.AGED_CHEESE_SLICE.get(),
                                 MODULE_ID + ":cheese_from_slice/aged");
 
-                
-                                EvaporationBasinBuilder.of(registries)
+                EvaporationBasinBuilder.of(registries)
                                 .fluid(zFluids.WHEY.getFluid(), 250)
                                 .output(zItems.CONDENSED_WHEY.get(), 1)
                                 .unlockedBy(Items.MILK_BUCKET)
