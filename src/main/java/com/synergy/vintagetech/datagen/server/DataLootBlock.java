@@ -403,6 +403,7 @@ public class DataLootBlock extends BlockLootSubProvider {
                 add(block, table);
         }
 
+        @SuppressWarnings("unused")
         private void addDoubleCrop(Block block, ItemLike seed, ItemLike result, IntegerProperty age, int max_age,
                         BooleanProperty isTop) {
 
