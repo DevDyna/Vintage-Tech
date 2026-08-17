@@ -34,9 +34,10 @@ import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 
-public class CrucibleBE extends TickingBE implements ItemStorageBlock, NoGuiStorage, SimpleFluidStorage, DropCollector, TreeTapHandler {
+public class CrucibleBE extends TickingBE
+        implements ItemStorageBlock, NoGuiStorage, SimpleFluidStorage, DropCollector, TreeTapHandler {
 
-    public static final List<Integer> ITEM_SLOTS = List.of(0, 1, 2, 3,4,5,6,7);
+    public static final List<Integer> ITEM_SLOTS = List.of(0, 1, 2, 3, 4, 5, 6, 7);
 
     public static final int FLUID_TANK = 0;
 
@@ -53,7 +54,9 @@ public class CrucibleBE extends TickingBE implements ItemStorageBlock, NoGuiStor
     public ItemStack extractItem() {
 
         for (int slot : ITEM_SLOTS) {
+
             var stack = simpleExtractItemByIndex(slot);
+
             if (!stack.isEmpty())
                 return stack;
         }
@@ -88,7 +91,6 @@ public class CrucibleBE extends TickingBE implements ItemStorageBlock, NoGuiStor
             var stack = getStackInSlot(slot);
 
             if (!stack.isEmpty()) {
-
                 items.add(stack);
                 slots.add(slot);
             }
@@ -105,36 +107,44 @@ public class CrucibleBE extends TickingBE implements ItemStorageBlock, NoGuiStor
 
         var recipe = r.get().value();
 
-        if (fluid.amount() < recipe.getInputFluid().amount())
-            return;
-
-        int multiplier = fluid.amount() / recipe.getInputFluid().amount();
+        var multiplier = fluid.amount() / recipe.getInputFluid().amount();
 
         for (var ingredient : recipe.getItemInputs()) {
 
-            int count = 0;
+            var count = 0;
 
-            for (ItemStack stack : items)
-
+            for (var stack : items) 
                 if (ingredient.ingredient().test(stack))
                     count += stack.getCount();
+            
 
-            multiplier = Math.min(multiplier, count / ingredient.count());
+            multiplier = Math.min(
+                    multiplier,
+                    count / ingredient.count());
         }
 
         if (multiplier <= 0)
             return;
 
-        if (recipe.getOutputFluid() != null)
+        var inputFluidAmount = recipe.getInputFluid().amount() * multiplier;
 
-            if (recipe.getOutputFluid().amount() * multiplier > getTankCapacity())
+        var outputFluidAmount = recipe.getOutputFluid() != null
+                ? recipe.getOutputFluid().amount() * multiplier
+                : 0;
 
-                return;
+        var finalFluidAmount = fluid.amount()
+                - inputFluidAmount
+                + outputFluidAmount;
 
-        if (RandomUtil.chance(level, 0.05f))
+        if (finalFluidAmount < 0)
+            return;
+
+        if (finalFluidAmount > getTankCapacity())
+            return;
 
             level.playSound(null, getBlockPos(), SoundEvents.BREWING_STAND_BREW, SoundSource.BLOCKS, 0.15f,
                     1.25f + (RandomUtil.chance(level, 50) ? 0.5f : 0.25f));
+        }
 
         if (ticker == null)
             ticker = Ticker.of(recipe.getTicks() * multiplier);
@@ -155,33 +165,66 @@ public class CrucibleBE extends TickingBE implements ItemStorageBlock, NoGuiStor
 
                     var stack = items.get(i);
 
-                    if (ingredient.ingredient().test(stack)) {
+                    if (!ingredient.ingredient().test(stack))
+                        continue;
 
-                        int remove = Math.min(needed, stack.getCount());
+                    var remove = Math.min(
+                            needed,
+                            stack.getCount());
 
-                        getItemStorage().extract(slots.get(i), ItemResource.of(getStackInSlot(slots.get(i))), remove,
-                                tx);
+                    var extracted = getItemStorage().extract(
+                            slots.get(i),
+                            ItemResource.of(
+                                    getStackInSlot(slots.get(i))),
+                            remove,
+                            tx);
 
-                        needed -= remove;
-                    }
+                    if (extracted != remove)
+                        return;
+
+                    needed -= remove;
                 }
+
+                if (needed > 0)
+                    return;
             }
 
             for (ChanceOutput.Item output : recipe.getOutputItems()) {
-                int amount = output.item().count() * multiplier;
 
-                if (RandomUtil.chance(level, output.chance()))
-                    if (getItemStorage().insert(ItemResource.of(output.item()), amount, tx) < amount)
-                        return;
+                if (!RandomUtil.chance(level, output.chance()))
+                    continue;
 
+                var amount = output.item().count() * multiplier;
+
+                var inserted = getItemStorage().insert(
+                        ItemResource.of(output.item()),
+                        amount,
+                        tx);
+
+                if (inserted != amount)
+                    return;
             }
 
-            getFluidStorage().extract(FLUID_TANK, FluidResource.of(fluid), recipe.getInputFluid().amount() * multiplier,
+            var extractedFluid = getFluidStorage().extract(
+                    FLUID_TANK,
+                    FluidResource.of(fluid),
+                    inputFluidAmount,
                     tx);
 
-            if (recipe.getOutputFluid() != null)
-                getFluidStorage().insert(FLUID_TANK, FluidResource.of(recipe.getOutputFluid()),
-                        recipe.getOutputFluid().amount() * multiplier, tx);
+            if (extractedFluid != inputFluidAmount)
+                return;
+
+            if (recipe.getOutputFluid() != null) {
+
+                var insertedFluid = getFluidStorage().insert(
+                        FLUID_TANK,
+                        FluidResource.of(recipe.getOutputFluid()),
+                        outputFluidAmount,
+                        tx);
+
+                if (insertedFluid != outputFluidAmount)
+                    return;
+            }
 
             tx.commit();
         }
