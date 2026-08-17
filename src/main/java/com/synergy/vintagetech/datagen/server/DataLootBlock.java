@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 import com.devdyna.cakesticklib.api.utils.EnchantUtil;
 import com.devdyna.cakesticklib.api.utils.LootTableHelper;
-import com.synergy.vintagetech.api.blockfactory.cheese.BaseCheeseBlock;
+import com.synergy.vintagetech.api.factories.cheese.BaseCheeseBlock;
 import com.synergy.vintagetech.init.builder.cheese.SealedCheeseBlock;
 import com.synergy.vintagetech.init.builder.crushing_tub.CrushingTubBlock;
 import com.synergy.vintagetech.init.builder.plants.Aloe;

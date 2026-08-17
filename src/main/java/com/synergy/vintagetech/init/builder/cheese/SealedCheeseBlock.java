@@ -3,7 +3,7 @@ package com.synergy.vintagetech.init.builder.cheese;
 import javax.annotation.Nullable;
 
 import com.devdyna.cakesticklib.api.RandomUtil;
-import com.synergy.vintagetech.api.blockfactory.cheese.BaseCheeseBlock;
+import com.synergy.vintagetech.api.factories.cheese.BaseCheeseBlock;
 import com.synergy.vintagetech.init.types.zTags;
 
 import net.minecraft.core.BlockPos;

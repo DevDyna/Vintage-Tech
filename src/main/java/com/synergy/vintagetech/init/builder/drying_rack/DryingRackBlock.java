@@ -3,7 +3,7 @@ package com.synergy.vintagetech.init.builder.drying_rack;
 import javax.annotation.Nullable;
 
 import com.devdyna.cakesticklib.api.aspect.templates.TickingBlock;
-import com.synergy.vintagetech.api.RopeHandler;
+import com.synergy.vintagetech.api.factories.handlers.RopeHandler;
 import com.synergy.vintagetech.init.builder.RopeBlock;
 
 import net.minecraft.core.BlockPos;

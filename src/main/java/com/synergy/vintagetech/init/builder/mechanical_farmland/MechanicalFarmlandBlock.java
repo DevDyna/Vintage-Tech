@@ -11,7 +11,7 @@ import com.devdyna.cakesticklib.api.aspect.logic.BucketInteraction;
 import com.devdyna.cakesticklib.api.aspect.logic.FluidClearableTank;
 import com.devdyna.cakesticklib.api.aspect.logic.FluidTooltipWhenEmpty;
 import com.devdyna.cakesticklib.api.aspect.templates.TickingBE;
-import com.synergy.vintagetech.api.AxleHandler;
+import com.synergy.vintagetech.api.factories.handlers.AxleHandler;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

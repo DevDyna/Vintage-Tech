@@ -1,4 +1,4 @@
-package com.synergy.vintagetech.api.blockfactory.cheese;
+package com.synergy.vintagetech.api.factories.cheese;
 
 import com.devdyna.cakesticklib.api.utils.x;
 

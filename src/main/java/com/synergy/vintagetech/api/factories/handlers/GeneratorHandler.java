@@ -1,8 +1,8 @@
-package com.synergy.vintagetech.api.blockfactory;
+package com.synergy.vintagetech.api.factories.handlers;
 
 import net.minecraft.core.BlockPos;
 
-public interface KineticGenerator {
+public interface GeneratorHandler {
 
     /**
      * Create a basic element to store blockpos and rotation direction to trasmitt

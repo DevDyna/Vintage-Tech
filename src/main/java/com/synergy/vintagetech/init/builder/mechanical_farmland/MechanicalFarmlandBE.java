@@ -7,7 +7,7 @@ import com.devdyna.cakesticklib.api.aspect.logic.SimpleFluidStorage;
 import com.devdyna.cakesticklib.api.factories.plants.VanillaPlants;
 import com.devdyna.cakesticklib.api.recipe.recipeInput.FluidInput;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
-import com.synergy.vintagetech.api.blockfactory.transmission.TransmissionBE;
+import com.synergy.vintagetech.api.factories.transmission.TransmissionBE;
 import com.synergy.vintagetech.init.builder.mechanical_farmland.recipe.FarmlandFuelsRecipe;
 import com.synergy.vintagetech.init.types.zBlockEntities;
 import com.synergy.vintagetech.init.types.zRecipeTypes;

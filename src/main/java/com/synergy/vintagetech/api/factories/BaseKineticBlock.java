@@ -1,9 +1,9 @@
-package com.synergy.vintagetech.api.blockfactory;
+package com.synergy.vintagetech.api.factories;
 
 import org.jspecify.annotations.Nullable;
 
-import com.synergy.vintagetech.api.AxleHandler;
-import com.synergy.vintagetech.api.blockfactory.transmission.TransmissionBE;
+import com.synergy.vintagetech.api.factories.handlers.AxleHandler;
+import com.synergy.vintagetech.api.factories.transmission.TransmissionBE;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.Block;

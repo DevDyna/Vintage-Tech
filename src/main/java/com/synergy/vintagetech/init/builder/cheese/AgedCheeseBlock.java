@@ -1,6 +1,6 @@
 package com.synergy.vintagetech.init.builder.cheese;
 
-import com.synergy.vintagetech.api.blockfactory.cheese.EatableCheeseBlock;
+import com.synergy.vintagetech.api.factories.cheese.EatableCheeseBlock;
 import com.synergy.vintagetech.init.types.zItems;
 
 import net.minecraft.world.item.Item;

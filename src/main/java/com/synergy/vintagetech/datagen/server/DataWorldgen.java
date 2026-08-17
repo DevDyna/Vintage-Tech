@@ -6,7 +6,7 @@ import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 import com.devdyna.cakesticklib.api.datagen.WorldgenUtils;
-import com.synergy.vintagetech.api.blockfactory.plants.NaturalCrop;
+import com.synergy.vintagetech.api.factories.plants.NaturalCrop;
 import com.synergy.vintagetech.init.builder.plants.Aloe;
 import com.synergy.vintagetech.init.builder.plants.BlueBerry;
 import com.synergy.vintagetech.init.builder.plants.CaveWheat;

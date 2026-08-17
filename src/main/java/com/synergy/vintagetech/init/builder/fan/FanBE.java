@@ -1,7 +1,7 @@
 package com.synergy.vintagetech.init.builder.fan;
 
 import com.devdyna.cakesticklib.api.RandomUtil;
-import com.synergy.vintagetech.api.blockfactory.transmission.TransmissionBE;
+import com.synergy.vintagetech.api.factories.transmission.TransmissionBE;
 import com.synergy.vintagetech.init.types.zBlockEntities;
 import com.synergy.vintagetech.init.types.zParticles;
 import com.synergy.vintagetech.init.types.zTags;

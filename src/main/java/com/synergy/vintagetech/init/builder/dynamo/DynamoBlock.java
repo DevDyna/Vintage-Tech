@@ -4,8 +4,9 @@ import java.util.Map;
 
 import org.jspecify.annotations.Nullable;
 
-import com.synergy.vintagetech.api.blockfactory.HorizontalAxleBlock;
-import com.synergy.vintagetech.api.blockfactory.MonoDirectionalAxleBlock;
+import com.synergy.vintagetech.api.factories.MonoDirectionalAxleBlock;
+import com.synergy.vintagetech.api.factories.handlers.HorizontalAxleBlock;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -20,6 +21,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+@SuppressWarnings("deprecation")
 public class DynamoBlock extends MonoDirectionalAxleBlock implements HorizontalAxleBlock{
 
     public DynamoBlock(Properties p) {

@@ -1,7 +1,7 @@
 package com.synergy.vintagetech.init.builder.transmission;
 
-import com.synergy.vintagetech.api.blockfactory.KineticGenerator.NetworkState;
-import com.synergy.vintagetech.api.blockfactory.transmission.MotionAlteratorBlock;
+import com.synergy.vintagetech.api.factories.handlers.GeneratorHandler.NetworkState;
+import com.synergy.vintagetech.api.factories.transmission.MotionAlteratorBlock;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;

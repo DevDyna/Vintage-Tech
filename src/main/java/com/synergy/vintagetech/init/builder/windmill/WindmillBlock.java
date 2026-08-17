@@ -6,8 +6,8 @@ import java.util.Map;
 import org.jspecify.annotations.Nullable;
 
 import com.devdyna.cakesticklib.api.RandomUtil;
-import com.synergy.vintagetech.api.blockfactory.RotableAxleBlock;
-import com.synergy.vintagetech.api.blockfactory.engine.BaseEngineBlock;
+import com.synergy.vintagetech.api.factories.engine.BaseEngineBlock;
+import com.synergy.vintagetech.api.factories.handlers.RotableAxleBlock;
 import com.synergy.vintagetech.init.types.zTags;
 
 import net.minecraft.core.BlockPos;

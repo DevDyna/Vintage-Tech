@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.devdyna.cakesticklib.api.RandomUtil;
 import com.devdyna.cakesticklib.api.factories.plants.builder.BaseCropBlock;
-import com.synergy.vintagetech.api.blockfactory.plants.NaturalCrop;
+import com.synergy.vintagetech.api.factories.plants.NaturalCrop;
 import com.synergy.vintagetech.init.types.zItems;
 import com.synergy.vintagetech.init.types.zTags;
 

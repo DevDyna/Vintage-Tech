@@ -1,12 +1,12 @@
-package com.synergy.vintagetech.api.blockfactory.transmission;
+package com.synergy.vintagetech.api.factories.transmission;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.Nullable;
 
-import com.synergy.vintagetech.api.blockfactory.BaseKineticBlock;
-import com.synergy.vintagetech.api.blockfactory.KineticGenerator.NetworkState;
+import com.synergy.vintagetech.api.factories.BaseKineticBlock;
+import com.synergy.vintagetech.api.factories.handlers.GeneratorHandler.NetworkState;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

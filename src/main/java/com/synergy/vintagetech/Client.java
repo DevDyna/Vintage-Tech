@@ -6,7 +6,7 @@ import com.devdyna.cakesticklib.api.FluidRenderUtils;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.synergy.vintagetech.api.ClassUtils;
 import com.synergy.vintagetech.api.FluidRegister;
-import com.synergy.vintagetech.api.blockfactory.transmission.TransmissionRenderer;
+import com.synergy.vintagetech.api.factories.transmission.TransmissionRenderer;
 import com.synergy.vintagetech.client.particles.fan.AirFlowParticleProvider;
 import com.synergy.vintagetech.init.builder.centrifuge.CentrifugeRenderer;
 import com.synergy.vintagetech.init.builder.fan.FanRenderer;

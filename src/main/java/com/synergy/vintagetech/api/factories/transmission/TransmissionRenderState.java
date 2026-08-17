@@ -1,4 +1,4 @@
-package com.synergy.vintagetech.api.blockfactory.transmission;
+package com.synergy.vintagetech.api.factories.transmission;
 
 import java.util.Map;
 

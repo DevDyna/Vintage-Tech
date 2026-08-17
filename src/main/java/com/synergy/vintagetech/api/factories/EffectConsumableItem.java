@@ -1,4 +1,4 @@
-package com.synergy.vintagetech.api;
+package com.synergy.vintagetech.api.factories;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.devdyna.cakesticklib.api.ToolTipHelper;
 import com.devdyna.cakesticklib.setup.registry.LibComponents;
-import com.synergy.vintagetech.api.EffectConsumableItem;
+import com.synergy.vintagetech.api.factories.EffectConsumableItem;
 import com.synergy.vintagetech.init.types.*;
 
 import net.minecraft.network.chat.Component;

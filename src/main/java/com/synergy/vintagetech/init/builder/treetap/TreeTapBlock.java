@@ -4,7 +4,7 @@ import javax.annotation.Nullable;
 
 import com.devdyna.cakesticklib.api.RandomUtil;
 import com.devdyna.cakesticklib.api.aspect.templates.TickingBlock;
-import com.synergy.vintagetech.api.TreeTapHandler;
+import com.synergy.vintagetech.api.factories.handlers.TreeTapHandler;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

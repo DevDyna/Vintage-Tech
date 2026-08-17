@@ -1,4 +1,4 @@
-package com.synergy.vintagetech.api.blockfactory;
+package com.synergy.vintagetech.api.factories;
 
 import java.util.List;
 

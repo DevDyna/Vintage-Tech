@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.synergy.vintagetech.api.blockfactory.engine.BaseEngineBlock;
+import com.synergy.vintagetech.api.factories.engine.BaseEngineBlock;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

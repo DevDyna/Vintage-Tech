@@ -1,9 +1,10 @@
-package com.synergy.vintagetech.api;
+package com.synergy.vintagetech.api.datagen;
 
 import static com.synergy.vintagetech.Main.MODULE_ID;
 
 import com.devdyna.cakesticklib.api.utils.x;
-import com.synergy.vintagetech.api.blockfactory.cheese.BaseCheeseBlock;
+import com.synergy.vintagetech.api.factories.cheese.BaseCheeseBlock;
+import com.synergy.vintagetech.api.factories.handlers.RopeHandler;
 import com.synergy.vintagetech.init.builder.cheese.SealedCheeseBlock;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;

@@ -1,4 +1,4 @@
-package com.synergy.vintagetech.api;
+package com.synergy.vintagetech.api.factories.handlers;
 
 import com.synergy.vintagetech.init.builder.RopeBlock;
 

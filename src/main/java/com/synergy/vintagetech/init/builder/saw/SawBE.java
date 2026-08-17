@@ -12,7 +12,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import com.devdyna.cakesticklib.api.ItemLogisticUtils;
 import com.devdyna.cakesticklib.api.factories.plants.VanillaPlants;
 import com.devdyna.cakesticklib.setup.Config;
-import com.synergy.vintagetech.api.blockfactory.transmission.TransmissionBE;
+import com.synergy.vintagetech.api.factories.transmission.TransmissionBE;
 import com.synergy.vintagetech.init.builder.basket.BasketBE;
 import com.synergy.vintagetech.init.builder.basket.BasketBlock;
 import com.synergy.vintagetech.init.types.zBlockEntities;

@@ -1,4 +1,4 @@
-package com.synergy.vintagetech.api.blockfactory.plants;
+package com.synergy.vintagetech.api.factories.plants;
 
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 

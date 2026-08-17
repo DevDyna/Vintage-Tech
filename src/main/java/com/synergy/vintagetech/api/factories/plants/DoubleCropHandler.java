@@ -1,4 +1,4 @@
-package com.synergy.vintagetech.api.blockfactory.plants;
+package com.synergy.vintagetech.api.factories.plants;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

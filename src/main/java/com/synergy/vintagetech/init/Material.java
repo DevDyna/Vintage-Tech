@@ -9,7 +9,7 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 
 import com.devdyna.cakesticklib.api.utils.x;
-import com.synergy.vintagetech.api.EffectConsumableItem;
+import com.synergy.vintagetech.api.factories.EffectConsumableItem;
 import com.synergy.vintagetech.init.types.*;
 
 import net.minecraft.core.registries.Registries;

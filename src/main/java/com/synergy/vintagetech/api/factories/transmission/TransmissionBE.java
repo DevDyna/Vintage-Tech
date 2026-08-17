@@ -1,7 +1,7 @@
-package com.synergy.vintagetech.api.blockfactory.transmission;
+package com.synergy.vintagetech.api.factories.transmission;
 
 import com.devdyna.cakesticklib.api.aspect.templates.TickingBE;
-import com.synergy.vintagetech.api.AxleHandler;
+import com.synergy.vintagetech.api.factories.handlers.AxleHandler;
 import com.synergy.vintagetech.init.types.zBlockEntities;
 
 import net.minecraft.core.BlockPos;

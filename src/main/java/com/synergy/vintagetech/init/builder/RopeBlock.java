@@ -3,7 +3,7 @@ package com.synergy.vintagetech.init.builder;
 import com.devdyna.cakesticklib.api.primitive.QueueUtil;
 import com.devdyna.cakesticklib.api.primitive.QueueUtil.QueueStatus;
 import com.mojang.serialization.MapCodec;
-import com.synergy.vintagetech.api.RopeHandler;
+import com.synergy.vintagetech.api.factories.handlers.RopeHandler;
 import com.synergy.vintagetech.init.types.zTags;
 
 import net.minecraft.core.BlockPos;

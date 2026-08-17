@@ -1,4 +1,4 @@
-package com.synergy.vintagetech.api;
+package com.synergy.vintagetech.api.datagen;
 
 import java.util.Optional;
 

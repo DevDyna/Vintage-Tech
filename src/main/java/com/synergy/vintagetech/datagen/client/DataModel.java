@@ -4,11 +4,11 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 
 import java.util.Optional;
 
-import com.synergy.vintagetech.api.ItemModelUtil;
+import com.synergy.vintagetech.api.datagen.BlockModelUtils;
+import com.synergy.vintagetech.api.datagen.ItemModelUtil;
 import com.devdyna.cakesticklib.api.datagen.ModelUtils;
 import com.devdyna.cakesticklib.api.factories.plants.builder.BaseShortCropBlock;
 import com.devdyna.cakesticklib.api.utils.x;
-import com.synergy.vintagetech.api.BlockModelUtils;
 import com.synergy.vintagetech.init.builder.RopeBlock;
 import com.synergy.vintagetech.init.builder.crushing_tub.CrushingTubBlock;
 import com.synergy.vintagetech.init.builder.plants.Aloe;
