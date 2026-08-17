@@ -438,7 +438,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                 CentrifugeBuilder.of(registries)
                                 .input(Items.BONE_MEAL)
                                 .fluid(Fluids.WATER, 1000)
-                                .output(zFluids.FERTILIZER_CHEMICAL.getFluid(), 250)
+                                .output(zFluids.CALCIUM_CARBONATE.getFluid(), 250)
                                 .unlockedBy(getHasName(Items.BONE_MEAL), has(Items.BONE_MEAL))
                                 .save(output);
 
@@ -515,12 +515,6 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .input(zItems.SOY_RENNET)
                                 .output(zItems.TOFU, 1f)
                                 .unlockedBy(getHasName(zItems.SOY_RENNET.get()), has(zItems.SOY_RENNET.get()))
-                                .save(output);
-
-                CrushingTubBuilder.of(registries)
-                                .input(zItems.CHEESE_MOLD)
-                                .output(zBlocks.FRESH_CHEESE.get(), 1f)
-                                .unlockedBy(getHasName(zItems.CHEESE_MOLD.get()), has(zItems.CHEESE_MOLD.get()))
                                 .save(output);
 
                 MillstoneBuilder.of(registries)
@@ -664,7 +658,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .save(output);
 
                 FarmlandFuelsBuilder.of(registries)
-                                .fluid(zFluids.FERTILIZER_CHEMICAL.getFluid(), 450)
+                                .fluid(zFluids.CALCIUM_CARBONATE.getFluid(), 450)
                                 .unlockedBy(getHasName(zBlocks.MECHANICAL_FARMLAND.get()),
                                                 has(zBlocks.MECHANICAL_FARMLAND.get()))
                                 .save(output);
@@ -693,14 +687,53 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .unlockedBy(getHasName(Tags.Items.SLIME_BALLS), has(Tags.Items.SLIME_BALLS))
                                 .save(output, "_from_slime");
 
+                EvaporationBasinBuilder.of(registries)
+                                .fluid(Tags.Fluids.MILK, 250)
+                                .output(zItems.CONDENSED_MILK.get(), 1)
+                                .unlockedBy(Items.MILK_BUCKET)
+                                .save(output);
+
+                CentrifugeBuilder.of(registries)
+                                .fluid(zFluids.CALCIUM_CARBONATE.getFluid(), 50)
+                                .input(zItems.CONDENSED_MILK)
+                                .output(zFluids.WHEY.getFluid(), 125)
+                                .output(zItems.MILK_CURD.get(), 1, 1f)
+                                .unlockedBy(zItems.CONDENSED_MILK.get())
+                                .save(output);
+
                 CrucibleBuilder.of(registries)
-                                .add(Items.SUGAR, 4)
-                                .add(LibTags.Items.SULFUR_DUST)
-                                .fluid(Tags.Fluids.MILK, 2500)
-                                .output(zItems.CHEESE_MOLD.get(), 1, 1f)
-                                .output(zFluids.WHEY.getFluid(), 500)
-                                .unlockedBy(getHasName(Items.MILK_BUCKET), has(Items.MILK_BUCKET))
-                                .save(output, "_from_cheese");
+                                .add(zItems.MILK_CURD.get())
+                                .add(LibTags.Items.SULFUR_DUST, 2)
+                                .fluid(Tags.Fluids.WATER, 750)
+                                .output(zItems.MOZZARELLA_CURD.get(), 1, 1f)
+                                .output(zItems.CONDENSED_MILK.get(), 1, 0.25f)
+                                .unlockedBy(zItems.MILK_CURD.get())
+                                .save(output,"_from_mozzarella_curd");
+
+                CrucibleBuilder.of(registries)
+                                .add(zItems.MILK_CURD.get(), 4)
+                                .add(zItems.SALT, 8)
+                                .fluid(Tags.Fluids.WATER, 125)
+                                .output(zItems.CHEESE_CURD.get(), 1, 1f)
+                                .output(zItems.CONDENSED_MILK.get(), 3, 0.25f)
+                                .unlockedBy(zItems.MILK_CURD.get())
+                                .save(output,"_from_cheese_curd");
+
+                CrushingTubBuilder.of(registries)
+                                .requireMesh()
+                                .input(zItems.CHEESE_CURD)
+                                .output(zBlocks.FRESH_CHEESE.get(), 1f)
+                                .output(zFluids.WHEY.getFluid(), 25)
+                                .unlockedBy(zItems.CHEESE_CURD.get())
+                                .save(output);
+
+                CrushingTubBuilder.of(registries)
+                                .requireMesh()
+                                .input(zItems.MOZZARELLA_CURD)
+                                .output(zItems.MOZZARELLA, 1f)
+                                .output(zFluids.WHEY.getFluid(), 25)
+                                .unlockedBy(zItems.MOZZARELLA_CURD.get())
+                                .save(output);
 
                 CrucibleBuilder.of(registries)
                                 .add(zItems.AMBER)
