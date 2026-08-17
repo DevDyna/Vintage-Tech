@@ -67,7 +67,10 @@ public class SealedCheeseBlock extends BaseCheeseBlock {
         var chance = 25f + 5f * pieces;
 
         if (level.getBlockState(pos.below()).is(zTags.Blocks.CHEESE_BOOSTER))
-            chance = 17.5f + 5.5f * pieces;// increase the chance of +10%
+            chance *= 0.75f;
+
+        if (pieces == 4 || pieces == 8)
+            chance *= 0.75f;
 
         if (RandomUtil.chance(level, chance))
             return;
