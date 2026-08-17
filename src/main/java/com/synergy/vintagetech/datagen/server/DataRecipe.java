@@ -704,18 +704,20 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                 CrucibleBuilder.of(registries)
                                 .add(zItems.MILK_CURD.get())
                                 .add(LibTags.Items.SULFUR_DUST, 2)
-                                .fluid(Tags.Fluids.WATER, 750)
+                                .fluid(Tags.Fluids.WATER, 500)
                                 .output(zItems.MOZZARELLA_CURD.get(), 1, 1f)
-                                .output(zItems.CONDENSED_MILK.get(), 1, 0.25f)
+                                .output(zItems.CONDENSED_MILK.get(), 1, 0.15f)
                                 .unlockedBy(zItems.MILK_CURD.get())
                                 .save(output,"_from_mozzarella_curd");
 
                 CrucibleBuilder.of(registries)
-                                .add(zItems.MILK_CURD.get(), 4)
-                                .add(zItems.SALT, 8)
-                                .fluid(Tags.Fluids.WATER, 125)
+                                .add(zItems.MILK_CURD.get(), 5)
+                                .add(zItems.SALT, 6)
+                                .fluid(Tags.Fluids.WATER, 250)
                                 .output(zItems.CHEESE_CURD.get(), 1, 1f)
-                                .output(zItems.CONDENSED_MILK.get(), 3, 0.25f)
+                                .output(zItems.CONDENSED_MILK.get(), 2, 0.75f)
+                                .output(zItems.CONDENSED_MILK.get(), 1, 0.50f)
+                                .output(zItems.CONDENSED_MILK.get(), 1, 0.25f)
                                 .unlockedBy(zItems.MILK_CURD.get())
                                 .save(output,"_from_cheese_curd");
 
