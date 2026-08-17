@@ -191,6 +191,9 @@ public class zTags {
                 public static final TagKey<Item> CHEESE_UNSEALER = RegistryUtils.tagItem(MODULE_ID,
                                 "cheese/unsealer");
 
+                public static final TagKey<Item> SALT_DUST = RegistryUtils.tagItem("c",
+                                "dusts/salt");
+
         }
 
         public class Biomes {

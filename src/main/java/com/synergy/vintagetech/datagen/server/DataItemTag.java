@@ -267,6 +267,9 @@ public class DataItemTag extends ItemTagsProvider {
                 tag(zTags.Items.CHEESE_SEALER).addTag(LibTags.Items.WAXING);
                 tag(zTags.Items.CHEESE_UNSEALER).addTag(ItemTags.AXES);
 
+                tag(Tags.Items.DUSTS).add(zItems.SALT.get());
+                tag(zTags.Items.SALT_DUST).add(zItems.SALT.get());
+
         }
 
 }
