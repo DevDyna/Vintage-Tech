@@ -23,12 +23,7 @@ import com.synergy.vintagetech.init.builder.evaporation_basin.EvaporationBasinBl
 import com.synergy.vintagetech.init.builder.fan.FanBlock;
 import com.synergy.vintagetech.init.builder.mechanical_farmland.MechanicalFarmlandBlock;
 import com.synergy.vintagetech.init.builder.millstone.MillstoneBlock;
-import com.synergy.vintagetech.init.builder.plants.Aloe;
-import com.synergy.vintagetech.init.builder.plants.BlueBerry;
-import com.synergy.vintagetech.init.builder.plants.CaveWheat;
-import com.synergy.vintagetech.init.builder.plants.Hemp;
-import com.synergy.vintagetech.init.builder.plants.Lavender;
-import com.synergy.vintagetech.init.builder.plants.SoyBeans;
+import com.synergy.vintagetech.init.builder.plants.*;
 import com.synergy.vintagetech.init.builder.saw.SawBlock;
 import com.synergy.vintagetech.init.builder.transmission.*;
 import com.synergy.vintagetech.init.builder.treetap.TreeTapBlock;
