@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "vintagetech:crucible/whey_source_from_cheese_curd"
+        "recipe": "vintagetech:crucible/cheese_curd_from_cheese_curd"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "vintagetech:crucible/whey_source_from_cheese_curd"
+      "vintagetech:crucible/cheese_curd_from_cheese_curd"
     ]
   }
 }
