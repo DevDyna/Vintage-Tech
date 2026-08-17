@@ -818,6 +818,13 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                 twoByTwoPacker(output, zBlocks.AGED_CHEESE.get(), zItems.AGED_CHEESE_SLICE.get(),
                                 MODULE_ID + ":cheese_from_slice/aged");
 
+                
+                                EvaporationBasinBuilder.of(registries)
+                                .fluid(zFluids.WHEY.getFluid(), 250)
+                                .output(zItems.CONDENSED_WHEY.get(), 1)
+                                .unlockedBy(Items.MILK_BUCKET)
+                                .save(output);
+
         }
 
         public static final class RecipeRunner extends RecipeProvider.Runner {
