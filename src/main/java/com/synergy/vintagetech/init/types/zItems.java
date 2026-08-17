@@ -2,14 +2,14 @@ package com.synergy.vintagetech.init.types;
 
 import static com.synergy.vintagetech.Main.MODULE_ID;
 
+import com.synergy.vintagetech.init.Material;
+
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.component.Consumable;
-import net.minecraft.world.item.consume_effects.ApplyStatusEffectsConsumeEffect;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -60,11 +60,12 @@ public class zItems {
                         p -> p.food(new FoodProperties(6, 7f, true)));
 
         public static final DeferredHolder<Item, Item> CLOTH = zItem.registerSimpleItem("cloth");
-        public static final DeferredHolder<Item, Item> SALT = zItem.registerSimpleItem("salt",p -> p
-                        .food(new FoodProperties(0, 0f, true), Consumable.builder()
-                                        .onConsume(new ApplyStatusEffectsConsumeEffect(
-                                                        new MobEffectInstance(MobEffects.HUNGER, 40, 3)))
-                                        .build()));
+        public static final DeferredHolder<Item, Item> SALT = Material.registerFoodEffectItem(
+                        "salt",
+                        p -> p,
+                        new FoodProperties(0, 0f, true),
+                        new MobEffectInstance(MobEffects.HUNGER, 40, 3));
+
         public static final DeferredHolder<Item, Item> AMBER = zItem.registerSimpleItem("amber");
         public static final DeferredHolder<Item, Item> SAP = zItem.registerSimpleItem("sap");
         public static final DeferredHolder<Item, Item> GLUE = zItem.registerSimpleItem("glue");
@@ -72,13 +73,11 @@ public class zItems {
 
         public static final DeferredHolder<Item, Item> HEMP_FIBER = zItem.registerSimpleItem("hemp_fiber");
 
-        public static final DeferredHolder<Item, Item> IRONBERRIES = zItem.registerSimpleItem("ironberries", p -> p
-                        .food(new FoodProperties(1, 2f, true), Consumable.builder()
-                                        .onConsume(new ApplyStatusEffectsConsumeEffect(
-                                                        new MobEffectInstance(MobEffects.NAUSEA, 40, 0)))
-                                        .onConsume(new ApplyStatusEffectsConsumeEffect(
-                                                        new MobEffectInstance(MobEffects.HUNGER, 40, 1)))
-                                        .build()));
+        public static final DeferredHolder<Item, Item> IRONBERRIES = Material.registerFoodEffectItem(
+                        "ironberries",
+                        p -> p,
+                        new FoodProperties(1, 2f, true),
+                        new MobEffectInstance(MobEffects.HUNGER, 20, 1));
 
         public static final DeferredHolder<Item, Item> TINY_IRON_DUST = zItem.registerSimpleItem("tiny_iron_dust");
 
@@ -87,22 +86,12 @@ public class zItems {
                                         .stacksTo(16)
                                         .usingConvertsTo(Items.BOWL)
                                         .craftRemainder(Items.BOWL)
-                                        .food(new FoodProperties(12, 6f, true), Consumable.builder()
-                                                        .onConsume(new ApplyStatusEffectsConsumeEffect(
-                                                                        new MobEffectInstance(MobEffects.NIGHT_VISION,
-                                                                                        160,
-                                                                                        1)))
-                                                        .build()));
+                                        .food(new FoodProperties(12, 6f, true)));
 
         public static final DeferredHolder<Item, Item> BLUEBERRIES_MUFFIN = zItem.registerSimpleItem(
                         "blueberries_muffin",
                         p -> p
-                                        .food(new FoodProperties(6, 6f, true), Consumable.builder()
-                                                        .onConsume(new ApplyStatusEffectsConsumeEffect(
-                                                                        new MobEffectInstance(MobEffects.NIGHT_VISION,
-                                                                                        400,
-                                                                                        1)))
-                                                        .build()));
+                                        .food(new FoodProperties(6, 6f, true)));
 
         public static final DeferredHolder<Item, Item> SWEET_BERRIES_SOUP = zItem.registerSimpleItem(
                         "sweet_berries_soup",
@@ -110,37 +99,63 @@ public class zItems {
                                         .stacksTo(16)
                                         .usingConvertsTo(Items.BOWL)
                                         .craftRemainder(Items.BOWL)
-                                        .food(new FoodProperties(12, 10f, true), Consumable.builder()
-                                                        .onConsume(new ApplyStatusEffectsConsumeEffect(
-                                                                        new MobEffectInstance(MobEffects.STRENGTH,
-                                                                                        160,
-                                                                                        1)))
-                                                        .build()));
+                                        .food(new FoodProperties(12, 10f, true)));
 
         public static final DeferredHolder<Item, Item> GLOW_BERRIES_SOUP = zItem.registerSimpleItem("glow_berries_soup",
                         p -> p
                                         .stacksTo(16)
                                         .usingConvertsTo(Items.BOWL)
                                         .craftRemainder(Items.BOWL)
-                                        .food(new FoodProperties(12, 8f, true), Consumable.builder()
-                                                        .onConsume(new ApplyStatusEffectsConsumeEffect(
-                                                                        new MobEffectInstance(MobEffects.GLOWING,
-                                                                                        320,
-                                                                                        1)))
-                                                        .build()));
+                                        .food(new FoodProperties(12, 8f, true)));
 
         public static final DeferredHolder<Item, Item> IRONBERRIES_SOUP = zItem.registerSimpleItem("ironberries_soup",
                         p -> p
                                         .stacksTo(16)
                                         .usingConvertsTo(Items.BOWL)
                                         .craftRemainder(Items.BOWL)
-                                        .food(new FoodProperties(12, 4f, true), Consumable.builder()
-                                                        .onConsume(new ApplyStatusEffectsConsumeEffect(
-                                                                        new MobEffectInstance(MobEffects.UNLUCK,
-                                                                                        160,
-                                                                                        1)))
-                                                        .build()));
+                                        .food(new FoodProperties(12, 4f, true)));
 
         public static final DeferredHolder<Item, Item> MESH = zItem.registerSimpleItem("mesh", p -> p.stacksTo(16));
+        // public static final DeferredHolder<Item, Item> CHEESE_MOLD =
+        // zItem.registerSimpleItem("cheese_mold",
+        // p -> p.stacksTo(16));
+
+        public static final DeferredHolder<Item, Item> FRESH_CHEESE_SLICE = zItem.registerSimpleItem(
+                        "fresh_cheese_slice",
+                        p -> p
+                                        .stacksTo(16)
+                                        .food(new FoodProperties(6, 4f, false)));
+
+        public static final DeferredHolder<Item, Item> MATURED_CHEESE_SLICE = zItem.registerSimpleItem(
+                        "matured_cheese_slice",
+                        p -> p
+                                        .stacksTo(16)
+                                        .food(new FoodProperties(9, 7f, false)));
+
+        public static final DeferredHolder<Item, Item> AGED_CHEESE_SLICE = zItem.registerSimpleItem(
+                        "aged_cheese_slice",
+                        p -> p
+                                        .stacksTo(16)
+                                        .food(new FoodProperties(12, 10f, false)));
+
+        public static final DeferredHolder<Item, Item> CONDENSED_MILK = zItem.registerSimpleItem("condensed_milk",
+                        p -> p);
+        public static final DeferredHolder<Item, Item> MILK_CURD = zItem.registerSimpleItem("milk_curd", p -> p);
+
+        public static final DeferredHolder<Item, Item> CHEESE_CURD = zItem.registerSimpleItem("cheese_curd", p -> p);
+        public static final DeferredHolder<Item, Item> MOZZARELLA_CURD = zItem.registerSimpleItem("mozzarella_curd",
+                        p -> p);
+        public static final DeferredHolder<Item, Item> MOZZARELLA = Material.registerFoodEffectItem(
+                        "mozzarella",
+
+                        p -> p,
+                        new FoodProperties(6, 10f, true),
+                        new MobEffectInstance(MobEffects.REGENERATION, 50, 1));
+
+        public static final DeferredHolder<Item, Item> CONDENSED_WHEY = Material.registerFoodEffectItem(
+                        "condensed_whey",
+                        p -> p,
+                        new FoodProperties(4, 0.125f, true),
+                        new MobEffectInstance(MobEffects.STRENGTH, 50, 1));
 
 }

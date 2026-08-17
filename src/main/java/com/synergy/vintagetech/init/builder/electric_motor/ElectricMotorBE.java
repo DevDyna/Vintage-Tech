@@ -2,7 +2,7 @@ package com.synergy.vintagetech.init.builder.electric_motor;
 
 import com.devdyna.cakesticklib.api.aspect.logic.EnergyBlock;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
-import com.synergy.vintagetech.api.blockfactory.engine.BaseEngineBE;
+import com.synergy.vintagetech.api.factories.engine.BaseEngineBE;
 import com.synergy.vintagetech.init.types.zBlockEntities;
 
 import net.minecraft.core.BlockPos;

@@ -70,7 +70,7 @@ public class CrucibleCategory extends BaseRecipeCategory<CrucibleRecipe> {
         if (recipe.getOutputFluid() != null)
             JEIFluidTankHelper.of()
                     .fluid(recipe.getOutputFluid().create())
-                    .offset(149, 53 - 3+4)
+                    .offset(149, 53 - 3 + 4)
                     .scale(2.5f, 1.0f)
                     .build((x, y) -> builder.addOutputSlot(x, y));
 
@@ -82,7 +82,7 @@ public class CrucibleCategory extends BaseRecipeCategory<CrucibleRecipe> {
             builder.addInputSlot(
                     7 + col * 18,
                     16 + row * 18)
-                    .addItemStacks(x.getItemStacksFromIngredient(recipe.getItemInputs().get(i).ingredient()));
+                    .addItemStacks(x.getItemStacksFromIngredient(recipe.getItemInputs().get(i)));
         }
 
         for (int i = 0; i < recipe.getOutputItems().size() && i < 4; i++) {
@@ -128,7 +128,7 @@ public class CrucibleCategory extends BaseRecipeCategory<CrucibleRecipe> {
     }
 
     @Override
-    public boolean enableTimerRender() {
+    public boolean enableTimerRender(CrucibleRecipe recipe) {
         return true;
     }
 
@@ -138,12 +138,12 @@ public class CrucibleCategory extends BaseRecipeCategory<CrucibleRecipe> {
     }
 
     @Override
-    public Size tickPos() {
-        return Size.of(78 - 8, 13);
+    public Size tickPos(CrucibleRecipe recipe) {
+        return Size.of(65 + (recipe.getTicks() < 10 ? 8 : 0), 13);
     }
 
     @Override
-    public int tickColor() {
+    public int tickColor(CrucibleRecipe recipe) {
         return ColorUtils.WHITE.getRGB();
     }
 }

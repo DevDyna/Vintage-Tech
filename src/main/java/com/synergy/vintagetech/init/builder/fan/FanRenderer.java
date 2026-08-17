@@ -4,7 +4,7 @@ import javax.annotation.Nullable;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import com.synergy.vintagetech.api.blockfactory.transmission.TransmissionRenderer;
+import com.synergy.vintagetech.api.factories.transmission.TransmissionRenderer;
 import com.synergy.vintagetech.init.types.zBlocks;
 
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;

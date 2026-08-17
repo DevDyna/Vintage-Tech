@@ -1,7 +1,7 @@
 package com.synergy.vintagetech.init.builder.plants;
 
 import com.devdyna.cakesticklib.api.factories.plants.builder.BaseShortCropBlock;
-import com.synergy.vintagetech.api.NaturalCrop;
+import com.synergy.vintagetech.api.factories.plants.NaturalCrop;
 import com.synergy.vintagetech.init.types.zItems;
 import com.synergy.vintagetech.init.types.zTags;
 

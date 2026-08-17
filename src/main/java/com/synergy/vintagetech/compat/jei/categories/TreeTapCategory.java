@@ -83,7 +83,7 @@ public class TreeTapCategory extends BaseRecipeCategory<TreeTapRecipe> {
     }
 
     @Override
-    public boolean enableTimerRender() {
+    public boolean enableTimerRender(TreeTapRecipe recipe) {
         return true;
     }
 
@@ -93,12 +93,12 @@ public class TreeTapCategory extends BaseRecipeCategory<TreeTapRecipe> {
     }
 
     @Override
-    public Size tickPos() {
+    public Size tickPos(TreeTapRecipe recipe) {
         return Size.of(3+2+4, 9-2);
     }
 
     @Override
-    public int tickColor() {
+    public int tickColor(TreeTapRecipe recipe) {
         return ColorUtils.WHITE.getRGB();
     }
 

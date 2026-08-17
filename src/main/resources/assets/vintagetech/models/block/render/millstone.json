@@ -3,7 +3,11 @@
   "credit": "Made by DevDyna",
   "parent": "block/block",
   "render_type": "cutout",
-  "textures": { "blade": "vintagetech:block/millstone/small_blade", "particle":"#blade" },
+  "textures": {
+    "1": "vintagetech:block/beam/axle",
+    "particle": "vintagetech:block/millstone/small_blade",
+    "blade": "vintagetech:block/millstone/small_blade"
+  },
   "elements": [
     {
       "from": [1.5, 4, 6.5],
@@ -72,6 +76,19 @@
         "up": { "uv": [2, 10, 15, 13], "rotation": 90, "texture": "#blade" },
         "down": { "uv": [1, 10, 15, 13], "rotation": 270, "texture": "#blade" }
       }
+    },
+    {
+      "from": [5, 0, 5],
+      "to": [11, 4, 11],
+      "rotation": { "angle": 0, "axis": "y", "origin": [5, 0, 5] },
+      "faces": {
+        "north": { "uv": [6, 12, 12, 16], "texture": "#1" },
+        "east": { "uv": [6, 12, 12, 16], "texture": "#1" },
+        "south": { "uv": [6, 12, 12, 16], "texture": "#1" },
+        "west": { "uv": [6, 12, 12, 16], "texture": "#1" },
+        "up": { "uv": [0, 0, 6, 6], "texture": "#1" },
+        "down": { "uv": [0, 0, 6, 6], "texture": "#1" }
+      }
     }
   ],
   "groups": [
@@ -81,6 +98,7 @@
       "scope": 0,
       "color": 0,
       "children": [0, 1, 2, 3]
-    }
+    },
+    4
   ]
 }

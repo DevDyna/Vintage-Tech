@@ -4,9 +4,9 @@ import java.util.Map;
 
 import org.jspecify.annotations.Nullable;
 
-import com.synergy.vintagetech.api.AxleHandler;
-import com.synergy.vintagetech.api.blockfactory.MonoDirectionalAxleBlock;
-import com.synergy.vintagetech.api.blockfactory.RotableAxleBlock;
+import com.synergy.vintagetech.api.factories.MonoDirectionalAxleBlock;
+import com.synergy.vintagetech.api.factories.handlers.AxleHandler;
+import com.synergy.vintagetech.api.factories.handlers.RotableAxleBlock;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

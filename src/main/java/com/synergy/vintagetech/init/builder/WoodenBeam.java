@@ -1,7 +1,7 @@
 package com.synergy.vintagetech.init.builder;
 
-import com.synergy.vintagetech.api.AxleHandler;
-import com.synergy.vintagetech.api.RopeHandler;
+import com.synergy.vintagetech.api.factories.handlers.AxleHandler;
+import com.synergy.vintagetech.api.factories.handlers.RopeHandler;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

@@ -3,8 +3,8 @@ package com.synergy.vintagetech.init.types;
 import static com.synergy.vintagetech.Main.MODULE_ID;
 
 import com.devdyna.cakesticklib.api.RegistryUtils;
-import com.synergy.vintagetech.api.blockfactory.engine.BaseEngineBE;
-import com.synergy.vintagetech.api.blockfactory.transmission.TransmissionBE;
+import com.synergy.vintagetech.api.factories.engine.BaseEngineBE;
+import com.synergy.vintagetech.api.factories.transmission.TransmissionBE;
 import com.synergy.vintagetech.init.builder.basket.BasketBE;
 import com.synergy.vintagetech.init.builder.centrifuge.CentrifugeBE;
 import com.synergy.vintagetech.init.builder.crucible.CrucibleBE;

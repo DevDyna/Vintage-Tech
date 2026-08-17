@@ -6,7 +6,7 @@
       "entries": [
         {
           "data": {
-            "Name": "vintagetech:aloe_plant",
+            "Name": "vintagetech:aloe",
             "Properties": {
               "age": "0"
             }
@@ -15,7 +15,7 @@
         },
         {
           "data": {
-            "Name": "vintagetech:aloe_plant",
+            "Name": "vintagetech:aloe",
             "Properties": {
               "age": "1"
             }
@@ -24,7 +24,7 @@
         },
         {
           "data": {
-            "Name": "vintagetech:aloe_plant",
+            "Name": "vintagetech:aloe",
             "Properties": {
               "age": "2"
             }

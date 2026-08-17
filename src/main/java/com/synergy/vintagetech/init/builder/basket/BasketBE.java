@@ -8,12 +8,14 @@ import com.synergy.vintagetech.init.types.zBlockEntities;
 import com.synergy.vintagetech.init.types.zTags;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
+import net.neoforged.neoforge.transfer.transaction.Transaction;
 
 public class BasketBE extends BlockEntity implements ItemStorageBlock, DropCollector, NoGuiStorage {
 
@@ -56,4 +58,22 @@ public class BasketBE extends BlockEntity implements ItemStorageBlock, DropColle
         return simpleExtractItemFromSize();
     }
 
+    @Override
+    public boolean dropOnBreak(Player player) {
+        return player.isCrouching();
+    }
+
+    // TODO API : clear()
+
+    public void clear() {
+
+        try (var tx = Transaction.openRoot()) {
+
+            for (int i = 0; i < getSlots(); i++) {
+                if (!isSlotsEmpty())
+                    getItemStorage().extract(i, getItemStorage().getResource(i), getItemStorage().getAmountAsInt(i),
+                            tx);
+            }
+        }
+    }
 }

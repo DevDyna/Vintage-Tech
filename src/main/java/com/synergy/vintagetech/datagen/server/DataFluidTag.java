@@ -7,6 +7,7 @@ import java.util.concurrent.CompletableFuture;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.FluidTagsProvider;
+import net.neoforged.neoforge.common.Tags;
 
 public class DataFluidTag extends FluidTagsProvider {
 
@@ -16,6 +17,8 @@ public class DataFluidTag extends FluidTagsProvider {
 
         @Override
         protected void addTags(Provider p) {
+
+                tag(Tags.Fluids.MILK).add();
 
         }
 

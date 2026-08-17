@@ -7,7 +7,8 @@ import org.jspecify.annotations.Nullable;
 import com.devdyna.cakesticklib.api.aspect.logic.BucketInteraction;
 import com.devdyna.cakesticklib.api.aspect.logic.FluidClearableTank;
 import com.devdyna.cakesticklib.api.aspect.logic.FluidTooltipWhenEmpty;
-import com.synergy.vintagetech.api.blockfactory.MonoDirectionalAxleBlock;
+import com.synergy.vintagetech.api.factories.MonoDirectionalAxleBlock;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;

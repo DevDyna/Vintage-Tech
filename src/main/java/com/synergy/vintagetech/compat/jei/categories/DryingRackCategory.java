@@ -59,7 +59,7 @@ public class DryingRackCategory extends BaseRecipeCategory<DryingRackRecipe> {
     }
 
     @Override
-    public boolean enableTimerRender() {
+    public boolean enableTimerRender(DryingRackRecipe recipe) {
         return true;
     }
 
@@ -69,12 +69,12 @@ public class DryingRackCategory extends BaseRecipeCategory<DryingRackRecipe> {
     }
 
     @Override
-    public Size tickPos() {
+    public Size tickPos(DryingRackRecipe recipe) {
         return Size.of(19, 29);
     }
 
     @Override
-    public int tickColor() {
+    public int tickColor(DryingRackRecipe recipe) {
         return ColorUtils.WHITE.getRGB();
     }
 

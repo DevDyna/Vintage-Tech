@@ -8,6 +8,9 @@ import com.devdyna.cakesticklib.api.compat.jei.JEIAliasesHelper;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.synergy.vintagetech.Client;
 import com.synergy.vintagetech.compat.jei.categories.CentrifugeCategory;
+import com.synergy.vintagetech.compat.jei.categories.CheeseCategory;
+import com.synergy.vintagetech.compat.jei.categories.CheeseCategory.CheesePage;
+import com.synergy.vintagetech.compat.jei.categories.CheeseCategory.CheesePageType;
 import com.synergy.vintagetech.compat.jei.categories.CrucibleCategory;
 import com.synergy.vintagetech.compat.jei.categories.CrushingTubCategory;
 import com.synergy.vintagetech.compat.jei.categories.DryingRackCategory;
@@ -48,7 +51,6 @@ public class PluginJEI implements IModPlugin {
                 r.addCraftingStation(TreeTapCategory.TYPE, x.item(zBlocks.TREE_TAP.get()));
                 r.addCraftingStation(FarmlandFuelsCategory.TYPE, x.item(zBlocks.MECHANICAL_FARMLAND.get()));
                 r.addCraftingStation(CrucibleCategory.TYPE, x.item(zBlocks.CRUCIBLE.get()));
-
         }
 
         @Override
@@ -64,7 +66,8 @@ public class PluginJEI implements IModPlugin {
                                 new MillstoneCategory(helper),
                                 new TreeTapCategory(helper),
                                 new FarmlandFuelsCategory(helper),
-                                new CrucibleCategory(helper)
+                                new CrucibleCategory(helper),
+                                new CheeseCategory(helper)
 
                 );
 
@@ -96,6 +99,13 @@ public class PluginJEI implements IModPlugin {
 
                 r.addRecipes(CrucibleCategory.TYPE,
                                 getRecipes(zRecipeTypes.CRUCIBLE.getType()));
+
+                r.addRecipes(CheeseCategory.TYPE, List.of(
+                        new CheesePage(CheesePageType.AGING),
+                        new CheesePage(CheesePageType.SEALING),
+                        new CheesePage(CheesePageType.SLICING),
+                        new CheesePage(CheesePageType.UNSEALING)
+                        ));
 
         }
 

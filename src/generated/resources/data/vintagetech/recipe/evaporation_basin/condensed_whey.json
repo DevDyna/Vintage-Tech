@@ -1,0 +1,11 @@
+{
+  "type": "vintagetech:evaporation_basin",
+  "fluid": {
+    "amount": 250,
+    "ingredient": "vintagetech:whey_source"
+  },
+  "output": {
+    "id": "vintagetech:condensed_whey"
+  },
+  "ticks": 20
+}

@@ -1,0 +1,10 @@
+{
+  "values": [
+    "#minecraft:logs_that_burn",
+    "#minecraft:planks",
+    "#minecraft:wooden_trapdoors",
+    "#minecraft:wooden_slabs",
+    "#minecraft:wooden_stairs",
+    "#vintagetech:beam"
+  ]
+}

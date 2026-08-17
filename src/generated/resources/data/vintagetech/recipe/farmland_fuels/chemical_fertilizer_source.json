@@ -1,7 +1,0 @@
-{
-  "type": "vintagetech:farmland_fuels",
-  "fluid": {
-    "amount": 450,
-    "ingredient": "vintagetech:chemical_fertilizer_source"
-  }
-}

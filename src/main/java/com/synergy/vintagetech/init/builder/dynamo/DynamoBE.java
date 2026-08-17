@@ -5,7 +5,7 @@ import java.util.Map;
 
 import com.devdyna.cakesticklib.api.aspect.logic.EnergyProvider;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
-import com.synergy.vintagetech.api.blockfactory.transmission.TransmissionBE;
+import com.synergy.vintagetech.api.factories.transmission.TransmissionBE;
 import com.synergy.vintagetech.init.types.zBlockEntities;
 
 import net.minecraft.core.BlockPos;

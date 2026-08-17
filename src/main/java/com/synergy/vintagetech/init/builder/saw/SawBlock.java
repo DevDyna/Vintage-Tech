@@ -4,8 +4,8 @@ import java.util.Map;
 
 import org.jspecify.annotations.Nullable;
 
-import com.synergy.vintagetech.api.blockfactory.MonoDirectionalAxleBlock;
-import com.synergy.vintagetech.api.blockfactory.RotableAxleBlock;
+import com.synergy.vintagetech.api.factories.MonoDirectionalAxleBlock;
+import com.synergy.vintagetech.api.factories.handlers.RotableAxleBlock;
 import com.synergy.vintagetech.init.types.zTags;
 
 import net.minecraft.core.BlockPos;
@@ -38,12 +38,13 @@ public class SawBlock extends MonoDirectionalAxleBlock implements RotableAxleBlo
     public BlockState getStateForPlacement(BlockPlaceContext c) {
         return this.defaultBlockState()
                 .setValue(ENABLED, false)
+                .setValue(INVERTED, false)
                 .setValue(FACING, c.getClickedFace());
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> b) {
-        b.add(FACING, ENABLED);
+        b.add(FACING, ENABLED, INVERTED);
     }
 
     @Override
@@ -60,7 +61,12 @@ public class SawBlock extends MonoDirectionalAxleBlock implements RotableAxleBlo
 
     @Override
     public Map<Direction, Boolean> getAxis(BlockState state) {
-        return Map.of();
+        var dir = state.getValue(FACING);
+        
+        if (state.getValue(FACING).getAxis().isHorizontal())
+            dir = dir.getOpposite();
+
+        return Map.of(dir, state.getValue(INVERTED));
     }
 
     @Override

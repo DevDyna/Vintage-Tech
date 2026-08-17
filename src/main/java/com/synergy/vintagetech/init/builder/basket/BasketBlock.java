@@ -26,6 +26,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.storage.loot.LootParams.Builder;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -134,7 +135,16 @@ public class BasketBlock extends TickingBlock implements BlockItemKeeper {
 
     @Override
     public List<ItemStack> getDrops(BlockState state, Builder builder) {
+        var entity = builder.getOptionalParameter(LootContextParams.THIS_ENTITY);
+        var be = builder.getParameter(LootContextParams.BLOCK_ENTITY);
+
+        // TODO API : move to api
+        if (entity != null && entity instanceof Player player && be != null && be instanceof BasketBE basket)
+            if (basket.dropOnBreak(player))
+                return super.getDrops(state, builder);
+
         return getResultDrops(super.getDrops(state, builder), this.asItem(), state, builder);
+
     }
 
     @Override

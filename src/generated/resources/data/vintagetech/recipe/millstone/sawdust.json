@@ -2,7 +2,7 @@
   "type": "vintagetech:millstone",
   "input": "#minecraft:logs",
   "output": {
-    "count": 2,
+    "count": 4,
     "id": "cakesticklib:sawdust"
   },
   "ticks": 40

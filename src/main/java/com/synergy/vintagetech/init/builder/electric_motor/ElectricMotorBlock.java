@@ -5,8 +5,8 @@ import java.util.Map;
 
 import org.jspecify.annotations.Nullable;
 
-import com.synergy.vintagetech.api.blockfactory.HorizontalAxleBlock;
-import com.synergy.vintagetech.api.blockfactory.engine.BaseEngineBlock;
+import com.synergy.vintagetech.api.factories.engine.BaseEngineBlock;
+import com.synergy.vintagetech.api.factories.handlers.HorizontalAxleBlock;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -22,6 +22,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 
+@SuppressWarnings("deprecation")
 public class ElectricMotorBlock extends BaseEngineBlock
         implements
         HorizontalAxleBlock {

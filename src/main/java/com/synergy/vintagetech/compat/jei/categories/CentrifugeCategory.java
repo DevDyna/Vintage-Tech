@@ -94,7 +94,7 @@ public class CentrifugeCategory extends BaseRecipeCategory<CentrifugeRecipe> {
     }
 
     @Override
-    public boolean enableTimerRender() {
+    public boolean enableTimerRender(CentrifugeRecipe recipe) {
         return true;
     }
 
@@ -104,12 +104,12 @@ public class CentrifugeCategory extends BaseRecipeCategory<CentrifugeRecipe> {
     }
 
     @Override
-    public Size tickPos() {
+    public Size tickPos(CentrifugeRecipe recipe) {
         return Size.of(26, 42);
     }
 
     @Override
-    public int tickColor() {
+    public int tickColor(CentrifugeRecipe recipe) {
         return ColorUtils.WHITE.getRGB();
     }
 

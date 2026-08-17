@@ -2,10 +2,14 @@ package com.synergy.vintagetech.common;
 
 import static com.synergy.vintagetech.Main.MODULE_ID;
 
+import java.util.List;
+
 import com.devdyna.cakesticklib.api.ToolTipHelper;
 import com.devdyna.cakesticklib.setup.registry.LibComponents;
+import com.synergy.vintagetech.api.factories.EffectConsumableItem;
 import com.synergy.vintagetech.init.types.*;
 
+import net.minecraft.network.chat.Component;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 
@@ -73,9 +77,21 @@ public class ItemToolTipped {
 
                 if (!item.has(LibComponents.ITEM_CONTAINER) || item.get(LibComponents.ITEM_CONTAINER) == null)
                         ToolTipHelper.addToggle(t, item.is(zBlocks.BASKET.get().asItem()),
-                                        MODULE_ID + ".basket.info",
-                                        MODULE_ID + ".basket.keep");
+                                        MODULE_ID + ".basket.info");
 
+                // TODO API : ADD add(List<Component>,Component...)
+                if (item.getItem() instanceof EffectConsumableItem effect)
+                        add(t, effect.getEffectToolTip());
+
+        }
+
+        private static void add(List<Component> t, Component... s) {
+                for (var c : s)
+                        t.add(ToolTipHelper.INDEX, c);
+        }
+
+        private static void add(List<Component> t, List<Component> s) {
+                add(t, s.toArray(Component[]::new));
         }
 
 }

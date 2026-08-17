@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "vintagetech:block/saw_off"
+    "model": "vintagetech:item/saw"
   }
 }

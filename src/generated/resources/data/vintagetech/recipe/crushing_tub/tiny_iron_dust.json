@@ -1,0 +1,15 @@
+{
+  "type": "vintagetech:crushing_tub",
+  "fluid": {
+    "amount": 250,
+    "id": "vintagetech:ironberry_juice_source"
+  },
+  "input": "vintagetech:ironberries",
+  "output": {
+    "chance": 1.0,
+    "item": {
+      "id": "vintagetech:tiny_iron_dust"
+    }
+  },
+  "require_mesh": false
+}

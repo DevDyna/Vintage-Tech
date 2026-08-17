@@ -97,6 +97,9 @@ public class zTags {
                 public static final TagKey<Block> CRUCIBLE_HEAT_SOURCES = RegistryUtils
                                 .tagBlock(MODULE_ID, "crucible/heat_sources");
 
+                public static final TagKey<Block> CHEESE_BOOSTER = RegistryUtils
+                                .tagBlock(MODULE_ID, "cheese/booster");
+
         }
 
         public class Items {
@@ -182,7 +185,14 @@ public class zTags {
                 public static final TagKey<Item> BASKET_DENY = RegistryUtils.tagItem(MODULE_ID,
                                 "basket/deny");
 
-               
+                public static final TagKey<Item> CHEESE_SEALER = RegistryUtils.tagItem(MODULE_ID,
+                                "cheese/sealer");
+
+                public static final TagKey<Item> CHEESE_UNSEALER = RegistryUtils.tagItem(MODULE_ID,
+                                "cheese/unsealer");
+
+                public static final TagKey<Item> SALT_DUST = RegistryUtils.tagItem("c",
+                                "dusts/salt");
 
         }
 

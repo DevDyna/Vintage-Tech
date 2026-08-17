@@ -4,7 +4,8 @@ import java.util.Map;
 
 import org.jspecify.annotations.Nullable;
 
-import com.synergy.vintagetech.api.blockfactory.MonoDirectionalAxleBlock;
+import com.synergy.vintagetech.api.factories.MonoDirectionalAxleBlock;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;

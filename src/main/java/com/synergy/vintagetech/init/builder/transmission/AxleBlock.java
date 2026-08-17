@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.synergy.vintagetech.api.RopeHandler;
-import com.synergy.vintagetech.api.blockfactory.BaseKineticBlock;
+import com.synergy.vintagetech.api.factories.BaseKineticBlock;
+import com.synergy.vintagetech.api.factories.handlers.RopeHandler;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
