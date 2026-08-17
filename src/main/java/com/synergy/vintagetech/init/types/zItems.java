@@ -152,5 +152,10 @@ public class zItems {
                         new FoodProperties(6, 10f, true),
                         new MobEffectInstance(MobEffects.REGENERATION, 50, 1));
 
+        public static final DeferredHolder<Item, Item> CONDENSED_WHEY = Material.registerFoodEffectItem(
+                        "condensed_whey",
+                        p -> p,
+                        new FoodProperties(4, 0.125f, true),
+                        new MobEffectInstance(MobEffects.STRENGTH, 50, 1));
 
 }
