@@ -38,7 +38,7 @@ public class SealedCheeseBlock extends BaseCheeseBlock {
     @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext c) {
         return defaultBlockState()
-                .setValue(PIECES, 0)
+                .setValue(PIECES, 4)
                 .setValue(AGE, 0)
                 .setValue(FACING, c.getHorizontalDirection().getOpposite());
     }
