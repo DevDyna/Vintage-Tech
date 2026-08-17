@@ -37,5 +37,4 @@ dependencies {
     compileOnly "org.appliedenergistics:guideme:26.1.12-beta:api"
     runtimeOnly "org.appliedenergistics:guideme:26.1.12-beta"
    
-  
 }
