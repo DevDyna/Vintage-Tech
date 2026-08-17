@@ -96,6 +96,16 @@ public class SealedCheeseBlock extends BaseCheeseBlock {
             return InteractionResult.SUCCESS_SERVER;
         }
 
+        if (itemStack.is(this.asItem()) && state.getValue(PIECES) == 4 && state.getValue(AGE) == 0) {
+
+            if (!player.isCreative())
+                itemStack.shrink(1);
+
+            level.setBlockAndUpdate(pos, state.setValue(PIECES, 8));
+
+            return InteractionResult.SUCCESS_SERVER;
+        }
+
         return super.useItemOn(itemStack, state, level, pos, player, hand, hitResult);
     }
 
