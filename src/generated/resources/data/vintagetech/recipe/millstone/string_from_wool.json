@@ -1,0 +1,9 @@
+{
+  "type": "vintagetech:millstone",
+  "input": "#minecraft:wool",
+  "output": {
+    "count": 4,
+    "id": "minecraft:string"
+  },
+  "ticks": 40
+}

@@ -413,8 +413,6 @@ public class zBlocks {
                                         .ignitedByLava()
                                         .mapColor(MapColor.RAW_IRON)));
 
-        // TODO IMP : FLAX
-
         // renderer
         public static final DeferredHolder<Block, Block> RENDER_HALF_AXLE = Material.renderBlock("render_half_axle");
         public static final DeferredHolder<Block, Block> RENDER_FAN_BLADE = Material.renderBlock("render_fan_blade");

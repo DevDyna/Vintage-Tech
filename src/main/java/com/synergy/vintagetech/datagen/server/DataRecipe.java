@@ -5,6 +5,7 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 import java.util.concurrent.CompletableFuture;
 
 import com.devdyna.cakesticklib.api.datagen.RecipeGenerators;
+import com.devdyna.cakesticklib.setup.common.recipes.hammering.HammeringBuilder;
 import com.devdyna.cakesticklib.setup.registry.LibItems;
 import com.devdyna.cakesticklib.setup.registry.LibTags;
 import com.synergy.vintagetech.init.builder.centrifuge.recipe.CentrifugeBuilder;
@@ -825,6 +826,38 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .output(zItems.CONDENSED_WHEY.get(), 1)
                                 .unlockedBy(Items.MILK_BUCKET)
                                 .save(output);
+
+                // TODO API : recipe with scissors
+                // TODO API : add fallback to force replace when fail
+                // TODO API : allow x.rl() on .save(output,?) to override suffix
+                // TODO API : add optional boolean to override suffix without use x.rl()
+                // TODO BUG : cakesticklib hammer is one use only!
+                HammeringBuilder.of(registries)
+                                .add(ItemTags.WOOL_CARPETS)
+                                .tool(LibItems.HAMMER.get())
+                                .unlockedBy(getHasName(ItemTags.WOOL_CARPETS), has(ItemTags.WOOL_CARPETS))
+                                .output(Items.STRING, 1)
+                                .save(output, "_from_wool_carpets");
+
+                HammeringBuilder.of(registries)
+                                .add(ItemTags.WOOL)
+                                .tool(LibItems.HAMMER.get())
+                                .output(Items.STRING, 3)
+                                .unlockedBy(getHasName(ItemTags.WOOL), has(ItemTags.WOOL))
+                                .save(output, "_from_wool");
+
+                // TODO API : unlockedBy(TagKey<Item>)
+                MillstoneBuilder.of(registries)
+                                .input(ItemTags.WOOL_CARPETS)
+                                .output(Items.STRING, 2)
+                                .unlockedBy(getHasName(ItemTags.WOOL_CARPETS), has(ItemTags.WOOL_CARPETS))
+                                .save(output, "_from_wool_carpets");
+
+                MillstoneBuilder.of(registries)
+                                .input(ItemTags.WOOL)
+                                .output(Items.STRING, 4)
+                                .unlockedBy(getHasName(ItemTags.WOOL), has(ItemTags.WOOL))
+                                .save(output, "_from_wool");
 
         }
 
