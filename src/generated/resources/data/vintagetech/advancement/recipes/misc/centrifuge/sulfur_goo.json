@@ -1,32 +1,32 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_amber": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "vintagetech:centrifuge/sulfur_goo"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "slime_ball": {
       "conditions": {
         "items": [
           {
-            "items": "vintagetech:amber"
+            "items": "minecraft:slime_ball"
           }
         ]
       },
       "trigger": "minecraft:inventory_changed"
-    },
-    "has_the_recipe": {
-      "conditions": {
-        "recipe": "vintagetech:torch_from_amber"
-      },
-      "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
       "has_the_recipe",
-      "has_amber"
+      "slime_ball"
     ]
   ],
   "rewards": {
     "recipes": [
-      "vintagetech:torch_from_amber"
+      "vintagetech:centrifuge/sulfur_goo"
     ]
   }
 }

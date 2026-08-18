@@ -6,8 +6,8 @@
   },
   "input_items": [
     {
-      "count": 1,
-      "ingredient": "vintagetech:amber"
+      "count": 2,
+      "ingredient": "#vintagetech:sticky_goo"
     },
     {
       "count": 5,
@@ -29,6 +29,12 @@
       "chance": 0.25,
       "item": {
         "id": "vintagetech:cloth"
+      }
+    },
+    {
+      "chance": 0.25,
+      "item": {
+        "id": "vintagetech:mesh"
       }
     }
   ],

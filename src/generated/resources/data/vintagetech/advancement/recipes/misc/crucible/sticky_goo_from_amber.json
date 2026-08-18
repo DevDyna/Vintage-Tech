@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_amber": {
+    "has_sticky_goo": {
       "conditions": {
         "items": [
           {
-            "items": "vintagetech:amber"
+            "items": "#vintagetech:sticky_goo"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "vintagetech:crucible/cloth_from_amber"
+        "recipe": "vintagetech:crucible/sticky_goo_from_amber"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_amber"
+      "has_sticky_goo"
     ]
   ],
   "rewards": {
     "recipes": [
-      "vintagetech:crucible/cloth_from_amber"
+      "vintagetech:crucible/sticky_goo_from_amber"
     ]
   }
 }

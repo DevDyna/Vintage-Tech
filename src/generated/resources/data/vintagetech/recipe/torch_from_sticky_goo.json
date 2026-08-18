@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    "vintagetech:amber",
+    "#vintagetech:sticky_goo",
     "minecraft:string",
     "minecraft:stick"
   ],

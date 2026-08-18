@@ -1,7 +1,7 @@
 {
   "type": "vintagetech:crucible",
   "input_fluid": {
-    "amount": 25,
+    "amount": 100,
     "ingredient": "vintagetech:sap_source"
   },
   "input_items": [
@@ -14,7 +14,7 @@
       "ingredient": "#c:strings"
     },
     {
-      "count": 2,
+      "count": 1,
       "ingredient": "vintagetech:mesh"
     }
   ],
@@ -22,8 +22,19 @@
     {
       "chance": 1.0,
       "item": {
-        "count": 2,
         "id": "vintagetech:cloth"
+      }
+    },
+    {
+      "chance": 0.05,
+      "item": {
+        "id": "vintagetech:cloth"
+      }
+    },
+    {
+      "chance": 0.95,
+      "item": {
+        "id": "vintagetech:mesh"
       }
     }
   ],

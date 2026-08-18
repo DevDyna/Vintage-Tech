@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "moisture=0": {
+      "model": "vintagetech:block/sticky_farmland/dried"
+    },
+    "moisture=1": {
+      "model": "vintagetech:block/sticky_farmland/dried"
+    },
+    "moisture=2": {
+      "model": "vintagetech:block/sticky_farmland/dried"
+    },
+    "moisture=3": {
+      "model": "vintagetech:block/sticky_farmland/dried"
+    },
+    "moisture=4": {
+      "model": "vintagetech:block/sticky_farmland/dried"
+    },
+    "moisture=5": {
+      "model": "vintagetech:block/sticky_farmland/dried"
+    },
+    "moisture=6": {
+      "model": "vintagetech:block/sticky_farmland/dried"
+    },
+    "moisture=7": {
+      "model": "vintagetech:block/sticky_farmland/moist"
+    }
+  }
+}

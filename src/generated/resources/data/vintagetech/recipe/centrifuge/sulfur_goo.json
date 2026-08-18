@@ -1,0 +1,19 @@
+{
+  "type": "vintagetech:centrifuge",
+  "input_fluid": {
+    "amount": 250,
+    "ingredient": "vintagetech:sulfuric_acid_source"
+  },
+  "input_item": {
+    "count": 1,
+    "ingredient": "minecraft:slime_ball"
+  },
+  "output_item": {
+    "chance": 1.0,
+    "item": {
+      "count": 4,
+      "id": "vintagetech:sulfur_goo"
+    }
+  },
+  "ticks": 40
+}
