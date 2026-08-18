@@ -3,6 +3,7 @@ package com.synergy.vintagetech;
 import java.util.List;
 
 import com.devdyna.cakesticklib.api.FluidRenderUtils;
+import com.devdyna.cakesticklib.api.utils.ModAddonUtil;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.synergy.vintagetech.api.ClassUtils;
 import com.synergy.vintagetech.api.FluidRegister;
@@ -17,6 +18,7 @@ import com.synergy.vintagetech.init.types.zBlocks;
 import com.synergy.vintagetech.init.types.zFluids;
 import com.synergy.vintagetech.init.types.zParticles;
 
+import guideme.Guide;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.block.BlockTintSources;
 import net.minecraft.resources.Identifier;
@@ -48,6 +50,9 @@ public class Client {
 
     public Client(ModContainer container) {
         container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
+
+        if (ModAddonUtil.checkMod("guideme"))
+            Guide.builder(x.rl(Main.MODULE_ID, "guide")).build();
     }
 
     @SubscribeEvent
@@ -92,8 +97,6 @@ public class Client {
         event.registerBlockEntityRenderer(
                 zBlockEntities.CENTRIFUGE.get(),
                 CentrifugeRenderer::new);
-
-        
 
     }
 
