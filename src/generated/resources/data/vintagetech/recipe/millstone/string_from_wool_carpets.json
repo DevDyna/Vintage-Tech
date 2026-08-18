@@ -1,0 +1,9 @@
+{
+  "type": "vintagetech:millstone",
+  "input": "#minecraft:wool_carpets",
+  "output": {
+    "count": 2,
+    "id": "minecraft:string"
+  },
+  "ticks": 40
+}
