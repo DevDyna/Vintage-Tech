@@ -4,6 +4,7 @@ import com.synergy.vintagetech.init.Material;
 
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.fml.ModContainer;
 
 @Mod(Main.MODULE_ID)
@@ -14,6 +15,8 @@ public class Main {
     public Main(IEventBus bus, ModContainer c) {
         Material.register(bus);
         GameEvents.build(bus, c);
+
+        NeoForgeMod.enableMilkFluid();
     }
 
 }
