@@ -194,6 +194,9 @@ public class zTags {
                 public static final TagKey<Item> SALT_DUST = RegistryUtils.tagItem("c",
                                 "dusts/salt");
 
+                public static final TagKey<Item> STICKY_GOO = RegistryUtils.tagItem(MODULE_ID,
+                                "sticky_goo");
+
         }
 
         public class Biomes {

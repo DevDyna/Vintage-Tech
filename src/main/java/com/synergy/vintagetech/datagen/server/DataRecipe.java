@@ -294,11 +294,11 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .save(output);
 
                 shapeless(RecipeCategory.MISC, Items.TORCH, 6)
-                                .requires(zItems.AMBER.get())
+                                .requires(zTags.Items.STICKY_GOO)
                                 .requires(Items.STRING)
                                 .requires(Items.STICK)
-                                .unlockedBy(getHasName(zItems.AMBER.get()), has(zItems.AMBER.get()))
-                                .save(output, MODULE_ID + ":torch_from_amber");
+                                .unlockedBy(getHasName(zTags.Items.STICKY_GOO), has(zTags.Items.STICKY_GOO))
+                                .save(output, MODULE_ID + ":torch_from_sticky_goo");
 
                 shapeless(RecipeCategory.MISC, Items.MAGENTA_DYE, 2)
                                 .requires(zBlocks.LAVENDER.get())
@@ -682,9 +682,11 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                 CrucibleBuilder.of(registries)
                                 .add(Tags.Items.SLIME_BALLS)
                                 .add(Tags.Items.STRINGS, 3)
-                                .add(zItems.MESH, 2)
-                                .fluid(zFluids.SAP.getFluid(), 25)
-                                .output(zItems.CLOTH.get(), 2, 1f)
+                                .add(zItems.MESH)
+                                .fluid(zFluids.SAP.getFluid(), 100)
+                                .output(zItems.CLOTH.get(), 1, 1f)
+                                .output(zItems.CLOTH.get(), 1, 0.05f)
+                                .output(zItems.MESH.get(),1,0.95f)
                                 .unlockedBy(getHasName(Tags.Items.SLIME_BALLS), has(Tags.Items.SLIME_BALLS))
                                 .save(output, "_from_slime");
 
@@ -738,14 +740,16 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .unlockedBy(zItems.MOZZARELLA_CURD.get())
                                 .save(output);
 
+                                //TODO API : output must accept DeferredHolder<Item, Item>
                 CrucibleBuilder.of(registries)
-                                .add(zItems.AMBER)
+                                .add(zTags.Items.STICKY_GOO,2)
                                 .add(Tags.Items.STRINGS, 5)
                                 .add(zItems.MESH)
                                 .fluid(zFluids.SAP.getFluid(), 5)
                                 .output(zItems.CLOTH.get(), 1, 1f)
                                 .output(zItems.CLOTH.get(), 1, 0.25f)
-                                .unlockedBy(getHasName(zItems.AMBER.get()), has(zItems.AMBER.get()))
+                                .output(zItems.MESH.get(),1,0.25f)
+                                .unlockedBy(getHasName(zTags.Items.STICKY_GOO), has(zTags.Items.STICKY_GOO))
                                 .save(output, "_from_amber");
 
                 shaped(RecipeCategory.BUILDING_BLOCKS,
@@ -858,6 +862,13 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .output(Items.STRING, 4)
                                 .unlockedBy(getHasName(ItemTags.WOOL), has(ItemTags.WOOL))
                                 .save(output, "_from_wool");
+
+                CentrifugeBuilder.of(registries)
+                                .fluid(zFluids.SULFURIC_ACID.getFluid(), 250)
+                                .input(Items.SLIME_BALL)
+                                .output(zItems.SULFUR_GOO.get(), 4, 1f)
+                                .unlockedBy(Items.SLIME_BALL)
+                                .save(output);
 
         }
 

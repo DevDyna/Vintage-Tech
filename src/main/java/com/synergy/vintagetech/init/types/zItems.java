@@ -158,4 +158,7 @@ public class zItems {
                         new FoodProperties(4, 0.125f, true),
                         new MobEffectInstance(MobEffects.STRENGTH, 50, 1));
 
+        public static final DeferredHolder<Item, Item> SULFUR_GOO = zItem.registerSimpleItem("sulfur_goo", p -> p);
+
+
 }
