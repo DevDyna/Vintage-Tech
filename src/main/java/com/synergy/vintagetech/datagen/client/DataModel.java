@@ -431,6 +431,9 @@ public class DataModel extends ModelProvider {
                 itemModels.itemModelOutput.accept(zBlocks.WINDMILL.get().asItem(),
                                 ItemModelUtils.plainModel(x.rl(MODULE_ID, "item/windmill")));
 
+                itemModels.itemModelOutput.accept(zBlocks.STICKY_FARMLAND.get().asItem(),
+                                ItemModelUtils.plainModel(x.rl(MODULE_ID, "block/sticky_farmland/dried")));
+
                 itemModels.itemModelOutput.accept(zBlocks.CRUSHING_TUB.get().asItem(),
                                 ItemModelUtils.plainModel(x.rl(MODULE_ID, "block/crushing_tub/tub")));
 
