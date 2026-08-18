@@ -826,6 +826,35 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .unlockedBy(Items.MILK_BUCKET)
                                 .save(output);
 
+
+
+//TODO API : recipe with scissors
+shapeless(RecipeCategory.MISC, Items.STRING, 3)
+                                .requires(ItemTags.WOOL)
+                                .requires(Items.SHEARS)
+                                .unlockedBy(getHasName(ItemTags.WOOL), has(ItemTags.WOOL))
+                                .save(output, MODULE_ID + ":string_from_wool");
+
+shapeless(RecipeCategory.MISC, Items.STRING, 1)
+                                .requires(ItemTags.WOOL_CARPETS)
+                                .requires(Items.SHEARS)
+                                .unlockedBy(getHasName(ItemTags.WOOL_CARPETS), has(ItemTags.WOOL_CARPETS))
+                                .save(output, MODULE_ID + ":string_from_carpets");
+
+                                //TODO API : unlockedBy(TagKey<Item>)
+                MillstoneBuilder.of(registries)
+                                .input(ItemTags.WOOL_CARPETS)
+                                .output(Items.STRING, 2)
+                                .unlockedBy(getHasName(ItemTags.WOOL_CARPETS), has(ItemTags.WOOL_CARPETS))
+                                .save(output);
+
+                MillstoneBuilder.of(registries)
+                                .input(ItemTags.WOOL)
+                                .output(Items.STRING, 4)
+                                .unlockedBy(getHasName(ItemTags.WOOL), has(ItemTags.WOOL))
+                                .save(output);
+
+
         }
 
         public static final class RecipeRunner extends RecipeProvider.Runner {
