@@ -6,6 +6,7 @@ import java.util.Optional;
 import net.minecraft.core.Direction;
 import com.synergy.vintagetech.init.Material;
 import com.synergy.vintagetech.init.builder.RopeBlock;
+import com.synergy.vintagetech.init.builder.StickyFarmlandBlock;
 import com.synergy.vintagetech.init.builder.WoodenBeam;
 import com.synergy.vintagetech.init.builder.basket.BasketBlock;
 import com.synergy.vintagetech.init.builder.centrifuge.CentrifugeBlock;
@@ -184,14 +185,16 @@ public class zBlocks {
                                         .mapColor(MapColor.WOOD)
                                         .noOcclusion()));
 
-        public static final DeferredHolder<Block, Block> EVAPORATION_BASIN = Material.registerItemBlock("evaporation_basin",
+        public static final DeferredHolder<Block, Block> EVAPORATION_BASIN = Material.registerItemBlock(
+                        "evaporation_basin",
                         p -> new EvaporationBasinBlock(p
                                         .mapColor(MapColor.COLOR_ORANGE)
                                         .strength(1F, 2.25F)
                                         .sound(SoundType.STONE)
                                         .mapColor(MapColor.TERRACOTTA_ORANGE)));
 
-        public static final DeferredHolder<Block, Block> MECHANICAL_FARMLAND = Material.registerItemBlock("mechanical_farmland",
+        public static final DeferredHolder<Block, Block> MECHANICAL_FARMLAND = Material.registerItemBlock(
+                        "mechanical_farmland",
                         p -> new MechanicalFarmlandBlock(p
                                         .mapColor(MapColor.WOOD)
 
@@ -239,14 +242,16 @@ public class zBlocks {
         public static final DeferredHolder<Block, Block> BAMBOO_BEAM = Material.registerItemBlock("bamboo_beam",
                         (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.BAMBOO_BLOCK).setId(k)));
 
-        public static final DeferredHolder<Block, Block> STRIPPED_OAK_BEAM = Material.registerItemBlock("stripped_oak_beam",
+        public static final DeferredHolder<Block, Block> STRIPPED_OAK_BEAM = Material.registerItemBlock(
+                        "stripped_oak_beam",
                         (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG).setId(k)));
 
         public static final DeferredHolder<Block, Block> STRIPPED_SPRUCE_BEAM = Material.registerItemBlock(
                         "stripped_spruce_beam",
                         (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.STRIPPED_SPRUCE_LOG).setId(k)));
 
-        public static final DeferredHolder<Block, Block> STRIPPED_BIRCH_BEAM = Material.registerItemBlock("stripped_birch_beam",
+        public static final DeferredHolder<Block, Block> STRIPPED_BIRCH_BEAM = Material.registerItemBlock(
+                        "stripped_birch_beam",
                         (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.STRIPPED_BIRCH_LOG).setId(k)));
 
         public static final DeferredHolder<Block, Block> STRIPPED_JUNGLE_BEAM = Material.registerItemBlock(
@@ -359,7 +364,8 @@ public class zBlocks {
                                         .ignitedByLava()
                                         .mapColor(MapColor.RAW_IRON)));
 
-        public static final DeferredHolder<Block, Block> IRONWOOD_SAPLING = Material.registerItemBlock("ironwood_sapling",
+        public static final DeferredHolder<Block, Block> IRONWOOD_SAPLING = Material.registerItemBlock(
+                        "ironwood_sapling",
                         p -> new SaplingBlock(new TreeGrower(
                                         "ironwood",
                                         0.5F,
@@ -413,14 +419,22 @@ public class zBlocks {
                                         .ignitedByLava()
                                         .mapColor(MapColor.RAW_IRON)));
 
+        public static final DeferredHolder<Block, Block> STICKY_FARMLAND = Material.registerItemBlock("sticky_farmland",
+                        p -> new StickyFarmlandBlock(p
+                                        .mapColor(MapColor.DIRT)
+                                        .randomTicks()
+                                        .strength(0.6F)
+                                        .sound(SoundType.GRAVEL)
+                                        .isViewBlocking((a, b, c) -> true)
+                                        .isSuffocating((a, b, c) -> true)));
+
         // renderer
         public static final DeferredHolder<Block, Block> RENDER_HALF_AXLE = Material.renderBlock("render_half_axle");
         public static final DeferredHolder<Block, Block> RENDER_FAN_BLADE = Material.renderBlock("render_fan_blade");
         public static final DeferredHolder<Block, Block> RENDER_MILLSTONE = Material.renderBlock("render_millstone");
-        public static final DeferredHolder<Block, Block> RENDER_CENTRIFUGE = Material.renderBlock("render_centrifuge_blades");
+        public static final DeferredHolder<Block, Block> RENDER_CENTRIFUGE = Material
+                        .renderBlock("render_centrifuge_blades");
         public static final DeferredHolder<Block, Block> RENDER_PRESS_HEAD = Material.renderBlock("render_press_head");
         public static final DeferredHolder<Block, Block> RENDER_WINDMILL = Material.renderBlock("render_windmill");
-
-        
 
 }

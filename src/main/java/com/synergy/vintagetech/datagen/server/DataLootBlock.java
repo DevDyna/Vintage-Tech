@@ -156,7 +156,10 @@ public class DataLootBlock extends BlockLootSubProvider {
                 addAgedCheese(zBlocks.SEALED_CHEESE.get(), zBlocks.MATURED_CHEESE.get(), zBlocks.AGED_CHEESE.get(),
                                 zItems.FRESH_CHEESE_SLICE.get(),
                                 zItems.MATURED_CHEESE_SLICE.get(), zItems.AGED_CHEESE_SLICE.get());
-        }
+        
+                dropOther(zBlocks.STICKY_FARMLAND.get(),Items.DIRT);
+        
+                        }
 
         private void addCheese(Block block, ItemLike slice) {
                 var table = LootTable.lootTable();

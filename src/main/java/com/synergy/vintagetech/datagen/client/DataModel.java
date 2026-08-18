@@ -393,6 +393,9 @@ public class DataModel extends ModelProvider {
                                                 .select(Axis.X, BlockModelGenerators.NOP)
                                                 .select(Axis.Z, BlockModelGenerators.Y_ROT_90)));
 
+                BlockModelUtils.createFarmland(blockModels, zBlocks.STICKY_FARMLAND.get(), x.mcLoc("block/dirt"),
+                                x.rl(MODULE_ID, "block/farmland/dried"), x.rl(MODULE_ID, "block/farmland/moist"));
+
                 // ITEM MODELS
 
                 // blockitems
