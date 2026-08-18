@@ -830,7 +830,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                 // TODO API : recipe with scissors
                 // TODO API : add fallback to force replace when fail
                 // TODO API : allow x.rl() on .save(output,?) to override suffix
-                //TODO API : add optional boolean to override suffix without use x.rl()
+                // TODO API : add optional boolean to override suffix without use x.rl()
                 HammeringBuilder.of(registries)
                                 .add(ItemTags.WOOL_CARPETS)
                                 .tool(LibItems.HAMMER.get())
