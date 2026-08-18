@@ -34,7 +34,7 @@ public class StickyFarmlandBlock extends FarmlandBlock {
             if (crop.getBlock() instanceof BonemealableBlock meal)
                 if (crop.isRandomlyTicking())
                     if (meal.isValidBonemealTarget(level, above, crop))
-                        if (RandomUtil.chance(level, 0.12f * moisture))
+                        if (RandomUtil.chance(level, 0.05f * moisture))
                             meal.performBonemeal(level, level.getRandom(), above, crop);
 
         var nearWater = false;
@@ -58,7 +58,7 @@ public class StickyFarmlandBlock extends FarmlandBlock {
                 level.setBlock(pos, state.setValue(MOISTURE, moisture - 1), 2);
 
         } else if (moisture < 7)
-            level.setBlock(pos, state.setValue(MOISTURE, moisture + 1), 2);
+            level.setBlock(pos, state.setValue(MOISTURE, 7), 2);
 
     }
 }
