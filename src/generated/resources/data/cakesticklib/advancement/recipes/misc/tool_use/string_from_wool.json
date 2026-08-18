@@ -3,15 +3,15 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "vintagetech:string_from_wool_carpets"
+        "recipe": "cakesticklib:tool_use/string_from_wool"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
-    "has_wool_carpets": {
+    "has_wool": {
       "conditions": {
         "items": [
           {
-            "items": "#minecraft:wool_carpets"
+            "items": "#minecraft:wool"
           }
         ]
       },
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_wool_carpets"
+      "has_wool"
     ]
   ],
   "rewards": {
     "recipes": [
-      "vintagetech:string_from_wool_carpets"
+      "cakesticklib:tool_use/string_from_wool"
     ]
   }
 }
