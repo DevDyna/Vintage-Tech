@@ -839,20 +839,20 @@ shapeless(RecipeCategory.MISC, Items.STRING, 1)
                                 .requires(ItemTags.WOOL_CARPETS)
                                 .requires(Items.SHEARS)
                                 .unlockedBy(getHasName(ItemTags.WOOL_CARPETS), has(ItemTags.WOOL_CARPETS))
-                                .save(output, MODULE_ID + ":string_from_carpets");
+                                .save(output, MODULE_ID + ":string_from_wool_carpets");
 
                                 //TODO API : unlockedBy(TagKey<Item>)
                 MillstoneBuilder.of(registries)
                                 .input(ItemTags.WOOL_CARPETS)
                                 .output(Items.STRING, 2)
                                 .unlockedBy(getHasName(ItemTags.WOOL_CARPETS), has(ItemTags.WOOL_CARPETS))
-                                .save(output);
+                                .save(output,"_from_wool_carpets");
 
                 MillstoneBuilder.of(registries)
                                 .input(ItemTags.WOOL)
                                 .output(Items.STRING, 4)
                                 .unlockedBy(getHasName(ItemTags.WOOL), has(ItemTags.WOOL))
-                                .save(output);
+                                .save(output,"_from_wool");
 
 
         }
