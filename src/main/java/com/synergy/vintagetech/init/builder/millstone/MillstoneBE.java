@@ -50,7 +50,8 @@ public class MillstoneBE extends TransmissionBE implements ItemStorageBlock, NoG
     @Override
     public void tickServer() {
 
-        super.tickServer();
+        if (!isAxlePowered())
+            return;
 
         if (getItemStorage() == null)
             return;

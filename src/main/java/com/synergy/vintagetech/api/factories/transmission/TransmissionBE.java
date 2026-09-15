@@ -36,14 +36,6 @@ public class TransmissionBE extends TickingBE {
         return 0f;
     }
 
-    @Override
-    public void tickServer() {
-        super.tickServer();
-
-        if (!isAxlePowered())
-            return;
-    }
-
     public boolean isAxlePowered() {
         return getBlockState().getValue(AxleHandler.ENABLED);
     }
