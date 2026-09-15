@@ -63,7 +63,7 @@ public class CentrifugeBuilder extends BaseRecipeBuilder
     }
 
     @Override
-    public CentrifugeBuilder output(Item output_item) {
+    public CentrifugeBuilder outputChance(Item output_item) {
         this.output_item = output_item;
         return this;
     }
