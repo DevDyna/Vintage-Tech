@@ -45,7 +45,7 @@ public class CrushingTubBuilder extends BaseRecipeBuilder
     }
 
     @Override
-    public CrushingTubBuilder output(ChanceOutput.Item output) {
+    public CrushingTubBuilder outputChance(ChanceOutput.Item output) {
         this.output = output;
         return this;
     }
