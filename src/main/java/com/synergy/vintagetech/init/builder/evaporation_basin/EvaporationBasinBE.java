@@ -3,9 +3,6 @@ package com.synergy.vintagetech.init.builder.evaporation_basin;
 import java.util.Optional;
 
 import com.devdyna.cakesticklib.api.RandomUtil;
-import com.devdyna.cakesticklib.api.aspect.logic.ItemStorageBlock;
-import com.devdyna.cakesticklib.api.aspect.logic.NoGuiStorage;
-import com.devdyna.cakesticklib.api.aspect.logic.SimpleFluidStorage;
 import com.devdyna.cakesticklib.api.aspect.logic.*;
 import com.devdyna.cakesticklib.api.templates.TickingBE;
 import com.devdyna.cakesticklib.api.primitive.Ticker;
@@ -60,15 +57,16 @@ public class EvaporationBasinBE extends TickingBE
     @Override
     public void tickBoth() {
 
-        if (getFluidStorage() == null) {
-            fail();
+        if (getFluidStorage() == null) 
             return;
-        }
+        
 
-        if (getAsStack(0).isEmpty()) {
-            fail();
+        if (getFluidStorage().size() <= 0)
             return;
-        }
+
+        if (getAsStack(0).isEmpty()) 
+            return;
+        
 
 
         Optional<RecipeHolder<EvaporationBasinRecipe>> r = level.getServer().getRecipeManager()

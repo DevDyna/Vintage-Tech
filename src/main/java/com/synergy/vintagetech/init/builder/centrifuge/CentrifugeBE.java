@@ -65,6 +65,9 @@ public class CentrifugeBE extends TransmissionBE
         if (getFluidStorage() == null)
             return;
 
+        if (getFluidStorage().size() <= 0)
+            return;
+
         var fluid = x.fluid(getFluidStorage().getResource(FLUID_TANK).getFluid(),
                 getFluidStorage().getAmountAsInt(FLUID_TANK));
 

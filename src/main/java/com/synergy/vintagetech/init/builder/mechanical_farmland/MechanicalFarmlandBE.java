@@ -72,6 +72,9 @@ public class MechanicalFarmlandBE extends TransmissionBE implements SimpleFluidS
         if (getFluidStorage() == null)
             return;
 
+        if (getFluidStorage().size() <= 0)
+            return;
+
         if (getFluidStorage().getResource(FLUID_TANK) == null)
             return;
 

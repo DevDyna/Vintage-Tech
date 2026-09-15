@@ -72,7 +72,7 @@ public class CrucibleBE extends TickingBE
         if (getFluidStorage() == null)
             return;
 
-        if (FLUID_TANK >= getFluidStorage().size())
+        if (getFluidStorage().size() <= 0)
             return;
 
         var fluid = getAsStack(FLUID_TANK);
