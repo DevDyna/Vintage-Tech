@@ -156,7 +156,7 @@ public class DataItemTag extends ItemTagsProvider {
                 tag(Tags.Items.DUSTS).add(zItems.SALT.get());
                 tag(zTags.Items.SALT_DUST).add(zItems.SALT.get());
 
-                tag(zTags.Items.STICKY_GOO).add(zItems.AMBER.get(),zItems.SULFUR_GOO.get());
+                tag(zTags.Items.STICKY_GOO).add(zItems.AMBER.get(), zItems.SULFUR_GOO.get());
 
         }
 
