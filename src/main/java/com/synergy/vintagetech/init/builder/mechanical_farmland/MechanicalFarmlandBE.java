@@ -17,7 +17,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import net.neoforged.neoforge.transfer.fluid.FluidStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
@@ -56,7 +55,7 @@ public class MechanicalFarmlandBE extends TransmissionBE implements SimpleFluidS
         if (level.getGameTime() % 20 != 0)
             return;
 
-        if (!getBlockState().getValue(BlockStateProperties.ENABLED)) {
+        if (!isAxlePowered()) {
             if (state.getValue(MechanicalFarmlandBlock.MOISTURE) > 0)
                 level.setBlock(pos,
                         state.setValue(MechanicalFarmlandBlock.MOISTURE,

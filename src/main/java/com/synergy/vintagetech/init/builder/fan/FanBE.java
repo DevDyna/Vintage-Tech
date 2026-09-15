@@ -22,8 +22,7 @@ public class FanBE extends TransmissionBE {
     @Override
     public void tickBoth() {
 
-        if (!getBlockState().getValue(FanBlock.ENABLED))
-            return;
+        super.tickServer();
 
         var facing = getBlockState().getValue(FanBlock.FACING);
 

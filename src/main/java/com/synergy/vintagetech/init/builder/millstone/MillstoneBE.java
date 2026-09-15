@@ -39,8 +39,8 @@ public class MillstoneBE extends TransmissionBE implements ItemStorageBlock, NoG
 
         var extracted = simpleExtractItemByIndex(OUTPUT);
 
-        if(extracted.isEmpty())
-        extracted = simpleExtractItemByIndex(INPUT);
+        if (extracted.isEmpty())
+            extracted = simpleExtractItemByIndex(INPUT);
 
         return extracted;
     }
@@ -49,6 +49,8 @@ public class MillstoneBE extends TransmissionBE implements ItemStorageBlock, NoG
 
     @Override
     public void tickServer() {
+
+        super.tickServer();
 
         if (getItemStorage() == null)
             return;
