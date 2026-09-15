@@ -26,7 +26,7 @@ import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 
-public class EvaporationBasinRecipe extends BaseRecipeType<FluidInput.withNumber> {
+public class EvaporationBasinRecipe extends BaseRecipeType<FluidInput.simple> {
 
     private final SizedFluidIngredient fluid;
     private final int ticks;
@@ -44,12 +44,12 @@ public class EvaporationBasinRecipe extends BaseRecipeType<FluidInput.withNumber
         return new EvaporationBasinRecipe(fluid, ticks, output);
     }
 
-    public boolean matches(FluidInput.withNumber r, Level l) {
+    public boolean matches(FluidInput.simple r, Level l) {
         return this.fluid.test(r.fluid());
     }
 
     @Override
-    public ItemStack assemble(FluidInput.withNumber r) {
+    public ItemStack assemble(FluidInput.simple r) {
         return this.output.create().copy();
     }
 
@@ -71,12 +71,12 @@ public class EvaporationBasinRecipe extends BaseRecipeType<FluidInput.withNumber
     }
 
     @Override
-    public RecipeType<? extends Recipe<FluidInput.withNumber>> getType() {
+    public RecipeType<? extends Recipe<FluidInput.simple>> getType() {
         return zRecipeTypes.EVAPORATION_BASIN.getType();
     }
 
     @Override
-    public RecipeSerializer<? extends Recipe<FluidInput.withNumber>> getSerializer() {
+    public RecipeSerializer<? extends Recipe<FluidInput.simple>> getSerializer() {
         return zRecipeTypes.EVAPORATION_BASIN.getSerializer();
     }
 

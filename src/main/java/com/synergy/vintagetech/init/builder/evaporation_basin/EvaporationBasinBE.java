@@ -73,7 +73,7 @@ public class EvaporationBasinBE extends TickingBE
 
         Optional<RecipeHolder<EvaporationBasinRecipe>> r = level.getServer().getRecipeManager()
                 .getRecipeFor(zRecipeTypes.EVAPORATION_BASIN.getType(),
-                        new FluidInput.withNumber(getAsStack(0), getFluidStorage().getAmountAsInt(0)), level);
+                        new FluidInput.simple(getAsStack(0)), level);
 
         if (r.isEmpty()) {
             fail();

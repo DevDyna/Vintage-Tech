@@ -80,7 +80,7 @@ public class MechanicalFarmlandBE extends TransmissionBE implements SimpleFluidS
 
         Optional<RecipeHolder<FarmlandFuelsRecipe>> r = level.getServer().getRecipeManager()
                 .getRecipeFor(zRecipeTypes.FARMLAND_FUELS.getType(),
-                        new FluidInput.withNumber(getAsStack(FLUID_TANK), getFluidStorage().getAmountAsInt(FLUID_TANK)),
+                        new FluidInput.simple(getAsStack(FLUID_TANK)),
                         level);
 
         if (r.isEmpty())
