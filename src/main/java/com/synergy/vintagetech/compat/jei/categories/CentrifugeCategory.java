@@ -89,7 +89,7 @@ public class CentrifugeCategory extends BaseRecipeCategory<CentrifugeRecipe> {
                     Component.literal(
                             ((int) (recipe.getOutputItem().chance() * 100)) + "%"),
                     55, 53,
-                    ColorUtils.WHITE.getRGB(), true);
+                    ColorUtils.WHITE.WHITE.getRGB(), true);
 
     }
 
@@ -110,7 +110,7 @@ public class CentrifugeCategory extends BaseRecipeCategory<CentrifugeRecipe> {
 
     @Override
     public int tickColor(CentrifugeRecipe recipe) {
-        return ColorUtils.WHITE.getRGB();
+        return ColorUtils.WHITE.WHITE.getRGB();
     }
 
 }

@@ -76,7 +76,7 @@ public class MillstoneCategory extends BaseRecipeCategory<MillstoneRecipe> {
 
     @Override
     public int tickColor(MillstoneRecipe recipe) {
-        return ColorUtils.WHITE.getRGB();
+        return ColorUtils.WHITE.WHITE.getRGB();
     }
 
 }

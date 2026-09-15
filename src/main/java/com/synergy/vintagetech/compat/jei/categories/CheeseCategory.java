@@ -47,7 +47,6 @@ public class CheeseCategory extends BaseCategory<CheeseCategory.CheesePage> {
         return zBlocks.FRESH_CHEESE.get();
     }
 
-    // TODO API : add a warning when null , it collapse everything!
     @Override
     public Identifier setBackGround() {
         return x.rl(MODULE_ID, "");
@@ -165,7 +164,7 @@ public class CheeseCategory extends BaseCategory<CheeseCategory.CheesePage> {
 
     @Override
     public @Nullable Identifier getIdentifier(CheesePage recipe) {
-        return x.rl(MODULE_ID,recipe.getId());
+        return x.rl(MODULE_ID, recipe.getId());
     }
 
     public record CheesePage(CheesePageType type) {

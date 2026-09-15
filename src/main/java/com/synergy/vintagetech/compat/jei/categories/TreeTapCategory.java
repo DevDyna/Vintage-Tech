@@ -77,7 +77,7 @@ public class TreeTapCategory extends BaseRecipeCategory<TreeTapRecipe> {
     public void draw(TreeTapRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphicsExtractor guiGraphics,
             double mouseX, double mouseY) {
 
-        guiGraphics.text(this.font, Component.literal(recipe.getChance() + "%"), 3+10+5, 27-1, ColorUtils.WHITE.getRGB());
+        guiGraphics.text(this.font, Component.literal(recipe.getChance() + "%"), 3+10+5, 27-1, ColorUtils.WHITE.WHITE.getRGB());
         super.draw(recipe, recipeSlotsView, guiGraphics, mouseX, mouseY);
 
     }
@@ -99,7 +99,7 @@ public class TreeTapCategory extends BaseRecipeCategory<TreeTapRecipe> {
 
     @Override
     public int tickColor(TreeTapRecipe recipe) {
-        return ColorUtils.WHITE.getRGB();
+        return ColorUtils.WHITE.WHITE.getRGB();
     }
 
 }
