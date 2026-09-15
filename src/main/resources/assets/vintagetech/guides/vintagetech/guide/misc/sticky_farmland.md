@@ -1,7 +1,7 @@
 ---
 navigation:
   title: Sticky Farmland
-  icon: "vintagetech:sticky_farmland"
+  icon: "vintagetech:sulfur_goo"
   parent: misc.md
 categories:
   - misc
