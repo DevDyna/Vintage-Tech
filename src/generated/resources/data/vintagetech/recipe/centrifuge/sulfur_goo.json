@@ -2,7 +2,7 @@
   "type": "vintagetech:centrifuge",
   "input_fluid": {
     "amount": 250,
-    "ingredient": "vintagetech:sulfuric_acid_source"
+    "ingredient": "cakesticklib:sulfuric_acid"
   },
   "input_item": {
     "count": 1,

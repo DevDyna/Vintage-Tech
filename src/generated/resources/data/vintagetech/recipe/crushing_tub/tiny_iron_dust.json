@@ -2,7 +2,7 @@
   "type": "vintagetech:crushing_tub",
   "fluid": {
     "amount": 250,
-    "id": "vintagetech:ironberry_juice_source"
+    "id": "vintagetech:ironberry_juice"
   },
   "input": "vintagetech:ironberries",
   "output": {

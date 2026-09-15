@@ -2,7 +2,7 @@
   "type": "vintagetech:crucible",
   "input_fluid": {
     "amount": 100,
-    "ingredient": "vintagetech:sap_source"
+    "ingredient": "cakesticklib:sap"
   },
   "input_items": [
     {

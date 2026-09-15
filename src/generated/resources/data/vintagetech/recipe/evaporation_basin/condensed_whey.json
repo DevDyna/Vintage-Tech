@@ -2,7 +2,7 @@
   "type": "vintagetech:evaporation_basin",
   "fluid": {
     "amount": 250,
-    "ingredient": "vintagetech:whey_source"
+    "ingredient": "vintagetech:whey"
   },
   "output": {
     "id": "vintagetech:condensed_whey"
