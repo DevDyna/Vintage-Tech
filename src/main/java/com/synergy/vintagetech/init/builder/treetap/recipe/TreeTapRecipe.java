@@ -3,12 +3,13 @@ package com.synergy.vintagetech.init.builder.treetap.recipe;
 import static com.synergy.vintagetech.Main.MODULE_ID;
 
 import java.util.List;
+
+import com.devdyna.cakesticklib.api.BlockOrTag;
 import com.devdyna.cakesticklib.api.recipe.recipeType.BaseRecipeType;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.synergy.vintagetech.api.BlockOrTag;
 import com.synergy.vintagetech.api.recipeinput.TreeTapInput;
 import com.synergy.vintagetech.init.types.zBlocks;
 import com.synergy.vintagetech.init.types.zRecipeTypes;

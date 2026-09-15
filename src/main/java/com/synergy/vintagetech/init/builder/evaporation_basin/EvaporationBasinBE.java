@@ -7,7 +7,7 @@ import com.devdyna.cakesticklib.api.aspect.logic.ItemStorageBlock;
 import com.devdyna.cakesticklib.api.aspect.logic.NoGuiStorage;
 import com.devdyna.cakesticklib.api.aspect.logic.SimpleFluidStorage;
 import com.devdyna.cakesticklib.api.aspect.logic.*;
-import com.devdyna.cakesticklib.api.aspect.templates.TickingBE;
+import com.devdyna.cakesticklib.api.templates.TickingBE;
 import com.devdyna.cakesticklib.api.primitive.Ticker;
 import com.devdyna.cakesticklib.api.recipe.recipeInput.FluidInput;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
@@ -40,7 +40,6 @@ public class EvaporationBasinBE extends TickingBE
     }
 
     public ItemStack extractItem() {
-        update();
         var resource = getItemStorage().getResource(0);
 
         if (resource.isEmpty())
@@ -71,7 +70,6 @@ public class EvaporationBasinBE extends TickingBE
             return;
         }
 
-        update();
 
         Optional<RecipeHolder<EvaporationBasinRecipe>> r = level.getServer().getRecipeManager()
                 .getRecipeFor(zRecipeTypes.EVAPORATION_BASIN.getType(),
@@ -108,7 +106,6 @@ public class EvaporationBasinBE extends TickingBE
 
         }
 
-        update();
 
     }
 

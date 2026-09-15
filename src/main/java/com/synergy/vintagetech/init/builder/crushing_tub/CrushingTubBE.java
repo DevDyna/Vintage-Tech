@@ -9,7 +9,7 @@ import com.devdyna.cakesticklib.api.aspect.logic.DropCollector;
 import com.devdyna.cakesticklib.api.aspect.logic.ItemStorageBlock;
 import com.devdyna.cakesticklib.api.aspect.logic.NoGuiStorage;
 import com.devdyna.cakesticklib.api.aspect.logic.SimpleFluidStorage;
-import com.devdyna.cakesticklib.api.aspect.templates.TickingBE;
+import com.devdyna.cakesticklib.api.templates.TickingBE;
 import com.devdyna.cakesticklib.api.recipe.recipeInput.ItemInput;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
@@ -40,7 +40,7 @@ public class CrushingTubBE extends TickingBE
     }
 
     public ItemStack insertItem(ItemStack stack) {
-        update();
+
         var inserted = 0;
 
         if (stack.is(zItems.MESH) && !getBlockState().getValue(CrushingTubBlock.MESH)) {
@@ -56,7 +56,6 @@ public class CrushingTubBE extends TickingBE
     }
 
     public ItemStack extractItem() {
-        update();
 
         var resource = getItemStorage().getResource(0);
         var extracted = 0;
@@ -84,7 +83,6 @@ public class CrushingTubBE extends TickingBE
         if (getItemStorage() == null)
             return;
 
-        update();
 
         var item = getStackInSlot(0);
 
@@ -132,7 +130,6 @@ public class CrushingTubBE extends TickingBE
                 RandomUtil.chance(level, 50) ? SoundEvents.SLIME_BLOCK_FALL : SoundEvents.SNIFFER_EGG_CRACK,
                 SoundSource.BLOCKS, 1f, 1f);
 
-        update();
     }
 
     @Override

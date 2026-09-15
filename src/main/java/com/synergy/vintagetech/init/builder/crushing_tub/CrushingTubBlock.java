@@ -3,7 +3,7 @@ package com.synergy.vintagetech.init.builder.crushing_tub;
 import javax.annotation.Nullable;
 
 import com.devdyna.cakesticklib.api.aspect.logic.*;
-import com.devdyna.cakesticklib.api.aspect.templates.TickingBlock;
+import com.devdyna.cakesticklib.api.templates.TickingBlock;
 import com.synergy.vintagetech.init.types.zTags;
 
 import net.minecraft.core.BlockPos;
