@@ -23,7 +23,7 @@ public class StickyFarmlandBlock extends FarmlandBlock {
     @Override
     public void fallOn(Level level, BlockState state, BlockPos pos,
             Entity entity, double fallDistance) {
-        entity.causeFallDamage(fallDistance, 1.0F, entity.damageSources().fall());
+
     }
 
     @Override
@@ -69,9 +69,9 @@ public class StickyFarmlandBlock extends FarmlandBlock {
             InsideBlockEffectApplier effectApplier, boolean isPrecise) {
 
         if (entity instanceof LivingEntity)
-            entity.makeStuckInBlock(state, new Vec3(0.85, 1, 0.85));
+            entity.makeStuckInBlock(state, new Vec3(0.85, 0.4, 0.85));
 
-            super.entityInside(state, level, pos, entity, effectApplier, isPrecise);
+        super.entityInside(state, level, pos, entity, effectApplier, isPrecise);
     }
 
 }
