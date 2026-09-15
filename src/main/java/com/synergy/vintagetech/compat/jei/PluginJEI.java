@@ -19,6 +19,7 @@ import com.synergy.vintagetech.compat.jei.categories.FarmlandFuelsCategory;
 import com.synergy.vintagetech.compat.jei.categories.MillstoneCategory;
 import com.synergy.vintagetech.compat.jei.categories.TreeTapCategory;
 import com.synergy.vintagetech.init.types.zBlocks;
+import com.synergy.vintagetech.init.types.zItems;
 import com.synergy.vintagetech.init.types.zRecipeTypes;
 
 import mezz.jei.api.IModPlugin;
@@ -161,6 +162,10 @@ public class PluginJEI implements IModPlugin {
                                 zBlocks.FAN,
                                 zBlocks.SAW),
                                 MODULE_ID + ".jei.alias.rpm.base");
+
+                JEIAliasesHelper.addAlias(r, List.of(
+                                zItems.CLOTH),
+                                MODULE_ID + ".jei.alias.windmill.repair");
 
         }
 
