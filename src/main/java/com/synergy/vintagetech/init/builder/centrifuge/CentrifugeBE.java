@@ -60,6 +60,8 @@ public class CentrifugeBE extends TransmissionBE
     @Override
     public void tickServer() {
 
+        super.tickServer();
+
         if (getFluidStorage() == null)
             return;
 
