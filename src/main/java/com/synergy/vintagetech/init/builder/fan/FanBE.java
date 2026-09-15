@@ -22,7 +22,8 @@ public class FanBE extends TransmissionBE {
     @Override
     public void tickBoth() {
 
-        super.tickServer();
+        if (!isAxlePowered())
+            return;
 
         var facing = getBlockState().getValue(FanBlock.FACING);
 
@@ -73,9 +74,5 @@ public class FanBE extends TransmissionBE {
         }
 
     }
-
-   
-
-    
 
 }
