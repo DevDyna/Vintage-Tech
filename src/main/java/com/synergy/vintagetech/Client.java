@@ -9,6 +9,7 @@ import com.synergy.vintagetech.api.ClassUtils;
 import com.synergy.vintagetech.api.FluidRegister;
 import com.synergy.vintagetech.api.factories.transmission.TransmissionRenderer;
 import com.synergy.vintagetech.client.particles.fan.AirFlowParticleProvider;
+import com.synergy.vintagetech.client.particles.sulfur.SulfurGooProvider;
 import com.synergy.vintagetech.init.builder.centrifuge.CentrifugeRenderer;
 import com.synergy.vintagetech.init.builder.fan.FanRenderer;
 import com.synergy.vintagetech.init.builder.millstone.MillstoneRenderer;
@@ -105,6 +106,10 @@ public class Client {
         event.registerSpriteSet(
                 zParticles.FAN_AIR_FLOW.get(),
                 AirFlowParticleProvider::new);
+
+        event.registerSpriteSet(
+                zParticles.SULFUR_PARTICLES.get(),
+                SulfurGooProvider::new);
     }
 
     @SubscribeEvent

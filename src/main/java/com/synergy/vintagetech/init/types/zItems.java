@@ -4,6 +4,7 @@ package com.synergy.vintagetech.init.types;
 import static com.synergy.vintagetech.Main.MODULE_ID;
 
 import com.devdyna.cakesticklib.api.templates.EffectItem;
+import com.synergy.vintagetech.init.builder.SulfurGooItem;
 
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -121,8 +122,6 @@ public class zItems {
         public static final DeferredHolder<Item, Item> MESH = zItem.registerSimpleItem("mesh",
                         p -> p.stacksTo(16));
 
-        
-
         public static final DeferredHolder<Item, Item> FRESH_CHEESE_SLICE = zItem.registerSimpleItem(
                         "fresh_cheese_slice",
                         p -> p
@@ -165,7 +164,7 @@ public class zItems {
                                         .effect(new MobEffectInstance(MobEffects.STRENGTH, 50, 1))
                                         .build());
 
-        public static final DeferredHolder<Item, Item> SULFUR_GOO = zItem.registerSimpleItem("sulfur_goo",
-                        p -> p);
+        public static final DeferredHolder<Item, Item> SULFUR_GOO = zItem.registerItem("sulfur_goo",
+                        p -> new SulfurGooItem(p));
 
 }

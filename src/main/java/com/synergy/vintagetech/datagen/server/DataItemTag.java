@@ -158,6 +158,8 @@ public class DataItemTag extends ItemTagsProvider {
 
                 tag(zTags.Items.STICKY_GOO).add(zItems.AMBER.get(), zItems.SULFUR_GOO.get());
 
+                tag(zTags.Items.STICKY_FARMLAND_SCRAPPABLE).addTag(ItemTags.AXES);
+
         }
 
 }

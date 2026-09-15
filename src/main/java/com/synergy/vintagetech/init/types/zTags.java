@@ -100,6 +100,12 @@ public class zTags {
                 public static final TagKey<Block> CHEESE_BOOSTER = RegistryUtils
                                 .tagBlock(MODULE_ID, "cheese/booster");
 
+                public static final TagKey<Block> DENY_STICKY_FARMLAND_BOOST = RegistryUtils
+                                .tagBlock(MODULE_ID, "sticky_farmland/deny_boost");
+
+                public static final TagKey<Block> DENY_STICKY_FARMLAND_BURN_ON_DEHYDRATATION = RegistryUtils
+                                .tagBlock(MODULE_ID, "sticky_farmland/deny_plant_burn");
+
         }
 
         public class Items {
@@ -139,6 +145,9 @@ public class zTags {
 
                 public static final TagKey<Item> STICKY_GOO = RegistryUtils.tagItem(MODULE_ID,
                                 "sticky_goo");
+
+                public static final TagKey<Item> STICKY_FARMLAND_SCRAPPABLE = RegistryUtils.tagItem(MODULE_ID,
+                                "sticky_farmland_scrappable");
 
         }
 

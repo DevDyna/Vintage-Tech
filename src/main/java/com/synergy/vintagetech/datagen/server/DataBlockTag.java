@@ -257,6 +257,11 @@ public class DataBlockTag extends BlockTagsProvider {
                                                 BlockTags.WOODEN_STAIRS,
                                                 zTags.Blocks.BEAMS);
 
+
+                tag(zTags.Blocks.DENY_STICKY_FARMLAND_BOOST).add();
+                
+                tag(zTags.Blocks.DENY_STICKY_FARMLAND_BURN_ON_DEHYDRATATION).add();
+
         }
 
 }

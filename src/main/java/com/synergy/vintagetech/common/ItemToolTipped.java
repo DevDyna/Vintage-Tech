@@ -75,9 +75,11 @@ public class ItemToolTipped {
                         ToolTipHelper.addToggle(t, item.is(zBlocks.BASKET.get().asItem()),
                                         MODULE_ID + ".basket.info");
 
-                // if (item.getItem() instanceof EffectConsumableItem effect)
-                //         add(t, effect.getEffectToolTip());
+                ToolTipHelper.addToggle(t, item.is(zItems.SULFUR_GOO.get()),
+                                MODULE_ID + ".sulfur_goo.info");
 
+                ToolTipHelper.addToggle(t, item.is(zBlocks.STICKY_FARMLAND.get().asItem()),
+                                MODULE_ID + ".sticky_farmland.info");
         }
 
         // @Deprecated

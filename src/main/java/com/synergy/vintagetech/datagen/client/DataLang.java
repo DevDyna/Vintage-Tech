@@ -150,12 +150,20 @@ public class DataLang extends LanguageProvider implements LangGenerators {
                 add(MODULE_ID + ".rope.info",
                                 TipColors.ITEM_TOOLTIP + "Decorative block that can connect to various blocks");
 
+                add(MODULE_ID + ".sulfur_goo.info",
+                                TipColors.ITEM_TOOLTIP
+                                                + "Right click on a farmland to convert it into a Sticky Farmland");
+                add(MODULE_ID + ".sticky_farmland.info",
+                                TipColors.ITEM_TOOLTIP
+                                                + "A powerful farmland that require to be hydrated or will burn the crop");
+
                 add(MODULE_ID + ".jei.cheese.aging.condition", "Require light level below 5");
                 add(MODULE_ID + ".jei.cheese.aging", "Sealed cheese can age over time");
                 add(MODULE_ID + ".jei.cheese.sealing", "Right click to seal");
                 add(MODULE_ID + ".jei.cheese.unsealing", "Right click to unseal");
                 add(MODULE_ID + ".jei.cheese.slicing", "When broken it will drop slices");
 
+                
         }
 
 }
