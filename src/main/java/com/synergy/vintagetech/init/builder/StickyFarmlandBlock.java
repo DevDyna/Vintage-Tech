@@ -1,15 +1,17 @@
 package com.synergy.vintagetech.init.builder;
 
 import com.devdyna.cakesticklib.api.RandomUtil;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.InsideBlockEffectApplier;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.FarmlandBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.common.FarmlandWaterManager;
 
 public class StickyFarmlandBlock extends FarmlandBlock {
@@ -61,4 +63,15 @@ public class StickyFarmlandBlock extends FarmlandBlock {
             level.setBlock(pos, state.setValue(MOISTURE, 7), 2);
 
     }
+
+    @Override
+    protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity,
+            InsideBlockEffectApplier effectApplier, boolean isPrecise) {
+
+        if (entity instanceof LivingEntity)
+            entity.makeStuckInBlock(state, new Vec3(0.85, 1, 0.85));
+
+            super.entityInside(state, level, pos, entity, effectApplier, isPrecise);
+    }
+
 }
