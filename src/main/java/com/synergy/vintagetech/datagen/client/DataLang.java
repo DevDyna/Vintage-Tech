@@ -50,6 +50,12 @@ public class DataLang extends LanguageProvider implements LangGenerators {
                 add(MODULE_ID + ".jei.alias.rpm.activation.break", "Disable Network");
                 add(MODULE_ID + ".jei.alias.rpm.generator", "Generator");
                 add(MODULE_ID + ".jei.alias.windmill.repair", "Windmill Item Repair");
+                add(MODULE_ID + ".jei.alias.crop.booster", "Crop Booster");
+                add(MODULE_ID + ".jei.alias.crushing_tub.filter", "Crushing tub Filter");
+                add(MODULE_ID + ".jei.alias.evaporation_basin.booster", "Evaporation Basin Booster");
+                add(MODULE_ID + ".jei.alias.string_alternative", "String Alternative");
+                add(MODULE_ID + ".jei.alias.leather_alternative", "Leather Alternative");
+                add(MODULE_ID + ".jei.alias.raw_meat_alternative", "Raw Meat Alternative");
 
                 add(MODULE_ID + ".creative_tab." + MODULE_ID, "Vintage Tech");
 
