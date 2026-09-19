@@ -1,0 +1,7 @@
+{
+  "parent": "vintagetech:block/template/beam",
+  "textures": {
+    "side": "minecraft:block/crimson_stem",
+    "top": "minecraft:block/crimson_stem"
+  }
+}
