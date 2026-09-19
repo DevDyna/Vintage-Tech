@@ -9,7 +9,6 @@ import com.devdyna.cakesticklib.api.aspect.logic.DropCollector;
 import com.devdyna.cakesticklib.api.aspect.logic.ItemStorageBlock;
 import com.devdyna.cakesticklib.api.aspect.logic.NoGuiStorage;
 import com.devdyna.cakesticklib.api.aspect.logic.SimpleFluidStorage;
-import com.devdyna.cakesticklib.api.aspect.templates.TickingBE;
 import com.devdyna.cakesticklib.api.recipe.recipeInput.ItemInput;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
@@ -23,6 +22,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import net.neoforged.neoforge.transfer.fluid.FluidStacksResourceHandler;
@@ -30,7 +30,7 @@ import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 
-public class CrushingTubBE extends TickingBE
+public class CrushingTubBE extends BlockEntity
         implements NoGuiStorage, ItemStorageBlock, SimpleFluidStorage, DropCollector, TreeTapHandler {
 
     public static final int FLUID_TANK = 0;
@@ -40,7 +40,7 @@ public class CrushingTubBE extends TickingBE
     }
 
     public ItemStack insertItem(ItemStack stack) {
-        update();
+
         var inserted = 0;
 
         if (stack.is(zItems.MESH) && !getBlockState().getValue(CrushingTubBlock.MESH)) {
@@ -56,7 +56,6 @@ public class CrushingTubBE extends TickingBE
     }
 
     public ItemStack extractItem() {
-        update();
 
         var resource = getItemStorage().getResource(0);
         var extracted = 0;
@@ -84,7 +83,6 @@ public class CrushingTubBE extends TickingBE
         if (getItemStorage() == null)
             return;
 
-        update();
 
         var item = getStackInSlot(0);
 
@@ -132,7 +130,6 @@ public class CrushingTubBE extends TickingBE
                 RandomUtil.chance(level, 50) ? SoundEvents.SLIME_BLOCK_FALL : SoundEvents.SNIFFER_EGG_CRACK,
                 SoundSource.BLOCKS, 1f, 1f);
 
-        update();
     }
 
     @Override

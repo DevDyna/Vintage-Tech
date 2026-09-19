@@ -1,0 +1,22 @@
+{
+  "type": "vintagetech:centrifuge",
+  "input_fluid": {
+    "amount": 50,
+    "ingredient": "vintagetech:calcium_carbonate"
+  },
+  "input_item": {
+    "count": 1,
+    "ingredient": "vintagetech:condensed_milk"
+  },
+  "output_fluid": {
+    "amount": 125,
+    "id": "vintagetech:whey"
+  },
+  "output_item": {
+    "chance": 1.0,
+    "item": {
+      "id": "vintagetech:milk_curd"
+    }
+  },
+  "ticks": 40
+}

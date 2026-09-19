@@ -1,7 +1,13 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_leaves": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "vintagetech:crushing_tub/stick"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "leaves": {
       "conditions": {
         "items": [
           {
@@ -10,18 +16,12 @@
         ]
       },
       "trigger": "minecraft:inventory_changed"
-    },
-    "has_the_recipe": {
-      "conditions": {
-        "recipe": "vintagetech:crushing_tub/stick"
-      },
-      "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
       "has_the_recipe",
-      "has_leaves"
+      "leaves"
     ]
   ],
   "rewards": {

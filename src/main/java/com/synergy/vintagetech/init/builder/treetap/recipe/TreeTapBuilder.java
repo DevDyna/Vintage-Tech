@@ -4,9 +4,9 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 
 import java.util.LinkedHashMap;
 
+import com.devdyna.cakesticklib.api.BlockOrTag;
 import com.devdyna.cakesticklib.api.recipe.recipeBuilder.*;
 import com.devdyna.cakesticklib.api.utils.x;
-import com.synergy.vintagetech.api.BlockOrTag;
 
 import net.minecraft.advancements.Criterion;
 import net.minecraft.core.HolderLookup;

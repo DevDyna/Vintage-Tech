@@ -2,6 +2,8 @@ package com.synergy.vintagetech.datagen.server;
 
 import java.util.concurrent.CompletableFuture;
 
+import com.synergy.vintagetech.api.factories.beams.BeamFactory;
+import com.synergy.vintagetech.api.factories.beams.WoodType;
 import com.synergy.vintagetech.init.types.zBlocks;
 import com.synergy.vintagetech.init.types.zItems;
 import com.synergy.vintagetech.init.types.zTags;
@@ -25,41 +27,25 @@ public class DataMaps extends DataMapProvider {
         @Override
         protected void gather(Provider p) {
 
-                builder(NeoForgeDataMaps.STRIPPABLES)
-                                .add(zBlocks.OAK_BEAM.getId(),
-                                                new Strippable(zBlocks.STRIPPED_OAK_BEAM.get()),
-                                                false, AlwaysCondition.INSTANCE)
-                                .add(zBlocks.BIRCH_BEAM.getId(),
-                                                new Strippable(zBlocks.STRIPPED_BIRCH_BEAM.get()),
-                                                false, AlwaysCondition.INSTANCE)
-                                .add(zBlocks.SPRUCE_BEAM.getId(),
-                                                new Strippable(zBlocks.STRIPPED_SPRUCE_BEAM.get()),
-                                                false, AlwaysCondition.INSTANCE)
-                                .add(zBlocks.JUNGLE_BEAM.getId(),
-                                                new Strippable(zBlocks.STRIPPED_JUNGLE_BEAM.get()),
-                                                false, AlwaysCondition.INSTANCE)
-                                .add(zBlocks.ACACIA_BEAM.getId(),
-                                                new Strippable(zBlocks.STRIPPED_ACACIA_BEAM.get()),
-                                                false, AlwaysCondition.INSTANCE)
-                                .add(zBlocks.DARK_OAK_BEAM.getId(),
-                                                new Strippable(zBlocks.STRIPPED_DARK_OAK_BEAM.get()),
-                                                false, AlwaysCondition.INSTANCE)
-                                .add(zBlocks.CHERRY_BEAM.getId(),
-                                                new Strippable(zBlocks.STRIPPED_CHERRY_BEAM.get()),
-                                                false, AlwaysCondition.INSTANCE)
-                                .add(zBlocks.MANGROVE_BEAM.getId(),
-                                                new Strippable(zBlocks.STRIPPED_MANGROVE_BEAM.get()),
-                                                false, AlwaysCondition.INSTANCE)
-                                .add(zBlocks.PALE_OAK_BEAM.getId(),
-                                                new Strippable(zBlocks.STRIPPED_PALE_OAK_BEAM.get()),
-                                                false, AlwaysCondition.INSTANCE)
-                                .add(zBlocks.BAMBOO_BEAM.getId(),
-                                                new Strippable(zBlocks.STRIPPED_BAMBOO_BEAM.get()),
-                                                false, AlwaysCondition.INSTANCE)
+                var strippable = builder(NeoForgeDataMaps.STRIPPABLES);
 
-                                .add(zBlocks.IRONWOOD_LOG.getId(),
-                                                new Strippable(zBlocks.STRIPPED_IRONWOOD_LOG.get()),
-                                                false, AlwaysCondition.INSTANCE)
+                for (WoodType wood : WoodType.values()) {
+
+                        strippable.add(BeamFactory.get(wood).normal().getId(),
+                                        new Strippable(BeamFactory.get(wood).stripped().get()), false,
+                                        AlwaysCondition.INSTANCE);
+
+                        if (wood.isSpecial())
+                                continue;
+
+                        strippable.add(BeamFactory.get(wood).full().getId(),
+                                        new Strippable(BeamFactory.get(wood).stripped_full().get()),
+                                        false, AlwaysCondition.INSTANCE);
+                }
+
+                strippable.add(zBlocks.IRONWOOD_LOG.getId(),
+                                new Strippable(zBlocks.STRIPPED_IRONWOOD_LOG.get()),
+                                false, AlwaysCondition.INSTANCE)
                                 .add(zBlocks.IRONWOOD_WOOD.getId(),
                                                 new Strippable(zBlocks.STRIPPED_IRONWOOD_WOOD.get()),
                                                 false, AlwaysCondition.INSTANCE);

@@ -10,8 +10,6 @@ public class AirFlowParticle extends SimpleAnimatedParticle {
 
     private final Vec3 dir;
 
-    //TODO BUG : particles stuck on valid empty blocks
-
     public AirFlowParticle(ClientLevel l,
             double x, double y, double z,
             SpriteSet sprites, Vec3 vec3, RandomSource r) {

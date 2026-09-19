@@ -12,6 +12,7 @@ import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries.Keys;
 
+// @Deprecated
 public class zFluids {
         public static void register(IEventBus bus) {
                 zFluids.register(bus);
@@ -24,29 +25,26 @@ public class zFluids {
         public static final DeferredRegister<FluidType> zFluidTypes = DeferredRegister.create(Keys.FLUID_TYPES,
                         MODULE_ID);
 
-        public static final FluidRegister WHEY = FluidRegister.create("whey",
+        public static final FluidRegister WHEY = FluidRegister.simple("whey",
                         ColorUtils.argb(255, 255, 236, 236));
 
-        public static final FluidRegister RESIN = FluidRegister.create("resin", ColorUtils.argb(255, 175, 119, 56));
-        public static final FluidRegister LATEX = FluidRegister.create("latex", ColorUtils.argb(255, 246, 238, 228));
-        public static final FluidRegister SAP = FluidRegister.create("sap", ColorUtils.argb(255, 255, 211, 72));
-        public static final FluidRegister OIL = FluidRegister.create("oil", ColorUtils.argb(255, 10, 10, 10));
-        public static final FluidRegister IRONBERRY_JUICE = FluidRegister.create("ironberry_juice",
+        public static final FluidRegister OLIVE_OIL = FluidRegister.simple("olive_oil",
+                        ColorUtils.argb(255, 128, 130, 70));
+
+        public static final FluidRegister IRONBERRY_JUICE = FluidRegister.simple("ironberry_juice",
                         ColorUtils.argb(255, 192, 192, 192));
 
-        public static final FluidRegister FERTILIZER_NATURAL = FluidRegister.create("natural_fertilizer",
+        public static final FluidRegister FERTILIZER_NATURAL = FluidRegister.simple("natural_fertilizer",
                         ColorUtils.argb(255, 177, 236, 177));
 
-        public static final FluidRegister CALCIUM_CARBONATE = FluidRegister.create("calcium_carbonate",
+        public static final FluidRegister CALCIUM_CARBONATE = FluidRegister.simple("calcium_carbonate",
                         ColorUtils.argb(255, 236, 177, 177));
 
-        public static final FluidRegister SULFURIC_ACID = FluidRegister.create("sulfuric_acid",
-                        ColorUtils.argb(255, 245, 212, 66));
-
-        public static final FluidRegister SOYMILK = FluidRegister.create("soymilk",
+        public static final FluidRegister SOYMILK = FluidRegister.simple("soymilk",
                         ColorUtils.argb(255, 200, 200, 200));
 
-        // public static final FluidRegister MILK_CURD = FluidRegister.create("milk_curd",
-        //                 ColorUtils.argb(200, 250, 250, 250));
+        // public static final FluidRegister MILK_CURD =
+        // FluidRegister.create("milk_curd",
+        // ColorUtils.argb(200, 250, 250, 250));
 
 }

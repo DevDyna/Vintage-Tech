@@ -75,7 +75,7 @@ public class DryingRackCategory extends BaseRecipeCategory<DryingRackRecipe> {
 
     @Override
     public int tickColor(DryingRackRecipe recipe) {
-        return ColorUtils.WHITE.getRGB();
+        return ColorUtils.WHITE.WHITE.getRGB();
     }
 
 }

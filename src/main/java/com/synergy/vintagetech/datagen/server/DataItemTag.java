@@ -5,6 +5,8 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 import java.util.concurrent.CompletableFuture;
 
 import com.devdyna.cakesticklib.setup.registry.LibTags;
+import com.synergy.vintagetech.api.factories.beams.BeamFactory;
+import com.synergy.vintagetech.api.factories.beams.WoodType;
 import com.synergy.vintagetech.init.types.zBlocks;
 import com.synergy.vintagetech.init.types.zItems;
 import com.synergy.vintagetech.init.types.zTags;
@@ -92,29 +94,15 @@ public class DataItemTag extends ItemTagsProvider {
                                                 zBlocks.IRONWOOD_WOOD.get().asItem(),
                                                 zBlocks.STRIPPED_IRONWOOD_WOOD.get().asItem());
 
-                tag(zTags.Items.BEAM_NORMAL).add(
-                                zBlocks.OAK_BEAM.get().asItem(),
-                                zBlocks.SPRUCE_BEAM.get().asItem(),
-                                zBlocks.BIRCH_BEAM.get().asItem(),
-                                zBlocks.JUNGLE_BEAM.get().asItem(),
-                                zBlocks.ACACIA_BEAM.get().asItem(),
-                                zBlocks.DARK_OAK_BEAM.get().asItem(),
-                                zBlocks.MANGROVE_BEAM.get().asItem(),
-                                zBlocks.CHERRY_BEAM.get().asItem(),
-                                zBlocks.PALE_OAK_BEAM.get().asItem(),
-                                zBlocks.BAMBOO_BEAM.get().asItem());
-
-                tag(zTags.Items.BEAM_STRIPPED).add(
-                                zBlocks.STRIPPED_OAK_BEAM.get().asItem(),
-                                zBlocks.STRIPPED_SPRUCE_BEAM.get().asItem(),
-                                zBlocks.STRIPPED_BIRCH_BEAM.get().asItem(),
-                                zBlocks.STRIPPED_JUNGLE_BEAM.get().asItem(),
-                                zBlocks.STRIPPED_ACACIA_BEAM.get().asItem(),
-                                zBlocks.STRIPPED_DARK_OAK_BEAM.get().asItem(),
-                                zBlocks.STRIPPED_MANGROVE_BEAM.get().asItem(),
-                                zBlocks.STRIPPED_CHERRY_BEAM.get().asItem(),
-                                zBlocks.STRIPPED_PALE_OAK_BEAM.get().asItem(),
-                                zBlocks.STRIPPED_BAMBOO_BEAM.get().asItem());
+                for (WoodType wood : WoodType.values()) {
+                        tag(zTags.Items.BEAM_NORMAL).add(BeamFactory.get(wood).normal().get().asItem());
+                        tag(zTags.Items.BEAM_STRIPPED).add(BeamFactory.get(wood).stripped().get().asItem());
+                        
+                        if(wood.isSpecial()) continue;
+                        
+                        tag(zTags.Items.BEAM_FULL).add(BeamFactory.get(wood).full().get().asItem());
+                        tag(zTags.Items.BEAM_STRIPPED_FULL).add(BeamFactory.get(wood).stripped_full().get().asItem());
+                }
 
                 tag(zTags.Items.BEAMS).addTags(zTags.Items.BEAM_NORMAL, zTags.Items.BEAM_STRIPPED);
 
@@ -141,120 +129,6 @@ public class DataItemTag extends ItemTagsProvider {
                 tag(Tags.Items.FOODS_RAW_MEAT).add(zItems.TOFU.get());
                 tag(Tags.Items.FOODS_RAW_FISH).add(zItems.TOFU.get());
 
-                tag(zTags.Items.RECYCLE_COPPER_1).add(
-                                Items.COPPER_SHOVEL,
-                                Items.COPPER_SPEAR)
-                                .addTags(LibTags.Items.COPPER_PLATE,
-                                                LibTags.Items.COPPER_COIL,
-                                                LibTags.Items.COPPER_FOIL,
-                                                LibTags.Items.COPPER_DUST);
-
-                tag(zTags.Items.RECYCLE_COPPER_2).add(
-                                Items.COPPER_HOE,
-                                Items.COPPER_SWORD,
-                                Items.COPPER_DOOR);
-
-                tag(zTags.Items.RECYCLE_COPPER_3).add(
-                                Items.COPPER_PICKAXE,
-                                Items.COPPER_AXE);
-
-                tag(zTags.Items.RECYCLE_COPPER_4).add(
-                                Items.COPPER_BOOTS,
-                                Items.COPPER_TRAPDOOR)
-                                .addTags(LibTags.Items.COPPER_GEAR);
-
-                tag(zTags.Items.RECYCLE_COPPER_5).add(
-                                Items.COPPER_HELMET);
-
-                tag(zTags.Items.RECYCLE_COPPER_6).add(
-                                Items.COPPER_HORSE_ARMOR);
-
-                tag(zTags.Items.RECYCLE_COPPER_7).add(
-                                Items.COPPER_LEGGINGS);
-
-                tag(zTags.Items.RECYCLE_COPPER_8).add(
-                                Items.COPPER_CHESTPLATE);
-
-                tag(zTags.Items.RECYCLE_COPPER_9).add(
-                                Items.COPPER_NAUTILUS_ARMOR);
-
-                tag(zTags.Items.RECYCLE_IRON_1).add(
-                                Items.SHIELD,
-                                Items.IRON_SHOVEL,
-                                Items.IRON_SPEAR)
-                                .addTags(LibTags.Items.IRON_PLATE,
-                                                LibTags.Items.IRON_COIL,
-                                                LibTags.Items.IRON_FOIL,
-                                                LibTags.Items.IRON_DUST);
-
-                tag(zTags.Items.RECYCLE_IRON_2).add(
-                                Items.IRON_HOE,
-                                Items.SHEARS,
-                                Items.IRON_SWORD,
-                                Items.IRON_DOOR,
-                                Items.HEAVY_WEIGHTED_PRESSURE_PLATE);
-
-                tag(zTags.Items.RECYCLE_IRON_3).add(
-                                Items.BUCKET,
-                                Items.IRON_PICKAXE,
-                                Items.IRON_AXE);
-
-                tag(zTags.Items.RECYCLE_IRON_4).add(
-                                Items.IRON_BOOTS,
-                                Items.IRON_TRAPDOOR)
-                                .addTags(LibTags.Items.IRON_GEAR);
-
-                tag(zTags.Items.RECYCLE_IRON_5).add(
-                                Items.IRON_HELMET);
-
-                tag(zTags.Items.RECYCLE_IRON_6).add(
-                                Items.IRON_HORSE_ARMOR);
-
-                tag(zTags.Items.RECYCLE_IRON_7).add(
-                                Items.IRON_LEGGINGS);
-
-                tag(zTags.Items.RECYCLE_IRON_8).add(
-                                Items.IRON_CHESTPLATE);
-
-                tag(zTags.Items.RECYCLE_IRON_9).add(
-                                Items.IRON_NAUTILUS_ARMOR);
-
-                tag(zTags.Items.RECYCLE_GOLD_1).add(
-                                Items.GOLDEN_SHOVEL,
-                                Items.GOLDEN_SPEAR)
-                                .addTags(LibTags.Items.GOLD_PLATE,
-                                                LibTags.Items.GOLD_COIL,
-                                                LibTags.Items.GOLD_FOIL,
-                                                LibTags.Items.GOLD_DUST);
-
-                tag(zTags.Items.RECYCLE_GOLD_2).add(
-                                Items.GOLDEN_HOE,
-                                Items.GOLDEN_SWORD,
-                                Items.LIGHT_WEIGHTED_PRESSURE_PLATE);
-
-                tag(zTags.Items.RECYCLE_GOLD_3).add(
-                                Items.GOLDEN_PICKAXE,
-                                Items.GOLDEN_AXE);
-
-                tag(zTags.Items.RECYCLE_GOLD_4).add(
-                                Items.GOLDEN_BOOTS)
-                                .addTags(LibTags.Items.GOLD_GEAR);
-
-                tag(zTags.Items.RECYCLE_GOLD_5).add(
-                                Items.GOLDEN_HELMET);
-
-                tag(zTags.Items.RECYCLE_GOLD_6).add(
-                                Items.GOLDEN_HORSE_ARMOR);
-
-                tag(zTags.Items.RECYCLE_GOLD_7).add(
-                                Items.GOLDEN_LEGGINGS);
-
-                tag(zTags.Items.RECYCLE_GOLD_8).add(
-                                Items.GOLDEN_CHESTPLATE);
-
-                tag(zTags.Items.RECYCLE_GOLD_9).add(
-                                Items.GOLDEN_NAUTILUS_ARMOR);
-
                 tag(Tags.Items.STRINGS).add(zItems.HEMP_FIBER.get());
                 tag(Tags.Items.LEATHERS).add(zItems.CLOTH.get());
 
@@ -269,6 +143,10 @@ public class DataItemTag extends ItemTagsProvider {
 
                 tag(Tags.Items.DUSTS).add(zItems.SALT.get());
                 tag(zTags.Items.SALT_DUST).add(zItems.SALT.get());
+
+                tag(zTags.Items.STICKY_GOO).add(zItems.AMBER.get(), zItems.SULFUR_GOO.get());
+
+                tag(zTags.Items.STICKY_FARMLAND_SCRAPPABLE).addTag(ItemTags.AXES);
 
         }
 

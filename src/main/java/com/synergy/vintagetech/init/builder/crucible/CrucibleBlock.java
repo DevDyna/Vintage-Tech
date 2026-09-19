@@ -5,7 +5,7 @@ import org.jspecify.annotations.Nullable;
 import com.devdyna.cakesticklib.api.aspect.logic.BucketInteraction;
 import com.devdyna.cakesticklib.api.aspect.logic.FluidClearableTank;
 import com.devdyna.cakesticklib.api.aspect.logic.FluidTooltipWhenEmpty;
-import com.devdyna.cakesticklib.api.aspect.templates.TickingBlock;
+import com.devdyna.cakesticklib.api.templates.TickingBlock;
 import com.synergy.vintagetech.init.types.zTags;
 
 import net.minecraft.core.BlockPos;
@@ -22,8 +22,6 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityTicker;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
@@ -68,24 +66,26 @@ public class CrucibleBlock extends TickingBlock
         return new CrucibleBE(p, s);
     }
 
-    @Nullable
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level l, BlockState s, BlockEntityType<T> ty) {
-        return (lvl, pos, b, t) -> {
-            if (t instanceof CrucibleBE be) {
+    // TODO verify
+    // @Nullable
+    // public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level l,
+    // BlockState s, BlockEntityType<T> ty) {
+    // return (lvl, pos, b, t) -> {
+    // if (t instanceof CrucibleBE be) {
 
-                if (l == null)
-                    return;
+    // if (l == null)
+    // return;
 
-                be.tickBoth();
-                if (l.isClientSide())
-                    be.tickClient();
-                else
-                    be.tickServer();
+    // be.tickBoth();
+    // if (l.isClientSide())
+    // be.tickClient();
+    // else
+    // be.tickServer();
 
-            }
+    // }
 
-        };
-    }
+    // };
+    // }
 
     @Override
     public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, double fallDistance) {
@@ -129,7 +129,7 @@ public class CrucibleBlock extends TickingBlock
 
         if (level.getBlockEntity(pos) instanceof CrucibleBE be)
             if (!be.isSlotsEmpty())
-                    return be.itemUseOn(player, level, pos, hand);
+                return be.itemUseOn(player, level, pos, hand);
         if (player.isCrouching())
             return useItemToClear(state, level, pos, player, hitResult);
         else

@@ -13,11 +13,13 @@ import com.devdyna.cakesticklib.api.utils.x;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.resources.Identifier;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import net.neoforged.neoforge.fluids.FluidStackTemplate;
 import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 public class CrucibleBuilder extends BaseRecipeBuilder
         implements ItemAttach.Input.ListedItemCount<CrucibleBuilder>,
@@ -88,6 +90,18 @@ public class CrucibleBuilder extends BaseRecipeBuilder
 
     public CrucibleBuilder output(ItemLike i) {
         return output(ChanceOutput.Item.of(x.itemTemplate(i.asItem()), 1f));
+    }
+
+    public CrucibleBuilder output(DeferredHolder<Item, Item> i, int count, float chance) {
+        return output(i.get(), count, chance);
+    }
+
+    public CrucibleBuilder output(DeferredHolder<Item, Item> i, float chance) {
+        return output(i.get(), chance);
+    }
+
+    public CrucibleBuilder output(DeferredHolder<Item, Item> i) {
+        return output(i.get());
     }
 
     public CrucibleBuilder unlockedBy(String name, Criterion<?> criterion) {

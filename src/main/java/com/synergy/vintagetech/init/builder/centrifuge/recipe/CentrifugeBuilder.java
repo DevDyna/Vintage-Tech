@@ -20,7 +20,8 @@ import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 public class CentrifugeBuilder extends BaseRecipeBuilder
         implements ItemAttach.Input.ItemCounted<CentrifugeBuilder>,
         FluidAttach.Input.SizedFluid<CentrifugeBuilder>,
-        FluidAttach.Output.OutputFluid<CentrifugeBuilder>, ItemAttach.Output.ItemOutputChance<CentrifugeBuilder> {
+        FluidAttach.Output.OutputFluid<CentrifugeBuilder>,
+        ItemAttach.Output.ItemOutputChance<CentrifugeBuilder> {
 
     private SizedFluidIngredient input_fluid;
     private SizedIngredient input_item;
@@ -62,7 +63,7 @@ public class CentrifugeBuilder extends BaseRecipeBuilder
     }
 
     @Override
-    public CentrifugeBuilder output(Item output_item) {
+    public CentrifugeBuilder outputChance(Item output_item) {
         this.output_item = output_item;
         return this;
     }
@@ -84,8 +85,11 @@ public class CentrifugeBuilder extends BaseRecipeBuilder
 
     @Override
     public Identifier getSuffix(String extra) {
-        return x.rl(MODULE_ID, "centrifuge/" + x.name(output_fluid)
-                + extra);
+        return x.rl(MODULE_ID, "centrifuge/" +
+                (output_fluid == null
+                        ? x.name(output_item.item())
+                        : x.name(output_fluid))
+                                + extra);
     }
 
 }

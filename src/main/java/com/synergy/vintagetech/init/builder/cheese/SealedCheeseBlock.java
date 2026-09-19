@@ -86,7 +86,10 @@ public class SealedCheeseBlock extends BaseCheeseBlock {
     protected InteractionResult useItemOn(ItemStack itemStack, BlockState state, Level level, BlockPos pos,
             Player player, InteractionHand hand, BlockHitResult hitResult) {
 
-        if (itemStack.is(zTags.Items.CHEESE_UNSEALER)) {
+        if (itemStack.is(zTags.Items.STICKY_FARMLAND_SCRAPPABLE)) {
+            if (itemStack.isDamageableItem() && !player.isCreative())
+                itemStack.hurtAndBreak(1, player, hand);
+
             level.setBlockAndUpdate(pos,
                     getStage(state.getValue(AGE)).get()
                             .defaultBlockState()

@@ -3,7 +3,7 @@ package com.synergy.vintagetech.init.builder.treetap;
 import java.util.Optional;
 
 import com.devdyna.cakesticklib.api.RandomUtil;
-import com.devdyna.cakesticklib.api.aspect.templates.TickingBE;
+import com.devdyna.cakesticklib.api.templates.TickingBE;
 import com.synergy.vintagetech.api.factories.handlers.TreeTapHandler;
 import com.synergy.vintagetech.api.recipeinput.TreeTapInput;
 import com.synergy.vintagetech.init.builder.treetap.recipe.TreeTapRecipe;

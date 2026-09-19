@@ -1,0 +1,16 @@
+{
+  "type": "vintagetech:centrifuge",
+  "input_fluid": {
+    "amount": 100,
+    "ingredient": "minecraft:water"
+  },
+  "input_item": {
+    "count": 1,
+    "ingredient": "vintagetech:sap"
+  },
+  "output_fluid": {
+    "amount": 25,
+    "id": "vintagetech:natural_fertilizer"
+  },
+  "ticks": 40
+}

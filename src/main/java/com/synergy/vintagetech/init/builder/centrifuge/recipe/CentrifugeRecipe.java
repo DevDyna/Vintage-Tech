@@ -58,7 +58,7 @@ public class CentrifugeRecipe extends BaseRecipeType<CentrifugeInput> {
 
     @Override
     public ItemStack assemble(CentrifugeInput r) {
-        return x.item(this.output_fluid.create().getFluid().getBucket()).copy();
+        return this.output_fluid == null ? this.output_item.item().create() : x.item(this.output_fluid.create().getFluid().getBucket()).copy();
     }
 
     public NonNullList<Ingredient> getIngredients() {
@@ -113,7 +113,8 @@ public class CentrifugeRecipe extends BaseRecipeType<CentrifugeInput> {
             SizedFluidIngredient.CODEC.fieldOf("input_fluid").forGetter(CentrifugeRecipe::getInputFluid),
             SizedIngredient.NESTED_CODEC.fieldOf("input_item").forGetter(CentrifugeRecipe::getItemInput),
             Codec.intRange(1, Integer.MAX_VALUE).fieldOf("ticks").forGetter(CentrifugeRecipe::getTicks),
-            FluidStackTemplate.CODEC.optionalFieldOf("output_fluid").forGetter(r -> Optional.of(r.getOutputFluid())),
+            FluidStackTemplate.CODEC.optionalFieldOf("output_fluid")
+                    .forGetter(r -> Optional.ofNullable(r.getOutputFluid())),
             ChanceOutput.Item.CODEC.optionalFieldOf("output_item")
                     .forGetter(r -> ChanceOutput.Item.optional(r.getOutputItem())))
             .apply(inst,
@@ -124,7 +125,8 @@ public class CentrifugeRecipe extends BaseRecipeType<CentrifugeInput> {
                     SizedFluidIngredient.STREAM_CODEC, CentrifugeRecipe::getInputFluid,
                     SizedIngredient.STREAM_CODEC, CentrifugeRecipe::getItemInput,
                     ByteBufCodecs.INT, CentrifugeRecipe::getTicks,
-                    ByteBufCodecs.optional(FluidStackTemplate.STREAM_CODEC), f -> Optional.of(f.getOutputFluid()),
+                    ByteBufCodecs.optional(FluidStackTemplate.STREAM_CODEC),
+                    f -> Optional.ofNullable(f.getOutputFluid()),
                     ByteBufCodecs.optional(ChanceOutput.Item.STREAM_CODEC),
                     f -> ChanceOutput.Item.optional(f.getOutputItem()),
                     (inf, ini, ti, of, oi) -> new CentrifugeRecipe(inf, ini, ti, of.orElse(null), oi.orElse(null)));

@@ -3,11 +3,8 @@ package com.synergy.vintagetech.init.builder.evaporation_basin;
 import java.util.Optional;
 
 import com.devdyna.cakesticklib.api.RandomUtil;
-import com.devdyna.cakesticklib.api.aspect.logic.ItemStorageBlock;
-import com.devdyna.cakesticklib.api.aspect.logic.NoGuiStorage;
-import com.devdyna.cakesticklib.api.aspect.logic.SimpleFluidStorage;
 import com.devdyna.cakesticklib.api.aspect.logic.*;
-import com.devdyna.cakesticklib.api.aspect.templates.TickingBE;
+import com.devdyna.cakesticklib.api.templates.TickingBE;
 import com.devdyna.cakesticklib.api.primitive.Ticker;
 import com.devdyna.cakesticklib.api.recipe.recipeInput.FluidInput;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
@@ -40,7 +37,6 @@ public class EvaporationBasinBE extends TickingBE
     }
 
     public ItemStack extractItem() {
-        update();
         var resource = getItemStorage().getResource(0);
 
         if (resource.isEmpty())
@@ -61,21 +57,21 @@ public class EvaporationBasinBE extends TickingBE
     @Override
     public void tickBoth() {
 
-        if (getFluidStorage() == null) {
-            fail();
+        if (getFluidStorage() == null) 
             return;
-        }
+        
 
-        if (getAsStack(0).isEmpty()) {
-            fail();
+        if (getFluidStorage().size() <= 0)
             return;
-        }
 
-        update();
+        if (getAsStack(0).isEmpty()) 
+            return;
+        
+
 
         Optional<RecipeHolder<EvaporationBasinRecipe>> r = level.getServer().getRecipeManager()
                 .getRecipeFor(zRecipeTypes.EVAPORATION_BASIN.getType(),
-                        new FluidInput.withNumber(getAsStack(0), getFluidStorage().getAmountAsInt(0)), level);
+                        new FluidInput.simple(getAsStack(0)), level);
 
         if (r.isEmpty()) {
             fail();
@@ -108,7 +104,6 @@ public class EvaporationBasinBE extends TickingBE
 
         }
 
-        update();
 
     }
 

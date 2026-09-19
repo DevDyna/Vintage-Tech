@@ -1,0 +1,42 @@
+{
+  "type": "vintagetech:crucible",
+  "input_fluid": {
+    "amount": 5,
+    "ingredient": "cakesticklib:sap"
+  },
+  "input_items": [
+    {
+      "count": 2,
+      "ingredient": "#vintagetech:sticky_goo"
+    },
+    {
+      "count": 5,
+      "ingredient": "#c:strings"
+    },
+    {
+      "count": 1,
+      "ingredient": "vintagetech:mesh"
+    }
+  ],
+  "output_items": [
+    {
+      "chance": 1.0,
+      "item": {
+        "id": "vintagetech:cloth"
+      }
+    },
+    {
+      "chance": 0.25,
+      "item": {
+        "id": "vintagetech:cloth"
+      }
+    },
+    {
+      "chance": 0.25,
+      "item": {
+        "id": "vintagetech:mesh"
+      }
+    }
+  ],
+  "ticks": 80
+}

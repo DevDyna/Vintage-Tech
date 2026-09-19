@@ -9,7 +9,7 @@ import com.devdyna.cakesticklib.api.aspect.logic.DropCollector;
 import com.devdyna.cakesticklib.api.aspect.logic.ItemStorageBlock;
 import com.devdyna.cakesticklib.api.aspect.logic.NoGuiStorage;
 import com.devdyna.cakesticklib.api.aspect.logic.SimpleFluidStorage;
-import com.devdyna.cakesticklib.api.aspect.templates.TickingBE;
+import com.devdyna.cakesticklib.api.templates.TickingBE;
 import com.devdyna.cakesticklib.api.primitive.Ticker;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
 
@@ -72,6 +72,9 @@ public class CrucibleBE extends TickingBE
         if (getFluidStorage() == null)
             return;
 
+        if (getFluidStorage().size() <= 0)
+            return;
+
         var fluid = getAsStack(FLUID_TANK);
 
         if (fluid.isEmpty())
@@ -113,10 +116,9 @@ public class CrucibleBE extends TickingBE
 
             var count = 0;
 
-            for (var stack : items) 
+            for (var stack : items)
                 if (ingredient.ingredient().test(stack))
                     count += stack.getCount();
-            
 
             multiplier = Math.min(
                     multiplier,
@@ -142,9 +144,8 @@ public class CrucibleBE extends TickingBE
         if (finalFluidAmount > getTankCapacity())
             return;
 
-            level.playSound(null, getBlockPos(), SoundEvents.BREWING_STAND_BREW, SoundSource.BLOCKS, 0.15f,
-                    1.25f + (RandomUtil.chance(level, 50) ? 0.5f : 0.25f));
-        
+        level.playSound(null, getBlockPos(), SoundEvents.BREWING_STAND_BREW, SoundSource.BLOCKS, 0.15f,
+                1.25f + (RandomUtil.chance(level, 50) ? 0.5f : 0.25f));
 
         if (ticker == null)
             ticker = Ticker.of(recipe.getTicks() * multiplier);

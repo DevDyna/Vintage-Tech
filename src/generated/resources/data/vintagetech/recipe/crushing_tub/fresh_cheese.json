@@ -2,7 +2,7 @@
   "type": "vintagetech:crushing_tub",
   "fluid": {
     "amount": 25,
-    "id": "vintagetech:whey_source"
+    "id": "vintagetech:whey"
   },
   "input": "vintagetech:cheese_curd",
   "output": {

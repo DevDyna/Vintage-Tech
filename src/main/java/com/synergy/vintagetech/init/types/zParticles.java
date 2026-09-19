@@ -22,4 +22,8 @@ public class zParticles {
             "fan_air_flow",
             () -> new SimpleParticleType(false));
 
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> SULFUR_PARTICLES = zParticle.register(
+            "surfur_particles",
+            () -> new SimpleParticleType(false));
+
 }

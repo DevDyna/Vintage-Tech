@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_evaporation_basin": {
+    "evaporation_basin": {
       "conditions": {
         "items": [
           {
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_evaporation_basin"
+      "evaporation_basin"
     ]
   ],
   "rewards": {

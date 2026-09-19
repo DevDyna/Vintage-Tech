@@ -93,7 +93,7 @@ public class CrushingTubCategory extends BaseRecipeCategory<CrushingTubRecipe> {
                     Component.literal(
                             ((int) (recipe.getOutput().chance() * 100)) + "%"),
                     55, 53,
-                    ColorUtils.WHITE.getRGB(), true);
+                    ColorUtils.WHITE.WHITE.getRGB(), true);
 
     }
 

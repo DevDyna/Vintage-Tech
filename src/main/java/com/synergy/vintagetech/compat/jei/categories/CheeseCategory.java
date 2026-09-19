@@ -16,7 +16,7 @@ import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.types.IRecipeType;
-
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
@@ -47,7 +47,6 @@ public class CheeseCategory extends BaseCategory<CheeseCategory.CheesePage> {
         return zBlocks.FRESH_CHEESE.get();
     }
 
-    // TODO API : add a warning when null , it collapse everything!
     @Override
     public Identifier setBackGround() {
         return x.rl(MODULE_ID, "");
@@ -149,12 +148,12 @@ public class CheeseCategory extends BaseCategory<CheeseCategory.CheesePage> {
         stack.scale(0.75f);
 
         if (page.type() == CheesePageType.AGING)
-            drawCenteredString(graphics, font,
+            centeredText(graphics, font,
                     Component.translatable(MODULE_ID + ".jei.cheese.aging.condition"),
                     61 + 10 + 10, 58 + 10,
                     0xFF404040, false);
 
-        drawCenteredString(graphics, font,
+        centeredText(graphics, font,
                 Component.translatable(MODULE_ID + ".jei.cheese." + page.getId()),
                 61 + 10 + 10, 5 + 10 - ((page.type() == CheesePageType.AGING) ? 10 : 0),
                 0xFF404040, false);
@@ -163,9 +162,15 @@ public class CheeseCategory extends BaseCategory<CheeseCategory.CheesePage> {
 
     }
 
+    private void centeredText(GuiGraphicsExtractor g, Font font, Component text, int x, int y, int color,
+            boolean dropShadow) {
+        var f = text.getVisualOrderText();
+        g.text(font, f, x - font.width(f) / 2, y, color, dropShadow);
+    }
+
     @Override
     public @Nullable Identifier getIdentifier(CheesePage recipe) {
-        return x.rl(MODULE_ID,recipe.getId());
+        return x.rl(MODULE_ID, recipe.getId());
     }
 
     public record CheesePage(CheesePageType type) {

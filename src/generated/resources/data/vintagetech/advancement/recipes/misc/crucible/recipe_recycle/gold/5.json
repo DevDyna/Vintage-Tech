@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "#vintagetech:recipe_recycle/gold/5"
+            "items": "#cakesticklib:recipe_recycle/gold/5"
           }
         ]
       },

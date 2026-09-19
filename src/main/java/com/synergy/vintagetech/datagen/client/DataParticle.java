@@ -21,6 +21,11 @@ public class DataParticle extends ParticleDescriptionProvider {
                 x.mcLoc("generic_2"),
                 x.mcLoc("generic_3")
         );
+
+        spriteSet(
+                zParticles.SULFUR_PARTICLES.get(),
+                x.mcLoc("glow")
+        );
     }
 
 }

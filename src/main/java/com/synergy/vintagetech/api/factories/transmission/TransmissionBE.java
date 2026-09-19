@@ -1,6 +1,6 @@
 package com.synergy.vintagetech.api.factories.transmission;
 
-import com.devdyna.cakesticklib.api.aspect.templates.TickingBE;
+import com.devdyna.cakesticklib.api.templates.TickingBE;
 import com.synergy.vintagetech.api.factories.handlers.AxleHandler;
 import com.synergy.vintagetech.init.types.zBlockEntities;
 
@@ -34,6 +34,10 @@ public class TransmissionBE extends TickingBE {
 
     public float getDeactiveSpeed() {
         return 0f;
+    }
+
+    public boolean isAxlePowered() {
+        return getBlockState().getValue(AxleHandler.ENABLED);
     }
 
 }

@@ -5,9 +5,11 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 import java.util.concurrent.CompletableFuture;
 
 import com.devdyna.cakesticklib.api.datagen.RecipeGenerators;
-import com.devdyna.cakesticklib.setup.common.recipes.hammering.HammeringBuilder;
+import com.devdyna.cakesticklib.setup.registry.LibFluids;
 import com.devdyna.cakesticklib.setup.registry.LibItems;
 import com.devdyna.cakesticklib.setup.registry.LibTags;
+import com.synergy.vintagetech.api.factories.beams.BeamFactory;
+import com.synergy.vintagetech.api.factories.beams.WoodType;
 import com.synergy.vintagetech.init.builder.centrifuge.recipe.CentrifugeBuilder;
 import com.synergy.vintagetech.init.builder.crucible.recipe.CrucibleBuilder;
 import com.synergy.vintagetech.init.builder.crushing_tub.recipe.CrushingTubBuilder;
@@ -56,63 +58,62 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
 
                 CrushingTubBuilder.of(registries)
                                 .input(ItemTags.LEAVES)
-                                .output(Items.STICK, 0.5f)
+                                .outputChance(Items.STICK, 0.5f)
                                 .output(Fluids.WATER, 1000)
-                                .unlockedBy(getHasName(ItemTags.LEAVES), has(ItemTags.LEAVES))
+                                .unlockedBy(ItemTags.LEAVES, items)
                                 .save(output);
 
                 CrushingTubBuilder.of(registries)
-                                .input(zItems.IRONBERRIES)
-                                .output(zItems.TINY_IRON_DUST, 1.0f)
+                                .input(zItems.IRONBERRIES.get())
+                                .outputChance(zItems.TINY_IRON_DUST.get(), 1.0f)
                                 .output(zFluids.IRONBERRY_JUICE.getFluid(), 250)
-                                .unlockedBy(getHasName(zItems.IRONBERRIES.get()), has(zItems.IRONBERRIES.get()))
+                                .unlockedBy(zItems.IRONBERRIES.get())
                                 .save(output);
 
                 EvaporationBasinBuilder.of(registries)
                                 .fluid(Fluids.WATER, 125)
-                                .output(zItems.SALT)
+                                .output(zItems.SALT.get())
+                                .unlockedBy(zBlocks.EVAPORATION_BASIN.get())
+                                .save(output);
+
+                EvaporationBasinBuilder.of(registries)
+                                .fluid(LibFluids.LATEX.getFluid(), 125)
+                                .output(zItems.GLUE.get())
                                 .unlockedBy(getHasName(zBlocks.EVAPORATION_BASIN.get()),
                                                 has(zBlocks.EVAPORATION_BASIN.get()))
                                 .save(output);
 
                 EvaporationBasinBuilder.of(registries)
-                                .fluid(zFluids.LATEX.getFluid(), 125)
-                                .output(zItems.GLUE)
+                                .fluid(LibFluids.RESIN.getFluid(), 125)
+                                .output(zItems.AMBER.get())
                                 .unlockedBy(getHasName(zBlocks.EVAPORATION_BASIN.get()),
                                                 has(zBlocks.EVAPORATION_BASIN.get()))
                                 .save(output);
 
                 EvaporationBasinBuilder.of(registries)
-                                .fluid(zFluids.RESIN.getFluid(), 125)
-                                .output(zItems.AMBER)
+                                .fluid(LibFluids.CRUDE_OIL.getFluid(), 125)
+                                .output(zItems.BITUMEN.get())
                                 .unlockedBy(getHasName(zBlocks.EVAPORATION_BASIN.get()),
                                                 has(zBlocks.EVAPORATION_BASIN.get()))
                                 .save(output);
 
                 EvaporationBasinBuilder.of(registries)
-                                .fluid(zFluids.OIL.getFluid(), 125)
-                                .output(zItems.BITUMEN)
-                                .unlockedBy(getHasName(zBlocks.EVAPORATION_BASIN.get()),
-                                                has(zBlocks.EVAPORATION_BASIN.get()))
-                                .save(output);
-
-                EvaporationBasinBuilder.of(registries)
-                                .fluid(zFluids.SAP.getFluid(), 125)
-                                .output(zItems.SAP)
+                                .fluid(LibFluids.SAP.getFluid(), 125)
+                                .output(zItems.SAP.get())
                                 .unlockedBy(getHasName(zBlocks.EVAPORATION_BASIN.get()),
                                                 has(zBlocks.EVAPORATION_BASIN.get()))
                                 .save(output);
 
                 EvaporationBasinBuilder.of(registries)
                                 .fluid(zFluids.IRONBERRY_JUICE.getFluid(), 125)
-                                .output(zItems.TINY_IRON_DUST)
+                                .output(zItems.TINY_IRON_DUST.get())
                                 .unlockedBy(getHasName(zBlocks.EVAPORATION_BASIN.get()),
                                                 has(zBlocks.EVAPORATION_BASIN.get()))
                                 .save(output);
 
                 EvaporationBasinBuilder.of(registries)
-                                .fluid(zFluids.SULFURIC_ACID.getFluid(), 25)
-                                .output(LibItems.SULFUR_DUST)
+                                .fluid(LibFluids.SULFURIC_ACID.getFluid(), 25)
+                                .output(LibItems.SULFUR_DUST.get())
                                 .unlockedBy(getHasName(zBlocks.EVAPORATION_BASIN.get()),
                                                 has(zBlocks.EVAPORATION_BASIN.get()))
                                 .save(output);
@@ -131,91 +132,91 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
 
                 MillstoneBuilder.of(registries)
                                 .input(Tags.Items.CROPS_WHEAT)
-                                .output(LibItems.FLOUR, 2)
+                                .output(LibItems.FLOUR.get(), 2)
                                 .unlockedBy(getHasName(Tags.Items.CROPS_WHEAT), has(Tags.Items.CROPS_WHEAT))
                                 .save(output);
 
                 MillstoneBuilder.of(registries)
-                                .input(zItems.SOYBEANS)
-                                .output(zItems.MASHED_SOYBEANS, 2)
+                                .input(zItems.SOYBEANS.get())
+                                .output(zItems.MASHED_SOYBEANS.get(), 2)
                                 .unlockedBy(getHasName(zItems.SOYBEANS.get()), has(zItems.SOYBEANS.get()))
                                 .save(output);
 
                 CentrifugeBuilder.of(registries)
-                                .input(zItems.MASHED_SOYBEANS)
+                                .input(zItems.MASHED_SOYBEANS.get())
                                 .fluid(Fluids.WATER, 125)
                                 .output(zFluids.SOYMILK.getFluid(), 125)
-                                .output(zItems.SOY_DOUGH, 2, 1f)
+                                .outputChance(zItems.SOY_DOUGH.get(), 2, 1f)
                                 .unlockedBy(getHasName(Items.SUGAR), has(Items.SUGAR))
                                 .save(output);
 
                 TreeTapBuilder.of(registries)
                                 .log(Blocks.OAK_LOG)
                                 .leaves(Blocks.OAK_LEAVES)
-                                .output(zFluids.SAP.getFluid(), 25)
+                                .output(LibFluids.SAP.getFluid(), 25)
                                 .unlockedBy(getHasName(zBlocks.TREE_TAP.get()), has(zBlocks.TREE_TAP.get()))
                                 .save(output, "_from_oak");
 
                 TreeTapBuilder.of(registries)
                                 .log(Blocks.DARK_OAK_LOG)
                                 .leaves(Blocks.DARK_OAK_LEAVES)
-                                .output(zFluids.SAP.getFluid(), 50)
+                                .output(LibFluids.SAP.getFluid(), 50)
                                 .unlockedBy(getHasName(zBlocks.TREE_TAP.get()), has(zBlocks.TREE_TAP.get()))
                                 .save(output, "_from_dark_oak");
 
                 TreeTapBuilder.of(registries)
                                 .log(Blocks.PALE_OAK_LOG)
                                 .leaves(Blocks.PALE_OAK_LEAVES)
-                                .output(zFluids.SAP.getFluid(), 75)
+                                .output(LibFluids.SAP.getFluid(), 75)
                                 .unlockedBy(getHasName(zBlocks.TREE_TAP.get()), has(zBlocks.TREE_TAP.get()))
                                 .save(output, "_from_pale_oak");
 
                 TreeTapBuilder.of(registries)
                                 .log(Blocks.BIRCH_LOG)
                                 .leaves(Blocks.BIRCH_LEAVES)
-                                .output(zFluids.SAP.getFluid(), 15)
+                                .output(LibFluids.SAP.getFluid(), 15)
                                 .unlockedBy(getHasName(zBlocks.TREE_TAP.get()), has(zBlocks.TREE_TAP.get()))
                                 .save(output, "_from_birch");
 
                 TreeTapBuilder.of(registries)
                                 .log(Blocks.SPRUCE_LOG)
                                 .leaves(Blocks.SPRUCE_LEAVES)
-                                .output(zFluids.RESIN.getFluid(), 25)
+                                .output(LibFluids.RESIN.getFluid(), 25)
                                 .unlockedBy(getHasName(zBlocks.TREE_TAP.get()), has(zBlocks.TREE_TAP.get()))
                                 .save(output, "_from_spruce");
 
                 TreeTapBuilder.of(registries)
                                 .log(Blocks.JUNGLE_LOG)
                                 .leaves(Blocks.JUNGLE_LEAVES)
-                                .output(zFluids.LATEX.getFluid(), 50)
+                                .output(LibFluids.LATEX.getFluid(), 50)
                                 .unlockedBy(getHasName(zBlocks.TREE_TAP.get()), has(zBlocks.TREE_TAP.get()))
                                 .save(output, "_from_jungle");
 
                 TreeTapBuilder.of(registries)
                                 .log(Blocks.MANGROVE_LOG)
                                 .leaves(Blocks.MANGROVE_LEAVES)
-                                .output(zFluids.LATEX.getFluid(), 75)
+                                .output(LibFluids.LATEX.getFluid(), 75)
                                 .unlockedBy(getHasName(zBlocks.TREE_TAP.get()), has(zBlocks.TREE_TAP.get()))
                                 .save(output, "_from_mangrove");
 
                 TreeTapBuilder.of(registries)
                                 .log(Blocks.CHERRY_LOG)
                                 .leaves(Blocks.CHERRY_LEAVES)
-                                .output(zFluids.LATEX.getFluid(), 15)
+                                .output(LibFluids.LATEX.getFluid(), 15)
                                 .unlockedBy(getHasName(zBlocks.TREE_TAP.get()), has(zBlocks.TREE_TAP.get()))
                                 .save(output, "_from_cherry");
 
                 TreeTapBuilder.of(registries)
                                 .log(Blocks.ACACIA_LOG)
                                 .leaves(Blocks.ACACIA_LEAVES)
-                                .output(zFluids.OIL.getFluid(), 25)
+                                .output(LibFluids.CRUDE_OIL.getFluid(), 25)
                                 .unlockedBy(getHasName(zBlocks.TREE_TAP.get()), has(zBlocks.TREE_TAP.get()))
                                 .save(output, "_from_acacia");
 
                 TreeTapBuilder.of(registries)
                                 .log(Tags.Blocks.NETHER_NATURAL_LOGS)
                                 .leaves(BlockTags.WART_BLOCKS)
-                                .output(zFluids.SULFURIC_ACID.getFluid(), 25)
+                                .output(LibFluids.SULFURIC_ACID.getFluid(), 25)
                                 .unlockedBy(getHasName(zBlocks.TREE_TAP.get()), has(zBlocks.TREE_TAP.get()))
                                 .save(output);
 
@@ -231,27 +232,19 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .unlockedBy(getHasName(zItems.HEMP.get()), has(zItems.HEMP.get()))
                                 .save(output);
 
-                pillar(output, zBlocks.OAK_BEAM.get(), Items.OAK_LOG, 8);
-                pillar(output, zBlocks.SPRUCE_BEAM.get(), Items.SPRUCE_LOG, 8);
-                pillar(output, zBlocks.BIRCH_BEAM.get(), Items.BIRCH_LOG, 8);
-                pillar(output, zBlocks.JUNGLE_BEAM.get(), Items.JUNGLE_LOG, 8);
-                pillar(output, zBlocks.ACACIA_BEAM.get(), Items.ACACIA_LOG, 8);
-                pillar(output, zBlocks.DARK_OAK_BEAM.get(), Items.DARK_OAK_LOG, 8);
-                pillar(output, zBlocks.MANGROVE_BEAM.get(), Items.MANGROVE_LOG, 8);
-                pillar(output, zBlocks.CHERRY_BEAM.get(), Items.CHERRY_LOG, 8);
-                pillar(output, zBlocks.PALE_OAK_BEAM.get(), Items.PALE_OAK_LOG, 8);
-                pillar(output, zBlocks.BAMBOO_BEAM.get(), Items.BAMBOO_BLOCK, 8);
+                for (WoodType wood : WoodType.values()) {
+                        pillar(output, BeamFactory.get(wood).normal().get(), wood.log().asItem(), 8);
+                        pillar(output, BeamFactory.get(wood).stripped().get(), wood.stripped(), 8);
 
-                pillar(output, zBlocks.STRIPPED_OAK_BEAM.get(), Items.STRIPPED_OAK_LOG, 8);
-                pillar(output, zBlocks.STRIPPED_SPRUCE_BEAM.get(), Items.STRIPPED_SPRUCE_LOG, 8);
-                pillar(output, zBlocks.STRIPPED_BIRCH_BEAM.get(), Items.STRIPPED_BIRCH_LOG, 8);
-                pillar(output, zBlocks.STRIPPED_JUNGLE_BEAM.get(), Items.STRIPPED_JUNGLE_LOG, 8);
-                pillar(output, zBlocks.STRIPPED_ACACIA_BEAM.get(), Items.STRIPPED_ACACIA_LOG, 8);
-                pillar(output, zBlocks.STRIPPED_DARK_OAK_BEAM.get(), Items.STRIPPED_DARK_OAK_LOG, 8);
-                pillar(output, zBlocks.STRIPPED_MANGROVE_BEAM.get(), Items.STRIPPED_MANGROVE_LOG, 8);
-                pillar(output, zBlocks.STRIPPED_CHERRY_BEAM.get(), Items.STRIPPED_CHERRY_LOG, 8);
-                pillar(output, zBlocks.STRIPPED_PALE_OAK_BEAM.get(), Items.STRIPPED_PALE_OAK_LOG, 8);
-                pillar(output, zBlocks.STRIPPED_BAMBOO_BEAM.get(), Items.STRIPPED_BAMBOO_BLOCK, 8);
+                        if (wood.isSpecial())
+                                continue;
+
+                        simplePacked(output, BeamFactory.get(wood).normal().get(), BeamFactory.get(wood).full().get(),
+                                        true, 3);
+                        simplePacked(output, BeamFactory.get(wood).stripped().get(),
+                                        BeamFactory.get(wood).stripped_full().get(), true, 3);
+
+                }
 
                 shapeless(RecipeCategory.MISC, zBlocks.AXLE.get())
                                 .requires(zTags.Items.BEAM_NORMAL)
@@ -294,11 +287,11 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .save(output);
 
                 shapeless(RecipeCategory.MISC, Items.TORCH, 6)
-                                .requires(zItems.AMBER.get())
+                                .requires(zTags.Items.STICKY_GOO)
                                 .requires(Items.STRING)
                                 .requires(Items.STICK)
-                                .unlockedBy(getHasName(zItems.AMBER.get()), has(zItems.AMBER.get()))
-                                .save(output, MODULE_ID + ":torch_from_amber");
+                                .unlockedBy(getHasName(zTags.Items.STICKY_GOO), has(zTags.Items.STICKY_GOO))
+                                .save(output, MODULE_ID + ":torch_from_sticky_goo");
 
                 shapeless(RecipeCategory.MISC, Items.MAGENTA_DYE, 2)
                                 .requires(zBlocks.LAVENDER.get())
@@ -423,14 +416,14 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .save(output);
 
                 CentrifugeBuilder.of(registries)
-                                .input(zItems.SAP)
+                                .input(zItems.SAP.get())
                                 .fluid(Fluids.WATER, 100)
                                 .output(zFluids.FERTILIZER_NATURAL.getFluid(), 25)
                                 .unlockedBy(getHasName(zItems.SAP.get()), has(zItems.SAP.get()))
                                 .save(output, "_from_sap");
 
                 CentrifugeBuilder.of(registries)
-                                .input(zItems.OKARA)
+                                .input(zItems.OKARA.get())
                                 .fluid(Fluids.WATER, 1000)
                                 .output(zFluids.FERTILIZER_NATURAL.getFluid(), 750)
                                 .unlockedBy(getHasName(zItems.OKARA.get()), has(zItems.OKARA.get()))
@@ -505,22 +498,22 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .save(output);
 
                 CrushingTubBuilder.of(registries)
-                                .input(zItems.SOY_DOUGH)
+                                .input(zItems.SOY_DOUGH.get())
                                 .requireMesh()
-                                .output(zItems.OKARA, 1f)
+                                .outputChance(zItems.OKARA.get(), 1f)
                                 .output(zFluids.SOYMILK.getFluid(), 100)
                                 .unlockedBy(getHasName(zItems.SOY_DOUGH.get()), has(zItems.SOY_DOUGH.get()))
                                 .save(output);
 
                 CrushingTubBuilder.of(registries)
-                                .input(zItems.SOY_RENNET)
-                                .output(zItems.TOFU, 1f)
+                                .input(zItems.SOY_RENNET.get())
+                                .outputChance(zItems.TOFU.get(), 1f)
                                 .unlockedBy(getHasName(zItems.SOY_RENNET.get()), has(zItems.SOY_RENNET.get()))
                                 .save(output);
 
                 MillstoneBuilder.of(registries)
-                                .input(zItems.HEMP)
-                                .output(zItems.HEMP_FIBER, 6)
+                                .input(zItems.HEMP.get())
+                                .output(zItems.HEMP_FIBER.get(), 6)
                                 .unlockedBy(getHasName(zItems.HEMP.get()),
                                                 has(zItems.HEMP.get()))
                                 .save(output);
@@ -671,7 +664,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .save(output);
 
                 CrucibleBuilder.of(registries)
-                                .add(zItems.SALT)
+                                .add(zItems.SALT.get())
                                 .add(LibTags.Items.SULFUR_DUST)
                                 .fluid(zFluids.SOYMILK.getFluid(), 250)
                                 .output(zItems.SOY_RENNET.get(), 2, 1f)
@@ -682,9 +675,11 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                 CrucibleBuilder.of(registries)
                                 .add(Tags.Items.SLIME_BALLS)
                                 .add(Tags.Items.STRINGS, 3)
-                                .add(zItems.MESH, 2)
-                                .fluid(zFluids.SAP.getFluid(), 25)
-                                .output(zItems.CLOTH.get(), 2, 1f)
+                                .add(zItems.MESH.get())
+                                .fluid(LibFluids.SAP.getFluid(), 100)
+                                .output(zItems.CLOTH.get(), 1, 1f)
+                                .output(zItems.CLOTH.get(), 1, 0.05f)
+                                .output(zItems.MESH.get(), 1, 0.95f)
                                 .unlockedBy(getHasName(Tags.Items.SLIME_BALLS), has(Tags.Items.SLIME_BALLS))
                                 .save(output, "_from_slime");
 
@@ -696,9 +691,9 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
 
                 CentrifugeBuilder.of(registries)
                                 .fluid(zFluids.CALCIUM_CARBONATE.getFluid(), 50)
-                                .input(zItems.CONDENSED_MILK)
+                                .input(zItems.CONDENSED_MILK.get())
                                 .output(zFluids.WHEY.getFluid(), 125)
-                                .output(zItems.MILK_CURD.get(), 1, 1f)
+                                .outputChance(zItems.MILK_CURD.get(), 1, 1f)
                                 .unlockedBy(zItems.CONDENSED_MILK.get())
                                 .save(output);
 
@@ -713,7 +708,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
 
                 CrucibleBuilder.of(registries)
                                 .add(zItems.MILK_CURD.get(), 5)
-                                .add(zItems.SALT, 6)
+                                .add(zItems.SALT.get(), 6)
                                 .fluid(Tags.Fluids.WATER, 250)
                                 .output(zItems.CHEESE_CURD.get(), 1, 1f)
                                 .output(zItems.CONDENSED_MILK.get(), 2, 0.75f)
@@ -724,28 +719,29 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
 
                 CrushingTubBuilder.of(registries)
                                 .requireMesh()
-                                .input(zItems.CHEESE_CURD)
-                                .output(zBlocks.FRESH_CHEESE.get(), 1f)
+                                .input(zItems.CHEESE_CURD.get())
+                                .outputChance(zBlocks.FRESH_CHEESE.get(), 1f)
                                 .output(zFluids.WHEY.getFluid(), 25)
                                 .unlockedBy(zItems.CHEESE_CURD.get())
                                 .save(output);
 
                 CrushingTubBuilder.of(registries)
                                 .requireMesh()
-                                .input(zItems.MOZZARELLA_CURD)
-                                .output(zItems.MOZZARELLA, 1f)
+                                .input(zItems.MOZZARELLA_CURD.get())
+                                .outputChance(zItems.MOZZARELLA.get(), 1f)
                                 .output(zFluids.WHEY.getFluid(), 25)
                                 .unlockedBy(zItems.MOZZARELLA_CURD.get())
                                 .save(output);
 
                 CrucibleBuilder.of(registries)
-                                .add(zItems.AMBER)
+                                .add(zTags.Items.STICKY_GOO, 2)
                                 .add(Tags.Items.STRINGS, 5)
-                                .add(zItems.MESH)
-                                .fluid(zFluids.SAP.getFluid(), 5)
+                                .add(zItems.MESH.get())
+                                .fluid(LibFluids.SAP.getFluid(), 5)
                                 .output(zItems.CLOTH.get(), 1, 1f)
                                 .output(zItems.CLOTH.get(), 1, 0.25f)
-                                .unlockedBy(getHasName(zItems.AMBER.get()), has(zItems.AMBER.get()))
+                                .output(zItems.MESH.get(), 1, 0.25f)
+                                .unlockedBy(getHasName(zTags.Items.STICKY_GOO), has(zTags.Items.STICKY_GOO))
                                 .save(output, "_from_amber");
 
                 shaped(RecipeCategory.BUILDING_BLOCKS,
@@ -774,43 +770,43 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 output,
                                 Items.COPPER_INGOT,
                                 Items.COPPER_NUGGET,
-                                zTags.Items.RECYCLE_COPPER_1,
-                                zTags.Items.RECYCLE_COPPER_2,
-                                zTags.Items.RECYCLE_COPPER_3,
-                                zTags.Items.RECYCLE_COPPER_4,
-                                zTags.Items.RECYCLE_COPPER_5,
-                                zTags.Items.RECYCLE_COPPER_6,
-                                zTags.Items.RECYCLE_COPPER_7,
-                                zTags.Items.RECYCLE_COPPER_8,
-                                zTags.Items.RECYCLE_COPPER_9);
+                                LibTags.Items.RECYCLE_COPPER_1,
+                                LibTags.Items.RECYCLE_COPPER_2,
+                                LibTags.Items.RECYCLE_COPPER_3,
+                                LibTags.Items.RECYCLE_COPPER_4,
+                                LibTags.Items.RECYCLE_COPPER_5,
+                                LibTags.Items.RECYCLE_COPPER_6,
+                                LibTags.Items.RECYCLE_COPPER_7,
+                                LibTags.Items.RECYCLE_COPPER_8,
+                                LibTags.Items.RECYCLE_COPPER_9);
 
                 createRecycleRecipe(
                                 output,
                                 Items.IRON_INGOT,
                                 Items.IRON_NUGGET,
-                                zTags.Items.RECYCLE_IRON_1,
-                                zTags.Items.RECYCLE_IRON_2,
-                                zTags.Items.RECYCLE_IRON_3,
-                                zTags.Items.RECYCLE_IRON_4,
-                                zTags.Items.RECYCLE_IRON_5,
-                                zTags.Items.RECYCLE_IRON_6,
-                                zTags.Items.RECYCLE_IRON_7,
-                                zTags.Items.RECYCLE_IRON_8,
-                                zTags.Items.RECYCLE_IRON_9);
+                                LibTags.Items.RECYCLE_IRON_1,
+                                LibTags.Items.RECYCLE_IRON_2,
+                                LibTags.Items.RECYCLE_IRON_3,
+                                LibTags.Items.RECYCLE_IRON_4,
+                                LibTags.Items.RECYCLE_IRON_5,
+                                LibTags.Items.RECYCLE_IRON_6,
+                                LibTags.Items.RECYCLE_IRON_7,
+                                LibTags.Items.RECYCLE_IRON_8,
+                                LibTags.Items.RECYCLE_IRON_9);
 
                 createRecycleRecipe(
                                 output,
                                 Items.GOLD_INGOT,
                                 Items.GOLD_NUGGET,
-                                zTags.Items.RECYCLE_GOLD_1,
-                                zTags.Items.RECYCLE_GOLD_2,
-                                zTags.Items.RECYCLE_GOLD_3,
-                                zTags.Items.RECYCLE_GOLD_4,
-                                zTags.Items.RECYCLE_GOLD_5,
-                                zTags.Items.RECYCLE_GOLD_6,
-                                zTags.Items.RECYCLE_GOLD_7,
-                                zTags.Items.RECYCLE_GOLD_8,
-                                zTags.Items.RECYCLE_GOLD_9);
+                                LibTags.Items.RECYCLE_GOLD_1,
+                                LibTags.Items.RECYCLE_GOLD_2,
+                                LibTags.Items.RECYCLE_GOLD_3,
+                                LibTags.Items.RECYCLE_GOLD_4,
+                                LibTags.Items.RECYCLE_GOLD_5,
+                                LibTags.Items.RECYCLE_GOLD_6,
+                                LibTags.Items.RECYCLE_GOLD_7,
+                                LibTags.Items.RECYCLE_GOLD_8,
+                                LibTags.Items.RECYCLE_GOLD_9);
 
                 twoByTwoPacker(output, zBlocks.FRESH_CHEESE.get(), zItems.FRESH_CHEESE_SLICE.get(),
                                 MODULE_ID + ":cheese_from_slice/fresh");
@@ -827,26 +823,6 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .unlockedBy(Items.MILK_BUCKET)
                                 .save(output);
 
-                // TODO API : recipe with scissors
-                // TODO API : add fallback to force replace when fail
-                // TODO API : allow x.rl() on .save(output,?) to override suffix
-                // TODO API : add optional boolean to override suffix without use x.rl()
-                // TODO BUG : cakesticklib hammer is one use only!
-                HammeringBuilder.of(registries)
-                                .add(ItemTags.WOOL_CARPETS)
-                                .tool(LibItems.HAMMER.get())
-                                .unlockedBy(getHasName(ItemTags.WOOL_CARPETS), has(ItemTags.WOOL_CARPETS))
-                                .output(Items.STRING, 1)
-                                .save(output, "_from_wool_carpets");
-
-                HammeringBuilder.of(registries)
-                                .add(ItemTags.WOOL)
-                                .tool(LibItems.HAMMER.get())
-                                .output(Items.STRING, 3)
-                                .unlockedBy(getHasName(ItemTags.WOOL), has(ItemTags.WOOL))
-                                .save(output, "_from_wool");
-
-                // TODO API : unlockedBy(TagKey<Item>)
                 MillstoneBuilder.of(registries)
                                 .input(ItemTags.WOOL_CARPETS)
                                 .output(Items.STRING, 2)
@@ -858,6 +834,13 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .output(Items.STRING, 4)
                                 .unlockedBy(getHasName(ItemTags.WOOL), has(ItemTags.WOOL))
                                 .save(output, "_from_wool");
+
+                CentrifugeBuilder.of(registries)
+                                .fluid(LibFluids.SULFURIC_ACID.getFluid(), 250)
+                                .input(Items.SLIME_BALL)
+                                .outputChance(zItems.SULFUR_GOO.get(), 4, 1f)
+                                .unlockedBy(Items.SLIME_BALL)
+                                .save(output);
 
         }
 
@@ -894,11 +877,6 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                 return registries;
         }
 
-        // TODO API : doesn't require ID
-        private void twoByTwoPacker(RecipeOutput c, ItemLike i, ItemLike o) {
-                twoByTwoPacker(c, i, o, getModName() + getConversionRecipeName(o, i));
-        }
-
         private void createRecycleRecipe(
                         RecipeOutput output, Item ingot, Item nugget,
                         TagKey<Item> t1, TagKey<Item> t2, TagKey<Item> t3,
@@ -909,7 +887,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
 
                 CrucibleBuilder.of(registries)
                                 .add(t1)
-                                .fluid(zFluids.SULFURIC_ACID.getFluid(), 5)
+                                .fluid(LibFluids.SULFURIC_ACID.getFluid(), 5)
                                 .time(baseDelay)
                                 .output(nugget, 2, 1f)
                                 .output(nugget, 2, 0.9f)
@@ -920,7 +898,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
 
                 CrucibleBuilder.of(registries)
                                 .add(t2)
-                                .fluid(zFluids.SULFURIC_ACID.getFluid(), 10)
+                                .fluid(LibFluids.SULFURIC_ACID.getFluid(), 10)
                                 .time(baseDelay * 2)
                                 .output(ingot, 1, 1f)
                                 .output(nugget, 2, 1f)
@@ -931,7 +909,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
 
                 CrucibleBuilder.of(registries)
                                 .add(t3)
-                                .fluid(zFluids.SULFURIC_ACID.getFluid(), 15)
+                                .fluid(LibFluids.SULFURIC_ACID.getFluid(), 15)
                                 .time(baseDelay * 3)
                                 .output(ingot, 2, 1f)
                                 .output(nugget, 2, 1f)
@@ -942,7 +920,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
 
                 CrucibleBuilder.of(registries)
                                 .add(t4)
-                                .fluid(zFluids.SULFURIC_ACID.getFluid(), 20)
+                                .fluid(LibFluids.SULFURIC_ACID.getFluid(), 20)
                                 .time(baseDelay * 4)
                                 .output(ingot, 3, 1f)
                                 .output(nugget, 2, 1f)
@@ -953,7 +931,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
 
                 CrucibleBuilder.of(registries)
                                 .add(t5)
-                                .fluid(zFluids.SULFURIC_ACID.getFluid(), 25)
+                                .fluid(LibFluids.SULFURIC_ACID.getFluid(), 25)
                                 .time(baseDelay * 5)
                                 .output(ingot, 3, 1f)
                                 .output(ingot, 1, 0.75f)
@@ -964,7 +942,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
 
                 CrucibleBuilder.of(registries)
                                 .add(t6)
-                                .fluid(zFluids.SULFURIC_ACID.getFluid(), 30)
+                                .fluid(LibFluids.SULFURIC_ACID.getFluid(), 30)
                                 .time(baseDelay * 6)
                                 .output(ingot, 4, 1f)
                                 .output(nugget, 3, 1f)
@@ -975,7 +953,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
 
                 CrucibleBuilder.of(registries)
                                 .add(t7)
-                                .fluid(zFluids.SULFURIC_ACID.getFluid(), 35)
+                                .fluid(LibFluids.SULFURIC_ACID.getFluid(), 35)
                                 .time(baseDelay * 7)
                                 .output(ingot, 5, 1f)
                                 .output(nugget, 2, 1f)
@@ -986,7 +964,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
 
                 CrucibleBuilder.of(registries)
                                 .add(t8)
-                                .fluid(zFluids.SULFURIC_ACID.getFluid(), 40)
+                                .fluid(LibFluids.SULFURIC_ACID.getFluid(), 40)
                                 .time(baseDelay * 8)
                                 .output(ingot, 6, 1f)
                                 .output(nugget, 2, 1f)
@@ -997,7 +975,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
 
                 CrucibleBuilder.of(registries)
                                 .add(t9)
-                                .fluid(zFluids.SULFURIC_ACID.getFluid(), 45)
+                                .fluid(LibFluids.SULFURIC_ACID.getFluid(), 45)
                                 .time(baseDelay * 9)
                                 .output(ingot, 6, 1f)
                                 .output(nugget, 4, 1f)
@@ -1005,6 +983,21 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .output(nugget, 1, 0.75f)
                                 .unlockedBy(getHasName(t9), has(t9))
                                 .save(output);
+        }
+
+        // TODO simplePacked + itemcount
+        private void simplePacked(RecipeOutput c, ItemLike input, ItemLike output, boolean isSmall, int result) {
+                var temp = ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.MISC, output, result)
+                                .define('#', input)
+                                .pattern("##" + (!isSmall ? "#" : "")).pattern("##" + (!isSmall ? "#" : ""));
+
+                if (!isSmall)
+                        temp = temp.pattern("###");
+
+                temp.unlockedBy(getHasName(input), has(input))
+                                .save(c, getModName() + ":" + getConversionRecipeName(output,
+                                                input));
+
         }
 
 }

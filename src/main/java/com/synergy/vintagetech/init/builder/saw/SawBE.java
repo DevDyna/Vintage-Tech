@@ -49,7 +49,7 @@ public class SawBE extends TransmissionBE {
     @Override
     public void tickServer() {
 
-        if (!getBlockState().getValue(SawBlock.ENABLED)) {
+        if (!isAxlePowered()) {
             resetBreak();
             return;
         }

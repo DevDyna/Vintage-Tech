@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "#vintagetech:sticky_goo",
+    "minecraft:string",
+    "minecraft:stick"
+  ],
+  "result": {
+    "count": 6,
+    "id": "minecraft:torch"
+  }
+}

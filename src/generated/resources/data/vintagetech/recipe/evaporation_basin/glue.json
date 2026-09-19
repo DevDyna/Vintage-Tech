@@ -2,7 +2,7 @@
   "type": "vintagetech:evaporation_basin",
   "fluid": {
     "amount": 125,
-    "ingredient": "vintagetech:latex_source"
+    "ingredient": "cakesticklib:latex"
   },
   "output": {
     "id": "vintagetech:glue"
