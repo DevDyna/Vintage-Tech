@@ -240,9 +240,9 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 continue;
 
                         simplePacked(output, BeamFactory.get(wood).normal().get(), BeamFactory.get(wood).full().get(),
-                                        true,3);
+                                        true, 3);
                         simplePacked(output, BeamFactory.get(wood).stripped().get(),
-                                        BeamFactory.get(wood).stripped_full().get(), true,3);
+                                        BeamFactory.get(wood).stripped_full().get(), true, 3);
 
                 }
 
@@ -987,7 +987,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
 
         // TODO simplePacked + itemcount
         private void simplePacked(RecipeOutput c, ItemLike input, ItemLike output, boolean isSmall, int result) {
-                var temp = ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.MISC, output)
+                var temp = ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.MISC, output, result)
                                 .define('#', input)
                                 .pattern("##" + (!isSmall ? "#" : "")).pattern("##" + (!isSmall ? "#" : ""));
 
