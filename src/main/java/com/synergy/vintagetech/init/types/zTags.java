@@ -88,6 +88,12 @@ public class zTags {
                 public static final TagKey<Block> BEAM_STRIPPED = RegistryUtils
                                 .tagBlock(MODULE_ID, "beam/stripped");
 
+                public static final TagKey<Block> BEAM_FULL = RegistryUtils
+                                .tagBlock(MODULE_ID, "beam/full");
+
+                public static final TagKey<Block> BEAM_STRIPPED_FULL = RegistryUtils
+                                .tagBlock(MODULE_ID, "beam/stripped_full");
+
                 public static final TagKey<Block> BEAMS = RegistryUtils
                                 .tagBlock(MODULE_ID, "beam");
 
@@ -121,6 +127,12 @@ public class zTags {
 
                 public static final TagKey<Item> BEAM_STRIPPED = RegistryUtils
                                 .tagItem(MODULE_ID, "beam/stripped");
+                                
+                public static final TagKey<Item> BEAM_FULL = RegistryUtils
+                                .tagItem(MODULE_ID, "beam/full");
+
+                public static final TagKey<Item> BEAM_STRIPPED_FULL = RegistryUtils
+                                .tagItem(MODULE_ID, "beam/stripped_full");
 
                 public static final TagKey<Item> BEAMS = RegistryUtils
                                 .tagItem(MODULE_ID, "beam");

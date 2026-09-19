@@ -4,10 +4,10 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 
 import java.util.Optional;
 import net.minecraft.core.Direction;
+
 import com.synergy.vintagetech.init.Material;
 import com.synergy.vintagetech.init.builder.RopeBlock;
 import com.synergy.vintagetech.init.builder.StickyFarmlandBlock;
-import com.synergy.vintagetech.init.builder.WoodenBeam;
 import com.synergy.vintagetech.init.builder.basket.BasketBlock;
 import com.synergy.vintagetech.init.builder.centrifuge.CentrifugeBlock;
 import com.synergy.vintagetech.init.builder.cheese.AgedCheeseBlock;
@@ -41,7 +41,6 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.TintedParticleLeavesBlock;
 import net.minecraft.world.level.block.grower.TreeGrower;
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
@@ -55,6 +54,7 @@ public class zBlocks {
                 zBlockFluids.register(bus);
                 zBlockItem.register(bus);
                 zRender.register(bus);
+
         }
 
         public static final DeferredRegister.Blocks zRender = DeferredRegister.createBlocks(MODULE_ID);
@@ -211,76 +211,6 @@ public class zBlocks {
                                         .noOcclusion()
                                         .sound(SoundType.WOOL)
                                         .ignitedByLava()));
-
-        public static final DeferredHolder<Block, Block> OAK_BEAM = Material.registerItemBlock("oak_beam",
-                        (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.OAK_LOG).setId(k)));
-
-        public static final DeferredHolder<Block, Block> SPRUCE_BEAM = Material.registerItemBlock("spruce_beam",
-                        (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.SPRUCE_LOG).setId(k)));
-
-        public static final DeferredHolder<Block, Block> BIRCH_BEAM = Material.registerItemBlock("birch_beam",
-                        (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.BIRCH_LOG).setId(k)));
-
-        public static final DeferredHolder<Block, Block> JUNGLE_BEAM = Material.registerItemBlock("jungle_beam",
-                        (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.JUNGLE_LOG).setId(k)));
-
-        public static final DeferredHolder<Block, Block> ACACIA_BEAM = Material.registerItemBlock("acacia_beam",
-                        (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.ACACIA_LOG).setId(k)));
-
-        public static final DeferredHolder<Block, Block> DARK_OAK_BEAM = Material.registerItemBlock("dark_oak_beam",
-                        (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.DARK_OAK_LOG).setId(k)));
-
-        public static final DeferredHolder<Block, Block> MANGROVE_BEAM = Material.registerItemBlock("mangrove_beam",
-                        (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.MANGROVE_LOG).setId(k)));
-
-        public static final DeferredHolder<Block, Block> CHERRY_BEAM = Material.registerItemBlock("cherry_beam",
-                        (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.CHERRY_LOG).setId(k)));
-
-        public static final DeferredHolder<Block, Block> PALE_OAK_BEAM = Material.registerItemBlock("pale_oak_beam",
-                        (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.PALE_OAK_LOG).setId(k)));
-
-        public static final DeferredHolder<Block, Block> BAMBOO_BEAM = Material.registerItemBlock("bamboo_beam",
-                        (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.BAMBOO_BLOCK).setId(k)));
-
-        public static final DeferredHolder<Block, Block> STRIPPED_OAK_BEAM = Material.registerItemBlock(
-                        "stripped_oak_beam",
-                        (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG).setId(k)));
-
-        public static final DeferredHolder<Block, Block> STRIPPED_SPRUCE_BEAM = Material.registerItemBlock(
-                        "stripped_spruce_beam",
-                        (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.STRIPPED_SPRUCE_LOG).setId(k)));
-
-        public static final DeferredHolder<Block, Block> STRIPPED_BIRCH_BEAM = Material.registerItemBlock(
-                        "stripped_birch_beam",
-                        (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.STRIPPED_BIRCH_LOG).setId(k)));
-
-        public static final DeferredHolder<Block, Block> STRIPPED_JUNGLE_BEAM = Material.registerItemBlock(
-                        "stripped_jungle_beam",
-                        (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.STRIPPED_JUNGLE_LOG).setId(k)));
-
-        public static final DeferredHolder<Block, Block> STRIPPED_ACACIA_BEAM = Material.registerItemBlock(
-                        "stripped_acacia_beam",
-                        (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.STRIPPED_ACACIA_LOG).setId(k)));
-
-        public static final DeferredHolder<Block, Block> STRIPPED_DARK_OAK_BEAM = Material.registerItemBlock(
-                        "stripped_dark_oak_beam",
-                        (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.STRIPPED_DARK_OAK_LOG).setId(k)));
-
-        public static final DeferredHolder<Block, Block> STRIPPED_MANGROVE_BEAM = Material.registerItemBlock(
-                        "stripped_mangrove_beam",
-                        (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.STRIPPED_MANGROVE_LOG).setId(k)));
-
-        public static final DeferredHolder<Block, Block> STRIPPED_CHERRY_BEAM = Material.registerItemBlock(
-                        "stripped_cherry_beam",
-                        (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.STRIPPED_CHERRY_LOG).setId(k)));
-
-        public static final DeferredHolder<Block, Block> STRIPPED_PALE_OAK_BEAM = Material.registerItemBlock(
-                        "stripped_pale_oak_beam",
-                        (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.STRIPPED_PALE_OAK_LOG).setId(k)));
-
-        public static final DeferredHolder<Block, Block> STRIPPED_BAMBOO_BEAM = Material.registerItemBlock(
-                        "stripped_bamboo_beam",
-                        (p, k) -> new WoodenBeam(Properties.ofFullCopy(Blocks.STRIPPED_BAMBOO_BLOCK).setId(k)));
 
         // TODO IMP : TURNTABLE
         // TODO IMP : PRESS?

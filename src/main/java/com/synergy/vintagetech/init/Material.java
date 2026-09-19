@@ -6,6 +6,7 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 
 import com.devdyna.cakesticklib.api.utils.x;
+import com.synergy.vintagetech.api.factories.beams.BeamFactory;
 import com.synergy.vintagetech.init.types.*;
 
 import net.minecraft.core.registries.Registries;
@@ -26,6 +27,8 @@ public class Material {
                 zFluids.register(bus);
                 zCreativeTab.register(bus);
                 zWorldGenFeatures.register(bus);
+
+                BeamFactory.register();
         }
 
         /**
@@ -58,6 +61,5 @@ public class Material {
         public static DeferredHolder<Block, Block> renderBlock(String id) {
                 return zBlocks.zRender.registerSimpleBlock(id, p -> p.noLootTable());
         }
-
 
 }

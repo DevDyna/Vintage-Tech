@@ -8,6 +8,8 @@ import com.devdyna.cakesticklib.api.datagen.RecipeGenerators;
 import com.devdyna.cakesticklib.setup.registry.LibFluids;
 import com.devdyna.cakesticklib.setup.registry.LibItems;
 import com.devdyna.cakesticklib.setup.registry.LibTags;
+import com.synergy.vintagetech.api.factories.beams.BeamFactory;
+import com.synergy.vintagetech.api.factories.beams.WoodType;
 import com.synergy.vintagetech.init.builder.centrifuge.recipe.CentrifugeBuilder;
 import com.synergy.vintagetech.init.builder.crucible.recipe.CrucibleBuilder;
 import com.synergy.vintagetech.init.builder.crushing_tub.recipe.CrushingTubBuilder;
@@ -31,6 +33,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.common.Tags;
@@ -57,7 +60,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .input(ItemTags.LEAVES)
                                 .outputChance(Items.STICK, 0.5f)
                                 .output(Fluids.WATER, 1000)
-                                .unlockedBy(ItemTags.LEAVES,items)
+                                .unlockedBy(ItemTags.LEAVES, items)
                                 .save(output);
 
                 CrushingTubBuilder.of(registries)
@@ -229,27 +232,19 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .unlockedBy(getHasName(zItems.HEMP.get()), has(zItems.HEMP.get()))
                                 .save(output);
 
-                pillar(output, zBlocks.OAK_BEAM.get(), Items.OAK_LOG, 8);
-                pillar(output, zBlocks.SPRUCE_BEAM.get(), Items.SPRUCE_LOG, 8);
-                pillar(output, zBlocks.BIRCH_BEAM.get(), Items.BIRCH_LOG, 8);
-                pillar(output, zBlocks.JUNGLE_BEAM.get(), Items.JUNGLE_LOG, 8);
-                pillar(output, zBlocks.ACACIA_BEAM.get(), Items.ACACIA_LOG, 8);
-                pillar(output, zBlocks.DARK_OAK_BEAM.get(), Items.DARK_OAK_LOG, 8);
-                pillar(output, zBlocks.MANGROVE_BEAM.get(), Items.MANGROVE_LOG, 8);
-                pillar(output, zBlocks.CHERRY_BEAM.get(), Items.CHERRY_LOG, 8);
-                pillar(output, zBlocks.PALE_OAK_BEAM.get(), Items.PALE_OAK_LOG, 8);
-                pillar(output, zBlocks.BAMBOO_BEAM.get(), Items.BAMBOO_BLOCK, 8);
+                for (WoodType wood : WoodType.values()) {
+                        pillar(output, BeamFactory.get(wood).normal().get(), wood.log().asItem(), 8);
+                        pillar(output, BeamFactory.get(wood).stripped().get(), wood.stripped(), 8);
 
-                pillar(output, zBlocks.STRIPPED_OAK_BEAM.get(), Items.STRIPPED_OAK_LOG, 8);
-                pillar(output, zBlocks.STRIPPED_SPRUCE_BEAM.get(), Items.STRIPPED_SPRUCE_LOG, 8);
-                pillar(output, zBlocks.STRIPPED_BIRCH_BEAM.get(), Items.STRIPPED_BIRCH_LOG, 8);
-                pillar(output, zBlocks.STRIPPED_JUNGLE_BEAM.get(), Items.STRIPPED_JUNGLE_LOG, 8);
-                pillar(output, zBlocks.STRIPPED_ACACIA_BEAM.get(), Items.STRIPPED_ACACIA_LOG, 8);
-                pillar(output, zBlocks.STRIPPED_DARK_OAK_BEAM.get(), Items.STRIPPED_DARK_OAK_LOG, 8);
-                pillar(output, zBlocks.STRIPPED_MANGROVE_BEAM.get(), Items.STRIPPED_MANGROVE_LOG, 8);
-                pillar(output, zBlocks.STRIPPED_CHERRY_BEAM.get(), Items.STRIPPED_CHERRY_LOG, 8);
-                pillar(output, zBlocks.STRIPPED_PALE_OAK_BEAM.get(), Items.STRIPPED_PALE_OAK_LOG, 8);
-                pillar(output, zBlocks.STRIPPED_BAMBOO_BEAM.get(), Items.STRIPPED_BAMBOO_BLOCK, 8);
+                        if (wood.isSpecial())
+                                continue;
+
+                        simplePacked(output, BeamFactory.get(wood).normal().get(), BeamFactory.get(wood).full().get(),
+                                        true,3);
+                        simplePacked(output, BeamFactory.get(wood).stripped().get(),
+                                        BeamFactory.get(wood).stripped_full().get(), true,3);
+
+                }
 
                 shapeless(RecipeCategory.MISC, zBlocks.AXLE.get())
                                 .requires(zTags.Items.BEAM_NORMAL)
@@ -684,7 +679,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .fluid(LibFluids.SAP.getFluid(), 100)
                                 .output(zItems.CLOTH.get(), 1, 1f)
                                 .output(zItems.CLOTH.get(), 1, 0.05f)
-                                .output(zItems.MESH.get(),1,0.95f)
+                                .output(zItems.MESH.get(), 1, 0.95f)
                                 .unlockedBy(getHasName(Tags.Items.SLIME_BALLS), has(Tags.Items.SLIME_BALLS))
                                 .save(output, "_from_slime");
 
@@ -739,13 +734,13 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .save(output);
 
                 CrucibleBuilder.of(registries)
-                                .add(zTags.Items.STICKY_GOO,2)
+                                .add(zTags.Items.STICKY_GOO, 2)
                                 .add(Tags.Items.STRINGS, 5)
                                 .add(zItems.MESH.get())
                                 .fluid(LibFluids.SAP.getFluid(), 5)
                                 .output(zItems.CLOTH.get(), 1, 1f)
                                 .output(zItems.CLOTH.get(), 1, 0.25f)
-                                .output(zItems.MESH.get(),1,0.25f)
+                                .output(zItems.MESH.get(), 1, 0.25f)
                                 .unlockedBy(getHasName(zTags.Items.STICKY_GOO), has(zTags.Items.STICKY_GOO))
                                 .save(output, "_from_amber");
 
@@ -828,7 +823,6 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .unlockedBy(Items.MILK_BUCKET)
                                 .save(output);
 
-               
                 MillstoneBuilder.of(registries)
                                 .input(ItemTags.WOOL_CARPETS)
                                 .output(Items.STRING, 2)
@@ -882,8 +876,6 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
         public Provider getProvider() {
                 return registries;
         }
-
-       
 
         private void createRecycleRecipe(
                         RecipeOutput output, Item ingot, Item nugget,
@@ -991,6 +983,21 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .output(nugget, 1, 0.75f)
                                 .unlockedBy(getHasName(t9), has(t9))
                                 .save(output);
+        }
+
+        // TODO simplePacked + itemcount
+        private void simplePacked(RecipeOutput c, ItemLike input, ItemLike output, boolean isSmall, int result) {
+                var temp = ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.MISC, output)
+                                .define('#', input)
+                                .pattern("##" + (!isSmall ? "#" : "")).pattern("##" + (!isSmall ? "#" : ""));
+
+                if (!isSmall)
+                        temp = temp.pattern("###");
+
+                temp.unlockedBy(getHasName(input), has(input))
+                                .save(c, getModName() + ":" + getConversionRecipeName(output,
+                                                input));
+
         }
 
 }

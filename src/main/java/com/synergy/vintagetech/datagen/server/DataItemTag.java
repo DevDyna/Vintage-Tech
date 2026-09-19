@@ -5,6 +5,8 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 import java.util.concurrent.CompletableFuture;
 
 import com.devdyna.cakesticklib.setup.registry.LibTags;
+import com.synergy.vintagetech.api.factories.beams.BeamFactory;
+import com.synergy.vintagetech.api.factories.beams.WoodType;
 import com.synergy.vintagetech.init.types.zBlocks;
 import com.synergy.vintagetech.init.types.zItems;
 import com.synergy.vintagetech.init.types.zTags;
@@ -92,29 +94,15 @@ public class DataItemTag extends ItemTagsProvider {
                                                 zBlocks.IRONWOOD_WOOD.get().asItem(),
                                                 zBlocks.STRIPPED_IRONWOOD_WOOD.get().asItem());
 
-                tag(zTags.Items.BEAM_NORMAL).add(
-                                zBlocks.OAK_BEAM.get().asItem(),
-                                zBlocks.SPRUCE_BEAM.get().asItem(),
-                                zBlocks.BIRCH_BEAM.get().asItem(),
-                                zBlocks.JUNGLE_BEAM.get().asItem(),
-                                zBlocks.ACACIA_BEAM.get().asItem(),
-                                zBlocks.DARK_OAK_BEAM.get().asItem(),
-                                zBlocks.MANGROVE_BEAM.get().asItem(),
-                                zBlocks.CHERRY_BEAM.get().asItem(),
-                                zBlocks.PALE_OAK_BEAM.get().asItem(),
-                                zBlocks.BAMBOO_BEAM.get().asItem());
-
-                tag(zTags.Items.BEAM_STRIPPED).add(
-                                zBlocks.STRIPPED_OAK_BEAM.get().asItem(),
-                                zBlocks.STRIPPED_SPRUCE_BEAM.get().asItem(),
-                                zBlocks.STRIPPED_BIRCH_BEAM.get().asItem(),
-                                zBlocks.STRIPPED_JUNGLE_BEAM.get().asItem(),
-                                zBlocks.STRIPPED_ACACIA_BEAM.get().asItem(),
-                                zBlocks.STRIPPED_DARK_OAK_BEAM.get().asItem(),
-                                zBlocks.STRIPPED_MANGROVE_BEAM.get().asItem(),
-                                zBlocks.STRIPPED_CHERRY_BEAM.get().asItem(),
-                                zBlocks.STRIPPED_PALE_OAK_BEAM.get().asItem(),
-                                zBlocks.STRIPPED_BAMBOO_BEAM.get().asItem());
+                for (WoodType wood : WoodType.values()) {
+                        tag(zTags.Items.BEAM_NORMAL).add(BeamFactory.get(wood).normal().get().asItem());
+                        tag(zTags.Items.BEAM_STRIPPED).add(BeamFactory.get(wood).stripped().get().asItem());
+                        
+                        if(wood.isSpecial()) continue;
+                        
+                        tag(zTags.Items.BEAM_FULL).add(BeamFactory.get(wood).full().get().asItem());
+                        tag(zTags.Items.BEAM_STRIPPED_FULL).add(BeamFactory.get(wood).stripped_full().get().asItem());
+                }
 
                 tag(zTags.Items.BEAMS).addTags(zTags.Items.BEAM_NORMAL, zTags.Items.BEAM_STRIPPED);
 

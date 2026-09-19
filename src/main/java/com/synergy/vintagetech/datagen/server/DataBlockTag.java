@@ -4,6 +4,8 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 
 import java.util.concurrent.CompletableFuture;
 
+import com.synergy.vintagetech.api.factories.beams.BeamFactory;
+import com.synergy.vintagetech.api.factories.beams.WoodType;
 import com.synergy.vintagetech.init.types.zBlocks;
 import com.synergy.vintagetech.init.types.zTags;
 
@@ -170,31 +172,15 @@ public class DataBlockTag extends BlockTagsProvider {
                 tag(zTags.Blocks.BEAMS)
                                 .addTags(zTags.Blocks.BEAM_NORMAL, zTags.Blocks.BEAM_STRIPPED);
 
-                tag(zTags.Blocks.BEAM_NORMAL)
-                                .add(
-                                                zBlocks.OAK_BEAM.get(),
-                                                zBlocks.SPRUCE_BEAM.get(),
-                                                zBlocks.BIRCH_BEAM.get(),
-                                                zBlocks.JUNGLE_BEAM.get(),
-                                                zBlocks.ACACIA_BEAM.get(),
-                                                zBlocks.DARK_OAK_BEAM.get(),
-                                                zBlocks.MANGROVE_BEAM.get(),
-                                                zBlocks.CHERRY_BEAM.get(),
-                                                zBlocks.PALE_OAK_BEAM.get(),
-                                                zBlocks.BAMBOO_BEAM.get());
-
-                tag(zTags.Blocks.BEAM_STRIPPED)
-                                .add(
-                                                zBlocks.STRIPPED_OAK_BEAM.get(),
-                                                zBlocks.STRIPPED_SPRUCE_BEAM.get(),
-                                                zBlocks.STRIPPED_BIRCH_BEAM.get(),
-                                                zBlocks.STRIPPED_JUNGLE_BEAM.get(),
-                                                zBlocks.STRIPPED_ACACIA_BEAM.get(),
-                                                zBlocks.STRIPPED_DARK_OAK_BEAM.get(),
-                                                zBlocks.STRIPPED_MANGROVE_BEAM.get(),
-                                                zBlocks.STRIPPED_CHERRY_BEAM.get(),
-                                                zBlocks.STRIPPED_PALE_OAK_BEAM.get(),
-                                                zBlocks.STRIPPED_BAMBOO_BEAM.get());
+                for (WoodType wood : WoodType.values()) {
+                        tag(zTags.Blocks.BEAM_NORMAL).add(BeamFactory.get(wood).normal().get());
+                        tag(zTags.Blocks.BEAM_STRIPPED).add(BeamFactory.get(wood).stripped().get());
+                       
+                        if(wood.isSpecial()) continue;
+                       
+                        tag(zTags.Blocks.BEAM_FULL).add(BeamFactory.get(wood).full().get());
+                        tag(zTags.Blocks.BEAM_STRIPPED_FULL).add(BeamFactory.get(wood).stripped_full().get());
+                }
 
                 tag(zTags.Blocks.IRONWOOD_LOGS)
                                 .add(
@@ -257,9 +243,8 @@ public class DataBlockTag extends BlockTagsProvider {
                                                 BlockTags.WOODEN_STAIRS,
                                                 zTags.Blocks.BEAMS);
 
-
                 tag(zTags.Blocks.DENY_STICKY_FARMLAND_BOOST).add();
-                
+
                 tag(zTags.Blocks.DENY_STICKY_FARMLAND_BURN_ON_DEHYDRATATION).add();
 
         }
