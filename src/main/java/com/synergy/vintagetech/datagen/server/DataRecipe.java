@@ -3,8 +3,10 @@ package com.synergy.vintagetech.datagen.server;
 import static com.synergy.vintagetech.Main.MODULE_ID;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.function.Function;
 
 import com.devdyna.cakesticklib.api.datagen.RecipeGenerators;
+import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.registry.LibFluids;
 import com.devdyna.cakesticklib.setup.registry.LibItems;
 import com.devdyna.cakesticklib.setup.registry.LibTags;
@@ -28,12 +30,14 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.common.Tags;
@@ -239,15 +243,20 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                         if (wood.isSpecial())
                                 continue;
 
-                        simplePacked(output, BeamFactory.get(wood).normal().get(), BeamFactory.get(wood).full().get(),
+                        pillar(output, BeamFactory.get(wood).wood().get(),
+                                        trasmute(wood.log(), rl -> rl.withPath(p -> p.replace("_log", "_wood"))), 8);
+                        pillar(output, BeamFactory.get(wood).stripped_wood().get(),
+                                        trasmute(wood.stripped(), rl -> rl.withPath(p -> p.replace("_log", "_wood"))), 8);
+
+                        simplePacked(output, BeamFactory.get(wood).normal().get(), BeamFactory.get(wood).wood().get(),
                                         true, 3);
                         simplePacked(output, BeamFactory.get(wood).stripped().get(),
-                                        BeamFactory.get(wood).stripped_full().get(), true, 3);
+                                        BeamFactory.get(wood).stripped_wood().get(), true, 3);
 
                 }
 
                 shapeless(RecipeCategory.MISC, zBlocks.AXLE.get())
-                                .requires(zTags.Items.BEAM_NORMAL)
+                                .requires(zTags.Items.BEAM_LOG)
                                 .requires(zBlocks.ROPE.get())
                                 .unlockedBy(getHasName(zBlocks.ROPE.get()), has(zBlocks.ROPE.get()))
                                 .save(output);
@@ -983,6 +992,17 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .output(nugget, 1, 0.75f)
                                 .unlockedBy(getHasName(t9), has(t9))
                                 .save(output);
+        }
+
+        // TODO move to x
+
+        private Block trasmute(Block b, Function<Identifier, Identifier> f) {
+                return x.getBlock(f.apply(x.rl(b)));
+        }
+
+        @SuppressWarnings("unused")
+        private Item trasmute(Item b, Function<Identifier, Identifier> f) {
+                return x.getItem(f.apply(x.rl(b)));
         }
 
         // TODO simplePacked + itemcount

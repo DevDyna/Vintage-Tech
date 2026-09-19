@@ -170,16 +170,21 @@ public class DataBlockTag extends BlockTagsProvider {
                                                 BlockTags.SHULKER_BOXES);
 
                 tag(zTags.Blocks.BEAMS)
-                                .addTags(zTags.Blocks.BEAM_NORMAL, zTags.Blocks.BEAM_STRIPPED);
+                                .addTags(
+                                                zTags.Blocks.BEAM_LOG,
+                                                zTags.Blocks.BEAM_STRIPPED_LOG,
+                                                zTags.Blocks.BEAM_WOOD,
+                                                zTags.Blocks.BEAM_STRIPPED_WOOD);
 
                 for (WoodType wood : WoodType.values()) {
-                        tag(zTags.Blocks.BEAM_NORMAL).add(BeamFactory.get(wood).normal().get());
-                        tag(zTags.Blocks.BEAM_STRIPPED).add(BeamFactory.get(wood).stripped().get());
-                       
-                        if(wood.isSpecial()) continue;
-                       
-                        tag(zTags.Blocks.BEAM_FULL).add(BeamFactory.get(wood).full().get());
-                        tag(zTags.Blocks.BEAM_STRIPPED_FULL).add(BeamFactory.get(wood).stripped_full().get());
+                        tag(zTags.Blocks.BEAM_LOG).add(BeamFactory.get(wood).normal().get());
+                        tag(zTags.Blocks.BEAM_STRIPPED_LOG).add(BeamFactory.get(wood).stripped().get());
+
+                        if (wood.isSpecial())
+                                continue;
+
+                        tag(zTags.Blocks.BEAM_WOOD).add(BeamFactory.get(wood).wood().get());
+                        tag(zTags.Blocks.BEAM_STRIPPED_WOOD).add(BeamFactory.get(wood).stripped_wood().get());
                 }
 
                 tag(zTags.Blocks.IRONWOOD_LOGS)

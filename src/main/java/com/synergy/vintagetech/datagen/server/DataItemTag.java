@@ -95,16 +95,21 @@ public class DataItemTag extends ItemTagsProvider {
                                                 zBlocks.STRIPPED_IRONWOOD_WOOD.get().asItem());
 
                 for (WoodType wood : WoodType.values()) {
-                        tag(zTags.Items.BEAM_NORMAL).add(BeamFactory.get(wood).normal().get().asItem());
-                        tag(zTags.Items.BEAM_STRIPPED).add(BeamFactory.get(wood).stripped().get().asItem());
-                        
-                        if(wood.isSpecial()) continue;
-                        
-                        tag(zTags.Items.BEAM_FULL).add(BeamFactory.get(wood).full().get().asItem());
-                        tag(zTags.Items.BEAM_STRIPPED_FULL).add(BeamFactory.get(wood).stripped_full().get().asItem());
+                        tag(zTags.Items.BEAM_LOG).add(BeamFactory.get(wood).normal().get().asItem());
+                        tag(zTags.Items.BEAM_STRIPPED_LOG).add(BeamFactory.get(wood).stripped().get().asItem());
+
+                        if (wood.isSpecial())
+                                continue;
+
+                        tag(zTags.Items.BEAM_WOOD).add(BeamFactory.get(wood).wood().get().asItem());
+                        tag(zTags.Items.BEAM_STRIPPED_WOOD).add(BeamFactory.get(wood).stripped_wood().get().asItem());
                 }
 
-                tag(zTags.Items.BEAMS).addTags(zTags.Items.BEAM_NORMAL, zTags.Items.BEAM_STRIPPED);
+                tag(zTags.Items.BEAMS).addTags(
+                                zTags.Items.BEAM_LOG,
+                                zTags.Items.BEAM_STRIPPED_LOG,
+                                zTags.Items.BEAM_WOOD,
+                                zTags.Items.BEAM_STRIPPED_WOOD);
 
                 tag(zTags.Items.STONE_SLABS)
                                 .add(

@@ -38,8 +38,8 @@ public class DataMaps extends DataMapProvider {
                         if (wood.isSpecial())
                                 continue;
 
-                        strippable.add(BeamFactory.get(wood).full().getId(),
-                                        new Strippable(BeamFactory.get(wood).stripped_full().get()),
+                        strippable.add(BeamFactory.get(wood).wood().getId(),
+                                        new Strippable(BeamFactory.get(wood).stripped_wood().get()),
                                         false, AlwaysCondition.INSTANCE);
                 }
 

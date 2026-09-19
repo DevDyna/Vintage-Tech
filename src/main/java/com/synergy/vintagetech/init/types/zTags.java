@@ -82,20 +82,20 @@ public class zTags {
                 public static final TagKey<Block> ROPE_IGNORE_CONNECTION = RegistryUtils
                                 .tagBlock(MODULE_ID, "rope/ignore_connection");
 
-                public static final TagKey<Block> BEAM_NORMAL = RegistryUtils
-                                .tagBlock(MODULE_ID, "beam/normal");
+                public static final TagKey<Block> BEAM_LOG = RegistryUtils
+                                .tagBlock(MODULE_ID, "beam/log");
 
-                public static final TagKey<Block> BEAM_STRIPPED = RegistryUtils
-                                .tagBlock(MODULE_ID, "beam/stripped");
+                public static final TagKey<Block> BEAM_STRIPPED_LOG = RegistryUtils
+                                .tagBlock(MODULE_ID, "beam/stripped_log");
 
-                public static final TagKey<Block> BEAM_FULL = RegistryUtils
-                                .tagBlock(MODULE_ID, "beam/full");
+                public static final TagKey<Block> BEAM_WOOD = RegistryUtils
+                                .tagBlock(MODULE_ID, "beam/wood");
 
-                public static final TagKey<Block> BEAM_STRIPPED_FULL = RegistryUtils
-                                .tagBlock(MODULE_ID, "beam/stripped_full");
+                public static final TagKey<Block> BEAM_STRIPPED_WOOD = RegistryUtils
+                                .tagBlock(MODULE_ID, "beam/stripped_wood");
 
                 public static final TagKey<Block> BEAMS = RegistryUtils
-                                .tagBlock(MODULE_ID, "beam");
+                                .tagBlock(MODULE_ID, "beams");
 
                 public static final TagKey<Block> IRONWOOD_LOGS = RegistryUtils
                                 .tagBlock(MODULE_ID, "ironwood_logs");
@@ -122,20 +122,20 @@ public class zTags {
                 public static final TagKey<Item> IRONWOOD_LOGS = RegistryUtils
                                 .tagItem(MODULE_ID, "ironwood_logs");
 
-                public static final TagKey<Item> BEAM_NORMAL = RegistryUtils
-                                .tagItem(MODULE_ID, "beam/normal");
+                public static final TagKey<Item> BEAM_LOG = RegistryUtils
+                                .tagItem(MODULE_ID, "beam/log");
 
-                public static final TagKey<Item> BEAM_STRIPPED = RegistryUtils
-                                .tagItem(MODULE_ID, "beam/stripped");
+                public static final TagKey<Item> BEAM_STRIPPED_LOG = RegistryUtils
+                                .tagItem(MODULE_ID, "beam/stripped_log");
                                 
-                public static final TagKey<Item> BEAM_FULL = RegistryUtils
-                                .tagItem(MODULE_ID, "beam/full");
+                public static final TagKey<Item> BEAM_WOOD = RegistryUtils
+                                .tagItem(MODULE_ID, "beam/wood");
 
-                public static final TagKey<Item> BEAM_STRIPPED_FULL = RegistryUtils
-                                .tagItem(MODULE_ID, "beam/stripped_full");
+                public static final TagKey<Item> BEAM_STRIPPED_WOOD = RegistryUtils
+                                .tagItem(MODULE_ID, "beam/stripped_wood");
 
                 public static final TagKey<Item> BEAMS = RegistryUtils
-                                .tagItem(MODULE_ID, "beam");
+                                .tagItem(MODULE_ID, "beams");
 
                 public static final TagKey<Item> STONE_SLABS = RegistryUtils
                                 .tagItem("c", "slabs/stone");

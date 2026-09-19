@@ -254,10 +254,10 @@ public class DataModel extends ModelProvider {
 
                         if(wood.isSpecial()) continue;
 
-                        BlockModelUtils.createBeamBlock(blockModels, BeamFactory.get(wood).full().get(),
+                        BlockModelUtils.createBeamBlock(blockModels, BeamFactory.get(wood).wood().get(),
                                         wood.logTexture(), wood.logTexture());
 
-                        BlockModelUtils.createBeamBlock(blockModels, BeamFactory.get(wood).stripped_full().get(),
+                        BlockModelUtils.createBeamBlock(blockModels, BeamFactory.get(wood).stripped_wood().get(),
                                         wood.strippedTexture(),  wood.strippedTexture());
                 }
 
