@@ -256,7 +256,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                 }
 
                 shapeless(RecipeCategory.MISC, zBlocks.AXLE.get())
-                                .requires(zTags.Items.BEAM_LOG)
+                                .requires(zTags.Items.BEAMS)
                                 .requires(zBlocks.ROPE.get())
                                 .unlockedBy(getHasName(zBlocks.ROPE.get()), has(zBlocks.ROPE.get()))
                                 .save(output);
