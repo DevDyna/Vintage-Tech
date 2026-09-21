@@ -82,7 +82,7 @@ public class EvaporationBasinCategory extends BaseRecipeCategory<EvaporationBasi
 
     @Override
     public int tickColor(EvaporationBasinRecipe recipe) {
-        return ColorUtils.WHITE.getRGB();
+        return ColorUtils.WHITE.WHITE.getRGB();
     }
 
 }

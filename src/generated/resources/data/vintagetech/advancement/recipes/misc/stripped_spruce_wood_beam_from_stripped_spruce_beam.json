@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_stripped_spruce_beam": {
+      "conditions": {
+        "items": [
+          {
+            "items": "vintagetech:stripped_spruce_beam"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "vintagetech:stripped_spruce_wood_beam_from_stripped_spruce_beam"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_stripped_spruce_beam"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "vintagetech:stripped_spruce_wood_beam_from_stripped_spruce_beam"
+    ]
+  }
+}

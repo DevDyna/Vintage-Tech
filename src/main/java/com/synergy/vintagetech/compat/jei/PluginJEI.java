@@ -19,6 +19,7 @@ import com.synergy.vintagetech.compat.jei.categories.FarmlandFuelsCategory;
 import com.synergy.vintagetech.compat.jei.categories.MillstoneCategory;
 import com.synergy.vintagetech.compat.jei.categories.TreeTapCategory;
 import com.synergy.vintagetech.init.types.zBlocks;
+import com.synergy.vintagetech.init.types.zItems;
 import com.synergy.vintagetech.init.types.zRecipeTypes;
 
 import mezz.jei.api.IModPlugin;
@@ -28,6 +29,7 @@ import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.resources.Identifier;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeInput;
@@ -101,11 +103,10 @@ public class PluginJEI implements IModPlugin {
                                 getRecipes(zRecipeTypes.CRUCIBLE.getType()));
 
                 r.addRecipes(CheeseCategory.TYPE, List.of(
-                        new CheesePage(CheesePageType.AGING),
-                        new CheesePage(CheesePageType.SEALING),
-                        new CheesePage(CheesePageType.SLICING),
-                        new CheesePage(CheesePageType.UNSEALING)
-                        ));
+                                new CheesePage(CheesePageType.AGING),
+                                new CheesePage(CheesePageType.SEALING),
+                                new CheesePage(CheesePageType.SLICING),
+                                new CheesePage(CheesePageType.UNSEALING)));
 
         }
 
@@ -132,7 +133,7 @@ public class PluginJEI implements IModPlugin {
                                 JEIAliasesHelper.Aliases.ENTITY_MOVER);
 
                 JEIAliasesHelper.addAlias(r, List.of(
-                                zBlocks.AXLE, zBlocks.GEARSHIFT,zBlocks.CLUTCH, zBlocks.JUNCTION),
+                                zBlocks.AXLE, zBlocks.GEARSHIFT, zBlocks.CLUTCH, zBlocks.JUNCTION),
                                 MODULE_ID + ".jei.alias.rpm.transmission");
 
                 JEIAliasesHelper.addAlias(r, List.of(
@@ -148,7 +149,7 @@ public class PluginJEI implements IModPlugin {
                                 MODULE_ID + ".jei.alias.rpm.generator");
 
                 JEIAliasesHelper.addAlias(r, List.of(
-                                zBlocks.SAW, zBlocks.GEARSHIFT,zBlocks.CLUTCH),
+                                zBlocks.SAW, zBlocks.GEARSHIFT, zBlocks.CLUTCH),
                                 JEIAliasesHelper.Aliases.REDSTONE_SENSIBLE);
 
                 JEIAliasesHelper.addAlias(r, List.of(
@@ -162,7 +163,36 @@ public class PluginJEI implements IModPlugin {
                                 zBlocks.SAW),
                                 MODULE_ID + ".jei.alias.rpm.base");
 
+                JEIAliasesHelper.addAlias(r, List.of(
+                                zItems.CLOTH),
+                                MODULE_ID + ".jei.alias.windmill.repair");
+
+                JEIAliasesHelper.addAlias(r, List.of(
+                                zItems.SULFUR_GOO, zBlocks.STICKY_FARMLAND),
+                                MODULE_ID + ".jei.alias.crop.booster");
+
+                JEIAliasesHelper.addAlias(r, List.of(
+                                zItems.MESH),
+                                MODULE_ID + ".jei.alias.crushing_tub.filter");
+
+                JEIAliasesHelper.addAlias(r, List.of(
+                                zItems.HEMP_FIBER),
+                                MODULE_ID + ".jei.alias.string_alternative");
+
+                JEIAliasesHelper.addAlias(r, List.of(
+                                zItems.CLOTH),
+                                MODULE_ID + ".jei.alias.leather_alternative");
+
+                JEIAliasesHelper.addAlias(r, List.of(
+                                zItems.TOFU),
+                                MODULE_ID + ".jei.alias.raw_meat_alternative");
+
+                r.addAlias(Items.MAGMA_BLOCK, MODULE_ID + ".jei.alias.evaporation_basin.booster");
+
         }
+
+        // TODO API
+        // JEIAliasesHelper.addAlias List<ItemLike>
 
         private <C extends RecipeInput, T extends Recipe<C>> List<RecipeHolder<T>> getRecipes(RecipeType<T> type) {
                 return List.copyOf(Client.getRecipeCollector().byType(type));

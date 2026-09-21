@@ -31,7 +31,7 @@ dependencies {
     compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
     compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}"
     runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
-    implementation "curse.maven:jade-324717:8326300"
+    implementation "curse.maven:jade-324717:8857417"
 
     //guideme
     compileOnly "org.appliedenergistics:guideme:26.1.12-beta:api"

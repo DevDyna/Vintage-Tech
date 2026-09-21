@@ -119,7 +119,7 @@ public class CrucibleCategory extends BaseRecipeCategory<CrucibleRecipe> {
                 guiGraphics.text(font,
                         Component.literal(value + "%"),
                         16 + 16 + 16 + 8 + 123 + 8 + 4 + 1 + col * (18 + 8 + 4),
-                        48 - 16 - 8 - 4 + 31 - 6 + 1 + 1 + row * (22 + 8 + 6), ColorUtils.WHITE.getRGB(), true);
+                        48 - 16 - 8 - 4 + 31 - 6 + 1 + 1 + row * (22 + 8 + 6), ColorUtils.WHITE.WHITE.getRGB(), true);
 
         }
 
@@ -144,6 +144,6 @@ public class CrucibleCategory extends BaseRecipeCategory<CrucibleRecipe> {
 
     @Override
     public int tickColor(CrucibleRecipe recipe) {
-        return ColorUtils.WHITE.getRGB();
+        return ColorUtils.WHITE.WHITE.getRGB();
     }
 }

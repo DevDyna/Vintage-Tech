@@ -4,6 +4,9 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 
 import java.util.concurrent.CompletableFuture;
 
+import com.synergy.vintagetech.api.factories.beams.BeamFactory;
+import com.synergy.vintagetech.api.factories.trees.TreeFactory;
+import com.synergy.vintagetech.api.factories.trees.TreeSet;
 import com.synergy.vintagetech.init.types.zBlocks;
 import com.synergy.vintagetech.init.types.zTags;
 
@@ -23,6 +26,12 @@ public class DataBlockTag extends BlockTagsProvider {
         @Override
         protected void addTags(Provider p) {
 
+                for (TreeSet wood : TreeFactory.getAll())
+                        wood.createBlockTags(this::tag);
+
+                for (var beam : BeamFactory.getAll())
+                        beam.createBlockTags(this::tag);
+
                 tag(BlockTags.MINEABLE_WITH_AXE)
                                 .add(
 
@@ -33,12 +42,7 @@ public class DataBlockTag extends BlockTagsProvider {
                                                 zBlocks.JUNCTION.get(),
                                                 zBlocks.SAW.get(),
                                                 zBlocks.MECHANICAL_FARMLAND.get(),
-                                                zBlocks.CENTRIFUGE.get(),
-
-                                                zBlocks.IRONWOOD_SAPLING.get(),
-                                                zBlocks.IRONWOOD_PLANKS.get(),
-                                                zBlocks.IRONWOOD_SLAB.get(),
-                                                zBlocks.IRONWOOD_STAIRS.get()
+                                                zBlocks.CENTRIFUGE.get()
 
                                 )
 
@@ -46,11 +50,8 @@ public class DataBlockTag extends BlockTagsProvider {
 
                 tag(BlockTags.MINEABLE_WITH_SHOVEL)
                                 .add(
-                                                zBlocks.MECHANICAL_FARMLAND.get());
-
-                tag(BlockTags.MINEABLE_WITH_HOE)
-                                .add(
-                                                zBlocks.IRONWOOD_LEAVES.get());
+                                                zBlocks.MECHANICAL_FARMLAND.get(),
+                                                zBlocks.STICKY_FARMLAND.get());
 
                 tag(BlockTags.MINEABLE_WITH_PICKAXE)
                                 .add(
@@ -69,8 +70,8 @@ public class DataBlockTag extends BlockTagsProvider {
                 tag(zTags.Blocks.DRYING_RACK_HEATER).addTag(BlockTags.CAMPFIRES);
                 tag(zTags.Blocks.MINEABLE_WITH_SAW).addTag(BlockTags.MINEABLE_WITH_AXE);
 
-                tag(BlockTags.GROWS_CROPS).add(zBlocks.MECHANICAL_FARMLAND.get());
-                tag(BlockTags.SUPPORTS_CROPS).add(zBlocks.MECHANICAL_FARMLAND.get());
+                tag(BlockTags.GROWS_CROPS).add(zBlocks.MECHANICAL_FARMLAND.get(), zBlocks.STICKY_FARMLAND.get());
+                tag(BlockTags.SUPPORTS_CROPS).add(zBlocks.MECHANICAL_FARMLAND.get(), zBlocks.STICKY_FARMLAND.get());
 
                 tag(zTags.Blocks.SUPPORT_CAVE_WHEAT_PLANT)
                                 .addTags(BlockTags.SUPPORTS_CROPS,
@@ -116,10 +117,10 @@ public class DataBlockTag extends BlockTagsProvider {
                                                 zBlocks.FAN.get());
 
                 tag(BlockTags.SUPPORTS_VEGETATION)
-                                .add(zBlocks.MECHANICAL_FARMLAND.get());
+                                .add(zBlocks.MECHANICAL_FARMLAND.get(), zBlocks.STICKY_FARMLAND.get());
 
                 tag(BlockTags.SUPPORTS_BIG_DRIPLEAF)
-                                .add(zBlocks.MECHANICAL_FARMLAND.get());
+                                .add(zBlocks.MECHANICAL_FARMLAND.get(), zBlocks.STICKY_FARMLAND.get());
 
                 tag(Tags.Blocks.FLOWERS)
                                 .add(zBlocks.LAVENDER.get());
@@ -167,74 +168,11 @@ public class DataBlockTag extends BlockTagsProvider {
                                                 BlockTags.SHULKER_BOXES);
 
                 tag(zTags.Blocks.BEAMS)
-                                .addTags(zTags.Blocks.BEAM_NORMAL, zTags.Blocks.BEAM_STRIPPED);
-
-                tag(zTags.Blocks.BEAM_NORMAL)
-                                .add(
-                                                zBlocks.OAK_BEAM.get(),
-                                                zBlocks.SPRUCE_BEAM.get(),
-                                                zBlocks.BIRCH_BEAM.get(),
-                                                zBlocks.JUNGLE_BEAM.get(),
-                                                zBlocks.ACACIA_BEAM.get(),
-                                                zBlocks.DARK_OAK_BEAM.get(),
-                                                zBlocks.MANGROVE_BEAM.get(),
-                                                zBlocks.CHERRY_BEAM.get(),
-                                                zBlocks.PALE_OAK_BEAM.get(),
-                                                zBlocks.BAMBOO_BEAM.get());
-
-                tag(zTags.Blocks.BEAM_STRIPPED)
-                                .add(
-                                                zBlocks.STRIPPED_OAK_BEAM.get(),
-                                                zBlocks.STRIPPED_SPRUCE_BEAM.get(),
-                                                zBlocks.STRIPPED_BIRCH_BEAM.get(),
-                                                zBlocks.STRIPPED_JUNGLE_BEAM.get(),
-                                                zBlocks.STRIPPED_ACACIA_BEAM.get(),
-                                                zBlocks.STRIPPED_DARK_OAK_BEAM.get(),
-                                                zBlocks.STRIPPED_MANGROVE_BEAM.get(),
-                                                zBlocks.STRIPPED_CHERRY_BEAM.get(),
-                                                zBlocks.STRIPPED_PALE_OAK_BEAM.get(),
-                                                zBlocks.STRIPPED_BAMBOO_BEAM.get());
-
-                tag(zTags.Blocks.IRONWOOD_LOGS)
-                                .add(
-                                                zBlocks.IRONWOOD_LOG.get(),
-                                                zBlocks.IRONWOOD_WOOD.get(),
-                                                zBlocks.STRIPPED_IRONWOOD_LOG.get(),
-                                                zBlocks.STRIPPED_IRONWOOD_WOOD.get()
-
-                                );
-
-                tag(BlockTags.LOGS)
-                                .add(zBlocks.IRONWOOD_LOG.get());
-
-                tag(BlockTags.SAPLINGS)
-                                .add(zBlocks.IRONWOOD_SAPLING.get());
-
-                tag(BlockTags.LOGS_THAT_BURN)
-                                .addTag(zTags.Blocks.IRONWOOD_LOGS);
-
-                tag(Tags.Blocks.STRIPPED_LOGS)
-                                .add(zBlocks.STRIPPED_IRONWOOD_LOG.get());
-
-                tag(Tags.Blocks.STRIPPED_WOODS)
-                                .add(zBlocks.STRIPPED_IRONWOOD_WOOD.get());
-
-                tag(BlockTags.LEAVES)
-                                .add(zBlocks.IRONWOOD_LEAVES.get());
-
-                tag(BlockTags.PLANKS)
-                                .add(zBlocks.IRONWOOD_PLANKS.get());
-
-                tag(BlockTags.WOODEN_SLABS)
-                                .add(zBlocks.IRONWOOD_SLAB.get());
-                tag(BlockTags.SLABS)
-                                .add(zBlocks.IRONWOOD_SLAB.get());
-
-                tag(BlockTags.WOODEN_STAIRS)
-                                .add(zBlocks.IRONWOOD_STAIRS.get());
-
-                tag(BlockTags.STAIRS)
-                                .add(zBlocks.IRONWOOD_STAIRS.get());
+                                .addTags(
+                                                zTags.Blocks.BEAM_LOG,
+                                                zTags.Blocks.BEAM_STRIPPED_LOG,
+                                                zTags.Blocks.BEAM_WOOD,
+                                                zTags.Blocks.BEAM_STRIPPED_WOOD);
 
                 tag(zTags.Blocks.SUPPORT_NATURAL_HEMP_PLANT)
                                 .add(Blocks.GRASS_BLOCK)
@@ -255,6 +193,10 @@ public class DataBlockTag extends BlockTagsProvider {
                                                 BlockTags.WOODEN_SLABS,
                                                 BlockTags.WOODEN_STAIRS,
                                                 zTags.Blocks.BEAMS);
+
+                tag(zTags.Blocks.DENY_STICKY_FARMLAND_BOOST).add();
+
+                tag(zTags.Blocks.DENY_STICKY_FARMLAND_BURN_ON_DEHYDRATATION).add();
 
         }
 

@@ -1,6 +1,6 @@
 {
   "values": {
-    "#vintagetech:beam": {
+    "#vintagetech:beams_that_burn": {
       "neoforge:conditions": [
         {
           "type": "neoforge:always"
@@ -31,6 +31,22 @@
         }
       ],
       "burn_time": 400
+    },
+    "vintagetech:ironwood_hanging_sign": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "burn_time": 200
+    },
+    "vintagetech:ironwood_sign": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "burn_time": 200
     },
     "vintagetech:mesh": {
       "neoforge:conditions": [

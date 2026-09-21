@@ -3,7 +3,7 @@ package com.synergy.vintagetech.init.builder.treetap;
 import javax.annotation.Nullable;
 
 import com.devdyna.cakesticklib.api.RandomUtil;
-import com.devdyna.cakesticklib.api.aspect.templates.TickingBlock;
+import com.devdyna.cakesticklib.api.templates.TickingBlock;
 import com.synergy.vintagetech.api.factories.handlers.TreeTapHandler;
 
 import net.minecraft.core.BlockPos;

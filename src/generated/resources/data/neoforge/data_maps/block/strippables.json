@@ -8,6 +8,14 @@
       ],
       "stripped_block": "vintagetech:stripped_acacia_beam"
     },
+    "vintagetech:acacia_wood_beam": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "stripped_block": "vintagetech:stripped_acacia_wood_beam"
+    },
     "vintagetech:bamboo_beam": {
       "neoforge:conditions": [
         {
@@ -24,6 +32,14 @@
       ],
       "stripped_block": "vintagetech:stripped_birch_beam"
     },
+    "vintagetech:birch_wood_beam": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "stripped_block": "vintagetech:stripped_birch_wood_beam"
+    },
     "vintagetech:cherry_beam": {
       "neoforge:conditions": [
         {
@@ -32,6 +48,30 @@
       ],
       "stripped_block": "vintagetech:stripped_cherry_beam"
     },
+    "vintagetech:cherry_wood_beam": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "stripped_block": "vintagetech:stripped_cherry_wood_beam"
+    },
+    "vintagetech:crimson_beam": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "stripped_block": "vintagetech:stripped_crimson_beam"
+    },
+    "vintagetech:crimson_hyphae_beam": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "stripped_block": "vintagetech:stripped_crimson_hyphae_beam"
+    },
     "vintagetech:dark_oak_beam": {
       "neoforge:conditions": [
         {
@@ -39,6 +79,22 @@
         }
       ],
       "stripped_block": "vintagetech:stripped_dark_oak_beam"
+    },
+    "vintagetech:dark_oak_wood_beam": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "stripped_block": "vintagetech:stripped_dark_oak_wood_beam"
+    },
+    "vintagetech:ironwood_beam": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "stripped_block": "vintagetech:stripped_ironwood_beam"
     },
     "vintagetech:ironwood_log": {
       "neoforge:conditions": [
@@ -56,6 +112,14 @@
       ],
       "stripped_block": "vintagetech:stripped_ironwood_wood"
     },
+    "vintagetech:ironwood_wood_beam": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "stripped_block": "vintagetech:stripped_ironwood_wood_beam"
+    },
     "vintagetech:jungle_beam": {
       "neoforge:conditions": [
         {
@@ -63,6 +127,14 @@
         }
       ],
       "stripped_block": "vintagetech:stripped_jungle_beam"
+    },
+    "vintagetech:jungle_wood_beam": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "stripped_block": "vintagetech:stripped_jungle_wood_beam"
     },
     "vintagetech:mangrove_beam": {
       "neoforge:conditions": [
@@ -72,6 +144,14 @@
       ],
       "stripped_block": "vintagetech:stripped_mangrove_beam"
     },
+    "vintagetech:mangrove_wood_beam": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "stripped_block": "vintagetech:stripped_mangrove_wood_beam"
+    },
     "vintagetech:oak_beam": {
       "neoforge:conditions": [
         {
@@ -79,6 +159,14 @@
         }
       ],
       "stripped_block": "vintagetech:stripped_oak_beam"
+    },
+    "vintagetech:oak_wood_beam": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "stripped_block": "vintagetech:stripped_oak_wood_beam"
     },
     "vintagetech:pale_oak_beam": {
       "neoforge:conditions": [
@@ -88,6 +176,14 @@
       ],
       "stripped_block": "vintagetech:stripped_pale_oak_beam"
     },
+    "vintagetech:pale_oak_wood_beam": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "stripped_block": "vintagetech:stripped_pale_oak_wood_beam"
+    },
     "vintagetech:spruce_beam": {
       "neoforge:conditions": [
         {
@@ -95,6 +191,30 @@
         }
       ],
       "stripped_block": "vintagetech:stripped_spruce_beam"
+    },
+    "vintagetech:spruce_wood_beam": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "stripped_block": "vintagetech:stripped_spruce_wood_beam"
+    },
+    "vintagetech:warped_beam": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "stripped_block": "vintagetech:stripped_warped_beam"
+    },
+    "vintagetech:warped_hyphae_beam": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "stripped_block": "vintagetech:stripped_warped_hyphae_beam"
     }
   }
 }

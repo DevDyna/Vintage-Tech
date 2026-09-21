@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_crimson_beam": {
+      "conditions": {
+        "items": [
+          {
+            "items": "vintagetech:crimson_beam"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "vintagetech:crimson_hyphae_beam_from_crimson_beam"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_crimson_beam"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "vintagetech:crimson_hyphae_beam_from_crimson_beam"
+    ]
+  }
+}

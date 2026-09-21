@@ -1,5 +1,9 @@
 {
   "values": [
+    "vintagetech:ironwood_sign",
+    "vintagetech:ironwood_hanging_sign",
+    "vintagetech:ironwood_wall_sign",
+    "vintagetech:ironwood_wall_hanging_sign",
     "vintagetech:axle",
     "vintagetech:basket",
     "vintagetech:crushing_tub",
@@ -8,11 +12,7 @@
     "vintagetech:saw",
     "vintagetech:mechanical_farmland",
     "vintagetech:centrifuge",
-    "vintagetech:ironwood_sapling",
-    "vintagetech:ironwood_planks",
-    "vintagetech:ironwood_slab",
-    "vintagetech:ironwood_stairs",
     "#vintagetech:ironwood_logs",
-    "#vintagetech:beam"
+    "#vintagetech:beams"
   ]
 }

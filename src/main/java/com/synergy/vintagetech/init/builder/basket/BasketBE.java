@@ -63,8 +63,7 @@ public class BasketBE extends BlockEntity implements ItemStorageBlock, DropColle
         return player.isCrouching();
     }
 
-    // TODO API : clear()
-
+    @Deprecated
     public void clear() {
 
         try (var tx = Transaction.openRoot()) {

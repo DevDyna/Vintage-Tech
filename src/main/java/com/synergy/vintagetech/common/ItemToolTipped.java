@@ -2,14 +2,10 @@ package com.synergy.vintagetech.common;
 
 import static com.synergy.vintagetech.Main.MODULE_ID;
 
-import java.util.List;
-
 import com.devdyna.cakesticklib.api.ToolTipHelper;
 import com.devdyna.cakesticklib.setup.registry.LibComponents;
-import com.synergy.vintagetech.api.factories.EffectConsumableItem;
 import com.synergy.vintagetech.init.types.*;
 
-import net.minecraft.network.chat.Component;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 
@@ -33,7 +29,7 @@ public class ItemToolTipped {
                                 MODULE_ID + ".blueberries.spawn");
                 ToolTipHelper.addToggle(t, item.is(zBlocks.LAVENDER.get().asItem()),
                                 MODULE_ID + ".lavender.spawn");
-                ToolTipHelper.addToggle(t, item.is(zBlocks.IRONWOOD_SAPLING.get().asItem()),
+                ToolTipHelper.addToggle(t, item.is(zTrees.IRONWOOD.sapling().get().asItem()),
                                 MODULE_ID + ".ironwood.spawn");
 
                 ToolTipHelper.addToggle(t, item.is(zTags.Items.WINDMILL_REPAIR),
@@ -79,19 +75,22 @@ public class ItemToolTipped {
                         ToolTipHelper.addToggle(t, item.is(zBlocks.BASKET.get().asItem()),
                                         MODULE_ID + ".basket.info");
 
-                // TODO API : ADD add(List<Component>,Component...)
-                if (item.getItem() instanceof EffectConsumableItem effect)
-                        add(t, effect.getEffectToolTip());
+                ToolTipHelper.addToggle(t, item.is(zItems.SULFUR_GOO.get()),
+                                MODULE_ID + ".sulfur_goo.info");
 
+                ToolTipHelper.addToggle(t, item.is(zBlocks.STICKY_FARMLAND.get().asItem()),
+                                MODULE_ID + ".sticky_farmland.info");
         }
 
-        private static void add(List<Component> t, Component... s) {
-                for (var c : s)
-                        t.add(ToolTipHelper.INDEX, c);
-        }
+        // @Deprecated
+        // private static void add(List<Component> t, Component... s) {
+        //         for (var c : s)
+        //                 t.add(ToolTipHelper.INDEX, c);
+        // }
 
-        private static void add(List<Component> t, List<Component> s) {
-                add(t, s.toArray(Component[]::new));
-        }
+        // @Deprecated
+        // private static void add(List<Component> t, List<Component> s) {
+        //         add(t, s.toArray(Component[]::new));
+        // }
 
 }

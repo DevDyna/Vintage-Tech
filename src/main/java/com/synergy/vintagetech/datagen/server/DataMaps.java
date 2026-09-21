@@ -2,6 +2,9 @@ package com.synergy.vintagetech.datagen.server;
 
 import java.util.concurrent.CompletableFuture;
 
+import com.synergy.vintagetech.api.factories.beams.BeamFactory;
+import com.synergy.vintagetech.api.factories.trees.TreeFactory;
+import com.synergy.vintagetech.api.factories.trees.TreeSet;
 import com.synergy.vintagetech.init.types.zBlocks;
 import com.synergy.vintagetech.init.types.zItems;
 import com.synergy.vintagetech.init.types.zTags;
@@ -25,52 +28,55 @@ public class DataMaps extends DataMapProvider {
         @Override
         protected void gather(Provider p) {
 
-                builder(NeoForgeDataMaps.STRIPPABLES)
-                                .add(zBlocks.OAK_BEAM.getId(),
-                                                new Strippable(zBlocks.STRIPPED_OAK_BEAM.get()),
-                                                false, AlwaysCondition.INSTANCE)
-                                .add(zBlocks.BIRCH_BEAM.getId(),
-                                                new Strippable(zBlocks.STRIPPED_BIRCH_BEAM.get()),
-                                                false, AlwaysCondition.INSTANCE)
-                                .add(zBlocks.SPRUCE_BEAM.getId(),
-                                                new Strippable(zBlocks.STRIPPED_SPRUCE_BEAM.get()),
-                                                false, AlwaysCondition.INSTANCE)
-                                .add(zBlocks.JUNGLE_BEAM.getId(),
-                                                new Strippable(zBlocks.STRIPPED_JUNGLE_BEAM.get()),
-                                                false, AlwaysCondition.INSTANCE)
-                                .add(zBlocks.ACACIA_BEAM.getId(),
-                                                new Strippable(zBlocks.STRIPPED_ACACIA_BEAM.get()),
-                                                false, AlwaysCondition.INSTANCE)
-                                .add(zBlocks.DARK_OAK_BEAM.getId(),
-                                                new Strippable(zBlocks.STRIPPED_DARK_OAK_BEAM.get()),
-                                                false, AlwaysCondition.INSTANCE)
-                                .add(zBlocks.CHERRY_BEAM.getId(),
-                                                new Strippable(zBlocks.STRIPPED_CHERRY_BEAM.get()),
-                                                false, AlwaysCondition.INSTANCE)
-                                .add(zBlocks.MANGROVE_BEAM.getId(),
-                                                new Strippable(zBlocks.STRIPPED_MANGROVE_BEAM.get()),
-                                                false, AlwaysCondition.INSTANCE)
-                                .add(zBlocks.PALE_OAK_BEAM.getId(),
-                                                new Strippable(zBlocks.STRIPPED_PALE_OAK_BEAM.get()),
-                                                false, AlwaysCondition.INSTANCE)
-                                .add(zBlocks.BAMBOO_BEAM.getId(),
-                                                new Strippable(zBlocks.STRIPPED_BAMBOO_BEAM.get()),
-                                                false, AlwaysCondition.INSTANCE)
+                var strippable = builder(NeoForgeDataMaps.STRIPPABLES);
+                var compostable = builder(NeoForgeDataMaps.COMPOSTABLES);
+                var furnace_fuels = builder(NeoForgeDataMaps.FURNACE_FUELS);
 
-                                .add(zBlocks.IRONWOOD_LOG.getId(),
-                                                new Strippable(zBlocks.STRIPPED_IRONWOOD_LOG.get()),
-                                                false, AlwaysCondition.INSTANCE)
-                                .add(zBlocks.IRONWOOD_WOOD.getId(),
-                                                new Strippable(zBlocks.STRIPPED_IRONWOOD_WOOD.get()),
-                                                false, AlwaysCondition.INSTANCE);
+                furnace_fuels.add(zTags.Items.BEAMS_THAT_BURN,
+                                new FurnaceFuel(AbstractFurnaceBlockEntity.BURN_TIME_STANDARD * 3 / 4),
+                                false, AlwaysCondition.INSTANCE);
 
-                builder(NeoForgeDataMaps.COMPOSTABLES)
-                                .add(zBlocks.IRONWOOD_LEAVES.getId(),
-                                                new Compostable(0.3F, false),
-                                                false, AlwaysCondition.INSTANCE)
-                                .add(zBlocks.IRONWOOD_SAPLING.getId(),
-                                                new Compostable(0.3F, false),
-                                                false, AlwaysCondition.INSTANCE)
+                for (var beam : BeamFactory.getAll()) {
+
+                        strippable.add(beam.beam_log().getId(),
+                                        new Strippable(beam.beam_stripped_log().get()), false,
+                                        AlwaysCondition.INSTANCE);
+
+                        if (beam.isSpecial())
+                                continue;
+
+                        strippable.add(beam.beam_wood().getId(),
+                                        new Strippable(beam.beam_stripped_wood().get()),
+                                        false, AlwaysCondition.INSTANCE);
+
+                }
+
+                for (TreeSet tree : TreeFactory.getAll()) {
+                        strippable.add(tree.log().getId(),
+                                        new Strippable(tree.strippedLog().get()),
+                                        false, AlwaysCondition.INSTANCE)
+                                        .add(tree.wood().getId(),
+                                                        new Strippable(tree.strippedWood().get()),
+                                                        false, AlwaysCondition.INSTANCE);
+
+                        compostable.add(tree.leaves().getId(),
+                                        new Compostable(0.3F, false),
+                                        false, AlwaysCondition.INSTANCE)
+                                        .add(tree.sapling().getId(),
+                                                        new Compostable(0.3F, false),
+                                                        false, AlwaysCondition.INSTANCE);
+
+                        furnace_fuels.add(tree.signItem().getId(),
+                                        new FurnaceFuel(AbstractFurnaceBlockEntity.BURN_TIME_STANDARD),
+                                        false, AlwaysCondition.INSTANCE);
+
+                        furnace_fuels.add(tree.hangingSignItem().getId(),
+                                        new FurnaceFuel(AbstractFurnaceBlockEntity.BURN_TIME_STANDARD),
+                                        false, AlwaysCondition.INSTANCE);
+
+                }
+
+                compostable
                                 .add(zItems.ALOE.getId(),
                                                 new Compostable(0.3F, false),
                                                 false, AlwaysCondition.INSTANCE)
@@ -96,7 +102,7 @@ public class DataMaps extends DataMapProvider {
                                                 new Compostable(0.3F, false),
                                                 false, AlwaysCondition.INSTANCE);
 
-                builder(NeoForgeDataMaps.FURNACE_FUELS)
+                furnace_fuels
                                 .add(zItems.GLUE.getId(),
                                                 new FurnaceFuel(AbstractFurnaceBlockEntity.BURN_TIME_STANDARD * 2),
                                                 false, AlwaysCondition.INSTANCE)
@@ -105,9 +111,6 @@ public class DataMaps extends DataMapProvider {
                                                 false, AlwaysCondition.INSTANCE)
                                 .add(zBlocks.CRUSHING_TUB.getId(),
                                                 new FurnaceFuel(AbstractFurnaceBlockEntity.BURN_TIME_STANDARD * 2),
-                                                false, AlwaysCondition.INSTANCE)
-                                .add(zTags.Items.BEAMS,
-                                                new FurnaceFuel(AbstractFurnaceBlockEntity.BURN_TIME_STANDARD * 3 / 4),
                                                 false, AlwaysCondition.INSTANCE)
                                 .add(zItems.MESH.getId(),
                                                 new FurnaceFuel(AbstractFurnaceBlockEntity.BURN_TIME_STANDARD / 2),

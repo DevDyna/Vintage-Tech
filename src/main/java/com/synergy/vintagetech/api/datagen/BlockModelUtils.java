@@ -14,6 +14,7 @@ import net.minecraft.client.data.models.MultiVariant;
 import net.minecraft.client.data.models.blockstates.MultiPartGenerator;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
+import net.minecraft.client.data.models.model.ModelLocationUtils;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.data.models.model.TextureSlot;
@@ -21,6 +22,7 @@ import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
@@ -83,7 +85,8 @@ public class BlockModelUtils {
                                                                 x.rl(MODULE_ID, prefix))));
         }
 
-        public static void createDoubleCrop(   BlockModelGenerators b,  Block block,  IntegerProperty age,BooleanProperty isTop) {
+        public static void createDoubleCrop(BlockModelGenerators b, Block block, IntegerProperty age,
+                        BooleanProperty isTop) {
                 b.blockStateOutput.accept(
                                 MultiVariantGenerator.dispatch(block)
                                                 .with(
@@ -542,5 +545,32 @@ public class BlockModelUtils {
                 b.blockStateOutput.accept(
                                 MultiVariantGenerator.dispatch(block)
                                                 .with(dispatch));
+        }
+
+        public static void createFarmland(BlockModelGenerators b, Block block, Identifier dirt, Identifier top_dried,
+                        Identifier top_moist) {
+                b.blockStateOutput.accept(MultiVariantGenerator.dispatch(block).with(BlockModelGenerators
+                                .createEmptyOrFullDispatch(BlockStateProperties.MOISTURE, 7,
+                                                BlockModelGenerators.plainVariant(ModelTemplates.FARMLAND.create(
+                                                                ModelLocationUtils.getModelLocation(block, "/moist"),
+                                                                new TextureMapping()
+                                                                                .put(TextureSlot.DIRT, TextureMapping
+                                                                                                .getBlockTexture(
+                                                                                                                Blocks.DIRT))
+                                                                                .put(TextureSlot.TOP, new Material(
+                                                                                                top_moist)),
+                                                                b.modelOutput)),
+                                                BlockModelGenerators
+                                                                .plainVariant(ModelTemplates.FARMLAND.create(
+                                                                                ModelLocationUtils.getModelLocation(
+                                                                                                block, "/dried"),
+                                                                                new TextureMapping()
+                                                                                                .put(TextureSlot.DIRT,
+                                                                                                                TextureMapping.getBlockTexture(
+                                                                                                                                Blocks.DIRT))
+                                                                                                .put(TextureSlot.TOP,
+                                                                                                                new Material(top_dried)),
+                                                                                b.modelOutput)))));
+
         }
 }

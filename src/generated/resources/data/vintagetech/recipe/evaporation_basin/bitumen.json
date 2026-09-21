@@ -2,7 +2,7 @@
   "type": "vintagetech:evaporation_basin",
   "fluid": {
     "amount": 125,
-    "ingredient": "vintagetech:oil_source"
+    "ingredient": "cakesticklib:crude_oil"
   },
   "output": {
     "id": "vintagetech:bitumen"

@@ -100,7 +100,7 @@ public class CentrifugeBlock extends MonoDirectionalAxleBlock
     @Override
     public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, double fallDistance) {
         if (level.getBlockEntity(pos) instanceof CentrifugeBE be)
-            be.collectItem(level,pos, entity);
+            be.collectItem(level, pos, entity);
         super.fallOn(level, state, pos, entity, fallDistance);
     }
 
@@ -136,6 +136,9 @@ public class CentrifugeBlock extends MonoDirectionalAxleBlock
     @Override
     public InteractionResult executeWhenEmpty(ItemStack stack, BlockState state, Level level, BlockPos pos,
             Player player, InteractionHand hand, BlockHitResult hitResult) {
+        if (level.getBlockEntity(pos) instanceof CentrifugeBE be)
+            if (!be.isSlotsEmpty())
+                return be.itemUseOn(player, level, pos, hand);
         if (player.isCrouching())
             return useItemToClear(state, level, pos, player, hitResult);
         else
@@ -148,7 +151,5 @@ public class CentrifugeBlock extends MonoDirectionalAxleBlock
             InteractionHand hand, BlockHitResult hitResult) {
         return be instanceof CentrifugeBE tank ? tank.getFluidStorage() : null;
     }
-
-   
 
 }

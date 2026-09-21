@@ -3,9 +3,12 @@ package com.synergy.vintagetech.datagen.server;
 import java.util.*;
 import java.util.function.Predicate;
 
+import com.devdyna.cakesticklib.api.utils.ArrayUtils;
 import com.devdyna.cakesticklib.api.utils.EnchantUtil;
 import com.devdyna.cakesticklib.api.utils.LootTableHelper;
 import com.synergy.vintagetech.api.factories.cheese.BaseCheeseBlock;
+import com.synergy.vintagetech.api.factories.trees.TreeFactory;
+import com.synergy.vintagetech.api.factories.trees.TreeSet;
 import com.synergy.vintagetech.init.builder.cheese.SealedCheeseBlock;
 import com.synergy.vintagetech.init.builder.crushing_tub.CrushingTubBlock;
 import com.synergy.vintagetech.init.builder.plants.Aloe;
@@ -14,6 +17,7 @@ import com.synergy.vintagetech.init.builder.plants.Hemp;
 import com.synergy.vintagetech.init.builder.plants.SoyBeans;
 import com.synergy.vintagetech.init.types.zBlocks;
 import com.synergy.vintagetech.init.types.zItems;
+import com.synergy.vintagetech.init.types.zTrees;
 
 import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 import net.minecraft.core.HolderLookup;
@@ -45,11 +49,25 @@ public class DataLootBlock extends BlockLootSubProvider {
                 return LootTableHelper.getValidBlocks(zBlocks.zBlock, zBlocks.zBlockItem);
         }
 
-        List<Block> BLACKLIST = List.of(zBlocks.IRONWOOD_LEAVES.get(), zBlocks.IRONWOOD_SLAB.get(),
-                        zBlocks.CRUSHING_TUB.get());
+        List<Block> BLACKLIST = ArrayUtils.concat(TreeFactory.getAll()
+                        .stream()
+                        .flatMap(r -> r.getSpecialLootBlocks().stream())
+                        .toList(), zBlocks.CRUSHING_TUB.get());
 
         @Override
         protected void generate() {
+
+                /**
+                 * WARNING It doesn't generate leaves loot table!
+                 */
+                for (TreeSet tree : TreeFactory.getAll()) {
+                        add(tree.slab().get(), b -> createSlabItemTable(tree.slab().get()));
+                        dropPottedContents(tree.pottedSapling().get());
+                        dropSelf(tree.sign().get());
+                        dropSelf(tree.hangingSign().get());
+                        dropOther(tree.wallSign().get(), tree.sign().get());
+                        dropOther(tree.wallHangingSign().get(), tree.hangingSign().get());
+                }
 
                 LootTableHelper.getValidBlocks(zBlocks.zBlockItem)
                                 .stream().filter(Predicate.not(BLACKLIST::contains)).forEach(this::dropSelf);
@@ -91,8 +109,8 @@ public class DataLootBlock extends BlockLootSubProvider {
                                                                                 .hasProperty(Hemp.AGE,
                                                                                                 Hemp.MAX_AGE - 1)))));
 
-                add(zBlocks.IRONWOOD_LEAVES.get(),
-                                b -> createLeavesDrops(b, zBlocks.IRONWOOD_SAPLING.get(),
+                add(zTrees.IRONWOOD.leaves().get(),
+                                b -> createLeavesDrops(b, zTrees.IRONWOOD.sapling().get(),
                                                 NORMAL_LEAVES_SAPLING_CHANCES)
                                                 .withPool(
                                                                 LootPool.lootPool()
@@ -120,9 +138,6 @@ public class DataLootBlock extends BlockLootSubProvider {
                                                                                                                                                                 0.325F))))
 
                 );
-
-                dropPottedContents(zBlocks.POTTED_IRONWOOD_SAPLING.get());
-                add(zBlocks.IRONWOOD_SLAB.get(), b -> createSlabItemTable(b));
 
                 add(zBlocks.CRUSHING_TUB.get(),
                                 LootTable.lootTable()
@@ -156,6 +171,24 @@ public class DataLootBlock extends BlockLootSubProvider {
                 addAgedCheese(zBlocks.SEALED_CHEESE.get(), zBlocks.MATURED_CHEESE.get(), zBlocks.AGED_CHEESE.get(),
                                 zItems.FRESH_CHEESE_SLICE.get(),
                                 zItems.MATURED_CHEESE_SLICE.get(), zItems.AGED_CHEESE_SLICE.get());
+
+                add(zBlocks.STICKY_FARMLAND.get(),
+
+                                LootTable.lootTable()
+                                                .withPool(applyExplosionCondition(Items.DIRT,
+                                                                LootPool.lootPool()
+                                                                                .setRolls(ConstantValue.exactly(1.0F))
+                                                                                .add(LootItem.lootTableItem(
+                                                                                                Items.DIRT))))
+                                                .withPool(applyExplosionCondition(zItems.SULFUR_GOO.get(),
+                                                                LootPool.lootPool()
+                                                                                .setRolls(ConstantValue.exactly(1.0F))
+                                                                                .add(LootItem.lootTableItem(
+                                                                                                zItems.SULFUR_GOO
+                                                                                                                .get()))))
+
+                );
+
         }
 
         private void addCheese(Block block, ItemLike slice) {

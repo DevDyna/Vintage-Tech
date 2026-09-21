@@ -60,7 +60,13 @@ public class CentrifugeBE extends TransmissionBE
     @Override
     public void tickServer() {
 
+        if (!isAxlePowered())
+            return;
+
         if (getFluidStorage() == null)
+            return;
+
+        if (getFluidStorage().size() <= 0)
             return;
 
         var fluid = x.fluid(getFluidStorage().getResource(FLUID_TANK).getFluid(),

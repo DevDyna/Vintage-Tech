@@ -23,7 +23,7 @@ import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 
-public class FarmlandFuelsRecipe extends BaseRecipeType<FluidInput.withNumber> {
+public class FarmlandFuelsRecipe extends BaseRecipeType<FluidInput.simple> {
 
     private final SizedFluidIngredient fluid;
 
@@ -35,12 +35,12 @@ public class FarmlandFuelsRecipe extends BaseRecipeType<FluidInput.withNumber> {
         return new FarmlandFuelsRecipe(fluid);
     }
 
-    public boolean matches(FluidInput.withNumber r, Level l) {
+    public boolean matches(FluidInput.simple r, Level l) {
         return this.fluid.test(r.fluid());
     }
 
     @Override
-    public ItemStack assemble(FluidInput.withNumber r) {
+    public ItemStack assemble(FluidInput.simple r) {
         return x.item(x.getFluidStacksFromIngredient(fluid).getFirst().getFluid().getBucket());
     }
 
@@ -54,12 +54,12 @@ public class FarmlandFuelsRecipe extends BaseRecipeType<FluidInput.withNumber> {
     }
 
     @Override
-    public RecipeType<? extends Recipe<FluidInput.withNumber>> getType() {
+    public RecipeType<? extends Recipe<FluidInput.simple>> getType() {
         return zRecipeTypes.FARMLAND_FUELS.getType();
     }
 
     @Override
-    public RecipeSerializer<? extends Recipe<FluidInput.withNumber>> getSerializer() {
+    public RecipeSerializer<? extends Recipe<FluidInput.simple>> getSerializer() {
         return zRecipeTypes.FARMLAND_FUELS.getSerializer();
     }
 

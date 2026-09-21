@@ -2,7 +2,7 @@
   "type": "vintagetech:evaporation_basin",
   "fluid": {
     "amount": 125,
-    "ingredient": "vintagetech:sap_source"
+    "ingredient": "cakesticklib:sap"
   },
   "output": {
     "id": "vintagetech:sap"

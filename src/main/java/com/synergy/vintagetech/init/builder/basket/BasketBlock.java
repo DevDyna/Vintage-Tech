@@ -3,7 +3,7 @@ package com.synergy.vintagetech.init.builder.basket;
 import java.util.List;
 
 import com.devdyna.cakesticklib.api.aspect.logic.BlockItemKeeper;
-import com.devdyna.cakesticklib.api.aspect.templates.TickingBlock;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -19,6 +19,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DirectionalBlock;
+import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -26,14 +27,13 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.storage.loot.LootParams.Builder;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class BasketBlock extends TickingBlock implements BlockItemKeeper {
+public class BasketBlock extends Block implements BlockItemKeeper , EntityBlock {
 
     public static final EnumProperty<Direction> FACING = DirectionalBlock.FACING;
 
@@ -126,6 +126,17 @@ public class BasketBlock extends TickingBlock implements BlockItemKeeper {
     }
 
     @Override
+    public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, double fallDistance) {
+
+        if (entity instanceof ItemEntity item
+                && level.getBlockEntity(pos) instanceof BasketBE be
+                && level.getBlockState(pos).getValue(FACING) == Direction.UP)
+            be.collectItem(level, pos, item);
+
+        super.fallOn(level, state, pos, entity, fallDistance);
+    }
+
+    @Override
     protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos,
             Player player, InteractionHand hand, BlockHitResult hitResult) {
         if (level.getBlockEntity(pos) instanceof BasketBE be)
@@ -135,13 +146,13 @@ public class BasketBlock extends TickingBlock implements BlockItemKeeper {
 
     @Override
     public List<ItemStack> getDrops(BlockState state, Builder builder) {
-        var entity = builder.getOptionalParameter(LootContextParams.THIS_ENTITY);
-        var be = builder.getParameter(LootContextParams.BLOCK_ENTITY);
+        // var entity = builder.getOptionalParameter(LootContextParams.THIS_ENTITY);
+        // var be = builder.getParameter(LootContextParams.BLOCK_ENTITY);
 
-        // TODO API : move to api
-        if (entity != null && entity instanceof Player player && be != null && be instanceof BasketBE basket)
-            if (basket.dropOnBreak(player))
-                return super.getDrops(state, builder);
+        // if (entity != null && entity instanceof Player player && be != null && be
+        // instanceof BasketBE basket)
+        // if (basket.dropOnBreak(player))
+        // return super.getDrops(state, builder);
 
         return getResultDrops(super.getDrops(state, builder), this.asItem(), state, builder);
 

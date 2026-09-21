@@ -6,7 +6,7 @@ import java.util.Optional;
 import com.devdyna.cakesticklib.api.RandomUtil;
 import com.devdyna.cakesticklib.api.aspect.logic.ItemStorageBlock;
 import com.devdyna.cakesticklib.api.aspect.logic.*;
-import com.devdyna.cakesticklib.api.aspect.templates.TickingBE;
+import com.devdyna.cakesticklib.api.templates.TickingBE;
 import com.devdyna.cakesticklib.api.primitive.Ticker;
 import com.devdyna.cakesticklib.api.recipe.recipeInput.ItemInput;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
@@ -53,14 +53,12 @@ public class DryingRackBE extends TickingBE
 
 
     public ItemStack insertItem(ItemStack stack) {
-        update();
         return simpleInsertItem(stack);
     }
 
     
   
     public ItemStack extractItem() {
-        update();
         return simpleExtractItemByIndex(0);
     }
     
@@ -75,7 +73,6 @@ public class DryingRackBE extends TickingBE
             return;
         }
 
-        update();
 
         Optional<RecipeHolder<DryingRackRecipe>> r = level.getServer().getRecipeManager()
                 .getRecipeFor(zRecipeTypes.DRYING_RACK.getType(),
@@ -106,7 +103,6 @@ public class DryingRackBE extends TickingBE
             ticker = null;
         }
 
-        update();
 
     }
 

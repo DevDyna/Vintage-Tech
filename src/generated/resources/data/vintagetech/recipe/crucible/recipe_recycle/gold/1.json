@@ -2,12 +2,12 @@
   "type": "vintagetech:crucible",
   "input_fluid": {
     "amount": 5,
-    "ingredient": "vintagetech:sulfuric_acid_source"
+    "ingredient": "cakesticklib:sulfuric_acid"
   },
   "input_items": [
     {
       "count": 1,
-      "ingredient": "#vintagetech:recipe_recycle/gold/1"
+      "ingredient": "#cakesticklib:recipe_recycle/gold/1"
     }
   ],
   "output_items": [
