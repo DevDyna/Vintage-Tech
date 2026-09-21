@@ -66,27 +66,6 @@ public class CrucibleBlock extends TickingBlock
         return new CrucibleBE(p, s);
     }
 
-    // TODO verify
-    // @Nullable
-    // public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level l,
-    // BlockState s, BlockEntityType<T> ty) {
-    // return (lvl, pos, b, t) -> {
-    // if (t instanceof CrucibleBE be) {
-
-    // if (l == null)
-    // return;
-
-    // be.tickBoth();
-    // if (l.isClientSide())
-    // be.tickClient();
-    // else
-    // be.tickServer();
-
-    // }
-
-    // };
-    // }
-
     @Override
     public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, double fallDistance) {
         if (level.getBlockEntity(pos) instanceof CrucibleBE be)
