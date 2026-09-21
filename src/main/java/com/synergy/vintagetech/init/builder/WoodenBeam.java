@@ -6,6 +6,7 @@ import com.synergy.vintagetech.api.factories.handlers.RopeHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
@@ -56,5 +57,10 @@ public class WoodenBeam extends RotatedPillarBlock implements RopeHandler {
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> b) {
         b.add(AXIS, HAS_ROPE);
+    }
+
+    @Override
+    public boolean isLadder(BlockState state, LevelReader level, BlockPos pos, LivingEntity entity) {
+        return state.getValue(HAS_ROPE);
     }
 }
