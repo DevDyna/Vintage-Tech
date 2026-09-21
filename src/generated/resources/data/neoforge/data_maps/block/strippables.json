@@ -64,13 +64,13 @@
       ],
       "stripped_block": "vintagetech:stripped_crimson_beam"
     },
-    "vintagetech:crimson_wood_beam": {
+    "vintagetech:crimson_hyphae_beam": {
       "neoforge:conditions": [
         {
           "type": "neoforge:always"
         }
       ],
-      "stripped_block": "vintagetech:stripped_crimson_wood_beam"
+      "stripped_block": "vintagetech:stripped_crimson_hyphae_beam"
     },
     "vintagetech:dark_oak_beam": {
       "neoforge:conditions": [
@@ -208,13 +208,13 @@
       ],
       "stripped_block": "vintagetech:stripped_warped_beam"
     },
-    "vintagetech:warped_wood_beam": {
+    "vintagetech:warped_hyphae_beam": {
       "neoforge:conditions": [
         {
           "type": "neoforge:always"
         }
       ],
-      "stripped_block": "vintagetech:stripped_warped_wood_beam"
+      "stripped_block": "vintagetech:stripped_warped_hyphae_beam"
     }
   }
 }

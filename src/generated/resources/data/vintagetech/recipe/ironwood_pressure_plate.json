@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "#": "vintagetech:ironwood_planks"
+  },
+  "pattern": [
+    "##"
+  ],
+  "result": {
+    "id": "vintagetech:ironwood_pressure_plate"
+  }
+}

@@ -4,7 +4,7 @@
       "model": "vintagetech:block/ironwood_slab"
     },
     "type=double": {
-      "model": "vintagetech:block/ironwood_slab_double"
+      "model": "vintagetech:block/ironwood_planks"
     },
     "type=top": {
       "model": "vintagetech:block/ironwood_slab_top"

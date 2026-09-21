@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    "#vintagetech:beam/log",
+    "#vintagetech:beams",
     "vintagetech:rope"
   ],
   "result": {
