@@ -15,9 +15,9 @@ import com.synergy.vintagetech.init.builder.fan.FanRenderer;
 import com.synergy.vintagetech.init.builder.millstone.MillstoneRenderer;
 import com.synergy.vintagetech.init.builder.windmill.WindMillRenderer;
 import com.synergy.vintagetech.init.types.zBlockEntities;
-import com.synergy.vintagetech.init.types.zBlocks;
 import com.synergy.vintagetech.init.types.zFluids;
 import com.synergy.vintagetech.init.types.zParticles;
+import com.synergy.vintagetech.init.types.zTrees;
 
 import guideme.Guide;
 import net.minecraft.client.Minecraft;
@@ -49,133 +49,133 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 @EventBusSubscriber(modid = Main.MODULE_ID, value = Dist.CLIENT)
 public class Client {
 
-    public Client(ModContainer container) {
-        container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
+        public Client(ModContainer container) {
+                container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
 
-        if (ModAddonUtil.checkMod("guideme"))
-            Guide.builder(x.rl(Main.MODULE_ID, "guide")).build();
-    }
+                if (ModAddonUtil.checkMod("guideme"))
+                        Guide.builder(x.rl(Main.MODULE_ID, "guide")).build();
+        }
 
-    @SubscribeEvent
-    public static void render(EntityRenderersEvent.RegisterRenderers event) {
+        @SubscribeEvent
+        public static void render(EntityRenderersEvent.RegisterRenderers event) {
 
-        event.registerBlockEntityRenderer(
-                zBlockEntities.TRANSMISSION.get(),
-                TransmissionRenderer::new);
+                event.registerBlockEntityRenderer(
+                                zBlockEntities.TRANSMISSION.get(),
+                                TransmissionRenderer::new);
 
-        event.registerBlockEntityRenderer(
-                zBlockEntities.CREATIVE_ENGINE.get(),
-                TransmissionRenderer::new);
+                event.registerBlockEntityRenderer(
+                                zBlockEntities.CREATIVE_ENGINE.get(),
+                                TransmissionRenderer::new);
 
-        event.registerBlockEntityRenderer(
-                zBlockEntities.WINDMILL.get(),
-                WindMillRenderer::new);
+                event.registerBlockEntityRenderer(
+                                zBlockEntities.WINDMILL.get(),
+                                WindMillRenderer::new);
 
-        event.registerBlockEntityRenderer(
-                zBlockEntities.ELECTRIC_MOTOR.get(),
-                TransmissionRenderer::new);
+                event.registerBlockEntityRenderer(
+                                zBlockEntities.ELECTRIC_MOTOR.get(),
+                                TransmissionRenderer::new);
 
-        event.registerBlockEntityRenderer(
-                zBlockEntities.DYNAMO.get(),
-                TransmissionRenderer::new);
+                event.registerBlockEntityRenderer(
+                                zBlockEntities.DYNAMO.get(),
+                                TransmissionRenderer::new);
 
-        event.registerBlockEntityRenderer(
-                zBlockEntities.FAN.get(),
-                FanRenderer::new);
+                event.registerBlockEntityRenderer(
+                                zBlockEntities.FAN.get(),
+                                FanRenderer::new);
 
-        event.registerBlockEntityRenderer(
-                zBlockEntities.MILLSTONE.get(),
-                MillstoneRenderer::new);
+                event.registerBlockEntityRenderer(
+                                zBlockEntities.MILLSTONE.get(),
+                                MillstoneRenderer::new);
 
-        event.registerBlockEntityRenderer(
-                zBlockEntities.MECHANICAL_FARMLAND.get(),
-                TransmissionRenderer::new);
+                event.registerBlockEntityRenderer(
+                                zBlockEntities.MECHANICAL_FARMLAND.get(),
+                                TransmissionRenderer::new);
 
-        event.registerBlockEntityRenderer(
-                zBlockEntities.SAW.get(),
-                TransmissionRenderer::new);
+                event.registerBlockEntityRenderer(
+                                zBlockEntities.SAW.get(),
+                                TransmissionRenderer::new);
 
-        event.registerBlockEntityRenderer(
-                zBlockEntities.CENTRIFUGE.get(),
-                CentrifugeRenderer::new);
+                event.registerBlockEntityRenderer(
+                                zBlockEntities.CENTRIFUGE.get(),
+                                CentrifugeRenderer::new);
 
-    }
+        }
 
-    @SubscribeEvent
-    public static void registerParticles(RegisterParticleProvidersEvent event) {
-        event.registerSpriteSet(
-                zParticles.FAN_AIR_FLOW.get(),
-                AirFlowParticleProvider::new);
+        @SubscribeEvent
+        public static void registerParticles(RegisterParticleProvidersEvent event) {
+                event.registerSpriteSet(
+                                zParticles.FAN_AIR_FLOW.get(),
+                                AirFlowParticleProvider::new);
 
-        event.registerSpriteSet(
-                zParticles.SULFUR_PARTICLES.get(),
-                SulfurGooProvider::new);
-    }
+                event.registerSpriteSet(
+                                zParticles.SULFUR_PARTICLES.get(),
+                                SulfurGooProvider::new);
+        }
 
-    @SubscribeEvent
-    public static void onRegisterClientExtensions(RegisterClientExtensionsEvent event) {
+        @SubscribeEvent
+        public static void onRegisterClientExtensions(RegisterClientExtensionsEvent event) {
 
-        event.registerFluidType(new IClientFluidTypeExtensions() {
-            @Override
-            public Identifier getRenderOverlayTexture(Minecraft mc) {
-                return x.parse("textures/misc/underwater.png");
-            }
-        }, ClassUtils.getAll(zFluids.class, FluidRegister.class)
-                .stream()
-                .map(FluidRegister::getType)
-                .map(DeferredHolder::get)
-                .toArray(FluidType[]::new));
+                event.registerFluidType(new IClientFluidTypeExtensions() {
+                        @Override
+                        public Identifier getRenderOverlayTexture(Minecraft mc) {
+                                return x.parse("textures/misc/underwater.png");
+                        }
+                }, ClassUtils.getAll(zFluids.class, FluidRegister.class)
+                                .stream()
+                                .map(FluidRegister::getType)
+                                .map(DeferredHolder::get)
+                                .toArray(FluidType[]::new));
 
-    }
+        }
 
-    @SubscribeEvent
-    public static void onRegisterFluidModels(RegisterFluidModelsEvent event) {
+        @SubscribeEvent
+        public static void onRegisterFluidModels(RegisterFluidModelsEvent event) {
 
-        ClassUtils.getAll(zFluids.class, FluidRegister.class).forEach(
-                f -> event.register(
-                        FluidRenderUtils.createWaterModel(new FluidTintSource() {
+                ClassUtils.getAll(zFluids.class, FluidRegister.class).forEach(
+                                f -> event.register(
+                                                FluidRenderUtils.createWaterModel(new FluidTintSource() {
 
-                            @Override
-                            public int color(FluidState state) {
-                                return f.getColor();
-                            }
+                                                        @Override
+                                                        public int color(FluidState state) {
+                                                                return f.getColor();
+                                                        }
 
-                        }),
-                        f.getSource(),
-                        f.getFlowing()));
+                                                }),
+                                                f.getSource(),
+                                                f.getFlowing()));
 
-    }
+        }
 
-    @SubscribeEvent
-    public static void registerBlockColors(RegisterColorHandlersEvent.BlockTintSources event) {
+        @SubscribeEvent
+        public static void registerBlockColors(RegisterColorHandlersEvent.BlockTintSources event) {
 
-        event.register(List.of(BlockTintSources.foliage()), zBlocks.IRONWOOD_LEAVES.get());
+                event.register(List.of(BlockTintSources.foliage()), zTrees.IRONWOOD.leaves().get());
 
-    }
+        }
 
-    // @SubscribeEvent
-    // public static void
-    // registerItemColor(RegisterColorHandlersEvent.ItemTintSources event) {
+        // @SubscribeEvent
+        // public static void registerItemColor(RegisterColorHandlersEvent.ItemTintSources event) {
 
-    // }
+        
+        // }
 
-    // Recipe collector client-side
+        // Recipe collector client-side
 
-    private static RecipeMap recipeCollector = RecipeMap.EMPTY;
+        private static RecipeMap recipeCollector = RecipeMap.EMPTY;
 
-    @SubscribeEvent
-    public static void onRecipesSynced(RecipesReceivedEvent event) {
-        if (ModList.get().isLoaded("jei"))
-            recipeCollector = event.getRecipeMap();
-    }
+        @SubscribeEvent
+        public static void onRecipesSynced(RecipesReceivedEvent event) {
+                if (ModList.get().isLoaded("jei"))
+                        recipeCollector = event.getRecipeMap();
+        }
 
-    @SubscribeEvent
-    public static void onClientLogout(ClientPlayerNetworkEvent.LoggingOut event) {
-        recipeCollector = RecipeMap.EMPTY;
-    }
+        @SubscribeEvent
+        public static void onClientLogout(ClientPlayerNetworkEvent.LoggingOut event) {
+                recipeCollector = RecipeMap.EMPTY;
+        }
 
-    public static RecipeMap getRecipeCollector() {
-        return recipeCollector;
-    }
+        public static RecipeMap getRecipeCollector() {
+                return recipeCollector;
+        }
 
 }

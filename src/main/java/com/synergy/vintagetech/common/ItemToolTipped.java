@@ -29,7 +29,7 @@ public class ItemToolTipped {
                                 MODULE_ID + ".blueberries.spawn");
                 ToolTipHelper.addToggle(t, item.is(zBlocks.LAVENDER.get().asItem()),
                                 MODULE_ID + ".lavender.spawn");
-                ToolTipHelper.addToggle(t, item.is(zBlocks.IRONWOOD_SAPLING.get().asItem()),
+                ToolTipHelper.addToggle(t, item.is(zTrees.IRONWOOD.sapling().get().asItem()),
                                 MODULE_ID + ".ironwood.spawn");
 
                 ToolTipHelper.addToggle(t, item.is(zTags.Items.WINDMILL_REPAIR),

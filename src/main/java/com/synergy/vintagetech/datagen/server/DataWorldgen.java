@@ -14,6 +14,7 @@ import com.synergy.vintagetech.init.builder.plants.Hemp;
 import com.synergy.vintagetech.init.builder.plants.SoyBeans;
 import com.synergy.vintagetech.init.types.zBlocks;
 import com.synergy.vintagetech.init.types.zTags;
+import com.synergy.vintagetech.init.types.zTrees;
 import com.synergy.vintagetech.init.types.zWorldGenFeatures;
 import com.synergy.vintagetech.init.types.zWorldGenFeatures.PlacedFeatures;
 
@@ -193,9 +194,9 @@ public class DataWorldgen extends DatapackBuiltinEntriesProvider {
 
                 c.register(zWorldGenFeatures.ConfiguredFeatures.IRONWOOD,
                                 new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
-                                                BlockStateProvider.simple(zBlocks.IRONWOOD_LOG.get()),
+                                                BlockStateProvider.simple(zTrees.IRONWOOD.log().get()),
                                                 new StraightTrunkPlacer(5, 8, 0),
-                                                BlockStateProvider.simple(zBlocks.IRONWOOD_LEAVES.get()),
+                                                BlockStateProvider.simple(zTrees.IRONWOOD.leaves().get()),
                                                 new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
                                                 new TwoLayersFeatureSize(1, 0, 1))
                                                 .ignoreVines()
@@ -240,7 +241,7 @@ public class DataWorldgen extends DatapackBuiltinEntriesProvider {
                                                                                                 .add(ConstantInt.of(0),
                                                                                                                 194)
                                                                                                 .build())),
-                                                                zBlocks.IRONWOOD_SAPLING.get())));
+                                                                zTrees.IRONWOOD.sapling().get())));
 
         }
 

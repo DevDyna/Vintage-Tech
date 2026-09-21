@@ -6,7 +6,8 @@ import java.util.concurrent.CompletableFuture;
 
 import com.devdyna.cakesticklib.setup.registry.LibTags;
 import com.synergy.vintagetech.api.factories.beams.BeamFactory;
-import com.synergy.vintagetech.api.factories.beams.WoodType;
+import com.synergy.vintagetech.api.factories.trees.TreeFactory;
+import com.synergy.vintagetech.api.factories.trees.TreeSet;
 import com.synergy.vintagetech.init.types.zBlocks;
 import com.synergy.vintagetech.init.types.zItems;
 import com.synergy.vintagetech.init.types.zTags;
@@ -30,6 +31,12 @@ public class DataItemTag extends ItemTagsProvider {
         @Override
         protected void addTags(Provider p) {
 
+                for (TreeSet wood : TreeFactory.getAll())
+                        wood.createItemTags(this::tag);
+
+                for (var beam : BeamFactory.getAll())
+                        beam.createItemTags(this::tag);
+
                 tag(ItemTags.RABBIT_FOOD).add(zBlocks.LAVENDER.get().asItem());
 
                 tag(Tags.Items.CROPS).add(
@@ -42,68 +49,6 @@ public class DataItemTag extends ItemTagsProvider {
                                 zBlocks.LAVENDER.get().asItem());
                 tag(ItemTags.BEE_FOOD).add(
                                 zBlocks.LAVENDER.get().asItem());
-
-                tag(ItemTags.LOGS)
-                                .add(
-
-                                                zBlocks.IRONWOOD_LOG.get().asItem(),
-                                                zBlocks.STRIPPED_IRONWOOD_LOG.get().asItem(),
-                                                zBlocks.IRONWOOD_WOOD.get().asItem(),
-                                                zBlocks.STRIPPED_IRONWOOD_WOOD.get().asItem()
-
-                                );
-
-                tag(ItemTags.SAPLINGS)
-                                .add(zBlocks.IRONWOOD_SAPLING.get().asItem());
-
-                tag(ItemTags.LOGS_THAT_BURN)
-                                .add(zBlocks.IRONWOOD_LOG.get().asItem(),
-                                                zBlocks.STRIPPED_IRONWOOD_LOG.get().asItem(),
-                                                zBlocks.IRONWOOD_WOOD.get().asItem(),
-                                                zBlocks.STRIPPED_IRONWOOD_WOOD.get().asItem());
-
-                tag(Tags.Items.STRIPPED_LOGS)
-                                .add(
-                                                zBlocks.STRIPPED_IRONWOOD_LOG.get().asItem());
-
-                tag(Tags.Items.STRIPPED_WOODS)
-                                .add(
-                                                zBlocks.STRIPPED_IRONWOOD_WOOD.get().asItem());
-
-                tag(ItemTags.LEAVES)
-                                .add(zBlocks.IRONWOOD_LEAVES.get().asItem());
-
-                tag(ItemTags.PLANKS)
-                                .add(zBlocks.IRONWOOD_PLANKS.get().asItem());
-
-                tag(ItemTags.WOODEN_SLABS)
-                                .add(zBlocks.IRONWOOD_SLAB.get().asItem());
-
-                tag(ItemTags.SLABS)
-                                .add(zBlocks.IRONWOOD_SLAB.get().asItem());
-
-                tag(ItemTags.WOODEN_STAIRS)
-                                .add(zBlocks.IRONWOOD_STAIRS.get().asItem());
-
-                tag(ItemTags.STAIRS)
-                                .add(zBlocks.IRONWOOD_STAIRS.get().asItem());
-
-                tag(zTags.Items.IRONWOOD_LOGS)
-                                .add(zBlocks.IRONWOOD_LOG.get().asItem(),
-                                                zBlocks.STRIPPED_IRONWOOD_LOG.get().asItem(),
-                                                zBlocks.IRONWOOD_WOOD.get().asItem(),
-                                                zBlocks.STRIPPED_IRONWOOD_WOOD.get().asItem());
-
-                for (WoodType wood : WoodType.values()) {
-                        tag(zTags.Items.BEAM_LOG).add(BeamFactory.get(wood).normal().get().asItem());
-                        tag(zTags.Items.BEAM_STRIPPED_LOG).add(BeamFactory.get(wood).stripped().get().asItem());
-
-                        if (wood.isSpecial())
-                                continue;
-
-                        tag(zTags.Items.BEAM_WOOD).add(BeamFactory.get(wood).wood().get().asItem());
-                        tag(zTags.Items.BEAM_STRIPPED_WOOD).add(BeamFactory.get(wood).stripped_wood().get().asItem());
-                }
 
                 tag(zTags.Items.BEAMS).addTags(
                                 zTags.Items.BEAM_LOG,

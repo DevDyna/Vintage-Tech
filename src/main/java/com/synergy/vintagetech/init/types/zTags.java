@@ -3,7 +3,6 @@ package com.synergy.vintagetech.init.types;
 import static com.synergy.vintagetech.Main.MODULE_ID;
 
 import com.devdyna.cakesticklib.api.RegistryUtils;
-
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
@@ -112,6 +111,8 @@ public class zTags {
                 public static final TagKey<Block> DENY_STICKY_FARMLAND_BURN_ON_DEHYDRATATION = RegistryUtils
                                 .tagBlock(MODULE_ID, "sticky_farmland/deny_plant_burn");
 
+                
+
         }
 
         public class Items {
@@ -127,7 +128,7 @@ public class zTags {
 
                 public static final TagKey<Item> BEAM_STRIPPED_LOG = RegistryUtils
                                 .tagItem(MODULE_ID, "beam/stripped_log");
-                                
+
                 public static final TagKey<Item> BEAM_WOOD = RegistryUtils
                                 .tagItem(MODULE_ID, "beam/wood");
 
@@ -136,6 +137,9 @@ public class zTags {
 
                 public static final TagKey<Item> BEAMS = RegistryUtils
                                 .tagItem(MODULE_ID, "beams");
+
+                public static final TagKey<Item> BEAMS_THAT_BURN = RegistryUtils
+                                .tagItem(MODULE_ID, "beams_that_burn");
 
                 public static final TagKey<Item> STONE_SLABS = RegistryUtils
                                 .tagItem("c", "slabs/stone");
@@ -160,6 +164,8 @@ public class zTags {
 
                 public static final TagKey<Item> STICKY_FARMLAND_SCRAPPABLE = RegistryUtils.tagItem(MODULE_ID,
                                 "sticky_farmland_scrappable");
+
+                 
 
         }
 

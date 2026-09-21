@@ -2,13 +2,13 @@ package com.synergy.vintagetech.datagen.client;
 
 import static com.synergy.vintagetech.Main.MODULE_ID;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.synergy.vintagetech.api.datagen.BlockModelUtils;
 import com.synergy.vintagetech.api.datagen.ItemModelUtil;
 import com.synergy.vintagetech.api.factories.beams.BeamFactory;
-import com.synergy.vintagetech.api.factories.beams.WoodType;
-import com.devdyna.cakesticklib.api.datagen.ModelUtils;
+import com.synergy.vintagetech.api.factories.trees.TreeFactory;
 import com.devdyna.cakesticklib.api.factories.plants.builder.BaseShortCropBlock;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.synergy.vintagetech.init.builder.RopeBlock;
@@ -23,7 +23,6 @@ import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.data.models.MultiVariant;
-import net.minecraft.client.data.models.BlockModelGenerators.PlantType;
 import net.minecraft.client.data.models.blockstates.MultiPartGenerator;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
@@ -33,11 +32,9 @@ import net.minecraft.client.data.models.model.ModelTemplate;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.data.models.model.TextureSlot;
-import net.minecraft.client.data.models.model.TexturedModel;
 import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.core.Direction.Axis;
 import net.minecraft.data.PackOutput;
-import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
 public class DataModel extends ModelProvider {
@@ -51,130 +48,29 @@ public class DataModel extends ModelProvider {
 
                 // GENERATED
 
-                zItems.zItem.getEntries().forEach(i -> itemModels.generateFlatItem(i.get(), ModelTemplates.FLAT_ITEM));
-                zItems.zBucketItems.getEntries().forEach(b -> ItemModelUtil.createBucketItem(itemModels, b.get()));
+                for (var tree : TreeFactory.getAll())
+                        tree.createModels(blockModels);
+
+                for (var tree : TreeFactory.getAll())
+                        zItems.zItem.getEntries().stream()
+                                        .filter(i -> !List.of(tree.signItem(), tree.hangingSignItem()).contains(i))
+                                        .forEach(i -> itemModels.generateFlatItem(i.get(), ModelTemplates.FLAT_ITEM));
+
+                for (var beam : BeamFactory.getAll())
+                        beam.createModels(blockModels);
+
+                zItems.zBucketItems.getEntries()
+                                .forEach(b -> ItemModelUtil.createBucketItem(itemModels, b.get()));
                 // TODO API: move to API
                 zBlocks.zBlockFluids.getEntries().forEach(b -> blockModels.createParticleOnlyBlock(b.get())// TODO
 
                 // ModelUtils.fluid(blockModels, b.get(), MODULE_ID)
                 );
                 zBlocks.zRender.getEntries().forEach(
-                                b -> BlockModelUtils.simplePlain(blockModels, b, "block/render/", "render_", ""));
+                                b -> BlockModelUtils.simplePlain(blockModels, b, "block/render/", "render_",
+                                                ""));
 
                 // BLOCK MODELS
-
-                blockModels.woodProvider(zBlocks.IRONWOOD_LOG.get())
-                                .logWithHorizontal(zBlocks.IRONWOOD_LOG.get())
-                                .wood(zBlocks.IRONWOOD_WOOD.get());
-
-                blockModels.woodProvider(zBlocks.STRIPPED_IRONWOOD_LOG.get())
-                                .logWithHorizontal(zBlocks.STRIPPED_IRONWOOD_LOG.get())
-                                .wood(zBlocks.STRIPPED_IRONWOOD_WOOD.get());
-
-                blockModels.createTintedLeaves(zBlocks.IRONWOOD_LEAVES.get(), TexturedModel.LEAVES,
-                                FoliageColor.FOLIAGE_DEFAULT);
-                blockModels.createTrivialCube(zBlocks.IRONWOOD_PLANKS.get());
-                blockModels.createPlantWithDefaultItem(zBlocks.IRONWOOD_SAPLING.get(),
-                                zBlocks.POTTED_IRONWOOD_SAPLING.get(), PlantType.NOT_TINTED);
-
-                blockModels.blockStateOutput.accept(
-                                BlockModelGenerators.createStairs(
-                                                zBlocks.IRONWOOD_STAIRS.get(),
-                                                BlockModelGenerators.plainVariant(
-                                                                ModelTemplates.STAIRS_INNER.create(
-                                                                                zBlocks.IRONWOOD_STAIRS.get(),
-                                                                                new TextureMapping()
-                                                                                                .put(TextureSlot.BOTTOM,
-                                                                                                                new Material(x.rl(
-                                                                                                                                MODULE_ID,
-                                                                                                                                "block/ironwood_planks")))
-                                                                                                .put(TextureSlot.SIDE,
-                                                                                                                new Material(x.rl(
-                                                                                                                                MODULE_ID,
-                                                                                                                                "block/ironwood_planks")))
-                                                                                                .put(TextureSlot.TOP,
-                                                                                                                new Material(x.rl(
-                                                                                                                                MODULE_ID,
-                                                                                                                                "block/ironwood_planks"))),
-                                                                                blockModels.modelOutput)),
-
-                                                BlockModelGenerators.plainVariant(
-                                                                ModelTemplates.STAIRS_STRAIGHT.create(
-                                                                                zBlocks.IRONWOOD_STAIRS.get(),
-                                                                                new TextureMapping()
-                                                                                                .put(TextureSlot.BOTTOM,
-                                                                                                                new Material(x.rl(
-                                                                                                                                MODULE_ID,
-                                                                                                                                "block/ironwood_planks")))
-                                                                                                .put(TextureSlot.SIDE,
-                                                                                                                new Material(x.rl(
-                                                                                                                                MODULE_ID,
-                                                                                                                                "block/ironwood_planks")))
-                                                                                                .put(TextureSlot.TOP,
-                                                                                                                new Material(x.rl(
-                                                                                                                                MODULE_ID,
-                                                                                                                                "block/ironwood_planks"))),
-                                                                                blockModels.modelOutput)),
-
-                                                BlockModelGenerators.plainVariant(
-                                                                ModelTemplates.STAIRS_OUTER.create(
-                                                                                zBlocks.IRONWOOD_STAIRS.get(),
-                                                                                new TextureMapping()
-                                                                                                .put(TextureSlot.BOTTOM,
-                                                                                                                new Material(x.rl(
-                                                                                                                                MODULE_ID,
-                                                                                                                                "block/ironwood_planks")))
-                                                                                                .put(TextureSlot.SIDE,
-                                                                                                                new Material(x.rl(
-                                                                                                                                MODULE_ID,
-                                                                                                                                "block/ironwood_planks")))
-                                                                                                .put(TextureSlot.TOP,
-                                                                                                                new Material(x.rl(
-                                                                                                                                MODULE_ID,
-                                                                                                                                "block/ironwood_planks"))),
-                                                                                blockModels.modelOutput))));
-
-                blockModels.blockStateOutput.accept(
-                                BlockModelGenerators.createSlab(zBlocks.IRONWOOD_SLAB.get(),
-                                                BlockModelGenerators.plainVariant(ModelTemplates.SLAB_BOTTOM
-                                                                .create(zBlocks.IRONWOOD_SLAB.get(),
-                                                                                new TextureMapping()
-                                                                                                .put(TextureSlot.BOTTOM,
-                                                                                                                new Material(x.rl(
-                                                                                                                                MODULE_ID,
-                                                                                                                                "block/ironwood_planks")))
-                                                                                                .put(TextureSlot.SIDE,
-                                                                                                                new Material(x.rl(
-                                                                                                                                MODULE_ID,
-                                                                                                                                "block/ironwood_planks")))
-                                                                                                .put(TextureSlot.TOP,
-                                                                                                                new Material(x.rl(
-                                                                                                                                MODULE_ID,
-                                                                                                                                "block/ironwood_planks"))),
-                                                                                blockModels.modelOutput)),
-                                                BlockModelGenerators.plainVariant(ModelTemplates.SLAB_TOP
-                                                                .create(zBlocks.IRONWOOD_SLAB.get(),
-                                                                                new TextureMapping()
-                                                                                                .put(TextureSlot.BOTTOM,
-                                                                                                                new Material(x.rl(
-                                                                                                                                MODULE_ID,
-                                                                                                                                "block/ironwood_planks")))
-                                                                                                .put(TextureSlot.SIDE,
-                                                                                                                new Material(x.rl(
-                                                                                                                                MODULE_ID,
-                                                                                                                                "block/ironwood_planks")))
-                                                                                                .put(TextureSlot.TOP,
-                                                                                                                new Material(x.rl(
-                                                                                                                                MODULE_ID,
-                                                                                                                                "block/ironwood_planks"))),
-                                                                                blockModels.modelOutput)),
-                                                BlockModelGenerators.plainVariant(ModelTemplates.CUBE_ALL
-                                                                .createWithSuffix(zBlocks.IRONWOOD_SLAB.get(),
-                                                                                "_double",
-                                                                                TextureMapping.cube(new Material(x.rl(
-                                                                                                MODULE_ID,
-                                                                                                "block/ironwood_planks"))),
-                                                                                blockModels.modelOutput))));
 
                 BlockModelUtils.simplePlain(blockModels, zBlocks.JUNCTION);
                 BlockModelUtils.simplePlain(blockModels, zBlocks.MILLSTONE);
@@ -203,7 +99,8 @@ public class DataModel extends ModelProvider {
                                 MultiPartGenerator.multiPart(zBlocks.CRUSHING_TUB.get())
                                                 .with(BlockModelGenerators.plainVariant(
                                                                 x.rl(MODULE_ID, "block/crushing_tub/tub")))
-                                                .with(BlockModelGenerators.condition().term(CrushingTubBlock.MESH,
+                                                .with(BlockModelGenerators.condition().term(
+                                                                CrushingTubBlock.MESH,
                                                                 true),
                                                                 BlockModelGenerators.plainVariant(
                                                                                 x.rl(MODULE_ID, "block/crushing_tub/mesh")))
@@ -214,65 +111,55 @@ public class DataModel extends ModelProvider {
                                 BlockModelGenerators.createSimpleBlock(zBlocks.LAVENDER.get(),
                                                 BlockModelGenerators.variants(
 
-                                                                BlockModelGenerators.plainModel(ModelTemplates.CROSS
-                                                                                .create(ModelLocationUtils
-                                                                                                .getModelLocation(
-                                                                                                                zBlocks.LAVENDER.get(),
-                                                                                                                "/0"),
-                                                                                                TextureMapping.singleSlot(
-                                                                                                                TextureSlot.CROSS,
-                                                                                                                new Material(x.rl(
-                                                                                                                                MODULE_ID,
-                                                                                                                                "block/lavender/0"))),
-                                                                                                blockModels.modelOutput)),
-                                                                BlockModelGenerators.plainModel(ModelTemplates.CROSS
-                                                                                .create(ModelLocationUtils
-                                                                                                .getModelLocation(
-                                                                                                                zBlocks.LAVENDER.get(),
-                                                                                                                "/1"),
-                                                                                                TextureMapping.singleSlot(
-                                                                                                                TextureSlot.CROSS,
-                                                                                                                new Material(x.rl(
-                                                                                                                                MODULE_ID,
-                                                                                                                                "block/lavender/1"))),
-                                                                                                blockModels.modelOutput)),
-                                                                BlockModelGenerators.plainModel(ModelTemplates.CROSS
-                                                                                .create(ModelLocationUtils
-                                                                                                .getModelLocation(
-                                                                                                                zBlocks.LAVENDER.get(),
-                                                                                                                "/2"),
-                                                                                                TextureMapping.singleSlot(
-                                                                                                                TextureSlot.CROSS,
-                                                                                                                new Material(x.rl(
-                                                                                                                                MODULE_ID,
-                                                                                                                                "block/lavender/2"))),
-                                                                                                blockModels.modelOutput)))));
+                                                                BlockModelGenerators
+                                                                                .plainModel(ModelTemplates.CROSS
+                                                                                                .create(ModelLocationUtils
+                                                                                                                .getModelLocation(
+                                                                                                                                zBlocks.LAVENDER.get(),
+                                                                                                                                "/0"),
+                                                                                                                TextureMapping.singleSlot(
+                                                                                                                                TextureSlot.CROSS,
+                                                                                                                                new Material(x.rl(
+                                                                                                                                                MODULE_ID,
+                                                                                                                                                "block/lavender/0"))),
+                                                                                                                blockModels.modelOutput)),
+                                                                BlockModelGenerators
+                                                                                .plainModel(ModelTemplates.CROSS
+                                                                                                .create(ModelLocationUtils
+                                                                                                                .getModelLocation(
+                                                                                                                                zBlocks.LAVENDER.get(),
+                                                                                                                                "/1"),
+                                                                                                                TextureMapping.singleSlot(
+                                                                                                                                TextureSlot.CROSS,
+                                                                                                                                new Material(x.rl(
+                                                                                                                                                MODULE_ID,
+                                                                                                                                                "block/lavender/1"))),
+                                                                                                                blockModels.modelOutput)),
+                                                                BlockModelGenerators
+                                                                                .plainModel(ModelTemplates.CROSS
+                                                                                                .create(ModelLocationUtils
+                                                                                                                .getModelLocation(
+                                                                                                                                zBlocks.LAVENDER.get(),
+                                                                                                                                "/2"),
+                                                                                                                TextureMapping.singleSlot(
+                                                                                                                                TextureSlot.CROSS,
+                                                                                                                                new Material(x.rl(
+                                                                                                                                                MODULE_ID,
+                                                                                                                                                "block/lavender/2"))),
+                                                                                                                blockModels.modelOutput)))));
 
                 BlockModelUtils.createRopeBeamBlock(blockModels, zBlocks.AXLE.get());
-
-                for (WoodType wood : WoodType.values()) {
-                        BlockModelUtils.createBeamBlock(blockModels, BeamFactory.get(wood).normal().get(),
-                                        x.rl(MODULE_ID, "block/beam/normal/" + wood.id()), wood.logTexture());
-                        BlockModelUtils.createBeamBlock(blockModels, BeamFactory.get(wood).stripped().get(),
-                                        x.rl(MODULE_ID, "block/beam/stripped/" + wood.id()), wood.strippedTexture());
-
-                        if(wood.isSpecial()) continue;
-
-                        BlockModelUtils.createBeamBlock(blockModels, BeamFactory.get(wood).wood().get(),
-                                        wood.logTexture(), wood.logTexture());
-
-                        BlockModelUtils.createBeamBlock(blockModels, BeamFactory.get(wood).stripped_wood().get(),
-                                        wood.strippedTexture(),  wood.strippedTexture());
-                }
 
                 BlockModelUtils.createGearShiftBlock(blockModels, zBlocks.GEARSHIFT.get());
                 BlockModelUtils.createClutchBlock(blockModels, zBlocks.CLUTCH.get());
 
                 BlockModelUtils.createSawToggleBlock(blockModels, zBlocks.SAW.get());
 
-                BlockModelUtils.createFacingBlock(blockModels, zBlocks.BASKET.get(), x.rl(MODULE_ID, "block/basket"),
+                BlockModelUtils.createFacingBlock(blockModels, zBlocks.BASKET.get(),
+                                x.rl(MODULE_ID, "block/basket"),
                                 false);
-                BlockModelUtils.createFacingBlock(blockModels, zBlocks.FAN.get(), x.rl(MODULE_ID, "block/fan"), true);
+                BlockModelUtils.createFacingBlock(blockModels, zBlocks.FAN.get(), x.rl(MODULE_ID, "block/fan"),
+                                true);
                 BlockModelUtils.createHorizontalFacingBlock(blockModels, zBlocks.TREE_TAP.get(),
                                 x.rl(MODULE_ID, "block/tree_tap"), false);
 
@@ -287,7 +174,8 @@ public class DataModel extends ModelProvider {
                                                 .with(BlockModelGenerators.condition().term(RopeBlock.DOWN,
                                                                 true), line)
                                                 .with(BlockModelGenerators.condition().term(RopeBlock.UP,
-                                                                true), line.with(BlockModelGenerators.X_ROT_180))
+                                                                true),
+                                                                line.with(BlockModelGenerators.X_ROT_180))
                                                 .with(BlockModelGenerators.condition().term(RopeBlock.SOUTH,
                                                                 true), line.with(BlockModelGenerators.X_ROT_90))
                                                 .with(BlockModelGenerators.condition().term(RopeBlock.NORTH,
@@ -302,7 +190,8 @@ public class DataModel extends ModelProvider {
                                                                 true),
                                                                 line.with(BlockModelGenerators.X_ROT_90)
                                                                                 .with(BlockModelGenerators.Y_ROT_270))
-                                                .with(BlockModelGenerators.condition().term(RopeBlock.HAS_CORNER, true),
+                                                .with(BlockModelGenerators.condition()
+                                                                .term(RopeBlock.HAS_CORNER, true),
                                                                 dot)
 
                 );
@@ -315,7 +204,8 @@ public class DataModel extends ModelProvider {
                 BlockModelUtils.createHorizontalFacingBlock(blockModels, zBlocks.ELECTRIC_MOTOR.get(),
                                 x.rl(MODULE_ID, "block/steam_engine"), false);
 
-                BlockModelUtils.cropWithoutSeed(blockModels, zBlocks.CAVE_WHEAT.get(), BaseShortCropBlock.AGE, 0, 1,
+                BlockModelUtils.cropWithoutSeed(blockModels, zBlocks.CAVE_WHEAT.get(), BaseShortCropBlock.AGE,
+                                0, 1,
                                 2, 3, 4, 5);
 
                 BlockModelUtils.createBushBlock(blockModels, zBlocks.SOYBEANS.get(), BaseShortCropBlock.AGE);
@@ -352,8 +242,10 @@ public class DataModel extends ModelProvider {
                                                 .select(Axis.X, BlockModelGenerators.NOP)
                                                 .select(Axis.Z, BlockModelGenerators.Y_ROT_90)));
 
-                BlockModelUtils.createFarmland(blockModels, zBlocks.STICKY_FARMLAND.get(), x.mcLoc("block/dirt"),
-                                x.rl(MODULE_ID, "block/farmland/dried"), x.rl(MODULE_ID, "block/farmland/moist"));
+                BlockModelUtils.createFarmland(blockModels, zBlocks.STICKY_FARMLAND.get(),
+                                x.mcLoc("block/dirt"),
+                                x.rl(MODULE_ID, "block/farmland/dried"),
+                                x.rl(MODULE_ID, "block/farmland/moist"));
 
                 // ITEM MODELS
 
@@ -372,7 +264,8 @@ public class DataModel extends ModelProvider {
                 itemModels.itemModelOutput.accept(zBlocks.AXLE.get().asItem(),
                                 ItemModelUtils.plainModel(
                                                 new ModelTemplate(
-                                                                Optional.of(x.rl(MODULE_ID, "block/template/beam")),
+                                                                Optional.of(x.rl(MODULE_ID,
+                                                                                "block/template/beam")),
                                                                 Optional.empty(),
                                                                 TextureSlot.TOP, TextureSlot.SIDE)
                                                                 .create(x.rl(MODULE_ID, "block/axle"),

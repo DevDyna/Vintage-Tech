@@ -11,7 +11,7 @@ import com.devdyna.cakesticklib.setup.registry.LibFluids;
 import com.devdyna.cakesticklib.setup.registry.LibItems;
 import com.devdyna.cakesticklib.setup.registry.LibTags;
 import com.synergy.vintagetech.api.factories.beams.BeamFactory;
-import com.synergy.vintagetech.api.factories.beams.WoodType;
+import com.synergy.vintagetech.api.factories.trees.TreeFactory;
 import com.synergy.vintagetech.init.builder.centrifuge.recipe.CentrifugeBuilder;
 import com.synergy.vintagetech.init.builder.crucible.recipe.CrucibleBuilder;
 import com.synergy.vintagetech.init.builder.crushing_tub.recipe.CrushingTubBuilder;
@@ -24,6 +24,7 @@ import com.synergy.vintagetech.init.types.zBlocks;
 import com.synergy.vintagetech.init.types.zFluids;
 import com.synergy.vintagetech.init.types.zItems;
 import com.synergy.vintagetech.init.types.zTags;
+import com.synergy.vintagetech.init.types.zTrees;
 
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
@@ -51,14 +52,65 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
         @Override
         protected void buildRecipes() {
 
-                shapeless(RecipeCategory.BUILDING_BLOCKS, zBlocks.IRONWOOD_PLANKS.get(), 4)
-                                .requires(zTags.Items.IRONWOOD_LOGS)
-                                .unlockedBy(getHasName(zTags.Items.IRONWOOD_LOGS), has(zTags.Items.IRONWOOD_LOGS))
-                                .save(output);
+                for (var tree : TreeFactory.getAll()) {
+                        planksFromLogs(tree.planks().get(), tree.itemTag(), 4);
+                        stair(tree.stairs().get(), tree.planks().get(), output);
+                        shelf(tree.shelf().get(), tree.strippedLog().get());
+                        slab(tree.slab().get(), tree.planks().get(), output);
 
-                slab(zBlocks.IRONWOOD_SLAB.get(), zBlocks.IRONWOOD_PLANKS.get(), output);
+                        fenceBuilder(tree.fence().get(), x.itemIngredient(tree.planks().get()))
+                                        .unlockedBy(getHasName(tree.planks().get()), has(tree.planks().get()))
+                                        .save(output);
 
-                stair(zBlocks.IRONWOOD_STAIRS.get(), zBlocks.IRONWOOD_PLANKS.get(), output);
+                        fenceGateBuilder(tree.fenceGate().get(), x.itemIngredient(tree.planks().get()))
+                                        .unlockedBy(getHasName(tree.planks().get()), has(tree.planks().get()))
+                                        .save(output);
+
+                        doorBuilder(tree.door().get(), x.itemIngredient(tree.planks().get()))
+                                        .unlockedBy(getHasName(tree.planks().get()), has(tree.planks().get()))
+                                        .save(output);
+
+                        trapdoorBuilder(tree.trapdoor().get(), x.itemIngredient(tree.planks().get()))
+                                        .unlockedBy(getHasName(tree.planks().get()), has(tree.planks().get()))
+                                        .save(output);
+
+                        pressurePlateBuilder(RecipeCategory.REDSTONE, tree.pressurePlate().get(),
+                                        x.itemIngredient(tree.planks().get()))
+                                        .unlockedBy(getHasName(tree.planks().get()), has(tree.planks().get()))
+                                        .save(output);
+
+                        buttonBuilder(tree.button().get(), x.itemIngredient(tree.planks().get()))
+                                        .unlockedBy(getHasName(tree.planks().get()), has(tree.planks().get()))
+                                        .save(output);
+
+                        signBuilder(tree.signItem().get(), x.itemIngredient(tree.planks().get()))
+                                        .unlockedBy(getHasName(tree.planks().get()), has(tree.planks().get()))
+                                        .save(output);
+
+                        hangingSign(tree.hangingSignItem().get(), tree.strippedLog().get());
+                }
+
+                for (var beam : BeamFactory.getAll()) {
+                        pillar(output, beam.beam_log().get(), beam.log().get(), 8);
+                        pillar(output, beam.beam_stripped_log().get(), beam.log_stripped().get(), 8);
+
+                        if (beam.isSpecial())
+                                continue;
+
+                        pillar(output, beam.beam_wood().get(),
+                                        trasmute(beam.log().get(), rl -> rl.withPath(p -> p.replace(beam.type().suffix4(), beam.type().suffix6()))),
+                                        8);
+                        pillar(output, beam.beam_stripped_wood().get(),
+                                        trasmute(beam.log_stripped().get(),
+                                                        rl -> rl.withPath(p -> p.replace(beam.type().suffix4(), beam.type().suffix6()))),
+                                        8);
+
+                        simplePacked(output, beam.beam_log().get(), beam.beam_wood().get(),
+                                        true, 3);
+                        simplePacked(output, beam.beam_stripped_log().get(),
+                                        beam.beam_stripped_wood().get(), true, 3);
+
+                }
 
                 CrushingTubBuilder.of(registries)
                                 .input(ItemTags.LEAVES)
@@ -225,8 +277,8 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .save(output);
 
                 TreeTapBuilder.of(registries)
-                                .log(zBlocks.IRONWOOD_LOG.get())
-                                .leaves(zBlocks.IRONWOOD_LEAVES.get())
+                                .log(zTrees.IRONWOOD.log().get())
+                                .leaves(zTrees.IRONWOOD.leaves().get())
                                 .output(zFluids.IRONBERRY_JUICE.getFluid(), 250)
                                 .unlockedBy(getHasName(zBlocks.TREE_TAP.get()), has(zBlocks.TREE_TAP.get()))
                                 .save(output);
@@ -235,25 +287,6 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .requires(zItems.HEMP.get())
                                 .unlockedBy(getHasName(zItems.HEMP.get()), has(zItems.HEMP.get()))
                                 .save(output);
-
-                for (WoodType wood : WoodType.values()) {
-                        pillar(output, BeamFactory.get(wood).normal().get(), wood.log().asItem(), 8);
-                        pillar(output, BeamFactory.get(wood).stripped().get(), wood.stripped(), 8);
-
-                        if (wood.isSpecial())
-                                continue;
-
-                        pillar(output, BeamFactory.get(wood).wood().get(),
-                                        trasmute(wood.log(), rl -> rl.withPath(p -> p.replace("_log", "_wood"))), 8);
-                        pillar(output, BeamFactory.get(wood).stripped_wood().get(),
-                                        trasmute(wood.stripped(), rl -> rl.withPath(p -> p.replace("_log", "_wood"))), 8);
-
-                        simplePacked(output, BeamFactory.get(wood).normal().get(), BeamFactory.get(wood).wood().get(),
-                                        true, 3);
-                        simplePacked(output, BeamFactory.get(wood).stripped().get(),
-                                        BeamFactory.get(wood).stripped_wood().get(), true, 3);
-
-                }
 
                 shapeless(RecipeCategory.MISC, zBlocks.AXLE.get())
                                 .requires(zTags.Items.BEAMS)

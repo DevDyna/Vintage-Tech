@@ -6,7 +6,6 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 
 import com.devdyna.cakesticklib.api.utils.x;
-import com.synergy.vintagetech.api.factories.beams.BeamFactory;
 import com.synergy.vintagetech.init.types.*;
 
 import net.minecraft.core.registries.Registries;
@@ -28,7 +27,8 @@ public class Material {
                 zCreativeTab.register(bus);
                 zWorldGenFeatures.register(bus);
 
-                BeamFactory.register();
+                zTrees.register(bus);
+                zBeams.register(bus);
         }
 
         /**

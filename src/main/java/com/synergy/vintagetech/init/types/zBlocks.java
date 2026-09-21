@@ -2,9 +2,6 @@ package com.synergy.vintagetech.init.types;
 
 import static com.synergy.vintagetech.Main.MODULE_ID;
 
-import java.util.Optional;
-import net.minecraft.core.Direction;
-
 import com.synergy.vintagetech.init.Material;
 import com.synergy.vintagetech.init.builder.RopeBlock;
 import com.synergy.vintagetech.init.builder.StickyFarmlandBlock;
@@ -32,15 +29,7 @@ import com.synergy.vintagetech.init.builder.windmill.WindmillBlock;
 
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.FlowerPotBlock;
-import net.minecraft.world.level.block.RotatedPillarBlock;
-import net.minecraft.world.level.block.SaplingBlock;
-import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.StairBlock;
-import net.minecraft.world.level.block.TintedParticleLeavesBlock;
-import net.minecraft.world.level.block.grower.TreeGrower;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
@@ -255,99 +244,7 @@ public class zBlocks {
         public static final DeferredHolder<Block, Block> BLUEBERRY_BUSH = zBlock.registerBlock("blueberry_bush",
                         p -> new BlueBerry(p));
 
-        public static final DeferredHolder<Block, Block> IRONWOOD_LOG = Material.registerItemBlock("ironwood_log",
-                        p -> new RotatedPillarBlock(p
-                                        .strength(2.0F, 3.0F)
-                                        .sound(SoundType.WOOD)
-                                        .ignitedByLava()
-
-                                        .mapColor(
-                                                        (s) -> s.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y
-                                                                        ? MapColor.TERRACOTTA_BLACK
-                                                                        : MapColor.RAW_IRON)));
-
-        public static final DeferredHolder<Block, Block> STRIPPED_IRONWOOD_LOG = Material.registerItemBlock(
-                        "stripped_ironwood_log", p -> new RotatedPillarBlock(p
-                                        .strength(2.0F, 3.0F)
-                                        .sound(SoundType.WOOD)
-                                        .ignitedByLava()
-                                        .mapColor(MapColor.RAW_IRON)));
-
-        public static final DeferredHolder<Block, Block> IRONWOOD_WOOD = Material.registerItemBlock("ironwood_wood",
-                        p -> new RotatedPillarBlock(p
-                                        .strength(2.0F, 3.0F)
-                                        .sound(SoundType.WOOD)
-                                        .ignitedByLava()
-                                        .mapColor(MapColor.TERRACOTTA_BLACK)));
-
-        public static final DeferredHolder<Block, Block> STRIPPED_IRONWOOD_WOOD = Material.registerItemBlock(
-                        "stripped_ironwood_wood", p -> new RotatedPillarBlock(p
-                                        .strength(2.0F, 3.0F)
-                                        .sound(SoundType.WOOD)
-                                        .ignitedByLava()
-                                        .mapColor(MapColor.RAW_IRON)));
-
-        public static final DeferredHolder<Block, Block> IRONWOOD_PLANKS = Material.registerItemBlock("ironwood_planks",
-                        p -> new Block(p
-                                        .strength(2.0F, 3.0F)
-                                        .sound(SoundType.WOOD)
-                                        .ignitedByLava()
-                                        .mapColor(MapColor.RAW_IRON)));
-
-        public static final DeferredHolder<Block, Block> IRONWOOD_SAPLING = Material.registerItemBlock(
-                        "ironwood_sapling",
-                        p -> new SaplingBlock(new TreeGrower(
-                                        "ironwood",
-                                        0.5F,
-                                        Optional.empty(),
-                                        Optional.empty(),
-                                        Optional.of(zWorldGenFeatures.ConfiguredFeatures.IRONWOOD),
-                                        Optional.empty(),
-                                        Optional.empty(),
-                                        Optional.empty()),
-                                        p
-                                                        .pushReaction(PushReaction.DESTROY)
-                                                        .instabreak()
-                                                        .sound(SoundType.GRASS)
-                                                        .noCollision()
-                                                        .randomTicks()
-                                                        .ignitedByLava()
-                                                        .mapColor(MapColor.PLANT)));
-
-        public static final DeferredHolder<Block, Block> IRONWOOD_LEAVES = Material.registerItemBlock("ironwood_leaves",
-                        p -> new TintedParticleLeavesBlock(0.01f, p
-                                        .strength(0.2F)
-                                        .sound(SoundType.GRASS)
-                                        .pushReaction(PushReaction.DESTROY)
-                                        .noOcclusion()
-                                        .ignitedByLava()
-                                        .randomTicks()
-                                        .isValidSpawn(Blocks::ocelotOrParrot)
-                                        .isSuffocating((s, g, x) -> false)
-                                        .isViewBlocking((s, g, x) -> false)
-                                        .isRedstoneConductor((s, g, x) -> false)
-                                        .mapColor(MapColor.PLANT)));
-
-        public static final DeferredHolder<Block, Block> IRONWOOD_STAIRS = Material.registerItemBlock("ironwood_stairs",
-                        p -> new StairBlock(IRONWOOD_PLANKS.get().defaultBlockState(), p
-                                        .strength(2.0F, 3.0F)
-                                        .sound(SoundType.WOOD)
-                                        .ignitedByLava()
-                                        .mapColor(MapColor.RAW_IRON)));
-
-        public static final DeferredHolder<Block, Block> POTTED_IRONWOOD_SAPLING = zBlock.registerBlock(
-                        "potted_ironwood_sapling",
-                        p -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, IRONWOOD_SAPLING, p
-                                        .instabreak()
-                                        .noOcclusion()
-                                        .pushReaction(PushReaction.DESTROY)));
-
-        public static final DeferredHolder<Block, Block> IRONWOOD_SLAB = Material.registerItemBlock("ironwood_slab",
-                        p -> new SlabBlock(p
-                                        .strength(2.0F, 3.0F)
-                                        .sound(SoundType.WOOD)
-                                        .ignitedByLava()
-                                        .mapColor(MapColor.RAW_IRON)));
+       
 
         public static final DeferredHolder<Block, Block> STICKY_FARMLAND = Material.registerItemBlock("sticky_farmland",
                         p -> new StickyFarmlandBlock(p
