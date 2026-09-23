@@ -18,7 +18,7 @@ import net.neoforged.neoforge.fluids.FluidStackTemplate;
 public class CrushingTubBuilder extends BaseRecipeBuilder
         implements ItemAttach.Input.NoItemCount<CrushingTubBuilder>,
         ItemAttach.Output.ItemOutputChance<CrushingTubBuilder>,
-         FluidAttach.Output.OutputFluid<CrushingTubBuilder> {
+        FluidAttach.Output.OutputFluid<CrushingTubBuilder> {
 
     private Ingredient input;
     private boolean require_mesh = false;
@@ -56,12 +56,6 @@ public class CrushingTubBuilder extends BaseRecipeBuilder
         return this;
     }
 
-
-    // public CrushingTubBuilder unlockedBy() {
-    //     return unlockedBy(x.name(x.getItemsFromIngredient(input)[0]), InventoryChangeTrigger.TriggerInstance
-    //             .hasItems(x.getItemsFromIngredient(input)));
-    // }
-
     public CrushingTubBuilder unlockedBy(String name, Criterion<?> criterion) {
         this.criteria.put(name, criterion);
         return this;
@@ -69,7 +63,7 @@ public class CrushingTubBuilder extends BaseRecipeBuilder
 
     @Override
     public Recipe<?> createRecipe() {
-        return new CrushingTubRecipe(input,require_mesh, output, fluid);
+        return new CrushingTubRecipe(input, require_mesh, output, fluid);
     }
 
     @Override
@@ -79,10 +73,9 @@ public class CrushingTubBuilder extends BaseRecipeBuilder
 
     @Override
     public Identifier getSuffix(String extra) {
-        return x.rl(MODULE_ID, "crushing_tub/" + x.name(output.item())
+        return x.rl(MODULE_ID, "crushing_tub/" +
+                (output == null ? x.name(fluid) : x.name(output.item()))
                 + extra);
     }
-
-    
 
 }
