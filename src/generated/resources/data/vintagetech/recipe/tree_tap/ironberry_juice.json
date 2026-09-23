@@ -3,7 +3,7 @@
   "chance": 0.5,
   "delay": 200,
   "fluid": {
-    "amount": 250,
+    "amount": 5,
     "id": "vintagetech:ironberry_juice"
   },
   "leaves": "vintagetech:ironwood_leaves",

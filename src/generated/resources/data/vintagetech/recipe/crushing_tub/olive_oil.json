@@ -1,0 +1,9 @@
+{
+  "type": "vintagetech:crushing_tub",
+  "fluid": {
+    "amount": 250,
+    "id": "vintagetech:olive_oil"
+  },
+  "input": "vintagetech:olives",
+  "require_mesh": false
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "vintagetech:block/template/beam",
+  "textures": {
+    "side": "vintagetech:block/stripped_olive_log",
+    "top": "vintagetech:block/stripped_olive_log"
+  }
+}

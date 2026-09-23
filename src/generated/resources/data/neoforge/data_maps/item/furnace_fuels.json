@@ -55,6 +55,22 @@
         }
       ],
       "burn_time": 100
+    },
+    "vintagetech:olive_hanging_sign": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "burn_time": 200
+    },
+    "vintagetech:olive_sign": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "burn_time": 200
     }
   }
 }
