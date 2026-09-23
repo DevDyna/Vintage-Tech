@@ -46,7 +46,7 @@ public class DataLootBlock extends BlockLootSubProvider {
 
         @Override
         protected Iterable<Block> getKnownBlocks() {
-                return LootTableHelper.getValidBlocks(zBlocks.zBlock, zBlocks.zBlockItem);
+                return LootTableHelper.getValidBlocks(zBlocks.zBlock, zBlocks.zBlockItem, zBlocks.zTreeBlock);
         }
 
         List<Block> BLACKLIST = ArrayUtils.concat(TreeFactory.getAll()

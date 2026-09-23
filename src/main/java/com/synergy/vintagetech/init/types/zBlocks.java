@@ -43,13 +43,14 @@ public class zBlocks {
                 zBlockFluids.register(bus);
                 zBlockItem.register(bus);
                 zRender.register(bus);
-
+                zTreeBlock.register(bus);
         }
 
         public static final DeferredRegister.Blocks zRender = DeferredRegister.createBlocks(MODULE_ID);
         public static final DeferredRegister.Blocks zBlock = DeferredRegister.createBlocks(MODULE_ID);
         public static final DeferredRegister.Blocks zBlockFluids = DeferredRegister.createBlocks(MODULE_ID);
         public static final DeferredRegister.Blocks zBlockItem = DeferredRegister.createBlocks(MODULE_ID);
+        public static final DeferredRegister.Blocks zTreeBlock = DeferredRegister.createBlocks(MODULE_ID);
 
         // generators
 

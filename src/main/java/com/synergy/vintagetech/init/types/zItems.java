@@ -22,8 +22,10 @@ public class zItems {
                 zItem.register(bus);
                 zBucketItems.register(bus);
                 zBlockItem.register(bus);
+                zTreeItem.register(bus);
         }
 
+        public static final DeferredRegister.Items zTreeItem = DeferredRegister.createItems(MODULE_ID);
         public static final DeferredRegister.Items zItem = DeferredRegister.createItems(MODULE_ID);
         public static final DeferredRegister.Items zBucketItems = DeferredRegister.createItems(MODULE_ID);
         public static final DeferredRegister.Items zBlockItem = DeferredRegister.createItems(MODULE_ID);

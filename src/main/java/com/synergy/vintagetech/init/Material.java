@@ -14,6 +14,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class Material {
         public static void register(IEventBus bus) {
@@ -51,6 +52,28 @@ public class Material {
                         BiFunction<Properties, ResourceKey<Block>, ? extends Block> p) {
                 return registerItemBlock(id,
                                 pr -> p.apply(pr, ResourceKey.create(Registries.BLOCK, x.rl(MODULE_ID, id))));
+        }
+
+        /**
+         * Create a simple blockitem
+         */
+        public static DeferredHolder<Block, Block> registerItemBlock(String id,
+                        Function<Properties, ? extends Block> p,DeferredRegister.Items i,DeferredRegister.Blocks b) {
+                DeferredHolder<Block, Block> block = b.registerBlock(id, p);
+                i.registerSimpleBlockItem(block);
+                return block;
+        }
+
+        /**
+         * Create a blockitem from {@code ResourceKey<Block>}
+         * <br/>
+         * <br/>
+         * Useful when you need to use things like {@code Properties.ofFullCopy(<?>)}
+         */
+        public static DeferredHolder<Block, Block> registerItemBlock(String id,
+                        BiFunction<Properties, ResourceKey<Block>, ? extends Block> p,DeferredRegister.Items i,DeferredRegister.Blocks b) {
+                return registerItemBlock(id,
+                                pr -> p.apply(pr, ResourceKey.create(Registries.BLOCK, x.rl(MODULE_ID, id))),i,b);
         }
 
         /**
