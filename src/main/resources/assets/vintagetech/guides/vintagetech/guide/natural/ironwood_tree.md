@@ -16,7 +16,7 @@ item_ids:
 
 It can spawn on Forests , Windswept biomes and Meadows
 
-When broken it will drop <ItemLink id="vintagetech:ironberries"/>
+Ironwood leaves when broken it will drop <ItemLink id="vintagetech:ironberries"/> and all other leaves drops
 
 <GameScene zoom="2" interactive={true}>
 
