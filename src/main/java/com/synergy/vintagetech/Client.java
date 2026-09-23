@@ -149,7 +149,10 @@ public class Client {
         @SubscribeEvent
         public static void registerBlockColors(RegisterColorHandlersEvent.BlockTintSources event) {
 
-                event.register(List.of(BlockTintSources.foliage()), zTrees.IRONWOOD.leaves().get());
+                event.register(List.of(BlockTintSources.foliage()), 
+                zTrees.IRONWOOD.leaves().get(),
+                zTrees.OLIVE.leaves().get()
+                );
 
         }
 

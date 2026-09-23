@@ -18,6 +18,12 @@ public class zWorldGenFeatures {
                 public static final ResourceKey<PlacedFeature> IRONWOOD = RegistryUtils
                                 .createPlacedFeature(MODULE_ID, "ironwood_tree");
 
+                public static final ResourceKey<PlacedFeature> OLIVE_COMMON = RegistryUtils
+                                .createPlacedFeature(MODULE_ID, "olive_tree/common");
+
+                public static final ResourceKey<PlacedFeature> OLIVE_RARE = RegistryUtils
+                                .createPlacedFeature(MODULE_ID, "olive_tree/rare");
+
                 public static final ResourceKey<PlacedFeature> CAVE_WHEAT = RegistryUtils
                                 .createPlacedFeature(MODULE_ID, "cave_wheat");
 
@@ -42,6 +48,9 @@ public class zWorldGenFeatures {
                 public static final ResourceKey<ConfiguredFeature<?, ?>> IRONWOOD = RegistryUtils
                                 .createConfiguredFeature(MODULE_ID, "ironwood_tree");
 
+                public static final ResourceKey<ConfiguredFeature<?, ?>> OLIVE = RegistryUtils
+                                .createConfiguredFeature(MODULE_ID, "olive_tree");
+
                 public static final ResourceKey<ConfiguredFeature<?, ?>> CAVE_WHEAT = RegistryUtils
                                 .createConfiguredFeature(MODULE_ID, "cave_wheat");
 
@@ -63,8 +72,13 @@ public class zWorldGenFeatures {
         }
 
         public class BiomeModifiers {
-                public static final ResourceKey<BiomeModifier> IRONWOOD = RegistryUtils.createBiomeModifier(MODULE_ID,
-                                "ironwood");
+                public static final ResourceKey<BiomeModifier> IRONWOOD = RegistryUtils
+                                .createBiomeModifier(MODULE_ID, "ironwood_tree");
+
+                public static final ResourceKey<BiomeModifier> OLIVE_COMMON = RegistryUtils
+                                .createBiomeModifier(MODULE_ID, "olive_tree/common");
+                public static final ResourceKey<BiomeModifier> OLIVE_RARE = RegistryUtils
+                                .createBiomeModifier(MODULE_ID, "olive_tree/rare");
 
                 public static final ResourceKey<BiomeModifier> CAVE_WHEAT = RegistryUtils
                                 .createBiomeModifier(MODULE_ID, "cave_wheat");
@@ -77,7 +91,7 @@ public class zWorldGenFeatures {
 
                 public static final ResourceKey<BiomeModifier> LAVENDER = RegistryUtils
                                 .createBiomeModifier(MODULE_ID, "lavender");
-                                
+
                 public static final ResourceKey<BiomeModifier> HEMP = RegistryUtils
                                 .createBiomeModifier(MODULE_ID, "hemp");
 

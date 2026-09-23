@@ -86,6 +86,13 @@ public class zItems {
                                         .effect(new MobEffectInstance(MobEffects.HUNGER, 20, 1))
                                         .build());
 
+        public static final DeferredHolder<Item, Item> OLIVES = zItem.registerItem("olives",
+                        p -> new EffectItem.Builder(p)
+                                        .food(new FoodProperties(1, 2f, true))
+                                        .effect(new MobEffectInstance(MobEffects.HUNGER, 20, 1))
+                                        .effect(new MobEffectInstance(MobEffects.MINING_FATIGUE, 20, 1))
+                                        .build());
+
         public static final DeferredHolder<Item, Item> TINY_IRON_DUST = zItem.registerSimpleItem("tiny_iron_dust");
 
         public static final DeferredHolder<Item, Item> BLUEBERRIES_SOUP = zItem.registerSimpleItem("blueberries_soup",

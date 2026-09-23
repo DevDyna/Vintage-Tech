@@ -111,8 +111,6 @@ public class zTags {
                 public static final TagKey<Block> DENY_STICKY_FARMLAND_BURN_ON_DEHYDRATATION = RegistryUtils
                                 .tagBlock(MODULE_ID, "sticky_farmland/deny_plant_burn");
 
-                
-
         }
 
         public class Items {
@@ -165,8 +163,6 @@ public class zTags {
                 public static final TagKey<Item> STICKY_FARMLAND_SCRAPPABLE = RegistryUtils.tagItem(MODULE_ID,
                                 "sticky_farmland_scrappable");
 
-                 
-
         }
 
         public class Biomes {
@@ -188,6 +184,12 @@ public class zTags {
 
                 public static final TagKey<Biome> IRONWOOD_TREE_SPAWN = RegistryUtils.tagBiome(MODULE_ID,
                                 "worldgen/ironwood_tree");
+
+                public static final TagKey<Biome> OLIVE_TREE_COMMON_SPAWN = RegistryUtils.tagBiome(MODULE_ID,
+                                "worldgen/olive_tree/common");
+
+                public static final TagKey<Biome> OLIVE_TREE_RARE_SPAWN = RegistryUtils.tagBiome(MODULE_ID,
+                                "worldgen/olive_tree/rare");
 
                 public static final TagKey<Biome> HEMP_SPAWN = RegistryUtils.tagBiome(MODULE_ID,
                                 "worldgen/hemp");
