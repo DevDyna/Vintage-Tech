@@ -3,15 +3,34 @@ package com.synergy.vintagetech.init.types;
 import static com.synergy.vintagetech.Main.MODULE_ID;
 
 import com.devdyna.cakesticklib.api.RegistryUtils;
+import com.synergy.vintagetech.api.datagen.OliveTrunkPlacer;
 
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.common.world.BiomeModifier;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class zWorldGenFeatures {
         public static void register(IEventBus bus) {
+                TrunkPlacer.register(bus);
+        }
+
+        public class TrunkPlacer {
+                public static void register(IEventBus bus) {
+                        zTrunks.register(bus);
+                }
+
+                public static final DeferredRegister<TrunkPlacerType<?>> zTrunks = DeferredRegister
+                                .create(Registries.TRUNK_PLACER_TYPE, MODULE_ID);
+
+                public static final DeferredHolder<TrunkPlacerType<?>, TrunkPlacerType<OliveTrunkPlacer>> OLIVE_TRUNK_PLACER = zTrunks
+                                .register("olive_trunk_placer", () -> new TrunkPlacerType<>(OliveTrunkPlacer.CODEC));
+
         }
 
         public class PlacedFeatures {

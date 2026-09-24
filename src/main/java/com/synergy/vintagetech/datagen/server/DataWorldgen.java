@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 import com.devdyna.cakesticklib.api.datagen.WorldgenUtils;
+import com.synergy.vintagetech.api.datagen.OliveTrunkPlacer;
 import com.synergy.vintagetech.api.factories.plants.NaturalCrop;
 import com.synergy.vintagetech.init.builder.plants.Aloe;
 import com.synergy.vintagetech.init.builder.plants.BlueBerry;
@@ -46,7 +47,6 @@ import net.minecraft.world.level.levelgen.feature.foliageplacers.AcaciaFoliagePl
 import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
-import net.minecraft.world.level.levelgen.feature.trunkplacers.ForkingTrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
 import net.minecraft.world.level.levelgen.placement.BiomeFilter;
 import net.minecraft.world.level.levelgen.placement.BlockPredicateFilter;
@@ -211,7 +211,7 @@ public class DataWorldgen extends DatapackBuiltinEntriesProvider {
                 c.register(zWorldGenFeatures.ConfiguredFeatures.OLIVE,
                                 new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
                                                 BlockStateProvider.simple(zTrees.OLIVE.log().get()),
-                                                new ForkingTrunkPlacer(3, 2, 2),
+                                                new OliveTrunkPlacer(3, 2, 2),
                                                 BlockStateProvider.simple(zTrees.OLIVE.leaves().get()),
                                                 new AcaciaFoliagePlacer(ConstantInt.of(1), ConstantInt.of(0)),
                                                 new TwoLayersFeatureSize(1, 0, 2))
