@@ -265,38 +265,23 @@ public class DataWorldgen extends DatapackBuiltinEntriesProvider {
 
         // TODO API : move to api?
 
-        public static void registerPatchConfig(
-                        BootstrapContext<ConfiguredFeature<?, ?>> c,
-                        ResourceKey<ConfiguredFeature<?, ?>> k,
-                        Object... states) {
+        public static void registerPatchConfig(BootstrapContext<ConfiguredFeature<?, ?>> c,
+                        ResourceKey<ConfiguredFeature<?, ?>> k, Object... states) {
 
                 var builder = WeightedList.<BlockState>builder();
 
                 for (int i = 0; i < states.length; i += 2)
                         builder.add((BlockState) states[i], (int) states[i + 1]);
 
-                FeatureUtils.register(
-                                c,
-                                k,
-                                Feature.SIMPLE_BLOCK,
-                                new SimpleBlockConfiguration(
-                                                new WeightedStateProvider(builder)));
+                FeatureUtils.register(c, k, Feature.SIMPLE_BLOCK,
+                                new SimpleBlockConfiguration(new WeightedStateProvider(builder)));
         }
 
-        public static void registerPatchPlaced(
-                        BootstrapContext<PlacedFeature> c,
-                        ResourceKey<PlacedFeature> k,
-                        ResourceKey<ConfiguredFeature<?, ?>> configured,
-                        int count,
-                        int rarity,
-                        int minY,
-                        int maxY) {
+        public static void registerPatchPlaced(BootstrapContext<PlacedFeature> c, ResourceKey<PlacedFeature> k,
+                        ResourceKey<ConfiguredFeature<?, ?>> configured, int count, int rarity, int minY, int maxY) {
 
-                PlacementUtils.register(
-                                c,
-                                k,
-                                c.lookup(Registries.CONFIGURED_FEATURE)
-                                                .getOrThrow(configured),
+                PlacementUtils.register(c, k, c.lookup(Registries.CONFIGURED_FEATURE)
+                                .getOrThrow(configured),
 
                                 RarityFilter.onAverageOnceEvery(rarity),
                                 InSquarePlacement.spread(),
@@ -320,20 +305,11 @@ public class DataWorldgen extends DatapackBuiltinEntriesProvider {
 
         }
 
-        public static void registerUndergroundPatchPlaced(
-                        BootstrapContext<PlacedFeature> c,
-                        ResourceKey<PlacedFeature> k,
-                        ResourceKey<ConfiguredFeature<?, ?>> configured,
-                        int count,
-                        int rarity,
-                        int minY,
-                        int maxY) {
+        public static void registerUndergroundPatchPlaced(BootstrapContext<PlacedFeature> c,
+                        ResourceKey<PlacedFeature> k, ResourceKey<ConfiguredFeature<?, ?>> configured, int count,
+                        int rarity, int minY, int maxY) {
 
-                PlacementUtils.register(
-                                c,
-                                k,
-                                c.lookup(Registries.CONFIGURED_FEATURE)
-                                                .getOrThrow(configured),
+                PlacementUtils.register(c, k, c.lookup(Registries.CONFIGURED_FEATURE).getOrThrow(configured),
 
                                 CountPlacement.of(count),
                                 InSquarePlacement.spread(),
@@ -348,12 +324,8 @@ public class DataWorldgen extends DatapackBuiltinEntriesProvider {
                                 BlockPredicateFilter.forPredicate(
                                                 BlockPredicate.allOf(
                                                                 BlockPredicate.ONLY_IN_AIR_PREDICATE,
-
-                                                                BlockPredicate.matchesTag(
-                                                                                new Vec3i(0, -1, 0),
-                                                                                zTags.Blocks.SUPPORT_CAVE_WHEAT_PLANT
-
-                                                                ))));
+                                                                BlockPredicate.matchesTag(new Vec3i(0, -1, 0),
+                                                                                zTags.Blocks.SUPPORT_CAVE_WHEAT_PLANT))));
         }
 
 }
