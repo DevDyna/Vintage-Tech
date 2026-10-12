@@ -67,9 +67,9 @@ public class CrushingTubCategory extends BaseRecipeCategory<CrushingTubRecipe> {
     public void setRecipe(IRecipeLayoutBuilder builder, CrushingTubRecipe recipe, IFocusGroup focuses) {
 
         builder.addSlot(RecipeIngredientRole.INPUT, 21, 29).add(recipe.getInput());
-       
-        if(recipe.getRequireMesh())
-        builder.addSlot(RecipeIngredientRole.INPUT, 21, 29-18).add(zItems.MESH.get());
+
+        if (recipe.getRequireMesh())
+            builder.addSlot(RecipeIngredientRole.INPUT, 21, 29 - 18).add(zItems.MESH.get());
 
         if (recipe.getFluid() != null && recipe.getFluid().amount() > 0)
             JEIFluidTankHelper.of()
@@ -79,17 +79,18 @@ public class CrushingTubCategory extends BaseRecipeCategory<CrushingTubRecipe> {
                     .build((x, y) -> builder.addOutputSlot(x, y));
 
         if (recipe.getOutput() != null)
-            builder.addOutputSlot( 70 + 1, 46 + 1).add(recipe.getOutput().item());
+            builder.addOutputSlot(70 + 1, 46 + 1).add(recipe.getOutput().item());
 
     }
 
     @Override
-    public void draw(CrushingTubRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphicsExtractor guiGraphics, double mouseX,
+    public void draw(CrushingTubRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphicsExtractor guiGraphics,
+            double mouseX,
             double mouseY) {
         super.draw(recipe, recipeSlotsView, guiGraphics, mouseX, mouseY);
 
         if (recipe.getOutput() != null && recipe.getOutput().chance() < 1)
-            drawCentredStringFixed(guiGraphics, font,
+            drawCenteredString(guiGraphics, font,
                     Component.literal(
                             ((int) (recipe.getOutput().chance() * 100)) + "%"),
                     55, 53,

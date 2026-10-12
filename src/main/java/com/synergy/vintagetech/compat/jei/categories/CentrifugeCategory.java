@@ -85,7 +85,7 @@ public class CentrifugeCategory extends BaseRecipeCategory<CentrifugeRecipe> {
         super.draw(recipe, recipeSlotsView, guiGraphics, mouseX, mouseY);
 
         if (recipe.getOutputItem() != null && recipe.getOutputItem().chance() < 1)
-            drawCentredStringFixed(guiGraphics, font,
+            drawCenteredString(guiGraphics, font,
                     Component.literal(
                             ((int) (recipe.getOutputItem().chance() * 100)) + "%"),
                     55, 53,
