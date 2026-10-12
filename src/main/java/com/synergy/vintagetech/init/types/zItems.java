@@ -3,7 +3,7 @@ package com.synergy.vintagetech.init.types;
 
 import static com.synergy.vintagetech.Main.MODULE_ID;
 
-import com.devdyna.cakesticklib.api.templates.EffectItem;
+import com.devdyna.cakesticklib.api.templates.SimpleEffectItems;
 import com.synergy.vintagetech.init.builder.SulfurGooItem;
 
 import net.minecraft.world.effect.MobEffectInstance;
@@ -81,13 +81,13 @@ public class zItems {
         public static final DeferredHolder<Item, Item> HEMP_FIBER = zItem.registerSimpleItem("hemp_fiber");
 
         public static final DeferredHolder<Item, Item> IRONBERRIES = zItem.registerItem("ironberries",
-                        p -> new EffectItem.Builder(p)
+                        p -> SimpleEffectItems.Builder.item(p)
                                         .food(new FoodProperties(1, 2f, true))
                                         .effect(new MobEffectInstance(MobEffects.HUNGER, 20, 1))
                                         .build());
 
         public static final DeferredHolder<Item, Item> OLIVES = zItem.registerItem("olives",
-                        p -> new EffectItem.Builder(p)
+                        p -> SimpleEffectItems.Builder.item(p)
                                         .food(new FoodProperties(1, 2f, true))
                                         .effect(new MobEffectInstance(MobEffects.HUNGER, 20, 1))
                                         .effect(new MobEffectInstance(MobEffects.MINING_FATIGUE, 20, 1))
@@ -162,13 +162,13 @@ public class zItems {
                         p -> p);
 
         public static final DeferredHolder<Item, Item> MOZZARELLA = zItem.registerItem("mozzarella",
-                        p -> new EffectItem.Builder(p)
+                        p -> SimpleEffectItems.Builder.item(p)
                                         .food(new FoodProperties(6, 10f, true))
                                         .effect(new MobEffectInstance(MobEffects.REGENERATION, 50, 1))
                                         .build());
 
         public static final DeferredHolder<Item, Item> CONDENSED_WHEY = zItem.registerItem("condensed_whey",
-                        p -> new EffectItem.Builder(p)
+                        p -> SimpleEffectItems.Builder.item(p)
                                         .food(new FoodProperties(4, 0.125f, true))
                                         .effect(new MobEffectInstance(MobEffects.STRENGTH, 50, 1))
                                         .build());
