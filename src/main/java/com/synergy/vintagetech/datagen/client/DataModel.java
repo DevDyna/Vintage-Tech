@@ -69,6 +69,8 @@ public class DataModel extends ModelProvider {
 
                 // BLOCK MODELS
 
+                
+
                 BlockModelUtils.simplePlain(blockModels, zBlocks.JUNCTION);
                 BlockModelUtils.simplePlain(blockModels, zBlocks.MILLSTONE);
                 // BlockModelUtils.simplePlain(blockModels, zBlocks.CRUSHING_TUB);
@@ -78,6 +80,8 @@ public class DataModel extends ModelProvider {
                                 x.rl(MODULE_ID, "block/drying_rack"), false);
 
                 BlockModelUtils.simplePlain(blockModels, zBlocks.CENTRIFUGE);
+
+                BlockModelUtils.createSalt(blockModels, zBlocks.SALT.get());
 
                 BlockModelUtils.createCheeseBlock(blockModels, zBlocks.FRESH_CHEESE.get());
                 BlockModelUtils.createCheeseBlock(blockModels, zBlocks.MATURED_CHEESE.get());

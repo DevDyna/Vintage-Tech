@@ -56,6 +56,11 @@ public class DataBiomeTag extends BiomeTagsProvider {
                 tag(zTags.Biomes.SOYBEANS_SPAWN)
                                 .addTag(Tags.Biomes.IS_SAVANNA);
 
+                tag(zTags.Biomes.SALT_DEPOSIT_SPAWN)
+                                .add(Biomes.STONY_PEAKS)
+                                .add(Biomes.OLD_GROWTH_SPRUCE_TAIGA)
+                                .add(Biomes.OLD_GROWTH_PINE_TAIGA);
+
         }
 
 }

@@ -574,4 +574,17 @@ public class BlockModelUtils {
                                                                                 b.modelOutput)))));
 
         }
+
+        public static void createSalt(BlockModelGenerators b, Block block) {
+
+                b.blockStateOutput.accept(MultiVariantGenerator.dispatch(block)
+                                .with(PropertyDispatch.initial(BlockStateProperties.LAYERS).generate(v ->
+                                                 BlockModelGenerators.plainVariant(
+                                                        TemplateCollection.LAYERED_TEMPLATE.apply(v*2+"")
+                                                        .create(x.rl(MODULE_ID,"block/salt/"+v*2), new TextureMapping()
+                                                        .put(TextureSlot.TEXTURE, x.material(MODULE_ID,"block/salt")), b.modelOutput)       
+                                                ))));
+
+        }
+
 }

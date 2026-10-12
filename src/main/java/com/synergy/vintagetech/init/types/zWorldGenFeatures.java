@@ -3,11 +3,13 @@ package com.synergy.vintagetech.init.types;
 import static com.synergy.vintagetech.Main.MODULE_ID;
 
 import com.devdyna.cakesticklib.api.RegistryUtils;
-import com.synergy.vintagetech.api.datagen.OliveTrunkPlacer;
+import com.synergy.vintagetech.api.datagen.builders.OliveTrunkPlacer;
+import com.synergy.vintagetech.api.datagen.builders.deposits.DepositFeature;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.neoforged.bus.api.IEventBus;
@@ -18,6 +20,20 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public class zWorldGenFeatures {
         public static void register(IEventBus bus) {
                 TrunkPlacer.register(bus);
+                Features.register(bus);
+        }
+
+        public class Features {
+                public static void register(IEventBus bus) {
+                        zFeatures.register(bus);
+                }
+
+                public static final DeferredRegister<Feature<?>> zFeatures = DeferredRegister
+                                .create(Registries.FEATURE, MODULE_ID);
+
+                public static final DeferredHolder<Feature<?>, DepositFeature> DEPOSIT = zFeatures
+                                .register("deposit", () -> new DepositFeature());
+
         }
 
         public class TrunkPlacer {
@@ -61,6 +77,9 @@ public class zWorldGenFeatures {
                 public static final ResourceKey<PlacedFeature> SOYBEANS = RegistryUtils
                                 .createPlacedFeature(MODULE_ID, "soybeans");
 
+                public static final ResourceKey<PlacedFeature> SALT_DEPOSIT = RegistryUtils
+                                .createPlacedFeature(MODULE_ID, "salt_deposit");
+
         }
 
         public class ConfiguredFeatures {
@@ -87,6 +106,9 @@ public class zWorldGenFeatures {
 
                 public static final ResourceKey<ConfiguredFeature<?, ?>> SOYBEANS = RegistryUtils
                                 .createConfiguredFeature(MODULE_ID, "soybeans");
+
+                public static final ResourceKey<ConfiguredFeature<?, ?>> SALT_DEPOSIT = RegistryUtils
+                                .createConfiguredFeature(MODULE_ID, "salt_deposit");
 
         }
 
@@ -117,6 +139,8 @@ public class zWorldGenFeatures {
                 public static final ResourceKey<BiomeModifier> SOYBEANS = RegistryUtils
                                 .createBiomeModifier(MODULE_ID, "soybeans");
 
+                public static final ResourceKey<BiomeModifier> SALT_DEPOSIT = RegistryUtils
+                                .createBiomeModifier(MODULE_ID, "salt_deposit");
         }
 
 }

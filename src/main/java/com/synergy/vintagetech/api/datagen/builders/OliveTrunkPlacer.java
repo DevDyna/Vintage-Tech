@@ -1,5 +1,5 @@
 
-package com.synergy.vintagetech.api.datagen;
+package com.synergy.vintagetech.api.datagen.builders;
 
 import java.util.List;
 import java.util.OptionalInt;

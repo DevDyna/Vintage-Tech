@@ -111,6 +111,9 @@ public class zTags {
                 public static final TagKey<Block> DENY_STICKY_FARMLAND_BURN_ON_DEHYDRATATION = RegistryUtils
                                 .tagBlock(MODULE_ID, "sticky_farmland/deny_plant_burn");
 
+                public static final TagKey<Block> SUPPORT_SALT_DEPOSIT = RegistryUtils
+                                .tagBlock(MODULE_ID, "support/salt_deposit");
+
         }
 
         public class Items {
@@ -196,6 +199,9 @@ public class zTags {
 
                 public static final TagKey<Biome> SOYBEANS_SPAWN = RegistryUtils.tagBiome(MODULE_ID,
                                 "worldgen/soybeans");
+
+                public static final TagKey<Biome> SALT_DEPOSIT_SPAWN = RegistryUtils.tagBiome(MODULE_ID,
+                                "worldgen/salt_deposit");
 
         }
 

@@ -240,7 +240,14 @@ public class zBlocks {
         public static final DeferredHolder<Block, Block> BLUEBERRY_BUSH = zBlock.registerBlock("blueberry_bush",
                         p -> new BlueBerry(p));
 
-       
+        public static final DeferredHolder<Block, Block> SALT = zBlock.registerBlock("salt",
+                        p -> new SaltLayerBlock(p
+                                        .mapColor(MapColor.WOOL)
+                                        .strength(0.25f)
+                                        .noOcclusion()
+                                        .sound(SoundType.SAND)
+                                        .pushReaction(PushReaction.DESTROY)
+                                        .speedFactor(0.9f)));
 
         public static final DeferredHolder<Block, Block> STICKY_FARMLAND = Material.registerItemBlock("sticky_farmland",
                         p -> new StickyFarmlandBlock(p

@@ -68,7 +68,7 @@ public class zItems {
         public static final DeferredHolder<Item, Item> CLOTH = zItem.registerSimpleItem("cloth");
 
         public static final DeferredHolder<Item, Item> SALT = zItem.registerItem("salt",
-                        p -> new EffectItem.Builder(p)
+                        p -> SimpleEffectItems.Builder.blockItem(zBlocks.SALT.get(),p)
                                         .food(new FoodProperties(0, 0f, true))
                                         .effect(new MobEffectInstance(MobEffects.HUNGER, 40, 3))
                                         .build());

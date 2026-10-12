@@ -219,6 +219,17 @@ public class DataLootBlock extends BlockLootSubProvider {
 
                 );
 
+
+                add(zBlocks.SALT.get(),
+                                LootTable.lootTable()
+                                                .withPool(applyExplosionCondition(zItems.SALT.get(),
+                                                                LootPool.lootPool()
+                                                                                .setRolls(ConstantValue.exactly(1.0F))
+                                                                                .add(LootItem.lootTableItem(zItems.SALT.get()))))
+
+                );
+
+
         }
 
         private void addCheese(Block block, ItemLike slice) {
