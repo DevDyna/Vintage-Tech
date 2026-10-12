@@ -3,14 +3,9 @@ package com.synergy.vintagetech.init.types;
 import static com.synergy.vintagetech.Main.MODULE_ID;
 
 import com.synergy.vintagetech.init.Material;
-import com.synergy.vintagetech.init.builder.RopeBlock;
-import com.synergy.vintagetech.init.builder.StickyFarmlandBlock;
 import com.synergy.vintagetech.init.builder.basket.BasketBlock;
 import com.synergy.vintagetech.init.builder.centrifuge.CentrifugeBlock;
-import com.synergy.vintagetech.init.builder.cheese.AgedCheeseBlock;
-import com.synergy.vintagetech.init.builder.cheese.FreshCheeseBlock;
-import com.synergy.vintagetech.init.builder.cheese.MaturedCheeseBlock;
-import com.synergy.vintagetech.init.builder.cheese.SealedCheeseBlock;
+import com.synergy.vintagetech.init.builder.cheese.*;
 import com.synergy.vintagetech.init.builder.creative_engine.CreativeEngineBlock;
 import com.synergy.vintagetech.init.builder.crucible.CrucibleBlock;
 import com.synergy.vintagetech.init.builder.crushing_tub.CrushingTubBlock;
@@ -22,6 +17,7 @@ import com.synergy.vintagetech.init.builder.fan.FanBlock;
 import com.synergy.vintagetech.init.builder.mechanical_farmland.MechanicalFarmlandBlock;
 import com.synergy.vintagetech.init.builder.millstone.MillstoneBlock;
 import com.synergy.vintagetech.init.builder.plants.*;
+import com.synergy.vintagetech.init.builder.*;
 import com.synergy.vintagetech.init.builder.saw.SawBlock;
 import com.synergy.vintagetech.init.builder.transmission.*;
 import com.synergy.vintagetech.init.builder.treetap.TreeTapBlock;
@@ -68,7 +64,6 @@ public class zBlocks {
         public static final DeferredHolder<Block, Block> AXLE = Material.registerItemBlock("axle",
                         p -> new AxleBlock(p
                                         .mapColor(MapColor.WOOD)
-
                                         .strength(2.0F)
                                         .sound(SoundType.WOOD)
                                         .ignitedByLava()));
@@ -76,7 +71,6 @@ public class zBlocks {
         public static final DeferredHolder<Block, Block> JUNCTION = Material.registerItemBlock("junction",
                         p -> new JunctionBlock(p
                                         .mapColor(MapColor.WOOD)
-
                                         .strength(2.0F)
                                         .sound(SoundType.WOOD)
                                         .ignitedByLava()));
@@ -85,7 +79,6 @@ public class zBlocks {
                         p -> new GearShiftBlock(p
                                         .noOcclusion()
                                         .mapColor(MapColor.WOOD)
-
                                         .strength(2.0F)
                                         .sound(SoundType.WOOD)
                                         .ignitedByLava()));
@@ -94,7 +87,6 @@ public class zBlocks {
                         p -> new ClutchBlock(p
                                         .noOcclusion()
                                         .mapColor(MapColor.WOOD)
-
                                         .strength(2.0F)
                                         .sound(SoundType.WOOD)
                                         .ignitedByLava()));
@@ -103,7 +95,6 @@ public class zBlocks {
         public static final DeferredHolder<Block, Block> SAW = Material.registerItemBlock("saw",
                         p -> new SawBlock(p
                                         .mapColor(MapColor.WOOD)
-
                                         .strength(2.0F)
                                         .sound(SoundType.WOOD)
                                         .ignitedByLava()));
@@ -111,7 +102,6 @@ public class zBlocks {
         public static final DeferredHolder<Block, Block> FAN = Material.registerItemBlock("fan",
                         p -> new FanBlock(p
                                         .mapColor(MapColor.METAL)
-
                                         .strength(3.5F)
                                         .noOcclusion()
                                         .sound(SoundType.METAL)));
@@ -119,14 +109,12 @@ public class zBlocks {
         public static final DeferredHolder<Block, Block> MILLSTONE = Material.registerItemBlock("millstone",
                         p -> new MillstoneBlock(p
                                         .mapColor(MapColor.STONE)
-
                                         .strength(3.0F)
                                         .sound(SoundType.STONE)));
 
         public static final DeferredHolder<Block, Block> TREE_TAP = Material.registerItemBlock("tree_tap",
                         p -> new TreeTapBlock(p
                                         .mapColor(MapColor.WOOD)
-
                                         .strength(1.0F)
                                         .sound(SoundType.WOOD)));
 
@@ -140,7 +128,6 @@ public class zBlocks {
         public static final DeferredHolder<Block, Block> CENTRIFUGE = Material.registerItemBlock("centrifuge",
                         p -> new CentrifugeBlock(p
                                         .mapColor(MapColor.WOOD)
-
                                         .strength(2.0F)
                                         .sound(SoundType.WOOD)
                                         .ignitedByLava()));
@@ -165,7 +152,6 @@ public class zBlocks {
                         p -> new CrushingTubBlock(p
                                         .strength(1.0F, 1.50F)
                                         .sound(SoundType.WOOD)
-
                                         .mapColor(MapColor.RAW_IRON)));
 
         public static final DeferredHolder<Block, Block> DRYING_RACK = Material.registerItemBlock("drying_rack",
@@ -180,14 +166,12 @@ public class zBlocks {
                         p -> new EvaporationBasinBlock(p
                                         .mapColor(MapColor.COLOR_ORANGE)
                                         .strength(1F, 2.25F)
-                                        .sound(SoundType.STONE)
-                                        .mapColor(MapColor.TERRACOTTA_ORANGE)));
+                                        .sound(SoundType.STONE)));
 
         public static final DeferredHolder<Block, Block> MECHANICAL_FARMLAND = Material.registerItemBlock(
                         "mechanical_farmland",
                         p -> new MechanicalFarmlandBlock(p
                                         .mapColor(MapColor.WOOD)
-
                                         .strength(2.0F)
                                         .noOcclusion()
                                         .sound(SoundType.WOOD)
@@ -196,7 +180,6 @@ public class zBlocks {
         public static final DeferredHolder<Block, Block> ROPE = Material.registerItemBlock("rope",
                         p -> new RopeBlock(p
                                         .mapColor(MapColor.WOOD)
-
                                         .instabreak()
                                         .noOcclusion()
                                         .sound(SoundType.WOOL)
@@ -206,19 +189,31 @@ public class zBlocks {
         // TODO IMP : PRESS?
 
         public static final DeferredHolder<Block, Block> FRESH_CHEESE = Material.registerItemBlock("fresh_cheese",
-                        p -> new FreshCheeseBlock(p.forceSolidOn().strength(0.25F).sound(SoundType.WOOL)
+                        p -> new FreshCheeseBlock(p
+                                        .forceSolidOn()
+                                        .strength(0.25F)
+                                        .sound(SoundType.WOOL)
                                         .pushReaction(PushReaction.DESTROY)));
 
         public static final DeferredHolder<Block, Block> SEALED_CHEESE = Material.registerItemBlock("sealed_cheese",
-                        p -> new SealedCheeseBlock(p.forceSolidOn().strength(0.25F).sound(SoundType.WOOL)
+                        p -> new SealedCheeseBlock(p
+                                        .forceSolidOn()
+                                        .strength(0.25F)
+                                        .sound(SoundType.WOOL)
                                         .pushReaction(PushReaction.DESTROY)));
 
         public static final DeferredHolder<Block, Block> MATURED_CHEESE = Material.registerItemBlock("matured_cheese",
-                        p -> new MaturedCheeseBlock(p.forceSolidOn().strength(0.25F).sound(SoundType.WOOL)
+                        p -> new MaturedCheeseBlock(p
+                                        .forceSolidOn()
+                                        .strength(0.25F)
+                                        .sound(SoundType.WOOL)
                                         .pushReaction(PushReaction.DESTROY)));
 
         public static final DeferredHolder<Block, Block> AGED_CHEESE = Material.registerItemBlock("aged_cheese",
-                        p -> new AgedCheeseBlock(p.forceSolidOn().strength(0.25F).sound(SoundType.WOOL)
+                        p -> new AgedCheeseBlock(p
+                                        .forceSolidOn()
+                                        .strength(0.25F)
+                                        .sound(SoundType.WOOL)
                                         .pushReaction(PushReaction.DESTROY)));
 
         // item -> item
