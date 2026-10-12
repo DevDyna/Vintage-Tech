@@ -1,0 +1,17 @@
+{
+  "type": "vintagetech:deposit",
+  "config": {
+    "block": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "vintagetech:salt",
+        "Properties": {
+          "layers": "1"
+        }
+      }
+    },
+    "replace": false,
+    "stack": false,
+    "xz": 4
+  }
+}

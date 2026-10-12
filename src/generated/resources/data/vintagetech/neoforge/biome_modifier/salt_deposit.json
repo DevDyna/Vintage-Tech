@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#vintagetech:worldgen/salt_deposit",
+  "features": "vintagetech:salt_deposit",
+  "step": "vegetal_decoration"
+}
