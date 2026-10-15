@@ -2,7 +2,6 @@ package com.synergy.vintagetech.datagen.client;
 
 import static com.synergy.vintagetech.Main.MODULE_ID;
 
-import java.util.List;
 import java.util.Optional;
 
 import com.synergy.vintagetech.api.datagen.BlockModelUtils;
@@ -51,10 +50,8 @@ public class DataModel extends ModelProvider {
                 for (var tree : TreeFactory.getAll())
                         tree.createModels(blockModels);
 
-                for (var tree : TreeFactory.getAll())
-                        zItems.zItem.getEntries().stream()
-                                        .filter(i -> !List.of(tree.signItem(), tree.hangingSignItem()).contains(i))
-                                        .forEach(i -> itemModels.generateFlatItem(i.get(), ModelTemplates.FLAT_ITEM));
+                zItems.zItem.getEntries().stream()
+                                .forEach(i -> itemModels.generateFlatItem(i.get(), ModelTemplates.FLAT_ITEM));
 
                 for (var beam : BeamFactory.getAll())
                         beam.createModels(blockModels);
@@ -72,6 +69,8 @@ public class DataModel extends ModelProvider {
 
                 // BLOCK MODELS
 
+                
+
                 BlockModelUtils.simplePlain(blockModels, zBlocks.JUNCTION);
                 BlockModelUtils.simplePlain(blockModels, zBlocks.MILLSTONE);
                 // BlockModelUtils.simplePlain(blockModels, zBlocks.CRUSHING_TUB);
@@ -81,6 +80,8 @@ public class DataModel extends ModelProvider {
                                 x.rl(MODULE_ID, "block/drying_rack"), false);
 
                 BlockModelUtils.simplePlain(blockModels, zBlocks.CENTRIFUGE);
+
+                BlockModelUtils.createSalt(blockModels, zBlocks.SALT.get());
 
                 BlockModelUtils.createCheeseBlock(blockModels, zBlocks.FRESH_CHEESE.get());
                 BlockModelUtils.createCheeseBlock(blockModels, zBlocks.MATURED_CHEESE.get());

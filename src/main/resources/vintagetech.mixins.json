@@ -4,6 +4,8 @@
   "package": "com.synergy.vintagetech.mixin",
   "compatibilityLevel": "JAVA_25",
   "mixins": [
+    "IceMeltingInvoker",
+    "BiomePrecipitationMixin"
   ],
   "client": [],
   "server": []

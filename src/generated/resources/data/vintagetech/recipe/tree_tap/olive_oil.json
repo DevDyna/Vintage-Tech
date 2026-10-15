@@ -1,0 +1,11 @@
+{
+  "type": "vintagetech:tree_tap",
+  "chance": 0.5,
+  "delay": 200,
+  "fluid": {
+    "amount": 5,
+    "id": "vintagetech:olive_oil"
+  },
+  "leaves": "vintagetech:olive_leaves",
+  "logs": "vintagetech:olive_log"
+}

@@ -3,6 +3,7 @@ package com.synergy.vintagetech.api.factories.trees;
 import static com.synergy.vintagetech.Main.MODULE_ID;
 
 import java.util.*;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 import com.devdyna.cakesticklib.api.RegistryUtils;
@@ -16,6 +17,7 @@ import com.synergy.vintagetech.init.types.zItems;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 
@@ -35,14 +37,13 @@ public final class TreeFactory {
                 return TREES.get(set.id());
         }
 
-        
-        public static TreeSet register(String id, MapColor plank, MapColor logtop, float hardness, float resistance,
+        public static TreeSet register(String id, MapColor plank, MapColor log_side, float hardness, float resistance,
                         SoundType generic, Function<String, BlockSetBuilder> blockSetBuilder,
-                        Function<String, WoodTypeBuilder> woodTypeBuilder, WoodType type,
+                        BiFunction<String, BlockSetType, WoodTypeBuilder> woodTypeBuilder, WoodType type,
                         TreeParticleLeaves particles, Function<String, TreeGrowerBuilder> grower, boolean burnable) {
 
                 var blockSetType = blockSetBuilder.apply(id).build();
-                var woodType = woodTypeBuilder.apply(id).build();
+                var woodType = woodTypeBuilder.apply(id, blockSetType).build();
 
                 var log = Material.registerItemBlock(id + type.suffix4(),
                                 p -> {
@@ -54,7 +55,7 @@ public final class TreeFactory {
 
                                         return new RotatedPillarBlock(p.mapColor(state -> state
                                                         .getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y
-                                                                        ? logtop
+                                                                        ? log_side
                                                                         : plank));
                                 });
 
@@ -80,7 +81,7 @@ public final class TreeFactory {
                                         if (burnable)
                                                 p.ignitedByLava();
 
-                                        return new RotatedPillarBlock(p.mapColor(logtop));
+                                        return new RotatedPillarBlock(p.mapColor(log_side));
                                 });
 
                 var strippedWood = Material.registerItemBlock(
@@ -134,7 +135,7 @@ public final class TreeFactory {
                                                                 .ignitedByLava()
                                                                 .mapColor(MapColor.PLANT)));
 
-                var pottedSapling = zBlocks.zBlock.registerBlock("potted_" + id + "_sapling",
+                var pottedSapling = zBlocks.zTreeBlock.registerBlock("potted_" + id + "_sapling",
                                 p -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, sapling,
                                                 p.instabreak()
                                                                 .noOcclusion()
@@ -202,34 +203,34 @@ public final class TreeFactory {
                                                                 .ignitedByLava()
                                                                 .mapColor(plank)));
 
-                var sign = zBlocks.zBlock.registerBlock(id + "_sign",
+                var sign = zBlocks.zTreeBlock.registerBlock(id + "_sign",
                                 p -> new StandingSignBlock(woodType,
                                                 p.forceSolidOn()
                                                                 .noCollision()
                                                                 .strength(1.0F)));
 
-                var wallSign = zBlocks.zBlock.registerBlock(id + "_wall_sign",
+                var wallSign = zBlocks.zTreeBlock.registerBlock(id + "_wall_sign",
                                 p -> new WallSignBlock(woodType,
                                                 p.forceSolidOn()
                                                                 .noCollision()
                                                                 .strength(1.0F)));
 
-                var hangingSign = zBlocks.zBlock.registerBlock(id + "_hanging_sign",
+                var hangingSign = zBlocks.zTreeBlock.registerBlock(id + "_hanging_sign",
                                 p -> new CeilingHangingSignBlock(woodType,
                                                 p.forceSolidOn()
                                                                 .noCollision()
                                                                 .strength(1.0F)));
 
-                var wallHangingSign = zBlocks.zBlock.registerBlock(id + "_wall_hanging_sign",
+                var wallHangingSign = zBlocks.zTreeBlock.registerBlock(id + "_wall_hanging_sign",
                                 p -> new WallHangingSignBlock(woodType,
                                                 p.forceSolidOn()
                                                                 .noCollision()
                                                                 .strength(1.0F)));
 
-                var signItem = zItems.zItem.registerItem(id + "_sign",
+                var signItem = zItems.zTreeItem.registerItem(id + "_sign",
                                 p -> new SignItem(sign.get(), wallSign.get(), p));
 
-                var hangingSignItem = zItems.zItem.registerItem(id + "_hanging_sign",
+                var hangingSignItem = zItems.zTreeItem.registerItem(id + "_hanging_sign",
                                 p -> new HangingSignItem(hangingSign.get(), wallHangingSign.get(), p));
 
                 var itemTag = RegistryUtils.tagItem(MODULE_ID, id + "_logs");

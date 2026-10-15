@@ -4,6 +4,7 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 
 import com.devdyna.cakesticklib.api.utils.x;
 
@@ -29,6 +30,11 @@ public class TemplateCollection {
                         Optional.of(x.rl(MODULE_ID, "block/template/modifier")),
                         Optional.empty(),
                         FRAME);
+
+        public static final Function<String, ModelTemplate> LAYERED_TEMPLATE = (s) -> new ModelTemplate(
+                        Optional.of(x.rl(MODULE_ID, "block/template/layered/" + s)),
+                        Optional.empty(),
+                        TextureSlot.TEXTURE);
 
         public static class CHEESE {
 

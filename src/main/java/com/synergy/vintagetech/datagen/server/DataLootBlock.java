@@ -46,7 +46,7 @@ public class DataLootBlock extends BlockLootSubProvider {
 
         @Override
         protected Iterable<Block> getKnownBlocks() {
-                return LootTableHelper.getValidBlocks(zBlocks.zBlock, zBlocks.zBlockItem);
+                return LootTableHelper.getValidBlocks(zBlocks.zBlock, zBlocks.zBlockItem, zBlocks.zTreeBlock);
         }
 
         List<Block> BLACKLIST = ArrayUtils.concat(TreeFactory.getAll()
@@ -139,6 +139,36 @@ public class DataLootBlock extends BlockLootSubProvider {
 
                 );
 
+                add(zTrees.OLIVE.leaves().get(),
+                                b -> createLeavesDrops(b, zTrees.OLIVE.sapling().get(),
+                                                 new float[]{0.2F, 0.25F, 0.33333334F, 0.4F}) //+300%
+                                                .withPool(
+                                                                LootPool.lootPool()
+                                                                                .setRolls(UniformGenerator.between(1,
+                                                                                                5))
+                                                                                .when(
+                                                                                                hasShears().or(hasSilkTouch())
+                                                                                                                .invert())
+                                                                                .add(
+                                                                                                applyExplosionCondition(
+                                                                                                                b,
+                                                                                                                LootItem.lootTableItem(
+                                                                                                                                zItems.OLIVES
+                                                                                                                                                .get()))
+                                                                                                                .when(
+                                                                                                                                BonusLevelTableCondition
+                                                                                                                                                .bonusLevelFlatChance(
+                                                                                                                                                                EnchantUtil.getEnchantHolder(
+                                                                                                                                                                                registries,
+                                                                                                                                                                                Enchantments.FORTUNE),
+                                                                                                                                                                0.05F,
+                                                                                                                                                                0.25F,
+                                                                                                                                                                0.275F,
+                                                                                                                                                                0.3F,
+                                                                                                                                                                0.325F))))
+
+                );
+
                 add(zBlocks.CRUSHING_TUB.get(),
                                 LootTable.lootTable()
 
@@ -188,6 +218,17 @@ public class DataLootBlock extends BlockLootSubProvider {
                                                                                                                 .get()))))
 
                 );
+
+
+                add(zBlocks.SALT.get(),
+                                LootTable.lootTable()
+                                                .withPool(applyExplosionCondition(zItems.SALT.get(),
+                                                                LootPool.lootPool()
+                                                                                .setRolls(ConstantValue.exactly(1.0F))
+                                                                                .add(LootItem.lootTableItem(zItems.SALT.get()))))
+
+                );
+
 
         }
 

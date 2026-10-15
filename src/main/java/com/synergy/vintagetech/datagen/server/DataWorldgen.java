@@ -2,16 +2,15 @@ package com.synergy.vintagetech.datagen.server;
 
 import static com.synergy.vintagetech.Main.MODULE_ID;
 
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 import com.devdyna.cakesticklib.api.datagen.WorldgenUtils;
+import com.synergy.vintagetech.api.datagen.builders.OliveTrunkPlacer;
+import com.synergy.vintagetech.api.datagen.builders.deposits.DepositConfiguration;
 import com.synergy.vintagetech.api.factories.plants.NaturalCrop;
-import com.synergy.vintagetech.init.builder.plants.Aloe;
-import com.synergy.vintagetech.init.builder.plants.BlueBerry;
-import com.synergy.vintagetech.init.builder.plants.CaveWheat;
-import com.synergy.vintagetech.init.builder.plants.Hemp;
-import com.synergy.vintagetech.init.builder.plants.SoyBeans;
+import com.synergy.vintagetech.init.builder.plants.*;
 import com.synergy.vintagetech.init.types.zBlocks;
 import com.synergy.vintagetech.init.types.zTags;
 import com.synergy.vintagetech.init.types.zTrees;
@@ -32,9 +31,6 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.random.WeightedList;
 import net.minecraft.util.valueproviders.ConstantInt;
-import net.minecraft.util.valueproviders.IntProvider;
-import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.util.valueproviders.WeightedListInt;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.GenerationStep.Decoration;
@@ -45,6 +41,7 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.AcaciaFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
@@ -59,7 +56,6 @@ import net.minecraft.world.level.levelgen.placement.RandomOffsetPlacement;
 import net.minecraft.world.level.levelgen.placement.RarityFilter;
 import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.common.world.BiomeModifier;
-import net.neoforged.neoforge.common.world.BiomeModifiers.AddFeaturesBiomeModifier;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 public class DataWorldgen extends DatapackBuiltinEntriesProvider {
@@ -75,54 +71,68 @@ public class DataWorldgen extends DatapackBuiltinEntriesProvider {
 
         protected static void biomeModifiers(BootstrapContext<BiomeModifier> c) {
 
+                // var config = c.lookup(Registries.CONFIGURED_FEATURE);
+                var placed = c.lookup(Registries.PLACED_FEATURE);
+                var biome = c.lookup(Registries.BIOME);
+
                 WorldgenUtils.registerBiomeModifer(c, zWorldGenFeatures.BiomeModifiers.BLUEBERRIES,
-                                c.lookup(Registries.BIOME).getOrThrow(zTags.Biomes.BLUEBERRIES_SPAWN),
-                                HolderSet.direct(c.lookup(Registries.PLACED_FEATURE)
-                                                .getOrThrow(zWorldGenFeatures.PlacedFeatures.BLUEBERRIES)),
+                                biome.getOrThrow(zTags.Biomes.BLUEBERRIES_SPAWN),
+                                HolderSet.direct(placed.getOrThrow(zWorldGenFeatures.PlacedFeatures.BLUEBERRIES)),
                                 Decoration.VEGETAL_DECORATION);
 
                 WorldgenUtils.registerBiomeModifer(c, zWorldGenFeatures.BiomeModifiers.ALOE,
-                                c.lookup(Registries.BIOME).getOrThrow(zTags.Biomes.ALOE_SPAWN),
-                                HolderSet.direct(c.lookup(Registries.PLACED_FEATURE)
-                                                .getOrThrow(zWorldGenFeatures.PlacedFeatures.ALOE)),
+                                biome.getOrThrow(zTags.Biomes.ALOE_SPAWN),
+                                HolderSet.direct(placed.getOrThrow(zWorldGenFeatures.PlacedFeatures.ALOE)),
                                 Decoration.VEGETAL_DECORATION);
 
                 WorldgenUtils.registerBiomeModifer(c, zWorldGenFeatures.BiomeModifiers.LAVENDER,
-                                c.lookup(Registries.BIOME).getOrThrow(zTags.Biomes.LAVENDER_SPAWN),
-                                HolderSet.direct(c.lookup(Registries.PLACED_FEATURE)
-                                                .getOrThrow(zWorldGenFeatures.PlacedFeatures.LAVENDER)),
+                                biome.getOrThrow(zTags.Biomes.LAVENDER_SPAWN),
+                                HolderSet.direct(placed.getOrThrow(zWorldGenFeatures.PlacedFeatures.LAVENDER)),
                                 Decoration.VEGETAL_DECORATION);
 
                 WorldgenUtils.registerBiomeModifer(c, zWorldGenFeatures.BiomeModifiers.CAVE_WHEAT,
-                                c.lookup(Registries.BIOME).getOrThrow(zTags.Biomes.CAVE_WHEAT_SPAWN),
-                                HolderSet.direct(c.lookup(Registries.PLACED_FEATURE)
-                                                .getOrThrow(zWorldGenFeatures.PlacedFeatures.CAVE_WHEAT)),
+                                biome.getOrThrow(zTags.Biomes.CAVE_WHEAT_SPAWN),
+                                HolderSet.direct(placed.getOrThrow(zWorldGenFeatures.PlacedFeatures.CAVE_WHEAT)),
                                 Decoration.VEGETAL_DECORATION);
 
-                c.register(zWorldGenFeatures.BiomeModifiers.IRONWOOD,
-                                new AddFeaturesBiomeModifier(
-                                                c.lookup(Registries.BIOME).getOrThrow(zTags.Biomes.IRONWOOD_TREE_SPAWN),
-                                                HolderSet.direct(c.lookup(Registries.PLACED_FEATURE)
-                                                                .getOrThrow(PlacedFeatures.IRONWOOD)),
-                                                GenerationStep.Decoration.VEGETAL_DECORATION));
+                WorldgenUtils.registerBiomeModifer(c, zWorldGenFeatures.BiomeModifiers.IRONWOOD,
+                                biome.getOrThrow(zTags.Biomes.IRONWOOD_TREE_SPAWN),
+                                HolderSet.direct(placed.getOrThrow(PlacedFeatures.IRONWOOD)),
+                                GenerationStep.Decoration.VEGETAL_DECORATION);
 
-                c.register(zWorldGenFeatures.BiomeModifiers.HEMP,
-                                new AddFeaturesBiomeModifier(
-                                                c.lookup(Registries.BIOME).getOrThrow(zTags.Biomes.HEMP_SPAWN),
-                                                HolderSet.direct(c.lookup(Registries.PLACED_FEATURE)
-                                                                .getOrThrow(PlacedFeatures.HEMP)),
-                                                GenerationStep.Decoration.VEGETAL_DECORATION));
+                WorldgenUtils.registerBiomeModifer(c, zWorldGenFeatures.BiomeModifiers.OLIVE_COMMON,
+                                biome.getOrThrow(zTags.Biomes.OLIVE_TREE_COMMON_SPAWN),
+                                HolderSet.direct(placed.getOrThrow(PlacedFeatures.OLIVE_COMMON)),
+                                GenerationStep.Decoration.VEGETAL_DECORATION);
 
-                c.register(zWorldGenFeatures.BiomeModifiers.SOYBEANS,
-                                new AddFeaturesBiomeModifier(
-                                                c.lookup(Registries.BIOME).getOrThrow(zTags.Biomes.SOYBEANS_SPAWN),
-                                                HolderSet.direct(c.lookup(Registries.PLACED_FEATURE)
-                                                                .getOrThrow(PlacedFeatures.SOYBEANS)),
-                                                GenerationStep.Decoration.VEGETAL_DECORATION));
+                WorldgenUtils.registerBiomeModifer(c, zWorldGenFeatures.BiomeModifiers.OLIVE_RARE,
+                                biome.getOrThrow(zTags.Biomes.OLIVE_TREE_RARE_SPAWN),
+                                HolderSet.direct(placed.getOrThrow(PlacedFeatures.OLIVE_RARE)),
+                                GenerationStep.Decoration.VEGETAL_DECORATION);
+
+                WorldgenUtils.registerBiomeModifer(c, zWorldGenFeatures.BiomeModifiers.HEMP,
+                                biome.getOrThrow(zTags.Biomes.HEMP_SPAWN),
+                                HolderSet.direct(placed.getOrThrow(PlacedFeatures.HEMP)),
+                                GenerationStep.Decoration.VEGETAL_DECORATION);
+
+                WorldgenUtils.registerBiomeModifer(c, zWorldGenFeatures.BiomeModifiers.SOYBEANS,
+                                biome.getOrThrow(zTags.Biomes.SOYBEANS_SPAWN),
+                                HolderSet.direct(placed.getOrThrow(PlacedFeatures.SOYBEANS)),
+                                GenerationStep.Decoration.VEGETAL_DECORATION);
+
+                WorldgenUtils.registerBiomeModifer(c,
+                                zWorldGenFeatures.BiomeModifiers.SALT_DEPOSIT,
+                                biome.getOrThrow(zTags.Biomes.SALT_DEPOSIT_SPAWN),
+                                HolderSet.direct(placed.getOrThrow(zWorldGenFeatures.PlacedFeatures.SALT_DEPOSIT)),
+                                GenerationStep.Decoration.VEGETAL_DECORATION);
 
         }
 
         protected static void configuredFeatures(BootstrapContext<ConfiguredFeature<?, ?>> c) {
+
+                // var config = c.lookup(Registries.CONFIGURED_FEATURE);
+                // var placed = c.lookup(Registries.PLACED_FEATURE);
+                // var biome = c.lookup(Registries.BIOME);
 
                 registerPatchConfig(c, zWorldGenFeatures.ConfiguredFeatures.BLUEBERRIES,
 
@@ -202,9 +212,29 @@ public class DataWorldgen extends DatapackBuiltinEntriesProvider {
                                                 .ignoreVines()
                                                 .build()));
 
+                c.register(zWorldGenFeatures.ConfiguredFeatures.OLIVE,
+                                new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+                                                BlockStateProvider.simple(zTrees.OLIVE.log().get()),
+                                                new OliveTrunkPlacer(3, 2, 2),
+                                                BlockStateProvider.simple(zTrees.OLIVE.leaves().get()),
+                                                new AcaciaFoliagePlacer(ConstantInt.of(1), ConstantInt.of(0)),
+                                                new TwoLayersFeatureSize(1, 0, 2))
+                                                .ignoreVines()
+                                                .build()));
+
+                c.register(zWorldGenFeatures.ConfiguredFeatures.SALT_DEPOSIT,
+                                new ConfiguredFeature<>(zWorldGenFeatures.Features.DEPOSIT.get(),
+                                                new DepositConfiguration(
+                                                                BlockStateProvider.simple(zBlocks.SALT.get()),
+                                                                false, false, 4)));
+
         }
 
         protected static void placedFeatures(BootstrapContext<PlacedFeature> c) {
+
+                var config = c.lookup(Registries.CONFIGURED_FEATURE);
+                // var placed = c.lookup(Registries.PLACED_FEATURE);
+                // var biome = c.lookup(Registries.BIOME);
 
                 registerPatchPlaced(c, zWorldGenFeatures.PlacedFeatures.LAVENDER,
                                 zWorldGenFeatures.ConfiguredFeatures.LAVENDER, 5, 15, 20, 120);
@@ -225,60 +255,59 @@ public class DataWorldgen extends DatapackBuiltinEntriesProvider {
                                 zWorldGenFeatures.ConfiguredFeatures.CAVE_WHEAT, 32, 1, -56, 24);
 
                 c.register(zWorldGenFeatures.PlacedFeatures.IRONWOOD,
-                                new PlacedFeature(
-                                                c.lookup(Registries.CONFIGURED_FEATURE)
-                                                                .getOrThrow(zWorldGenFeatures.ConfiguredFeatures.IRONWOOD),
+                                new PlacedFeature(config.getOrThrow(zWorldGenFeatures.ConfiguredFeatures.IRONWOOD),
                                                 VegetationPlacements.treePlacement(
-                                                                CountPlacement.of(new WeightedListInt(
-                                                                                WeightedList
-                                                                                                .<IntProvider>builder()
-                                                                                                .add(UniformInt.of(3,
-                                                                                                                4), 1)
-                                                                                                .add(UniformInt.of(2,
-                                                                                                                3), 2)
-                                                                                                .add(UniformInt.of(1,
-                                                                                                                2), 3)
-                                                                                                .add(ConstantInt.of(0),
-                                                                                                                194)
-                                                                                                .build())),
+                                                                RarityFilter.onAverageOnceEvery(30),
                                                                 zTrees.IRONWOOD.sapling().get())));
+
+                c.register(zWorldGenFeatures.PlacedFeatures.OLIVE_COMMON,
+                                new PlacedFeature(config.getOrThrow(zWorldGenFeatures.ConfiguredFeatures.OLIVE),
+                                                VegetationPlacements.treePlacement(
+                                                                PlacementUtils.countExtra(0, 0.1F, 1),
+                                                                zTrees.OLIVE.sapling().get())));
+
+                c.register(zWorldGenFeatures.PlacedFeatures.OLIVE_RARE,
+                                new PlacedFeature(config.getOrThrow(zWorldGenFeatures.ConfiguredFeatures.OLIVE),
+                                                VegetationPlacements.treePlacement(
+                                                                RarityFilter.onAverageOnceEvery(60),
+                                                                zTrees.OLIVE.sapling().get())));
+
+                c.register(zWorldGenFeatures.PlacedFeatures.SALT_DEPOSIT,
+                                new PlacedFeature(config.getOrThrow(zWorldGenFeatures.ConfiguredFeatures.SALT_DEPOSIT),
+                                                List.of(
+                                                                RarityFilter.onAverageOnceEvery(8),
+                                                                InSquarePlacement.spread(),
+                                                                PlacementUtils.HEIGHTMAP,
+                                                                BlockPredicateFilter.forPredicate(
+                                                                                BlockPredicate.allOf(
+                                                                                                BlockPredicate.ONLY_IN_AIR_PREDICATE,
+                                                                                                BlockPredicate.matchesTag(
+                                                                                                                new Vec3i(0, -1, 0),
+                                                                                                                zTags.Blocks.SUPPORT_SALT_DEPOSIT))),
+
+                                                                BiomeFilter.biome())));
 
         }
 
         // TODO API : move to api?
 
-        public static void registerPatchConfig(
-                        BootstrapContext<ConfiguredFeature<?, ?>> c,
-                        ResourceKey<ConfiguredFeature<?, ?>> k,
-                        Object... states) {
+        public static void registerPatchConfig(BootstrapContext<ConfiguredFeature<?, ?>> c,
+                        ResourceKey<ConfiguredFeature<?, ?>> k, Object... states) {
 
                 var builder = WeightedList.<BlockState>builder();
 
                 for (int i = 0; i < states.length; i += 2)
                         builder.add((BlockState) states[i], (int) states[i + 1]);
 
-                FeatureUtils.register(
-                                c,
-                                k,
-                                Feature.SIMPLE_BLOCK,
-                                new SimpleBlockConfiguration(
-                                                new WeightedStateProvider(builder)));
+                FeatureUtils.register(c, k, Feature.SIMPLE_BLOCK,
+                                new SimpleBlockConfiguration(new WeightedStateProvider(builder)));
         }
 
-        public static void registerPatchPlaced(
-                        BootstrapContext<PlacedFeature> c,
-                        ResourceKey<PlacedFeature> k,
-                        ResourceKey<ConfiguredFeature<?, ?>> configured,
-                        int count,
-                        int rarity,
-                        int minY,
-                        int maxY) {
+        public static void registerPatchPlaced(BootstrapContext<PlacedFeature> c, ResourceKey<PlacedFeature> k,
+                        ResourceKey<ConfiguredFeature<?, ?>> configured, int count, int rarity, int minY, int maxY) {
 
-                PlacementUtils.register(
-                                c,
-                                k,
-                                c.lookup(Registries.CONFIGURED_FEATURE)
-                                                .getOrThrow(configured),
+                PlacementUtils.register(c, k, c.lookup(Registries.CONFIGURED_FEATURE)
+                                .getOrThrow(configured),
 
                                 RarityFilter.onAverageOnceEvery(rarity),
                                 InSquarePlacement.spread(),
@@ -302,20 +331,11 @@ public class DataWorldgen extends DatapackBuiltinEntriesProvider {
 
         }
 
-        public static void registerUndergroundPatchPlaced(
-                        BootstrapContext<PlacedFeature> c,
-                        ResourceKey<PlacedFeature> k,
-                        ResourceKey<ConfiguredFeature<?, ?>> configured,
-                        int count,
-                        int rarity,
-                        int minY,
-                        int maxY) {
+        public static void registerUndergroundPatchPlaced(BootstrapContext<PlacedFeature> c,
+                        ResourceKey<PlacedFeature> k, ResourceKey<ConfiguredFeature<?, ?>> configured, int count,
+                        int rarity, int minY, int maxY) {
 
-                PlacementUtils.register(
-                                c,
-                                k,
-                                c.lookup(Registries.CONFIGURED_FEATURE)
-                                                .getOrThrow(configured),
+                PlacementUtils.register(c, k, c.lookup(Registries.CONFIGURED_FEATURE).getOrThrow(configured),
 
                                 CountPlacement.of(count),
                                 InSquarePlacement.spread(),
@@ -330,12 +350,8 @@ public class DataWorldgen extends DatapackBuiltinEntriesProvider {
                                 BlockPredicateFilter.forPredicate(
                                                 BlockPredicate.allOf(
                                                                 BlockPredicate.ONLY_IN_AIR_PREDICATE,
-
-                                                                BlockPredicate.matchesTag(
-                                                                                new Vec3i(0, -1, 0),
-                                                                                zTags.Blocks.SUPPORT_CAVE_WHEAT_PLANT
-
-                                                                ))));
+                                                                BlockPredicate.matchesTag(new Vec3i(0, -1, 0),
+                                                                                zTags.Blocks.SUPPORT_CAVE_WHEAT_PLANT))));
         }
 
 }

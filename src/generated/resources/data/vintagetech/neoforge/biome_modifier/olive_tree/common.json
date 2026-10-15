@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#vintagetech:worldgen/olive_tree/common",
+  "features": "vintagetech:olive_tree/common",
+  "step": "vegetal_decoration"
+}

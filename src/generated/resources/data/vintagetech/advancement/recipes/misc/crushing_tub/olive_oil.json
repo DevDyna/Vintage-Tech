@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "vintagetech:crushing_tub/olive_oil"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "olives": {
+      "conditions": {
+        "items": [
+          {
+            "items": "vintagetech:olives"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "olives"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "vintagetech:crushing_tub/olive_oil"
+    ]
+  }
+}

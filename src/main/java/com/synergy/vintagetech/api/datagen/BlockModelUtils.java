@@ -65,8 +65,9 @@ public class BlockModelUtils {
                 return getGenericTexture("item/" + b);
         }
 
+        @Deprecated
         public static Material getGenericTexture(String b) {
-                return new Material(x.rl(MODULE_ID, b));
+                return x.material(MODULE_ID, b);
         }
 
         public static void simplePlain(BlockModelGenerators b, DeferredHolder<Block, ?> block, String prefix,
@@ -209,9 +210,9 @@ public class BlockModelUtils {
                                 TemplateCollection.SAW_TEMPLATE.create(
                                                 x.rl(MODULE_ID, "block/" + x.name(block) + "_off"),
                                                 new TextureMapping()
-                                                                .put(TemplateCollection.SAW, new Material(x.rl(
+                                                                .put(TemplateCollection.SAW, x.material(
                                                                                 MODULE_ID,
-                                                                                "block/saw/blade/off"))),
+                                                                                "block/saw/blade/off")),
                                                 b.modelOutput));
 
                 MultiVariant sawOn = BlockModelGenerators.plainVariant(
@@ -219,8 +220,8 @@ public class BlockModelUtils {
                                                 x.rl(MODULE_ID, "block/" + x.name(block) + "_on"),
                                                 new TextureMapping()
                                                                 .put(TemplateCollection.SAW,
-                                                                                new Material(x.rl(MODULE_ID,
-                                                                                                "block/saw/blade/on"))),
+                                                                                x.material(MODULE_ID,
+                                                                                                "block/saw/blade/on")),
                                                 b.modelOutput));
 
                 b.blockStateOutput.accept(
@@ -271,18 +272,18 @@ public class BlockModelUtils {
                                 TemplateCollection.MODIFIER_TEMPLATE.create(
                                                 x.rl(MODULE_ID, "block/" + x.name(block) + "_off"),
                                                 new TextureMapping()
-                                                                .put(TemplateCollection.FRAME, new Material(x.rl(
+                                                                .put(TemplateCollection.FRAME, x.material(
                                                                                 MODULE_ID,
-                                                                                "block/" + x.name(block) + "/off"))),
+                                                                                "block/" + x.name(block) + "/off")),
                                                 b.modelOutput));
 
                 MultiVariant on = BlockModelGenerators.plainVariant(
                                 TemplateCollection.MODIFIER_TEMPLATE.create(
                                                 x.rl(MODULE_ID, "block/" + x.name(block) + "_on"),
                                                 new TextureMapping()
-                                                                .put(TemplateCollection.FRAME, new Material(x.rl(
+                                                                .put(TemplateCollection.FRAME, x.material(
                                                                                 MODULE_ID,
-                                                                                "block/" + x.name(block) + "/on"))),
+                                                                                "block/" + x.name(block) + "/on")),
                                                 b.modelOutput));
 
                 b.blockStateOutput
@@ -316,38 +317,38 @@ public class BlockModelUtils {
                                 TemplateCollection.MODIFIER_TEMPLATE.create(
                                                 x.rl(MODULE_ID, "block/" + x.name(block) + "_off"),
                                                 new TextureMapping()
-                                                                .put(TemplateCollection.FRAME, new Material(x.rl(
+                                                                .put(TemplateCollection.FRAME, x.material(
                                                                                 MODULE_ID,
-                                                                                "block/" + x.name(block) + "/off"))),
+                                                                                "block/" + x.name(block) + "/off")),
                                                 b.modelOutput));
 
                 MultiVariant off_alt = BlockModelGenerators.plainVariant(
                                 TemplateCollection.MODIFIER_TEMPLATE.create(
                                                 x.rl(MODULE_ID, "block/" + x.name(block) + "_off_alt"),
                                                 new TextureMapping()
-                                                                .put(TemplateCollection.FRAME, new Material(x.rl(
+                                                                .put(TemplateCollection.FRAME, x.material(
                                                                                 MODULE_ID,
                                                                                 "block/" + x.name(block)
-                                                                                                + "/off_inverted"))),
+                                                                                                + "/off_inverted")),
                                                 b.modelOutput));
 
                 MultiVariant on = BlockModelGenerators.plainVariant(
                                 TemplateCollection.MODIFIER_TEMPLATE.create(
                                                 x.rl(MODULE_ID, "block/" + x.name(block) + "_on"),
                                                 new TextureMapping()
-                                                                .put(TemplateCollection.FRAME, new Material(x.rl(
+                                                                .put(TemplateCollection.FRAME, x.material(
                                                                                 MODULE_ID,
-                                                                                "block/" + x.name(block) + "/on"))),
+                                                                                "block/" + x.name(block) + "/on")),
                                                 b.modelOutput));
 
                 MultiVariant on_alt = BlockModelGenerators.plainVariant(
                                 TemplateCollection.MODIFIER_TEMPLATE.create(
                                                 x.rl(MODULE_ID, "block/" + x.name(block) + "_on_alt"),
                                                 new TextureMapping()
-                                                                .put(TemplateCollection.FRAME, new Material(x.rl(
+                                                                .put(TemplateCollection.FRAME, x.material(
                                                                                 MODULE_ID,
                                                                                 "block/" + x.name(block)
-                                                                                                + "/on_inverted"))),
+                                                                                                + "/on_inverted")),
                                                 b.modelOutput));
 
                 b.blockStateOutput
@@ -408,28 +409,28 @@ public class BlockModelUtils {
                                                         new TextureMapping()
                                                                         .put(
                                                                                         TextureSlot.SIDE,
-                                                                                        new Material(x.rl(
+                                                                                        x.material(
                                                                                                         MODULE_ID,
                                                                                                         "block/cheese/" + name
-                                                                                                                        + "/side")))
+                                                                                                                        + "/side"))
                                                                         .put(
                                                                                         TextureSlot.TOP,
-                                                                                        new Material(x.rl(
+                                                                                        x.material(
                                                                                                         MODULE_ID,
                                                                                                         "block/cheese/" + name
-                                                                                                                        + "/top")))
+                                                                                                                        + "/top"))
                                                                         .put(
                                                                                         TextureSlot.BOTTOM,
-                                                                                        new Material(x.rl(
+                                                                                        x.material(
                                                                                                         MODULE_ID,
                                                                                                         "block/cheese/" + name
-                                                                                                                        + "/bottom")))
+                                                                                                                        + "/bottom"))
                                                                         .put(
                                                                                         TextureSlot.INSIDE,
-                                                                                        new Material(x.rl(
+                                                                                        x.material(
                                                                                                         MODULE_ID,
                                                                                                         "block/cheese/" + name
-                                                                                                                        + "/inside"))),
+                                                                                                                        + "/inside")),
 
                                                         b.modelOutput));
 
@@ -490,29 +491,29 @@ public class BlockModelUtils {
                                                                 new TextureMapping()
                                                                                 .put(
                                                                                                 TextureSlot.SIDE,
-                                                                                                new Material(x.rl(
+                                                                                                x.material(
                                                                                                                 MODULE_ID,
                                                                                                                 "block/cheese/" + name
-                                                                                                                                + "/side")))
+                                                                                                                                + "/side"))
                                                                                 .put(
                                                                                                 TextureSlot.TOP,
-                                                                                                new Material(x.rl(
+                                                                                                x.material(
                                                                                                                 MODULE_ID,
                                                                                                                 "block/cheese/" + name
-                                                                                                                                + "/top")))
+                                                                                                                                + "/top"))
                                                                                 .put(
                                                                                                 TextureSlot.BOTTOM,
-                                                                                                new Material(x.rl(
+                                                                                                x.material(
                                                                                                                 MODULE_ID,
                                                                                                                 "block/cheese/" + name
-                                                                                                                                + "/bottom")))
+                                                                                                                                + "/bottom"))
                                                                                 .put(
                                                                                                 TextureSlot.INSIDE,
-                                                                                                new Material(x.rl(
+                                                                                                x.material(
                                                                                                                 MODULE_ID,
                                                                                                                 "block/cheese/" + name
                                                                                                                                 + "/inside/"
-                                                                                                                                + ageName))),
+                                                                                                                                + ageName)),
 
                                                                 b.modelOutput));
 
@@ -573,4 +574,17 @@ public class BlockModelUtils {
                                                                                 b.modelOutput)))));
 
         }
+
+        public static void createSalt(BlockModelGenerators b, Block block) {
+
+                b.blockStateOutput.accept(MultiVariantGenerator.dispatch(block)
+                                .with(PropertyDispatch.initial(BlockStateProperties.LAYERS).generate(v ->
+                                                 BlockModelGenerators.plainVariant(
+                                                        TemplateCollection.LAYERED_TEMPLATE.apply(v*2+"")
+                                                        .create(x.rl(MODULE_ID,"block/salt/"+v*2), new TextureMapping()
+                                                        .put(TextureSlot.TEXTURE, x.material(MODULE_ID,"block/salt")), b.modelOutput)       
+                                                ))));
+
+        }
+
 }

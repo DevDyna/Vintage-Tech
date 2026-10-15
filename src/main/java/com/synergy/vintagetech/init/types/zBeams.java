@@ -108,4 +108,12 @@ public class zBeams {
                         () -> zTrees.IRONWOOD.strippedLog().get(),
                         x.rl(MODULE_ID, "block/ironwood_log"),
                         x.rl(MODULE_ID, "block/stripped_ironwood_log"));
+
+        public static final BeamSet OLIVE = BeamFactory.register(
+                        "olive",
+                        WoodType.TREE,
+                        () -> zTrees.OLIVE.log().get(),
+                        () -> zTrees.OLIVE.strippedLog().get(),
+                        x.rl(MODULE_ID, "block/olive_log"),
+                        x.rl(MODULE_ID, "block/stripped_olive_log"));
 }

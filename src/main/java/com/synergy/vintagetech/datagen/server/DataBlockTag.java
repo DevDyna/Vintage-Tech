@@ -51,7 +51,8 @@ public class DataBlockTag extends BlockTagsProvider {
                 tag(BlockTags.MINEABLE_WITH_SHOVEL)
                                 .add(
                                                 zBlocks.MECHANICAL_FARMLAND.get(),
-                                                zBlocks.STICKY_FARMLAND.get());
+                                                zBlocks.STICKY_FARMLAND.get(),
+                                                zBlocks.SALT.get());
 
                 tag(BlockTags.MINEABLE_WITH_PICKAXE)
                                 .add(
@@ -197,6 +198,11 @@ public class DataBlockTag extends BlockTagsProvider {
                 tag(zTags.Blocks.DENY_STICKY_FARMLAND_BOOST).add();
 
                 tag(zTags.Blocks.DENY_STICKY_FARMLAND_BURN_ON_DEHYDRATATION).add();
+
+                tag(zTags.Blocks.SUPPORT_SALT_DEPOSIT)
+                                .addTag(BlockTags.SUBSTRATE_OVERWORLD)
+                                .addTag(Tags.Blocks.STONES)
+                                .addTag(Tags.Blocks.ORES);
 
         }
 

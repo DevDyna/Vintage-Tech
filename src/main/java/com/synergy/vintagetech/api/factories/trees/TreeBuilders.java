@@ -1,6 +1,7 @@
 package com.synergy.vintagetech.api.factories.trees;
 
 import java.util.Optional;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 import net.minecraft.resources.ResourceKey;
@@ -316,20 +317,16 @@ public class TreeBuilders {
     public static class WoodTypeBuilder {
 
         private final String id;
+        private final BlockSetType type;
 
-        private BlockSetType type;
         private SoundType sound = SoundType.WOOD;
         private SoundType hangingSound = SoundType.HANGING_SIGN;
         private SoundEvent gateClose = SoundEvents.FENCE_GATE_CLOSE;
         private SoundEvent gateOpen = SoundEvents.FENCE_GATE_OPEN;
 
-        private WoodTypeBuilder(String id) {
+        private WoodTypeBuilder(String id, BlockSetType type) {
             this.id = id;
-        }
-
-        public WoodTypeBuilder setType(BlockSetType v) {
-            this.type = v;
-            return this;
+            this.type = type;
         }
 
         public WoodTypeBuilder sound(SoundType v) {
@@ -359,38 +356,38 @@ public class TreeBuilders {
                             gateClose, gateOpen));
         }
 
-        public static WoodTypeBuilder of(String id) {
-            return new WoodTypeBuilder(id);
+        public static WoodTypeBuilder of(String id, BlockSetType type) {
+            return new WoodTypeBuilder(id, type);
         }
 
-        public final static Function<String, WoodTypeBuilder> SIMPLE = WoodTypeBuilder::of;
+        public final static BiFunction<String, BlockSetType, WoodTypeBuilder> SIMPLE = WoodTypeBuilder::new;
 
-        public static WoodTypeBuilder generic(String id) {
-            return of(id)
+        public static WoodTypeBuilder generic(String id, BlockSetType type) {
+            return of(id, type)
                     .sound(SoundType.WOOD)
                     .hangingSignSound(SoundType.HANGING_SIGN)
                     .fenceGateClose(SoundEvents.FENCE_GATE_CLOSE)
                     .fenceGateOpen(SoundEvents.FENCE_GATE_OPEN);
         }
 
-        public static WoodTypeBuilder cherry(String id) {
-            return generic(id)
+        public static WoodTypeBuilder cherry(String id, BlockSetType type) {
+            return generic(id, type)
                     .sound(SoundType.CHERRY_WOOD)
                     .hangingSignSound(SoundType.CHERRY_WOOD_HANGING_SIGN)
                     .fenceGateClose(SoundEvents.CHERRY_WOOD_FENCE_GATE_CLOSE)
                     .fenceGateOpen(SoundEvents.CHERRY_WOOD_FENCE_GATE_OPEN);
         }
 
-        public static WoodTypeBuilder nether(String id) {
-            return generic(id)
+        public static WoodTypeBuilder nether(String id, BlockSetType type) {
+            return generic(id, type)
                     .sound(SoundType.NETHER_WOOD)
                     .hangingSignSound(SoundType.NETHER_WOOD_HANGING_SIGN)
                     .fenceGateClose(SoundEvents.NETHER_WOOD_FENCE_GATE_CLOSE)
                     .fenceGateOpen(SoundEvents.NETHER_WOOD_FENCE_GATE_OPEN);
         }
 
-        public static WoodTypeBuilder bamboo(String id) {
-            return generic(id)
+        public static WoodTypeBuilder bamboo(String id, BlockSetType type) {
+            return generic(id, type)
                     .sound(SoundType.BAMBOO_WOOD)
                     .hangingSignSound(SoundType.BAMBOO_WOOD_HANGING_SIGN)
                     .fenceGateClose(SoundEvents.BAMBOO_WOOD_FENCE_GATE_CLOSE)

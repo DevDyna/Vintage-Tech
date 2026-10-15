@@ -72,6 +72,22 @@
       ],
       "chance": 0.3
     },
+    "vintagetech:olive_leaves": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "chance": 0.3
+    },
+    "vintagetech:olive_sapling": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "chance": 0.3
+    },
     "vintagetech:soybeans": {
       "neoforge:conditions": [
         {

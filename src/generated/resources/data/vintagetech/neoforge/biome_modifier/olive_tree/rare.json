@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#vintagetech:worldgen/olive_tree/rare",
+  "features": "vintagetech:olive_tree/rare",
+  "step": "vegetal_decoration"
+}

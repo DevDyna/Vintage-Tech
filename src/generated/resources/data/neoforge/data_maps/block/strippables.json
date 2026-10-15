@@ -168,6 +168,38 @@
       ],
       "stripped_block": "vintagetech:stripped_oak_wood_beam"
     },
+    "vintagetech:olive_beam": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "stripped_block": "vintagetech:stripped_olive_beam"
+    },
+    "vintagetech:olive_log": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "stripped_block": "vintagetech:stripped_olive_log"
+    },
+    "vintagetech:olive_wood": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "stripped_block": "vintagetech:stripped_olive_wood"
+    },
+    "vintagetech:olive_wood_beam": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "stripped_block": "vintagetech:stripped_olive_wood_beam"
+    },
     "vintagetech:pale_oak_beam": {
       "neoforge:conditions": [
         {

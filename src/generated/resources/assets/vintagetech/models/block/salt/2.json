@@ -1,0 +1,6 @@
+{
+  "parent": "vintagetech:block/template/layered/2",
+  "textures": {
+    "texture": "vintagetech:block/salt"
+  }
+}
