@@ -7,6 +7,7 @@ import java.util.Random;
 import com.devdyna.cakesticklib.api.client.utils.FluidRenderHelper;
 import com.devdyna.cakesticklib.api.client.utils.SimpleItemRender;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.synergy.vintagetech.api.SimpleBasinRenderState;
 import com.synergy.vintagetech.init.types.zTags;
 
 import net.minecraft.client.Minecraft;
@@ -22,7 +23,7 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.phys.Vec3;
 
 public class CrushingTubRender<BE extends CrushingTubBE>
-        implements BlockEntityRenderer<BE, CrushingTubRenderState> {
+        implements BlockEntityRenderer<BE, SimpleBasinRenderState> {
 
     protected final ItemModelResolver resolver;
     private List<Integer> seeds = new ArrayList<Integer>();
@@ -35,12 +36,12 @@ public class CrushingTubRender<BE extends CrushingTubBE>
     }
 
     @Override
-    public CrushingTubRenderState createRenderState() {
-        return new CrushingTubRenderState();
+    public SimpleBasinRenderState createRenderState() {
+        return new SimpleBasinRenderState();
     }
 
     @Override
-    public void extractRenderState(BE be, CrushingTubRenderState state, float partialTicks,
+    public void extractRenderState(BE be, SimpleBasinRenderState state, float partialTicks,
             Vec3 cameraPosition,
             ModelFeatureRenderer.CrumblingOverlay overlay) {
 
@@ -61,7 +62,7 @@ public class CrushingTubRender<BE extends CrushingTubBE>
     }
 
     @Override
-    public void submit(CrushingTubRenderState state, PoseStack stack,
+    public void submit(SimpleBasinRenderState state, PoseStack stack,
             SubmitNodeCollector collector,
             CameraRenderState camera) {
 
@@ -96,7 +97,7 @@ public class CrushingTubRender<BE extends CrushingTubBE>
             FluidRenderHelper.of()
                     .textureAndColor(fluid)
                     .offset(0f, 0.15f, 0f)
-                    .amount((fluid.amount() / 1000 * 0.15f) / 8)
+                    .amount(fluid.amount() * 0.15f / 8000)
                     .build(stack, collector, LightCoordsUtil.FULL_BRIGHT);
 
     }
