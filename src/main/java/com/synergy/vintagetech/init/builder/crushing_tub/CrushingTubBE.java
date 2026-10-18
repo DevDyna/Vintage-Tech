@@ -33,8 +33,6 @@ import net.neoforged.neoforge.transfer.transaction.Transaction;
 public class CrushingTubBE extends BlockEntity
         implements NoGuiStorage, ItemStorageBlock, SimpleFluidStorage, DropCollector, TreeTapHandler {
 
-    public static final int FLUID_TANK = 0;
-
     public CrushingTubBE(BlockPos pos, BlockState blockState) {
         super(zBlockEntities.CRUSHING_TUB.get(), pos, blockState);
     }
@@ -103,9 +101,9 @@ public class CrushingTubBE extends BlockEntity
                 return;
 
         if (recipe.getFluid() != null)
-            if (!getFluidStorage().getResource(FLUID_TANK).isEmpty())
-                if (!recipe.getFluid().is(getFluidStorage().getResource(FLUID_TANK).getFluid())
-                        || getFluidStorage().getAmountAsInt(FLUID_TANK)
+            if (!getFluidStorage().getResource(0).isEmpty())
+                if (!recipe.getFluid().is(getFluidStorage().getResource(0).getFluid())
+                        || getFluidStorage().getAmountAsInt(0)
                                 + recipe.getFluid().amount() > getTankCapacity())
                     return;
 
@@ -113,7 +111,7 @@ public class CrushingTubBE extends BlockEntity
 
         try (var tx = Transaction.openRoot()) {
             if (recipe.getFluid() != null)
-                getFluidStorage().insert(FLUID_TANK, FluidResource.of(recipe.getFluid()), recipe.getFluid().amount(),
+                getFluidStorage().insert(0, FluidResource.of(recipe.getFluid()), recipe.getFluid().amount(),
                         tx);
             getItemStorage().extract(0, ItemResource.of(item), 1, tx);
 
