@@ -6,6 +6,7 @@ import com.devdyna.cakesticklib.api.RandomUtil;
 import com.devdyna.cakesticklib.api.aspect.logic.*;
 import com.devdyna.cakesticklib.api.primitive.Ticker;
 import com.devdyna.cakesticklib.api.recipe.recipeInput.FluidInput;
+import com.devdyna.cakesticklib.api.templates.SynchedBlockEntity;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
 import com.synergy.vintagetech.api.factories.handlers.TreeTapHandler;
 import com.synergy.vintagetech.init.builder.evaporation_basin.recipe.EvaporationBasinRecipe;
@@ -17,7 +18,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import net.neoforged.neoforge.transfer.fluid.FluidStacksResourceHandler;
@@ -25,8 +25,9 @@ import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 
-public class EvaporationBasinBE extends BlockEntity
-        implements NoGuiStorage, ItemStorageBlock, SimpleFluidStorage, TimeredRecipe, EnvironmentModifier , TreeTapHandler , Tickable {
+public class EvaporationBasinBE extends SynchedBlockEntity
+        implements NoGuiStorage, ItemStorageBlock, SimpleFluidStorage, TimeredRecipe, EnvironmentModifier,
+        TreeTapHandler, Tickable {
 
     public EvaporationBasinBE(BlockPos pos, BlockState blockState) {
         super(zBlockEntities.EVAPORATION_BASIN.get(), pos, blockState);
@@ -57,17 +58,17 @@ public class EvaporationBasinBE extends BlockEntity
     @Override
     public void tickBoth() {
 
-        if (getFluidStorage() == null) 
+        if (getFluidStorage() == null)
             return;
-        
 
         if (getFluidStorage().size() <= 0)
             return;
 
-        if (getAsStack(0).isEmpty()) 
+        if (getAsStack(0).isEmpty())
             return;
-        
 
+        if (level.isClientSide())
+            return;
 
         Optional<RecipeHolder<EvaporationBasinRecipe>> r = level.getServer().getRecipeManager()
                 .getRecipeFor(zRecipeTypes.EVAPORATION_BASIN.getType(),
@@ -103,7 +104,6 @@ public class EvaporationBasinBE extends BlockEntity
             ticker = null;
 
         }
-
 
     }
 
