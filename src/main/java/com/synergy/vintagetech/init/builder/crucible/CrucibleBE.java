@@ -9,7 +9,7 @@ import com.devdyna.cakesticklib.api.aspect.logic.DropCollector;
 import com.devdyna.cakesticklib.api.aspect.logic.ItemStorageBlock;
 import com.devdyna.cakesticklib.api.aspect.logic.NoGuiStorage;
 import com.devdyna.cakesticklib.api.aspect.logic.SimpleFluidStorage;
-import com.devdyna.cakesticklib.api.templates.TickingBE;
+import com.devdyna.cakesticklib.api.aspect.logic.Tickable;
 import com.devdyna.cakesticklib.api.primitive.Ticker;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
 
@@ -25,6 +25,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
@@ -34,8 +35,8 @@ import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 
-public class CrucibleBE extends TickingBE
-        implements ItemStorageBlock, NoGuiStorage, SimpleFluidStorage, DropCollector, TreeTapHandler {
+public class CrucibleBE extends BlockEntity
+        implements ItemStorageBlock, NoGuiStorage, SimpleFluidStorage, DropCollector, TreeTapHandler , Tickable {
 
     public static final List<Integer> ITEM_SLOTS = List.of(0, 1, 2, 3, 4, 5, 6, 7);
 

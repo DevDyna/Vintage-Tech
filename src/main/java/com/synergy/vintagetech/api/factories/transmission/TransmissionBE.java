@@ -1,6 +1,6 @@
 package com.synergy.vintagetech.api.factories.transmission;
 
-import com.devdyna.cakesticklib.api.templates.TickingBE;
+import com.devdyna.cakesticklib.api.aspect.logic.Tickable;
 import com.synergy.vintagetech.api.factories.handlers.AxleHandler;
 import com.synergy.vintagetech.init.types.zBlockEntities;
 
@@ -9,7 +9,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class TransmissionBE extends TickingBE {
+public class TransmissionBE extends BlockEntity implements Tickable {
 
     public TransmissionBE(BlockPos pos, BlockState state) {
         super(zBlockEntities.TRANSMISSION.get(), pos, state);

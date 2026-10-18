@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.jspecify.annotations.Nullable;
 
+import com.devdyna.cakesticklib.api.aspect.logic.Tickable;
 import com.synergy.vintagetech.api.factories.MonoDirectionalAxleBlock;
 import com.synergy.vintagetech.api.factories.handlers.RotableAxleBlock;
 import com.synergy.vintagetech.init.types.zTags;
@@ -62,7 +63,7 @@ public class SawBlock extends MonoDirectionalAxleBlock implements RotableAxleBlo
     @Override
     public Map<Direction, Boolean> getAxis(BlockState state) {
         var dir = state.getValue(FACING);
-        
+
         if (state.getValue(FACING).getAxis().isHorizontal())
             dir = dir.getOpposite();
 
@@ -98,21 +99,7 @@ public class SawBlock extends MonoDirectionalAxleBlock implements RotableAxleBlo
 
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level l, BlockState s, BlockEntityType<T> ty) {
-        return (lvl, pos, b, t) -> {
-            if (t instanceof SawBE be) {
-
-                if (l == null)
-                    return;
-
-                be.tickBoth();
-                if (l.isClientSide())
-                    be.tickClient();
-                else
-                    be.tickServer();
-
-            }
-
-        };
+        return Tickable::compute;
     }
 
 }

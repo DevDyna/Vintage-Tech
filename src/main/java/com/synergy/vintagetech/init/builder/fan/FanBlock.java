@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.jspecify.annotations.Nullable;
 
+import com.devdyna.cakesticklib.api.aspect.logic.Tickable;
 import com.synergy.vintagetech.api.factories.MonoDirectionalAxleBlock;
 import com.synergy.vintagetech.api.factories.handlers.AxleHandler;
 import com.synergy.vintagetech.api.factories.handlers.RotableAxleBlock;
@@ -94,21 +95,7 @@ public class FanBlock extends MonoDirectionalAxleBlock implements RotableAxleBlo
 
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level l, BlockState s, BlockEntityType<T> ty) {
-        return (lvl, pos, b, t) -> {
-            if (t instanceof FanBE be) {
-
-                if (l == null)
-                    return;
-
-                be.tickBoth();
-                if (l.isClientSide())
-                    be.tickClient();
-                else
-                    be.tickServer();
-
-            }
-
-        };
+        return Tickable::compute;
     }
 
 }

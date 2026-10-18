@@ -3,7 +3,7 @@ package com.synergy.vintagetech.init.builder.treetap;
 import java.util.Optional;
 
 import com.devdyna.cakesticklib.api.RandomUtil;
-import com.devdyna.cakesticklib.api.templates.TickingBE;
+import com.devdyna.cakesticklib.api.aspect.logic.Tickable;
 import com.synergy.vintagetech.api.factories.handlers.TreeTapHandler;
 import com.synergy.vintagetech.api.recipeinput.TreeTapInput;
 import com.synergy.vintagetech.init.builder.treetap.recipe.TreeTapRecipe;
@@ -13,11 +13,12 @@ import com.synergy.vintagetech.init.types.zTags;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.transfer.ResourceHandlerUtil;
 import net.neoforged.neoforge.transfer.fluid.FluidResource;
 
-public class TreeTapBE extends TickingBE {
+public class TreeTapBE extends BlockEntity implements Tickable {
 
     public TreeTapBE(BlockPos arg1, BlockState arg2) {
         super(zBlockEntities.TREE_TAP.get(), arg1, arg2);
