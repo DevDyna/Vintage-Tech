@@ -10,11 +10,13 @@ import com.devdyna.cakesticklib.api.aspect.logic.ItemStorageBlock;
 import com.devdyna.cakesticklib.api.aspect.logic.NoGuiStorage;
 import com.devdyna.cakesticklib.api.aspect.logic.SimpleFluidStorage;
 import com.devdyna.cakesticklib.api.recipe.recipeInput.ItemInput;
+import com.devdyna.cakesticklib.api.templates.SynchedBlockEntity;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
 import com.synergy.vintagetech.init.types.zBlockEntities;
 import com.synergy.vintagetech.init.types.zItems;
 import com.synergy.vintagetech.init.types.zRecipeTypes;
+import com.synergy.vintagetech.init.types.zTags;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
@@ -22,7 +24,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import net.neoforged.neoforge.transfer.fluid.FluidStacksResourceHandler;
@@ -30,7 +31,7 @@ import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 
-public class CrushingTubBE extends BlockEntity
+public class CrushingTubBE extends SynchedBlockEntity
         implements NoGuiStorage, ItemStorageBlock, SimpleFluidStorage, DropCollector, TreeTapHandler {
 
     public CrushingTubBE(BlockPos pos, BlockState blockState) {
@@ -70,6 +71,7 @@ public class CrushingTubBE extends BlockEntity
                     .extract(0, resource, getItemStorage().getAmountAsInt(0), tx);
             tx.commit();
         }
+
         return resource.toStack(extracted);
     }
 
@@ -81,10 +83,18 @@ public class CrushingTubBE extends BlockEntity
         if (getItemStorage() == null)
             return;
 
-
         var item = getStackInSlot(0);
 
         if (item.isEmpty())
+            return;
+
+        // TODO advancment trigger?
+        if (item.is(zTags.Items.UNSUSPICIOUS_ITEMS))
+            level.playSound(null, getBlockPos(),
+                    SoundEvents.NOTE_BLOCK_TRUMPET_OXIDIZED.value(),
+                    SoundSource.BLOCKS, 1f, (float) RandomUtil.between(level, 1f, 2f));
+
+        if (level.isClientSide())
             return;
 
         Optional<RecipeHolder<CrushingTubRecipe>> r = level.getServer().getRecipeManager()

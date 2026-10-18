@@ -166,6 +166,9 @@ public class zTags {
                 public static final TagKey<Item> STICKY_FARMLAND_SCRAPPABLE = RegistryUtils.tagItem(MODULE_ID,
                                 "sticky_farmland_scrappable");
 
+                public static final TagKey<Item> UNSUSPICIOUS_ITEMS = RegistryUtils.tagItem(MODULE_ID,
+                                "unsuspicious_items");
+
         }
 
         public class Biomes {

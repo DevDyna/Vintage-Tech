@@ -4,6 +4,7 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 
 import java.util.concurrent.CompletableFuture;
 
+import com.devdyna.cakesticklib.setup.registry.LibItems;
 import com.devdyna.cakesticklib.setup.registry.LibTags;
 import com.synergy.vintagetech.api.factories.beams.BeamFactory;
 import com.synergy.vintagetech.api.factories.trees.TreeFactory;
@@ -97,6 +98,10 @@ public class DataItemTag extends ItemTagsProvider {
                 tag(zTags.Items.STICKY_GOO).add(zItems.AMBER.get(), zItems.SULFUR_GOO.get());
 
                 tag(zTags.Items.STICKY_FARMLAND_SCRAPPABLE).addTag(ItemTags.AXES);
+
+                tag(zTags.Items.UNSUSPICIOUS_ITEMS)
+                                .add(LibItems.CAKE_STICK.get())
+                                .addTag(Tags.Items.MUSIC_DISCS);
 
         }
 
