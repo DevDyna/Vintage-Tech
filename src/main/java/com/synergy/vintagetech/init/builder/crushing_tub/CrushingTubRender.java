@@ -7,7 +7,7 @@ import java.util.Random;
 import com.devdyna.cakesticklib.api.client.utils.FluidRenderHelper;
 import com.devdyna.cakesticklib.api.client.utils.SimpleItemRender;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.synergy.vintagetech.api.SimpleBasinRenderState;
+import com.synergy.vintagetech.api.RenderStates;
 import com.synergy.vintagetech.init.types.zTags;
 
 import net.minecraft.client.Minecraft;
@@ -23,7 +23,7 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.phys.Vec3;
 
 public class CrushingTubRender<BE extends CrushingTubBE>
-        implements BlockEntityRenderer<BE, SimpleBasinRenderState> {
+        implements BlockEntityRenderer<BE, RenderStates.SimpleBasin> {
 
     protected final ItemModelResolver resolver;
     private List<Integer> seeds = new ArrayList<Integer>();
@@ -36,12 +36,12 @@ public class CrushingTubRender<BE extends CrushingTubBE>
     }
 
     @Override
-    public SimpleBasinRenderState createRenderState() {
-        return new SimpleBasinRenderState();
+    public RenderStates.SimpleBasin createRenderState() {
+        return new RenderStates.SimpleBasin();
     }
 
     @Override
-    public void extractRenderState(BE be, SimpleBasinRenderState state, float partialTicks,
+    public void extractRenderState(BE be, RenderStates.SimpleBasin state, float partialTicks,
             Vec3 cameraPosition,
             ModelFeatureRenderer.CrumblingOverlay overlay) {
 
@@ -62,7 +62,7 @@ public class CrushingTubRender<BE extends CrushingTubBE>
     }
 
     @Override
-    public void submit(SimpleBasinRenderState state, PoseStack stack,
+    public void submit(RenderStates.SimpleBasin state, PoseStack stack,
             SubmitNodeCollector collector,
             CameraRenderState camera) {
 
