@@ -103,18 +103,6 @@ public class DryingRackBE extends SynchedBlockEntity
     }
 
     @Override
-    protected void saveAdditional(ValueOutput output) {
-        getItemStorage().serialize(output);
-        super.saveAdditional(output);
-    }
-
-    @Override
-    protected void loadAdditional(ValueInput input) {
-        getItemStorage().deserialize(input);
-        super.loadAdditional(input);
-    }
-
-    @Override
     public Ticker getTicker() {
         return ticker;
     }
