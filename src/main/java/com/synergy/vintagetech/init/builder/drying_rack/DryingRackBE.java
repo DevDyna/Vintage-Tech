@@ -81,16 +81,16 @@ public class DryingRackBE extends SynchedBlockEntity
             ticker = Ticker.of(calcTicks(recipe.getTicks()));
 
         if (ticker.commit()) {
+            // maybe useless but could be useful *maybe?*
             try (var tx = Transaction.openRoot()) {
-                getItemStorage().extract(0, ItemResource.of(getStackInSlot(0)), getStackInSlot(0).count(), tx);
-                getItemStorage().insert(0, ItemResource.of(recipe.getOutput()),
-                        recipe.getOutput().count() * getStackInSlot(0).getCount(), tx);
+                getItemStorage().set(0, ItemResource.of(recipe.getOutput()),
+                        recipe.getOutput().count() * getStackInSlot(0).getCount());
+
                 tx.commit();
             }
 
             ticker = null;
         }
-
 
     }
 
