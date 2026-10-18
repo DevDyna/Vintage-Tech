@@ -4,11 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import com.devdyna.cakesticklib.api.RandomUtil;
-import com.devdyna.cakesticklib.api.aspect.logic.ItemStorageBlock;
 import com.devdyna.cakesticklib.api.aspect.logic.*;
-import com.devdyna.cakesticklib.api.templates.TickingBE;
 import com.devdyna.cakesticklib.api.primitive.Ticker;
 import com.devdyna.cakesticklib.api.recipe.recipeInput.ItemInput;
+import com.devdyna.cakesticklib.api.templates.SynchedBlockEntity;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
 
 import com.synergy.vintagetech.init.builder.drying_rack.recipe.DryingRackRecipe;
@@ -21,21 +20,12 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.storage.ValueInput;
-import net.minecraft.world.level.storage.ValueOutput;
 import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 
-public class DryingRackBE extends TickingBE
-        implements NoGuiStorage, ItemStorageBlock, TimeredRecipe, EnvironmentModifier {
-
-    // private BlockCapabilityCache<IItemHandler, Direction> cache;
-
-    // public DryingRackBE(BlockEntityType<?> type, BlockPos pos, BlockState
-    // blockState) {
-    // super(type, pos, blockState);
-    // }
+public class DryingRackBE extends SynchedBlockEntity
+        implements NoGuiStorage, ItemStorageBlock, TimeredRecipe, EnvironmentModifier, Tickable {
 
     public DryingRackBE(BlockPos pos, BlockState blockState) {
         super(zBlockEntities.DRYING_RACK.get(), pos, blockState);
@@ -51,28 +41,26 @@ public class DryingRackBE extends TickingBE
         return 1;
     }
 
-
     public ItemStack insertItem(ItemStack stack) {
         return simpleInsertItem(stack);
     }
 
-    
-  
     public ItemStack extractItem() {
         return simpleExtractItemByIndex(0);
     }
-    
 
     private Ticker ticker = null;
 
     @Override
-    public void tickServer() {
+    public void tickBoth() {
 
         if (getItemStorage() == null) {
             fail();
             return;
         }
 
+        if (level.isClientSide())
+            return;
 
         Optional<RecipeHolder<DryingRackRecipe>> r = level.getServer().getRecipeManager()
                 .getRecipeFor(zRecipeTypes.DRYING_RACK.getType(),

@@ -12,6 +12,7 @@ import com.synergy.vintagetech.client.particles.fan.AirFlowParticleProvider;
 import com.synergy.vintagetech.client.particles.sulfur.SulfurGooProvider;
 import com.synergy.vintagetech.init.builder.centrifuge.CentrifugeRenderer;
 import com.synergy.vintagetech.init.builder.crushing_tub.CrushingTubRender;
+import com.synergy.vintagetech.init.builder.drying_rack.DryingRackRender;
 import com.synergy.vintagetech.init.builder.evaporation_basin.EvaporationBasinRender;
 import com.synergy.vintagetech.init.builder.fan.FanRenderer;
 import com.synergy.vintagetech.init.builder.millstone.MillstoneRenderer;
@@ -108,6 +109,10 @@ public class Client {
                 event.registerBlockEntityRenderer(
                                 zBlockEntities.EVAPORATION_BASIN.get(),
                                 EvaporationBasinRender::new);
+
+                event.registerBlockEntityRenderer(
+                                zBlockEntities.DRYING_RACK.get(),
+                                DryingRackRender::new);
 
         }
 
