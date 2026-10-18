@@ -5,7 +5,7 @@ import java.util.Random;
 import com.devdyna.cakesticklib.api.client.utils.FluidRenderHelper;
 import com.devdyna.cakesticklib.api.client.utils.SimpleItemRender;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.synergy.vintagetech.api.SimpleBasinRenderState;
+import com.synergy.vintagetech.api.RenderStates;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
@@ -17,7 +17,7 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.phys.Vec3;
 
 public class EvaporationBasinRender<BE extends EvaporationBasinBE>
-        implements BlockEntityRenderer<BE, SimpleBasinRenderState> {
+        implements BlockEntityRenderer<BE, RenderStates.SimpleBasin> {
 
     protected final ItemModelResolver resolver;
     private int seed;
@@ -29,12 +29,12 @@ public class EvaporationBasinRender<BE extends EvaporationBasinBE>
     }
 
     @Override
-    public SimpleBasinRenderState createRenderState() {
-        return new SimpleBasinRenderState();
+    public RenderStates.SimpleBasin createRenderState() {
+        return new RenderStates.SimpleBasin();
     }
 
     @Override
-    public void extractRenderState(BE be, SimpleBasinRenderState state, float partialTicks,
+    public void extractRenderState(BE be, RenderStates.SimpleBasin state, float partialTicks,
             Vec3 cameraPosition,
             ModelFeatureRenderer.CrumblingOverlay overlay) {
 
@@ -55,7 +55,7 @@ public class EvaporationBasinRender<BE extends EvaporationBasinBE>
     }
 
     @Override
-    public void submit(SimpleBasinRenderState state, PoseStack stack,
+    public void submit(RenderStates.SimpleBasin state, PoseStack stack,
             SubmitNodeCollector collector,
             CameraRenderState camera) {
 
@@ -64,7 +64,7 @@ public class EvaporationBasinRender<BE extends EvaporationBasinBE>
 
         if (!item.isEmpty())
             SimpleItemRender.of()
-                    .rotateYN(seed)
+                    .rotateYN(seed * state.blockPos.asLong())
                     .rotateXP(90)
                     .move(0.5, 0.15, 0.5)
                     .scale(0.75f, 0.75f, 0.75f)
