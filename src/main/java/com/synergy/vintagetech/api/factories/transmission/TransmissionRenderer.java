@@ -6,6 +6,7 @@ import javax.annotation.Nullable;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
+import com.synergy.vintagetech.api.RenderStates.TransmissionRenderState;
 import com.synergy.vintagetech.api.factories.handlers.AxleHandler;
 import com.synergy.vintagetech.init.types.zBlocks;
 
