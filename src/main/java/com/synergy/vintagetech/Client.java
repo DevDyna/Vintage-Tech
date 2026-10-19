@@ -11,6 +11,7 @@ import com.synergy.vintagetech.api.factories.transmission.TransmissionRenderer;
 import com.synergy.vintagetech.client.particles.fan.AirFlowParticleProvider;
 import com.synergy.vintagetech.client.particles.sulfur.SulfurGooProvider;
 import com.synergy.vintagetech.init.builder.centrifuge.CentrifugeRenderer;
+import com.synergy.vintagetech.init.builder.crucible.CrucibleRender;
 import com.synergy.vintagetech.init.builder.crushing_tub.CrushingTubRender;
 import com.synergy.vintagetech.init.builder.drying_rack.DryingRackRender;
 import com.synergy.vintagetech.init.builder.evaporation_basin.EvaporationBasinRender;
@@ -114,6 +115,10 @@ public class Client {
                                 zBlockEntities.DRYING_RACK.get(),
                                 DryingRackRender::new);
 
+                event.registerBlockEntityRenderer(
+                                zBlockEntities.CRUCIBLE.get(),
+                                CrucibleRender::new);
+
         }
 
         @SubscribeEvent
@@ -125,6 +130,7 @@ public class Client {
                 event.registerSpriteSet(
                                 zParticles.SULFUR_PARTICLES.get(),
                                 SulfurGooProvider::new);
+
         }
 
         @SubscribeEvent
@@ -164,17 +170,16 @@ public class Client {
         @SubscribeEvent
         public static void registerBlockColors(RegisterColorHandlersEvent.BlockTintSources event) {
 
-                event.register(List.of(BlockTintSources.foliage()), 
-                zTrees.IRONWOOD.leaves().get(),
-                zTrees.OLIVE.leaves().get()
-                );
+                event.register(List.of(BlockTintSources.foliage()),
+                                zTrees.IRONWOOD.leaves().get(),
+                                zTrees.OLIVE.leaves().get());
 
         }
 
         // @SubscribeEvent
-        // public static void registerItemColor(RegisterColorHandlersEvent.ItemTintSources event) {
+        // public static void
+        // registerItemColor(RegisterColorHandlersEvent.ItemTintSources event) {
 
-        
         // }
 
         // Recipe collector client-side

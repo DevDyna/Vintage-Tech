@@ -5,15 +5,12 @@ import java.util.List;
 import java.util.Optional;
 
 import com.devdyna.cakesticklib.api.RandomUtil;
-import com.devdyna.cakesticklib.api.aspect.logic.DropCollector;
-import com.devdyna.cakesticklib.api.aspect.logic.ItemStorageBlock;
-import com.devdyna.cakesticklib.api.aspect.logic.NoGuiStorage;
-import com.devdyna.cakesticklib.api.aspect.logic.SimpleFluidStorage;
-import com.devdyna.cakesticklib.api.aspect.logic.Tickable;
+import com.devdyna.cakesticklib.api.aspect.logic.*;
 import com.devdyna.cakesticklib.api.primitive.Ticker;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
-
 import com.devdyna.cakesticklib.api.recipe.recipeOutput.ChanceOutput;
+import com.devdyna.cakesticklib.api.templates.SynchedBlockEntity;
+import com.synergy.vintagetech.api.TickerRecipe;
 import com.synergy.vintagetech.api.factories.handlers.TreeTapHandler;
 import com.synergy.vintagetech.api.recipeinput.CrucibleInput;
 import com.synergy.vintagetech.init.builder.crucible.recipe.CrucibleRecipe;
@@ -25,22 +22,22 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-
-import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import net.neoforged.neoforge.transfer.fluid.FluidStacksResourceHandler;
 import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 
-public class CrucibleBE extends BlockEntity
-        implements ItemStorageBlock, NoGuiStorage, SimpleFluidStorage, DropCollector, TreeTapHandler , Tickable {
+public class CrucibleBE extends SynchedBlockEntity
+        implements ItemStorageBlock, NoGuiStorage, SimpleFluidStorage, DropCollector, TreeTapHandler, Tickable,
+        TickerRecipe {
 
     public static final List<Integer> ITEM_SLOTS = List.of(0, 1, 2, 3, 4, 5, 6, 7);
 
     public static final int FLUID_TANK = 0;
+
+    private int multiplier = 1;
 
     public CrucibleBE(BlockPos pos, BlockState state) {
         super(zBlockEntities.CRUCIBLE.get(), pos, state);
@@ -68,7 +65,7 @@ public class CrucibleBE extends BlockEntity
     private Ticker ticker;
 
     @Override
-    public void tickServer() {
+    public void tickBoth() {
 
         if (getFluidStorage() == null)
             return;
@@ -78,8 +75,11 @@ public class CrucibleBE extends BlockEntity
 
         var fluid = getAsStack(FLUID_TANK);
 
-        if (fluid.isEmpty())
+        if (fluid.isEmpty()) {
+            multiplier = 1;
+            ticker = null;
             return;
+        }
 
         if (getItemStorage() == null)
             return;
@@ -100,18 +100,28 @@ public class CrucibleBE extends BlockEntity
             }
         }
 
-        if (items.isEmpty())
+        if (items.isEmpty()) {
+            multiplier = 1;
+            ticker = null;
+            return;
+        }
+
+        if (level.isClientSide())
             return;
 
         Optional<RecipeHolder<CrucibleRecipe>> r = level.getServer().getRecipeManager()
                 .getRecipeFor(zRecipeTypes.CRUCIBLE.getType(), new CrucibleInput(items, fluid), level);
 
-        if (r.isEmpty())
+        if (r.isEmpty()) {
+            multiplier = 1;
+            ticker = null;
+            update();
             return;
+        }
 
         var recipe = r.get().value();
 
-        var multiplier = fluid.amount() / recipe.getInputFluid().amount();
+        multiplier = fluid.amount() / recipe.getInputFluid().amount();
 
         for (var ingredient : recipe.getItemInputs()) {
 
@@ -125,6 +135,8 @@ public class CrucibleBE extends BlockEntity
                     multiplier,
                     count / ingredient.count());
         }
+
+        update();
 
         if (multiplier <= 0)
             return;
@@ -159,7 +171,7 @@ public class CrucibleBE extends BlockEntity
 
         try (var tx = Transaction.openRoot()) {
 
-            for (SizedIngredient ingredient : recipe.getItemInputs()) {
+            for (var ingredient : recipe.getItemInputs()) {
 
                 int needed = ingredient.count() * multiplier;
 
@@ -258,4 +270,15 @@ public class CrucibleBE extends BlockEntity
     public int getTanks() {
         return 1;
     }
+
+    @Override
+    public Ticker getTicker() {
+        return ticker;
+    }
+
+    @Override
+    public float getMultiplier() {
+        return 1.0f / multiplier;
+    }
+
 }
