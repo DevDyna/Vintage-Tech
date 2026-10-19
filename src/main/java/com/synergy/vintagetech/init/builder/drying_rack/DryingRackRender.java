@@ -35,16 +35,17 @@ public class DryingRackRender<BE extends DryingRackBE>
 
         BlockEntityRenderState.extractBase(be, state, overlay);
 
-        var storage = ((DryingRackBE) be).getItemStorage();
+        var storage =  be.getItemStorage();
+        if (storage != null && storage.getResource(0) != null) {
+            var item = storage.getResource(0).toStack(storage.getAmountAsInt(0));
 
-        var item = storage.getResource(0).toStack(storage.getAmountAsInt(0));
+            state.item = item;
 
-        state.item = item;
+            state.dir = be.getBlockState().getValue(DryingRackBlock.FACING);
 
-        state.dir = be.getBlockState().getValue(DryingRackBlock.FACING);
-
-        resolver.updateForTopItem(state.render, item, ItemDisplayContext.GROUND,
-                be.getLevel(), null, 0);
+            resolver.updateForTopItem(state.render, item, ItemDisplayContext.GROUND,
+                    be.getLevel(), null, 0);
+        }
 
     }
 
