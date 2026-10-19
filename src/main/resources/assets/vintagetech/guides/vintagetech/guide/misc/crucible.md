@@ -18,7 +18,7 @@ Require to be placed over a <ItemLink id="minecraft:campfire"/> to work
 
 It has 8 slots
 
-Can process multiple recipes at same time
+Can process multiple recipes at same time at a max of 16x
 
 Can recieve fluids extracted by <ItemLink id="vintagetech:tree_tap"/>
 
