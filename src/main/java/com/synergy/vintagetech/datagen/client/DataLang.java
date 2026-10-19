@@ -169,7 +169,16 @@ public class DataLang extends LanguageProvider implements LangGenerators {
                 add(MODULE_ID + ".jei.cheese.unsealing", "Right click to unseal");
                 add(MODULE_ID + ".jei.cheese.slicing", "When broken it will drop slices");
 
-                
+                add(MODULE_ID + ".jade.ticker_recipe.time", "%s left");
+                add(MODULE_ID + ".jade.ticker_recipe.multiplier", "[%sx" + TipColors.LIGHT_GRAY + "] ");
+                add(MODULE_ID + ".jade.tree_tap", "Can receive fluids extracted by a Tree Tap");
+
+                add("config.jade.plugin_" + MODULE_ID + ".ticker_recipe", "Ticker Recipes Info");
+                add("config.jade.plugin_" + MODULE_ID + ".tree_tap", "Tree Tap Handlers Info");
+
+                add(MODULE_ID + ".jade.hold.ctrl", TipColors.ITEM_TOOLTIP + "Hold [" + TipColors.YELLOW + "Control"
+                                + TipColors.ITEM_TOOLTIP + "] to see more details");
+
         }
 
 }
