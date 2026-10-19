@@ -25,8 +25,16 @@ public class RenderStates {
     }
 
     public static class ItemContainer extends BlockEntityRenderState {
-        public ItemStackRenderState[] renders = new ItemStackRenderState[3];
-        public ItemStack[] items;
+        public ItemStackRenderState[] renders = new ItemStackRenderState[] {
+                new ItemStackRenderState(), new ItemStackRenderState(), new ItemStackRenderState(),
+                new ItemStackRenderState(), new ItemStackRenderState(), new ItemStackRenderState(),
+                new ItemStackRenderState(), new ItemStackRenderState(), new ItemStackRenderState() };
+        public ItemStack[] items = new ItemStack[] {
+                ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+                ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+                ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY
+        };
+
     }
 
     public static class Basin extends ItemContainer {
