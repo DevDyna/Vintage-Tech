@@ -1,7 +1,7 @@
 package com.synergy.vintagetech.init.builder.drying_rack;
 
-import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 import com.devdyna.cakesticklib.api.RandomUtil;
 import com.devdyna.cakesticklib.api.aspect.logic.*;
@@ -9,7 +9,7 @@ import com.devdyna.cakesticklib.api.primitive.Ticker;
 import com.devdyna.cakesticklib.api.recipe.recipeInput.ItemInput;
 import com.devdyna.cakesticklib.api.templates.SynchedBlockEntity;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
-
+import com.synergy.vintagetech.api.TickerRecipe;
 import com.synergy.vintagetech.init.builder.drying_rack.recipe.DryingRackRecipe;
 import com.synergy.vintagetech.init.types.zBlockEntities;
 import com.synergy.vintagetech.init.types.zRecipeTypes;
@@ -25,7 +25,7 @@ import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 
 public class DryingRackBE extends SynchedBlockEntity
-        implements NoGuiStorage, ItemStorageBlock, TimeredRecipe, EnvironmentModifier, Tickable {
+        implements NoGuiStorage, ItemStorageBlock, TickerRecipe, Tickable {
 
     public DryingRackBE(BlockPos pos, BlockState blockState) {
         super(zBlockEntities.DRYING_RACK.get(), pos, blockState);
@@ -55,7 +55,7 @@ public class DryingRackBE extends SynchedBlockEntity
     public void tickBoth() {
 
         if (getItemStorage() == null) {
-            fail();
+            ticker = null;
             return;
         }
 
@@ -67,7 +67,7 @@ public class DryingRackBE extends SynchedBlockEntity
                         new ItemInput.simple(getStackInSlot(0)), level);
 
         if (r.isEmpty()) {
-            fail();
+            ticker = null;
             return;
         }
 
@@ -94,12 +94,8 @@ public class DryingRackBE extends SynchedBlockEntity
 
     }
 
-    public void fail() {
-        ticker = null;
-    }
-
     private int calcTicks(int base) {
-        return (int) Math.max(1, base / getTickerSpeed());
+        return (int) Math.max(1, base * getMultiplier());
     }
 
     @Override
@@ -108,13 +104,8 @@ public class DryingRackBE extends SynchedBlockEntity
     }
 
     @Override
-    public float getTickerSpeed() {
-        return (float) (1.0f / getStackInSlot(0).getCount() * getSpeedModifier());
-    }
-
-    @Override
-    public float getSpeedModifier() {
-        var range = List.of(
+    public float getMultiplier() {
+        var range = Stream.of(
                 getBlockPos().below(),
                 getBlockPos().below().below(),
                 getBlockPos().below().below().below(),
@@ -122,15 +113,9 @@ public class DryingRackBE extends SynchedBlockEntity
                 getBlockPos().below().below().below().below().below());
 
         var result = range
-                .stream()
                 .map(level::getBlockState)
                 .anyMatch(s -> s.is(zTags.Blocks.DRYING_RACK_HEATER));
-        return (result ? 2 : 1);
-    }
-
-    @Override
-    public boolean isRequired() {
-        return false;
+        return 1.0f / getStackInSlot(0).getCount() * (result ? 2 : 1);
     }
 
 }

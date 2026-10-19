@@ -2,12 +2,11 @@ package com.synergy.vintagetech.init.builder.millstone;
 
 import java.util.Optional;
 
-import com.devdyna.cakesticklib.api.aspect.logic.DropCollector;
-import com.devdyna.cakesticklib.api.aspect.logic.ItemStorageBlock;
-import com.devdyna.cakesticklib.api.aspect.logic.NoGuiStorage;
+import com.devdyna.cakesticklib.api.aspect.logic.*;
 import com.devdyna.cakesticklib.api.primitive.Ticker;
 import com.devdyna.cakesticklib.api.recipe.recipeInput.ItemInput;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
+import com.synergy.vintagetech.api.TickerRecipe;
 import com.synergy.vintagetech.api.factories.transmission.TransmissionBE;
 import com.synergy.vintagetech.init.builder.millstone.recipe.MillstoneRecipe;
 import com.synergy.vintagetech.init.types.zBlockEntities;
@@ -20,7 +19,7 @@ import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 
-public class MillstoneBE extends TransmissionBE implements ItemStorageBlock, NoGuiStorage, DropCollector {
+public class MillstoneBE extends TransmissionBE implements ItemStorageBlock, NoGuiStorage, DropCollector , TickerRecipe {
 
     public static final int INPUT = 0;
     public static final int OUTPUT = 1;
@@ -99,6 +98,11 @@ public class MillstoneBE extends TransmissionBE implements ItemStorageBlock, NoG
     @Override
     public int getSlots() {
         return 2;
+    }
+
+    @Override
+    public Ticker getTicker() {
+       return ticker;
     }
 
 }

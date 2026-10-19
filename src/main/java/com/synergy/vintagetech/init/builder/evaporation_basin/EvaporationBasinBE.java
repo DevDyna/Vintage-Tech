@@ -8,6 +8,7 @@ import com.devdyna.cakesticklib.api.primitive.Ticker;
 import com.devdyna.cakesticklib.api.recipe.recipeInput.FluidInput;
 import com.devdyna.cakesticklib.api.templates.SynchedBlockEntity;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
+import com.synergy.vintagetech.api.TickerRecipe;
 import com.synergy.vintagetech.api.factories.handlers.TreeTapHandler;
 import com.synergy.vintagetech.init.builder.evaporation_basin.recipe.EvaporationBasinRecipe;
 import com.synergy.vintagetech.init.types.zBlockEntities;
@@ -26,7 +27,7 @@ import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 
 public class EvaporationBasinBE extends SynchedBlockEntity
-        implements NoGuiStorage, ItemStorageBlock, SimpleFluidStorage, TimeredRecipe, EnvironmentModifier,
+        implements NoGuiStorage, ItemStorageBlock, SimpleFluidStorage, TickerRecipe,
         TreeTapHandler, Tickable {
 
     public EvaporationBasinBE(BlockPos pos, BlockState blockState) {
@@ -113,7 +114,7 @@ public class EvaporationBasinBE extends SynchedBlockEntity
 
     private int calcTicks(int base) {
         return (int) Math.max(1,
-                base / getTickerSpeed());
+                base / getMultiplier());
     }
 
     @Override
@@ -152,18 +153,8 @@ public class EvaporationBasinBE extends SynchedBlockEntity
     }
 
     @Override
-    public float getTickerSpeed() {
-        return 1.0f * getSpeedModifier();
-    }
-
-    @Override
-    public float getSpeedModifier() {
+    public float getMultiplier() {
         return (level.getBlockState(getBlockPos().below()).is(zTags.Blocks.EVAPORATION_BASIC_HEATER) ? 2 : 1);
-    }
-
-    @Override
-    public boolean isRequired() {
-        return false;
     }
 
 }
