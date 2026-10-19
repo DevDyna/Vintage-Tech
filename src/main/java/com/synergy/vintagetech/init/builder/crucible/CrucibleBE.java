@@ -131,9 +131,8 @@ public class CrucibleBE extends SynchedBlockEntity
                 if (ingredient.ingredient().test(stack))
                     count += stack.getCount();
 
-            multiplier = Math.min(
-                    multiplier,
-                    count / ingredient.count());
+            multiplier = Math.min(16, // TODO config
+                    Math.min(multiplier, count / ingredient.count()));
         }
 
         update();
