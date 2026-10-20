@@ -18,10 +18,7 @@ import com.synergy.vintagetech.init.builder.evaporation_basin.EvaporationBasinRe
 import com.synergy.vintagetech.init.builder.fan.FanRenderer;
 import com.synergy.vintagetech.init.builder.millstone.MillstoneRenderer;
 import com.synergy.vintagetech.init.builder.windmill.WindMillRenderer;
-import com.synergy.vintagetech.init.types.zBlockEntities;
-import com.synergy.vintagetech.init.types.zFluids;
-import com.synergy.vintagetech.init.types.zParticles;
-import com.synergy.vintagetech.init.types.zTrees;
+import com.synergy.vintagetech.init.types.*;
 
 import guideme.Guide;
 import net.minecraft.client.Minecraft;

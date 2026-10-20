@@ -6,7 +6,6 @@ import java.util.Random;
 import com.devdyna.cakesticklib.api.client.utils.FluidRenderHelper;
 import com.devdyna.cakesticklib.api.client.utils.SimpleItemRender;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.synergy.vintagetech.api.RenderStates.Basin;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.SubmitNodeCollector;
@@ -19,7 +18,7 @@ import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.phys.Vec3;
 
-public class CrucibleRender<BE extends CrucibleBE> implements BlockEntityRenderer<BE, Basin> {
+public class CrucibleRender<BE extends CrucibleBE> implements BlockEntityRenderer<BE, CrucibleRenderState> {
 
     protected final ItemModelResolver resolver;
 
@@ -28,12 +27,12 @@ public class CrucibleRender<BE extends CrucibleBE> implements BlockEntityRendere
     }
 
     @Override
-    public Basin createRenderState() {
-        return new Basin();
+    public CrucibleRenderState createRenderState() {
+        return new CrucibleRenderState();
     }
 
     @Override
-    public void extractRenderState(BE be, Basin state, float partialTicks, Vec3 cameraPosition,
+    public void extractRenderState(BE be, CrucibleRenderState state, float partialTicks, Vec3 cameraPosition,
             CrumblingOverlay overlay) {
 
         BlockEntityRenderState.extractBase(be, state, overlay);
@@ -54,7 +53,7 @@ public class CrucibleRender<BE extends CrucibleBE> implements BlockEntityRendere
     }
 
     @Override
-    public void submit(Basin state, PoseStack stack, SubmitNodeCollector collector, CameraRenderState camera) {
+    public void submit(CrucibleRenderState state, PoseStack stack, SubmitNodeCollector collector, CameraRenderState camera) {
 
         var time = Minecraft.getInstance().level.getGameTime();
         var fluid = state.fluid;

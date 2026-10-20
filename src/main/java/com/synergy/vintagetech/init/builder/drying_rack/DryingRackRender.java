@@ -2,7 +2,7 @@ package com.synergy.vintagetech.init.builder.drying_rack;
 
 import com.devdyna.cakesticklib.api.client.utils.SimpleItemRender;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.synergy.vintagetech.api.RenderStates.DryingRackState;
+import com.synergy.vintagetech.api.SimpleRenderStates.DryingRackState;
 
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
