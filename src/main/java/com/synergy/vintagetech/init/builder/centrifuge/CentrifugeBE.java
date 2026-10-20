@@ -57,6 +57,15 @@ public class CentrifugeBE extends SynchedBlockEntity
         return extracted;
     }
 
+    @Override
+    public void update() {
+        super.update();
+
+        if (ticker != null)
+            ticker = null;
+
+    }
+
     private Ticker ticker = null;
 
     @Override

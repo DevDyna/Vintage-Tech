@@ -5,6 +5,7 @@ import java.util.Optional;
 import com.devdyna.cakesticklib.api.aspect.logic.*;
 import com.devdyna.cakesticklib.api.primitive.Ticker;
 import com.devdyna.cakesticklib.api.recipe.recipeInput.ItemInput;
+import com.devdyna.cakesticklib.api.templates.SynchedBlockEntity;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
 import com.synergy.vintagetech.api.TickerRecipe;
 import com.synergy.vintagetech.api.factories.handlers.TransmissionHandler;
@@ -14,13 +15,13 @@ import com.synergy.vintagetech.init.types.zRecipeTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 
-public class MillstoneBE extends BlockEntity implements ItemStorageBlock, NoGuiStorage, DropCollector , TickerRecipe , TransmissionHandler {
+public class MillstoneBE extends SynchedBlockEntity
+        implements ItemStorageBlock, NoGuiStorage, DropCollector, TickerRecipe, TransmissionHandler {
 
     public static final int INPUT = 0;
     public static final int OUTPUT = 1;
@@ -43,6 +44,15 @@ public class MillstoneBE extends BlockEntity implements ItemStorageBlock, NoGuiS
             extracted = simpleExtractItemByIndex(INPUT);
 
         return extracted;
+    }
+
+    @Override
+    public void update() {
+        super.update();
+
+        if (ticker != null)
+            ticker = null;
+
     }
 
     private Ticker ticker = null;
@@ -103,7 +113,7 @@ public class MillstoneBE extends BlockEntity implements ItemStorageBlock, NoGuiS
 
     @Override
     public Ticker getTicker() {
-       return ticker;
+        return ticker;
     }
 
 }
