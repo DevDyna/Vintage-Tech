@@ -27,7 +27,8 @@ import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 
 public class CentrifugeBE extends SynchedBlockEntity
-        implements ItemStorageBlock, NoGuiStorage, SimpleFluidStorage, DropCollector, TreeTapHandler, TickerRecipe , TransmissionHandler {
+        implements ItemStorageBlock, NoGuiStorage, SimpleFluidStorage, DropCollector, TreeTapHandler, TickerRecipe,
+        TransmissionHandler {
 
     public static final int ITEM_INPUT = 0;
     public static final int ITEM_OUTPUT = 1;
@@ -59,7 +60,7 @@ public class CentrifugeBE extends SynchedBlockEntity
     private Ticker ticker = null;
 
     @Override
-    public void tickServer() {
+    public void tickBoth() {
 
         if (!isAxlePowered())
             return;
@@ -73,23 +74,35 @@ public class CentrifugeBE extends SynchedBlockEntity
         var fluid = x.fluid(getFluidStorage().getResource(FLUID_TANK).getFluid(),
                 getFluidStorage().getAmountAsInt(FLUID_TANK));
 
-        if (fluid.isEmpty())
+        if (fluid.isEmpty()) {
+            multiplier = 1;
+            ticker = null;
             return;
+        }
 
         if (getItemStorage() == null)
             return;
 
         var item = getStackInSlot(ITEM_INPUT);
 
-        if (item.isEmpty())
+        if (item.isEmpty()) {
+            multiplier = 1;
+            ticker = null;
+            return;
+        }
+
+        if (level.isClientSide())
             return;
 
         Optional<RecipeHolder<CentrifugeRecipe>> r = level.getServer().getRecipeManager()
                 .getRecipeFor(zRecipeTypes.CENTRIFUGE.getType(),
                         new CentrifugeInput(fluid, item), level);
 
-        if (r.isEmpty())
+        if (r.isEmpty()) {
+            multiplier = 1;
+            ticker = null;
             return;
+        }
 
         var recipe = r.get().value();
 
@@ -183,7 +196,7 @@ public class CentrifugeBE extends SynchedBlockEntity
 
     @Override
     public float getMultiplier() {
-        return 1 / multiplier;
+        return 1.0f / multiplier;
     }
 
 }
