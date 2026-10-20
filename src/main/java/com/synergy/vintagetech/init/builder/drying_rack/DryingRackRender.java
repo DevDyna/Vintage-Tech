@@ -2,7 +2,6 @@ package com.synergy.vintagetech.init.builder.drying_rack;
 
 import com.devdyna.cakesticklib.api.client.utils.SimpleItemRender;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.synergy.vintagetech.api.SimpleRenderStates.DryingRackState;
 
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
@@ -15,7 +14,7 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.phys.Vec3;
 
 public class DryingRackRender<BE extends DryingRackBE>
-        implements BlockEntityRenderer<BE, DryingRackState> {
+        implements BlockEntityRenderer<BE, DryingRackRenderState> {
 
     protected final ItemModelResolver resolver;
 
@@ -24,12 +23,12 @@ public class DryingRackRender<BE extends DryingRackBE>
     }
 
     @Override
-    public DryingRackState createRenderState() {
-        return new DryingRackState();
+    public DryingRackRenderState createRenderState() {
+        return new DryingRackRenderState();
     }
 
     @Override
-    public void extractRenderState(BE be, DryingRackState state, float partialTicks,
+    public void extractRenderState(BE be, DryingRackRenderState state, float partialTicks,
             Vec3 cameraPosition,
             ModelFeatureRenderer.CrumblingOverlay overlay) {
 
@@ -50,7 +49,7 @@ public class DryingRackRender<BE extends DryingRackBE>
     }
 
     @Override
-    public void submit(DryingRackState state, PoseStack stack,
+    public void submit(DryingRackRenderState state, PoseStack stack,
             SubmitNodeCollector collector,
             CameraRenderState camera) {
 
