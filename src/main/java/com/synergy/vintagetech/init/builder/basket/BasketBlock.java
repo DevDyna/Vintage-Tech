@@ -33,7 +33,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class BasketBlock extends Block implements BlockItemKeeper , EntityBlock {
+public class BasketBlock extends Block implements BlockItemKeeper, EntityBlock {
 
     public static final EnumProperty<Direction> FACING = DirectionalBlock.FACING;
 
@@ -146,16 +146,8 @@ public class BasketBlock extends Block implements BlockItemKeeper , EntityBlock 
 
     @Override
     public List<ItemStack> getDrops(BlockState state, Builder builder) {
-        // var entity = builder.getOptionalParameter(LootContextParams.THIS_ENTITY);
-        // var be = builder.getParameter(LootContextParams.BLOCK_ENTITY);
-
-        // if (entity != null && entity instanceof Player player && be != null && be
-        // instanceof BasketBE basket)
-        // if (basket.dropOnBreak(player))
-        // return super.getDrops(state, builder);
-
         return getResultDrops(super.getDrops(state, builder), this.asItem(), state, builder);
-
+        // TODO API : allow return itemstack to be modified
     }
 
     @Override

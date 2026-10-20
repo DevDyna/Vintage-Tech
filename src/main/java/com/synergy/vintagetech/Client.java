@@ -10,6 +10,7 @@ import com.synergy.vintagetech.api.FluidRegister;
 import com.synergy.vintagetech.api.core.TransmissionRenderer;
 import com.synergy.vintagetech.client.particles.fan.AirFlowParticleProvider;
 import com.synergy.vintagetech.client.particles.sulfur.SulfurGooProvider;
+import com.synergy.vintagetech.init.builder.basket.BasketRenderer;
 import com.synergy.vintagetech.init.builder.centrifuge.CentrifugeRenderer;
 import com.synergy.vintagetech.init.builder.crucible.CrucibleRender;
 import com.synergy.vintagetech.init.builder.crushing_tub.CrushingTubRender;
@@ -115,6 +116,10 @@ public class Client {
                 event.registerBlockEntityRenderer(
                                 zBlockEntities.CRUCIBLE.get(),
                                 CrucibleRender::new);
+
+                event.registerBlockEntityRenderer(
+                                zBlockEntities.BASKET.get(),
+                                BasketRenderer::new);
 
         }
 
