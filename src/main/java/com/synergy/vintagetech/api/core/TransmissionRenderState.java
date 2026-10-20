@@ -1,4 +1,4 @@
-package com.synergy.vintagetech.api.factories.transmission;
+package com.synergy.vintagetech.api.core;
 
 import com.synergy.vintagetech.api.factories.motion.MotionRenderState;
 

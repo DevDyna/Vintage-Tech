@@ -5,8 +5,8 @@ import java.util.Map;
 import org.jspecify.annotations.Nullable;
 
 import com.devdyna.cakesticklib.api.aspect.logic.Tickable;
-import com.synergy.vintagetech.api.factories.MonoDirectionalAxleBlock;
 import com.synergy.vintagetech.api.factories.handlers.RotableAxleBlock;
+import com.synergy.vintagetech.api.factories.transmission.MonoDirectionalAxleBlock;
 import com.synergy.vintagetech.init.types.zTags;
 
 import net.minecraft.core.BlockPos;

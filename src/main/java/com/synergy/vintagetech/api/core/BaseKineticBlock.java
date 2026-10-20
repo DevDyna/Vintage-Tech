@@ -1,10 +1,8 @@
-package com.synergy.vintagetech.api.factories;
+package com.synergy.vintagetech.api.core;
 
-import org.jspecify.annotations.Nullable;
+import javax.annotation.Nullable;
 
 import com.synergy.vintagetech.api.factories.handlers.AxleHandler;
-import com.synergy.vintagetech.api.factories.transmission.TransmissionBE;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Mirror;
@@ -22,7 +20,7 @@ public abstract class BaseKineticBlock extends Block implements AxleHandler {
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos p, BlockState s) {
-        return new TransmissionBE(p, s);
+        return new SimpleKineticBE(p, s);
     }
 
     @Override

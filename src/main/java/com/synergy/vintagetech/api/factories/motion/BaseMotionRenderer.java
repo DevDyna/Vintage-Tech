@@ -7,7 +7,7 @@ import javax.annotation.Nullable;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import com.synergy.vintagetech.api.factories.handlers.AxleHandler;
-import com.synergy.vintagetech.api.factories.transmission.TransmissionBE;
+import com.synergy.vintagetech.api.factories.handlers.TransmissionHandler;
 import com.synergy.vintagetech.init.types.zBlocks;
 
 import net.minecraft.client.renderer.SubmitNodeCollector;
@@ -21,15 +21,16 @@ import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.phys.Vec3;
 
-public abstract class BaseMotionRenderer<BE extends TransmissionBE, STATE extends MotionRenderState>
+public abstract class BaseMotionRenderer<BE extends BlockEntity & TransmissionHandler, STATE extends MotionRenderState>
         implements BlockEntityRenderer<BE, STATE> {
 
-    protected final BlockModelResolver resolver;
+    public final BlockModelResolver blockModels;
 
     public BaseMotionRenderer(BlockEntityRendererProvider.Context ctx) {
-        this.resolver = ctx.blockModelResolver();
+        this.blockModels = ctx.blockModelResolver();
     }
 
     public static class Simple extends MotionRenderState {
@@ -46,7 +47,7 @@ public abstract class BaseMotionRenderer<BE extends TransmissionBE, STATE extend
 
         BlockEntityRenderState.extractBase(be, state, overlay);
 
-        resolver.update(state.block, getBlockRendered(be).defaultBlockState(), BlockDisplayContext.create());
+        blockModels.update(state.block, getBlockRendered(be).defaultBlockState(), BlockDisplayContext.create());
 
         state.rotation = be.getRotation(partialTicks);
         state.dirs = be.getBlockState().getBlock() instanceof AxleHandler axle

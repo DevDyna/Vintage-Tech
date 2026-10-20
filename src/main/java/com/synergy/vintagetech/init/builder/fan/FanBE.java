@@ -1,7 +1,7 @@
 package com.synergy.vintagetech.init.builder.fan;
 
 import com.devdyna.cakesticklib.api.RandomUtil;
-import com.synergy.vintagetech.api.factories.transmission.TransmissionBE;
+import com.synergy.vintagetech.api.factories.handlers.TransmissionHandler;
 import com.synergy.vintagetech.init.types.zBlockEntities;
 import com.synergy.vintagetech.init.types.zParticles;
 import com.synergy.vintagetech.init.types.zTags;
@@ -9,11 +9,12 @@ import com.synergy.vintagetech.init.types.zTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
-public class FanBE extends TransmissionBE {
+public class FanBE extends BlockEntity implements TransmissionHandler {
 
     public FanBE(BlockPos pos, BlockState state) {
         super(zBlockEntities.FAN.get(), pos, state);

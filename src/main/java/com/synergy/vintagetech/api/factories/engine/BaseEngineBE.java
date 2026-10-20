@@ -2,20 +2,19 @@ package com.synergy.vintagetech.api.factories.engine;
 
 import java.util.*;
 
-import com.synergy.vintagetech.api.factories.BaseKineticBlock;
-import com.synergy.vintagetech.api.factories.MotionAlteratorBlock;
 import com.synergy.vintagetech.api.factories.handlers.AxleHandler;
 import com.synergy.vintagetech.api.factories.handlers.GeneratorHandler;
-import com.synergy.vintagetech.api.factories.transmission.TransmissionBE;
+import com.synergy.vintagetech.api.factories.transmission.MotionAlteratorBlock;
 import com.synergy.vintagetech.init.types.zBlockEntities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.Level.ExplosionInteraction;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class BaseEngineBE extends TransmissionBE implements GeneratorHandler {
+public class BaseEngineBE extends BlockEntity implements GeneratorHandler {
 
     public BaseEngineBE(BlockEntityType<? extends BaseEngineBE> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
@@ -51,7 +50,7 @@ public class BaseEngineBE extends TransmissionBE implements GeneratorHandler {
         Queue<NetworkElement> queue = new ArrayDeque<>();
 
         for (Direction dir : getBlock().getGenDirections(level, pos, state))
-            if (level.getBlockState(pos.relative(dir)).getBlock() instanceof BaseKineticBlock axle)
+            if (level.getBlockState(pos.relative(dir)).getBlock() instanceof AxleHandler axle)
                 if (axle.canInputFrom(dir, level.getBlockState(pos.relative(dir))))
                     queue.add(NetworkElement.create(pos.relative(dir), getBlock().getWhenActive(level, pos, state),
                             getBlock().getDefaultRotationState()));

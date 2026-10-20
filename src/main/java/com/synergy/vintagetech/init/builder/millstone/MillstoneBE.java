@@ -7,19 +7,20 @@ import com.devdyna.cakesticklib.api.primitive.Ticker;
 import com.devdyna.cakesticklib.api.recipe.recipeInput.ItemInput;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
 import com.synergy.vintagetech.api.TickerRecipe;
-import com.synergy.vintagetech.api.factories.transmission.TransmissionBE;
+import com.synergy.vintagetech.api.factories.handlers.TransmissionHandler;
 import com.synergy.vintagetech.init.builder.millstone.recipe.MillstoneRecipe;
 import com.synergy.vintagetech.init.types.zBlockEntities;
 import com.synergy.vintagetech.init.types.zRecipeTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 
-public class MillstoneBE extends TransmissionBE implements ItemStorageBlock, NoGuiStorage, DropCollector , TickerRecipe {
+public class MillstoneBE extends BlockEntity implements ItemStorageBlock, NoGuiStorage, DropCollector , TickerRecipe , TransmissionHandler {
 
     public static final int INPUT = 0;
     public static final int OUTPUT = 1;

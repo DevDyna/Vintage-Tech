@@ -3,8 +3,8 @@ package com.synergy.vintagetech.init.types;
 import static com.synergy.vintagetech.Main.MODULE_ID;
 
 import com.devdyna.cakesticklib.api.RegistryUtils;
+import com.synergy.vintagetech.api.core.SimpleKineticBE;
 import com.synergy.vintagetech.api.factories.engine.BaseEngineBE;
-import com.synergy.vintagetech.api.factories.transmission.TransmissionBE;
 import com.synergy.vintagetech.init.builder.basket.BasketBE;
 import com.synergy.vintagetech.init.builder.centrifuge.CentrifugeBE;
 import com.synergy.vintagetech.init.builder.crucible.CrucibleBE;
@@ -47,8 +47,8 @@ public class zBlockEntities {
         public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<FanBE>> FAN = RegistryUtils
                         .createBlockEntity("fan", zTiles, FanBE::new, zBlocks.FAN);
 
-        public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TransmissionBE>> TRANSMISSION = RegistryUtils
-                        .createBlockEntity("transmission", zTiles, TransmissionBE::new, zBlocks.AXLE, zBlocks.JUNCTION,
+        public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<SimpleKineticBE>> TRANSMISSION = RegistryUtils
+                        .createBlockEntity("transmission", zTiles, SimpleKineticBE::new, zBlocks.AXLE, zBlocks.JUNCTION,
                                         zBlocks.GEARSHIFT, zBlocks.CLUTCH);
 
         public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BasketBE>> BASKET = RegistryUtils

@@ -5,17 +5,18 @@ import java.util.Map;
 
 import com.devdyna.cakesticklib.api.aspect.logic.EnergyProvider;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
-import com.synergy.vintagetech.api.factories.transmission.TransmissionBE;
+import com.synergy.vintagetech.api.factories.handlers.TransmissionHandler;
 import com.synergy.vintagetech.init.types.zBlockEntities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.BlockCapabilityCache;
 import net.neoforged.neoforge.transfer.energy.EnergyHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 
-public class DynamoBE extends TransmissionBE implements EnergyProvider {
+public class DynamoBE extends BlockEntity implements EnergyProvider , TransmissionHandler {
 
     public static final Map<Direction, BlockCapabilityCache<EnergyHandler, Direction>> cache = new HashMap<>();
 

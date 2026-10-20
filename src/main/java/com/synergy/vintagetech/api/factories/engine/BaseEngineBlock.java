@@ -3,7 +3,7 @@ package com.synergy.vintagetech.api.factories.engine;
 import java.util.List;
 import org.jspecify.annotations.Nullable;
 
-import com.synergy.vintagetech.api.factories.BaseKineticBlock;
+import com.synergy.vintagetech.api.core.BaseKineticBlock;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

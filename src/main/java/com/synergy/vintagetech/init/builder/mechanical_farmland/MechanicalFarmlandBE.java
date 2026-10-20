@@ -7,7 +7,7 @@ import com.devdyna.cakesticklib.api.aspect.logic.SimpleFluidStorage;
 import com.devdyna.cakesticklib.api.factories.plants.VanillaPlants;
 import com.devdyna.cakesticklib.api.recipe.recipeInput.FluidInput;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
-import com.synergy.vintagetech.api.factories.transmission.TransmissionBE;
+import com.synergy.vintagetech.api.factories.handlers.TransmissionHandler;
 import com.synergy.vintagetech.init.builder.mechanical_farmland.recipe.FarmlandFuelsRecipe;
 import com.synergy.vintagetech.init.types.zBlockEntities;
 import com.synergy.vintagetech.init.types.zRecipeTypes;
@@ -16,12 +16,13 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.BonemealableBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import net.neoforged.neoforge.transfer.fluid.FluidStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 
-public class MechanicalFarmlandBE extends TransmissionBE implements SimpleFluidStorage {
+public class MechanicalFarmlandBE extends BlockEntity implements SimpleFluidStorage ,TransmissionHandler {
 
     public static final int FLUID_TANK = 0;
 
