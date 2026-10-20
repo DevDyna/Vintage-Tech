@@ -20,10 +20,10 @@ import net.minecraft.world.phys.Vec3;
 
 public class CrucibleRender<BE extends CrucibleBE> implements BlockEntityRenderer<BE, CrucibleRenderState> {
 
-    protected final ItemModelResolver resolver;
+    protected final ItemModelResolver itemModels;
 
     public CrucibleRender(BlockEntityRendererProvider.Context ctx) {
-        this.resolver = ctx.itemModelResolver();
+        this.itemModels = ctx.itemModelResolver();
     }
 
     @Override
@@ -43,7 +43,7 @@ public class CrucibleRender<BE extends CrucibleBE> implements BlockEntityRendere
             for (var i = 0; i < CrucibleBE.ITEM_SLOTS.size(); i++) {
                 var item = storage.getResource(i).toStack(storage.getAmountAsInt(i));
                 state.items[i] = item;
-                resolver.updateForTopItem(state.renders[i], item, ItemDisplayContext.GROUND, be.getLevel(), null, 0);
+                itemModels.updateForTopItem(state.renders[i], item, ItemDisplayContext.GROUND, be.getLevel(), null, 0);
             }
 
         var tank = be.getFluidStorage();
