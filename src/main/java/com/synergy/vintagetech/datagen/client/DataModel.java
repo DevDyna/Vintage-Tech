@@ -69,8 +69,6 @@ public class DataModel extends ModelProvider {
 
                 // BLOCK MODELS
 
-                
-
                 BlockModelUtils.simplePlain(blockModels, zBlocks.JUNCTION);
                 BlockModelUtils.simplePlain(blockModels, zBlocks.MILLSTONE);
                 // BlockModelUtils.simplePlain(blockModels, zBlocks.CRUSHING_TUB);
@@ -156,9 +154,8 @@ public class DataModel extends ModelProvider {
 
                 BlockModelUtils.createSawToggleBlock(blockModels, zBlocks.SAW.get());
 
-                BlockModelUtils.createFacingBlock(blockModels, zBlocks.BASKET.get(),
-                                x.rl(MODULE_ID, "block/basket"),
-                                false);
+                BlockModelUtils.createBasket(blockModels, zBlocks.BASKET.get());
+
                 BlockModelUtils.createFacingBlock(blockModels, zBlocks.FAN.get(), x.rl(MODULE_ID, "block/fan"),
                                 true);
                 BlockModelUtils.createHorizontalFacingBlock(blockModels, zBlocks.TREE_TAP.get(),
@@ -283,6 +280,9 @@ public class DataModel extends ModelProvider {
 
                 itemModels.itemModelOutput.accept(zBlocks.WINDMILL.get().asItem(),
                                 ItemModelUtils.plainModel(x.rl(MODULE_ID, "item/windmill")));
+
+                itemModels.itemModelOutput.accept(zBlocks.BASKET.get().asItem(),
+                                ItemModelUtils.plainModel(x.rl(MODULE_ID, "block/basket/normal")));
 
                 itemModels.itemModelOutput.accept(zBlocks.STICKY_FARMLAND.get().asItem(),
                                 ItemModelUtils.plainModel(x.rl(MODULE_ID, "block/sticky_farmland/dried")));

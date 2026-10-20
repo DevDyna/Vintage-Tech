@@ -160,6 +160,29 @@ public class BlockModelUtils {
 
         }
 
+        public static void createBasket(BlockModelGenerators b, Block block) {
+
+                var base = BlockModelGenerators.plainVariant(x.rl(MODULE_ID, "block/basket/normal"));
+
+                b.blockStateOutput.accept(
+                                MultiVariantGenerator.dispatch(block)
+                                                .with(PropertyDispatch.initial(BlockStateProperties.FACING)
+                                                                .select(Direction.NORTH, base)
+                                                                .select(Direction.EAST, base
+                                                                                .with(BlockModelGenerators.Y_ROT_90))
+                                                                .select(Direction.SOUTH, base
+                                                                                .with(BlockModelGenerators.Y_ROT_180))
+                                                                .select(Direction.WEST, base
+                                                                                .with(BlockModelGenerators.Y_ROT_270))
+                                                                .select(Direction.DOWN, BlockModelGenerators
+                                                                                .plainVariant(x.rl(MODULE_ID,
+                                                                                                "block/basket/framed"))
+                                                                                .with(BlockModelGenerators.X_ROT_90))
+                                                                .select(Direction.UP, base.with(
+                                                                                BlockModelGenerators.X_ROT_270))));
+
+        }
+
         public static void createBeamBlock(BlockModelGenerators b, Block block, Identifier top, Identifier side) {
 
                 MultiVariant beam = BlockModelGenerators.plainVariant(
@@ -578,12 +601,16 @@ public class BlockModelUtils {
         public static void createSalt(BlockModelGenerators b, Block block) {
 
                 b.blockStateOutput.accept(MultiVariantGenerator.dispatch(block)
-                                .with(PropertyDispatch.initial(BlockStateProperties.LAYERS).generate(v ->
-                                                 BlockModelGenerators.plainVariant(
-                                                        TemplateCollection.LAYERED_TEMPLATE.apply(v*2+"")
-                                                        .create(x.rl(MODULE_ID,"block/salt/"+v*2), new TextureMapping()
-                                                        .put(TextureSlot.TEXTURE, x.material(MODULE_ID,"block/salt")), b.modelOutput)       
-                                                ))));
+                                .with(PropertyDispatch.initial(BlockStateProperties.LAYERS)
+                                                .generate(v -> BlockModelGenerators.plainVariant(
+                                                                TemplateCollection.LAYERED_TEMPLATE.apply(v * 2 + "")
+                                                                                .create(x.rl(MODULE_ID,
+                                                                                                "block/salt/" + v * 2),
+                                                                                                new TextureMapping()
+                                                                                                                .put(TextureSlot.TEXTURE,
+                                                                                                                                x.material(MODULE_ID,
+                                                                                                                                                "block/salt")),
+                                                                                                b.modelOutput)))));
 
         }
 
