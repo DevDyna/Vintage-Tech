@@ -6,16 +6,18 @@ import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.fluids.FluidStack;
 
 public class CrucibleRenderState extends BlockEntityRenderState {
-    public ItemStackRenderState[] renders = new ItemStackRenderState[] {
-            new ItemStackRenderState(), new ItemStackRenderState(), new ItemStackRenderState(),
-            new ItemStackRenderState(), new ItemStackRenderState(), new ItemStackRenderState(),
-            new ItemStackRenderState(), new ItemStackRenderState(), new ItemStackRenderState() };
-    public ItemStack[] items = new ItemStack[] {
-            ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
-            ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
-            ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY
-    };
+    public ItemStackRenderState[] renders = new ItemStackRenderState[9] ;
+    public ItemStack[] items = new ItemStack[9] ;
 
     public FluidStack fluid;
+
+    public CrucibleRenderState(){
+
+        for (int i = 0; i < 2; i++) {
+            items[i] = ItemStack.EMPTY;
+            renders[i] = new ItemStackRenderState(); 
+        }
+
+    }
 
 }
