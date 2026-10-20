@@ -42,7 +42,7 @@ public class CentrifugeBE extends SynchedBlockEntity
 
     @Override
     public ItemStack insertItem(ItemStack i) {
-        return simpleInsertItem(i);
+        return simpleInsertItem(i, ITEM_INPUT);
     }
 
     @Override
