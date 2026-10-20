@@ -3,9 +3,9 @@ package com.synergy.vintagetech.api.factories.engine;
 import java.util.*;
 
 import com.synergy.vintagetech.api.factories.BaseKineticBlock;
+import com.synergy.vintagetech.api.factories.MotionAlteratorBlock;
 import com.synergy.vintagetech.api.factories.handlers.AxleHandler;
 import com.synergy.vintagetech.api.factories.handlers.GeneratorHandler;
-import com.synergy.vintagetech.api.factories.transmission.MotionAlteratorBlock;
 import com.synergy.vintagetech.api.factories.transmission.TransmissionBE;
 import com.synergy.vintagetech.init.types.zBlockEntities;
 
