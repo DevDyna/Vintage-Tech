@@ -12,7 +12,7 @@ import com.devdyna.cakesticklib.api.utils.x;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.synergy.vintagetech.api.recipeinput.CrucibleInput;
+import com.synergy.vintagetech.api.inputs.CrucibleInput;
 import com.synergy.vintagetech.init.types.zBlocks;
 import com.synergy.vintagetech.init.types.zRecipeTypes;
 

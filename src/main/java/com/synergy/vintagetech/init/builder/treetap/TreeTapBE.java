@@ -5,7 +5,7 @@ import java.util.Optional;
 import com.devdyna.cakesticklib.api.RandomUtil;
 import com.devdyna.cakesticklib.api.aspect.logic.Tickable;
 import com.synergy.vintagetech.api.factories.handlers.TreeTapHandler;
-import com.synergy.vintagetech.api.recipeinput.TreeTapInput;
+import com.synergy.vintagetech.api.inputs.TreeTapInput;
 import com.synergy.vintagetech.init.builder.treetap.recipe.TreeTapRecipe;
 import com.synergy.vintagetech.init.types.zBlockEntities;
 import com.synergy.vintagetech.init.types.zRecipeTypes;

@@ -12,7 +12,7 @@ import com.devdyna.cakesticklib.api.recipe.recipeOutput.ChanceOutput;
 import com.devdyna.cakesticklib.api.templates.SynchedBlockEntity;
 import com.synergy.vintagetech.api.TickerRecipe;
 import com.synergy.vintagetech.api.factories.handlers.TreeTapHandler;
-import com.synergy.vintagetech.api.recipeinput.CrucibleInput;
+import com.synergy.vintagetech.api.inputs.CrucibleInput;
 import com.synergy.vintagetech.init.builder.crucible.recipe.CrucibleRecipe;
 import com.synergy.vintagetech.init.types.zBlockEntities;
 import com.synergy.vintagetech.init.types.zRecipeTypes;

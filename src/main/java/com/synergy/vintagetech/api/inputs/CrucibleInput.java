@@ -1,4 +1,4 @@
-package com.synergy.vintagetech.api.recipeinput;
+package com.synergy.vintagetech.api.inputs;
 
 import java.util.List;
 
