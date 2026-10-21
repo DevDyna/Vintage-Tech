@@ -6,6 +6,8 @@ import com.devdyna.cakesticklib.api.aspect.logic.BlockItemKeeper;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
@@ -16,6 +18,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DirectionalBlock;
@@ -147,7 +150,14 @@ public class BasketBlock extends Block implements BlockItemKeeper, EntityBlock {
     @Override
     public List<ItemStack> getDrops(BlockState state, Builder builder) {
         return getResultDrops(super.getDrops(state, builder), this.asItem(), state, builder);
-        // TODO API : allow return itemstack to be modified
+    }
+
+    @Override
+    public ItemStack modifyMainItemDrop(ItemLike i, CompoundTag nbt) {
+        var item = BlockItemKeeper.super.modifyMainItemDrop(i, nbt);
+        item.set(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true);
+        item.set(DataComponents.MAX_STACK_SIZE, 1);
+        return item;
     }
 
     @Override
