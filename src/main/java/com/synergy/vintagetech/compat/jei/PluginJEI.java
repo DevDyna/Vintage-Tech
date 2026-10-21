@@ -191,9 +191,6 @@ public class PluginJEI implements IModPlugin {
 
         }
 
-        // TODO API
-        // JEIAliasesHelper.addAlias List<ItemLike>
-
         private <C extends RecipeInput, T extends Recipe<C>> List<RecipeHolder<T>> getRecipes(RecipeType<T> type) {
                 return List.copyOf(Client.getRecipeCollector().byType(type));
         }
