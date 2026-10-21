@@ -62,15 +62,6 @@ public class CrucibleBE extends SynchedBlockEntity
         return ItemStack.EMPTY;
     }
 
-    @Override
-    public void update() {
-        super.update();
-
-        if (ticker != null)
-            ticker = null;
-
-    }
-
     private Ticker ticker;
 
     @Override
