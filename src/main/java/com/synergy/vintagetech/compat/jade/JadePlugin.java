@@ -8,21 +8,16 @@ import snownee.jade.api.IWailaCommonRegistration;
 import snownee.jade.api.IWailaPlugin;
 import snownee.jade.api.WailaPlugin;
 
-//TODO API : move to api
 @WailaPlugin
 public class JadePlugin implements IWailaPlugin {
 
     @Override
     public void registerClient(IWailaClientRegistration r) {
         r.registerBlockComponent(TreeTapHandlerProvider.ClientProvider.INSTANCE, Block.class);
-
-        r.registerBlockComponent(TickerRecipeProvider.ClientProvider.INSTANCE, Block.class);
     }
 
     @Override
     public void register(IWailaCommonRegistration r) {
         r.registerBlockDataProvider(TreeTapHandlerProvider.ServerProvider.INSTANCE, Block.class);
-
-        r.registerBlockDataProvider(TickerRecipeProvider.ServerProvider.INSTANCE, Block.class);
     }
 }

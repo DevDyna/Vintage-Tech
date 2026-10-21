@@ -10,7 +10,6 @@ import com.devdyna.cakesticklib.api.primitive.Ticker;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
 import com.devdyna.cakesticklib.api.recipe.recipeOutput.ChanceOutput;
 import com.devdyna.cakesticklib.api.templates.SynchedBlockEntity;
-import com.synergy.vintagetech.api.TickerRecipe;
 import com.synergy.vintagetech.api.factories.handlers.TreeTapHandler;
 import com.synergy.vintagetech.api.inputs.CrucibleInput;
 import com.synergy.vintagetech.init.builder.crucible.recipe.CrucibleRecipe;
@@ -31,7 +30,7 @@ import net.neoforged.neoforge.transfer.transaction.Transaction;
 
 public class CrucibleBE extends SynchedBlockEntity
         implements ItemStorageBlock, NoGuiStorage, SimpleFluidStorage, DropCollector, TreeTapHandler, Tickable,
-        TickerRecipe {
+        TickerDelay {
 
     public static final List<Integer> ITEM_SLOTS = List.of(0, 1, 2, 3, 4, 5, 6, 7);
 
@@ -279,6 +278,11 @@ public class CrucibleBE extends SynchedBlockEntity
     @Override
     public float getMultiplier() {
         return 1.0f / multiplier;
+    }
+
+    @Override
+    public TimerStyle getStyle() {
+        return TimerStyle.PROGRESS_BAR;
     }
 
 }

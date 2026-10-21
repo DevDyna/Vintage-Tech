@@ -9,7 +9,6 @@ import com.devdyna.cakesticklib.api.primitive.Ticker;
 import com.devdyna.cakesticklib.api.recipe.recipeInput.ItemInput;
 import com.devdyna.cakesticklib.api.templates.SynchedBlockEntity;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
-import com.synergy.vintagetech.api.TickerRecipe;
 import com.synergy.vintagetech.init.builder.drying_rack.recipe.DryingRackRecipe;
 import com.synergy.vintagetech.init.types.zBlockEntities;
 import com.synergy.vintagetech.init.types.zRecipeTypes;
@@ -25,7 +24,7 @@ import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 
 public class DryingRackBE extends SynchedBlockEntity
-        implements NoGuiStorage, ItemStorageBlock, TickerRecipe, Tickable {
+        implements NoGuiStorage, ItemStorageBlock, TickerDelay, Tickable {
 
     public DryingRackBE(BlockPos pos, BlockState blockState) {
         super(zBlockEntities.DRYING_RACK.get(), pos, blockState);
@@ -116,6 +115,9 @@ public class DryingRackBE extends SynchedBlockEntity
                 .map(level::getBlockState)
                 .anyMatch(s -> s.is(zTags.Blocks.DRYING_RACK_HEATER));
         return 1.0f / getStackInSlot(0).getCount() * (result ? 2 : 1);
+    @Override
+    public TimerStyle getStyle() {
+        return TimerStyle.PROGRESS_BAR;
     }
 
 }

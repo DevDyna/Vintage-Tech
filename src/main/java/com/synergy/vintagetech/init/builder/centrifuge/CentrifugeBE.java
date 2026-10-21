@@ -8,7 +8,6 @@ import com.devdyna.cakesticklib.api.primitive.Ticker;
 import com.devdyna.cakesticklib.api.templates.SynchedBlockEntity;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
-import com.synergy.vintagetech.api.TickerRecipe;
 import com.synergy.vintagetech.api.factories.handlers.TransmissionHandler;
 import com.synergy.vintagetech.api.factories.handlers.TreeTapHandler;
 import com.synergy.vintagetech.api.inputs.CentrifugeInput;
@@ -27,7 +26,7 @@ import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 
 public class CentrifugeBE extends SynchedBlockEntity
-        implements ItemStorageBlock, NoGuiStorage, SimpleFluidStorage, DropCollector, TreeTapHandler, TickerRecipe,
+        implements ItemStorageBlock, NoGuiStorage, SimpleFluidStorage, DropCollector, TreeTapHandler, TickerDelay,
         TransmissionHandler {
 
     public static final int ITEM_INPUT = 0;
@@ -206,6 +205,11 @@ public class CentrifugeBE extends SynchedBlockEntity
     @Override
     public float getMultiplier() {
         return 1.0f / multiplier;
+    }
+
+    @Override
+    public TimerStyle getStyle() {
+        return TimerStyle.PROGRESS_BAR;
     }
 
 }

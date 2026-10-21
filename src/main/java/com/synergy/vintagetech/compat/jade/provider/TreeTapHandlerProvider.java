@@ -4,6 +4,7 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 
 import javax.annotation.Nullable;
 
+import com.devdyna.cakesticklib.CakeStickLib;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.synergy.vintagetech.api.factories.handlers.TreeTapHandler;
 
@@ -52,10 +53,10 @@ public class TreeTapHandlerProvider {
 
       if (v.get())
         t.add(Component
-            .translatable(MODULE_ID +
+            .translatable(
                 (Minecraft.getInstance().hasControlDown()
-                    ? ".jade.tree_tap"
-                    : ".jade.hold.ctrl")));
+                    ? MODULE_ID + ".jade.tree_tap"
+                    : CakeStickLib.MODULE_ID + ".jade.hold.ctrl")));
 
     }
 
