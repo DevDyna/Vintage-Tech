@@ -53,6 +53,9 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                         shelf(tree.shelf().get(), tree.strippedLog().get());
                         slab(tree.slab().get(), tree.planks().get(), output);
 
+                        simplePacked(output, tree.log().get(), tree.wood().get(), true, 3);
+                        simplePacked(output, tree.strippedLog().get(), tree.strippedWood().get(), true, 3);
+
                         fenceBuilder(tree.fence().get(), x.itemIngredient(tree.planks().get()))
                                         .unlockedBy(getHasName(tree.planks().get()), has(tree.planks().get()))
                                         .save(output);
@@ -1036,7 +1039,5 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .unlockedBy(getHasName(t9), has(t9))
                                 .save(output);
         }
-
-  
 
 }
