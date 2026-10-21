@@ -94,7 +94,7 @@ public class DryingRackBE extends SynchedBlockEntity
     }
 
     private int calcTicks(int base) {
-        return (int) Math.max(1, base * getMultiplier());
+        return (int) Math.max(1, (float) base * getMultiplier());
     }
 
     @Override
@@ -114,7 +114,9 @@ public class DryingRackBE extends SynchedBlockEntity
         var result = range
                 .map(level::getBlockState)
                 .anyMatch(s -> s.is(zTags.Blocks.DRYING_RACK_HEATER));
-        return 1.0f / getStackInSlot(0).getCount() * (result ? 2 : 1);
+        return getStackInSlot(0).getCount() / (result ? 2f : 1f);
+    }
+
     @Override
     public TimerStyle getStyle() {
         return TimerStyle.PROGRESS_BAR;
