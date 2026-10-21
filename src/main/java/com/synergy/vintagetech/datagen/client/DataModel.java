@@ -58,8 +58,8 @@ public class DataModel extends ModelProvider {
 
                 zItems.zBucketItems.getEntries()
                                 .forEach(b -> ItemModelUtil.createBucketItem(itemModels, b.get()));
-                // TODO API: move to API
-                zBlocks.zBlockFluids.getEntries().forEach(b -> blockModels.createParticleOnlyBlock(b.get())// TODO
+                
+                zBlocks.zBlockFluids.getEntries().forEach(b -> blockModels.createParticleOnlyBlock(b.get())
 
                 // ModelUtils.fluid(blockModels, b.get(), MODULE_ID)
                 );
