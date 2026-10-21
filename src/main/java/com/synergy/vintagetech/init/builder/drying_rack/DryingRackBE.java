@@ -58,6 +58,10 @@ public class DryingRackBE extends SynchedBlockEntity
             return;
         }
 
+        if (RandomUtil.chance(level, 0.5f) && ticker != null)
+            level.addParticle(ParticleTypes.CLOUD, getBlockPos().getX(), getBlockPos().getY(), getBlockPos().getZ(),
+                    0, 0, 0);
+
         if (level.isClientSide())
             return;
 
@@ -71,10 +75,6 @@ public class DryingRackBE extends SynchedBlockEntity
         }
 
         var recipe = r.get().value();
-
-        if (RandomUtil.chance(level, 5))
-            level.addParticle(ParticleTypes.CLOUD, getBlockPos().getX(), getBlockPos().getY(), getBlockPos().getZ(),
-                    0.5, 0.5, 0.5);
 
         if (ticker == null)
             ticker = Ticker.of(calcTicks(recipe.getTicks()));
