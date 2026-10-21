@@ -60,6 +60,7 @@ public class SawBlock extends MonoDirectionalAxleBlock implements RotableAxleBlo
         };
     }
 
+    //TODO minor BUG : placing creative motor on the saw blade active the saw intend of require the opposite face
     @Override
     public Map<Direction, Boolean> getAxis(BlockState state) {
         var dir = state.getValue(FACING);
