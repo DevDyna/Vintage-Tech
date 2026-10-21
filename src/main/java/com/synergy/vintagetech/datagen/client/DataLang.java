@@ -173,6 +173,9 @@ public class DataLang extends LanguageProvider implements LangGenerators {
 
                 add("config.jade.plugin_" + MODULE_ID + ".tree_tap", "Tree Tap Handlers Info");
 
+                add(MODULE_ID+".jei.alias.backpack", "Backpack");
+                add(MODULE_ID+".jei.alias.bundle", "Bundle-like");
+
         }
 
 }

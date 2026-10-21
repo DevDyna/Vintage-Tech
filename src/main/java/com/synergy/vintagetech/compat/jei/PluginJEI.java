@@ -126,7 +126,10 @@ public class PluginJEI implements IModPlugin {
                 JEIAliasesHelper.addAlias(r, List.of(
                                 zBlocks.BASKET),
                                 JEIAliasesHelper.Aliases.HOPPER,
-                                JEIAliasesHelper.Aliases.ITEM_COLLECTOR);
+                                JEIAliasesHelper.Aliases.ITEM_COLLECTOR,
+                                MODULE_ID + ".jei.alias.backpack",// TODO : move to api
+                                MODULE_ID + ".jei.alias.bundle"
+                );
 
                 JEIAliasesHelper.addAlias(r, List.of(
                                 zBlocks.FAN),
