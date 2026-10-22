@@ -7,17 +7,19 @@ import com.devdyna.cakesticklib.api.utils.ModAddonUtil;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.synergy.vintagetech.api.ClassUtils;
 import com.synergy.vintagetech.api.FluidRegister;
-import com.synergy.vintagetech.api.factories.transmission.TransmissionRenderer;
+import com.synergy.vintagetech.api.core.TransmissionRenderer;
 import com.synergy.vintagetech.client.particles.fan.AirFlowParticleProvider;
 import com.synergy.vintagetech.client.particles.sulfur.SulfurGooProvider;
+import com.synergy.vintagetech.init.builder.basket.BasketRenderer;
 import com.synergy.vintagetech.init.builder.centrifuge.CentrifugeRenderer;
+import com.synergy.vintagetech.init.builder.crucible.CrucibleRender;
+import com.synergy.vintagetech.init.builder.crushing_tub.CrushingTubRender;
+import com.synergy.vintagetech.init.builder.drying_rack.DryingRackRender;
+import com.synergy.vintagetech.init.builder.evaporation_basin.EvaporationBasinRender;
 import com.synergy.vintagetech.init.builder.fan.FanRenderer;
 import com.synergy.vintagetech.init.builder.millstone.MillstoneRenderer;
 import com.synergy.vintagetech.init.builder.windmill.WindMillRenderer;
-import com.synergy.vintagetech.init.types.zBlockEntities;
-import com.synergy.vintagetech.init.types.zFluids;
-import com.synergy.vintagetech.init.types.zParticles;
-import com.synergy.vintagetech.init.types.zTrees;
+import com.synergy.vintagetech.init.types.*;
 
 import guideme.Guide;
 import net.minecraft.client.Minecraft;
@@ -99,6 +101,26 @@ public class Client {
                                 zBlockEntities.CENTRIFUGE.get(),
                                 CentrifugeRenderer::new);
 
+                event.registerBlockEntityRenderer(
+                                zBlockEntities.CRUSHING_TUB.get(),
+                                CrushingTubRender::new);
+
+                event.registerBlockEntityRenderer(
+                                zBlockEntities.EVAPORATION_BASIN.get(),
+                                EvaporationBasinRender::new);
+
+                event.registerBlockEntityRenderer(
+                                zBlockEntities.DRYING_RACK.get(),
+                                DryingRackRender::new);
+
+                event.registerBlockEntityRenderer(
+                                zBlockEntities.CRUCIBLE.get(),
+                                CrucibleRender::new);
+
+                event.registerBlockEntityRenderer(
+                                zBlockEntities.BASKET.get(),
+                                BasketRenderer::new);
+
         }
 
         @SubscribeEvent
@@ -110,6 +132,7 @@ public class Client {
                 event.registerSpriteSet(
                                 zParticles.SULFUR_PARTICLES.get(),
                                 SulfurGooProvider::new);
+
         }
 
         @SubscribeEvent
@@ -149,17 +172,16 @@ public class Client {
         @SubscribeEvent
         public static void registerBlockColors(RegisterColorHandlersEvent.BlockTintSources event) {
 
-                event.register(List.of(BlockTintSources.foliage()), 
-                zTrees.IRONWOOD.leaves().get(),
-                zTrees.OLIVE.leaves().get()
-                );
+                event.register(List.of(BlockTintSources.foliage()),
+                                zTrees.IRONWOOD.leaves().get(),
+                                zTrees.OLIVE.leaves().get());
 
         }
 
         // @SubscribeEvent
-        // public static void registerItemColor(RegisterColorHandlersEvent.ItemTintSources event) {
+        // public static void
+        // registerItemColor(RegisterColorHandlersEvent.ItemTintSources event) {
 
-        
         // }
 
         // Recipe collector client-side

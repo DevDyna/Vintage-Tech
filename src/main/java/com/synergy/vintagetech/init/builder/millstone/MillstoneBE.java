@@ -2,13 +2,12 @@ package com.synergy.vintagetech.init.builder.millstone;
 
 import java.util.Optional;
 
-import com.devdyna.cakesticklib.api.aspect.logic.DropCollector;
-import com.devdyna.cakesticklib.api.aspect.logic.ItemStorageBlock;
-import com.devdyna.cakesticklib.api.aspect.logic.NoGuiStorage;
+import com.devdyna.cakesticklib.api.aspect.logic.*;
 import com.devdyna.cakesticklib.api.primitive.Ticker;
 import com.devdyna.cakesticklib.api.recipe.recipeInput.ItemInput;
+import com.devdyna.cakesticklib.api.templates.SynchedBlockEntity;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
-import com.synergy.vintagetech.api.factories.transmission.TransmissionBE;
+import com.synergy.vintagetech.api.factories.handlers.TransmissionHandler;
 import com.synergy.vintagetech.init.builder.millstone.recipe.MillstoneRecipe;
 import com.synergy.vintagetech.init.types.zBlockEntities;
 import com.synergy.vintagetech.init.types.zRecipeTypes;
@@ -20,7 +19,8 @@ import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 
-public class MillstoneBE extends TransmissionBE implements ItemStorageBlock, NoGuiStorage, DropCollector {
+public class MillstoneBE extends SynchedBlockEntity
+        implements ItemStorageBlock, NoGuiStorage, DropCollector, TransmissionHandler, TickerDelay {
 
     public static final int INPUT = 0;
     public static final int OUTPUT = 1;
@@ -43,6 +43,15 @@ public class MillstoneBE extends TransmissionBE implements ItemStorageBlock, NoG
             extracted = simpleExtractItemByIndex(INPUT);
 
         return extracted;
+    }
+
+    @Override
+    public void update() {
+        super.update();
+
+        if (ticker != null)
+            ticker = null;
+
     }
 
     private Ticker ticker = null;
@@ -99,6 +108,16 @@ public class MillstoneBE extends TransmissionBE implements ItemStorageBlock, NoG
     @Override
     public int getSlots() {
         return 2;
+    }
+
+    @Override
+    public Ticker getTicker() {
+        return ticker;
+    }
+
+    @Override
+    public TimerStyle getStyle() {
+        return TimerStyle.PROGRESS_BAR;
     }
 
 }

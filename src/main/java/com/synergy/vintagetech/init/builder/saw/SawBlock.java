@@ -4,8 +4,9 @@ import java.util.Map;
 
 import org.jspecify.annotations.Nullable;
 
-import com.synergy.vintagetech.api.factories.MonoDirectionalAxleBlock;
+import com.devdyna.cakesticklib.api.aspect.logic.Tickable;
 import com.synergy.vintagetech.api.factories.handlers.RotableAxleBlock;
+import com.synergy.vintagetech.api.factories.transmission.MonoDirectionalAxleBlock;
 import com.synergy.vintagetech.init.types.zTags;
 
 import net.minecraft.core.BlockPos;
@@ -59,10 +60,11 @@ public class SawBlock extends MonoDirectionalAxleBlock implements RotableAxleBlo
         };
     }
 
+    //TODO minor BUG : placing creative motor on the saw blade active the saw intend of require the opposite face
     @Override
     public Map<Direction, Boolean> getAxis(BlockState state) {
         var dir = state.getValue(FACING);
-        
+
         if (state.getValue(FACING).getAxis().isHorizontal())
             dir = dir.getOpposite();
 
@@ -98,21 +100,7 @@ public class SawBlock extends MonoDirectionalAxleBlock implements RotableAxleBlo
 
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level l, BlockState s, BlockEntityType<T> ty) {
-        return (lvl, pos, b, t) -> {
-            if (t instanceof SawBE be) {
-
-                if (l == null)
-                    return;
-
-                be.tickBoth();
-                if (l.isClientSide())
-                    be.tickClient();
-                else
-                    be.tickServer();
-
-            }
-
-        };
+        return Tickable::compute;
     }
 
 }

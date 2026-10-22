@@ -7,7 +7,8 @@ import org.jspecify.annotations.Nullable;
 import com.devdyna.cakesticklib.api.aspect.logic.BucketInteraction;
 import com.devdyna.cakesticklib.api.aspect.logic.FluidClearableTank;
 import com.devdyna.cakesticklib.api.aspect.logic.FluidTooltipWhenEmpty;
-import com.synergy.vintagetech.api.factories.MonoDirectionalAxleBlock;
+import com.devdyna.cakesticklib.api.aspect.logic.Tickable;
+import com.synergy.vintagetech.api.factories.transmission.MonoDirectionalAxleBlock;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -80,21 +81,7 @@ public class CentrifugeBlock extends MonoDirectionalAxleBlock
 
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level l, BlockState s, BlockEntityType<T> ty) {
-        return (lvl, pos, b, t) -> {
-            if (t instanceof CentrifugeBE be) {
-
-                if (l == null)
-                    return;
-
-                be.tickBoth();
-                if (l.isClientSide())
-                    be.tickClient();
-                else
-                    be.tickServer();
-
-            }
-
-        };
+        return Tickable::compute;
     }
 
     @Override

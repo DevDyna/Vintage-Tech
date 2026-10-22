@@ -4,9 +4,9 @@ import java.util.Optional;
 
 import com.devdyna.cakesticklib.api.RandomUtil;
 import com.devdyna.cakesticklib.api.aspect.logic.*;
-import com.devdyna.cakesticklib.api.templates.TickingBE;
 import com.devdyna.cakesticklib.api.primitive.Ticker;
 import com.devdyna.cakesticklib.api.recipe.recipeInput.FluidInput;
+import com.devdyna.cakesticklib.api.templates.SynchedBlockEntity;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
 import com.synergy.vintagetech.api.factories.handlers.TreeTapHandler;
 import com.synergy.vintagetech.init.builder.evaporation_basin.recipe.EvaporationBasinRecipe;
@@ -25,8 +25,9 @@ import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 
-public class EvaporationBasinBE extends TickingBE
-        implements NoGuiStorage, ItemStorageBlock, SimpleFluidStorage, TimeredRecipe, EnvironmentModifier , TreeTapHandler {
+public class EvaporationBasinBE extends SynchedBlockEntity
+        implements NoGuiStorage, ItemStorageBlock, SimpleFluidStorage, // TickerRecipe,
+        TreeTapHandler, Tickable, TickerDelay {
 
     public EvaporationBasinBE(BlockPos pos, BlockState blockState) {
         super(zBlockEntities.EVAPORATION_BASIN.get(), pos, blockState);
@@ -57,17 +58,17 @@ public class EvaporationBasinBE extends TickingBE
     @Override
     public void tickBoth() {
 
-        if (getFluidStorage() == null) 
+        if (getFluidStorage() == null)
             return;
-        
 
         if (getFluidStorage().size() <= 0)
             return;
 
-        if (getAsStack(0).isEmpty()) 
+        if (getAsStack(0).isEmpty())
             return;
-        
 
+        if (level.isClientSide())
+            return;
 
         Optional<RecipeHolder<EvaporationBasinRecipe>> r = level.getServer().getRecipeManager()
                 .getRecipeFor(zRecipeTypes.EVAPORATION_BASIN.getType(),
@@ -104,7 +105,6 @@ public class EvaporationBasinBE extends TickingBE
 
         }
 
-
     }
 
     public void fail() {
@@ -113,7 +113,7 @@ public class EvaporationBasinBE extends TickingBE
 
     private int calcTicks(int base) {
         return (int) Math.max(1,
-                base / getTickerSpeed());
+                base / getMultiplier());
     }
 
     @Override
@@ -152,18 +152,13 @@ public class EvaporationBasinBE extends TickingBE
     }
 
     @Override
-    public float getTickerSpeed() {
-        return 1.0f * getSpeedModifier();
-    }
-
-    @Override
-    public float getSpeedModifier() {
+    public float getMultiplier() {
         return (level.getBlockState(getBlockPos().below()).is(zTags.Blocks.EVAPORATION_BASIC_HEATER) ? 2 : 1);
     }
 
     @Override
-    public boolean isRequired() {
-        return false;
+    public TimerStyle getStyle() {
+        return TimerStyle.PROGRESS_BAR;
     }
 
 }

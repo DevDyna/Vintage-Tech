@@ -3,6 +3,7 @@ package com.synergy.vintagetech.init.builder.basket;
 import com.devdyna.cakesticklib.api.aspect.logic.DropCollector;
 import com.devdyna.cakesticklib.api.aspect.logic.ItemStorageBlock;
 import com.devdyna.cakesticklib.api.aspect.logic.NoGuiStorage;
+import com.devdyna.cakesticklib.api.templates.SynchedBlockEntity;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
 import com.synergy.vintagetech.init.types.zBlockEntities;
 import com.synergy.vintagetech.init.types.zTags;
@@ -10,28 +11,27 @@ import com.synergy.vintagetech.init.types.zTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.storage.ValueInput;
-import net.minecraft.world.level.storage.ValueOutput;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 
-public class BasketBE extends BlockEntity implements ItemStorageBlock, DropCollector, NoGuiStorage {
+public class BasketBE extends SynchedBlockEntity implements ItemStorageBlock, DropCollector, NoGuiStorage {
+
+    public static final int INVENTORY_SLOTS = 27;
 
     public BasketBE(BlockPos pos, BlockState state) {
         super(zBlockEntities.BASKET.get(), pos, state);
     }
 
-    protected void saveAdditional(ValueOutput output) {
-        this.getItemStorage().serialize(output);
-        super.saveAdditional(output);
-    }
+    // protected void saveAdditional(ValueOutput output) {
+    //     this.getItemStorage().serialize(output);
+    //     super.saveAdditional(output);
+    // }
 
-    protected void loadAdditional(ValueInput input) {
-        this.getItemStorage().deserialize(input);
-        super.loadAdditional(input);
-    }
+    // protected void loadAdditional(ValueInput input) {
+    //     this.getItemStorage().deserialize(input);
+    //     super.loadAdditional(input);
+    // }
 
     @Override
     public ItemStacksResourceHandler getItemStorage() {
@@ -40,7 +40,7 @@ public class BasketBE extends BlockEntity implements ItemStorageBlock, DropColle
 
     @Override
     public int getSlots() {
-        return 27;
+        return INVENTORY_SLOTS;
     }
 
     @Override
@@ -51,10 +51,16 @@ public class BasketBE extends BlockEntity implements ItemStorageBlock, DropColle
     public ItemStack insertItem(ItemStack stack) {
         if (stack.is(zTags.Items.BASKET_DENY))
             return stack;
+
+            update();
+
         return simpleInsertItem(stack);
     }
 
     public ItemStack extractItem() {
+
+        update();
+
         return simpleExtractItemFromSize();
     }
 

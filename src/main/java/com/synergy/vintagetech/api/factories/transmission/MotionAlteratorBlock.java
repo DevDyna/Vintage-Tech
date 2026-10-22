@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 import javax.annotation.Nullable;
 
-import com.synergy.vintagetech.api.factories.BaseKineticBlock;
+import com.synergy.vintagetech.api.core.BaseKineticBlock;
 import com.synergy.vintagetech.api.factories.handlers.GeneratorHandler.NetworkState;
 
 import net.minecraft.core.BlockPos;

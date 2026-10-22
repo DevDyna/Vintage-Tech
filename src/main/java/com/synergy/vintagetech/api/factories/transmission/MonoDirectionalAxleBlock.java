@@ -1,6 +1,8 @@
-package com.synergy.vintagetech.api.factories;
+package com.synergy.vintagetech.api.factories.transmission;
 
 import java.util.List;
+
+import com.synergy.vintagetech.api.core.BaseKineticBlock;
 
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;

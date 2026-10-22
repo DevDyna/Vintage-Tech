@@ -12,7 +12,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import com.devdyna.cakesticklib.api.ItemLogisticUtils;
 import com.devdyna.cakesticklib.api.factories.plants.VanillaPlants;
 import com.devdyna.cakesticklib.setup.Config;
-import com.synergy.vintagetech.api.factories.transmission.TransmissionBE;
+import com.synergy.vintagetech.api.factories.handlers.TransmissionHandler;
 import com.synergy.vintagetech.init.builder.basket.BasketBE;
 import com.synergy.vintagetech.init.builder.basket.BasketBlock;
 import com.synergy.vintagetech.init.types.zBlockEntities;
@@ -31,10 +31,11 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.level.block.LiquidBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.HopperBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class SawBE extends TransmissionBE {
+public class SawBE extends BlockEntity implements TransmissionHandler {
 
     public static final AtomicInteger UUID_GENERATOR = new AtomicInteger();
 

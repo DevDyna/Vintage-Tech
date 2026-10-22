@@ -126,7 +126,10 @@ public class PluginJEI implements IModPlugin {
                 JEIAliasesHelper.addAlias(r, List.of(
                                 zBlocks.BASKET),
                                 JEIAliasesHelper.Aliases.HOPPER,
-                                JEIAliasesHelper.Aliases.ITEM_COLLECTOR);
+                                JEIAliasesHelper.Aliases.ITEM_COLLECTOR,
+                                MODULE_ID + ".jei.alias.backpack",// TODO : move to api
+                                MODULE_ID + ".jei.alias.bundle"
+                );
 
                 JEIAliasesHelper.addAlias(r, List.of(
                                 zBlocks.FAN),
@@ -190,9 +193,6 @@ public class PluginJEI implements IModPlugin {
                 r.addAlias(Items.MAGMA_BLOCK, MODULE_ID + ".jei.alias.evaporation_basin.booster");
 
         }
-
-        // TODO API
-        // JEIAliasesHelper.addAlias List<ItemLike>
 
         private <C extends RecipeInput, T extends Recipe<C>> List<RecipeHolder<T>> getRecipes(RecipeType<T> type) {
                 return List.copyOf(Client.getRecipeCollector().byType(type));

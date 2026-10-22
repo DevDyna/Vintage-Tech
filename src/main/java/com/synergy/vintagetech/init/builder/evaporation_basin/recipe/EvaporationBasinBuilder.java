@@ -24,7 +24,7 @@ public class EvaporationBasinBuilder extends BaseRecipeBuilder
     private EvaporationBasinBuilder(HolderLookup.Provider p) {
         super(p);
         this.criteria = new LinkedHashMap<String, Criterion<?>>();
-        this.ticks = 20;
+        this.ticks = 200;
     }
 
     public static EvaporationBasinBuilder of(HolderLookup.Provider p) {

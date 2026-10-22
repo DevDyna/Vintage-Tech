@@ -3,8 +3,6 @@ package com.synergy.vintagetech.datagen.server;
 import static com.synergy.vintagetech.Main.MODULE_ID;
 
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Function;
-
 import com.devdyna.cakesticklib.api.datagen.RecipeGenerators;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.registry.LibFluids;
@@ -31,14 +29,11 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
-import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.common.Tags;
@@ -57,6 +52,9 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                         stair(tree.stairs().get(), tree.planks().get(), output);
                         shelf(tree.shelf().get(), tree.strippedLog().get());
                         slab(tree.slab().get(), tree.planks().get(), output);
+
+                        simplePacked(output, tree.log().get(), tree.wood().get(), true, 3);
+                        simplePacked(output, tree.strippedLog().get(), tree.strippedWood().get(), true, 3);
 
                         fenceBuilder(tree.fence().get(), x.itemIngredient(tree.planks().get()))
                                         .unlockedBy(getHasName(tree.planks().get()), has(tree.planks().get()))
@@ -98,11 +96,11 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 continue;
 
                         pillar(output, beam.beam_wood().get(),
-                                        trasmute(beam.log().get(), rl -> rl.withPath(
+                                        x.trasmute(beam.log().get(), rl -> rl.withPath(
                                                         p -> p.replace(beam.type().suffix4(), beam.type().suffix6()))),
                                         8);
                         pillar(output, beam.beam_stripped_wood().get(),
-                                        trasmute(beam.log_stripped().get(),
+                                        x.trasmute(beam.log_stripped().get(),
                                                         rl -> rl.withPath(p -> p.replace(beam.type().suffix4(),
                                                                         beam.type().suffix6()))),
                                         8);
@@ -1040,32 +1038,6 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .output(nugget, 1, 0.75f)
                                 .unlockedBy(getHasName(t9), has(t9))
                                 .save(output);
-        }
-
-        // TODO move to x
-
-        private Block trasmute(Block b, Function<Identifier, Identifier> f) {
-                return x.getBlock(f.apply(x.rl(b)));
-        }
-
-        @SuppressWarnings("unused")
-        private Item trasmute(Item b, Function<Identifier, Identifier> f) {
-                return x.getItem(f.apply(x.rl(b)));
-        }
-
-        // TODO simplePacked + itemcount
-        private void simplePacked(RecipeOutput c, ItemLike input, ItemLike output, boolean isSmall, int result) {
-                var temp = ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.MISC, output, result)
-                                .define('#', input)
-                                .pattern("##" + (!isSmall ? "#" : "")).pattern("##" + (!isSmall ? "#" : ""));
-
-                if (!isSmall)
-                        temp = temp.pattern("###");
-
-                temp.unlockedBy(getHasName(input), has(input))
-                                .save(c, getModName() + ":" + getConversionRecipeName(output,
-                                                input));
-
         }
 
 }

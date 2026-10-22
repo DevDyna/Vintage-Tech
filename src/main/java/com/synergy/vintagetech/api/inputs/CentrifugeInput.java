@@ -1,4 +1,4 @@
-package com.synergy.vintagetech.api.recipeinput;
+package com.synergy.vintagetech.api.inputs;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeInput;

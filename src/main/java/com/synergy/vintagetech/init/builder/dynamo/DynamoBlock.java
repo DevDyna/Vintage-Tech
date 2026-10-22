@@ -4,8 +4,9 @@ import java.util.Map;
 
 import org.jspecify.annotations.Nullable;
 
-import com.synergy.vintagetech.api.factories.MonoDirectionalAxleBlock;
+import com.devdyna.cakesticklib.api.aspect.logic.Tickable;
 import com.synergy.vintagetech.api.factories.handlers.HorizontalAxleBlock;
+import com.synergy.vintagetech.api.factories.transmission.MonoDirectionalAxleBlock;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -22,7 +23,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 @SuppressWarnings("deprecation")
-public class DynamoBlock extends MonoDirectionalAxleBlock implements HorizontalAxleBlock{
+public class DynamoBlock extends MonoDirectionalAxleBlock implements HorizontalAxleBlock {
 
     public DynamoBlock(Properties p) {
         super(p);
@@ -65,23 +66,9 @@ public class DynamoBlock extends MonoDirectionalAxleBlock implements HorizontalA
         return state.getValue(HORIZONTAL_FACING);
     }
 
-     @Nullable
+    @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level l, BlockState s, BlockEntityType<T> ty) {
-        return (lvl, pos, b, t) -> {
-            if (t instanceof DynamoBE be) {
-
-                if (l == null)
-                    return;
-
-                be.tickBoth();
-                if (l.isClientSide())
-                    be.tickClient();
-                else
-                    be.tickServer();
-
-            }
-
-        };
+        return Tickable::compute;
     }
 
 }

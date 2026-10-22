@@ -1,4 +1,4 @@
-package com.synergy.vintagetech.api.factories.transmission;
+package com.synergy.vintagetech.api.factories.motion;
 
 import java.util.Map;
 
@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import com.synergy.vintagetech.api.factories.handlers.AxleHandler;
+import com.synergy.vintagetech.api.factories.handlers.TransmissionHandler;
 import com.synergy.vintagetech.init.types.zBlocks;
 
 import net.minecraft.client.renderer.SubmitNodeCollector;
@@ -20,20 +21,20 @@ import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.phys.Vec3;
 
-public class TransmissionRenderer<BE extends TransmissionBE>
-        implements BlockEntityRenderer<BE, TransmissionRenderState> {
+public abstract class BaseMotionRenderer<BE extends BlockEntity & TransmissionHandler, STATE extends MotionRenderState>
+        implements BlockEntityRenderer<BE, STATE> {
 
-    protected final BlockModelResolver resolver;
+    public final BlockModelResolver blockModels;
 
-    public TransmissionRenderer(BlockEntityRendererProvider.Context ctx) {
-        this.resolver = ctx.blockModelResolver();
+    public BaseMotionRenderer(BlockEntityRendererProvider.Context ctx) {
+        this.blockModels = ctx.blockModelResolver();
     }
 
-    @Override
-    public TransmissionRenderState createRenderState() {
-        return new TransmissionRenderState();
+    public static class Simple extends MotionRenderState {
+
     }
 
     public Block getBlockRendered(BE be) {
@@ -41,13 +42,12 @@ public class TransmissionRenderer<BE extends TransmissionBE>
     }
 
     @Override
-    public void extractRenderState(BE be, TransmissionRenderState state, float partialTicks,
-            Vec3 cameraPosition,
+    public void extractRenderState(BE be, STATE state, float partialTicks, Vec3 cameraPosition,
             ModelFeatureRenderer.CrumblingOverlay overlay) {
 
         BlockEntityRenderState.extractBase(be, state, overlay);
 
-        resolver.update(state.block, getBlockRendered(be).defaultBlockState(), BlockDisplayContext.create());
+        blockModels.update(state.block, getBlockRendered(be).defaultBlockState(), BlockDisplayContext.create());
 
         state.rotation = be.getRotation(partialTicks);
         state.dirs = be.getBlockState().getBlock() instanceof AxleHandler axle
@@ -126,7 +126,7 @@ public class TransmissionRenderer<BE extends TransmissionBE>
     }
 
     @Override
-    public void submit(TransmissionRenderState state, PoseStack stack, SubmitNodeCollector collector,
+    public void submit(STATE state, PoseStack stack, SubmitNodeCollector collector,
             CameraRenderState camera) {
 
         if (state.dirs.isEmpty())
@@ -147,4 +147,5 @@ public class TransmissionRenderer<BE extends TransmissionBE>
 
         }
     }
+
 }

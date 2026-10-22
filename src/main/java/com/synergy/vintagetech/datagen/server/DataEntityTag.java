@@ -21,7 +21,7 @@ public class DataEntityTag extends EntityTypeTagsProvider {
         protected void addTags(Provider provider) {
 
                 tag(zTags.Entities.CRUSHING_TUB_ALLOW_CRUSHING)
-                                .add(EntityType.PLAYER, EntityType.ARMOR_STAND);
+                                .add(EntityType.PLAYER, EntityType.ARMOR_STAND, EntityType.VILLAGER);
 
                 tag(zTags.Entities.SAW_DENY_DAMAGING)
                                 .add(EntityType.ITEM);

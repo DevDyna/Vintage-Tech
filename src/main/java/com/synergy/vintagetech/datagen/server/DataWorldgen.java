@@ -289,7 +289,7 @@ public class DataWorldgen extends DatapackBuiltinEntriesProvider {
 
         }
 
-        // TODO API : move to api?
+       
 
         public static void registerPatchConfig(BootstrapContext<ConfiguredFeature<?, ?>> c,
                         ResourceKey<ConfiguredFeature<?, ?>> k, Object... states) {

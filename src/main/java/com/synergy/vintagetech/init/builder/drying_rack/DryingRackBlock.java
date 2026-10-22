@@ -24,6 +24,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.BooleanOp;
@@ -33,20 +34,22 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class DryingRackBlock extends TickingBlock implements RopeHandler {
 
+    public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
+
     public DryingRackBlock(Properties p) {
         super(p);
     }
 
     @Override
     protected void createBlockStateDefinition(Builder<Block, BlockState> b) {
-        b.add(BlockStateProperties.HORIZONTAL_FACING);
+        b.add(FACING);
     }
 
     @Override
     @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext c) {
         return defaultBlockState()
-                .setValue(BlockStateProperties.HORIZONTAL_FACING, c.getHorizontalDirection().getOpposite());
+                .setValue(FACING, c.getHorizontalDirection().getOpposite());
     }
 
     @Override
@@ -62,8 +65,8 @@ public class DryingRackBlock extends TickingBlock implements RopeHandler {
     }
 
     public static boolean checkDir(BlockState s) {
-        return (s.getValue(BlockStateProperties.HORIZONTAL_FACING) == Direction.NORTH
-                || s.getValue(BlockStateProperties.HORIZONTAL_FACING) == Direction.SOUTH);
+        return (s.getValue(FACING) == Direction.NORTH
+                || s.getValue(FACING) == Direction.SOUTH);
     }
 
     public VoxelShape north_south() {

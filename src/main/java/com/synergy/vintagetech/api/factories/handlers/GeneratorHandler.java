@@ -2,7 +2,7 @@ package com.synergy.vintagetech.api.factories.handlers;
 
 import net.minecraft.core.BlockPos;
 
-public interface GeneratorHandler {
+public interface GeneratorHandler extends TransmissionHandler{
 
     /**
      * Create a basic element to store blockpos and rotation direction to trasmitt

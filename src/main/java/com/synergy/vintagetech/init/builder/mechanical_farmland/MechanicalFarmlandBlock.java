@@ -10,7 +10,7 @@ import org.jspecify.annotations.Nullable;
 import com.devdyna.cakesticklib.api.aspect.logic.BucketInteraction;
 import com.devdyna.cakesticklib.api.aspect.logic.FluidClearableTank;
 import com.devdyna.cakesticklib.api.aspect.logic.FluidTooltipWhenEmpty;
-import com.devdyna.cakesticklib.api.templates.TickingBE;
+import com.devdyna.cakesticklib.api.aspect.logic.Tickable;
 import com.synergy.vintagetech.api.factories.handlers.AxleHandler;
 
 import net.minecraft.core.BlockPos;
@@ -85,21 +85,7 @@ public class MechanicalFarmlandBlock extends FarmlandBlock
 
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level l, BlockState s, BlockEntityType<T> ty) {
-        return (lvl, pos, b, t) -> {
-            if (t instanceof TickingBE be) {
-                if (l == null) {
-                    return;
-                }
-
-                be.tickBoth();
-                if (l.isClientSide()) {
-                    be.tickClient();
-                } else {
-                    be.tickServer();
-                }
-            }
-
-        };
+        return Tickable::compute;
     }
 
     @Override
