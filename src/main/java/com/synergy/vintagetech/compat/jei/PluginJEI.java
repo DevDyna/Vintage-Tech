@@ -115,25 +115,29 @@ public class PluginJEI implements IModPlugin {
 
                 JEIAliasesHelper.addAlias(r, List.of(
                                 zBlocks.SAW),
-                                JEIAliasesHelper.Aliases.BLOCK_BREAKER,
-                                JEIAliasesHelper.Aliases.DRILL,
-                                JEIAliasesHelper.Aliases.MINER,
-                                JEIAliasesHelper.Aliases.TREE_CUTTER,
-                                JEIAliasesHelper.Aliases.TREE_FELLER,
-                                JEIAliasesHelper.Aliases.ENTITY_KILLER,
-                                JEIAliasesHelper.Aliases.FAKEPLAYER);
+                                JEIAliasesHelper.Alias.BLOCK_BREAKER,
+                                JEIAliasesHelper.Alias.DRILL,
+                                JEIAliasesHelper.Alias.MINER,
+                                JEIAliasesHelper.Alias.TREE_CUTTER,
+                                JEIAliasesHelper.Alias.TREE_FELLER,
+                                JEIAliasesHelper.Alias.ENTITY_KILLER,
+                                JEIAliasesHelper.Alias.ENTITY_FAKEPLAYER);
 
                 JEIAliasesHelper.addAlias(r, List.of(
                                 zBlocks.BASKET),
-                                JEIAliasesHelper.Aliases.HOPPER,
-                                JEIAliasesHelper.Aliases.ITEM_COLLECTOR,
+                                JEIAliasesHelper.Alias.HOPPER,
+                                JEIAliasesHelper.Alias.ITEM_COLLECTOR
+                );
+
+                JEIAliasesHelper.addAlias(r, List.of(
+                                zBlocks.BASKET),
                                 MODULE_ID + ".jei.alias.backpack",// TODO : move to api
                                 MODULE_ID + ".jei.alias.bundle"
                 );
 
                 JEIAliasesHelper.addAlias(r, List.of(
                                 zBlocks.FAN),
-                                JEIAliasesHelper.Aliases.ENTITY_MOVER);
+                                JEIAliasesHelper.Alias.ENTITY_MOVER);
 
                 JEIAliasesHelper.addAlias(r, List.of(
                                 zBlocks.AXLE, zBlocks.GEARSHIFT, zBlocks.CLUTCH, zBlocks.JUNCTION),
@@ -153,7 +157,7 @@ public class PluginJEI implements IModPlugin {
 
                 JEIAliasesHelper.addAlias(r, List.of(
                                 zBlocks.SAW, zBlocks.GEARSHIFT, zBlocks.CLUTCH),
-                                JEIAliasesHelper.Aliases.REDSTONE_SENSIBLE);
+                                JEIAliasesHelper.Alias.REDSTONE_SENSIBLE);
 
                 JEIAliasesHelper.addAlias(r, List.of(
                                 zBlocks.AXLE,
