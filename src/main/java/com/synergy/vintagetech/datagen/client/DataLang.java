@@ -1,6 +1,5 @@
 package com.synergy.vintagetech.datagen.client;
 
-import static com.devdyna.cakesticklib.api.datagen.LangUtils.*;
 import static com.synergy.vintagetech.Main.MODULE_ID;
 
 import java.util.List;
@@ -31,18 +30,18 @@ public class DataLang extends LanguageProvider implements LangGenerators {
                 zBlocks.zRender.getEntries()
                                 .forEach(b -> addBlock(b, LangUtils.TipColors.RED + "DEV BLOCK ONLY, DON'T USE!"));
                 zFluids.zFluidTypes.getEntries()
-                                .forEach(f -> addFluid(f.get(), named(f, MODULE_ID).replace(" Type", "")));
-                zItems.zBucketItems.getEntries().forEach(i -> addItem(i, named(i, MODULE_ID)));
-                zBlocks.zBlockItem.getEntries().forEach(b -> addBlock(b, LangUtils.named(b, MODULE_ID)));
-                zItems.zItem.getEntries().forEach(b -> addItem(b, LangUtils.named(b, MODULE_ID)));
-                zBlocks.zBlockFluids.getEntries().forEach(b -> addBlock(b, LangUtils.named(b, MODULE_ID)));
+                                .forEach(f -> addFluid(f.get(), named(f).replace(" Type", "")));
+                zItems.zBucketItems.getEntries().forEach(i -> addItem(i, named(i)));
+                zBlocks.zBlockItem.getEntries().forEach(b -> addBlock(b, named(b)));
+                zItems.zItem.getEntries().forEach(b -> addItem(b, named(b)));
+                zBlocks.zBlockFluids.getEntries().forEach(b -> addBlock(b, named(b)));
 
                 // crops blocks required
                 List.of(
                                 zBlocks.HEMP,
                                 zBlocks.ALOE_PLANT,
                                 zBlocks.BLUEBERRY_BUSH,
-                                zBlocks.CAVE_WHEAT).forEach(b -> addBlock(b, named(b, MODULE_ID)));
+                                zBlocks.CAVE_WHEAT).forEach(b -> addBlock(b, named(b)));
 
                 add(MODULE_ID + ".jei.alias.rpm.base", "Mechanical Rotation Block");
                 add(MODULE_ID + ".jei.alias.rpm.transmission", "Transmission");
