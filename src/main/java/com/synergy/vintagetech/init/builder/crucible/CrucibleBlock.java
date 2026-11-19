@@ -2,7 +2,6 @@ package com.synergy.vintagetech.init.builder.crucible;
 
 import org.jspecify.annotations.Nullable;
 
-import com.devdyna.cakesticklib.api.RandomUtil;
 import com.devdyna.cakesticklib.api.aspect.logic.BucketInteraction;
 import com.devdyna.cakesticklib.api.aspect.logic.FluidClearableTank;
 import com.devdyna.cakesticklib.api.aspect.logic.FluidTooltipWhenEmpty;
@@ -11,7 +10,6 @@ import com.synergy.vintagetech.init.types.zTags;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -60,7 +58,16 @@ public class CrucibleBlock extends TickingBlock
     }
 
     public boolean isHeated(LevelReader level, BlockPos pos) {
-        return level.getBlockState(pos).is(zTags.Blocks.CRUCIBLE_HEAT_SOURCES);
+
+        for (int y = 0; y < 8; y++) {
+            if (level.getBlockState(pos.below(y)).is(zTags.Blocks.CRUCIBLE_HEAT_SOURCES))
+                return true;
+
+            if (level.getBlockState(pos.below(y)).isSolidRender())
+                break;
+        }
+
+        return false;
     }
 
     @Override
@@ -129,19 +136,7 @@ public class CrucibleBlock extends TickingBlock
         return be instanceof CrucibleBE tank ? tank.getFluidStorage() : null;
     }
 
-    @Override
-    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
-        if (state.getValue(HEATED)) {
-            var x = pos.getX() + RandomUtil.between(level, 0.25, 0.75);
-            var y = pos.getY() + RandomUtil.between(level, 0.25f, 0.75f);
-            var z = pos.getZ() + RandomUtil.between(level, 0.25, 0.75);
-
-            level.addAlwaysVisibleParticle(
-                    ParticleTypes.BUBBLE,
-                    x, y, z,
-                    0, 0.05, 0);
-        }
-    }
+    
 
     @Override
     protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {

@@ -17,6 +17,7 @@ import com.synergy.vintagetech.init.types.zBlockEntities;
 import com.synergy.vintagetech.init.types.zRecipeTypes;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.item.ItemStack;
@@ -80,10 +81,21 @@ public class CrucibleBE extends SynchedBlockEntity
             return;
         }
 
-        if (getItemStorage() == null)
+        if (!getBlockState().getValue(CrucibleBlock.HEATED))
             return;
 
-        if (!getBlockState().getValue(CrucibleBlock.HEATED))
+        if (level.isClientSide()) {
+            var x = getBlockPos().getX() + RandomUtil.between(level, 0.25, 0.75);
+            var y = getBlockPos().getY() + RandomUtil.between(level, 0.16f,  (0.59f * (fluid.amount() / 8000f)));
+            var z = getBlockPos().getZ() + RandomUtil.between(level, 0.25, 0.75);
+
+            level.addAlwaysVisibleParticle(
+                    ParticleTypes.BUBBLE,
+                    x, y, z,
+                    0, 0.05, 0);
+        }
+
+        if (getItemStorage() == null)
             return;
 
         List<ItemStack> items = new ArrayList<>();
