@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.synergy.vintagetech.api.core.BaseKineticBlock;
+import com.synergy.vintagetech.api.factories.handlers.RopeHandler;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -20,7 +21,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class JunctionBlock extends BaseKineticBlock {
+public class JunctionBlock extends BaseKineticBlock implements RopeHandler{
 
     public JunctionBlock(Properties p) {
         super(p);
@@ -67,6 +68,11 @@ public class JunctionBlock extends BaseKineticBlock {
     protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return Shapes
                 .join(axle_X, Shapes.join(axle_Y, axle_Z, BooleanOp.OR), BooleanOp.OR).optimize();
+    }
+
+    @Override
+    public boolean getWhenRopeConnect(BlockState state, Direction dir) {
+        return true;
     }
 
 }
