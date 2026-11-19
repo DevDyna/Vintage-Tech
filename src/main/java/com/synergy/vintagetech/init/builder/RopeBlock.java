@@ -48,7 +48,7 @@ public class RopeBlock extends PipeBlock {
             return true;
 
         if (state.getBlock() instanceof RopeHandler h)
-            return h.getWhenRopeConnect(dir);
+            return h.getWhenRopeConnect(state, dir);
 
         if (canSupportCenter((LevelReader) level, pos.relative(dir), dir))
             return true;
@@ -73,8 +73,7 @@ public class RopeBlock extends PipeBlock {
         ;
     }
 
-    private boolean hasCorner(
-            LevelReader level, BlockPos pos) {
+    private boolean hasCorner(LevelReader level, BlockPos pos) {
 
         var north = connectsTo(level, pos, Direction.NORTH);
         var south = connectsTo(level, pos, Direction.SOUTH);
@@ -92,20 +91,13 @@ public class RopeBlock extends PipeBlock {
     }
 
     @Override
-    protected BlockState updateShape(
-            BlockState state,
-            LevelReader level,
-            ScheduledTickAccess ticks,
-            BlockPos pos,
-            Direction directionToNeighbour,
-            BlockPos neighbourPos,
-            BlockState neighbourState,
-            RandomSource random) {
-        return !this.canSurvive(state, level, pos)
+    protected BlockState updateShape(BlockState s, LevelReader l, ScheduledTickAccess t, BlockPos p, Direction d,
+            BlockPos np, BlockState ns, RandomSource r) {
+        return !this.canSurvive(s, l, p)
                 ? Blocks.AIR.defaultBlockState()
-                : state.setValue(PROPERTY_BY_DIRECTION.get(directionToNeighbour),
-                        this.connectsTo(level, pos, directionToNeighbour))
-                        .setValue(HAS_CORNER, hasCorner(level, pos));
+                : s.setValue(PROPERTY_BY_DIRECTION.get(d),
+                        this.connectsTo(l, p, d))
+                        .setValue(HAS_CORNER, hasCorner(l, p));
     }
 
     @Override

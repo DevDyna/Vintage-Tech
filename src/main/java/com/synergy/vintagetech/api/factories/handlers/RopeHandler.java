@@ -5,11 +5,12 @@ import com.synergy.vintagetech.init.builder.RopeBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 
 public interface RopeHandler {
 
-    default boolean getWhenRopeConnect(Direction dir) {
+    default boolean getWhenRopeConnect(BlockState state ,Direction dir) {
         return true;
     }
 
