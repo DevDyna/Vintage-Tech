@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "vintagetech:block/stripped_dark_oak_beam"
+    "model": "vintagetech:item/stripped_dark_oak_beam"
   }
 }

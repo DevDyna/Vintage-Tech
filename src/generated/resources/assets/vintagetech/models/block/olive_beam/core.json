@@ -1,0 +1,6 @@
+{
+  "parent": "vintagetech:block/template/beam/core",
+  "textures": {
+    "side": "vintagetech:block/olive_log"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "vintagetech:item/template/beam",
+  "textures": {
+    "side": "vintagetech:block/beam/axle",
+    "top": "vintagetech:block/beam/axle"
+  }
+}

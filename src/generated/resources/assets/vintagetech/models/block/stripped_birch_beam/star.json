@@ -1,0 +1,7 @@
+{
+  "parent": "vintagetech:block/template/beam/star",
+  "textures": {
+    "side": "minecraft:block/stripped_birch_log",
+    "top": "vintagetech:block/beam/stripped/birch"
+  }
+}

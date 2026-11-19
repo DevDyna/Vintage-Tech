@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "vintagetech:block/olive_beam"
+    "model": "vintagetech:item/olive_beam"
   }
 }
