@@ -112,7 +112,7 @@ public class DryingRackBlock extends TickingBlock implements RopeHandler {
     }
 
     @Override
-    public boolean getWhenRopeConnect(Direction dir) {
+    public boolean getWhenRopeConnect(BlockState state,Direction dir) {
         return dir == Direction.DOWN;
     }
 
