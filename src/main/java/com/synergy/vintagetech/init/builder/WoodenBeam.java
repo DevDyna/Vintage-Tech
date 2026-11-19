@@ -1,4 +1,4 @@
-package com.synergy.vintagetech.init.builder.beam;
+package com.synergy.vintagetech.init.builder;
 
 import com.synergy.vintagetech.api.factories.handlers.AxleHandler;
 import com.synergy.vintagetech.api.factories.handlers.RopeHandler;

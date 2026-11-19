@@ -7,7 +7,7 @@ import java.util.function.Supplier;
 
 import com.synergy.vintagetech.api.factories.trees.TreeOptions.WoodType;
 import com.synergy.vintagetech.init.Material;
-import com.synergy.vintagetech.init.builder.beam.WoodenBeam;
+import com.synergy.vintagetech.init.builder.WoodenBeam;
 
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.Block;
