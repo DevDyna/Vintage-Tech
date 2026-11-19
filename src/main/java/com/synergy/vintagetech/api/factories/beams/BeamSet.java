@@ -7,10 +7,12 @@ import java.util.function.Supplier;
 
 import com.devdyna.cakesticklib.api.utils.x;
 import com.synergy.vintagetech.api.datagen.BlockModelUtils;
+import com.synergy.vintagetech.api.datagen.ItemModelUtil;
 import com.synergy.vintagetech.api.factories.trees.TreeOptions.WoodType;
 import com.synergy.vintagetech.init.types.zTags;
 
 import net.minecraft.client.data.models.BlockModelGenerators;
+import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.data.tags.TagAppender;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
@@ -34,20 +36,28 @@ public record BeamSet(String id, DeferredHolder<Block, Block> beam_log, Deferred
         return type.equals(WoodType.OTHER);
     }
 
-    public void createModels(BlockModelGenerators models) {
-        BlockModelUtils.createBeamBlock(models, beam_log.get(),
+    public void createModels(BlockModelGenerators blocks, ItemModelGenerators items) {
+
+        ItemModelUtil.createBeamItem(items, beam_log.get(), x.rl(MODULE_ID, "block/beam/normal/" + id), logTexture);
+        ItemModelUtil.createBeamItem(items, beam_stripped_log.get(), x.rl(MODULE_ID, "block/beam/stripped/" + id),
+                strippedTexture);
+
+        BlockModelUtils.createBeamBlock(blocks, beam_log.get(),
                 x.rl(MODULE_ID, "block/beam/normal/" + id), logTexture);
-        BlockModelUtils.createBeamBlock(models, beam_stripped_log.get(),
+        BlockModelUtils.createBeamBlock(blocks, beam_stripped_log.get(),
                 x.rl(MODULE_ID, "block/beam/stripped/" + id), strippedTexture);
 
         if (isSpecial())
             return;
 
-        BlockModelUtils.createBeamBlock(models, beam_wood.get(),
+        BlockModelUtils.createBeamBlock(blocks, beam_wood.get(),
                 logTexture, logTexture);
 
-        BlockModelUtils.createBeamBlock(models, beam_stripped_wood.get(),
+        BlockModelUtils.createBeamBlock(blocks, beam_stripped_wood.get(),
                 strippedTexture, strippedTexture);
+
+        ItemModelUtil.createBeamItem(items, beam_wood.get(), logTexture, logTexture);
+        ItemModelUtil.createBeamItem(items, beam_stripped_wood.get(), strippedTexture, strippedTexture);
 
     }
 

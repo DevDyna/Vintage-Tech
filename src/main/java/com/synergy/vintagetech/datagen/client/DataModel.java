@@ -2,8 +2,6 @@ package com.synergy.vintagetech.datagen.client;
 
 import static com.synergy.vintagetech.Main.MODULE_ID;
 
-import java.util.Optional;
-
 import com.synergy.vintagetech.api.datagen.BlockModelUtils;
 import com.synergy.vintagetech.api.datagen.ItemModelUtil;
 import com.synergy.vintagetech.api.factories.beams.BeamFactory;
@@ -27,7 +25,6 @@ import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
 import net.minecraft.client.data.models.model.ItemModelUtils;
 import net.minecraft.client.data.models.model.ModelLocationUtils;
-import net.minecraft.client.data.models.model.ModelTemplate;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.data.models.model.TextureSlot;
@@ -54,11 +51,11 @@ public class DataModel extends ModelProvider {
                                 .forEach(i -> itemModels.generateFlatItem(i.get(), ModelTemplates.FLAT_ITEM));
 
                 for (var beam : BeamFactory.getAll())
-                        beam.createModels(blockModels);
+                        beam.createModels(blockModels, itemModels);
 
                 zItems.zBucketItems.getEntries()
                                 .forEach(b -> ItemModelUtil.createBucketItem(itemModels, b.get()));
-                
+
                 zBlocks.zBlockFluids.getEntries().forEach(b -> blockModels.createParticleOnlyBlock(b.get())
 
                 // ModelUtils.fluid(blockModels, b.get(), MODULE_ID)
@@ -147,7 +144,7 @@ public class DataModel extends ModelProvider {
                                                                                                                                                 "block/lavender/2"))),
                                                                                                                 blockModels.modelOutput)))));
 
-                BlockModelUtils.createRopeBeamBlock(blockModels, zBlocks.AXLE.get());
+                BlockModelUtils.createAxleBeamBlock(blockModels, zBlocks.AXLE.get());
 
                 BlockModelUtils.createGearShiftBlock(blockModels, zBlocks.GEARSHIFT.get());
                 BlockModelUtils.createClutchBlock(blockModels, zBlocks.CLUTCH.get());
@@ -259,24 +256,9 @@ public class DataModel extends ModelProvider {
                 // itemModels.generateFlatItem(zBlocks.NODE.get().asItem(),
                 // ModelTemplates.FLAT_ITEM);
 
-                itemModels.itemModelOutput.accept(zBlocks.AXLE.get().asItem(),
-                                ItemModelUtils.plainModel(
-                                                new ModelTemplate(
-                                                                Optional.of(x.rl(MODULE_ID,
-                                                                                "block/template/beam")),
-                                                                Optional.empty(),
-                                                                TextureSlot.TOP, TextureSlot.SIDE)
-                                                                .create(x.rl(MODULE_ID, "block/axle"),
-                                                                                new TextureMapping()
-                                                                                                .put(TextureSlot.TOP,
-                                                                                                                new Material(x.rl(
-                                                                                                                                MODULE_ID,
-                                                                                                                                "block/beam/axle")))
-                                                                                                .put(TextureSlot.SIDE,
-                                                                                                                new Material(x.rl(
-                                                                                                                                MODULE_ID,
-                                                                                                                                "block/beam/axle"))),
-                                                                                itemModels.modelOutput)));
+                ItemModelUtil.createBeamItem(itemModels, zBlocks.AXLE.get(),
+                                x.rl(MODULE_ID, "block/beam/axle"),
+                                x.rl(MODULE_ID, "block/beam/axle"));
 
                 itemModels.itemModelOutput.accept(zBlocks.WINDMILL.get().asItem(),
                                 ItemModelUtils.plainModel(x.rl(MODULE_ID, "item/windmill")));

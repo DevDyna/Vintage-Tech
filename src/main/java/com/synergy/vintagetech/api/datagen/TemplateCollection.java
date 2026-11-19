@@ -20,11 +20,37 @@ public class TemplateCollection {
                         Optional.empty(),
                         SAW);
 
-        public static final ModelTemplate BEAM_TEMPLATE = new ModelTemplate(
-                        Optional.of(x.rl(MODULE_ID, "block/template/beam")),
-                        Optional.empty(),
-                        TextureSlot.TOP,
-                        TextureSlot.SIDE);
+        public static class BEAM {
+
+                public static final ModelTemplate PILLAR = new ModelTemplate(
+                                Optional.of(x.rl(MODULE_ID, "block/template/beam/pillar")),
+                                Optional.empty(),
+                                TextureSlot.TOP,
+                                TextureSlot.SIDE);
+
+                public static final ModelTemplate CROSS = new ModelTemplate(
+                                Optional.of(x.rl(MODULE_ID, "block/template/beam/cross")),
+                                Optional.empty(),
+                                TextureSlot.TOP,
+                                TextureSlot.SIDE);
+
+                public static final ModelTemplate STAR = new ModelTemplate(
+                                Optional.of(x.rl(MODULE_ID, "block/template/beam/star")),
+                                Optional.empty(),
+                                TextureSlot.TOP,
+                                TextureSlot.SIDE);
+
+                public static final ModelTemplate CORE = new ModelTemplate(
+                                Optional.of(x.rl(MODULE_ID, "block/template/beam/core")),
+                                Optional.empty(),
+                                TextureSlot.SIDE);
+
+                public static final ModelTemplate ITEM = new ModelTemplate(
+                                Optional.of(x.rl(MODULE_ID, "item/template/beam")),
+                                Optional.empty(),
+                                TextureSlot.TOP,
+                                TextureSlot.SIDE);
+        }
 
         public static final ModelTemplate MODIFIER_TEMPLATE = new ModelTemplate(
                         Optional.of(x.rl(MODULE_ID, "block/template/modifier")),

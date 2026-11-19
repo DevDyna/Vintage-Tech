@@ -57,20 +57,18 @@ public class RopeBlock extends PipeBlock {
     }
 
     @Override
-    public BlockState getStateForPlacement(BlockPlaceContext context) {
-        var level = context.getLevel();
-        var pos = context.getClickedPos();
+    public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+        var level = ctx.getLevel();
+        var pos = ctx.getClickedPos();
 
-        return super.getStateForPlacement(context)
-                .setValue(NORTH, this.connectsTo(level, pos, Direction.NORTH))
-                .setValue(SOUTH, this.connectsTo(level, pos, Direction.SOUTH))
-                .setValue(EAST, this.connectsTo(level, pos, Direction.EAST))
-                .setValue(WEST, this.connectsTo(level, pos, Direction.WEST))
-                .setValue(UP, this.connectsTo(level, pos, Direction.UP))
-                .setValue(DOWN, this.connectsTo(level, pos, Direction.DOWN))
-                .setValue(HAS_CORNER, hasCorner(level, pos))
-
-        ;
+        return super.getStateForPlacement(ctx)
+                .setValue(NORTH, connectsTo(level, pos, Direction.NORTH))
+                .setValue(SOUTH, connectsTo(level, pos, Direction.SOUTH))
+                .setValue(EAST, connectsTo(level, pos, Direction.EAST))
+                .setValue(WEST, connectsTo(level, pos, Direction.WEST))
+                .setValue(UP, connectsTo(level, pos, Direction.UP))
+                .setValue(DOWN, connectsTo(level, pos, Direction.DOWN))
+                .setValue(HAS_CORNER, hasCorner(level, pos))  ;
     }
 
     private boolean hasCorner(LevelReader level, BlockPos pos) {
@@ -105,15 +103,14 @@ public class RopeBlock extends PipeBlock {
         return QueueUtil.of(pos).clear()
                 .define((queue, off) -> {
 
-                    boolean foundRope = false;
+                    boolean flag = false;
 
-                    for (Direction dir : Direction.values()) {
+                    for (var dir : Direction.values()) {
                         var offset = off.relative(dir);
-                        var neighbour = level.getBlockState(offset);
 
-                        if (neighbour.is(this)) {
+                        if (level.getBlockState(offset).is(this)) {
                             queue.add(offset);
-                            foundRope = true;
+                            flag = true;
                             continue;
                         }
 
@@ -121,7 +118,7 @@ public class RopeBlock extends PipeBlock {
                             return QueueStatus.SUCCESS;
                     }
 
-                    return foundRope ? QueueStatus.CONTINUE : QueueStatus.FAIL;
+                    return flag ? QueueStatus.CONTINUE : QueueStatus.FAIL;
 
                 }).run();
     }
