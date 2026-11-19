@@ -1,4 +1,4 @@
-package com.synergy.vintagetech.init.builder.saw;
+package com.synergy.vintagetech.init.builder.mechanical_saw;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,13 +35,13 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.HopperBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class SawBE extends BlockEntity implements TransmissionHandler {
+public class MechanicalSawBE extends BlockEntity implements TransmissionHandler {
 
     public static final AtomicInteger UUID_GENERATOR = new AtomicInteger();
 
     private int UUID = -UUID_GENERATOR.incrementAndGet();
 
-    public SawBE(BlockPos pos, BlockState state) {
+    public MechanicalSawBE(BlockPos pos, BlockState state) {
         super(zBlockEntities.SAW.get(), pos, state);
     }
 
@@ -132,7 +132,7 @@ public class SawBE extends BlockEntity implements TransmissionHandler {
         // TODO IMP : maybe can be simplified with FluidInteractionRegistry
         for (var dir : Arrays.asList(Direction.values())) {
 
-            if (dir == getBlockState().getValue(SawBlock.FACING).getOpposite() || dir == Direction.DOWN)
+            if (dir == getBlockState().getValue(MechanicalSawBlock.FACING).getOpposite() || dir == Direction.DOWN)
                 continue;
 
             var fluid = level.getFluidState(getOffset().relative(dir));
@@ -164,7 +164,7 @@ public class SawBE extends BlockEntity implements TransmissionHandler {
     }
 
     public BlockPos getOffset() {
-        return getBlockPos().relative(getBlockState().getValue(SawBlock.FACING));
+        return getBlockPos().relative(getBlockState().getValue(MechanicalSawBlock.FACING));
     }
 
     // TODO API : rework to unify

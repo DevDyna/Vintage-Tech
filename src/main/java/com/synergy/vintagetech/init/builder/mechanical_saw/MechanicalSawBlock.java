@@ -1,4 +1,4 @@
-package com.synergy.vintagetech.init.builder.saw;
+package com.synergy.vintagetech.init.builder.mechanical_saw;
 
 import java.util.Map;
 
@@ -29,9 +29,9 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class SawBlock extends MonoDirectionalAxleBlock implements RotableAxleBlock {
+public class MechanicalSawBlock extends MonoDirectionalAxleBlock implements RotableAxleBlock {
 
-    public SawBlock(Properties p) {
+    public MechanicalSawBlock(Properties p) {
         super(p);
     }
 
@@ -95,7 +95,7 @@ public class SawBlock extends MonoDirectionalAxleBlock implements RotableAxleBlo
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos p, BlockState s) {
-        return new SawBE(p, s);
+        return new MechanicalSawBE(p, s);
     }
 
     @Nullable
