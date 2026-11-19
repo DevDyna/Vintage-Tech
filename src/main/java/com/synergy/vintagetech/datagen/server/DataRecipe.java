@@ -5,6 +5,7 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 import java.util.concurrent.CompletableFuture;
 import com.devdyna.cakesticklib.api.datagen.RecipeGenerators;
 import com.devdyna.cakesticklib.api.utils.x;
+import com.devdyna.cakesticklib.setup.common.recipes.tool_durability.DurabilityConsumeBuilder;
 import com.devdyna.cakesticklib.setup.registry.LibFluids;
 import com.devdyna.cakesticklib.setup.registry.LibItems;
 import com.devdyna.cakesticklib.setup.registry.LibTags;
@@ -49,6 +50,14 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
 
                 for (var tree : TreeFactory.getAll()) {
                         planksFromLogs(tree.planks().get(), tree.itemTag(), 4);
+
+                        DurabilityConsumeBuilder.of(registries)
+                                        .tool(LibItems.SAW.get(), 4)
+                                        .add(tree.itemTag())
+                                        .output(tree.planks().get().asItem(), 6)
+                                        .unlockedBy()
+                                        .save(output);
+
                         stair(tree.stairs().get(), tree.planks().get(), output);
                         shelf(tree.shelf().get(), tree.strippedLog().get());
                         slab(tree.slab().get(), tree.planks().get(), output);
