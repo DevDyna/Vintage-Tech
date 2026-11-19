@@ -1,17 +1,24 @@
 package com.synergy.vintagetech.init.builder.beam;
 
-import com.synergy.vintagetech.api.factories.beams.BaseWoodenBeam;
 import com.synergy.vintagetech.api.factories.handlers.AxleHandler;
+import com.synergy.vintagetech.api.factories.handlers.RopeHandler;
+
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class WoodenBeam extends BaseWoodenBeam {
+public class WoodenBeam extends RotatedPillarBlock implements RopeHandler {
 
     public WoodenBeam(Properties p) {
         super(p);
@@ -28,14 +35,32 @@ public class WoodenBeam extends BaseWoodenBeam {
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext c) {
-        return super.getStateForPlacement(c)
-                .setValue(AXIS, c.getClickedFace().getAxis());
+        return this.defaultBlockState()
+                .setValue(AXIS, c.getClickedFace().getAxis())
+                .setValue(HAS_ROPE, hasRope(c.getLevel(), c.getClickedPos(), c.getClickedFace().getAxis()));
+    }
+
+    @Override
+    protected BlockState updateShape(
+            BlockState state,
+            LevelReader level,
+            ScheduledTickAccess ticks,
+            BlockPos pos,
+            Direction direction,
+            BlockPos neighbourPos,
+            BlockState neighbourState,
+            RandomSource random) {
+
+        return state.setValue(HAS_ROPE, hasRope(level, pos, state.getValue(AXIS)));
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> b) {
-        super.createBlockStateDefinition(b);
-        b.add(AXIS);
+        b.add(AXIS, HAS_ROPE);
     }
 
+    @Override
+    public boolean isLadder(BlockState state, LevelReader level, BlockPos pos, LivingEntity entity) {
+        return state.getValue(HAS_ROPE);
+    }
 }
