@@ -43,19 +43,26 @@ public class CentrifugeRenderer extends BaseMotionRenderer<CentrifugeBE, Centrif
             CrumblingOverlay overlay) {
         super.extractRenderState(be, state, partialTicks, cameraPosition, overlay);
 
-        var storage = be.getItemStorage();
+        try {
 
-        if (storage != null)
-            for (var i = 0; i < 2; i++) {
-                var item = storage.getResource(i).toStack(storage.getAmountAsInt(i));
-                state.items[i] = item;
-                itemModels.updateForTopItem(state.renders[i], item, ItemDisplayContext.GROUND, be.getLevel(), null, 0);
-            }
+            var storage = be.getItemStorage();
 
-        var tank = be.getFluidStorage();
+            if (storage != null)
+                for (var i = 0; i < 2; i++) {
+                    var item = storage.getResource(i).toStack(storage.getAmountAsInt(i));
+                    state.items[i] = item;
+                    itemModels.updateForTopItem(state.renders[i], item, ItemDisplayContext.GROUND, be.getLevel(), null,
+                            0);
+                }
 
-        if (tank != null && tank.getResource(0) != null)
-            state.fluid = tank.getResource(0).toStack(tank.getAmountAsInt(0));
+            var tank = be.getFluidStorage();
+
+            if (tank != null && tank.getResource(0) != null)
+                state.fluid = tank.getResource(0).toStack(tank.getAmountAsInt(0));
+
+        } catch (Exception e) {
+
+        }
 
     }
 
