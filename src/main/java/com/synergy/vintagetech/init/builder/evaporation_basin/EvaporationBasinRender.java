@@ -79,13 +79,14 @@ public class EvaporationBasinRender<BE extends EvaporationBasinBE>
                     .scale(0.75f, 0.75f, 0.75f)
                     .build(state, state.render, stack, collector);
 
-        if (fluid.amount() > 0)
-            FluidRenderHelper.of()
-                    .scaleMultiplier(0.9f)
-                    .offset(0.1f, 0.15f, 0.1f)
-                    .textureAndColor(fluid)
-                    .amount(fluid.amount() * 0.075f / 16000)
-                    .build(stack, collector, seed);
+        if (fluid != null)
+            if (fluid.amount() > 0)
+                FluidRenderHelper.of()
+                        .scaleMultiplier(0.9f)
+                        .offset(0.1f, 0.15f, 0.1f)
+                        .textureAndColor(fluid)
+                        .amount(fluid.amount() * 0.075f / 16000)
+                        .build(stack, collector, seed);
 
     }
 
