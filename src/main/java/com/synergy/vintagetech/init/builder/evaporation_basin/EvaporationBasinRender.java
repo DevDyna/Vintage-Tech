@@ -40,21 +40,27 @@ public class EvaporationBasinRender<BE extends EvaporationBasinBE>
 
         BlockEntityRenderState.extractBase(be, state, overlay);
 
-        var storage = be.getItemStorage();
+        try {
 
-        if (storage != null && storage.getResource(0) != null) {
-            var item = storage.getResource(0).toStack(storage.getAmountAsInt(0));
+            var storage = be.getItemStorage();
 
-            state.item = item;
+            if (storage != null && storage.getResource(0) != null) {
+                var item = storage.getResource(0).toStack(storage.getAmountAsInt(0));
 
-            resolver.updateForTopItem(state.render, item, ItemDisplayContext.GROUND,
-                    be.getLevel(), null, 0);
+                state.item = item;
+
+                resolver.updateForTopItem(state.render, item, ItemDisplayContext.GROUND,
+                        be.getLevel(), null, 0);
+            }
+
+            var tank = be.getFluidStorage();
+
+            if (tank != null && tank.getResource(0) != null)
+                state.fluid = tank.getResource(0).toStack(tank.getAmountAsInt(0));
+
+        } catch (Exception e) {
+
         }
-
-        var tank = be.getFluidStorage();
-
-        if (tank != null && tank.getResource(0) != null)
-            state.fluid = tank.getResource(0).toStack(tank.getAmountAsInt(0));
     }
 
     @Override
