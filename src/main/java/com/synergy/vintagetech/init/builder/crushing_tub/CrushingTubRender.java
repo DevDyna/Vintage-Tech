@@ -103,12 +103,13 @@ public class CrushingTubRender<BE extends CrushingTubBE>
                 }
         }
 
-        if (fluid.amount() > 0)
-            FluidRenderHelper.of()
-                    .textureAndColor(fluid)
-                    .offset(0f, 0.15f, 0f)
-                    .amount(fluid.amount() * 0.15f / 8000)
-                    .build(stack, collector, LightCoordsUtil.FULL_BRIGHT);
+        if (fluid != null)
+            if (fluid.amount() > 0)
+                FluidRenderHelper.of()
+                        .textureAndColor(fluid)
+                        .offset(0f, 0.15f, 0f)
+                        .amount(fluid.amount() * 0.15f / 8000)
+                        .build(stack, collector, LightCoordsUtil.FULL_BRIGHT);
 
     }
 
