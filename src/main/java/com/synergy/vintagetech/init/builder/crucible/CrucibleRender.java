@@ -36,24 +36,30 @@ public class CrucibleRender<BE extends CrucibleBE> implements BlockEntityRendere
             CrumblingOverlay overlay) {
 
         BlockEntityRenderState.extractBase(be, state, overlay);
+        try {
 
-        var storage = be.getItemStorage();
+            var storage = be.getItemStorage();
 
-        if (storage != null)
-            for (var i = 0; i < CrucibleBE.ITEM_SLOTS.size(); i++) {
-                var item = storage.getResource(i).toStack(storage.getAmountAsInt(i));
-                state.items[i] = item;
-                itemModels.updateForTopItem(state.renders[i], item, ItemDisplayContext.GROUND, be.getLevel(), null, 0);
-            }
+            if (storage != null)
+                for (var i = 0; i < CrucibleBE.ITEM_SLOTS.size(); i++) {
+                    var item = storage.getResource(i).toStack(storage.getAmountAsInt(i));
+                    state.items[i] = item;
+                    itemModels.updateForTopItem(state.renders[i], item, ItemDisplayContext.GROUND, be.getLevel(), null,
+                            0);
+                }
 
-        var tank = be.getFluidStorage();
+            var tank = be.getFluidStorage();
 
-        if (tank != null && tank.getResource(0) != null)
-            state.fluid = tank.getResource(0).toStack(tank.getAmountAsInt(0));
+            if (tank != null && tank.getResource(0) != null)
+                state.fluid = tank.getResource(0).toStack(tank.getAmountAsInt(0));
+        } catch (Exception e) {
+
+        }
     }
 
     @Override
-    public void submit(CrucibleRenderState state, PoseStack stack, SubmitNodeCollector collector, CameraRenderState camera) {
+    public void submit(CrucibleRenderState state, PoseStack stack, SubmitNodeCollector collector,
+            CameraRenderState camera) {
 
         var time = Minecraft.getInstance().level.getGameTime();
         var fluid = state.fluid;
@@ -75,6 +81,7 @@ public class CrucibleRender<BE extends CrucibleBE> implements BlockEntityRendere
 
             var y = 0.16f;
 
+            if(fluid != null)
             if (!fluid.isEmpty())
                 y += (float) ((Math.sin(time * 0.025 + seed * 0.01) + 1.0)
                         * 0.175f * (fluid.amount() / 8000f));
@@ -87,6 +94,7 @@ public class CrucibleRender<BE extends CrucibleBE> implements BlockEntityRendere
                     .build(state, state.renders[i], stack, collector);
         }
 
+        if(fluid != null)
         if (!fluid.isEmpty())
             FluidRenderHelper.of()
                     .textureAndColor(fluid)
