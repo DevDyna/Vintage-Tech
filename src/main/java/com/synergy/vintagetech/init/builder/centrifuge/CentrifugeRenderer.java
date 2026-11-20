@@ -106,16 +106,17 @@ public class CentrifugeRenderer extends BaseMotionRenderer<CentrifugeBE, Centrif
             }
         }
 
-        if (!fluid.isEmpty())
-            FluidRenderHelper.of()
-                    .textureAndColor(fluid)
-                    .offset(0f, 0.15f, 0f)
-                    .modify((p) -> {
-                        p.scale(0.95f, 1, 0.95f);
-                        p.translate(0.025f, 0.15f, 0.025f);
-                    })
-                    .amount(fluid.amount() * 0.15f / 3000f)
-                    .build(stack, collector, state.lightCoords);
+        if (fluid != null)
+            if (!fluid.isEmpty())
+                FluidRenderHelper.of()
+                        .textureAndColor(fluid)
+                        .offset(0f, 0.15f, 0f)
+                        .modify((p) -> {
+                            p.scale(0.95f, 1, 0.95f);
+                            p.translate(0.025f, 0.15f, 0.025f);
+                        })
+                        .amount(fluid.amount() * 0.15f / 3000f)
+                        .build(stack, collector, state.lightCoords);
 
     }
 
