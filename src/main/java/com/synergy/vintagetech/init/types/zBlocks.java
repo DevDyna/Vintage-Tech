@@ -53,9 +53,9 @@ public class zBlocks {
         public static final DeferredHolder<Block, Block> WINDMILL = Material.registerItemBlock("windmill",
                         p -> new WindmillBlock(p
                                         .strength(2.0F, 3.0F)
-                                        .sound(SoundType.WOOD)
+                                        .sound(SoundType.CHAIN)
                                         .ignitedByLava()
-                                        .mapColor(MapColor.WOOD)));
+                                        .mapColor(MapColor.METAL)));
 
         public static final DeferredHolder<Block, Block> CREATIVE_ENGINE = Material.registerItemBlock("creative_engine",
                         p -> new CreativeEngineBlock(p));
