@@ -24,6 +24,22 @@
       ],
       "chance": 0.3
     },
+    "vintagetech:cork_oak_leaves": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "chance": 0.3
+    },
+    "vintagetech:cork_oak_sapling": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "chance": 0.3
+    },
     "vintagetech:hemp": {
       "neoforge:conditions": [
         {

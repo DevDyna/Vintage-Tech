@@ -16,6 +16,22 @@
       ],
       "burn_time": 800
     },
+    "vintagetech:cork_oak_hanging_sign": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "burn_time": 200
+    },
+    "vintagetech:cork_oak_sign": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "burn_time": 200
+    },
     "vintagetech:crushing_tub": {
       "neoforge:conditions": [
         {

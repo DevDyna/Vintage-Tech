@@ -5,6 +5,7 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.synergy.vintagetech.api.factories.cheese.BaseCheeseBlock;
 import com.synergy.vintagetech.api.factories.handlers.RopeHandler;
+import com.synergy.vintagetech.init.builder.WoodenBeam;
 import com.synergy.vintagetech.init.builder.cheese.SealedCheeseBlock;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
@@ -185,36 +186,94 @@ public class BlockModelUtils {
 
         public static void createBeamBlock(BlockModelGenerators b, Block block, Identifier top, Identifier side) {
 
-                MultiVariant beam = BlockModelGenerators.plainVariant(
-                                TemplateCollection.BEAM_TEMPLATE.create(x.rl(MODULE_ID, "block/" + x.name(block)),
+                var pillar = BlockModelGenerators.plainVariant(
+                                TemplateCollection.BEAM.PILLAR.create(
+                                                x.rl(MODULE_ID, "block/" + x.name(block) + "/pillar"),
                                                 new TextureMapping()
                                                                 .put(TextureSlot.TOP, new Material(top))
                                                                 .put(TextureSlot.SIDE, new Material(side)),
                                                 b.modelOutput));
 
-                MultiVariant rope = BlockModelGenerators.plainVariant(
-                                x.rl(MODULE_ID, "block/rope/on_beam"));
+                var cross = BlockModelGenerators.plainVariant(
+                                TemplateCollection.BEAM.CROSS.create(
+                                                x.rl(MODULE_ID, "block/" + x.name(block) + "/cross"),
+                                                new TextureMapping()
+                                                                .put(TextureSlot.TOP, new Material(top))
+                                                                .put(TextureSlot.SIDE, new Material(side)),
+                                                b.modelOutput));
 
-                b.blockStateOutput.accept(
-                                MultiPartGenerator.multiPart(block)
-                                                .with(BlockModelGenerators.condition()
-                                                                .term(BlockStateProperties.AXIS, Direction.Axis.X),
-                                                                beam.with(BlockModelGenerators.X_ROT_90
-                                                                                .then(BlockModelGenerators.Y_ROT_90)))
-                                                .with(BlockModelGenerators.condition()
-                                                                .term(BlockStateProperties.AXIS, Direction.Axis.Y),
-                                                                beam)
-                                                .with(BlockModelGenerators.condition()
-                                                                .term(BlockStateProperties.AXIS, Direction.Axis.Z),
-                                                                beam.with(BlockModelGenerators.X_ROT_90))
-                                                .with(BlockModelGenerators.condition()
-                                                                .term(RopeHandler.HAS_ROPE, true), rope)
+                var star = BlockModelGenerators.plainVariant(
+                                TemplateCollection.BEAM.STAR.create(
+                                                x.rl(MODULE_ID, "block/" + x.name(block) + "/star"),
+                                                new TextureMapping()
+                                                                .put(TextureSlot.TOP, new Material(top))
+                                                                .put(TextureSlot.SIDE, new Material(side)),
+                                                b.modelOutput));
 
-                );
+                var core = BlockModelGenerators.plainVariant(
+                                TemplateCollection.BEAM.CORE.create(
+                                                x.rl(MODULE_ID, "block/" + x.name(block) + "/core"),
+                                                new TextureMapping()
+                                                                .put(TextureSlot.SIDE, new Material(side)),
+                                                b.modelOutput));
 
+                b.blockStateOutput.accept(MultiPartGenerator.multiPart(block)
+
+                                .with(BlockModelGenerators.condition()
+                                                .term(WoodenBeam.X, false)
+                                                .term(WoodenBeam.Y, false)
+                                                .term(WoodenBeam.Z, false), core)
+
+                                .with(BlockModelGenerators.condition()
+                                                .term(WoodenBeam.X, false)
+                                                .term(WoodenBeam.Y, true)
+                                                .term(WoodenBeam.Z, false),
+                                                pillar)
+
+                                .with(BlockModelGenerators.condition()
+                                                .term(WoodenBeam.X, true)
+                                                .term(WoodenBeam.Y, false)
+                                                .term(WoodenBeam.Z, false),
+                                                pillar.with(BlockModelGenerators.X_ROT_90
+                                                                .then(BlockModelGenerators.Y_ROT_90)))
+
+                                .with(BlockModelGenerators.condition()
+                                                .term(WoodenBeam.X, false)
+                                                .term(WoodenBeam.Y, false)
+                                                .term(WoodenBeam.Z, true),
+                                                pillar.with(BlockModelGenerators.X_ROT_90))
+
+                                .with(BlockModelGenerators.condition()
+                                                .term(WoodenBeam.X, true)
+                                                .term(WoodenBeam.Y, true)
+                                                .term(WoodenBeam.Z, false),
+                                                cross)
+
+                                .with(BlockModelGenerators.condition()
+                                                .term(WoodenBeam.X, false)
+                                                .term(WoodenBeam.Y, true)
+                                                .term(WoodenBeam.Z, true),
+                                                cross.with(BlockModelGenerators.Y_ROT_90))
+
+                                .with(BlockModelGenerators.condition()
+                                                .term(WoodenBeam.X, true)
+                                                .term(WoodenBeam.Y, false)
+                                                .term(WoodenBeam.Z, true),
+                                                cross.with(BlockModelGenerators.X_ROT_90
+                                                                .then(BlockModelGenerators.Y_ROT_90)))
+
+                                .with(BlockModelGenerators.condition()
+                                                .term(WoodenBeam.X, true)
+                                                .term(WoodenBeam.Y, true)
+                                                .term(WoodenBeam.Z, true),
+                                                star)
+
+                                .with(BlockModelGenerators.condition().term(RopeHandler.HAS_ROPE, true),
+                                                BlockModelGenerators
+                                                                .plainVariant(x.rl(MODULE_ID, "block/rope/on_beam"))));
         }
 
-        public static void createRopeBeamBlock(BlockModelGenerators b, Block block) {
+        public static void createAxleBeamBlock(BlockModelGenerators b, Block block) {
 
                 b.blockStateOutput.accept(
                                 MultiPartGenerator.multiPart(block)

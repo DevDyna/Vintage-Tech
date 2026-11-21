@@ -48,7 +48,7 @@ public class RopeBlock extends PipeBlock {
             return true;
 
         if (state.getBlock() instanceof RopeHandler h)
-            return h.getWhenRopeConnect(dir);
+            return h.getWhenRopeConnect(state, dir);
 
         if (canSupportCenter((LevelReader) level, pos.relative(dir), dir))
             return true;
@@ -57,24 +57,21 @@ public class RopeBlock extends PipeBlock {
     }
 
     @Override
-    public BlockState getStateForPlacement(BlockPlaceContext context) {
-        var level = context.getLevel();
-        var pos = context.getClickedPos();
+    public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+        var level = ctx.getLevel();
+        var pos = ctx.getClickedPos();
 
-        return super.getStateForPlacement(context)
-                .setValue(NORTH, this.connectsTo(level, pos, Direction.NORTH))
-                .setValue(SOUTH, this.connectsTo(level, pos, Direction.SOUTH))
-                .setValue(EAST, this.connectsTo(level, pos, Direction.EAST))
-                .setValue(WEST, this.connectsTo(level, pos, Direction.WEST))
-                .setValue(UP, this.connectsTo(level, pos, Direction.UP))
-                .setValue(DOWN, this.connectsTo(level, pos, Direction.DOWN))
-                .setValue(HAS_CORNER, hasCorner(level, pos))
-
-        ;
+        return super.getStateForPlacement(ctx)
+                .setValue(NORTH, connectsTo(level, pos, Direction.NORTH))
+                .setValue(SOUTH, connectsTo(level, pos, Direction.SOUTH))
+                .setValue(EAST, connectsTo(level, pos, Direction.EAST))
+                .setValue(WEST, connectsTo(level, pos, Direction.WEST))
+                .setValue(UP, connectsTo(level, pos, Direction.UP))
+                .setValue(DOWN, connectsTo(level, pos, Direction.DOWN))
+                .setValue(HAS_CORNER, hasCorner(level, pos))  ;
     }
 
-    private boolean hasCorner(
-            LevelReader level, BlockPos pos) {
+    private boolean hasCorner(LevelReader level, BlockPos pos) {
 
         var north = connectsTo(level, pos, Direction.NORTH);
         var south = connectsTo(level, pos, Direction.SOUTH);
@@ -92,20 +89,13 @@ public class RopeBlock extends PipeBlock {
     }
 
     @Override
-    protected BlockState updateShape(
-            BlockState state,
-            LevelReader level,
-            ScheduledTickAccess ticks,
-            BlockPos pos,
-            Direction directionToNeighbour,
-            BlockPos neighbourPos,
-            BlockState neighbourState,
-            RandomSource random) {
-        return !this.canSurvive(state, level, pos)
+    protected BlockState updateShape(BlockState s, LevelReader l, ScheduledTickAccess t, BlockPos p, Direction d,
+            BlockPos np, BlockState ns, RandomSource r) {
+        return !this.canSurvive(s, l, p)
                 ? Blocks.AIR.defaultBlockState()
-                : state.setValue(PROPERTY_BY_DIRECTION.get(directionToNeighbour),
-                        this.connectsTo(level, pos, directionToNeighbour))
-                        .setValue(HAS_CORNER, hasCorner(level, pos));
+                : s.setValue(PROPERTY_BY_DIRECTION.get(d),
+                        this.connectsTo(l, p, d))
+                        .setValue(HAS_CORNER, hasCorner(l, p));
     }
 
     @Override
@@ -113,15 +103,14 @@ public class RopeBlock extends PipeBlock {
         return QueueUtil.of(pos).clear()
                 .define((queue, off) -> {
 
-                    boolean foundRope = false;
+                    boolean flag = false;
 
-                    for (Direction dir : Direction.values()) {
+                    for (var dir : Direction.values()) {
                         var offset = off.relative(dir);
-                        var neighbour = level.getBlockState(offset);
 
-                        if (neighbour.is(this)) {
+                        if (level.getBlockState(offset).is(this)) {
                             queue.add(offset);
-                            foundRope = true;
+                            flag = true;
                             continue;
                         }
 
@@ -129,7 +118,7 @@ public class RopeBlock extends PipeBlock {
                             return QueueStatus.SUCCESS;
                     }
 
-                    return foundRope ? QueueStatus.CONTINUE : QueueStatus.FAIL;
+                    return flag ? QueueStatus.CONTINUE : QueueStatus.FAIL;
 
                 }).run();
     }

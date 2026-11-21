@@ -47,21 +47,28 @@ public class CrushingTubRender<BE extends CrushingTubBE>
 
         BlockEntityRenderState.extractBase(be, state, overlay);
 
-        var storage = be.getItemStorage();
+        try {
 
-        if (storage != null && storage.getResource(0) != null) {
-            var item = storage.getResource(0).toStack(storage.getAmountAsInt(0));
+            var storage = be.getItemStorage();
 
-            state.item = item;
+            if (storage != null && storage.getResource(0) != null) {
+                var item = storage.getResource(0).toStack(storage.getAmountAsInt(0));
 
-            resolver.updateForTopItem(state.render, item, ItemDisplayContext.GROUND,
-                    be.getLevel(), null, 0);
+                state.item = item;
+
+                resolver.updateForTopItem(state.render, item, ItemDisplayContext.GROUND,
+                        be.getLevel(), null, 0);
+            }
+
+            var tank = be.getFluidStorage();
+
+            if (tank != null && tank.getResource(0) != null)
+                state.fluid = tank.getResource(0).toStack(tank.getAmountAsInt(0));
+
+        } catch (Exception e) {
+
         }
 
-        var tank = be.getFluidStorage();
-
-        if (tank != null && tank.getResource(0) != null)
-            state.fluid = tank.getResource(0).toStack(tank.getAmountAsInt(0));
     }
 
     @Override
@@ -96,12 +103,13 @@ public class CrushingTubRender<BE extends CrushingTubBE>
                 }
         }
 
-        if (fluid.amount() > 0)
-            FluidRenderHelper.of()
-                    .textureAndColor(fluid)
-                    .offset(0f, 0.15f, 0f)
-                    .amount(fluid.amount() * 0.15f / 8000)
-                    .build(stack, collector, LightCoordsUtil.FULL_BRIGHT);
+        if (fluid != null)
+            if (fluid.amount() > 0)
+                FluidRenderHelper.of()
+                        .textureAndColor(fluid)
+                        .offset(0f, 0.15f, 0f)
+                        .amount(fluid.amount() * 0.15f / 8000)
+                        .build(stack, collector, LightCoordsUtil.FULL_BRIGHT);
 
     }
 

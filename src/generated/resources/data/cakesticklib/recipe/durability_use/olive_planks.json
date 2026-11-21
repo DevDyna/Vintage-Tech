@@ -1,0 +1,14 @@
+{
+  "type": "cakesticklib:durability_use",
+  "items": [
+    "#vintagetech:olive_logs"
+  ],
+  "mode": {
+    "damage": 4,
+    "tool": "cakesticklib:saw"
+  },
+  "result": {
+    "count": 6,
+    "id": "vintagetech:olive_planks"
+  }
+}

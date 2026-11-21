@@ -43,19 +43,26 @@ public class CentrifugeRenderer extends BaseMotionRenderer<CentrifugeBE, Centrif
             CrumblingOverlay overlay) {
         super.extractRenderState(be, state, partialTicks, cameraPosition, overlay);
 
-        var storage = be.getItemStorage();
+        try {
 
-        if (storage != null)
-            for (var i = 0; i < 2; i++) {
-                var item = storage.getResource(i).toStack(storage.getAmountAsInt(i));
-                state.items[i] = item;
-                itemModels.updateForTopItem(state.renders[i], item, ItemDisplayContext.GROUND, be.getLevel(), null, 0);
-            }
+            var storage = be.getItemStorage();
 
-        var tank = be.getFluidStorage();
+            if (storage != null)
+                for (var i = 0; i < 2; i++) {
+                    var item = storage.getResource(i).toStack(storage.getAmountAsInt(i));
+                    state.items[i] = item;
+                    itemModels.updateForTopItem(state.renders[i], item, ItemDisplayContext.GROUND, be.getLevel(), null,
+                            0);
+                }
 
-        if (tank != null && tank.getResource(0) != null)
-            state.fluid = tank.getResource(0).toStack(tank.getAmountAsInt(0));
+            var tank = be.getFluidStorage();
+
+            if (tank != null && tank.getResource(0) != null)
+                state.fluid = tank.getResource(0).toStack(tank.getAmountAsInt(0));
+
+        } catch (Exception e) {
+
+        }
 
     }
 
@@ -99,16 +106,17 @@ public class CentrifugeRenderer extends BaseMotionRenderer<CentrifugeBE, Centrif
             }
         }
 
-        if (!fluid.isEmpty())
-            FluidRenderHelper.of()
-                    .textureAndColor(fluid)
-                    .offset(0f, 0.15f, 0f)
-                    .modify((p) -> {
-                        p.scale(0.95f, 1, 0.95f);
-                        p.translate(0.025f, 0.15f, 0.025f);
-                    })
-                    .amount(fluid.amount() * 0.15f / 3000f)
-                    .build(stack, collector, state.lightCoords);
+        if (fluid != null)
+            if (!fluid.isEmpty())
+                FluidRenderHelper.of()
+                        .textureAndColor(fluid)
+                        .offset(0f, 0.15f, 0f)
+                        .modify((p) -> {
+                            p.scale(0.95f, 1, 0.95f);
+                            p.translate(0.025f, 0.15f, 0.025f);
+                        })
+                        .amount(fluid.amount() * 0.15f / 3000f)
+                        .build(stack, collector, state.lightCoords);
 
     }
 

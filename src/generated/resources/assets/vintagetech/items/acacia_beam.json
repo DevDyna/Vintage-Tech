@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "vintagetech:block/acacia_beam"
+    "model": "vintagetech:item/acacia_beam"
   }
 }

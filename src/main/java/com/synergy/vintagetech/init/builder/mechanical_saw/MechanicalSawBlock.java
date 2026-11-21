@@ -1,0 +1,106 @@
+package com.synergy.vintagetech.init.builder.mechanical_saw;
+
+import java.util.Map;
+
+import org.jspecify.annotations.Nullable;
+
+import com.devdyna.cakesticklib.api.aspect.logic.Tickable;
+import com.synergy.vintagetech.api.factories.handlers.RotableAxleBlock;
+import com.synergy.vintagetech.api.factories.transmission.MonoDirectionalAxleBlock;
+import com.synergy.vintagetech.init.types.zTags;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.InsideBlockEffectApplier;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
+
+public class MechanicalSawBlock extends MonoDirectionalAxleBlock implements RotableAxleBlock {
+
+    public MechanicalSawBlock(Properties p) {
+        super(p);
+    }
+
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext c) {
+        return this.defaultBlockState()
+                .setValue(ENABLED, false)
+                .setValue(INVERTED, false)
+                .setValue(FACING, c.getClickedFace());
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> b) {
+        b.add(FACING, ENABLED, INVERTED);
+    }
+
+    @Override
+    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        return switch (state.getValue(FACING)) {
+            case NORTH -> Shapes.box(0, 0, 0.4375, 1, 1, 1);
+            case SOUTH -> Shapes.box(0, 0, 0, 1, 1, 0.5625);
+            case WEST -> Shapes.box(0.4375, 0, 0, 1, 1, 1);
+            case EAST -> Shapes.box(0, 0, 0, 0.5625, 1, 1);
+            case UP -> Shapes.box(0, 0, 0, 1, 0.5625, 1);
+            case DOWN -> Shapes.box(0, 0.4375, 0, 1, 1, 1);
+        };
+    }
+
+    //TODO minor BUG : placing creative motor on the saw blade active the saw intend of require the opposite face
+    @Override
+    public Map<Direction, Boolean> getAxis(BlockState state) {
+        var dir = state.getValue(FACING);
+
+        if (state.getValue(FACING).getAxis().isHorizontal())
+            dir = dir.getOpposite();
+
+        return Map.of(dir, state.getValue(INVERTED));
+    }
+
+    @Override
+    public Direction getInputRotation(BlockState state) {
+        return state.getValue(FACING).getOpposite();
+    }
+
+    @Override
+    protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity,
+            InsideBlockEffectApplier effectApplier, boolean isPrecise) {
+        if (state.getValue(ENABLED))
+            if (level instanceof ServerLevel server) {
+                if (entity instanceof Player player)
+                    if (player.isCreative() || player.isSpectator())
+                        return;
+
+                if (entity.is(zTags.Entities.SAW_DENY_DAMAGING))
+                    return;
+
+                entity.hurtServer(server, level.damageSources().genericKill(), 1.5f);
+                entity.makeStuckInBlock(state, new Vec3(0.7f, 0.7f, 0.7f));
+            }
+    }
+
+    @Override
+    public @Nullable BlockEntity newBlockEntity(BlockPos p, BlockState s) {
+        return new MechanicalSawBE(p, s);
+    }
+
+    @Nullable
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level l, BlockState s, BlockEntityType<T> ty) {
+        return Tickable::compute;
+    }
+
+}

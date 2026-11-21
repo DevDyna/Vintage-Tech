@@ -15,8 +15,8 @@ import com.synergy.vintagetech.init.builder.electric_motor.ElectricMotorBE;
 import com.synergy.vintagetech.init.builder.evaporation_basin.EvaporationBasinBE;
 import com.synergy.vintagetech.init.builder.fan.FanBE;
 import com.synergy.vintagetech.init.builder.mechanical_farmland.MechanicalFarmlandBE;
+import com.synergy.vintagetech.init.builder.mechanical_saw.MechanicalSawBE;
 import com.synergy.vintagetech.init.builder.millstone.MillstoneBE;
-import com.synergy.vintagetech.init.builder.saw.SawBE;
 import com.synergy.vintagetech.init.builder.treetap.TreeTapBE;
 import com.synergy.vintagetech.init.builder.windmill.WindMillBE;
 
@@ -41,8 +41,8 @@ public class zBlockEntities {
         public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BaseEngineBE>> CREATIVE_ENGINE = RegistryUtils
                         .createBlockEntity("creative_engine", zTiles, BaseEngineBE::new, zBlocks.CREATIVE_ENGINE);
 
-        public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<SawBE>> SAW = RegistryUtils
-                        .createBlockEntity("saw", zTiles, SawBE::new, zBlocks.SAW);
+        public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<MechanicalSawBE>> SAW = RegistryUtils
+                        .createBlockEntity("saw", zTiles, MechanicalSawBE::new, zBlocks.SAW);
 
         public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<FanBE>> FAN = RegistryUtils
                         .createBlockEntity("fan", zTiles, FanBE::new, zBlocks.FAN);

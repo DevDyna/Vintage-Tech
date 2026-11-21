@@ -52,25 +52,25 @@ public class DataMaps extends DataMapProvider {
                 }
 
                 for (TreeSet tree : TreeFactory.getAll()) {
-                        strippable.add(tree.log().getId(),
-                                        new Strippable(tree.strippedLog().get()),
+                        strippable.add(tree.getLog().getId(),
+                                        new Strippable(tree.getStrippedLog().get()),
                                         false, AlwaysCondition.INSTANCE)
-                                        .add(tree.wood().getId(),
-                                                        new Strippable(tree.strippedWood().get()),
+                                        .add(tree.getWood().getId(),
+                                                        new Strippable(tree.getStrippedWood().get()),
                                                         false, AlwaysCondition.INSTANCE);
 
-                        compostable.add(tree.leaves().getId(),
+                        compostable.add(tree.getLeaves().getId(),
                                         new Compostable(0.3F, false),
                                         false, AlwaysCondition.INSTANCE)
-                                        .add(tree.sapling().getId(),
+                                        .add(tree.getSapling().getId(),
                                                         new Compostable(0.3F, false),
                                                         false, AlwaysCondition.INSTANCE);
 
-                        furnace_fuels.add(tree.signItem().getId(),
+                        furnace_fuels.add(tree.getSignItem().getId(),
                                         new FurnaceFuel(AbstractFurnaceBlockEntity.BURN_TIME_STANDARD),
                                         false, AlwaysCondition.INSTANCE);
 
-                        furnace_fuels.add(tree.hangingSignItem().getId(),
+                        furnace_fuels.add(tree.getHangingSignItem().getId(),
                                         new FurnaceFuel(AbstractFurnaceBlockEntity.BURN_TIME_STANDARD),
                                         false, AlwaysCondition.INSTANCE);
 

@@ -2,29 +2,88 @@
   "multipart": [
     {
       "apply": {
-        "model": "vintagetech:block/oak_wood_beam",
+        "model": "vintagetech:block/oak_wood_beam/core"
+      },
+      "when": {
+        "x": "false",
+        "y": "false",
+        "z": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "vintagetech:block/oak_wood_beam/pillar"
+      },
+      "when": {
+        "x": "false",
+        "y": "true",
+        "z": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "vintagetech:block/oak_wood_beam/pillar",
         "x": 90,
         "y": 90
       },
       "when": {
-        "axis": "x"
+        "x": "true",
+        "y": "false",
+        "z": "false"
       }
     },
     {
       "apply": {
-        "model": "vintagetech:block/oak_wood_beam"
-      },
-      "when": {
-        "axis": "y"
-      }
-    },
-    {
-      "apply": {
-        "model": "vintagetech:block/oak_wood_beam",
+        "model": "vintagetech:block/oak_wood_beam/pillar",
         "x": 90
       },
       "when": {
-        "axis": "z"
+        "x": "false",
+        "y": "false",
+        "z": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "vintagetech:block/oak_wood_beam/cross"
+      },
+      "when": {
+        "x": "true",
+        "y": "true",
+        "z": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "vintagetech:block/oak_wood_beam/cross",
+        "y": 90
+      },
+      "when": {
+        "x": "false",
+        "y": "true",
+        "z": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "vintagetech:block/oak_wood_beam/cross",
+        "x": 90,
+        "y": 90
+      },
+      "when": {
+        "x": "true",
+        "y": "false",
+        "z": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "vintagetech:block/oak_wood_beam/star"
+      },
+      "when": {
+        "x": "true",
+        "y": "true",
+        "z": "true"
       }
     },
     {

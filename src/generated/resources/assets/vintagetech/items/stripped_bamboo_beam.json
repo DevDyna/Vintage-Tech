@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "vintagetech:block/stripped_bamboo_beam"
+    "model": "vintagetech:item/stripped_bamboo_beam"
   }
 }

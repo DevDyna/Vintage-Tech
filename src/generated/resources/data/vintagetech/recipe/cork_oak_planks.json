@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "planks",
+  "ingredients": [
+    "#vintagetech:cork_oak_logs"
+  ],
+  "result": {
+    "count": 4,
+    "id": "vintagetech:cork_oak_planks"
+  }
+}

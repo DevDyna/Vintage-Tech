@@ -1,0 +1,7 @@
+{
+  "parent": "vintagetech:item/template/beam",
+  "textures": {
+    "side": "vintagetech:block/ironwood_log",
+    "top": "vintagetech:block/beam/normal/ironwood"
+  }
+}

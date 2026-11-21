@@ -5,6 +5,7 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 import java.util.concurrent.CompletableFuture;
 import com.devdyna.cakesticklib.api.datagen.RecipeGenerators;
 import com.devdyna.cakesticklib.api.utils.x;
+import com.devdyna.cakesticklib.setup.common.recipes.tool_durability.DurabilityConsumeBuilder;
 import com.devdyna.cakesticklib.setup.registry.LibFluids;
 import com.devdyna.cakesticklib.setup.registry.LibItems;
 import com.devdyna.cakesticklib.setup.registry.LibTags;
@@ -48,44 +49,52 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
         protected void buildRecipes() {
 
                 for (var tree : TreeFactory.getAll()) {
-                        planksFromLogs(tree.planks().get(), tree.itemTag(), 4);
-                        stair(tree.stairs().get(), tree.planks().get(), output);
-                        shelf(tree.shelf().get(), tree.strippedLog().get());
-                        slab(tree.slab().get(), tree.planks().get(), output);
+                        planksFromLogs(tree.getPlanks().get(), tree.getItemTag(), 4);
 
-                        simplePacked(output, tree.log().get(), tree.wood().get(), true, 3);
-                        simplePacked(output, tree.strippedLog().get(), tree.strippedWood().get(), true, 3);
-
-                        fenceBuilder(tree.fence().get(), x.itemIngredient(tree.planks().get()))
-                                        .unlockedBy(getHasName(tree.planks().get()), has(tree.planks().get()))
+                        DurabilityConsumeBuilder.of(registries)
+                                        .tool(LibItems.SAW.get(), 4)
+                                        .add(tree.getItemTag())
+                                        .output(tree.getPlanks().get().asItem(), 6)
+                                        .unlockedBy()
                                         .save(output);
 
-                        fenceGateBuilder(tree.fenceGate().get(), x.itemIngredient(tree.planks().get()))
-                                        .unlockedBy(getHasName(tree.planks().get()), has(tree.planks().get()))
+                        stair(tree.getStairs().get(), tree.getPlanks().get(), output);
+                        shelf(tree.getShelf().get(), tree.getStrippedLog().get());
+                        slab(tree.getSlab().get(), tree.getPlanks().get(), output);
+
+                        simplePacked(output, tree.getLog().get(), tree.getWood().get(), true, 3);
+                        simplePacked(output, tree.getStrippedLog().get(), tree.getStrippedWood().get(), true, 3);
+
+                        fenceBuilder(tree.getFence().get(), x.itemIngredient(tree.getPlanks().get()))
+                                        .unlockedBy(getHasName(tree.getPlanks().get()), has(tree.getPlanks().get()))
                                         .save(output);
 
-                        doorBuilder(tree.door().get(), x.itemIngredient(tree.planks().get()))
-                                        .unlockedBy(getHasName(tree.planks().get()), has(tree.planks().get()))
+                        fenceGateBuilder(tree.getFenceGate().get(), x.itemIngredient(tree.getPlanks().get()))
+                                        .unlockedBy(getHasName(tree.getPlanks().get()), has(tree.getPlanks().get()))
                                         .save(output);
 
-                        trapdoorBuilder(tree.trapdoor().get(), x.itemIngredient(tree.planks().get()))
-                                        .unlockedBy(getHasName(tree.planks().get()), has(tree.planks().get()))
+                        doorBuilder(tree.getDoor().get(), x.itemIngredient(tree.getPlanks().get()))
+                                        .unlockedBy(getHasName(tree.getPlanks().get()), has(tree.getPlanks().get()))
                                         .save(output);
 
-                        pressurePlateBuilder(RecipeCategory.REDSTONE, tree.pressurePlate().get(),
-                                        x.itemIngredient(tree.planks().get()))
-                                        .unlockedBy(getHasName(tree.planks().get()), has(tree.planks().get()))
+                        trapdoorBuilder(tree.getTrapdoor().get(), x.itemIngredient(tree.getPlanks().get()))
+                                        .unlockedBy(getHasName(tree.getPlanks().get()), has(tree.getPlanks().get()))
                                         .save(output);
 
-                        buttonBuilder(tree.button().get(), x.itemIngredient(tree.planks().get()))
-                                        .unlockedBy(getHasName(tree.planks().get()), has(tree.planks().get()))
+                        pressurePlateBuilder(RecipeCategory.REDSTONE, tree.getPressurePlate().get(),
+                                        x.itemIngredient(tree.getPlanks().get()))
+                                        .unlockedBy(getHasName(tree.getPlanks().get()), has(tree.getPlanks().get()))
                                         .save(output);
 
-                        signBuilder(tree.signItem().get(), x.itemIngredient(tree.planks().get()))
-                                        .unlockedBy(getHasName(tree.planks().get()), has(tree.planks().get()))
+                        buttonBuilder(tree.getButton().get(), x.itemIngredient(tree.getPlanks().get()))
+                                        .unlockedBy(getHasName(tree.getPlanks().get()), has(tree.getPlanks().get()))
                                         .save(output);
 
-                        hangingSign(tree.hangingSignItem().get(), tree.strippedLog().get());
+                        signBuilder(tree.getSignItem().get(), x.itemIngredient(tree.getPlanks().get()))
+                                        .unlockedBy(getHasName(tree.getPlanks().get()), has(tree.getPlanks().get()))
+                                        .save(output);
+
+                        hangingSign(tree.getHangingSignItem().get(), tree.getStrippedLog().get());
                 }
 
                 for (var beam : BeamFactory.getAll()) {
@@ -283,15 +292,15 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .save(output);
 
                 TreeTapBuilder.of(registries)
-                                .log(zTrees.IRONWOOD.log().get())
-                                .leaves(zTrees.IRONWOOD.leaves().get())
+                                .log(zTrees.IRONWOOD.getLog().get())
+                                .leaves(zTrees.IRONWOOD.getLeaves().get())
                                 .output(zFluids.IRONBERRY_JUICE.getFluid(), 5)
                                 .unlockedBy(zBlocks.TREE_TAP.get())
                                 .save(output);
 
                 TreeTapBuilder.of(registries)
-                                .log(zTrees.OLIVE.log().get())
-                                .leaves(zTrees.OLIVE.leaves().get())
+                                .log(zTrees.OLIVE.getLog().get())
+                                .leaves(zTrees.OLIVE.getLeaves().get())
                                 .output(zFluids.OLIVE_OIL.getFluid(), 5)
                                 .unlockedBy(zBlocks.TREE_TAP.get())
                                 .save(output);

@@ -188,6 +188,9 @@ public class zTags {
                 public static final TagKey<Biome> CAVE_WHEAT_SPAWN = RegistryUtils.tagBiome(MODULE_ID,
                                 "worldgen/cave_wheat");
 
+                public static final TagKey<Biome> CORK_OAK_TREE_SPAWN = RegistryUtils.tagBiome(MODULE_ID,
+                                "worldgen/cork_oak_tree");
+
                 public static final TagKey<Biome> IRONWOOD_TREE_SPAWN = RegistryUtils.tagBiome(MODULE_ID,
                                 "worldgen/ironwood_tree");
 

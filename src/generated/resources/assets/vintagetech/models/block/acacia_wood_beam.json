@@ -1,7 +1,0 @@
-{
-  "parent": "vintagetech:block/template/beam",
-  "textures": {
-    "side": "minecraft:block/acacia_log",
-    "top": "minecraft:block/acacia_log"
-  }
-}

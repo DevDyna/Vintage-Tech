@@ -2,7 +2,7 @@ package com.synergy.vintagetech.api.factories.trees;
 
 public class TreeOptions {
 
-    public enum WoodType {
+    public enum WoodOptionType {
         TREE(0, "_log", "_wood"),
         FUNGUS(0, "_stem", "_hyphae"),
         OTHER(0, "", "");
@@ -12,10 +12,10 @@ public class TreeOptions {
         private String suffix6;
 
         public static final String STRIPPED = "stripped_";
-        //TODO maybe change location
+        // TODO maybe change location
         public static final String BEAM = "_beam";
 
-        WoodType(int id, String suffix4, String suffix6) {
+        WoodOptionType(int id, String suffix4, String suffix6) {
             this.id = id;
             this.suffix4 = suffix4;
             this.suffix6 = suffix6;
@@ -34,15 +34,15 @@ public class TreeOptions {
         }
 
         public boolean isTree() {
-            return this.equals(WoodType.TREE);
+            return this.equals(WoodOptionType.TREE);
         }
 
         public boolean isFungus() {
-            return this.equals(WoodType.FUNGUS);
+            return this.equals(WoodOptionType.FUNGUS);
         }
 
         public boolean isSpecial() {
-            return this.equals(WoodType.OTHER);
+            return this.equals(WoodOptionType.OTHER);
         }
 
     }

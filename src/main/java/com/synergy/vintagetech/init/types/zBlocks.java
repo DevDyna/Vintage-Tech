@@ -15,10 +15,10 @@ import com.synergy.vintagetech.init.builder.electric_motor.ElectricMotorBlock;
 import com.synergy.vintagetech.init.builder.evaporation_basin.EvaporationBasinBlock;
 import com.synergy.vintagetech.init.builder.fan.FanBlock;
 import com.synergy.vintagetech.init.builder.mechanical_farmland.MechanicalFarmlandBlock;
+import com.synergy.vintagetech.init.builder.mechanical_saw.MechanicalSawBlock;
 import com.synergy.vintagetech.init.builder.millstone.MillstoneBlock;
 import com.synergy.vintagetech.init.builder.plants.*;
 import com.synergy.vintagetech.init.builder.*;
-import com.synergy.vintagetech.init.builder.saw.SawBlock;
 import com.synergy.vintagetech.init.builder.transmission.*;
 import com.synergy.vintagetech.init.builder.treetap.TreeTapBlock;
 import com.synergy.vintagetech.init.builder.windmill.WindmillBlock;
@@ -53,9 +53,9 @@ public class zBlocks {
         public static final DeferredHolder<Block, Block> WINDMILL = Material.registerItemBlock("windmill",
                         p -> new WindmillBlock(p
                                         .strength(2.0F, 3.0F)
-                                        .sound(SoundType.WOOD)
+                                        .sound(SoundType.CHAIN)
                                         .ignitedByLava()
-                                        .mapColor(MapColor.WOOD)));
+                                        .mapColor(MapColor.METAL)));
 
         public static final DeferredHolder<Block, Block> CREATIVE_ENGINE = Material.registerItemBlock("creative_engine",
                         p -> new CreativeEngineBlock(p));
@@ -93,7 +93,7 @@ public class zBlocks {
 
         // machines
         public static final DeferredHolder<Block, Block> SAW = Material.registerItemBlock("saw",
-                        p -> new SawBlock(p
+                        p -> new MechanicalSawBlock(p
                                         .mapColor(MapColor.WOOD)
                                         .strength(2.0F)
                                         .sound(SoundType.WOOD)

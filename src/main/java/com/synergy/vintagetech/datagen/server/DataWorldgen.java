@@ -100,6 +100,11 @@ public class DataWorldgen extends DatapackBuiltinEntriesProvider {
                                 HolderSet.direct(placed.getOrThrow(PlacedFeatures.IRONWOOD)),
                                 GenerationStep.Decoration.VEGETAL_DECORATION);
 
+                WorldgenUtils.registerBiomeModifer(c, zWorldGenFeatures.BiomeModifiers.CORK_OAK,
+                                biome.getOrThrow(zTags.Biomes.CORK_OAK_TREE_SPAWN),
+                                HolderSet.direct(placed.getOrThrow(PlacedFeatures.CORK_OAK)),
+                                GenerationStep.Decoration.VEGETAL_DECORATION);
+
                 WorldgenUtils.registerBiomeModifer(c, zWorldGenFeatures.BiomeModifiers.OLIVE_COMMON,
                                 biome.getOrThrow(zTags.Biomes.OLIVE_TREE_COMMON_SPAWN),
                                 HolderSet.direct(placed.getOrThrow(PlacedFeatures.OLIVE_COMMON)),
@@ -198,15 +203,23 @@ public class DataWorldgen extends DatapackBuiltinEntriesProvider {
                                 2,
                                 zBlocks.SOYBEANS.get().defaultBlockState().setValue(SoyBeans.AGE, 5)
                                                 .setValue(NaturalCrop.NATURAL, true),
-                                1
-
-                );
+                                1);
 
                 c.register(zWorldGenFeatures.ConfiguredFeatures.IRONWOOD,
                                 new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
-                                                BlockStateProvider.simple(zTrees.IRONWOOD.log().get()),
+                                                BlockStateProvider.simple(zTrees.IRONWOOD.getLog().get()),
                                                 new StraightTrunkPlacer(5, 8, 0),
-                                                BlockStateProvider.simple(zTrees.IRONWOOD.leaves().get()),
+                                                BlockStateProvider.simple(zTrees.IRONWOOD.getLeaves().get()),
+                                                new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
+                                                new TwoLayersFeatureSize(1, 0, 1))
+                                                .ignoreVines()
+                                                .build()));
+
+                c.register(zWorldGenFeatures.ConfiguredFeatures.CORK_OAK,
+                                new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+                                                BlockStateProvider.simple(zTrees.CORK_OAK.getLog().get()),
+                                                new StraightTrunkPlacer(5, 8, 0),
+                                                BlockStateProvider.simple(zTrees.CORK_OAK.getLeaves().get()),
                                                 new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
                                                 new TwoLayersFeatureSize(1, 0, 1))
                                                 .ignoreVines()
@@ -214,9 +227,9 @@ public class DataWorldgen extends DatapackBuiltinEntriesProvider {
 
                 c.register(zWorldGenFeatures.ConfiguredFeatures.OLIVE,
                                 new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
-                                                BlockStateProvider.simple(zTrees.OLIVE.log().get()),
+                                                BlockStateProvider.simple(zTrees.OLIVE.getLog().get()),
                                                 new OliveTrunkPlacer(3, 2, 2),
-                                                BlockStateProvider.simple(zTrees.OLIVE.leaves().get()),
+                                                BlockStateProvider.simple(zTrees.OLIVE.getLeaves().get()),
                                                 new AcaciaFoliagePlacer(ConstantInt.of(1), ConstantInt.of(0)),
                                                 new TwoLayersFeatureSize(1, 0, 2))
                                                 .ignoreVines()
@@ -258,19 +271,25 @@ public class DataWorldgen extends DatapackBuiltinEntriesProvider {
                                 new PlacedFeature(config.getOrThrow(zWorldGenFeatures.ConfiguredFeatures.IRONWOOD),
                                                 VegetationPlacements.treePlacement(
                                                                 RarityFilter.onAverageOnceEvery(30),
-                                                                zTrees.IRONWOOD.sapling().get())));
+                                                                zTrees.IRONWOOD.getSapling().get())));
+
+                c.register(zWorldGenFeatures.PlacedFeatures.CORK_OAK,
+                                new PlacedFeature(config.getOrThrow(zWorldGenFeatures.ConfiguredFeatures.CORK_OAK),
+                                                VegetationPlacements.treePlacement(
+                                                                RarityFilter.onAverageOnceEvery(90),
+                                                                zTrees.CORK_OAK.getSapling().get())));
 
                 c.register(zWorldGenFeatures.PlacedFeatures.OLIVE_COMMON,
                                 new PlacedFeature(config.getOrThrow(zWorldGenFeatures.ConfiguredFeatures.OLIVE),
                                                 VegetationPlacements.treePlacement(
                                                                 PlacementUtils.countExtra(0, 0.1F, 1),
-                                                                zTrees.OLIVE.sapling().get())));
+                                                                zTrees.OLIVE.getSapling().get())));
 
                 c.register(zWorldGenFeatures.PlacedFeatures.OLIVE_RARE,
                                 new PlacedFeature(config.getOrThrow(zWorldGenFeatures.ConfiguredFeatures.OLIVE),
                                                 VegetationPlacements.treePlacement(
                                                                 RarityFilter.onAverageOnceEvery(60),
-                                                                zTrees.OLIVE.sapling().get())));
+                                                                zTrees.OLIVE.getSapling().get())));
 
                 c.register(zWorldGenFeatures.PlacedFeatures.SALT_DEPOSIT,
                                 new PlacedFeature(config.getOrThrow(zWorldGenFeatures.ConfiguredFeatures.SALT_DEPOSIT),
@@ -288,8 +307,6 @@ public class DataWorldgen extends DatapackBuiltinEntriesProvider {
                                                                 BiomeFilter.biome())));
 
         }
-
-       
 
         public static void registerPatchConfig(BootstrapContext<ConfiguredFeature<?, ?>> c,
                         ResourceKey<ConfiguredFeature<?, ?>> k, Object... states) {

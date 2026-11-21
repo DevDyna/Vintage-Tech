@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "vintagetech:block/stripped_birch_wood_beam"
+    "model": "vintagetech:item/stripped_birch_wood_beam"
   }
 }

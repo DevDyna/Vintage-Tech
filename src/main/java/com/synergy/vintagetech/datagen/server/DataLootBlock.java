@@ -61,12 +61,12 @@ public class DataLootBlock extends BlockLootSubProvider {
                  * WARNING It doesn't generate leaves loot table!
                  */
                 for (TreeSet tree : TreeFactory.getAll()) {
-                        add(tree.slab().get(), b -> createSlabItemTable(tree.slab().get()));
-                        dropPottedContents(tree.pottedSapling().get());
-                        dropSelf(tree.sign().get());
-                        dropSelf(tree.hangingSign().get());
-                        dropOther(tree.wallSign().get(), tree.sign().get());
-                        dropOther(tree.wallHangingSign().get(), tree.hangingSign().get());
+                        add(tree.getSlab().get(), b -> createSlabItemTable(tree.getSlab().get()));
+                        dropPottedContents(tree.getPottedSapling().get());
+                        dropSelf(tree.getSign().get());
+                        dropSelf(tree.getHangingSign().get());
+                        dropOther(tree.getWallSign().get(), tree.getSign().get());
+                        dropOther(tree.getWallHangingSign().get(), tree.getHangingSign().get());
                 }
 
                 LootTableHelper.getValidBlocks(zBlocks.zBlockItem)
@@ -109,8 +109,8 @@ public class DataLootBlock extends BlockLootSubProvider {
                                                                                 .hasProperty(Hemp.AGE,
                                                                                                 Hemp.MAX_AGE - 1)))));
 
-                add(zTrees.IRONWOOD.leaves().get(),
-                                b -> createLeavesDrops(b, zTrees.IRONWOOD.sapling().get(),
+                add(zTrees.IRONWOOD.getLeaves().get(),
+                                b -> createLeavesDrops(b, zTrees.IRONWOOD.getSapling().get(),
                                                 NORMAL_LEAVES_SAPLING_CHANCES)
                                                 .withPool(
                                                                 LootPool.lootPool()
@@ -139,9 +139,13 @@ public class DataLootBlock extends BlockLootSubProvider {
 
                 );
 
-                add(zTrees.OLIVE.leaves().get(),
-                                b -> createLeavesDrops(b, zTrees.OLIVE.sapling().get(),
-                                                 new float[]{0.2F, 0.25F, 0.33333334F, 0.4F}) //+300%
+                add(zTrees.CORK_OAK.getLeaves().get(),
+                                b -> createLeavesDrops(b, zTrees.CORK_OAK.getSapling().get(),
+                                                NORMAL_LEAVES_SAPLING_CHANCES));
+
+                add(zTrees.OLIVE.getLeaves().get(),
+                                b -> createLeavesDrops(b, zTrees.OLIVE.getSapling().get(),
+                                                new float[] { 0.2F, 0.25F, 0.33333334F, 0.4F }) // +300%
                                                 .withPool(
                                                                 LootPool.lootPool()
                                                                                 .setRolls(UniformGenerator.between(1,
@@ -219,16 +223,15 @@ public class DataLootBlock extends BlockLootSubProvider {
 
                 );
 
-
                 add(zBlocks.SALT.get(),
                                 LootTable.lootTable()
                                                 .withPool(applyExplosionCondition(zItems.SALT.get(),
                                                                 LootPool.lootPool()
                                                                                 .setRolls(ConstantValue.exactly(1.0F))
-                                                                                .add(LootItem.lootTableItem(zItems.SALT.get()))))
+                                                                                .add(LootItem.lootTableItem(
+                                                                                                zItems.SALT.get()))))
 
                 );
-
 
         }
 

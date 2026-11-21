@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#vintagetech:worldgen/cork_oak_tree",
+  "features": "vintagetech:cork_oak_tree",
+  "step": "vegetal_decoration"
+}

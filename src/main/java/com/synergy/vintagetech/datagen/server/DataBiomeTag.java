@@ -30,6 +30,12 @@ public class DataBiomeTag extends BiomeTagsProvider {
                                 .add(Biomes.MEADOW)
                                 .addTag(Tags.Biomes.IS_WINDSWEPT);
 
+                tag(zTags.Biomes.CORK_OAK_TREE_SPAWN)
+                                .addTag(Tags.Biomes.IS_SAVANNA)
+                                .addTag(Tags.Biomes.IS_SWAMP)
+                                .addTag(Tags.Biomes.IS_BEACH)
+                                .addTag(Tags.Biomes.IS_WINDSWEPT);
+
                 tag(zTags.Biomes.OLIVE_TREE_COMMON_SPAWN)
                                 .addTag(Tags.Biomes.IS_DARK_FOREST)
                                 .addTag(Tags.Biomes.IS_FOREST);

@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "vintagetech:block/jungle_wood_beam"
+    "model": "vintagetech:item/jungle_wood_beam"
   }
 }

@@ -10,7 +10,8 @@
     "large_blade_side": "vintagetech:block/millstone/large_blade_side",
     "large_blade_top": "vintagetech:block/millstone/large_blade_top",
     "small_blade": "vintagetech:block/millstone/small_blade",
-    "axle": "vintagetech:block/beam/axle"
+    "axle": "vintagetech:block/beam/axle",
+    "particle": "vintagetech:block/millstone/large_blade_side"
   },
   "elements": [
     {
