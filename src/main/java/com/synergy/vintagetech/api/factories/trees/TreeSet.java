@@ -18,7 +18,7 @@ import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.registries.*;
 
 /**
- * Everything related to registry and datagen
+ * Everything related to registry and datagen of trees and derivated
  */
 public record TreeSet(
 
