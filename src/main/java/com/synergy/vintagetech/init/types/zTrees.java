@@ -23,7 +23,7 @@ public final class zTrees {
                         BlockSetBuilder.SIMPLE, WoodTypeBuilder.SIMPLE, WoodOptionType.TREE, TreeParticleLeaves.DEFAULT,
                         i -> TreeGrowerBuilder.of(i)
                                         .tree(zWorldGenFeatures.ConfiguredFeatures.IRONWOOD),
-                        true);
+                        true).build();
 
         public final static TreeSet OLIVE = TreeFactory.register(
                         "olive",
@@ -32,7 +32,7 @@ public final class zTrees {
                         BlockSetBuilder.SIMPLE, WoodTypeBuilder.SIMPLE, WoodOptionType.TREE, TreeParticleLeaves.DEFAULT,
                         i -> TreeGrowerBuilder.of(i)
                                         .tree(zWorldGenFeatures.ConfiguredFeatures.OLIVE),
-                        true);
+                        true).build();
 
         public final static TreeSet CORK_OAK = TreeFactory.register(
                         "cork_oak",
@@ -42,9 +42,11 @@ public final class zTrees {
                         i -> TreeGrowerBuilder.of(i)
                                         .tree(zWorldGenFeatures.ConfiguredFeatures.CORK_OAK),
                         true)
-                        .setStrippedLog((d, pr) -> Material.registerItemBlock(
+                        .setStrippedLog((pr) -> Material.registerItemBlock(
                                         WoodOptionType.STRIPPED + pr.id() + pr.woodOptionType().suffix4(),
-                                        p -> new RotatedPillarBlock(p.strength(pr.hardness(),pr. resistance()).sound(pr.soundType())
-                                                        .ignitedByLava().mapColor(pr.plankColor()))));
+                                        p -> new RotatedPillarBlock(
+                                                        p.strength(pr.hardness(), pr.resistance()).sound(pr.soundType())
+                                                                        .ignitedByLava().mapColor(pr.plankColor()))))
+                        .build();
 
 }

@@ -1,28 +1,53 @@
 package com.synergy.vintagetech.api.factories.trees;
 
+import static com.synergy.vintagetech.Main.MODULE_ID;
+
 import java.util.List;
-import java.util.function.BiFunction;
 import java.util.function.Function;
 
+import com.devdyna.cakesticklib.api.RegistryUtils;
 import com.synergy.vintagetech.api.factories.trees.TreeBuilders.TreeGrowerBuilder;
 import com.synergy.vintagetech.api.factories.trees.TreeOptions.TreeParticleLeaves;
 import com.synergy.vintagetech.api.factories.trees.TreeOptions.WoodOptionType;
+import com.synergy.vintagetech.init.Material;
+import com.synergy.vintagetech.init.types.*;
 
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.model.TexturedModel;
+import net.minecraft.core.Direction;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.data.tags.TagAppender;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.HangingSignItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.SignItem;
 import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.ButtonBlock;
+import net.minecraft.world.level.block.CeilingHangingSignBlock;
+import net.minecraft.world.level.block.DoorBlock;
+import net.minecraft.world.level.block.FenceBlock;
+import net.minecraft.world.level.block.FenceGateBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
+import net.minecraft.world.level.block.PressurePlateBlock;
+import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.SaplingBlock;
+import net.minecraft.world.level.block.ShelfBlock;
+import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.StandingSignBlock;
+import net.minecraft.world.level.block.TintedParticleLeavesBlock;
+import net.minecraft.world.level.block.TrapDoorBlock;
+import net.minecraft.world.level.block.WallHangingSignBlock;
+import net.minecraft.world.level.block.WallSignBlock;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.registries.*;
 
@@ -33,42 +58,42 @@ public class TreeSet {
 
         private String id;
 
-        private DeferredHolder<Block, Block> log;
-        private DeferredHolder<Block, Block> strippedLog;
+        private DeferredHolder<Block, Block> log = null;
+        private DeferredHolder<Block, Block> strippedLog = null;
 
-        private DeferredHolder<Block, Block> wood;
-        private DeferredHolder<Block, Block> strippedWood;
+        private DeferredHolder<Block, Block> wood = null;
+        private DeferredHolder<Block, Block> strippedWood = null;
 
-        private DeferredHolder<Block, Block> planks;
-        private DeferredHolder<Block, Block> leaves;
+        private DeferredHolder<Block, Block> planks = null;
+        private DeferredHolder<Block, Block> leaves = null;
 
-        private DeferredHolder<Block, Block> sapling;
-        private DeferredBlock<FlowerPotBlock> pottedSapling;
+        private DeferredHolder<Block, Block> sapling = null;
+        private DeferredBlock<FlowerPotBlock> pottedSapling = null;
 
-        private DeferredHolder<Block, Block> stairs;
-        private DeferredHolder<Block, Block> slab;
-        private DeferredHolder<Block, Block> shelf;
+        private DeferredHolder<Block, Block> stairs = null;
+        private DeferredHolder<Block, Block> slab = null;
+        private DeferredHolder<Block, Block> shelf = null;
 
-        private DeferredHolder<Block, Block> fence;
-        private DeferredHolder<Block, Block> fenceGate;
+        private DeferredHolder<Block, Block> fence = null;
+        private DeferredHolder<Block, Block> fenceGate = null;
 
-        private DeferredHolder<Block, Block> door;
-        private DeferredHolder<Block, Block> trapdoor;
+        private DeferredHolder<Block, Block> door = null;
+        private DeferredHolder<Block, Block> trapdoor = null;
 
-        private DeferredHolder<Block, Block> button;
-        private DeferredHolder<Block, Block> pressurePlate;
+        private DeferredHolder<Block, Block> button = null;
+        private DeferredHolder<Block, Block> pressurePlate = null;
 
-        private DeferredBlock<? extends Block> sign;
-        private DeferredBlock<? extends Block> wallSign;
+        private DeferredBlock<? extends Block> sign = null;
+        private DeferredBlock<? extends Block> wallSign = null;
 
-        private DeferredBlock<? extends Block> hangingSign;
-        private DeferredBlock<? extends Block> wallHangingSign;
+        private DeferredBlock<? extends Block> hangingSign = null;
+        private DeferredBlock<? extends Block> wallHangingSign = null;
 
-        private DeferredItem<? extends Item> signItem;
-        private DeferredItem<? extends Item> hangingSignItem;
+        private DeferredItem<? extends Item> signItem = null;
+        private DeferredItem<? extends Item> hangingSignItem = null;
 
-        private TagKey<Item> itemTag;
-        private TagKey<Block> blockTag;
+        private TagKey<Item> itemTag = null;
+        private TagKey<Block> blockTag = null;
 
         private TreeProperties properties;
 
@@ -197,349 +222,234 @@ public class TreeSet {
                 return blockTag;
         }
 
-        public TreeSet setLog(Function<DeferredHolder<Block, Block>, DeferredHolder<Block, Block>> f) {
-                this.log = f.apply(this.log);
-                return this;
-        }
-
-        public TreeSet setLog(
-                        BiFunction<DeferredHolder<Block, Block>, TreeProperties, DeferredHolder<Block, Block>> f) {
-                this.log = f.apply(this.log, this.properties);
+        public TreeSet setLog(Function<TreeProperties, DeferredHolder<Block, Block>> f) {
+                this.log = f.apply(this.properties);
                 return this;
         }
 
         public TreeSet setLog(DeferredHolder<Block, Block> v) {
-                return setLog(_ -> v);
-        }
-
-        public TreeSet setStrippedLog(Function<DeferredHolder<Block, Block>, DeferredHolder<Block, Block>> f) {
-                this.strippedLog = f.apply(this.strippedLog);
+                this.log = v;
                 return this;
         }
 
-        public TreeSet setStrippedLog(
-                        BiFunction<DeferredHolder<Block, Block>, TreeProperties, DeferredHolder<Block, Block>> f) {
-                this.strippedLog = f.apply(this.strippedLog, this.properties);
+        public TreeSet setStrippedLog(Function<TreeProperties, DeferredHolder<Block, Block>> f) {
+                this.strippedLog = f.apply(this.properties);
                 return this;
         }
 
         public TreeSet setStrippedLog(DeferredHolder<Block, Block> v) {
-                return setStrippedLog(_ -> v);
-        }
-
-        public TreeSet setWood(Function<DeferredHolder<Block, Block>, DeferredHolder<Block, Block>> f) {
-                this.wood = f.apply(this.wood);
+                this.strippedLog = v;
                 return this;
         }
 
-        public TreeSet setWood(
-                        BiFunction<DeferredHolder<Block, Block>, TreeProperties, DeferredHolder<Block, Block>> f) {
-                this.wood = f.apply(this.wood, this.properties);
+        public TreeSet setWood(Function<TreeProperties, DeferredHolder<Block, Block>> f) {
+                this.wood = f.apply(this.properties);
                 return this;
         }
 
         public TreeSet setWood(DeferredHolder<Block, Block> v) {
-                return setWood(_ -> v);
-        }
-
-        public TreeSet setStrippedWood(Function<DeferredHolder<Block, Block>, DeferredHolder<Block, Block>> f) {
-                this.strippedWood = f.apply(this.strippedWood);
+                this.wood = v;
                 return this;
         }
 
-        public TreeSet setStrippedWood(
-                        BiFunction<DeferredHolder<Block, Block>, TreeProperties, DeferredHolder<Block, Block>> f) {
-                this.strippedWood = f.apply(this.strippedWood, this.properties);
+        public TreeSet setStrippedWood(Function<TreeProperties, DeferredHolder<Block, Block>> f) {
+                this.strippedWood = f.apply(this.properties);
                 return this;
         }
 
         public TreeSet setStrippedWood(DeferredHolder<Block, Block> v) {
-                return setStrippedWood(_ -> v);
-        }
-
-        public TreeSet setPlanks(Function<DeferredHolder<Block, Block>, DeferredHolder<Block, Block>> f) {
-                this.planks = f.apply(this.planks);
+                this.strippedWood = v;
                 return this;
         }
 
-        public TreeSet setPlanks(
-                        BiFunction<DeferredHolder<Block, Block>, TreeProperties, DeferredHolder<Block, Block>> f) {
-                this.planks = f.apply(this.planks, this.properties);
+        public TreeSet setPlanks(Function<TreeProperties, DeferredHolder<Block, Block>> f) {
+                this.planks = f.apply(this.properties);
                 return this;
         }
 
         public TreeSet setPlanks(DeferredHolder<Block, Block> v) {
-                return setPlanks(_ -> v);
-        }
-
-        public TreeSet setLeaves(Function<DeferredHolder<Block, Block>, DeferredHolder<Block, Block>> f) {
-                this.leaves = f.apply(this.leaves);
+                this.planks = v;
                 return this;
         }
 
-        public TreeSet setLeaves(
-                        BiFunction<DeferredHolder<Block, Block>, TreeProperties, DeferredHolder<Block, Block>> f) {
-                this.leaves = f.apply(this.leaves, this.properties);
+        public TreeSet setLeaves(Function<TreeProperties, DeferredHolder<Block, Block>> f) {
+                this.leaves = f.apply(this.properties);
                 return this;
         }
 
         public TreeSet setLeaves(DeferredHolder<Block, Block> v) {
-                return setLeaves(_ -> v);
-        }
-
-        public TreeSet setSapling(Function<DeferredHolder<Block, Block>, DeferredHolder<Block, Block>> f) {
-                this.sapling = f.apply(this.sapling);
+                this.leaves = v;
                 return this;
         }
 
-        public TreeSet setSapling(
-                        BiFunction<DeferredHolder<Block, Block>, TreeProperties, DeferredHolder<Block, Block>> f) {
-                this.sapling = f.apply(this.sapling, this.properties);
+        public TreeSet setSapling(Function<TreeProperties, DeferredHolder<Block, Block>> f) {
+                this.sapling = f.apply(this.properties);
                 return this;
         }
 
         public TreeSet setSapling(DeferredHolder<Block, Block> v) {
-                return setSapling(_ -> v);
-        }
-
-        public TreeSet setPottedSapling(Function<DeferredBlock<FlowerPotBlock>, DeferredBlock<FlowerPotBlock>> f) {
-                this.pottedSapling = f.apply(this.pottedSapling);
+                this.sapling = v;
                 return this;
         }
 
-        public TreeSet setPottedSapling(
-                        BiFunction<DeferredBlock<FlowerPotBlock>, TreeProperties, DeferredBlock<FlowerPotBlock>> f) {
-                this.pottedSapling = f.apply(this.pottedSapling, this.properties);
+        public TreeSet setPottedSapling(Function<TreeProperties, DeferredBlock<FlowerPotBlock>> f) {
+                this.pottedSapling = f.apply(this.properties);
                 return this;
         }
 
         public TreeSet setPottedSapling(DeferredBlock<FlowerPotBlock> v) {
-                return setPottedSapling(_ -> v);
-        }
-
-        public TreeSet setStairs(Function<DeferredHolder<Block, Block>, DeferredHolder<Block, Block>> f) {
-                this.stairs = f.apply(this.stairs);
+                this.pottedSapling = v;
                 return this;
         }
 
-        public TreeSet setStairs(
-                        BiFunction<DeferredHolder<Block, Block>, TreeProperties, DeferredHolder<Block, Block>> f) {
-                this.stairs = f.apply(this.stairs, this.properties);
+        public TreeSet setStairs(Function<TreeProperties, DeferredHolder<Block, Block>> f) {
+                this.stairs = f.apply(this.properties);
                 return this;
         }
 
         public TreeSet setStairs(DeferredHolder<Block, Block> v) {
-                return setStairs(_ -> v);
-        }
-
-        public TreeSet setSlab(Function<DeferredHolder<Block, Block>, DeferredHolder<Block, Block>> f) {
-                this.slab = f.apply(this.slab);
+                this.stairs = v;
                 return this;
         }
 
-        public TreeSet setSlab(
-                        BiFunction<DeferredHolder<Block, Block>, TreeProperties, DeferredHolder<Block, Block>> f) {
-                this.slab = f.apply(this.slab, this.properties);
+        public TreeSet setSlab(Function<TreeProperties, DeferredHolder<Block, Block>> f) {
+                this.slab = f.apply(this.properties);
                 return this;
         }
 
         public TreeSet setSlab(DeferredHolder<Block, Block> v) {
-                return setSlab(_ -> v);
-        }
-
-        public TreeSet setShelf(Function<DeferredHolder<Block, Block>, DeferredHolder<Block, Block>> f) {
-                this.shelf = f.apply(this.shelf);
+                this.slab = v;
                 return this;
         }
 
-        public TreeSet setShelf(
-                        BiFunction<DeferredHolder<Block, Block>, TreeProperties, DeferredHolder<Block, Block>> f) {
-                this.shelf = f.apply(this.shelf, this.properties);
+        public TreeSet setShelf(Function<TreeProperties, DeferredHolder<Block, Block>> f) {
+                this.shelf = f.apply(this.properties);
                 return this;
         }
 
         public TreeSet setShelf(DeferredHolder<Block, Block> v) {
-                return setShelf(_ -> v);
-        }
-
-        public TreeSet setFence(Function<DeferredHolder<Block, Block>, DeferredHolder<Block, Block>> f) {
-                this.fence = f.apply(this.fence);
+                this.shelf = v;
                 return this;
         }
 
-        public TreeSet setFence(
-                        BiFunction<DeferredHolder<Block, Block>, TreeProperties, DeferredHolder<Block, Block>> f) {
-                this.fence = f.apply(this.fence, this.properties);
+        public TreeSet setFence(Function<TreeProperties, DeferredHolder<Block, Block>> f) {
+                this.fence = f.apply(this.properties);
                 return this;
         }
 
         public TreeSet setFence(DeferredHolder<Block, Block> v) {
-                return setFence(_ -> v);
-        }
-
-        public TreeSet setFenceGate(Function<DeferredHolder<Block, Block>, DeferredHolder<Block, Block>> f) {
-                this.fenceGate = f.apply(this.fenceGate);
+                this.fence = v;
                 return this;
         }
 
-        public TreeSet setFenceGate(
-                        BiFunction<DeferredHolder<Block, Block>, TreeProperties, DeferredHolder<Block, Block>> f) {
-                this.fenceGate = f.apply(this.fenceGate, this.properties);
+        public TreeSet setFenceGate(Function<TreeProperties, DeferredHolder<Block, Block>> f) {
+                this.fenceGate = f.apply(this.properties);
                 return this;
         }
 
         public TreeSet setFenceGate(DeferredHolder<Block, Block> v) {
-                return setFenceGate(_ -> v);
-        }
-
-        public TreeSet setDoor(Function<DeferredHolder<Block, Block>, DeferredHolder<Block, Block>> f) {
-                this.door = f.apply(this.door);
+                this.fenceGate = v;
                 return this;
         }
 
-        public TreeSet setDoor(
-                        BiFunction<DeferredHolder<Block, Block>, TreeProperties, DeferredHolder<Block, Block>> f) {
-                this.door = f.apply(this.door, this.properties);
+        public TreeSet setDoor(Function<TreeProperties, DeferredHolder<Block, Block>> f) {
+                this.door = f.apply(this.properties);
                 return this;
         }
 
         public TreeSet setDoor(DeferredHolder<Block, Block> v) {
-                return setDoor(_ -> v);
-        }
-
-        public TreeSet setTrapdoor(Function<DeferredHolder<Block, Block>, DeferredHolder<Block, Block>> f) {
-                this.trapdoor = f.apply(this.trapdoor);
+                this.door = v;
                 return this;
         }
 
-        public TreeSet setTrapdoor(
-                        BiFunction<DeferredHolder<Block, Block>, TreeProperties, DeferredHolder<Block, Block>> f) {
-                this.trapdoor = f.apply(this.trapdoor, this.properties);
+        public TreeSet setTrapdoor(Function<TreeProperties, DeferredHolder<Block, Block>> f) {
+                this.trapdoor = f.apply(this.properties);
                 return this;
         }
 
         public TreeSet setTrapdoor(DeferredHolder<Block, Block> v) {
-                return setTrapdoor(_ -> v);
-        }
-
-        public TreeSet setButton(Function<DeferredHolder<Block, Block>, DeferredHolder<Block, Block>> f) {
-                this.button = f.apply(this.button);
+                this.trapdoor = v;
                 return this;
         }
 
-        public TreeSet setButton(
-                        BiFunction<DeferredHolder<Block, Block>, TreeProperties, DeferredHolder<Block, Block>> f) {
-                this.button = f.apply(this.button, this.properties);
+        public TreeSet setButton(Function<TreeProperties, DeferredHolder<Block, Block>> f) {
+                this.button = f.apply(this.properties);
                 return this;
         }
 
         public TreeSet setButton(DeferredHolder<Block, Block> v) {
-                return setButton(_ -> v);
-        }
-
-        public TreeSet setPressurePlate(Function<DeferredHolder<Block, Block>, DeferredHolder<Block, Block>> f) {
-                this.pressurePlate = f.apply(this.pressurePlate);
+                this.button = v;
                 return this;
         }
 
-        public TreeSet setPressurePlate(
-                        BiFunction<DeferredHolder<Block, Block>, TreeProperties, DeferredHolder<Block, Block>> f) {
-                this.pressurePlate = f.apply(this.pressurePlate, this.properties);
+        public TreeSet setPressurePlate(Function<TreeProperties, DeferredHolder<Block, Block>> f) {
+                this.pressurePlate = f.apply(this.properties);
                 return this;
         }
 
         public TreeSet setPressurePlate(DeferredHolder<Block, Block> v) {
-                return setPressurePlate(_ -> v);
-        }
-
-        public TreeSet setSign(Function<DeferredBlock<? extends Block>, DeferredBlock<? extends Block>> f) {
-                this.sign = f.apply(this.sign);
+                this.pressurePlate = v;
                 return this;
         }
 
-        public TreeSet setSign(
-                        BiFunction<DeferredBlock<? extends Block>, TreeProperties, DeferredBlock<? extends Block>> f) {
-                this.sign = f.apply(this.sign, this.properties);
+        public TreeSet setSign(Function<TreeProperties, DeferredBlock<? extends Block>> f) {
+                this.sign = f.apply(this.properties);
                 return this;
         }
 
         public TreeSet setSign(DeferredBlock<? extends Block> v) {
-                return setSign(_ -> v);
-        }
-
-        public TreeSet setWallSign(Function<DeferredBlock<? extends Block>, DeferredBlock<? extends Block>> f) {
-                this.wallSign = f.apply(this.wallSign);
+                this.sign = v;
                 return this;
         }
 
-        public TreeSet setWallSign(
-                        BiFunction<DeferredBlock<? extends Block>, TreeProperties, DeferredBlock<? extends Block>> f) {
-                this.wallSign = f.apply(this.wallSign, this.properties);
+        public TreeSet setWallSign(Function<TreeProperties, DeferredBlock<? extends Block>> f) {
+                this.wallSign = f.apply(this.properties);
                 return this;
         }
 
         public TreeSet setWallSign(DeferredBlock<? extends Block> v) {
-                return setWallSign(_ -> v);
-        }
-
-        public TreeSet setHangingSign(Function<DeferredBlock<? extends Block>, DeferredBlock<? extends Block>> f) {
-                this.hangingSign = f.apply(this.hangingSign);
+                this.wallSign = v;
                 return this;
         }
 
-        public TreeSet setHangingSign(
-                        BiFunction<DeferredBlock<? extends Block>, TreeProperties, DeferredBlock<? extends Block>> f) {
-                this.hangingSign = f.apply(this.hangingSign, this.properties);
+        public TreeSet setHangingSign(Function<TreeProperties, DeferredBlock<? extends Block>> f) {
+                this.hangingSign = f.apply(this.properties);
                 return this;
         }
 
         public TreeSet setHangingSign(DeferredBlock<? extends Block> v) {
-                return setHangingSign(_ -> v);
-        }
-
-        public TreeSet setWallHangingSign(Function<DeferredBlock<? extends Block>, DeferredBlock<? extends Block>> f) {
-                this.wallHangingSign = f.apply(this.wallHangingSign);
+                this.hangingSign = v;
                 return this;
         }
 
-        public TreeSet setWallHangingSign(
-                        BiFunction<DeferredBlock<? extends Block>, TreeProperties, DeferredBlock<? extends Block>> f) {
-                this.wallHangingSign = f.apply(this.wallHangingSign, this.properties);
+        public TreeSet setWallHangingSign(Function<TreeProperties, DeferredBlock<? extends Block>> f) {
+                this.wallHangingSign = f.apply(this.properties);
                 return this;
         }
 
         public TreeSet setWallHangingSign(DeferredBlock<? extends Block> v) {
-                return setWallHangingSign(_ -> v);
-        }
-
-        public TreeSet setSignItem(Function<DeferredItem<? extends Item>, DeferredItem<? extends Item>> f) {
-                this.signItem = f.apply(this.signItem);
+                this.wallHangingSign = v;
                 return this;
         }
 
-        public TreeSet setSignItem(
-                        BiFunction<DeferredItem<? extends Item>, TreeProperties, DeferredItem<? extends Item>> f) {
-                this.signItem = f.apply(this.signItem, this.properties);
+        public TreeSet setSignItem(Function<TreeProperties, DeferredItem<? extends Item>> f) {
+                this.signItem = f.apply(this.properties);
                 return this;
         }
 
         public TreeSet setSignItem(DeferredItem<? extends Item> v) {
-                return setSignItem(_ -> v);
-        }
-
-        public TreeSet setHangingSignItem(Function<DeferredItem<? extends Item>, DeferredItem<? extends Item>> f) {
-                this.hangingSignItem = f.apply(this.hangingSignItem);
+                this.signItem = v;
                 return this;
         }
 
-        public TreeSet setHangingSignItem(
-                        BiFunction<DeferredItem<? extends Item>, TreeProperties, DeferredItem<? extends Item>> f) {
-                this.hangingSignItem = f.apply(this.hangingSignItem, this.properties);
+        public TreeSet setHangingSignItem(Function<TreeProperties, DeferredItem<? extends Item>> f) {
+                this.hangingSignItem = f.apply(this.properties);
                 return this;
         }
 
         public TreeSet setHangingSignItem(DeferredItem<? extends Item> v) {
-                return setHangingSignItem(_ -> v);
+                this.hangingSignItem = v;
+                return this;
         }
 
         public TreeSet setItemTag(Function<TagKey<Item>, TagKey<Item>> f) {
@@ -547,13 +457,9 @@ public class TreeSet {
                 return this;
         }
 
-        public TreeSet setItemTag(BiFunction<TagKey<Item>, TreeProperties, TagKey<Item>> f) {
-                this.itemTag = f.apply(this.itemTag, this.properties);
-                return this;
-        }
-
         public TreeSet setItemTag(TagKey<Item> v) {
-                return setItemTag(_ -> v);
+                this.itemTag = v;
+                return this;
         }
 
         public TreeSet setBlockTag(Function<TagKey<Block>, TagKey<Block>> f) {
@@ -561,13 +467,231 @@ public class TreeSet {
                 return this;
         }
 
-        public TreeSet setBlockTag(BiFunction<TagKey<Block>, TreeProperties, TagKey<Block>> f) {
-                this.blockTag = f.apply(this.blockTag, this.properties);
+        public TreeSet setBlockTag(TagKey<Block> v) {
+                this.blockTag = v;
                 return this;
         }
 
-        public TreeSet setBlockTag(TagKey<Block> v) {
-                return setBlockTag(_ -> v);
+        public TreeSet build() {
+
+                var plank = properties.plankColor();
+                var log_side = properties.logSideColor();
+
+                var hardness = properties.hardness();
+                var resistance = properties.resistance();
+
+                var soundType = properties.soundType();
+                var woodType = properties.woodType();
+                var blockSetType = properties.blockset();
+
+                var burnable = properties.burnable();
+
+                var particles = properties.particles();
+                var type = properties.woodOptionType();
+
+                var grower = properties.grower();
+
+                if (this.log == null)
+                        this.log = Material.registerItemBlock(id + type.suffix4(), p -> {
+                                p.strength(hardness, resistance).sound(soundType);
+
+                                if (burnable)
+                                        p.ignitedByLava();
+
+                                return new RotatedPillarBlock(
+                                                p.mapColor(state -> state
+                                                                .getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y
+                                                                                ? log_side
+                                                                                : plank));
+                        });
+
+                if (this.strippedLog == null)
+                        this.strippedLog = Material.registerItemBlock(
+                                        WoodOptionType.STRIPPED + id + type.suffix4(), p -> {
+                                                p.strength(hardness, resistance).sound(soundType);
+
+                                                if (burnable)
+                                                        p.ignitedByLava();
+
+                                                return new RotatedPillarBlock(p.mapColor(plank));
+                                        });
+
+                if (this.wood == null)
+                        this.wood = Material.registerItemBlock(id + type.suffix6(), p -> {
+                                p.strength(hardness, resistance).sound(soundType);
+
+                                if (burnable)
+                                        p.ignitedByLava();
+
+                                return new RotatedPillarBlock(p.mapColor(log_side));
+                        });
+
+                if (this.strippedWood == null)
+                        this.strippedWood = Material.registerItemBlock(
+                                        WoodOptionType.STRIPPED + id + type.suffix6(), p -> {
+                                                p.strength(hardness, resistance).sound(soundType);
+
+                                                if (burnable)
+                                                        p.ignitedByLava();
+
+                                                return new RotatedPillarBlock(p.mapColor(plank));
+                                        });
+
+                if (this.planks == null)
+                        this.planks = Material.registerItemBlock(id + "_planks", p -> {
+                                p.strength(hardness, resistance).sound(soundType);
+
+                                if (burnable)
+                                        p.ignitedByLava();
+
+                                return new Block(p.mapColor(plank));
+                        });
+
+                if (this.leaves == null)
+                        this.leaves = Material.registerItemBlock(id + "_leaves", p -> new TintedParticleLeavesBlock(
+                                        particles.get(),
+                                        p.strength(0.2F)
+                                                        .sound(SoundType.GRASS)
+                                                        .pushReaction(PushReaction.DESTROY)
+                                                        .noOcclusion()
+                                                        .ignitedByLava()
+                                                        .randomTicks()
+                                                        .isValidSpawn(Blocks::ocelotOrParrot)
+                                                        .isSuffocating((s, l, ps) -> false)
+                                                        .isViewBlocking((s, l, ps) -> false)
+                                                        .isRedstoneConductor((s, l, ps) -> false)
+                                                        .mapColor(MapColor.PLANT)));
+
+                if (this.sapling == null)
+                        this.sapling = Material.registerItemBlock(id + "_sapling", p -> new SaplingBlock(
+                                        grower.apply(id).build(),
+                                        p.pushReaction(PushReaction.DESTROY)
+                                                        .instabreak()
+                                                        .sound(SoundType.GRASS)
+                                                        .noCollision()
+                                                        .randomTicks()
+                                                        .ignitedByLava()
+                                                        .mapColor(MapColor.PLANT)));
+
+                if (this.pottedSapling == null)
+                        this.pottedSapling = zBlocks.zTreeBlock.registerBlock(
+                                        "potted_" + id + "_sapling",
+                                        p -> new FlowerPotBlock(
+                                                        () -> (FlowerPotBlock) Blocks.FLOWER_POT,
+                                                        sapling,
+                                                        p.instabreak()
+                                                                        .noOcclusion()
+                                                                        .pushReaction(PushReaction.DESTROY)));
+
+                if (this.stairs == null)
+                        this.stairs = Material.registerItemBlock(id + "_stairs", p -> new StairBlock(
+                                        planks.get().defaultBlockState(),
+                                        p.strength(hardness, resistance)
+                                                        .sound(soundType)
+                                                        .ignitedByLava()
+                                                        .mapColor(plank)));
+
+                if (this.slab == null)
+                        this.slab = Material.registerItemBlock(id + "_slab", p -> new SlabBlock(
+                                        p.strength(hardness, resistance)
+                                                        .sound(soundType)
+                                                        .ignitedByLava()
+                                                        .mapColor(plank)));
+
+                if (this.shelf == null)
+                        this.shelf = Material.registerItemBlock(id + "_shelf", p -> new ShelfBlock(
+                                        p.strength(hardness, resistance)
+                                                        .sound(soundType)
+                                                        .ignitedByLava()
+                                                        .mapColor(plank)));
+
+                if (this.fence == null)
+                        this.fence = Material.registerItemBlock(id + "_fence", p -> new FenceBlock(
+                                        p.strength(hardness, resistance)
+                                                        .sound(soundType)
+                                                        .ignitedByLava()
+                                                        .mapColor(plank)));
+
+                if (this.fenceGate == null)
+                        this.fenceGate = Material.registerItemBlock(id + "_fence_gate", p -> new FenceGateBlock(
+                                        woodType,
+                                        p.strength(hardness, resistance)
+                                                        .sound(soundType)
+                                                        .ignitedByLava()
+                                                        .mapColor(plank)));
+
+                if (this.door == null)
+                        this.door = Material.registerItemBlock(id + "_door", p -> new DoorBlock(
+                                        blockSetType,
+                                        p.strength(3.0F)
+                                                        .ignitedByLava()
+                                                        .mapColor(plank)));
+
+                if (this.trapdoor == null)
+                        this.trapdoor = Material.registerItemBlock(id + "_trapdoor", p -> new TrapDoorBlock(
+                                        blockSetType,
+                                        p.strength(3.0F)
+                                                        .ignitedByLava()
+                                                        .noOcclusion()
+                                                        .mapColor(plank)));
+
+                if (this.button == null)
+                        this.button = Material.registerItemBlock(id + "_button", p -> new ButtonBlock(
+                                        blockSetType,
+                                        30,
+                                        p.strength(0.5F)
+                                                        .noCollision()
+                                                        .ignitedByLava()
+                                                        .mapColor(plank)));
+
+                if (this.pressurePlate == null)
+                        this.pressurePlate = Material.registerItemBlock(id + "_pressure_plate",
+                                        p -> new PressurePlateBlock(
+                                                        blockSetType,
+                                                        p.strength(0.5F)
+                                                                        .ignitedByLava()
+                                                                        .mapColor(plank)));
+
+                if (this.sign == null)
+                        this.sign = zBlocks.zTreeBlock.registerBlock(id + "_sign", p -> new StandingSignBlock(
+                                        woodType,
+                                        p.forceSolidOn().noCollision().strength(1.0F)));
+
+                if (this.wallSign == null)
+                        this.wallSign = zBlocks.zTreeBlock.registerBlock(id + "_wall_sign", p -> new WallSignBlock(
+                                        woodType,
+                                        p.forceSolidOn().noCollision().strength(1.0F)));
+
+                if (this.hangingSign == null)
+                        this.hangingSign = zBlocks.zTreeBlock.registerBlock(id + "_hanging_sign",
+                                        p -> new CeilingHangingSignBlock(
+                                                        woodType,
+                                                        p.forceSolidOn().noCollision().strength(1.0F)));
+
+                if (this.wallHangingSign == null)
+                        this.wallHangingSign = zBlocks.zTreeBlock.registerBlock(
+                                        id + "_wall_hanging_sign", p -> new WallHangingSignBlock(
+                                                        woodType,
+                                                        p.forceSolidOn().noCollision().strength(1.0F)));
+
+                if (this.signItem == null)
+                        this.signItem = zItems.zTreeItem.registerItem(id + "_sign",
+                                        p -> new SignItem(sign.get(), wallSign.get(), p));
+
+                if (this.hangingSignItem == null)
+                        this.hangingSignItem = zItems.zTreeItem.registerItem(
+                                        id + "_hanging_sign", p -> new HangingSignItem(
+                                                        hangingSign.get(),
+                                                        wallHangingSign.get(),
+                                                        p));
+
+                if (this.itemTag == null)
+                        this.itemTag = RegistryUtils.tagItem(MODULE_ID, id + "_logs");
+
+                if (this.blockTag == null)
+                        this.blockTag = RegistryUtils.tagBlock(MODULE_ID, id + "_logs");
+
+                return this;
         }
 
         public List<Block> getLootBlocks() {
