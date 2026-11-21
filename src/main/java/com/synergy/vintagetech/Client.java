@@ -173,6 +173,7 @@ public class Client {
         public static void registerBlockColors(RegisterColorHandlersEvent.BlockTintSources event) {
 
                 event.register(List.of(BlockTintSources.foliage()),
+                                zTrees.CORK_OAK.getLeaves().get(),
                                 zTrees.IRONWOOD.getLeaves().get(),
                                 zTrees.OLIVE.getLeaves().get());
 

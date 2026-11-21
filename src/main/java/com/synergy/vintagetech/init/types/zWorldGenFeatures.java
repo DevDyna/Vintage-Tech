@@ -53,6 +53,9 @@ public class zWorldGenFeatures {
                 public static final ResourceKey<PlacedFeature> IRONWOOD = RegistryUtils
                                 .createPlacedFeature(MODULE_ID, "ironwood_tree");
 
+                public static final ResourceKey<PlacedFeature> CORK_OAK = RegistryUtils
+                                .createPlacedFeature(MODULE_ID, "cork_oak_tree");
+
                 public static final ResourceKey<PlacedFeature> OLIVE_COMMON = RegistryUtils
                                 .createPlacedFeature(MODULE_ID, "olive_tree/common");
 
@@ -83,6 +86,9 @@ public class zWorldGenFeatures {
         }
 
         public class ConfiguredFeatures {
+                public static final ResourceKey<ConfiguredFeature<?, ?>> CORK_OAK = RegistryUtils
+                                .createConfiguredFeature(MODULE_ID, "cork_oak_tree");
+
                 public static final ResourceKey<ConfiguredFeature<?, ?>> IRONWOOD = RegistryUtils
                                 .createConfiguredFeature(MODULE_ID, "ironwood_tree");
 
@@ -115,6 +121,9 @@ public class zWorldGenFeatures {
         public class BiomeModifiers {
                 public static final ResourceKey<BiomeModifier> IRONWOOD = RegistryUtils
                                 .createBiomeModifier(MODULE_ID, "ironwood_tree");
+
+                public static final ResourceKey<BiomeModifier> CORK_OAK = RegistryUtils
+                                .createBiomeModifier(MODULE_ID, "cork_oak_tree");
 
                 public static final ResourceKey<BiomeModifier> OLIVE_COMMON = RegistryUtils
                                 .createBiomeModifier(MODULE_ID, "olive_tree/common");
