@@ -139,9 +139,13 @@ public class DataLootBlock extends BlockLootSubProvider {
 
                 );
 
+                add(zTrees.CORK_OAK.getLeaves().get(),
+                                b -> createLeavesDrops(b, zTrees.CORK_OAK.getSapling().get(),
+                                                NORMAL_LEAVES_SAPLING_CHANCES));
+
                 add(zTrees.OLIVE.getLeaves().get(),
                                 b -> createLeavesDrops(b, zTrees.OLIVE.getSapling().get(),
-                                                 new float[]{0.2F, 0.25F, 0.33333334F, 0.4F}) //+300%
+                                                new float[] { 0.2F, 0.25F, 0.33333334F, 0.4F }) // +300%
                                                 .withPool(
                                                                 LootPool.lootPool()
                                                                                 .setRolls(UniformGenerator.between(1,
@@ -219,16 +223,15 @@ public class DataLootBlock extends BlockLootSubProvider {
 
                 );
 
-
                 add(zBlocks.SALT.get(),
                                 LootTable.lootTable()
                                                 .withPool(applyExplosionCondition(zItems.SALT.get(),
                                                                 LootPool.lootPool()
                                                                                 .setRolls(ConstantValue.exactly(1.0F))
-                                                                                .add(LootItem.lootTableItem(zItems.SALT.get()))))
+                                                                                .add(LootItem.lootTableItem(
+                                                                                                zItems.SALT.get()))))
 
                 );
-
 
         }
 
