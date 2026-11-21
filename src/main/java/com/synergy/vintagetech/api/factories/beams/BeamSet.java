@@ -8,7 +8,7 @@ import java.util.function.Supplier;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.synergy.vintagetech.api.datagen.BlockModelUtils;
 import com.synergy.vintagetech.api.datagen.ItemModelUtil;
-import com.synergy.vintagetech.api.factories.trees.TreeOptions.WoodType;
+import com.synergy.vintagetech.api.factories.trees.TreeOptions.WoodOptionType;
 import com.synergy.vintagetech.init.types.zTags;
 
 import net.minecraft.client.data.models.BlockModelGenerators;
@@ -22,18 +22,18 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 
 public record BeamSet(String id, DeferredHolder<Block, Block> beam_log, DeferredHolder<Block, Block> beam_stripped_log,
         DeferredHolder<Block, Block> beam_wood, DeferredHolder<Block, Block> beam_stripped_wood, Identifier logTexture,
-        Identifier strippedTexture, WoodType type, Supplier<Block> log, Supplier<Block> log_stripped) {
+        Identifier strippedTexture, WoodOptionType type, Supplier<Block> log, Supplier<Block> log_stripped) {
 
     public boolean isTree() {
-        return type.equals(WoodType.TREE);
+        return type.equals(WoodOptionType.TREE);
     }
 
     public boolean isFungus() {
-        return type.equals(WoodType.FUNGUS);
+        return type.equals(WoodOptionType.FUNGUS);
     }
 
     public boolean isSpecial() {
-        return type.equals(WoodType.OTHER);
+        return type.equals(WoodOptionType.OTHER);
     }
 
     public void createModels(BlockModelGenerators blocks, ItemModelGenerators items) {

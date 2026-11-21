@@ -5,7 +5,7 @@ import static com.synergy.vintagetech.Main.MODULE_ID;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.synergy.vintagetech.api.factories.beams.BeamFactory;
 import com.synergy.vintagetech.api.factories.beams.BeamSet;
-import com.synergy.vintagetech.api.factories.trees.TreeOptions.WoodType;
+import com.synergy.vintagetech.api.factories.trees.TreeOptions.WoodOptionType;
 
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.MapColor;
@@ -17,7 +17,7 @@ public class zBeams {
         }
 
         public static final BeamSet OAK = BeamFactory.register(
-                        "oak", WoodType.TREE,
+                        "oak", WoodOptionType.TREE,
                         () -> Blocks.OAK_LOG,
                         () -> Blocks.STRIPPED_OAK_LOG,
                         x.mcLoc("block/oak_log"),
@@ -26,7 +26,7 @@ public class zBeams {
                         MapColor.PODZOL);
 
         public static final BeamSet SPRUCE = BeamFactory.register(
-                        "spruce", WoodType.TREE,
+                        "spruce", WoodOptionType.TREE,
                         () -> Blocks.SPRUCE_LOG,
                         () -> Blocks.STRIPPED_SPRUCE_LOG,
                         x.mcLoc("block/spruce_log"),
@@ -35,7 +35,7 @@ public class zBeams {
                         MapColor.PODZOL);
 
         public static final BeamSet BIRCH = BeamFactory.register(
-                        "birch", WoodType.TREE,
+                        "birch", WoodOptionType.TREE,
                         () -> Blocks.BIRCH_LOG,
                         () -> Blocks.STRIPPED_BIRCH_LOG,
                         x.mcLoc("block/birch_log"),
@@ -44,7 +44,7 @@ public class zBeams {
                         MapColor.SAND);
 
         public static final BeamSet JUNGLE = BeamFactory.register(
-                        "jungle", WoodType.TREE,
+                        "jungle", WoodOptionType.TREE,
                         () -> Blocks.JUNGLE_LOG,
                         () -> Blocks.STRIPPED_JUNGLE_LOG,
                         x.mcLoc("block/jungle_log"),
@@ -53,7 +53,7 @@ public class zBeams {
                         MapColor.DIRT);
 
         public static final BeamSet ACACIA = BeamFactory.register(
-                        "acacia", WoodType.TREE,
+                        "acacia", WoodOptionType.TREE,
                         () -> Blocks.ACACIA_LOG,
                         () -> Blocks.STRIPPED_ACACIA_LOG,
                         x.mcLoc("block/acacia_log"),
@@ -62,7 +62,7 @@ public class zBeams {
                         MapColor.COLOR_ORANGE);
 
         public static final BeamSet DARK_OAK = BeamFactory.register(
-                        "dark_oak", WoodType.TREE,
+                        "dark_oak", WoodOptionType.TREE,
                         () -> Blocks.DARK_OAK_LOG,
                         () -> Blocks.STRIPPED_DARK_OAK_LOG,
                         x.mcLoc("block/dark_oak_log"),
@@ -71,7 +71,7 @@ public class zBeams {
                         MapColor.COLOR_BROWN);
 
         public static final BeamSet MANGROVE = BeamFactory.register(
-                        "mangrove", WoodType.TREE,
+                        "mangrove", WoodOptionType.TREE,
                         () -> Blocks.MANGROVE_LOG,
                         () -> Blocks.STRIPPED_MANGROVE_LOG,
                         x.mcLoc("block/mangrove_log"),
@@ -80,7 +80,7 @@ public class zBeams {
                         MapColor.COLOR_RED);
 
         public static final BeamSet CHERRY = BeamFactory.register(
-                        "cherry", WoodType.TREE,
+                        "cherry", WoodOptionType.TREE,
                         () -> Blocks.CHERRY_LOG,
                         () -> Blocks.STRIPPED_CHERRY_LOG,
                         x.mcLoc("block/cherry_log"),
@@ -89,7 +89,7 @@ public class zBeams {
                         MapColor.TERRACOTTA_PINK);
 
         public static final BeamSet PALE_OAK = BeamFactory.register(
-                        "pale_oak", WoodType.TREE,
+                        "pale_oak", WoodOptionType.TREE,
                         () -> Blocks.PALE_OAK_LOG,
                         () -> Blocks.STRIPPED_PALE_OAK_LOG,
                         x.mcLoc("block/pale_oak_log"),
@@ -98,7 +98,7 @@ public class zBeams {
                         Blocks.PALE_OAK_PLANKS.defaultMapColor());
 
         public static final BeamSet BAMBOO = BeamFactory.register(
-                        "bamboo", WoodType.OTHER,
+                        "bamboo", WoodOptionType.OTHER,
                         () -> Blocks.BAMBOO_BLOCK,
                         () -> Blocks.STRIPPED_BAMBOO_BLOCK,
                         x.rl(MODULE_ID, "block/beam/normal/bamboo"),
@@ -108,7 +108,7 @@ public class zBeams {
 
         public static final BeamSet CRIMSON = BeamFactory.register(
                         "crimson",
-                        WoodType.FUNGUS,
+                        WoodOptionType.FUNGUS,
                         () -> Blocks.CRIMSON_STEM,
                         () -> Blocks.STRIPPED_CRIMSON_STEM,
                         x.mcLoc("block/crimson_stem"),
@@ -118,7 +118,7 @@ public class zBeams {
 
         public static final BeamSet WARPED = BeamFactory.register(
                         "warped",
-                        WoodType.FUNGUS,
+                        WoodOptionType.FUNGUS,
                         () -> Blocks.WARPED_STEM,
                         () -> Blocks.STRIPPED_WARPED_STEM,
                         x.mcLoc("block/warped_stem"),
@@ -128,9 +128,9 @@ public class zBeams {
 
         public static final BeamSet IRONWOOD = BeamFactory.register(
                         "ironwood",
-                        WoodType.TREE,
-                        () -> zTrees.IRONWOOD.log().get(),
-                        () -> zTrees.IRONWOOD.strippedLog().get(),
+                        WoodOptionType.TREE,
+                        () -> zTrees.IRONWOOD.getLog().get(),
+                        () -> zTrees.IRONWOOD.getStrippedLog().get(),
                         x.rl(MODULE_ID, "block/ironwood_log"),
                         x.rl(MODULE_ID, "block/stripped_ironwood_log"),
                         MapColor.COLOR_LIGHT_GRAY,
@@ -138,9 +138,9 @@ public class zBeams {
 
         public static final BeamSet OLIVE = BeamFactory.register(
                         "olive",
-                        WoodType.TREE,
-                        () -> zTrees.OLIVE.log().get(),
-                        () -> zTrees.OLIVE.strippedLog().get(),
+                        WoodOptionType.TREE,
+                        () -> zTrees.OLIVE.getLog().get(),
+                        () -> zTrees.OLIVE.getStrippedLog().get(),
                         x.rl(MODULE_ID, "block/olive_log"),
                         x.rl(MODULE_ID, "block/stripped_olive_log"),
                         MapColor.COLOR_ORANGE,

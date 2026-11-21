@@ -9,7 +9,7 @@ import java.util.function.Function;
 import com.devdyna.cakesticklib.api.RegistryUtils;
 import com.synergy.vintagetech.api.factories.trees.TreeBuilders.*;
 import com.synergy.vintagetech.api.factories.trees.TreeOptions.TreeParticleLeaves;
-import com.synergy.vintagetech.api.factories.trees.TreeOptions.WoodType;
+import com.synergy.vintagetech.api.factories.trees.TreeOptions.WoodOptionType;
 import com.synergy.vintagetech.init.Material;
 import com.synergy.vintagetech.init.types.zBlocks;
 import com.synergy.vintagetech.init.types.zItems;
@@ -30,16 +30,18 @@ public final class TreeFactory {
         }
 
         public static boolean contains(TreeSet set) {
-                return TREES.containsKey(set.id());
+                return TREES.containsKey(set.getId());
         }
 
         public static TreeSet get(TreeSet set) {
-                return TREES.get(set.id());
+                return TREES.get(set.getId());
         }
 
+        
+
         public static TreeSet register(String id, MapColor plank, MapColor log_side, float hardness, float resistance,
-                        SoundType generic, Function<String, BlockSetBuilder> blockSetBuilder,
-                        BiFunction<String, BlockSetType, WoodTypeBuilder> woodTypeBuilder, WoodType type,
+                        SoundType soundType, Function<String, BlockSetBuilder> blockSetBuilder,
+                        BiFunction<String, BlockSetType, WoodTypeBuilder> woodTypeBuilder, WoodOptionType type,
                         TreeParticleLeaves particles, Function<String, TreeGrowerBuilder> grower, boolean burnable) {
 
                 var blockSetType = blockSetBuilder.apply(id).build();
@@ -48,7 +50,7 @@ public final class TreeFactory {
                 var log = Material.registerItemBlock(id + type.suffix4(),
                                 p -> {
 
-                                        p.strength(hardness, resistance).sound(generic);
+                                        p.strength(hardness, resistance).sound(soundType);
 
                                         if (burnable)
                                                 p.ignitedByLava();
@@ -59,11 +61,10 @@ public final class TreeFactory {
                                                                         : plank));
                                 });
 
-                var strippedLog = Material.registerItemBlock(WoodType.STRIPPED + id + type.suffix4(),
-
+                var strippedLog = Material.registerItemBlock(WoodOptionType.STRIPPED + id + type.suffix4(),
                                 p -> {
 
-                                        p.strength(hardness, resistance).sound(generic);
+                                        p.strength(hardness, resistance).sound(soundType);
 
                                         if (burnable)
                                                 p.ignitedByLava();
@@ -73,10 +74,9 @@ public final class TreeFactory {
 
                 var wood = Material.registerItemBlock(
                                 id + type.suffix6(),
-
                                 p -> {
 
-                                        p.strength(hardness, resistance).sound(generic);
+                                        p.strength(hardness, resistance).sound(soundType);
 
                                         if (burnable)
                                                 p.ignitedByLava();
@@ -85,11 +85,10 @@ public final class TreeFactory {
                                 });
 
                 var strippedWood = Material.registerItemBlock(
-                                TreeOptions.WoodType.STRIPPED + id + type.suffix6(),
-
+                                TreeOptions.WoodOptionType.STRIPPED + id + type.suffix6(),
                                 p -> {
 
-                                        p.strength(hardness, resistance).sound(generic);
+                                        p.strength(hardness, resistance).sound(soundType);
 
                                         if (burnable)
                                                 p.ignitedByLava();
@@ -99,9 +98,8 @@ public final class TreeFactory {
 
                 var planks = Material.registerItemBlock(
                                 id + "_planks",
-
                                 (p) -> {
-                                        p.strength(hardness, resistance).sound(generic);
+                                        p.strength(hardness, resistance).sound(soundType);
 
                                         if (burnable)
                                                 p.ignitedByLava();
@@ -145,35 +143,35 @@ public final class TreeFactory {
                                 p -> new StairBlock(
                                                 planks.get().defaultBlockState(),
                                                 p.strength(hardness, resistance)
-                                                                .sound(generic)
+                                                                .sound(soundType)
                                                                 .ignitedByLava()
                                                                 .mapColor(plank)));
 
                 var slab = Material.registerItemBlock(id + "_slab",
                                 p -> new SlabBlock(
                                                 p.strength(hardness, resistance)
-                                                                .sound(generic)
+                                                                .sound(soundType)
                                                                 .ignitedByLava()
                                                                 .mapColor(plank)));
 
                 var shelf = Material.registerItemBlock(id + "_shelf",
                                 p -> new ShelfBlock(
                                                 p.strength(hardness, resistance)
-                                                                .sound(generic)
+                                                                .sound(soundType)
                                                                 .ignitedByLava()
                                                                 .mapColor(plank)));
 
                 var fence = Material.registerItemBlock(id + "_fence",
                                 p -> new FenceBlock(
                                                 p.strength(hardness, resistance)
-                                                                .sound(generic)
+                                                                .sound(soundType)
                                                                 .ignitedByLava()
                                                                 .mapColor(plank)));
 
                 var fenceGate = Material.registerItemBlock(id + "_fence_gate",
                                 p -> new FenceGateBlock(woodType,
                                                 p.strength(hardness, resistance)
-                                                                .sound(generic)
+                                                                .sound(soundType)
                                                                 .ignitedByLava()
                                                                 .mapColor(plank)));
 
@@ -237,19 +235,45 @@ public final class TreeFactory {
 
                 var blockTag = RegistryUtils.tagBlock(MODULE_ID, id + "_logs");
 
-                var set = new TreeSet(id,
-                                log, strippedLog,
-                                wood, strippedWood,
-                                planks, leaves,
-                                sapling, pottedSapling,
-                                stairs, slab, shelf,
-                                fence, fenceGate,
-                                door, trapdoor,
-                                button, pressurePlate,
-                                sign, wallSign,
-                                hangingSign, wallHangingSign,
-                                signItem, hangingSignItem,
-                                itemTag, blockTag);
+                
+                var set = new TreeSet(TreeSet.TreeProperties.of(id, plank, log_side, hardness, resistance, soundType, woodType, burnable, particles, blockSetType, type, grower))
+
+                .setLog(log)
+                .setStrippedLog(strippedLog)
+
+                .setWood(wood)
+                .setStrippedWood(strippedWood)
+
+                .setPlanks(planks)
+                .setLeaves(leaves)
+
+                .setSapling(sapling)
+                .setPottedSapling(pottedSapling)
+
+                .setStairs(stairs)
+                .setSlab(slab)
+                .setShelf(shelf)
+
+                .setFence(fence)
+                .setFenceGate(fenceGate)
+
+                .setDoor(door)
+                .setTrapdoor(trapdoor)
+
+                .setButton(button)
+                .setPressurePlate(pressurePlate)
+
+                .setSign(sign)
+                .setWallSign(wallSign)
+
+                .setHangingSign(hangingSign)
+                .setWallHangingSign(wallHangingSign)
+
+                .setSignItem(signItem)
+                .setHangingSignItem(hangingSignItem)
+
+                .setItemTag(itemTag)
+                .setBlockTag(blockTag);
 
                 TREES.put(id, set);
                 return set;
