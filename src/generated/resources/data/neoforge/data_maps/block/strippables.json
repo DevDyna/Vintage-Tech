@@ -56,6 +56,22 @@
       ],
       "stripped_block": "vintagetech:stripped_cherry_wood_beam"
     },
+    "vintagetech:cork_oak_log": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "stripped_block": "vintagetech:stripped_cork_oak_log"
+    },
+    "vintagetech:cork_oak_wood": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:always"
+        }
+      ],
+      "stripped_block": "vintagetech:stripped_cork_oak_wood"
+    },
     "vintagetech:crimson_beam": {
       "neoforge:conditions": [
         {

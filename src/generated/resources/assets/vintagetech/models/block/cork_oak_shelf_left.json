@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_shelf_left",
+  "textures": {
+    "all": "vintagetech:block/cork_oak_shelf",
+    "particle": "vintagetech:block/stripped_cork_oak_log"
+  }
+}
