@@ -76,10 +76,7 @@ public record TreeSet(
         }
 
         public List<Block> getSpecialLootBlocks() {
-                return List.of(
-                                leaves.get(),
-                                sign.get(),
-                                hangingSign.get());
+                return List.of(leaves.get(), sign.get(), hangingSign.get());
         }
 
         public void createModels(BlockModelGenerators models) {
